@@ -98,7 +98,7 @@ return [
             'database' => env('DB_FIREBIRD_DB_DATABASE', 'C:\opt\lampp\firebird\db\ach.gdb'),
             'username' => env('DB_FIREBIRD_DB_USERNAME', 'SYSDBA'),
             'password' => env('DB_FIREBIRD_DB_PASSWORD', 'masterkey'),
-            'charset'  => env('DB_FIREBIRD_CHARSET', 'UTF8'),
+            'charset'  => env('DB_FIREBIRD_CHARSET', 'ISO-8859-2'),
             'role'     => null,
         ],
 

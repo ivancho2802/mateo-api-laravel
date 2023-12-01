@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\MFormularios;
+use App\Models\MKoboFormularios;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/formularios_maestros', function (Request $request) {
-    return $request->user();
+Route::get('/formularios_master', function (Request $request) {
+
+    return MFormularios::get();
+});
+
+Route::get('/formularios_kobo_master', function (Request $request) {
+
+    $formulario = MKoboFormularios::with(
+        ['localidad', 'usuario', 'area', 'master_f']
+    );
+
+    return $formulario->get();
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

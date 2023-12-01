@@ -20,9 +20,10 @@ class MFormularios extends Model
      * @var array
      */
     protected $fillable = [
-        'ID_M_FORMULARIOS', 'email', 'password',
-        "ID_M_USUARIOS",
-        "ID_M_AREAS",
+        'ID_M_FORMULARIOS',
+
+        'email',
+        'password',
         "FECHA",
         "FECHA_REGISTRO",
         "ACCION",
@@ -39,12 +40,15 @@ class MFormularios extends Model
         "NOMBRES",
         "VIA",
         "TIPO",
-        "ID_M_CLIENTES",
         "UID",
         "URL_DATA",
         "URL_CAMPOS",
         "COMENTARIOS",
-        "GRUPO"
+        "GRUPO",
+        //relacionales
+        "ID_M_CLIENTES",
+        "ID_M_USUARIOS",
+        "ID_M_AREAS",
     ];
     
 
