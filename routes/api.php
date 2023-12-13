@@ -106,7 +106,7 @@ Route::prefix('kobo')->group(function () {
         dd($response->getHeaderLine('content-type'));
         */
 
-        return $response->body()
+        return $response->json()
         /* [
             "status" => $response->getStatusCode(),
             "data" => $response->body(),
