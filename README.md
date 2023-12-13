@@ -60,6 +60,31 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+## versio laravel 8.0
+
+## php version 7.4.0
+
+## for init server
+> composer global require laravel/installer
+
+## para configurar nginx
+https://www.nginx.com/blog/setting-up-nginx/
+https://nginx.org/en/linux_packages.html#Debian
+
+
+## servicios para ver el estado de los servicio
+
+systemctl status php7.3-fpm 
+systemctl status nginx
+
+## para ver los logs errores 
+
+> tail -f /var/log/nginx/domain1.access.log
+
+## algunos errores identificados permisos al configurar php en nginx
+https://stackoverflow.com/questions/23443398/nginx-error-connect-to-php5-fpm-sock-failed-13-permission-denied
+otras actualizaciones mas 
+> usermod -aG www-data nginx
 
 DO
 
