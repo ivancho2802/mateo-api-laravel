@@ -86,12 +86,23 @@ https://stackoverflow.com/questions/23443398/nginx-error-connect-to-php5-fpm-soc
 otras actualizaciones mas 
 > usermod -aG www-data nginx
 
+## error con los certificados para los get a api externa
+descargar de https://curl.se/docs/caextract.html
+poner en php.ini
+[curl]
+curl.cainfo = C:\ACH\php\extras\ssl\cacert.pem
+[openssl]
+openssl.cafile = C:\ACH\php\extras\ssl\cacert.pem
+
+
 DO
+
+    solucionar errore de conexion crear dos ramas master para produccion y dev para desarrollo en local
+
+DOING
 
     solucionar error 
         InvalidArgumentException
         Malformed UTF-8 characters, possibly incorrectly encoded
-
-DOING
 
 DOES

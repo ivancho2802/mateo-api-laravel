@@ -6,6 +6,7 @@ use App\Models\MFormularios;
 use App\Models\MKoboFormularios;
 use App\Http\Controllers\helper;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Http;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -49,7 +50,7 @@ Route::get('/formularios_master', function (Request $request) {
         /* 
         */
         "COMENTARIOS",
-        "GRUPO", 
+        "GRUPO",
         //relacionales
         "ID_M_CLIENTES",
         "ID_M_USUARIOS",
@@ -58,23 +59,22 @@ Route::get('/formularios_master', function (Request $request) {
 
     try {
         $results = [];
-    
+
         $results = MFormularios::select($body)
-        /*
+            /*
         ->where(['ID_M_FORMULARIOS'=> '0012'])
          ->foreach($form=>{
 
         }) */
-        ->get();
-    
+            ->get();
+
         //$results = helper::convert_from_latin1_to_utf8_recursively($results);
         return $results;
         //return $results[0];//mb_convert_encoding($results[0]['NOMBRES'], 'UTF-8', 'UTF-8');
         //return response(["message" => "Model status successfully updated!", "data" =>  json_encode($results->toArray())], 200);
-    }catch(\Throwable $exception){
+    } catch (\Throwable $exception) {
         return response()->json(['Error' => $exception->getMessage()]);
     }
-
 });
 
 Route::get('/formularios_kobo_master', function (Request $request) {
@@ -84,6 +84,40 @@ Route::get('/formularios_kobo_master', function (Request $request) {
     );
 
     return $formulario->get();
+});
+
+Route::prefix('kobo')->group(function () {
+    Route::get('{uui}', function ($uui) {
+
+        $jsonurl = "https://kf.acf-e.org/assets/" . $uui . "/submissions/?format=json";
+
+        /* $response = Http::accept('application/json')
+            ->withBasicAuth('ugi', 'ugiach')//ugi@co.acfspain.org | ugi
+            ->get($jsonurl); */
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Token 322f65e3677ee93aa36d34c9a89e70e66fa9bdd4',
+            'Accept' => 'application/json'
+        ])
+            ->get($jsonurl);
+
+
+        /*
+        dd($response->getHeaderLine('content-type'));
+        */
+
+        return $response->body()
+        /* [
+            "status" => $response->getStatusCode(),
+            "data" => $response->body(),
+            "json" => $response->json() ,
+            "object" => $response->object() ,
+            "status" => $response->status() ,
+            "successful" => $response->successful() ,
+            "clientError" => $response->clientError() ,
+            //"mkoboformulario" => $formulario->get()
+        ] */;
+    });
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
