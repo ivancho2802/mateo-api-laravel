@@ -94,6 +94,21 @@ curl.cainfo = C:\ACH\php\extras\ssl\cacert.pem
 [openssl]
 openssl.cafile = C:\ACH\php\extras\ssl\cacert.pem
 
+## mapa de rutas 
+
+> php artisan route:list
+
++--------+----------+-----------------------------+-----------------------------+---------+------------+
+| Domain | Method   | URI                         | Name                        | Action  | Middleware |
++--------+----------+-----------------------------+-----------------------------+---------+------------+
+|        | GET|HEAD | /                           | generated::A4mAn9fIANFXsbg8 | Closure | web        |
+|        | GET|HEAD | api/formularios_kobo_master | generated::yFBk3ygDSnUnHrn2 | Closure | api        |
+|        | GET|HEAD | api/formularios_master      | generated::icUaK4J45OxhJUky | Closure | api        |
+|        | GET|HEAD | api/kobo/{uui}              | generated::ppTA2QSTrQWFYNBE | Closure | api        |
+|        | GET|HEAD | api/user                    | generated::DMUKFoQ72sLqfXdM | Closure | api        |
+|        |          |                             |                             |         | auth:api   |
++--------+----------+-----------------------------+-----------------------------+---------+------------+
+
 
 DO
 
