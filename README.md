@@ -76,6 +76,7 @@ https://nginx.org/en/linux_packages.html#Debian
 
 systemctl status php7.3-fpm 
 systemctl status nginx
+service apache2 restart
 
 ## para ver los logs errores 
 
@@ -108,6 +109,10 @@ openssl.cafile = C:\ACH\php\extras\ssl\cacert.pem
 |        | GET|HEAD | api/user                    | generated::DMUKFoQ72sLqfXdM | Closure | api        |
 |        |          |                             |                             |         | auth:api   |
 +--------+----------+-----------------------------+-----------------------------+---------+------------+
+
+## solo para la primra migracio corres estas migraciones
+
+
 
 
 DO
