@@ -77,15 +77,28 @@ https://nginx.org/en/linux_packages.html#Debian
 systemctl status php7.3-fpm 
 systemctl status nginx
 service apache2 restart
+systemctl reload apache2
 
 ## para ver los logs errores 
 
 > tail -f /var/log/nginx/domain1.access.log
 
 ## algunos errores identificados permisos al configurar php en nginx
+
+## error de configuracion de cache
+
+sudo chown -R $USER:www-data storage
+
+sudo chown -R $USER:www-data bootstrap/cache
+
+chmod -R 775 storage
+
+chmod -R 775 bootstrap/cache
+## error de configuracion de cache
 https://stackoverflow.com/questions/23443398/nginx-error-connect-to-php5-fpm-sock-failed-13-permission-denied
 otras actualizaciones mas 
 > usermod -aG www-data nginx
+systemctl status php7.3-fpm 
 
 ## error con los certificados para los get a api externa
 descargar de https://curl.se/docs/caextract.html
