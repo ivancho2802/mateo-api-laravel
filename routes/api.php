@@ -8,6 +8,7 @@ use App\Http\Controllers\helper;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Media;
+use App\Http\Controllers\PersonAttended;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -122,7 +123,10 @@ Route::prefix('kobo')->group(function () {
 });
 
 Route::prefix('meal')->group(function () {
+    //http://127.0.0.1:8000/api/meal/lpa/download
     Route::get('lpa/download', Media::downloadMedia('lpa'));
+    //http://127.0.0.1:8000/api/meal/lpa/upload
+    //Route::post('lpa', PersonAttended::stored($params));
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
