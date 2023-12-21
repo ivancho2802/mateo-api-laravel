@@ -7,7 +7,7 @@ use App\Models\MKoboFormularios;
 use App\Http\Controllers\helper;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Media;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -122,10 +122,7 @@ Route::prefix('kobo')->group(function () {
 });
 
 Route::prefix('meal')->group(function () {
-    Route::get('lpa/download', function () {
-
-        return Storage::download('LPA_MIRE+_V1.xlsx');
-    });
+    Route::get('lpa/download', Media::downloadMedia('lpa'));
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

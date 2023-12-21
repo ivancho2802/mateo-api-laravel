@@ -108,6 +108,15 @@ curl.cainfo = C:\ACH\php\extras\ssl\cacert.pem
 [openssl]
 openssl.cafile = C:\ACH\php\extras\ssl\cacert.pem
 
+## error al descargar archivos laravel error "Class 'finfo' not found"
+
+editat php.ini
+fileinfo 
+
+line
+;extension=fileinfo
+
+
 ## mapa de rutas 
 
 > php artisan route:list
@@ -122,6 +131,8 @@ openssl.cafile = C:\ACH\php\extras\ssl\cacert.pem
 |        | GET|HEAD | api/user                    | generated::DMUKFoQ72sLqfXdM | Closure | api        |
 |        |          |                             |                             |         | auth:api   |
 +--------+----------+-----------------------------+-----------------------------+---------+------------+
+## para descargar formato para la carga de excel en sistema mire sys
+http://127.0.0.1:8000/api/meal/lpa/download
 
 ## solo para la primra migracio corres estas migraciones
 
@@ -130,12 +141,15 @@ openssl.cafile = C:\ACH\php\extras\ssl\cacert.pem
 
 DO
 
-    solucionar errore de conexion crear dos ramas master para produccion y dev para desarrollo en local
-
 DOING
+    crear servicio para cargar excel de meal formato fuente 1 lpa en la base de datos con adaptacion de tablas existe
+
+
+DOES
+
 
     solucionar error 
         InvalidArgumentException
         Malformed UTF-8 characters, possibly incorrectly encoded
 
-DOES
+    solucionar errore de conexion crear dos ramas master para produccion y dev para desarrollo en local
