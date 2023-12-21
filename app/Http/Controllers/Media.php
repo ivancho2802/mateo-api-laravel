@@ -2,26 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 
 class Media extends Controller
 {
     //
-    public function downloadMedia(String $nameFile)
-    {
-        //PDF file is stored under project/public/download/info.pdf
-        $file = public_path() . "/download/LPA_MIRE+_V1.xlsx";
 
-        if($nameFile == "lpa"){
-            $file = public_path() . "/download/LPA_MIRE+_V1.xlsx";
-        }
+    function downloadMedia()
+    {
 
         $headers = array(
             'Content-Type: application/vnd.ms-excel',
         );
+        /* $file = public_path() . "/download/LPA_MIRE+_V1.xlsx";
 
-        return Response::download($file, 'LPA_MIRE+_V1.xlsx', $headers);
+        if ($nameFile == "lpa") {
+            $file = "LPA_MIRE+_V1.xlsx";
+        }
+
+        return Storage::download($file, 'LPA_MIRE+_V1.xlsx', $headers); */
+        $filename = "LPA_MIRE+_V1.xlsx";
+        // Get path from storage directory
+        $path = storage_path('app/' . $filename);
+
+        // Download file with custom headers
+        return response()->download($path, $filename, $headers);
     }
 }
