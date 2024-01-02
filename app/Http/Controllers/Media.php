@@ -24,8 +24,9 @@ class Media extends Controller
 
         return Storage::download($file, 'LPA_MIRE+_V1.xlsx', $headers); */
         $filename = "LPA_MIRE+_V1.xlsx";
-        // Get path from storage directory
-        $path = storage_path('app/' . $filename);
+        // Get path from storage directory storage_path no funcionó
+        // Get path from storage directory public_path si funcionó
+        $path = (public_path() . '/download/' . $filename);
 
         // Download file with custom headers
         return response()->download($path, $filename, $headers);
