@@ -26,6 +26,43 @@ systemctl reload apache2
 
 > tail -f /var/log/nginx/domain1.access.log
 
+## para que mer permita cargar archivos grnades
+
+#falta editar en las lineas de 
+http {
+    ...
+    client_max_body_size 500M; 
+    server_names_hash_bucket_size 64; 
+}
+
+# no fucnino ngnix -t
+
+# esto no funciona para reniciar
+systemctl reload nginx
+# esto si
+service nginx restart
+
+# editar el phpini de fpm
+ /etc/php/7.3/fpm/php.ini
+
+post_max_size=100M
+upload_max_filesize = 500M
+
+# esto no funciona para reniciar
+systemctl reload nginx
+# esto si
+service nginx restart
+# este tambien importante
+systemctl status php7.3-fpm 
+
+# para que funcione llamadas de pdo conexion con php
+# remover ;
+; extension=interbase
+; extension=pdo_firebird
+# importante ara posytgresql
+; extension=pgsql
+; extension=pdo_pgsql
+
 ## algunos errores identificados permisos al configurar php en nginx
 
 ## error de configuracion de cache
@@ -84,7 +121,7 @@ http://127.0.0.1:8000/api/meal/lpa/download
 en /etc/nginx/nginx.conf
 
 http {
-      client_max_body_size 20M;         
+      client_max_body_size 500M;         
 }
 
 
