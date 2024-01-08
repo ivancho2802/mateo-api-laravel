@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\ToModel;
-use App\Models\DContactos;
+//use App\Models\DContactos;
 
-class PaImportClass implements DContactos
+class PaImportClass //implements DContactos
 {
     //
     public function model(array $row)
