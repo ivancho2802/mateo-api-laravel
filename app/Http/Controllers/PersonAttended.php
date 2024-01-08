@@ -10,10 +10,10 @@ class PersonAttended extends Controller
     //
     function stored(Request $request){
 
-        echo csrf_token(); 
-        return response()->json(["request" => $request]);
+        #echo csrf_token(); 
+        #return response()->json(["request" => $request]);
 
-        /* // Validate the uploaded file
+        // Validate the uploaded file
         $request->validate([
             'file' => 'required|mimes:xlsx,xls',
         ]);
@@ -24,9 +24,8 @@ class PersonAttended extends Controller
         // Process the Excel file
         Excel::import(new PaImportClass, $file);
 
-        dd("params", $request); */
+        #dd("params", $request);
 
-        
-        //return response()->json(["request" => $request]);
+        return response()->json(["request" => $request]);
     }
 }
