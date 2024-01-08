@@ -3,6 +3,10 @@
 
 ## php version 7.4.0
 
+## nstalacion de composer
+
+https://medium.com/techvblogs/update-composer-in-ubuntu-4138e36205eb
+
 ## for init server
 > composer global require laravel/installer
 
@@ -75,7 +79,13 @@ http://127.0.0.1:8000/api/meal/lpa/download
 
 ## solo para la primra migracio corres estas migraciones
 
+## error 413
 
+en /etc/nginx/nginx.conf
+
+http {
+      client_max_body_size 20M;         
+}
 
 
 DO
@@ -100,3 +110,28 @@ Dockerfile
 docker build -t ach-api-laravel .
 
 docker run -d -p 80:80 ach-api-laravel
+
+
+## ver version de linux
+
+cat /etc/issue
+Debian GNU/Linux 11 \n \l
+
+## para intalar potgresq directo
+
+https://www.devart.com/dbforge/postgresql/how-to-install-postgresql-on-linux/
+
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release
+-cs)-pgdg main" &gt; /etc/apt/sources.list.d/pgdg.list'
+
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo
+apt-key add - s
+
+sudo apt update
+
+sudo apt install postgresql postgresql-contrib
+
+sudo systemctl start postgresql.service
+
+sudo -i -u postgres
+
