@@ -10,7 +10,7 @@ class PersonAttended extends Controller
     //
     function stored(Request $request){
 
-        dd("file", $request->file('file'));
+        #dd("file", $request->file('file'));
         #echo csrf_token(); 
         #return response()->json(["request" => $request]);
 
