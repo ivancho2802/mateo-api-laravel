@@ -87,7 +87,18 @@ Route::get('/formularios_kobo_master', function (Request $request) {
     return $formulario->get();
 });
 
-Route::prefix('kobo')->group(function () {
+
+Route::prefix('meal')->group(function () {
+    Route::get('lpa/download', [App\Http\Controllers\Media::class, 'downloadMedia']);
+    Route::post('lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
+});
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+
+Route::middleware('auth:api')->prefix('kobo')->group(function () {
     Route::get('{uui}', function ($uui) {
 
         $jsonurl = "https://kf.acf-e.org/assets/" . $uui . "/submissions/?format=json";
@@ -119,13 +130,4 @@ Route::prefix('kobo')->group(function () {
             //"mkoboformulario" => $formulario->get()
         ] */;
     });
-});
-
-Route::prefix('meal')->group(function () {
-    Route::get('lpa/download', [App\Http\Controllers\Media::class, 'downloadMedia']);
-    Route::post('lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
-});
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
 });
