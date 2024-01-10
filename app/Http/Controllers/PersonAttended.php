@@ -15,9 +15,9 @@ class PersonAttended extends Controller
         #return response()->json(["request" => $request]);
 
         // Validate the uploaded file
-        $request->validate([
+        /* $request->validate([
             'file' => 'required|mimes:xlsx,xls',
-        ]);
+        ]); */
 
         // Get the uploaded file
         $file = $request->file('file');
@@ -25,8 +25,8 @@ class PersonAttended extends Controller
         // Process the Excel file
         Excel::import(new PaImportClass, $file);
 
-        #dd("params", $request);
+        return response()->json(["message" => "operacion hecha con exito"]);
 
-        return response()->json(["request" => $request]);
+        
     }
 }

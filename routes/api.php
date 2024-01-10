@@ -4,9 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\MFormularios;
 use App\Models\MKoboFormularios;
+use App\Models\DContactos;
 use App\Http\Controllers\helper;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
+//use Excel;
+use App\Http\Controllers\PaImportClass;
 
 
 //ini_set('internal_encoding', 'utf-8');
@@ -87,10 +90,29 @@ Route::get('/formularios_kobo_master', function (Request $request) {
     return $formulario->get();
 });
 
+Route::post('/contactostest', function (Request $request) {
+    return new DContactos([
+        'ID_D_CONTACTOS' => $request->ID_D_CONTACTOS,
+        'ID_M_USUARIOS' => $request->ID_M_USUARIOS,
+        // Add more columns as needed
+    ]);
+    
+    $Contact = new DContactos;
+ 
+    $Contact->ID_D_CONTACTOS = $request->ID_D_CONTACTOS;
+    $Contact->ID_M_USUARIOS = $request->ID_M_USUARIOS;
+    
+    $Contact->save();
+
+    return $Contact->get();
+});
+
 
 Route::prefix('meal')->group(function () {
-    Route::get('lpa/download', [App\Http\Controllers\Media::class, 'downloadMedia']);
-    Route::post('lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
+
+    Route::get('/lpa/download', [App\Http\Controllers\Media::class, 'downloadMedia']);
+
+    Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -119,7 +141,7 @@ Route::middleware('auth:api')->prefix('kobo')->group(function () {
         */
 
         return $response->json()
-        /* [
+            /* [
             "status" => $response->getStatusCode(),
             "data" => $response->body(),
             "json" => $response->json() ,

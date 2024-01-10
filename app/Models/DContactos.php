@@ -19,9 +19,8 @@ class DContactos extends Model
      * @var array
      */
     protected $fillable = [
-        "ID_P_FORMULARIOS",
-        //RELACIONALES
         "ID_D_CONTACTOS",
+        //RELACIONALES
         "ID_M_USUARIOS",
         "ID_M_AREAS",
         "ID_M_CONTACTOS",

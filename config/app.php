@@ -26,7 +26,9 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'test'),
+    //'env' => env('APP_ENV', 'production'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -39,6 +41,7 @@ return [
     |
     */
 
+    //'debug' => (bool) env('APP_DEBUG', true),
     'debug' => (bool) env('APP_DEBUG', false),
 
     /*

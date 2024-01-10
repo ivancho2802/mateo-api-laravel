@@ -17,7 +17,7 @@ Socio	(string) OBLIGATORIA
 Departamento	(string) OBLIGATORIA
 Municipio (string) OBLIGATORIA
 "Lugar de atención (Resguardo, comunidad, IE)" (string)
-__________end azul oscuro ________
+__________end azul oscuro emergencia ________
 
 __________GRIS "persona" ____________________
 N. Identificación (number)	OBLIGATORIA
@@ -44,7 +44,7 @@ Dificultad para recordar	(string)
 Dificultad para el cuidado propio	(string)
 Dificultad para comunicar	(string)
 Celular	(numero)
-__________END GRIS____________________
+__________END GRIS persona____________________
 
 __________azul oscuro "datos del servicio"________________
 Donante	(string) OBLIGATORIA
@@ -52,13 +52,15 @@ Código de Actividad (string) OBLIGATORIA
 Fecha de atención	(string) OBLIGATORIA
 Representante del Hogar o Beneficiario Directo (string)	
 ID del Hogar o Beneficiario Directo	(string)
-__________end azul oscuro ____________________
+__________end azul oscuro  datos del servicio____________________
+
 __________GRIS "datos complementarios kits watch"____________________
 Tipo de transferencia	(string)
 Mecanismo de Entrega	-(string)
 Proveedor Financiero	(string)
 Monto que recibe en el mes en COP   (string)	
-__________END GRIS____________________
+__________END GRIS datos complementarios kits watch____________________
+
 __________naranja "datos de validacion de formularios" ____________________
 Edad	"Rango
 ECHO"	"Rango

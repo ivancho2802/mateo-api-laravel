@@ -62,6 +62,18 @@ systemctl status php7.3-fpm
 # importante ara posytgresql
 ; extension=pgsql
 ; extension=pdo_pgsql
+; extension=gd2
+php_xml 
+php_zip 
+php_gd2 
+
+
+## APLICAR AL SERVER NO APLICDO
+
+post_max_size = 500M
+
+output_buffering = 1342177280
+
 
 ## algunos errores identificados permisos al configurar php en nginx
 
