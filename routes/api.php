@@ -90,8 +90,8 @@ Route::get('/formularios_kobo_master', function (Request $request) {
         ['localidad', 'usuario', 'area', 'master_f']
     );
 
-    //return utf8_encode($formulario->get());
-    return response()->json(["formularios_kobo_master" => $formulario->get()]);
+    return utf8_encode($formulario->get());
+    //return response()->json(["formularios_kobo_master" => $formulario->get()]);
 
 });
 
