@@ -43,32 +43,35 @@ class PaImportClass implements ToCollection
 
             $fecha_nacimiento = $date_birday; //date('d-m-Y', strtotime($date_birday));
 
-            $mlpa_persona = MLpaPersona::updateOrInsert([
-                'documento' => $row[6],
-                'tipo_documento' => $row[7],
-                'nombre_primero' => $row[8],
-                'nombre_otros' => $row[9],
-                'apellido_primero' => $row[10],
-                'apellido_otros' => $row[11],
-                'genero' => $row[12],
-                'identidad_genero' => $row[13],
-                'fecha_nacimiento' => $fecha_nacimiento,
-                'nacionalidad' => $row[15],
-                'perfil_migratorio' => $row[16],
-                'situacion' => $row[17],
-                'etnia' => $row[18],
-                'perfil' => $row[19],
-                'nivel_escolaridad' => $row[20],
-                'caracteristica_madre' => $row[21],
-                'discapacidad_ver' => $row[22],
-                'discapacidad_oir' => $row[23],
-                'discapacidad_caminar' => $row[24],
-                'discapacidad_recordar' => $row[25],
-                'discapacidad_cuidadopropio' => $row[26],
-                'discapacidad_comunicar' => $row[27],
-                'telefono' => $row[28]
-            ], [
-                'documento' => $row[6]
+            $mlpa_persona = MLpaPersona::updateOrInsert(
+                [
+                    'tipo_documento' => $row[7],
+                    'documento' => $row[6]
+                ],
+                [
+                    'documento' => $row[6],
+                    'tipo_documento' => $row[7],
+                    'nombre_primero' => $row[8],
+                    'nombre_otros' => $row[9],
+                    'apellido_primero' => $row[10],
+                    'apellido_otros' => $row[11],
+                    'genero' => $row[12],
+                    'identidad_genero' => $row[13],
+                    'fecha_nacimiento' => $fecha_nacimiento,
+                    'nacionalidad' => $row[15],
+                    'perfil_migratorio' => $row[16],
+                    'situacion' => $row[17],
+                    'etnia' => $row[18],
+                    'perfil' => $row[19],
+                    'nivel_escolaridad' => $row[20],
+                    'caracteristica_madre' => $row[21],
+                    'discapacidad_ver' => $row[22],
+                    'discapacidad_oir' => $row[23],
+                    'discapacidad_caminar' => $row[24],
+                    'discapacidad_recordar' => $row[25],
+                    'discapacidad_cuidadopropio' => $row[26],
+                    'discapacidad_comunicar' => $row[27],
+                    'telefono' => $row[28]
             ]);
 
             $fecha_atencion = Date::excelToDateTimeObject($row[31]);
