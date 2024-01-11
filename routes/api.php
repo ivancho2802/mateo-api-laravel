@@ -81,13 +81,18 @@ Route::get('/formularios_master', function (Request $request) {
     }
 });
 
+
+
 Route::get('/formularios_kobo_master', function (Request $request) {
+    
 
     $formulario = MKoboFormularios::with(
         ['localidad', 'usuario', 'area', 'master_f']
     );
 
-    return $formulario->get();
+    //return utf8_encode($formulario->get());
+    return response()->json(["formularios_kobo_master" => $formulario->get()]);
+
 });
 
 Route::post('/contactostest', function (Request $request) {
