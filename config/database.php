@@ -15,8 +15,8 @@ return [
     |
     */
 
-    #'default' => env('DB_CONNECTION', 'firebird'),
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_FIREBIRD_CONNECTION', 'firebird'),
+    #'default' => env('DB_CONNECTION', 'pgsql'),
 
     /*
     |--------------------------------------------------------------------------
