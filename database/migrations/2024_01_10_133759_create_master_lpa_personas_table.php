@@ -79,7 +79,7 @@ class CreateMasterLpaPersonasTable extends Migration
             $table->string('discapacidad_comunicar')->nullable();
             
             //Celular	(numero)
-            $table->tinyInteger('telefono')->nullable();
+            $table->bigInteger('telefono')->nullable();
             
             $table->timestamps();
         });

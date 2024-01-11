@@ -184,3 +184,25 @@ sudo systemctl start postgresql.service
 
 sudo -i -u postgres
 
+## creacion de postgresql en linux y configuracion de bd para la conexion
+
+https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html
+
+...
+
+sudo -u postgres createuser --login --pwprompt SYSDBA
+
+
+3.4  Using Utility "createuser" and "createdb"
+
+
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+local   ach             SYSDBA                                  md5
+
+
+
+## mostrar postgresql las tablas \dt
+
+# OTRAS FURNTAS 
+https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e
+https://www.hostinger.co/tutoriales/instalar-postgresql-ubuntu

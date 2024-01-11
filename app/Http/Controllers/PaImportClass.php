@@ -43,7 +43,7 @@ class PaImportClass implements ToCollection
 
             $fecha_nacimiento = $date_birday; //date('d-m-Y', strtotime($date_birday));
 
-            $mlpa_persona = MLpaPersona::create([
+            $mlpa_persona = MLpaPersona::updateOrInsert([
                 'documento' => $row[6],
                 'tipo_documento' => $row[7],
                 'nombre_primero' => $row[8],
@@ -67,6 +67,8 @@ class PaImportClass implements ToCollection
                 'discapacidad_cuidadopropio' => $row[26],
                 'discapacidad_comunicar' => $row[27],
                 'telefono' => $row[28]
+            ], [
+                'documento' => $row[6]
             ]);
 
             $fecha_atencion = Date::excelToDateTimeObject($row[31]);
