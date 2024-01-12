@@ -19,7 +19,7 @@ class MLpaEmergencia extends Model
      * @var array
      */
     protected $fillable = [
-        "COD_EMERGENCIA",
+        "COD_EMERGENCIAS",
         "TIPO_EVENTO",
         "SOCIO",
         "DEPARTAMENTO",
