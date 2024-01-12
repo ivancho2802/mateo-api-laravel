@@ -20,8 +20,6 @@ class PaImportClass implements ToCollection
         
         $mlpas = array();
 
-        dd($rows);
-
         foreach ($rows as $row) {
             /* if (!$row[0] || $row[0] == '') {
                 break;
