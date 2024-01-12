@@ -15,10 +15,10 @@ class CreateMasterLpaEmergenciasTable extends Migration
     {
         Schema::create('M_LPA_EMERGENCIAS', function (Blueprint $table) {
             //
-            $table->increments('id')->primary();
+            $table->increments('ID')->primary();
 
             //Codigo de la emergencia	(string) OBLIGATORIA
-            $table->string('cod_emergencia');//->unique();
+            $table->string('COD_EMERGENCIAS');//->unique();
             
             //Tipo de evento	(string) OBLIGATORIA
                 //no obligue estos valores
@@ -28,22 +28,22 @@ class CreateMasterLpaEmergenciasTable extends Migration
                 //Desastre: Son perturbaciones graves del funcionamiento de una comunidad que exceden su capacidad para hacer frente con sus propios recursos. Los desastres pueden ser causados por peligros naturales, generados por el hombre y tecnológicos, así como por diversos factores que influyen en la exposición y vulnerabilidad de una comunidad. IFRC
                 //Emergencias complejas: Cuando se presentan 2 o más eventos en un mismo periodo y afectan a la misma población
                 //No aplica
-            $table->string('tipo_evento');
+            $table->string('TIPO_EVENTO');
 
             //Socio	(string) OBLIGATORIA
                 //	ACH: Acción Contra el Hambre
                 //	NRC: Consejo Noruego para Refugiados
                 //	MDM: Médicos del Mundo
-            $table->string('socio');
+            $table->string('SOCIO');
 
             //Departamento	(string) OBLIGATORIA
-            $table->string('departamento');
+            $table->string('DEPARTAMENTO');
 
             //Municipio (string) OBLIGATORIA
-            $table->string('municipio');
+            $table->string('MUNICIPIO');
 
             //"Lugar de atención (Resguardo, comunidad, IE)" (string)
-            $table->string('lugar_atencion')->nullable();
+            $table->string('LUGAR_ATENCION')->nullable();
 
             $table->timestamps();
 

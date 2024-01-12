@@ -20,16 +20,16 @@ class MLpa extends Model
      * @var array
      */
     protected $fillable = [
-        "fk_lpa_emergencia",
-        "fk_lpa_persona",
-        "donante",
-        "cod_actividad",
-        "fecha_atencion",
-        "representante",
-        "doc_representante",
-        "tipo_tranferencia",
-        "modo_entrega",
-        "proveedor_financiero",
-        "monto_mensual"
+        "FK_LPA_EMERGENCIA",
+        "FK_LPA_PERSONA",
+        "DONANTE",
+        "COD_ACTIVIDAD",
+        "FECHA_ATENCION",
+        "REPRESENTANTE",
+        "DOC_REPRESENTANTE",
+        "TIPO_TRANFERENCIA",
+        "MODO_ENTREGA",
+        "PROVEEDOR_FINANCIERO",
+        "MONTO_MENSUAL"
     ];
 }

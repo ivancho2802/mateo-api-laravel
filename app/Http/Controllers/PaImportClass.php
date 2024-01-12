@@ -31,72 +31,72 @@ class PaImportClass implements ToCollection
             }
 
             $mlpa_emergencia = MLpaEmergencia::create([
-                'cod_emergencia' => $row[0],
-                'tipo_evento' => $row[1],
-                "socio" => $row[2],
-                'departamento' => $row[3],
-                'municipio' => $row[4],
-                'lugar_atencion' => $row[5]
+                'COD_EMERGENCIAS' => $row[0],
+                'TIPO_EVENTO' => $row[1],
+                "SOCIO" => $row[2],
+                'DEPARTAMENTO' => $row[3],
+                'MUNICIPIO' => $row[4],
+                'LUGAR_ATENCION' => $row[5]
             ]);
 
             $date_birday = Date::excelToDateTimeObject($row[14]);
 
-            $fecha_nacimiento = $date_birday; //date('d-m-Y', strtotime($date_birday));
+            $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
 
             $mlpa_persona_update = MLpaPersona::updateOrInsert(
                 [
-                    'tipo_documento' => $row[7],
-                    'documento' => $row[6]
+                    'TIPO_DOCUMENTO' => $row[7],
+                    'DOCUMENTO' => $row[6]
                 ],
                 [
-                    'documento' => $row[6],
-                    'tipo_documento' => $row[7],
-                    'nombre_primero' => $row[8],
-                    'nombre_otros' => $row[9],
-                    'apellido_primero' => $row[10],
-                    'apellido_otros' => $row[11],
-                    'genero' => $row[12],
-                    'identidad_genero' => $row[13],
-                    'fecha_nacimiento' => $fecha_nacimiento,
-                    'nacionalidad' => $row[15],
-                    'perfil_migratorio' => $row[16],
-                    'situacion' => $row[17],
-                    'etnia' => $row[18],
-                    'perfil' => $row[19],
-                    'nivel_escolaridad' => $row[20],
-                    'caracteristica_madre' => $row[21],
-                    'discapacidad_ver' => $row[22],
-                    'discapacidad_oir' => $row[23],
-                    'discapacidad_caminar' => $row[24],
-                    'discapacidad_recordar' => $row[25],
-                    'discapacidad_cuidadopropio' => $row[26],
-                    'discapacidad_comunicar' => $row[27],
-                    'telefono' => $row[28]
+                    'DOCUMENTO' => $row[6],
+                    'TIPO_DOCUMENTO' => $row[7],
+                    'NOMBRE_PRIMERO' => $row[8],
+                    'NOMBRE_OTROS' => $row[9],
+                    'APELLIDO_PRIMERO' => $row[10],
+                    'APELLIDO_OTRO' => $row[11],
+                    'GENERO' => $row[12],
+                    'IDENTIDAD_GENERO' => $row[13],
+                    'FECHA_NACIMIENTO' => $FECHA_NACIMIENTO,
+                    'NACIONALIDAD' => $row[15],
+                    'PERFIL_MIGRATORIO' => $row[16],
+                    'SITUACION' => $row[17],
+                    'ETNIA' => $row[18],
+                    'PERFIL' => $row[19],
+                    'NIVEL_ESCOLARIDAD' => $row[20],
+                    'CARACTERISTICAS_MADRE' => $row[21],
+                    'DISCAPACIDAD_VER' => $row[22],
+                    'DISCAPACIDAD_OIR' => $row[23],
+                    'DISCAPACIDAD_CAMINAR' => $row[24],
+                    'DISCAPACIDAD_RECORDAR' => $row[25],
+                    'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
+                    'DISCAPACIDAD_COMUNICAR' => $row[27],
+                    'TELEFONO' => $row[28]
             ]);
 
             $mlpa_persona = MLpaPersona::where([
-                'tipo_documento' => $row[7],
-                'documento' => $row[6]
+                'TIPO_DOCUMENTO' => $row[7],
+                'DOCUMENTO' => $row[6]
             ])->first();
 
             //dd($mlpa_persona->id);
 
-            $fecha_atencion = Date::excelToDateTimeObject($row[31]);
+            $FECHA_ATENCION = Date::excelToDateTimeObject($row[31]);
 
             $mlpa = MLpa::create([
 
-                "donante" => $row[29],
-                "cod_actividad" => $row[30],
-                "fecha_atencion" => $fecha_atencion,
-                "representante" => $row[32],
-                "doc_representante" => $row[33],
-                "tipo_tranferencia" => $row[34],
-                "modo_entrega" => $row[35],
-                "proveedor_financiero" => $row[36],
-                "monto_mensual" => $row[37],
+                "DONANTE" => $row[29],
+                "COD_ACTIVIDAD" => $row[30],
+                "FECHA_ATENCION" => $FECHA_ATENCION,
+                "REPRESENTANTE" => $row[32],
+                "DOC_REPRESENTANTE" => $row[33],
+                "TIPO_TRANFERENCIA" => $row[34],
+                "MODO_ENTREGA" => $row[35],
+                "PROVEEDOR_FINANCIERO" => $row[36],
+                "MONTO_MENSUAL" => $row[37],
 
-                "fk_lpa_emergencia" => $mlpa_emergencia->id,
-                "fk_lpa_persona" => $mlpa_persona->id
+                "FK_LPA_EMERGENCIA" => $mlpa_emergencia->id,
+                "FK_LPA_PERSONA" => $mlpa_persona->id
 
             ]);
 

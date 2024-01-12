@@ -15,54 +15,54 @@ class CreateMasterLpaPersonasTable extends Migration
     {
         Schema::create('M_LPA_PERSONAS', function (Blueprint $table) {
             //
-            $table->increments('id')->primary();
+            $table->increments('ID')->primary();
             //N. Identificación (number)	OBLIGATORIA
-            $table->string('documento')->unique();
+            $table->string('DOCUMENTO')->unique();
 
-            //Tipo de documento	(string) OBLIGATORIA
-            $table->string('tipo_documento');
+            //Tipo de DOCUMENTO	(string) OBLIGATORIA
+            $table->string('TIPO_DOCUMENTO');
             
             //Primer Nombre	(string) OBLIGATORIA
-            $table->string('nombre_primero');
+            $table->string('NOMBRE_PRIMERO');
             
             //Otros Nombres	(string) 
-            $table->string('nombre_otros')->nullable();
+            $table->string('NOMBRE_OTROS')->nullable();
 
             //Primer apellido	(string) OBLIGATORIA
-            $table->string('apellido_primero');
+            $table->string('APELLIDO_PRIMERO');
 
             //Segundo apellido	(string)
-            $table->string('apellido_otros')->nullable();
+            $table->string('APELLIDO_OTRO')->nullable();
 
             //Sexo (H/M)	(string) OBLIGATORIA
-            $table->string('genero');
+            $table->string('GENERO');
 
             //Identidad de género	(string)
-            $table->string('identidad_genero')->nullable();
+            $table->string('IDENTIDAD_GENERO')->nullable();
             
             //Fecha de nacimiento	(string) OBLIGATORIA
-            $table->date('fecha_nacimiento');
+            $table->date('FECHA_NACIMIENTO');
             
             //Nacionalidad	(string) OBLIGATORIA
-            $table->string('nacionalidad');
+            $table->string('NACIONALIDAD');
             
             //Perfil Migratorio	(string)
-            $table->string('perfil_migratorio')->nullable();
+            $table->string('PERFIL_MIGRATORIO')->nullable();
             
             //Situación / Condición	(string) OBLIGATORIA
-            $table->string('situacion');
+            $table->string('SITUACION');
             
             //Pertenencia Étnica	(string) OBLIGATORIA
-            $table->string('etnia');
+            $table->string('ETNIA');
 
             //Perfil del Participante	(string) OBLIGATORIA
-            $table->string('perfil');
+            $table->string('PERFIL');
             
             //Nivel de escolaridad	(string) 
-            $table->string('nivel_escolaridad')->nullable();
+            $table->string('NIVEL_ESCOLARIDAD')->nullable();
 
             //Caracteristica Madre	(string) OBLIGATORIA
-            $table->string('caracteristica_madre');
+            $table->string('CARACTERISTICAS_MADRE');
 
             //Situación de Discapacidad OBLIGATORIA
                 //Dificultad para ver	(string) 
@@ -71,15 +71,15 @@ class CreateMasterLpaPersonasTable extends Migration
                 //Dificultad para recordar	(string)
                 //Dificultad para el cuidado propio	(string)
                 //Dificultad para comunicar	(string)
-            $table->string('discapacidad_ver')->nullable();
-            $table->string('discapacidad_oir')->nullable();
-            $table->string('discapacidad_caminar')->nullable();
-            $table->string('discapacidad_recordar')->nullable();
-            $table->string('discapacidad_cuidadopropio')->nullable();
-            $table->string('discapacidad_comunicar')->nullable();
+            $table->string('DISCAPACIDAD_VER')->nullable();
+            $table->string('DISCAPACIDAD_OIR')->nullable();
+            $table->string('DISCAPACIDAD_CAMINAR')->nullable();
+            $table->string('DISCAPACIDAD_RECORDAR')->nullable();
+            $table->string('DISCAPACIDAD_CUIDADO_PROPIO')->nullable();
+            $table->string('DISCAPACIDAD_COMUNICAR')->nullable();
             
             //Celular	(numero)
-            $table->bigInteger('telefono')->nullable();
+            $table->bigInteger('TELEFONO')->nullable();
             
             $table->timestamps();
         });

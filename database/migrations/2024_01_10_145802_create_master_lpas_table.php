@@ -15,51 +15,51 @@ class CreateMasterLpasTable extends Migration
     {
         Schema::create('M_LPAS', function (Blueprint $table) {
             //
-            $table->increments('id')->primary();
-            
-            $table->unsignedBigInteger('fk_lpa_emergencia');
-            $table->unsignedBigInteger('fk_lpa_persona');
+            $table->increments('ID')->primary();
+
+            $table->unsignedBigInteger('FK_LPA_EMERGENCIA');
+            $table->unsignedBigInteger('FK_LPA_PERSONA');
             $table->timestamps();
 
-            $table->foreign('fk_lpa_emergencia')
+            $table->foreign('FK_LPA_EMERGENCIA')
             ->nullable()
-            ->references('id')->on('M_LPA_EMERGENCIAS');
+            ->references('ID')->on('M_LPA_EMERGENCIAS');
 
             
-            $table->foreign('fk_lpa_persona')
+            $table->foreign('FK_LPA_PERSONA')
             ->nullable()
-            ->references('id')->on('M_LPA_PERSONAS');
+            ->references('ID')->on('M_LPA_PERSONAS');
 
             //----------------DATOS DEL SERVICIO
 
             //Donante	(string) OBLIGATORIA
-            $table->string('donante');
+            $table->string('DONANTE');
 
             //Código de Actividad (string) OBLIGATORIA	
-            $table->string('cod_actividad');
+            $table->string('COD_ACTIVIDAD');
 
             //Fecha de atención	(string) OBLIGATORIA
-            $table->date('fecha_atencion');
+            $table->date('FECHA_ATENCION');
 
             //Representante del Hogar o Beneficiario Directo (string)	
-            $table->string('representante')->nullable();
+            $table->string('REPRESENTANTE')->nullable();
             //ID del Hogar o Beneficiario Directo	(string)
-            $table->string('doc_representante')->nullable();
+            $table->string('DOC_REPRESENTANTE')->nullable();
             //----------------DATOS DEL SERVICIO END
 
 
             //----------------DATOS COMPLEMENTARIO KIT WATCH
             //Tipo de transferencia	(string)
-            $table->string('tipo_tranferencia')->nullable();
+            $table->string('TIPO_TRANFERENCIA')->nullable();
             
             //Mecanismo de Entrega	-(string)
-            $table->string('modo_entrega')->nullable();
+            $table->string('MODO_ENTREGA')->nullable();
             
             //Proveedor Financiero	(string)
-            $table->string('proveedor_financiero')->nullable();
+            $table->string('PROVEEDOR_FINANCIERO')->nullable();
             
             //Monto que recibe en el mes en COP   (string)	
-            $table->string('monto_mensual')->nullable();
+            $table->string('MONTO_MENSUAL')->nullable();
             //----------------DATOS COMPLEMENTARIO KIT WATCH END
 
             

@@ -23,7 +23,7 @@ class MLpaEmergencia extends Model
         "tipo_evento",
         "socio",
         "departamento",
-        "municipio",
-        "lugar_atencion"
+        "MUNICIPIO",
+        "LUGAR_ATENCION"
     ];
 }
