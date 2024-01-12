@@ -15,7 +15,7 @@ class CreateMasterLpasTable extends Migration
     {
         Schema::create('M_LPAS', function (Blueprint $table) {
             //
-            $table->increments('ID')->primary();
+            $table->integer('ID')->primary();
 
             $table->unsignedBigInteger('FK_LPA_EMERGENCIA');
             $table->unsignedBigInteger('FK_LPA_PERSONA');

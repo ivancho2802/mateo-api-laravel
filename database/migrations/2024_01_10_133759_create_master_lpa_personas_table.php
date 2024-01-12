@@ -15,7 +15,7 @@ class CreateMasterLpaPersonasTable extends Migration
     {
         Schema::create('M_LPA_PERSONAS', function (Blueprint $table) {
             //
-            $table->increments('ID')->primary();
+            $table->integer('ID')->primary();
             //N. Identificación (number)	OBLIGATORIA
             $table->string('DOCUMENTO')->unique();
 
@@ -79,7 +79,7 @@ class CreateMasterLpaPersonasTable extends Migration
             $table->string('DISCAPACIDAD_COMUNICAR')->nullable();
             
             //Celular	(numero)
-            $table->bigInteger('TELEFONO')->nullable();
+            $table->string('TELEFONO')->nullable();
             
             $table->timestamps();
         });

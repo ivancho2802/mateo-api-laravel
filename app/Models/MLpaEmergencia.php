@@ -11,7 +11,7 @@ class MLpaEmergencia extends Model
     
 
     protected $table = 'M_LPA_EMERGENCIAS';
-
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.

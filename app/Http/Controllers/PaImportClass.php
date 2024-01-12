@@ -17,7 +17,7 @@ class PaImportClass implements ToCollection
     public function collection(Collection $rows)
     {
         $i = 0;
-        
+
         $mlpas = array();
 
         foreach ($rows as $row) {
@@ -29,26 +29,82 @@ class PaImportClass implements ToCollection
                 $i++;
                 continue;
             }
-
+            
             $mlpa_emergencia = MLpaEmergencia::create([
+                
                 'COD_EMERGENCIAS' => $row[0],
                 'TIPO_EVENTO' => $row[1],
-                "SOCIO" => $row[2],
+                'SOCIO' => $row[2],
                 'DEPARTAMENTO' => $row[3],
                 'MUNICIPIO' => $row[4],
                 'LUGAR_ATENCION' => $row[5]
+
             ]);
+
+            //dd($mlpa_emergencia->get()->last()->ID);
+
+            //ojo esto actualiza o crea una
+            /* $mlpa_emergencia = new MLpaEmergencia;
+            
+            $mlpa_emergencia->COD_EMERGENCIAS = $row[0];
+            $mlpa_emergencia->TIPO_EVENTO = $row[1];
+            $mlpa_emergencia->SOCIO = $row[2];
+            $mlpa_emergencia->DEPARTAMENTO = $row[3];
+            $mlpa_emergencia->MUNICIPIO = $row[4];
+            $mlpa_emergencia->LUGAR_ATENCION = $row[5];
+            
+            $mlpa_emergencia->save();
+
+            $mlpa_emergencia = $mlpa_emergencia->first(); 
+            */
 
             $date_birday = Date::excelToDateTimeObject($row[14]);
 
             $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
 
-            $mlpa_persona_update = MLpaPersona::updateOrInsert(
-                [
-                    'TIPO_DOCUMENTO' => $row[7],
-                    'DOCUMENTO' => $row[6]
-                ],
-                [
+            $mlpa_persona = MLpaPersona::where([
+                'TIPO_DOCUMENTO' => $row[7],
+                'DOCUMENTO' => $row[6]
+            ]);
+
+            //actualizo
+            if ($mlpa_persona->exists()) {
+
+                $mlpa_persona->update(
+                    [
+                        'DOCUMENTO' => $row[6],
+                        'TIPO_DOCUMENTO' => $row[7],
+                        'NOMBRE_PRIMERO' => $row[8],
+                        'NOMBRE_OTROS' => $row[9],
+                        'APELLIDO_PRIMERO' => $row[10],
+                        'APELLIDO_OTRO' => $row[11],
+                        'GENERO' => $row[12],
+                        'IDENTIDAD_GENERO' => $row[13],
+                        'FECHA_NACIMIENTO' => $FECHA_NACIMIENTO,
+                        'NACIONALIDAD' => $row[15],
+                        'PERFIL_MIGRATORIO' => $row[16],
+                        'SITUACION' => $row[17],
+                        'ETNIA' => $row[18],
+                        'PERFIL' => $row[19],
+                        'NIVEL_ESCOLARIDAD' => $row[20],
+                        'CARACTERISTICAS_MADRE' => $row[21],
+                        'DISCAPACIDAD_VER' => $row[22],
+                        'DISCAPACIDAD_OIR' => $row[23],
+                        'DISCAPACIDAD_CAMINAR' => $row[24],
+                        'DISCAPACIDAD_RECORDAR' => $row[25],
+                        'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
+                        'DISCAPACIDAD_COMUNICAR' => $row[27],
+                        'TELEFONO' => $row[28]
+                    ]
+                );
+                
+                $mlpa_persona = $mlpa_persona->first();
+            }
+
+            //creacion
+            if ($mlpa_persona->exists() == false) {
+
+                $mlpa_persona = MLpaPersona::create([
                     'DOCUMENTO' => $row[6],
                     'TIPO_DOCUMENTO' => $row[7],
                     'NOMBRE_PRIMERO' => $row[8],
@@ -72,14 +128,10 @@ class PaImportClass implements ToCollection
                     'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
                     'DISCAPACIDAD_COMUNICAR' => $row[27],
                     'TELEFONO' => $row[28]
-            ]);
+                ]);
+                
 
-            $mlpa_persona = MLpaPersona::where([
-                'TIPO_DOCUMENTO' => $row[7],
-                'DOCUMENTO' => $row[6]
-            ])->first();
-
-            //dd($mlpa_persona->id);
+            }
 
             $FECHA_ATENCION = Date::excelToDateTimeObject($row[31]);
 
@@ -95,8 +147,8 @@ class PaImportClass implements ToCollection
                 "PROVEEDOR_FINANCIERO" => $row[36],
                 "MONTO_MENSUAL" => $row[37],
 
-                "FK_LPA_EMERGENCIA" => $mlpa_emergencia->id,
-                "FK_LPA_PERSONA" => $mlpa_persona->id
+                "FK_LPA_EMERGENCIA" => $mlpa_emergencia->get()->last()->ID,
+                "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
 
             ]);
 
