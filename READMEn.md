@@ -1,5 +1,7 @@
 ## para la conexion al servidor de mire \\192.168.1.150\opt\lampp\htdocs
 
+https://firebirdsql.org/refdocs/langrefupd25.html
+
 esta la ip publica 190.145.110.149
 
 

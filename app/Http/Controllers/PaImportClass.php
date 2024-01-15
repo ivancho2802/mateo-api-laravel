@@ -152,6 +152,8 @@ class PaImportClass implements ToCollection
 
             ]);
 
+            dd($mlpa);
+
             $mlpas[] = $mlpa;
         }
 

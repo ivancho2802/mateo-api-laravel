@@ -38,13 +38,17 @@ https://firebirdsql.org/refdocs/langrefupd25-ddl-trigger.html
   set term ; !!
 
 
+  CREATE GENERATOR GEN_M_LPAS_ID;
+  SET GENERATOR GEN_M_LPAS_ID TO 0;
+
   set term !! ;
-  CREATE TRIGGER T2_BI FOR T1
-  ACTIVE BEFORE INSERT POSITION 0
-  AS
-  BEGIN
-  if (NEW.ID is NULL) then NEW.ID = GEN_ID(GEN_T2_ID, 1);
-  END!!
+  create trigger M_LPAS_BI
+    active before insert or update position 0
+    on M_LPAS
+  as
+  begin
+  if (new.id is NULL) then new.id = GEN_ID(GEN_M_LPAS_ID, 1);
+  end!!
   set term ; !!
 
 --alterrar tabla
@@ -57,4 +61,5 @@ ALTER TABLE M_LPA_PERSONAS alter TELEFONO_TEMP to TELEFONO;
 
 
 ALTER COLUMN RENAME id TO ID SET nextval('item_number_pk')
-
+ALTER TABLE M_LPAS ADD STATUS VARCHAR(5);
+ALTER TABLE M_LPAS ADD ID_M_USUARIOS VARCHAR(16);

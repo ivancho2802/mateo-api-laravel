@@ -30,6 +30,10 @@ class CreateMasterLpasTable extends Migration
             ->nullable()
             ->references('ID')->on('M_LPA_PERSONAS');
 
+            $table->foreign('ID_M_USUARIOS')
+            ->nullable()
+            ->references('ID')->on('M_USUARIOS');
+
             //----------------DATOS DEL SERVICIO
 
             //Donante	(string) OBLIGATORIA
@@ -60,6 +64,8 @@ class CreateMasterLpasTable extends Migration
             
             //Monto que recibe en el mes en COP   (string)	
             $table->string('MONTO_MENSUAL')->nullable();
+            $table->string('STATUS')->nullable();
+            $table->string('ID_M_USUARIOS')->nullable();
             //----------------DATOS COMPLEMENTARIO KIT WATCH END
 
             

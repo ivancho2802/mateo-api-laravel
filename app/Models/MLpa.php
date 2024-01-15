@@ -31,6 +31,8 @@ class MLpa extends Model
         "TIPO_TRANFERENCIA",
         "MODO_ENTREGA",
         "PROVEEDOR_FINANCIERO",
-        "MONTO_MENSUAL"
+        "MONTO_MENSUAL",
+        "ID_M_USUARIOS",
+        "STATUS"
     ];
 }
