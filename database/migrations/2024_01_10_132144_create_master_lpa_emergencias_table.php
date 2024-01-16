@@ -15,7 +15,7 @@ class CreateMasterLpaEmergenciasTable extends Migration
     {
         Schema::create('M_LPA_EMERGENCIAS', function (Blueprint $table) {
             //
-            $table->integer('ID')->primary();
+            $table->bigIncrements('ID');
 
             //Codigo de la emergencia	(string) OBLIGATORIA
             $table->string('COD_EMERGENCIAS');//->unique();
@@ -57,7 +57,7 @@ class CreateMasterLpaEmergenciasTable extends Migration
      */
     public function down()
     {
-        Schema::table('M_LPA_EMERGENCIA', function (Blueprint $table) {
+        Schema::table('M_LPA_EMERGENCIAS', function (Blueprint $table) {
             //
         });
     }

@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class MLpa extends Model
 {
     use HasFactory;
     
-    
-
     protected $table = 'M_LPAS';
 
-    public $incrementing = false;
+    public $incrementing = true;
 
     /**
      * The attributes that are mass assignable.
@@ -35,4 +35,11 @@ class MLpa extends Model
         "ID_M_USUARIOS",
         "STATUS"
     ];
+
+    /**
+     * SCOPES
+     */
+    public function scopeActive(Builder  $query):void {
+        $query->where('STATUS', 'true');
+    }
 }

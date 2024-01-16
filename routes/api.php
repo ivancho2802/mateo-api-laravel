@@ -118,6 +118,9 @@ Route::prefix('meal')->group(function () {
     Route::get('/lpa/download', [App\Http\Controllers\Media::class, 'downloadMedia']);
 
     Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
+
+    Route::get('/lpa', [App\Http\Controllers\Meal::class, 'get']);
+    
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

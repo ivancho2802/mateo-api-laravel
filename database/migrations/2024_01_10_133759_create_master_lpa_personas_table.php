@@ -15,7 +15,7 @@ class CreateMasterLpaPersonasTable extends Migration
     {
         Schema::create('M_LPA_PERSONAS', function (Blueprint $table) {
             //
-            $table->integer('ID')->primary();
+            $table->bigIncrements('ID');
             //N. Identificación (number)	OBLIGATORIA
             $table->string('DOCUMENTO')->unique();
 
@@ -92,7 +92,7 @@ class CreateMasterLpaPersonasTable extends Migration
      */
     public function down()
     {
-        Schema::table('M_LPA_PERSONA', function (Blueprint $table) {
+        Schema::table('M_LPA_PERSONAS', function (Blueprint $table) {
             //
         });
     }

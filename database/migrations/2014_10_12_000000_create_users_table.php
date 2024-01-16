@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('users')) {
+        if (Schema::hasTable('users')) {
             // Code to create table
             Schema::table('users', function (Blueprint $table) {
                 $table->id();
@@ -42,6 +42,36 @@ class CreateUsersTable extends Migration
                 $table->rememberToken();
                 $table->timestamps();
             });
+        } else {
+            // Code to create table
+            Schema::create('users', function (Blueprint $table) {
+                $table->id();
+                //if (!Schema::hasColumn('users','name')) {
+                $table->string('name');
+                //
+                //}
+
+                //if (!Schema::hasColumn('users','email')) {
+                //
+                $table->string('email')->unique();
+                //}
+
+
+                //if (!Schema::hasColumn('users','email_verified_at')) {
+                $table->timestamp('email_verified_at')->nullable();
+                //
+                //}
+
+
+                //if (!Schema::hasColumn('users','password')) {
+                $table->string('password');
+                //
+                //}
+
+                $table->rememberToken();
+                $table->timestamps();
+            });
+
         }
     }
 

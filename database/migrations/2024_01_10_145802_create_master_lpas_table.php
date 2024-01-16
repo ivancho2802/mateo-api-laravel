@@ -15,24 +15,23 @@ class CreateMasterLpasTable extends Migration
     {
         Schema::create('M_LPAS', function (Blueprint $table) {
             //
-            $table->integer('ID')->primary();
+            $table->bigIncrements('ID');
 
-            $table->unsignedBigInteger('FK_LPA_EMERGENCIA');
-            $table->unsignedBigInteger('FK_LPA_PERSONA');
             $table->timestamps();
 
+            $table->unsignedBigInteger('FK_LPA_EMERGENCIA');
             $table->foreign('FK_LPA_EMERGENCIA')
-            ->nullable()
-            ->references('ID')->on('M_LPA_EMERGENCIAS');
+                ->references('ID')->on('M_LPA_EMERGENCIAS');
 
-            
+
+            $table->unsignedBigInteger('FK_LPA_PERSONA');
             $table->foreign('FK_LPA_PERSONA')
-            ->nullable()
-            ->references('ID')->on('M_LPA_PERSONAS');
+                ->references('ID')->on('M_LPA_PERSONAS');
 
+
+            $table->unsignedBigInteger('ID_M_USUARIOS');
             $table->foreign('ID_M_USUARIOS')
-            ->nullable()
-            ->references('ID')->on('M_USUARIOS');
+                ->references('ID')->on('M_USUARIOS');
 
             //----------------DATOS DEL SERVICIO
 
@@ -55,20 +54,19 @@ class CreateMasterLpasTable extends Migration
             //----------------DATOS COMPLEMENTARIO KIT WATCH
             //Tipo de transferencia	(string)
             $table->string('TIPO_TRANFERENCIA')->nullable();
-            
+
             //Mecanismo de Entrega	-(string)
             $table->string('MODO_ENTREGA')->nullable();
-            
+
             //Proveedor Financiero	(string)
             $table->string('PROVEEDOR_FINANCIERO')->nullable();
-            
+
             //Monto que recibe en el mes en COP   (string)	
             $table->string('MONTO_MENSUAL')->nullable();
             $table->string('STATUS')->nullable();
-            $table->string('ID_M_USUARIOS')->nullable();
             //----------------DATOS COMPLEMENTARIO KIT WATCH END
 
-            
+
             //----------------naranja "datos de validacion de formularios
             //Edad	
             //"Rango ECHO"	
@@ -76,7 +74,7 @@ class CreateMasterLpasTable extends Migration
             //Status	
             //Unicos	
             //Validación				
-            
+
 
         });
     }
