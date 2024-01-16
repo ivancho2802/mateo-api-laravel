@@ -201,7 +201,31 @@ local   ach             SYSDBA                                  md5
 
 
 
-## mostrar postgresql las tablas \dt
+## COMO HACER QUERIES EN LA BASE DE DATOS DE PROUDCCION
+
+# ACCEDER CON EL USUARIO SYSDBA
+
+sudo -i -u SYSDBA
+
+# CONECTAR A LA BD
+
+pgsql
+
+# como mostrar las base de datso
+
+\l
+
+# como acceder a la base de datos especifica
+
+\c ach
+
+    poner el usuario y la contraseña que corresponda
+
+# sql 
+
+    normal como siempre
+
+mostrar postgresql las tablas \dt
 
 # OTRAS FURNTAS 
 https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e

@@ -40,6 +40,6 @@ class MLpa extends Model
      * SCOPES
      */
     public function scopeActive(Builder  $query):void {
-        $query->where('STATUS', 'true');
+        $query->where('STATUS', true);
     }
 }
