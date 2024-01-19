@@ -121,7 +121,7 @@ Route::prefix('meal')->group(function () {
 
     Route::get('/lpa', [App\Http\Controllers\Meal::class, 'get']);
 
-    Route::get('/pqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);
+    Route::get('/mqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);
 
     
 });
