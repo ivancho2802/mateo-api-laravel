@@ -31,4 +31,20 @@ class Media extends Controller
         // Download file with custom headers
         return response()->download($path, $filename, $headers);
     }
+
+    function downloadMediaPqr()
+    {
+
+        $headers = array(
+            'Content-Type: application/vnd.ms-excel',
+        );
+        
+        $filename = "Consolidado_PQR_MIRE+.xlsx";
+        $path = (public_path() . '/download/' . $filename);
+
+        // Download file with custom headers
+        return response()->download($path, $filename, $headers);
+    }
+
+    
 }
