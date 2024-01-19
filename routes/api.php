@@ -120,6 +120,9 @@ Route::prefix('meal')->group(function () {
     Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
 
     Route::get('/lpa', [App\Http\Controllers\Meal::class, 'get']);
+
+    Route::get('/pqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);
+
     
 });
 
