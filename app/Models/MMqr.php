@@ -9,7 +9,7 @@ class MMqr extends Model
 {
     use HasFactory;
 
-    protected $table = 'M_M_MQR';
+    protected $table = 'M_MQR';
 
     public $incrementing = true;
 
