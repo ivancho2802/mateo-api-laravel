@@ -115,15 +115,20 @@ Route::post('/contactostest', function (Request $request) {
 
 Route::prefix('meal')->group(function () {
 
+    //lista de personas atendidas
     Route::get('/lpa/download', [App\Http\Controllers\Media::class, 'downloadMedia']);
 
     Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
 
-    Route::get('/lpa', [App\Http\Controllers\Meal::class, 'get']);
+    Route::get('/lpa', [App\Http\Controllers\Meal::class, 'getLpa']);
 
+    //quejas y reclamos
     Route::get('/mqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);
 
-    
+    Route::post('/mqr/upload', [App\Http\Controllers\MqrClass::class, 'stored']);
+
+    Route::get('/mqr', [App\Http\Controllers\Meal::class, 'getMqr']);
+
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
