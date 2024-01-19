@@ -559,6 +559,23 @@ T_F_M_LPA_TIPO_PERSO, Sequence: 0, Type: BEFORE UPDATE, Active
 T_M_LPA_TIPO_PERSONA_XDESC, Sequence: 1, Type: BEFORE INSERT OR UPDATE, Active
                                   
                                    
-                             
+MQR                 
                                     
-        
+  org_report          string    Organización que reporta	
+  consecutivos_cases  number    Consecutivo casos	
+  moenth_report       string    Mes de reporte	
+  date_in             DATE      Fecha de ingreso
+  (D/M/A)	
+  channel_in          string    Canal por el cuál ingreso el caso en primer instancia
+  fk_category	
+    category          string    Categoria
+      sub_caterory	  string    Subcategoria
+  theme	              string    Tema
+  etnia               string    Pertenencia étnica	
+  sexo                string    Sexo	
+  tange_edad          string    Rango étario	
+  department          string    Departamento	
+  municicio           string    Municipio	
+  address             string    Comunidad/vereda/nombre de la organización	
+  valid               string    Validación de la queja (si aplica)	
+  recive              string    Recibido por remisión de otro socio																																																																																																		
