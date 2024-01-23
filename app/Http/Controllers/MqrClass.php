@@ -9,25 +9,35 @@ use App\Http\Controllers\MqrImportClass;
 class MqrClass extends Controller
 {
     //
-    function stored(Request $request){
+    function stored(Request $request)
+    {
 
-        #dd("file", $request->file('file'));
-        #echo csrf_token(); 
-        #return response()->json(["request" => $request]);
 
-        // Validate the uploaded file
-        /* $request->validate([
-            'file' => 'required|mimes:xlsx,xls',
-        ]); */
+        try {
 
-        // Get the uploaded file
-        $file = $request->file('file');
+            //dd("file", $request->file('file'));
 
-        // Process the Excel file
-        Excel::import(new MqrImportClass, $file);
+            // Validate the uploaded file
+            $request->validate([
+                'file' => 'required|mimes:xlsx,xls',
+            ]);
 
-        return response()->json(["message" => "operacion hecha con exito"]);
+            // Get the uploaded file
+            $file = $request->file('file');
 
-        
+            // Process the Excel file Consolidado
+            Excel::import(new MqrImportClass, $file, 'Consolidado');
+            /* Excel::load($file, function($reader) {
+                foreach($reader as $key => $sheet) {
+                    $sheetTitle = $sheet->getTitle();
+                    dd($sheetTitle);
+                };
+            }); */
+
+            return response()->json(["message" => "operacion hecha con exito"]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

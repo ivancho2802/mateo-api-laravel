@@ -24,7 +24,7 @@ class CreateMasterMqrTable extends Migration
             $table->string('CHANNEL_IN');
             $table->string('CATEGORY');
             $table->string('SUB_CATEGORY');
-            $table->string('THEME');
+            $table->string('THEME')->nullable();
             $table->string('ETNIA');
             $table->string('SEXO');
             $table->string('RANGE_EDAD');

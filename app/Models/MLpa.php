@@ -13,7 +13,7 @@ class MLpa extends Model
     
     protected $table = 'M_LPAS';
 
-    public $incrementing = true;
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.

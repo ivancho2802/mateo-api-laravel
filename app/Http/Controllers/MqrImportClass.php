@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\ToModel;
 use App\Models\MMqr;
-use App\Models\MLpa;
-use App\Models\MLpaPersona;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class MqrImportClass extends Controller
+class MqrImportClass implements ToCollection
 {
     //
     public function collection(Collection $rows)
@@ -22,13 +20,20 @@ class MqrImportClass extends Controller
 
         foreach ($rows as $row) {
 
-            if ($i == 0) {
+            $countElement = count($row->filter()->all());
+
+            if ($i <2 || !$row[0] || !$row[1] || $countElement < 15 || $countElement > 16) {
+                $i++;
+                continue;
+            }
+
+            if(!is_numeric($row[3])){
                 $i++;
                 continue;
             }
             
-
             $date_in = Date::excelToDateTimeObject($row[3]);
+            if($i>2) dd($row);
 
             $DATE_IN = $date_in; //date('d-m-Y', strtotime($date_birday));
             

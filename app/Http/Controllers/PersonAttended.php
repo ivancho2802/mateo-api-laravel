@@ -10,14 +10,14 @@ class PersonAttended extends Controller
     //
     function stored(Request $request){
 
-        #dd("file", $request->file('file'));
-        #echo csrf_token(); 
-        #return response()->json(["request" => $request]);
+        //dd("file", $request->file('file'));
+        //echo csrf_token(); 
+        //return response()->json(["request" => $request]);
 
         // Validate the uploaded file
-        /* $request->validate([
+        $request->validate([
             'file' => 'required|mimes:xlsx,xls',
-        ]); */
+        ]);
 
         // Get the uploaded file
         $file = $request->file('file');

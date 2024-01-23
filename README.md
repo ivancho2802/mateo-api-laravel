@@ -203,13 +203,15 @@ local   ach             SYSDBA                                  md5
 
 ## COMO HACER QUERIES EN LA BASE DE DATOS DE PROUDCCION
 
+sudo systemctl start postgresql.service
+
 # ACCEDER CON EL USUARIO SYSDBA
 
 sudo -i -u SYSDBA
 
 # CONECTAR A LA BD
 
-pgsql
+psql
 
 # como mostrar las base de datso
 
