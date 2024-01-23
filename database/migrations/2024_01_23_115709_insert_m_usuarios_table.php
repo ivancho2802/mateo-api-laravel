@@ -25,7 +25,8 @@ class InsertMUsuariosTable extends Migration
                 'NOMBRES'=>'laura',
                 'APELLIDOS'=>'laura',
                 'LOGIN'=>'laura',
-                'CLAVE'=>$password
+                'CLAVE'=>$password,
+                'ID_M_GRUPOS'=>'laura'
             )
         );
     }
