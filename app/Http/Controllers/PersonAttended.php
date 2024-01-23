@@ -22,8 +22,12 @@ class PersonAttended extends Controller
         // Get the uploaded file
         $file = $request->file('file');
 
+        $import = new PaImportClass();
+
+        $import->onlySheets('BD');
+
         // Process the Excel file
-        Excel::import(new PaImportClass, $file);
+        Excel::import($import, $file);
 
         return response()->json(["message" => "operacion hecha con exito"]);
 

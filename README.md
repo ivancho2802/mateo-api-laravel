@@ -136,6 +136,11 @@ http {
       client_max_body_size 500M;         
 }
 
+## error de carga de archivo agregar al php.ini
+
+max_execution_time = 180
+max_input_time = 180
+memory_limit = 1200M
 
 DO
 

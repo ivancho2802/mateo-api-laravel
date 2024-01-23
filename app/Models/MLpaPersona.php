@@ -11,7 +11,7 @@ class MLpaPersona extends Model
 
     protected $table = 'M_LPA_PERSONAS';
 
-    public $incrementing = true;
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
