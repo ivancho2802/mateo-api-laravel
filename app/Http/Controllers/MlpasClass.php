@@ -145,8 +145,8 @@ class MlpasClass implements ToCollection
                 "PROVEEDOR_FINANCIERO" => $row[36],
                 "MONTO_MENSUAL" => $row[37],
 
-                //laura reemplzar por el id desde el token
-                "ID_M_USUARIOS" => 5,
+                //laura reemplzar por el id desde el token 5 en lcal 1 online
+                "ID_M_USUARIOS" => 1,
 
                 "FK_LPA_EMERGENCIA" => $mlpa_emergencia->get()->last()->ID,
                 "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
