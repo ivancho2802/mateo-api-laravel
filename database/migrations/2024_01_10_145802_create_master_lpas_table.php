@@ -63,7 +63,7 @@ class CreateMasterLpasTable extends Migration
 
             //Monto que recibe en el mes en COP   (string)	
             $table->string('MONTO_MENSUAL')->nullable();
-            $table->boolval('STATUS')->default(true);
+            $table->string('STATUS')->default(true);
             //----------------DATOS COMPLEMENTARIO KIT WATCH END
 
 

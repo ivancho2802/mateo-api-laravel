@@ -137,6 +137,7 @@ http {
 }
 
 ## error de carga de archivo agregar al php.ini
+ /etc/php/7.3/fpm/php.ini
 
 max_execution_time = 180
 max_input_time = 180
@@ -233,6 +234,9 @@ psql
     normal como siempre
 
 mostrar postgresql las tablas \dt
+
+# describe table 
+ \d  "M_LPA_EMERGENCIAS";
 
 # OTRAS FURNTAS 
 https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e
