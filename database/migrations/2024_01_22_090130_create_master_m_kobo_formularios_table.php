@@ -18,7 +18,7 @@ class CreateMasterMKoboFormulariosTable extends Migration
             $table->timestamps();
 
             $table->integer('_ID');
-            $table->integer('ID');
+            $table->integer('ID')->nullable();
 
             $table->string('ID_M_KOBO_FORMULARIOS')->nullable();
             $table->string('ID_M_USUARIOS');
