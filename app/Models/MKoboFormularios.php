@@ -12,6 +12,7 @@ use App\Models\MFormularios;
 class MKoboFormularios extends Model
 {
     use HasFactory;
+    use GetNextSequenceValue;
 
     //use HasFactory, SoftDeletes;
 
