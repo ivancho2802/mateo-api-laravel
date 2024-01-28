@@ -118,8 +118,6 @@ class MonitorPostDist extends Controller
 
                         $nextId = MKoboFormularios::getNextSequenceValue();
 
-                        dd($nextId);
-
                         $pregunta = $object->preguntas[$j];
                         $respuesta = $object->respuestas[$j];
 
