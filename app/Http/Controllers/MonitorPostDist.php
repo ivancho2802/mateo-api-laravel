@@ -138,6 +138,7 @@ class MonitorPostDist extends Controller
                         //crear respuesta
 
                         $m_pregunta = MKoboFormularios::where(["created_at" => $m_pregunta->created_at])->first();
+                        dd($m_pregunta);
 
                         array_push($body_preguntas, [
                             "FECHA" => $json_response[$i]->_submission_time,
@@ -150,7 +151,6 @@ class MonitorPostDist extends Controller
                         ]);
                     }
                     //crean respuestas
-                    dd($body_preguntas);
 
                     $m_respuesta = MKoboRespuestas::insert($body_preguntas);
 
