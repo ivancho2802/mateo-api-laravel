@@ -126,6 +126,9 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+
+    'tokenkobo' =>  env('ACH_TOKENKOBO', '0a4363a291013a98e3e574a1713f9f9702c1d739'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

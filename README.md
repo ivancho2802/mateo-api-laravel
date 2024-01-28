@@ -139,7 +139,7 @@ http {
 ## error de carga de archivo agregar al php.ini
  /etc/php/7.3/fpm/php.ini
 
-max_execution_time = 180
+max_execution_time = 280
 max_input_time = 180
 memory_limit = 1200M
 

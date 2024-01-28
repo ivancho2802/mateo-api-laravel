@@ -13,6 +13,9 @@ class MFormularios extends Model
     
     protected $table = 'M_FORMULARIOS';
 
+    protected $primaryKey = 'ID_M_FORMULARIOS';
+
+    public $incrementing = false;
     
     /**
      * The attributes that are mass assignable.
@@ -20,16 +23,14 @@ class MFormularios extends Model
      * @var array
      */
     protected $fillable = [
+        "ID",
         'ID_M_FORMULARIOS',
 
-        'email',
-        'password',
         "FECHA",
         "FECHA_REGISTRO",
         "ACCION",
         "UNICO",
         "BARCODE",
-        "ID",
         "ID_EMPRESA",
         "CAMPO1",
         "CAMPO2",
@@ -41,6 +42,7 @@ class MFormularios extends Model
         "VIA",
         "TIPO",
         "UID",
+        "ASSET_UID",
         "URL_DATA",
         "URL_CAMPOS",
         "COMENTARIOS",

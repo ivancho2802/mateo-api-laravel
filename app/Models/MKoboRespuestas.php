@@ -12,6 +12,7 @@ class MKoboRespuestas extends Model
 
     protected $table = 'M_KOBO_RESPUESTAS';
 
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.

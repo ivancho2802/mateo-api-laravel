@@ -18,6 +18,9 @@ class MlpasClass implements ToCollection
 
         $mlpas = array();
 
+        //FALTA TERMINAR SACAR DEL TOKEN
+        $ID_USER = 1;
+
         foreach ($rows as $row) {
             /* if (!$row[0] || $row[0] == '') {
                 break;
@@ -146,7 +149,7 @@ class MlpasClass implements ToCollection
                 "MONTO_MENSUAL" => $row[37],
 
                 //laura reemplzar por el id desde el token 5 en lcal 1 online
-                "ID_M_USUARIOS" => 1,
+                "ID_M_USUARIOS" => $ID_USER,
 
                 "FK_LPA_EMERGENCIA" => $mlpa_emergencia->get()->last()->ID,
                 "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID

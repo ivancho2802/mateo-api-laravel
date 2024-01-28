@@ -18,6 +18,7 @@ class MKoboFormularios extends Model
     protected $table = 'M_KOBO_FORMULARIOS';
 
     protected $primaryKey = 'ID_M_KOBO_FORMULARIOS';
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +28,7 @@ class MKoboFormularios extends Model
     protected $fillable = [
 
         "ID_M_KOBO_FORMULARIOS",
+        "_ID",//relacionado al id de la respuesta del usuario
 
         "FECHA",
         "FECHA_REGISTRO",

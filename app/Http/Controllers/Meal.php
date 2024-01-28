@@ -25,7 +25,10 @@ class Meal extends Controller
         return $mmqrs;
     }
 
-    function gePda(){
+    /**
+     * pda
+     */
+    function geMpd(){
         //$mmqrs = MMqr::get();
 
         return [];

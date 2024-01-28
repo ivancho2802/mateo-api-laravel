@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 //use Excel;
 use App\Http\Controllers\PaImportClass;
-
+use Illuminate\Support\Facades\DB;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -85,13 +85,14 @@ Route::get('/formularios_master', function (Request $request) {
 
 Route::get('/formularios_kobo_master', function (Request $request) {
     
+    DB::setDefaultConnection('firebird');
 
     $formulario = MKoboFormularios::with(
         ['localidad', 'usuario', 'area', 'master_f']
     );
 
-    return utf8_encode($formulario->get());
-    //return response()->json(["formularios_kobo_master" => $formulario->get()]);
+    //return utf8_encode($formulario->get());
+    return response()->json(["formularios_kobo_master" => json_decode($formulario->get())]);
 
 });
 
@@ -122,8 +123,11 @@ Route::prefix('meal')->group(function () {
 
     Route::get('/lpa', [App\Http\Controllers\Meal::class, 'getLpa']);
 
-    //monitorio post distribucion
-    Route::get('/pda', [App\Http\Controllers\Meal::class, 'gePda']);
+    //monitorio post distribucion pda
+    Route::get('/mpd', [App\Http\Controllers\Meal::class, 'geMpd']);
+    //MIGRACIONS DESDE EL KOBO
+    Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
+    
 
     //quejas y reclamos
     Route::get('/mqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);

@@ -27,4 +27,69 @@ class helper extends Controller
             return $dat;
         }
     }
+
+    public static function extactHash($url)
+    {
+        $hashArray = explode("/", $url);
+        $hash = $hashArray[4];
+
+        return $hash;
+    }
+
+
+    /*
+        el objetivo es extraer el valor apartir de una key aprox
+        group_pf9su00\/_3b_Fecha_del_Monitoreo
+     */
+    public static function getValue($object, $preindex)
+    {
+
+        $keys = array_keys((array)$object);
+
+
+        $key   = key(array_filter($keys, function ($x) use ($preindex) {
+            return false !== stripos($x, $preindex);
+        }));
+
+        $elementDetected = $keys[$key];
+
+        $valueDetected = $object->$elementDetected;
+
+        return $valueDetected;
+    }
+
+
+    /**
+     * el objetivo es sacar del elemento del json de kobo sus preguntas y respuestas con funcion keys y values
+     * pero solo que tengan el flag "\/_" 
+     * mas las observaciones que es _OBSERVACIONES
+     */
+
+    public static function formatObject($object, $preindex)
+    {
+
+        $values = array_values((array)$object);
+        $keys = array_keys((array)$object);
+
+        $respuestas = [];
+        $preguntas = [];
+
+        for ($i=0; $i < count($keys); $i++) {
+
+            $pregunta = $keys[$i];
+            $respuesta = $values[$i];
+            
+            if (false !== stripos($pregunta, $preindex) || $pregunta == "_OBSERVACIONES" || $pregunta == "_id") {
+                array_push($preguntas, $pregunta);
+                array_push($respuestas, $respuesta);
+            }
+        }
+
+        $preguntas = array_map(function ($x) use ($preindex) {
+            $partsQuestion = explode($preindex, $x);
+            return end($partsQuestion);
+        }, $preguntas);
+
+        return ["preguntas" => $preguntas, "respuestas" => $respuestas];
+    }
 }
