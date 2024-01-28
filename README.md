@@ -139,9 +139,30 @@ http {
 ## error de carga de archivo agregar al php.ini
  /etc/php/7.3/fpm/php.ini
 
-max_execution_time = 280
+max_execution_time = 300
 max_input_time = 180
 memory_limit = 1200M
+
+## editar 504 error timeout ngx 
+
+https://easycloudsupport.zendesk.com/hc/en-us/articles/360002057472-How-to-Fix-504-Gateway-Timeout-using-Nginx
+
+nano etc/nginx/conf.d/ach.conf
+
+client_max_body_size 0;
+proxy_read_timeout 9600;
+...
+location ~ \.php$ {
+    ...
+    fastcgi_read_timeout 300;
+
+}
+    
+sudo systemctl restart nginx.service
+
+systemctl restart nginx
+
+
 
 DO
 

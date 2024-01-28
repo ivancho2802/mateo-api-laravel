@@ -116,14 +116,14 @@ class MonitorPostDist extends Controller
 
                     for ($j = 0; $j < count($object->preguntas); $j++) {
 
-                        $nextId = MKoboFormularios::getNextSequenceValue();
+                        //$nextId = MKoboFormularios::getNextSequenceValue();
 
                         $pregunta = $object->preguntas[$j];
                         $respuesta = $object->respuestas[$j];
 
                         $m_pregunta = new MKoboFormularios;
 
-                        $m_pregunta->ID_M_KOBO_FORMULARIOS = $nextId;
+                        $m_pregunta->ID_M_KOBO_FORMULARIOS = "nextId";
 
                         $m_pregunta->_ID = $id_kobo_respuesta;
 
@@ -146,7 +146,7 @@ class MonitorPostDist extends Controller
                             "FECHA_REGISTRO" => $json_response[$i]->start,
                             "_ID" => $id_kobo_respuesta,
                             "VALOR" => $respuesta,
-                            "ID_M_KOBO_FORMULARIOS" => $m_pregunta->ID_M_KOBO_FORMULARIOS,
+                            "ID_M_KOBO_FORMULARIOS" => $m_pregunta->id,
                             "ID_M_FORMULARIOS" => $m_formulario_id,
                             "ID_M_USUARIOS" => $ID_USER
                         ]);

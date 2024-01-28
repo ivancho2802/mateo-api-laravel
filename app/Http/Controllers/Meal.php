@@ -30,7 +30,7 @@ class Meal extends Controller
      * pda
      */
     function geMpd(){
-        $mmqrs = MFormularios::where(["ACCION" => "MPD"])->get();
+        $mmqrs = MFormularios::where(["ACCION" => "MPD"])->paginate(10);
 
         return $mmqrs;
 

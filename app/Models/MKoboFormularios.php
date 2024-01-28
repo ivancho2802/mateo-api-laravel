@@ -20,8 +20,8 @@ class MKoboFormularios extends Model
 
     protected $table = 'M_KOBO_FORMULARIOS';
 
-    protected $primaryKey = 'ID_M_KOBO_FORMULARIOS';
-    public $incrementing = false;
+    protected $primaryKey = 'id';
+    public $incrementing = true;
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +38,7 @@ class MKoboFormularios extends Model
         "ACCION",
         "UNICO",
         "BARCODE",
+        "id",
         "ID",
         "ID_EMPRESA",
         "CAMPO1",

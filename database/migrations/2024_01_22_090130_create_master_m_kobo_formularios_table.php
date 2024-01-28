@@ -14,10 +14,11 @@ class CreateMasterMKoboFormulariosTable extends Migration
     public function up()
     {
         Schema::create('M_KOBO_FORMULARIOS', function (Blueprint $table) {
-            $table->bigIncrements('ID');
+            $table->bigIncrements('id');
             $table->timestamps();
 
             $table->integer('_ID');
+            $table->integer('ID');
 
             $table->string('ID_M_KOBO_FORMULARIOS')->nullable();
             $table->string('ID_M_USUARIOS');
