@@ -8,6 +8,7 @@ use App\Models\MLocalidades;
 use App\Models\MUsuarios;
 use App\Models\MAreas;
 use App\Models\MFormularios;
+use App\Traits\GetNextSequenceValue;
 
 class MKoboFormularios extends Model
 {
