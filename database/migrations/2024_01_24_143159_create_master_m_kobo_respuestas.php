@@ -55,7 +55,7 @@ class CreateMasterMKoboRespuestas extends Migration
             $table->string('XROTULO_NEW')->nullable();
             $table->string('VALOR_NEW')->nullable();
 
-            $table->string('VALOR');
+            $table->text('VALOR');
             $table->string('XVALOR')->nullable();
             $table->string('VALOR_C')->nullable();
 
