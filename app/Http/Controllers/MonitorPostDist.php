@@ -137,10 +137,8 @@ class MonitorPostDist extends Controller
 
                         $m_pregunta->save();
 
+
                         //crear respuesta
-
-                        $m_pregunta = MKoboFormularios::where(["created_at" => $m_pregunta->created_at])->first();
-
                         array_push($body_preguntas, [
                             "FECHA" => $json_response[$i]->_submission_time,
                             "FECHA_REGISTRO" => $json_response[$i]->start,
