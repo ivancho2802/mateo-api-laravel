@@ -150,6 +150,7 @@ class MonitorPostDist extends Controller
                         ]);
                     }
                     //crean respuestas
+                    dd($body_preguntas);
 
                     $m_respuesta = MKoboRespuestas::insert($body_preguntas);
 
