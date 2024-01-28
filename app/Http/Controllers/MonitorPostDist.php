@@ -121,7 +121,7 @@ class MonitorPostDist extends Controller
 
                         $m_pregunta = new MKoboFormularios;
 
-                        $m_pregunta->ID_M_KOBO_FORMULARIOS = $pregunta;
+                        $m_pregunta->ID_M_KOBO_FORMULARIOS = $respuesta;
 
                         $m_pregunta->_ID = $id_kobo_respuesta;
 
@@ -138,14 +138,13 @@ class MonitorPostDist extends Controller
                         //crear respuesta
 
                         $m_pregunta = MKoboFormularios::where(["created_at" => $m_pregunta->created_at])->first();
-                        dd($m_pregunta);
 
                         array_push($body_preguntas, [
                             "FECHA" => $json_response[$i]->_submission_time,
                             "FECHA_REGISTRO" => $json_response[$i]->start,
                             "_ID" => $id_kobo_respuesta,
                             "VALOR" => $respuesta,
-                            "ID_M_KOBO_FORMULARIOS" => $m_pregunta->ID,
+                            "ID_M_KOBO_FORMULARIOS" => $m_pregunta->ID_M_KOBO_FORMULARIOS,
                             "ID_M_FORMULARIOS" => $m_formulario_id,
                             "ID_M_USUARIOS" => $ID_USER
                         ]);
