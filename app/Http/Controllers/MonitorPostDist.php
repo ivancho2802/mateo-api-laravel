@@ -169,7 +169,7 @@ class MonitorPostDist extends Controller
 
 
             //code...
-        } catch (\Throwable $th) {
+        } catch (\Exception $th) {
             return response()->json(['status' => false, 'message' => $th], 503);
         }
     }

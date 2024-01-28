@@ -8,12 +8,13 @@ use App\Models\MLocalidades;
 use App\Models\MUsuarios;
 use App\Models\MAreas;
 use App\Models\MFormularios;
-use App\Traits\GetNextSequenceValue;
+//use App\Traits\HasNextSequenceValue;
+
+use Illuminate\Support\Facades\DB;
 
 class MKoboFormularios extends Model
 {
-    use HasFactory;
-    use GetNextSequenceValue;
+    use HasFactory; //, HasNextSequenceValue;
 
     //use HasFactory, SoftDeletes;
 
@@ -30,7 +31,7 @@ class MKoboFormularios extends Model
     protected $fillable = [
 
         "ID_M_KOBO_FORMULARIOS",
-        "_ID",//relacionado al id de la respuesta del usuario
+        "_ID", //relacionado al id de la respuesta del usuario
 
         "FECHA",
         "FECHA_REGISTRO",
@@ -72,24 +73,39 @@ class MKoboFormularios extends Model
     CONSTRAINT PK_M_KOBO_FORMULARIOS:
     Unique key (ID, ID_EMPRESA)
     */
-    
+
     public function localidad()
     {
         return $this->belongsTo(MLocalidades::class, "ID_M_LOCALIDADES", "ID_M_LOCALIDADES");
     }
-    
+
     public function usuario()
     {
         return $this->hasOne(MUsuarios::class, "ID_M_USUARIOS", "ID_M_USUARIO");
     }
-    
+
     public function area()
     {
         return $this->hasOne(MAreas::class, "ID_M_AREAS", "ID_M_AREA");
     }
-    
+
     public function master_f()
     {
         return $this->hasOne(MFormularios::class, "ID_M_FORMULARIOS", "ID_M_FORMULARIOS");
+    }
+
+    //trit fallido
+
+    public static function getNextSequenceValue()
+    {
+        $self = new static();
+
+        /* if (!$self->getIncrementing()) {
+            throw new \Exception(sprintf('Model (%s) is not auto-incremented', static::class));
+        } */
+
+        $sequenceName = "{$self->getTable()}_ID_seq";
+
+        return DB::selectOne("SELECT nextval('\"{$sequenceName}\"') AS val")->val;
     }
 }
