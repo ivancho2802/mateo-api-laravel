@@ -7,6 +7,7 @@ use App\Models\MLpaEmergencia;
 use App\Models\MLpa;
 use App\Models\MLpaPersona;
 use App\Models\MMqr;
+use App\Models\MFormularios;
 
 
 class Meal extends Controller
@@ -29,9 +30,9 @@ class Meal extends Controller
      * pda
      */
     function geMpd(){
-        //$mmqrs = MMqr::get();
+        $mmqrs = MFormularios::where(["ACCION" => "MPD"])->get();
 
-        return [];
+        return $mmqrs;
 
     }
 }

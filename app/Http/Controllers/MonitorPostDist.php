@@ -8,6 +8,7 @@ use App\Models\MKoboRespuestas;
 use App\Models\MFormularios;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\helper;
+use Illuminate\Support\Facades\DB;
 
 class MonitorPostDist extends Controller
 {
@@ -116,12 +117,15 @@ class MonitorPostDist extends Controller
 
                     for ($j = 0; $j < count($object->preguntas); $j++) {
 
+                        $statement = DB::select("SHOW TABLE STATUS LIKE 'M_KOBO_FORMULARIO'");
+                        $nextId = $statement[0]->Auto_increment;
+
                         $pregunta = $object->preguntas[$j];
                         $respuesta = $object->respuestas[$j];
 
                         $m_pregunta = new MKoboFormularios;
 
-                        $m_pregunta->ID_M_KOBO_FORMULARIOS = $respuesta;
+                        $m_pregunta->ID_M_KOBO_FORMULARIOS = $nextId;
 
                         $m_pregunta->_ID = $id_kobo_respuesta;
 
