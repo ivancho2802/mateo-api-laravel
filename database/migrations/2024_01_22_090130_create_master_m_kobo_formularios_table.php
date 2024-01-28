@@ -14,7 +14,7 @@ class CreateMasterMKoboFormulariosTable extends Migration
     public function up()
     {
         Schema::create('M_KOBO_FORMULARIOS', function (Blueprint $table) {
-            //$table->bigIncrements('ID');
+            $table->bigIncrements('ID');
             $table->timestamps();
 
             $table->integer('_ID');
