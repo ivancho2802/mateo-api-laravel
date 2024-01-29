@@ -120,22 +120,17 @@ class MonitorPostDist extends Controller
                         $pregunta = $object->preguntas[$j];
                         $respuesta = $object->respuestas[$j];
 
-                        $m_pregunta = new MKoboFormularios;
-
-                        $m_pregunta->ID_M_KOBO_FORMULARIOS = "nextId";
-
-                        $m_pregunta->_ID = $id_kobo_respuesta;
-
-                        $m_pregunta->CAMPO1 = $pregunta;
-
-                        $m_pregunta->ID_M_FORMULARIOS = $m_formulario_id;
-
-                        $m_pregunta->ESTATUS = 1;
-
-                        $m_pregunta->ID_M_USUARIOS = $ID_USER;
-
-                        $m_pregunta->save();
-
+                        $m_pregunta = MKoboFormularios::updateOrCreate(
+                            ["CAMPO1" => $pregunta],
+                            [
+                                "ID_M_KOBO_FORMULARIOS" => "nextId",
+                                "_ID" => $id_kobo_respuesta,
+                                "CAMPO1" => $pregunta,
+                                "ID_M_FORMULARIOS" => $m_formulario_id,
+                                "ESTATUS" => 1,
+                                "ID_M_USUARIOS" => $ID_USER,
+                            ]
+                        );
 
                         //crear respuesta
                         array_push($body_respuestas, [
