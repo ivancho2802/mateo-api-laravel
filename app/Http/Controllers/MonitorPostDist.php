@@ -133,6 +133,7 @@ class MonitorPostDist extends Controller
                             ]
                         );
                     }
+                    dd($body_m_kobo_preguntas);
                     
                     $m_kobo_preguntas = MKoboFormularios::upsert(
                         $body_m_kobo_preguntas,
