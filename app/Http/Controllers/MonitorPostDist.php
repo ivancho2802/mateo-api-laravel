@@ -137,6 +137,7 @@ class MonitorPostDist extends Controller
 
                         $m_pregunta->save();
 
+                        dd($m_pregunta->id);
 
                         //crear respuesta
                         array_push($body_preguntas, [
