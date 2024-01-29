@@ -110,15 +110,12 @@ class MonitorPostDist extends Controller
 
                     //crear preguntas
 
-
                     $id_kobo_respuesta = $json_response[$i]->_id;
 
                     //$object->preguntas 34
                     //dd(count($object->preguntas));
 
                     for ($j = 0; $j < count($object->preguntas); $j++) {
-
-                        //$nextId = MKoboFormularios::getNextSequenceValue();
 
                         $pregunta = $object->preguntas[$j];
                         $respuesta = $object->respuestas[$j];
@@ -152,6 +149,8 @@ class MonitorPostDist extends Controller
                         ]);
                     }
                 }
+
+                dd($body_respuestas);
 
                 //crean respuestas
                 $m_respuesta = MKoboRespuestas::insert($body_respuestas);
