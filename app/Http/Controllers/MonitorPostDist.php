@@ -152,7 +152,9 @@ class MonitorPostDist extends Controller
                     //crean respuestas
                     $m_respuesta = MKoboRespuestas::insert($body_respuestas);
 
-                    dd($m_respuesta);
+                    if($m_respuesta !== true){
+                        return response()->json(['status' => false, 'message' => "no se terminaron de cargar los registros ponte en contacto con soporte"], 503);
+                    }
                 }
 
                 return response()->json(['status' => true, 'data' => count($json_response)], 200);
