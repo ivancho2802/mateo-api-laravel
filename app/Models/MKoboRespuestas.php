@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\MFormulario;
+use App\Models\MKoboFormularios;
 
 class MKoboRespuestas extends Model
 {
@@ -73,4 +75,60 @@ class MKoboRespuestas extends Model
         T_M_KOBO_RESPUESTAS_ACTUALIZA, Sequence: 100, Type: AFTER INSERT OR UPDATE, Active */
 
     ];
+    //public $keyType = "string";
+
+    
+    /**
+     * MPD -> monitore post distribucion
+     * public function getWithMpd() with_mpd
+     */
+    /* public function getWithMpd()
+    {
+
+        $ventas = [];
+
+        if ($this->whereOr([
+            ['nplanilla_export', ''],
+            ['nplanilla_export', NULL],
+        ])) {
+            $ventas = $this->ventas();
+        }
+
+        foreach ($ventas as $venta) {
+
+            if ($venta->tipoVenta == "IN_SDCF") {
+                $totalAmountINSDCF += $venta->costo * $venta->cantidad;
+            } elseif ($venta->tipoVenta == "IN_EX") {
+                $totalAmountINEX += $venta->costo * $venta->cantidad;
+            } elseif ($venta->tipoVenta == "IN_EXO") {
+                $totalAmountINEXO += $venta->costo * $venta->cantidad;
+            } elseif ($venta->tipoVenta == "IN_NS") {
+                $totalAmountINNS += $venta->costo * $venta->cantidad;
+            }
+        }
+
+        return [
+            'SDCF' => $totalAmountINSDCF,
+            'EX' => $totalAmountINEX,
+            'EXO' => $totalAmountINEXO,
+            'NS' => $totalAmountINNS,
+        ];
+    } */
+
+    
+   /*  public function formulario() {
+        return $this->hasOne(MFormularios::class, 'ID_M_FORMULARIOS', 'ID_M_FORMULARIOS');
+    }
+    
+    public function preguntas() {
+        return $this->hasOne(MKoboFormularios::class, 'id', 'ID_M_KOBO_FORMULARIOS');
+    }
+
+    public function formulariompd(){
+        return $this->belongsToMany(MFormularios::class, 'ID_M_FORMULARIOS', 'ID_M_FORMULARIOS');
+    } */
+
+    public function formulario(){
+        return $this->hasOne(MFormulario::class, 'ID_M_FORMULARIOS', 'ID_M_FORMULARIOS');
+    }
 }

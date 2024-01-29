@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 //use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\MKoboRespuestas;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class MFormularios extends Model
+class MFormulario extends Model
 {
     use HasFactory;
     //use HasFactory, SoftDeletes;
@@ -16,6 +18,8 @@ class MFormularios extends Model
     protected $primaryKey = 'ID_M_FORMULARIOS';
 
     public $incrementing = false;
+
+    public $keyType = "string";
     
     /**
      * The attributes that are mass assignable.
@@ -53,6 +57,9 @@ class MFormularios extends Model
         "ID_M_AREAS",
     ];
     
+    public function respuestas(): HasMany{
+        return $this->hasMany(MKoboRespuestas::class, "ID_M_FORMULARIOS");
+    }
 
     /* 
     @Column

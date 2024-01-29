@@ -20,14 +20,24 @@ class CreateMasterMKoboRespuestas extends Migration
             //$table->integer('CONSECUTIVOS_CASES');
             $table->integer('_ID');
 
-            $table->string('ID_M_KOBO_RESPUESTAS')->nullable();
-            $table->string('ID_M_USUARIOS');
-            $table->string('ID_M_AREAS')->nullable();
-            $table->string('ID_M_KOBO_FORMULARIOS');
             $table->string('ID_M_FORMULARIOS');
+            $table->string('ID_M_KOBO_RESPUESTAS')->nullable();
+            $table->unsignedBigInteger('ID_M_USUARIOS');
+            $table->string('ID_M_AREAS')->nullable();
+            $table->unsignedInteger('ID_M_KOBO_FORMULARIOS');
+
             $table->string('ID_P_FORMULARIOS')->nullable();
             $table->string('ID_TMP_RESPUESTAS')->nullable();
             $table->string('ID_EMPRESA')->nullable();
+
+            $table->foreign('ID_M_FORMULARIOS')
+            ->references('ID_M_FORMULARIOS')->on('M_FORMULARIOS');
+
+            $table->foreign('ID_M_USUARIOS')
+            ->references('ID')->on('M_USUARIOS');
+
+            $table->foreign('ID_M_KOBO_FORMULARIOS')
+            ->references('id')->on('M_KOBO_FORMULARIOS');
 
             $table->date('FECHA')->nullable();
             $table->date('FECHA_REGISTRO')->nullable();

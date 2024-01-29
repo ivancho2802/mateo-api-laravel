@@ -21,11 +21,17 @@ class CreateMasterMKoboFormulariosTable extends Migration
             $table->integer('ID')->nullable();
 
             $table->string('ID_M_KOBO_FORMULARIOS')->nullable();
-            $table->string('ID_M_USUARIOS');
+            $table->unsignedBigInteger('ID_M_USUARIOS');
             $table->string('ID_M_AREAS')->nullable();
             $table->string('ID_M_FORMULARIOS');
             $table->string('ID_M_LOCALIDADES')->nullable();
             $table->string('ID_EMPRESA')->nullable();
+
+            $table->foreign('ID_M_USUARIOS')
+            ->references('ID')->on('M_USUARIOS');
+
+            $table->foreign('ID_M_FORMULARIOS')
+            ->references('ID_M_FORMULARIOS')->on('M_FORMULARIOS');
 
             $table->timestamp('FECHA')->nullable();
             $table->timestamp('FECHA_REGISTRO')->nullable();

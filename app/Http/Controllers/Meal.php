@@ -7,8 +7,8 @@ use App\Models\MLpaEmergencia;
 use App\Models\MLpa;
 use App\Models\MLpaPersona;
 use App\Models\MMqr;
-use App\Models\MFormularios;
-
+use App\Models\MFormulario;
+use App\Models\MKoboRespuestas;
 
 class Meal extends Controller
 {
@@ -30,7 +30,13 @@ class Meal extends Controller
      * pda
      */
     function geMpd(){
-        $mmqrs = MFormularios::where(["ACCION" => "MPD"])->paginate(10);
+        $mmqrs = MKoboRespuestas::whereHas('formulario', function($q)
+        {
+            $q->where('ACCION', '=', "MPD");
+        
+        })->paginate(10);
+         
+        //$mmqrs = MFormulario::where(["ACCION" => "MPD"])->with('respuestas')->paginate(10);
 
         return $mmqrs;
 

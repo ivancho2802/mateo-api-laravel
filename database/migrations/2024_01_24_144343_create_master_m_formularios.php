@@ -15,14 +15,17 @@ class CreateMasterMFormularios extends Migration
     {
         Schema::create('M_FORMULARIOS', function (Blueprint $table) {
             //
-            $table->bigIncrements('ID');
+            //$table->bigIncrements('ID');
             $table->timestamps();
 
             $table->string('ID_EMPRESA')->nullable();
-            $table->string('ID_M_FORMULARIOS')->nullable();
-            $table->string('ID_M_USUARIOS');
+            $table->string('ID_M_FORMULARIOS')->nullable()->primary();
+            $table->unsignedBigInteger('ID_M_USUARIOS');
             $table->string('ID_M_AREAS')->nullable();
             $table->string('ID_M_CLIENTES')->nullable();
+
+            $table->foreign('ID_M_USUARIOS')
+            ->references('ID')->on('M_USUARIOS');
             
             $table->timestamp('FECHA');
             $table->timestamp('FECHA_REGISTRO');

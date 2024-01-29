@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MKoboFormularios;
 use App\Models\MKoboRespuestas;
-use App\Models\MFormularios;
+use App\Models\MFormulario;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\helper;
 
@@ -22,7 +22,7 @@ class MonitorPostDist extends Controller
     {
         MKoboFormularios::truncate();
         MKoboRespuestas::truncate();
-        MFormularios::truncate();
+        MFormulario::truncate();
 
         if (!$request->kobo_url || !strpos($request->kobo_url, "assets") || !strpos($request->kobo_url, "submissions/?format=json")) {
             return response()->json(['status' => false, 'message' => "formato de kobo_url incorrecto o faltante"], 402);
@@ -72,7 +72,7 @@ class MonitorPostDist extends Controller
 
                 $m_formulario_id = null;
 
-                $m_formulario = MFormularios::updateOrCreate(
+                $m_formulario = MFormulario::updateOrCreate(
                     ['ID_M_FORMULARIOS' => $json_response[0]->_xform_id_string],
                     [
                         'ACCION' => "MPD",
@@ -92,7 +92,7 @@ class MonitorPostDist extends Controller
                     ]
                 );
 
-                $m_formulario = MFormularios::where(["ID_M_FORMULARIOS" => $json_response[0]->_xform_id_string])->first();
+                $m_formulario = MFormulario::where(["ID_M_FORMULARIOS" => $json_response[0]->_xform_id_string])->first();
 
                 $m_formulario_id = $m_formulario->ID_M_FORMULARIOS;
 
