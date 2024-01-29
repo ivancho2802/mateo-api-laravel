@@ -102,7 +102,6 @@ class MonitorPostDist extends Controller
                 //llamo todas las preguntas de este formulario las desactivo
 
                 $creation_failed = [];
-                $body_respuestas = [];
 
                 for ($i = 0; $i < count($json_response); $i++) {
                     //ojo esto actualiza o crea una
@@ -116,13 +115,14 @@ class MonitorPostDist extends Controller
                     //dd(count($object->preguntas));
 
                     $body_m_kobo_preguntas = [];
+                    $body_respuestas = [];
 
                     for ($j = 0; $j < count($object->preguntas); $j++) {
 
                         $pregunta = $object->preguntas[$j];
 
                         array_push(
-                            $body_m_kobo_preguntas,                            
+                            $body_m_kobo_preguntas,
                             [
                                 "ID_M_KOBO_FORMULARIOS" => "nextId",
                                 "_ID" => $id_kobo_respuesta,
@@ -136,50 +136,61 @@ class MonitorPostDist extends Controller
                     
                     $m_kobo_preguntas = MKoboFormularios::upsert(
                         $body_m_kobo_preguntas,
-                        ['CAMPO1'], 
+                        ['CAMPO1'],
                         ['ID_M_KOBO_FORMULARIOS', '_ID', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
                     );
+                    
+                    if ($m_kobo_preguntas !== count($body_m_kobo_preguntas)) {
+                        array_push(
+                            $creation_failed,
+                            ["preguntas" => $body_m_kobo_preguntas]
+                        );
+                    }
 
-                    dd($m_kobo_preguntas);
 
                     //crear respuesta
-                    /* 
-                    $respuesta = $object->respuestas[$j];
-                    
-                    array_push($body_respuestas, [
-                        "FECHA" => $json_response[$i]->_submission_time,
-                        "FECHA_REGISTRO" => $json_response[$i]->start,
-                        "_ID" => $id_kobo_respuesta,
-                        "VALOR" => $respuesta,
-                        "ID_M_KOBO_FORMULARIOS" => $m_pregunta->id,
-                        "ID_M_FORMULARIOS" => $m_formulario_id,
-                        "ID_M_USUARIOS" => $ID_USER
-                    ]); */
+                    $preguntas_created = collect(MKoboFormularios::where(["_ID" => $id_kobo_respuesta])->get());
+
+                    for ($k = 0; $k < count($object->respuestas); $k++) {
+
+                        $respuesta = $object->respuestas[$k];
+                        $pregunta = $object->preguntas[$k];
+
+                        $desired_object = $preguntas_created->filter(function ($item) use ($pregunta) {
+                            return $item->CAMPO1 == $pregunta;
+                        })->first();
+
+                        array_push($body_respuestas, [
+                            "FECHA" => $json_response[$i]->_submission_time,
+                            "FECHA_REGISTRO" => $json_response[$i]->start,
+                            "_ID" => $id_kobo_respuesta,
+                            "VALOR" => $respuesta,
+                            "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
+                            "ID_M_FORMULARIOS" => $m_formulario_id,
+                            "ID_M_USUARIOS" => $ID_USER
+                        ]);
+                    }
+
+                    //crean respuestas
+                    $m_respuestas = MKoboRespuestas::insert($body_respuestas);
+
+                    if (!$m_respuestas) {
+                        array_push(
+                            $creation_failed,
+                            ["respuestas" => $body_respuestas]//$body_respuestas
+                        );
+                    }
                 }
 
-                dd($body_respuestas);
-
-                //crean respuestas
-                $m_respuesta = MKoboRespuestas::insert($body_respuestas);
-
-                if($m_respuesta !== true){
-                    array_push(
-                        $creation_failed,
-                        ["current" => $body_respuestas, "all" => $json_response]
-                    );
-                }
-
-                if(count($creation_failed)>0){
+                if (count($creation_failed) > 0) {
                     return response()->json([
-                        'status' => false, 
+                        'status' => false,
                         'message' => "no se terminaron de cargar los registros ponte en contacto con soporte",
-                        $creation_failed
+                        'data' => $creation_failed
                     ], 503);
-
                 }
 
                 return response()->json(['status' => true, 'data' => count($json_response)], 200);
-
             } else {
                 // Manejar el error de la solicitud
                 $msg = 'Error al realizar la solicitud GET: ' . error_get_last()['message'];
@@ -191,6 +202,7 @@ class MonitorPostDist extends Controller
 
             //code...
         } catch (\Exception $th) {
+            
             return response()->json(['status' => false, 'message' => $th], 503);
         }
     }
