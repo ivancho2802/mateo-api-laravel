@@ -101,6 +101,8 @@ class MonitorPostDist extends Controller
                 }
                 //llamo todas las preguntas de este formulario las desactivo
 
+                $creation_failed = [];
+
                 for ($i = 0; $i < count($json_response); $i++) {
                     //ojo esto actualiza o crea una
                     $object = (object)helper::formatObject($json_response[$i], "/_");
@@ -153,8 +155,21 @@ class MonitorPostDist extends Controller
                     $m_respuesta = MKoboRespuestas::insert($body_respuestas);
 
                     if($m_respuesta !== true){
-                        return response()->json(['status' => false, 'message' => "no se terminaron de cargar los registros ponte en contacto con soporte"], 503);
+                        array_push(
+                            $creation_failed,
+                            ["current" => $body_respuestas, "all" => $json_response]
+                        );
+                        break;
                     }
+                }
+
+                if(count($creation_failed)>0){
+                    return response()->json([
+                        'status' => false, 
+                        'message' => "no se terminaron de cargar los registros ponte en contacto con soporte",
+                        $creation_failed
+                    ], 503);
+
                 }
 
                 return response()->json(['status' => true, 'data' => count($json_response)], 200);
