@@ -150,10 +150,9 @@ class MonitorPostDist extends Controller
                         ]);
                     }
                     //crean respuestas
-                    dd($body_respuestas);
-
                     $m_respuesta = MKoboRespuestas::insert($body_respuestas);
 
+                    dd($m_respuesta);
                 }
 
                 return response()->json(['status' => true, 'data' => count($json_response)], 200);
