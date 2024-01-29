@@ -107,7 +107,7 @@ class MonitorPostDist extends Controller
 
                     //crear preguntas
 
-                    $body_preguntas = [];
+                    $body_respuestas = [];
 
                     $id_kobo_respuesta = $json_response[$i]->_id;
 
@@ -137,10 +137,9 @@ class MonitorPostDist extends Controller
 
                         $m_pregunta->save();
 
-                        dd($m_pregunta->id);
 
                         //crear respuesta
-                        array_push($body_preguntas, [
+                        array_push($body_respuestas, [
                             "FECHA" => $json_response[$i]->_submission_time,
                             "FECHA_REGISTRO" => $json_response[$i]->start,
                             "_ID" => $id_kobo_respuesta,
@@ -151,8 +150,9 @@ class MonitorPostDist extends Controller
                         ]);
                     }
                     //crean respuestas
+                    dd($body_respuestas);
 
-                    $m_respuesta = MKoboRespuestas::insert($body_preguntas);
+                    $m_respuesta = MKoboRespuestas::insert($body_respuestas);
 
                 }
 
