@@ -115,13 +115,14 @@ class MonitorPostDist extends Controller
                     //$object->preguntas 34
                     //dd(count($object->preguntas));
 
+                    $body_m_kobo_preguntas = [];
+
                     for ($j = 0; $j < count($object->preguntas); $j++) {
 
                         $pregunta = $object->preguntas[$j];
-                        $respuesta = $object->respuestas[$j];
 
-                        $m_pregunta = MKoboFormularios::updateOrCreate(
-                            ["CAMPO1" => $pregunta],
+                        array_push(
+                            $body_m_kobo_preguntas,                            
                             [
                                 "ID_M_KOBO_FORMULARIOS" => "nextId",
                                 "_ID" => $id_kobo_respuesta,
@@ -131,18 +132,29 @@ class MonitorPostDist extends Controller
                                 "ID_M_USUARIOS" => $ID_USER,
                             ]
                         );
-
-                        //crear respuesta
-                        array_push($body_respuestas, [
-                            "FECHA" => $json_response[$i]->_submission_time,
-                            "FECHA_REGISTRO" => $json_response[$i]->start,
-                            "_ID" => $id_kobo_respuesta,
-                            "VALOR" => $respuesta,
-                            "ID_M_KOBO_FORMULARIOS" => $m_pregunta->id,
-                            "ID_M_FORMULARIOS" => $m_formulario_id,
-                            "ID_M_USUARIOS" => $ID_USER
-                        ]);
                     }
+                    
+                    $m_kobo_preguntas = MKoboFormularios::upsert(
+                        $body_m_kobo_preguntas,
+                        ['CAMPO1'], 
+                        ['ID_M_KOBO_FORMULARIOS', '_ID', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
+                    );
+
+                    dd($m_kobo_preguntas);
+
+                    //crear respuesta
+                    /* 
+                    $respuesta = $object->respuestas[$j];
+                    
+                    array_push($body_respuestas, [
+                        "FECHA" => $json_response[$i]->_submission_time,
+                        "FECHA_REGISTRO" => $json_response[$i]->start,
+                        "_ID" => $id_kobo_respuesta,
+                        "VALOR" => $respuesta,
+                        "ID_M_KOBO_FORMULARIOS" => $m_pregunta->id,
+                        "ID_M_FORMULARIOS" => $m_formulario_id,
+                        "ID_M_USUARIOS" => $ID_USER
+                    ]); */
                 }
 
                 dd($body_respuestas);

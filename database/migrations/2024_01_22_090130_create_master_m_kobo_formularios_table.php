@@ -34,7 +34,7 @@ class CreateMasterMKoboFormulariosTable extends Migration
             $table->string('UNICO')->nullable();
             $table->string('BARCODE')->nullable();
 
-            $table->string('CAMPO1');
+            $table->string('CAMPO1')->unique();
             $table->string('CAMPO2')->nullable();
             $table->string('CAMPO3')->nullable();
             $table->string('CAMPO4')->nullable();
