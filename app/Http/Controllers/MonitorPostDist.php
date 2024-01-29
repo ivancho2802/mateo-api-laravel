@@ -102,6 +102,7 @@ class MonitorPostDist extends Controller
                 //llamo todas las preguntas de este formulario las desactivo
 
                 $creation_failed = [];
+                $body_respuestas = [];
 
                 for ($i = 0; $i < count($json_response); $i++) {
                     //ojo esto actualiza o crea una
@@ -109,7 +110,6 @@ class MonitorPostDist extends Controller
 
                     //crear preguntas
 
-                    $body_respuestas = [];
 
                     $id_kobo_respuesta = $json_response[$i]->_id;
 
@@ -151,16 +151,16 @@ class MonitorPostDist extends Controller
                             "ID_M_USUARIOS" => $ID_USER
                         ]);
                     }
-                    //crean respuestas
-                    $m_respuesta = MKoboRespuestas::insert($body_respuestas);
+                }
 
-                    if($m_respuesta !== true){
-                        array_push(
-                            $creation_failed,
-                            ["current" => $body_respuestas, "all" => $json_response]
-                        );
-                        break;
-                    }
+                //crean respuestas
+                $m_respuesta = MKoboRespuestas::insert($body_respuestas);
+
+                if($m_respuesta !== true){
+                    array_push(
+                        $creation_failed,
+                        ["current" => $body_respuestas, "all" => $json_response]
+                    );
                 }
 
                 if(count($creation_failed)>0){
