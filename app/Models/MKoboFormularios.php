@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\MLocalidades;
 use App\Models\MUsuarios;
 use App\Models\MAreas;
-use App\Models\MFormularios;
+use App\Models\MFormulario;
 //use App\Traits\HasNextSequenceValue;
 
 use Illuminate\Support\Facades\DB;
@@ -92,7 +92,7 @@ class MKoboFormularios extends Model
 
     public function master_f()
     {
-        return $this->hasOne(MFormularios::class, "ID_M_FORMULARIOS", "ID_M_FORMULARIOS");
+        return $this->hasOne(MFormulario::class, "ID_M_FORMULARIOS", "ID_M_FORMULARIOS");
     }
 
     //trit fallido

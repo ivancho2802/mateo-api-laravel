@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\MFormulario;
 use App\Models\MFormularios;
 use App\Models\MKoboFormularios;
 use App\Models\DContactos;
@@ -9,8 +10,12 @@ use App\Http\Controllers\helper;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 //use Excel;
-use App\Http\Controllers\PaImportClass;
+use App\Http\Controllers\Auth;
+use App\Models\MUsuarios;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -25,7 +30,7 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/formularios_master', function (Request $request) {
+Route::middleware(['auth:sanctum'])->get('/formularios_master', function (Request $request) {
 
     $body = [
         "NOMBRES",
@@ -38,7 +43,6 @@ Route::get('/formularios_master', function (Request $request) {
         "ACCION",
         "UNICO",
         "BARCODE",
-        "ID",
         "ID_EMPRESA",
         "CAMPO1",
         "CAMPO2",
@@ -73,7 +77,8 @@ Route::get('/formularios_master', function (Request $request) {
             ->get();
 
         //$results = helper::convert_from_latin1_to_utf8_recursively($results);
-        return $results;
+        return response()->json(["formularios_master" => json_decode($results)]);
+
         //return $results[0];//mb_convert_encoding($results[0]['NOMBRES'], 'UTF-8', 'UTF-8');
         //return response(["message" => "Model status successfully updated!", "data" =>  json_encode($results->toArray())], 200);
     } catch (\Throwable $exception) {
@@ -81,10 +86,8 @@ Route::get('/formularios_master', function (Request $request) {
     }
 });
 
+Route::middleware(['auth:sanctum'])->get('/formularios_kobo_master', function (Request $request) {
 
-
-Route::get('/formularios_kobo_master', function (Request $request) {
-    
     DB::setDefaultConnection('firebird');
 
     $formulario = MKoboFormularios::with(
@@ -93,24 +96,72 @@ Route::get('/formularios_kobo_master', function (Request $request) {
 
     //return utf8_encode($formulario->get());
     return response()->json(["formularios_kobo_master" => json_decode($formulario->get())]);
-
 });
 
-Route::post('/contactostest', function (Request $request) {
-    return new DContactos([
-        'ID_D_CONTACTOS' => $request->ID_D_CONTACTOS,
-        'ID_M_USUARIOS' => $request->ID_M_USUARIOS,
-        // Add more columns as needed
-    ]);
+Route::middleware(['auth:sanctum'])->post('/mireusers', function (Request $request) {
     
-    $Contact = new DContactos;
- 
-    $Contact->ID_D_CONTACTOS = $request->ID_D_CONTACTOS;
-    $Contact->ID_M_USUARIOS = $request->ID_M_USUARIOS;
-    
-    $Contact->save();
+    try {
+        
+        DB::setDefaultConnection('firebird');
+        
+        $body = $request->body ?? [
+            
+            //"NOMBRES",
+            //"APELLIDOS",
+            //"NOMBRE_COMPLETO",
+            "CORREO",
+            "ID_M_USUARIO",
+            "LOGIN",
+            "CLAVE",
+            "FECHA",
+            "ACCION",
+            "UNICO",
+            "ID",
+            "ID_EMPRESA",
+            
+            "HUELLA",
+            "SESSION_ID",
+            "ESTATUS",
+            "IP",
+            "CAMPO1",
+            "CAMPO2",
+            "CAMPO3",
+            "CAMPO4",
+            "CAMPO5",
+            "NIVEL",
+            "ROTULO",
+            "FECHA_REGISTRO",
+            "CODIGO1",
+            "CODIGO2",
+            "CODIGO3",
+            
+            "FRASE",
+            "FORMULA",
+            "FECHA_NAC",
+            "CONDICION_SESION",
+            "AGENTE_ESTATUS",
+            "LLAVE",
+            "NAVEGADOR",
 
-    return $Contact->get();
+            //relacionales
+            "ID_M_NIVELES",
+            "ID_M_VENDEDORES",
+            "ID_M_CLIENTES",
+            "ID_M_DEPARTAMENTOS",
+            "ID_M_USUARIOS",
+            "ID_M_AREAS",
+            //relacionales
+
+            //NO EXISTE
+            "ID_M_GRUPOS"
+        ];
+
+        $m_usuarios = MUsuarios::select($body)->get(); //where("CORREO" , "!=", "testroles@gmail.com")->
+
+        return response()->json(["users" => helper::convert_from_latin1_to_utf8_recursively($m_usuarios)]);
+    } catch (\Throwable $exception) {
+        return response()->json(['Error' => $exception->getMessage()]);
+    }
 });
 
 
@@ -127,7 +178,7 @@ Route::prefix('meal')->group(function () {
     Route::get('/mpd', [App\Http\Controllers\Meal::class, 'geMpd']);
     //MIGRACIONS DESDE EL KOBO
     Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
-    
+
 
     //quejas y reclamos
     Route::get('/mqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);
@@ -135,16 +186,10 @@ Route::prefix('meal')->group(function () {
     Route::post('/mqr/upload', [App\Http\Controllers\PersonComplainted::class, 'stored']);
 
     Route::get('/mqr', [App\Http\Controllers\Meal::class, 'getMqr']);
-
-
-});
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
 });
 
 
-Route::middleware('auth:api')->prefix('kobo')->group(function () {
+Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
     Route::get('{uui}', function ($uui) {
 
         $jsonurl = "https://kf.acf-e.org/assets/" . $uui . "/submissions/?format=json";
@@ -177,3 +222,48 @@ Route::middleware('auth:api')->prefix('kobo')->group(function () {
         ] */;
     });
 });
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+Route::post('login', [Auth::class, 'login']);
+
+//Route::post('register', [Auth::class, 'register']);
+
+Route::post('logout', [Auth::class, 'logout']);
+
+Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+//ejemplo con roles
+/* 
+Route::get('/orders', function () {
+    // Token has the "check-status" or "place-orders" ability...
+})->middleware(['auth:sanctum', 'ability:check-status,place-orders']);
+*/
+
+//verificacion de roles
+
+/* 
+return $request->user()->id === $server->user_id &&
+       $request->user()->tokenCan('server:update')
+*/
+
+//revocar tokens
+
+/* // Revoke all tokens...
+$user->tokens()->delete();
+ 
+// Revoke the token that was used to authenticate the current request...
+$request->user()->currentAccessToken()->delete();
+ 
+// Revoke a specific token...
+$user->tokens()->where('id', $tokenId)->delete(); */
