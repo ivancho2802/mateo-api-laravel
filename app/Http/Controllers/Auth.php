@@ -10,7 +10,8 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginRequest;
-
+use App\Models\MUsuarios;
+use Illuminate\Support\Facades\DB;
 
 class Auth extends Controller
 {
@@ -23,11 +24,11 @@ class Auth extends Controller
      */
     public function register(Request $request)
     {
-        
+
         //Request validation with several rules
         $validator = Validator::make($request->all(), [
             'email'     => 'required|string|unique:users,email|email',
-            'password'  => 'required|string',//unique:tablaUsers
+            'password'  => 'required|string', //unique:tablaUsers
             'name'      => 'required|string|min:3|max:255',
             'nivel'      => 'required|string'
             //'device_name' => 'required|string',
@@ -40,7 +41,7 @@ class Auth extends Controller
         if ($validator->fails()) {
             return response()->json(["status" => false, "message" => $validator->errors()], 422);
         }
-        
+
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
@@ -65,7 +66,7 @@ class Auth extends Controller
         return response()->json(["status" => true, 'data' => $user], 201);
     }
 
-    
+
     /**
      * login: Logs in a registered user
      * @param LoginRequest $request
@@ -74,16 +75,42 @@ class Auth extends Controller
      */
     public function login(LoginRequest $request)
     {
-        //Search for the user where the customer is
-        $user = User::where('email', $request->email)->first();
-         
-        if (! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+        DB::setDefaultConnection('firebird');
+        $user = null;
+        //este swra especial usare encript md5 y comparare
+        $userMire = MUsuarios::orWhere([
+            ['CORREO', $request->email],
+        ])->orWhere([
+            ['LOGIN', $request->email]
+        ])->first();
+
+        if ($userMire) {
+
+            //dd(md5(strtoupper($request->password)) . ' ' . $userMire->CLAVE);
+
+            if (!$userMire || strtoupper(md5(strtoupper($request->password))) !== $userMire->CLAVE) {
+                throw ValidationException::withMessages([
+                    'email' => ['The provided credentials are incorrect.'],
+                ]);
+            }
+
+            $user = $userMire;
+
+            $userMire->migrate($request);
+
+        } else {
+            DB::setDefaultConnection('pgsql');
+
+            //Search for the user where the customer is
+            $user = User::where('email', $request->email)->first();
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                throw ValidationException::withMessages([
+                    'email' => ['The provided credentials are incorrect.'],
+                ]);
+            }
         }
 
-        $token = $user->createToken($request->device_name.$request->email.$request->password);
+        $token = $user->createToken($request->device_name . $request->email . $request->password);
         $csrf_token = csrf_token();
 
         return response()->json([
@@ -106,7 +133,6 @@ class Auth extends Controller
         } 
         NotificationCreator::sendUserEventPinCodeNotification($user);
         */
-
     }
 
 
@@ -114,7 +140,8 @@ class Auth extends Controller
      * logout: Loggs out a current authenticated user
      * @return Response
      */
-    public function logout() {
+    public function logout()
+    {
         auth()->user()->currentAccessToken()->delete();
         return $this->success(__('appark.user.session.logout'));
     }
@@ -125,18 +152,18 @@ class Auth extends Controller
      * @return Response
      * @throws UnauthorizedException
      */
-    public function refreshToken() {
+    public function refreshToken()
+    {
 
-        if(!auth()) {
+        if (!auth()) {
             throw new UnauthorizedException();
         }
 
         $user = auth()->user();
         // Revoke a specific token...
         auth()->user()->currentAccessToken()->delete();
-        $token = $user->createToken($user->name.$user->email)->plainTextToken;
+        $token = $user->createToken($user->name . $user->email)->plainTextToken;
 
         return $this->success(['token' => $token]);
     }
-
 }

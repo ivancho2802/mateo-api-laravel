@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class MUsuarios extends Model
 {
@@ -116,4 +118,29 @@ class MUsuarios extends Model
     {
         return $this->belongsTo(MUsuarios::class, "ID_M_AREAS");
     } */
+
+    
+    /**
+     * funcion para migrar y pasar la informacion del sistema de miresys a postgresql cono los datos mencionados
+     */
+    public function migrate($request)
+    {
+
+        DB::setDefaultConnection('pgsql');
+
+        /* User::
+
+        $inventarioInicial = $this->load(['registros' => function ($query) use ($dateBegin) {
+            $query->where('fecha_reg_inv', '<', $dateBegin)
+                ->orderBy('fecha_reg_inv', 'desc')
+                ->first();
+        }]);
+
+        $costo_reg_inv = optional($inventarioInicial->registros->first())->costo_reg_inv;
+        $cantidad_reg_inv = optional($inventarioInicial->registros->first())->cantidad_reg_inv;
+        $monto = $cantidad_reg_inv * $costo_reg_inv;
+        $this->attributes['inventario_inicial_registro_costo_reg_inv'] = round($costo_reg_inv, 2);
+        $this->attributes['inventario_inicial_registro_cantidad_reg_inv'] = round($cantidad_reg_inv, 2);
+        $this->attributes['inventario_inicial_registro_monto'] = round($monto, 2); */
+    }
 }

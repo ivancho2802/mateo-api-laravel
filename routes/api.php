@@ -243,6 +243,19 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/testmd5', function(Request $request){
+
+    $string = "";
+
+    if($request->obj == "d"){
+        $string = md5($request->text);
+    } else {
+        $string = md5($request->text);
+    }
+
+    return response()->json(["obj" => $request->obj, "data" => $string]);
+});
+
 //ejemplo con roles
 /* 
 Route::get('/orders', function () {
