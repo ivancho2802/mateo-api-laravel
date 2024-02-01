@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\helper;
 
 class MUsuarios extends Model
 {
@@ -122,13 +124,28 @@ class MUsuarios extends Model
     
     /**
      * funcion para migrar y pasar la informacion del sistema de miresys a postgresql cono los datos mencionados
+     *  $request->email
+     *  $request->password
      */
-    public function migrate($request)
+    public function migrate($request, $userMire)
     {
 
         DB::setDefaultConnection('pgsql');
 
-        /* User::
+        $user = User::insertOrIgnore([
+            
+            'email'         => $request->email,
+            'password'      => Hash::make($request->password),
+            'name'          => helper::convert_from_latin1_to_utf8_recursively($userMire->NOMBRE_COMPLETO),
+            //'nivel'         => 4,
+
+        ]);
+        
+        $user = $user == 0 ? User::where("email", $request->email)->first() : $user;
+        
+        return $user;
+
+        /* 
 
         $inventarioInicial = $this->load(['registros' => function ($query) use ($dateBegin) {
             $query->where('fecha_reg_inv', '<', $dateBegin)

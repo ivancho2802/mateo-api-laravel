@@ -94,9 +94,7 @@ class Auth extends Controller
                 ]);
             }
 
-            $user = $userMire;
-
-            $userMire->migrate($request);
+            $user = $userMire->migrate($request, $userMire);
 
         } else {
             DB::setDefaultConnection('pgsql');
