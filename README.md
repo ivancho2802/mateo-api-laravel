@@ -262,3 +262,15 @@ mostrar postgresql las tablas \dt
 # OTRAS FURNTAS 
 https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e
 https://www.hostinger.co/tutoriales/instalar-postgresql-ubuntu
+
+
+## agregando credenciales ssh a linux y github
+
+crear keys
+    ssh-keygen -t ed25519-sk -C "your_email@example.com"
+
+agregar key a linux la privada con la credencial creada v24150144
+    ssh-add ~/.ssh/ach-iodiazacf
+agregar la key a github
+
+    https://github.com/IODIAZACF/ach-api-laravel/settings/keys
