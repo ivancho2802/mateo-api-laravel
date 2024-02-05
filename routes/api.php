@@ -172,10 +172,10 @@ Route::prefix('meal')->group(function () {
 
     Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
 
-    Route::get('/lpa', [App\Http\Controllers\Meal::class, 'getLpa']);
+    Route::middleware(['auth:sanctum'])->get('/lpa', [App\Http\Controllers\Meal::class, 'getLpa']);
 
     //monitorio post distribucion pda
-    Route::get('/mpd', [App\Http\Controllers\Meal::class, 'geMpd']);
+    Route::middleware(['auth:sanctum'])->get('/mpd', [App\Http\Controllers\Meal::class, 'geMpd']);
     //MIGRACIONS DESDE EL KOBO
     Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
 
@@ -185,7 +185,7 @@ Route::prefix('meal')->group(function () {
 
     Route::post('/mqr/upload', [App\Http\Controllers\PersonComplainted::class, 'stored']);
 
-    Route::get('/mqr', [App\Http\Controllers\Meal::class, 'getMqr']);
+    Route::middleware(['auth:sanctum'])->get('/mqr', [App\Http\Controllers\Meal::class, 'getMqr']);
 });
 
 
