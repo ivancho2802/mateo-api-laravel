@@ -27,7 +27,9 @@ class PersonAttended extends Controller
         $import->onlySheets('BD');
 
         // Process the Excel file
-        Excel::import($import, $file);
+        $response = Excel::import($import, $file);
+
+        dd($import[0]);
 
         return response()->json(["message" => "operacion hecha con exito"]);
 

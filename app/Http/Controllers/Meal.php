@@ -17,6 +17,8 @@ class Meal extends Controller
 
         $mlpas = MLpa::active()->get();
 
+        $mlpas->load('emergencia');
+
         return $mlpas;
     }
 
@@ -41,4 +43,6 @@ class Meal extends Controller
         return $mmqrs;
 
     }
+
+
 }

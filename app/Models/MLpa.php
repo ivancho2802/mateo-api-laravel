@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\MLpaEmergencia;
 
 
 class MLpa extends Model
@@ -46,4 +47,12 @@ class MLpa extends Model
             ['STATUS', '1']
         ]);
     }
+
+    
+    public function emergencia()
+    {
+        return $this->hasOne(MLpaEmergencia::class, 'ID', 'FK_LPA_EMERGENCIA' );
+    }
+
+
 }
