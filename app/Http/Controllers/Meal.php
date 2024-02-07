@@ -23,7 +23,7 @@ class Meal extends Controller
     }
 
     function getMqr(){
-        $mmqrs = MMqr::paginate(10);
+        $mmqrs = collect(MMqr::get())->groupBy('_ID')->paginate(10);
 
         return $mmqrs;
     }
