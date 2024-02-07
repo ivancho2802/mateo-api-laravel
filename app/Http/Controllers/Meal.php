@@ -15,15 +15,15 @@ class Meal extends Controller
     //
     function getLpa(){
 
-        $mlpas = MLpa::active()->get();
+        $mlpas = MLpa::active()->paginate(10);
 
         $mlpas->load('emergencia');
-
+        
         return $mlpas;
     }
 
     function getMqr(){
-        $mmqrs = MMqr::get();
+        $mmqrs = MMqr::paginate(10);
 
         return $mmqrs;
     }
@@ -36,7 +36,10 @@ class Meal extends Controller
         {
             $q->where('ACCION', '=', "MPD");
         
-        })->paginate(10);
+        })
+        ->select('_ID', 'ID')
+        ->groupBy('_ID', 'ID')
+        ->paginate(10);
          
         //$mmqrs = MFormulario::where(["ACCION" => "MPD"])->with('respuestas')->paginate(10);
 
