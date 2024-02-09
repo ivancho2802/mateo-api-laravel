@@ -101,7 +101,7 @@ class helper extends Controller
         $array = array_values((array)$object);
 
         //$values = array_values((array)$array);
-        $result = array_filter($array, fn ($value) => !is_null($value));
+        $result = array_filter($array, function ($value) {return !is_null($value[0]);});
 
         return count($result);
 
