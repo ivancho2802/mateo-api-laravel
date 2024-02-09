@@ -179,7 +179,6 @@ Route::prefix('meal')->group(function () {
     //MIGRACIONS DESDE EL KOBO
     Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
 
-
     //quejas y reclamos
     Route::get('/mqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);
 

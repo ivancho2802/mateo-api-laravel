@@ -8,6 +8,7 @@ use App\Models\MKoboRespuestas;
 use App\Models\MFormulario;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\helper;
+use App\Models\migrateCustom;
 
 class MonitorPostDist extends Controller
 {
@@ -56,6 +57,9 @@ class MonitorPostDist extends Controller
                     'header' => $auth_header
                 ]
             ]);
+
+            //id para save history
+            $id_m_formulario = [];
 
             // Enviar la solicitud GET
             $response = file_get_contents($url, false, $context);
@@ -150,6 +154,7 @@ class MonitorPostDist extends Controller
 
                     //crear respuesta
                     $preguntas_created = collect(MKoboFormularios::where(["_ID" => $id_kobo_respuesta])->get());
+                    $ids_kobo_respuesta = [];
 
                     for ($k = 0; $k < count($object->respuestas); $k++) {
 
@@ -169,6 +174,7 @@ class MonitorPostDist extends Controller
                             "ID_M_FORMULARIOS" => $m_formulario_id,
                             "ID_M_USUARIOS" => $ID_USER
                         ]);
+                        $ids_kobo_respuesta[] = $id_kobo_respuesta;
                     }
 
                     //crean respuestas
@@ -180,6 +186,13 @@ class MonitorPostDist extends Controller
                             ["respuestas" => $body_respuestas]//$body_respuestas
                         );
                     }
+
+                    migrateCustom::create([
+                        'table' => 'M_KOBO_RESPUESTAS',
+                        'table_id' => implode(", ", $ids_kobo_respuesta),
+                        'file_ref' => '-',
+                    ]);
+
                 }
 
                 if (count($creation_failed) > 0) {

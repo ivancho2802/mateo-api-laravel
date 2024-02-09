@@ -19,7 +19,7 @@ class MMqr extends Model
      * @var array
      */
     protected $fillable = [
-
+        'ID',
         'ORG_REPORT',
         'CONSECUTIVOS_CASES',
         'MONTH_REPORT',

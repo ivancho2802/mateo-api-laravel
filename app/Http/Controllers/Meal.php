@@ -23,7 +23,7 @@ class Meal extends Controller
 
     function getLpa(){
 
-        $mlpas = MLpa::active()->paginate(10);
+        $mlpas = MLpa::paginate(10);
 
         $mlpas->load('emergencia');
         

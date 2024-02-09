@@ -8,9 +8,12 @@ use App\Models\MLpaEmergencia;
 use App\Models\MLpa;
 use App\Models\MLpaPersona;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use App\Models\migrateCustom;
+use Maatwebsite\Excel\Concerns\Importable;
 
 class MlpasClass implements ToCollection
 {
+    use Importable;
     
     public function collection(Collection $rows)
     {
@@ -20,6 +23,8 @@ class MlpasClass implements ToCollection
 
         //FALTA TERMINAR SACAR DEL TOKEN
         $ID_USER = 1;
+
+        $id_lpas = [];
 
         foreach ($rows as $row) {
             /* if (!$row[0] || $row[0] == '') {
@@ -159,7 +164,15 @@ class MlpasClass implements ToCollection
             //dd($mlpa);
 
             $mlpas[] = $mlpa;
+            $id_lpas[] = $mlpa->get()->last()->ID;
         }
+        //array_push($id_emergenciasz, $mlpa_emergencia)
+
+        migrateCustom::create([
+            'table' => 'M_LPAS',
+            'table_id' => implode(", ", $id_lpas),
+            'file_ref' => '-',
+        ]);
 
         return $mlpas;
     }

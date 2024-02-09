@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\MLpaEmergencia;
 
-
 class MLpa extends Model
 {
     use HasFactory;
@@ -22,6 +21,7 @@ class MLpa extends Model
      * @var array
      */
     protected $fillable = [
+        "ID",
         "FK_LPA_EMERGENCIA",
         "FK_LPA_PERSONA",
         "DONANTE",

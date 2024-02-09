@@ -6,15 +6,20 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use App\Models\MMqr;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use App\Models\migrateCustom;
+use Maatwebsite\Excel\Concerns\Importable;
 
 class MqrClass implements ToCollection
 {
+    use Importable;
     //
     public function collection(Collection $rows)
     {
         $i = 0;
 
         $mrq = null;
+
+        $id_mqr = [];
 
         foreach ($rows as $row) {
 
@@ -56,9 +61,22 @@ class MqrClass implements ToCollection
                 
             ]);
 
+            $id_mqr[] = $mrq->get()->last()->ID;
+
         }
 
+        migrateCustom::create([
+            'table' => 'M_MQR',
+            'table_id' => implode(", ", $id_mqr),
+            'file_ref' => '-',
+        ]);
+
         return $mrq;
+    }
+
+    public function collectionSize(Collection $rows)
+    {
+        return $rows;
     }
     
 }
