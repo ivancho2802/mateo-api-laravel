@@ -23,6 +23,9 @@ class PersonAttended extends Controller
 
         // Get the uploaded file
         $file = $request->file('file');
+        
+        //get data excel
+        $collection = (new MlpasClass)->toCollection($file);
 
         $import = new PaImportClass();
 
@@ -31,9 +34,7 @@ class PersonAttended extends Controller
         // Process the Excel file
         Excel::import($import, $file);
 
-        $collection = (new MlpasClass)->toCollection($file);
-
-        $count_record_excel = helper::countValidValues($collection[0]);
+        $count_record_excel = helper::countValidValues($collection[2]);
 
         $migrate_custom = migrateCustom::where([
             'table' => "M_LPAS"

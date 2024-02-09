@@ -74,11 +74,11 @@ class helper extends Controller
         $respuestas = [];
         $preguntas = [];
 
-        for ($i=0; $i < count($keys); $i++) {
+        for ($i = 0; $i < count($keys); $i++) {
 
             $pregunta = $keys[$i];
             $respuesta = $values[$i];
-            
+
             if (false !== stripos($pregunta, $preindex) || $pregunta == "_OBSERVACIONES" || $pregunta == "_id") {
                 array_push($preguntas, $pregunta);
                 array_push($respuestas, $respuesta);
@@ -95,15 +95,15 @@ class helper extends Controller
 
     /**
      * count element not null into array
-    */
+     */
 
-    public static function countValidValues($object){
+    public static function countValidValues($object)
+    {
         $array = array_values((array)$object);
-
         //$values = array_values((array)$array);
-        $result = array_filter($array, function ($value) {return !is_null($value[0]);});
+        //$result = array_filter($array, fn ($value) => !is_null($value[0]));
+        $result = (array_filter($array, function($value) { return !is_null($value) && $value !== ''; }));
 
         return count($result);
-
     }
 }
