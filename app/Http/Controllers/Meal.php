@@ -31,7 +31,7 @@ class Meal extends Controller
     }
 
     function getMqr(){
-        $mmqrs = MMqr::paginate(10);
+        $mmqrs = MMqr::paginate(7);
 
         return $mmqrs;
     }
