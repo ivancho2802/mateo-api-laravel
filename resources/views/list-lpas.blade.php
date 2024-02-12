@@ -9,9 +9,9 @@
 <h4>Registros enviados: {{$record_excel}}</h4>
 <h4>Registros guardados: {{count($mlpas)}}</h4>
 
-<div id="grid_container_m_lpa" data-origen="auditoria_atendidas/m_lpa" class="grid_contenedor origen grid_activo" data-grid="m_lpa" style="height: auto; min-height: 530px; z-index: 2; display: block;">
+<div id="grid_container_m_lpa" data-origen="auditoria_atendidas/m_lpa" class="grid_contenedor origen grid_activo container" data-grid="m_lpa" style="height: auto; min-height: 530px; z-index: 2; display: block;">
     <div id="grid_tabla" class="grid_cuadro_activo" style="overflow: hidden; width: 915px;">
-        <table id="m_lpa_encabezado">
+        <table id="m_lpa_encabezado" class="table table-responsive">
 
             <thead class="text-center">
                 <tr>

@@ -21,17 +21,27 @@ class Meal extends Controller
         //ref for array_values() fix: https://stackoverflow.com/a/38712699/3553367
     }
 
-    function getLpa(){
-
-        $mlpas = MLpa::paginate(10);
+    function getLpa(Request $request)
+    {
+        if ($request->pagination) {
+            $mlpas = MLpa::paginate(10);
+        } else {
+            $mlpas = MLpa::get();
+        }
 
         $mlpas->load('emergencia');
-        
+
         return $mlpas;
     }
 
-    function getMqr(){
-        $mmqrs = MMqr::paginate(7);
+    function getMqr(Request $request)
+    {
+
+        if ($request->pagination) {
+            $mmqrs = MMqr::paginate(7);
+        } else {
+            $mmqrs = MMqr::all();
+        }
 
         return $mmqrs;
     }
@@ -39,20 +49,21 @@ class Meal extends Controller
     /**
      * pda
      */
-    function geMpd(){
-        $mmpds = MKoboRespuestas::whereHas('formulario', function($q)
-        {
-            $q->where('ACCION', '=', "MPD");
-        
-        })
-        ->get()
-        ->groupBy('_ID');
+    function geMpd(Request $request)
+    {
 
-        $mmpdsArray = $this->paginateCollection($mmpds, 10);
+        $mmpds = MKoboRespuestas::whereHas('formulario', function ($q) {
+            $q->where('ACCION', '=', "MPD");
+        })
+            ->get()
+            ->groupBy('_ID');
+
+        if ($request->pagination) {
+            $mmpdsArray = $this->paginateCollection($mmpds, 10);
+        }else {
+            $mmpdsArray = $mmpds;
+        }
 
         return  $mmpdsArray;
-
     }
-
-
 }
