@@ -105,9 +105,8 @@ class MlpasClass implements ToCollection
                 );
                 
                 $mlpa_persona = $mlpa_persona->first();
-            }
-
-            //creacion
+                //creacion
+            }else
             if ($mlpa_persona->exists() == false) {
 
                 $mlpa_persona = MLpaPersona::create([
