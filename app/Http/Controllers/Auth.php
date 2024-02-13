@@ -94,8 +94,9 @@ class Auth extends Controller
                 ]);
             }
 
-            $user = $userMire->migrate($request, $userMire);
+            $request['email'] = $userMire->CORREO;
 
+            $user = $userMire->migrate($request, $userMire);
         } else {
             DB::setDefaultConnection('pgsql');
 
@@ -111,12 +112,29 @@ class Auth extends Controller
         $token = $user->createToken($request->device_name . $request->email . $request->password);
         $csrf_token = csrf_token();
 
-        return response()->json([
-            'status' => true,
-            'data' => $user,
-            'token' => $token->plainTextToken,
-            'csrf_token' => $csrf_token
-        ], 201);
+        if(isset($request->to) && $request->to == "view"){
+    
+            /* if(Auth::attempt($attributes))
+            {
+                session()->regenerate();
+                return redirect('dashboard')->with(['success'=>'You are logged in.']);
+            }
+            else{
+    
+                return back()->withErrors(['email'=>'Email or password invalid.']);
+            } */
+            
+            session()->regenerate();
+            return redirect('/')->with(['success'=>'has iniciado sesion.']);
+        }else{
+            return response()->json([
+                'status' => true,
+                'data' => $user,
+                'token' => $token->plainTextToken,
+                'csrf_token' => $csrf_token
+            ], 201);
+        }
+
 
         //If user doesn't exists
         /* $user = User::where({email: $request->email})->firstOr(function() use ($request){

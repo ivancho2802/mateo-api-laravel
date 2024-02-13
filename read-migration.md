@@ -7,3 +7,7 @@
 # migrar archiv especifico
 php artisan migrate --path=/database/migrations/test/
 
+# crar un modelo con su controlador
+
+php artisan make:model -mrc Url
+

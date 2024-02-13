@@ -7,6 +7,8 @@ use App\Models\MFormularios;
 use App\Models\MKoboFormularios;
 use App\Models\DContactos;
 use App\Http\Controllers\helper;
+use App\Http\Controllers\UrlController;
+
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 //use Excel;
@@ -222,6 +224,15 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
     });
 });
 
+
+// route for urls
+Route::resource('urls', UrlController::class)
+->middleware(['auth', 'verified']);
+
+// route for get shortener url
+Route::get('{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -232,7 +243,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('login', [Auth::class, 'login']);
+Route::post('login', [Auth::class, 'login'])->name('api/login');
 
 //Route::post('register', [Auth::class, 'register']);
 
