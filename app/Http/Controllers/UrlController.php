@@ -51,7 +51,7 @@ class UrlController extends Controller
         $data['user_id'] = Auth::user()->id;
         $data['title'] = Str::ucfirst($request->title);
         $data['original_url'] = $request->original_url;
-        $data['shortener_url'] = Str::random(5);
+        $data['shortener_url'] = "cut/" . Str::random(5);
         Url::create($data);
         return redirect(route('urls.index'));
     }
