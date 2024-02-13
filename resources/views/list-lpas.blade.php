@@ -1,9 +1,9 @@
 <head>
-    <link rel="stylesheet" type="text/css" href="http://ach.dyndns.info:8888/ach/herramientas/estilo/bootstrap/bootstrap-4.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="http://ach.dyndns.info:8888/ach/herramientas/estilo/nblue/estilo.css?609cdc1f744d8f00ccbd22e3179ff78c">
-    <link rel="stylesheet" type="text/css" href="http://ach.dyndns.info:8888/ach/variables.css?609cdc1f744d8f00ccbd22e3179ff78c">
-    <link rel="stylesheet" type="text/css" href="http://ach.dyndns.info:8888/ach/herramientas/estilo/bulma/bulma.min.css?609cdc1f744d8f00ccbd22e3179ff78c">
-    <link rel="stylesheet" type="text/css" href="http://ach.dyndns.info:8888/ach/herramientas/estilo/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/ach/herramientas/estilo/bootstrap/bootstrap-4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/ach/herramientas/estilo/nblue/estilo.css?609cdc1f744d8f00ccbd22e3179ff78c">
+    <link rel="stylesheet" type="text/css" href="/ach/variables.css?609cdc1f744d8f00ccbd22e3179ff78c">
+    <link rel="stylesheet" type="text/css" href="/ach/herramientas/estilo/bulma/bulma.min.css?609cdc1f744d8f00ccbd22e3179ff78c">
+    <link rel="stylesheet" type="text/css" href="/ach/herramientas/estilo/fontawesome/css/all.min.css">
 </head>
 
 <h4>Registros enviados: {{$record_excel}}</h4>
