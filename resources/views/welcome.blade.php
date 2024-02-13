@@ -403,7 +403,7 @@
         @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             @auth
-            <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
+            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
             @else
             <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
@@ -484,7 +484,7 @@
                         <div class="flex items-center">
                             <img src="http://ach.dyndns.info:6080/webMIRE/images/infoMIRE3.jpg" class="w-8 h-8 text-gray-500" />
                             <!-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> -->
-                            <div class="ml-4 text-lg leading-7 font-semibold"><a href="http://ach.dyndns.info:8888/ach/movil_dashboard/www/index.html" class="underline text-gray-900 dark:text-white">
+                            <div class="ml-4 text-lg leading-7 font-semibold"><a href="/urls" class="underline text-gray-900 dark:text-white">
                                     Acortar link
                                 </a></div>
                         </div>

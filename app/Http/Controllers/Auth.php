@@ -112,28 +112,13 @@ class Auth extends Controller
         $token = $user->createToken($request->device_name . $request->email . $request->password);
         $csrf_token = csrf_token();
 
-        if(isset($request->to) && $request->to == "view"){
-    
-            /* if(Auth::attempt($attributes))
-            {
-                session()->regenerate();
-                return redirect('dashboard')->with(['success'=>'You are logged in.']);
-            }
-            else{
-    
-                return back()->withErrors(['email'=>'Email or password invalid.']);
-            } */
-            
-            session()->regenerate();
-            return redirect('/')->with(['success'=>'has iniciado sesion.']);
-        }else{
-            return response()->json([
-                'status' => true,
-                'data' => $user,
-                'token' => $token->plainTextToken,
-                'csrf_token' => $csrf_token
-            ], 201);
-        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $user,
+            'token' => $token->plainTextToken,
+            'csrf_token' => $csrf_token
+        ], 201);
 
 
         //If user doesn't exists
@@ -182,4 +167,76 @@ class Auth extends Controller
 
         return $this->success(['token' => $token]);
     }
+
+    /* public function loginSesion(){
+
+        
+        $attributes = $request->validate([
+            'email'=>'required',
+            'password'=>'required'
+        ]);
+
+        if(Auth::attempt($attributes))
+        {
+            session()->regenerate();
+            return redirect('dashboard')->with(['success'=>'You are logged in.']);
+        }
+        else{
+
+            return back()->withErrors(['email'=>'Email or password invalid.']);
+        }
+        
+        DB::setDefaultConnection('firebird');
+        $user = null;
+        //este swra especial usare encript md5 y comparare
+        $userMire = MUsuarios::orWhere([
+            ['CORREO', $request->email],
+        ])->orWhere([
+            ['LOGIN', $request->email]
+        ])->first();
+
+        if ($userMire) {
+
+            //dd(md5(strtoupper($request->password)) . ' ' . $userMire->CLAVE);
+
+            if (!$userMire || strtoupper(md5(strtoupper($request->password))) !== $userMire->CLAVE) {
+                throw ValidationException::withMessages([
+                    'email' => ['The provided credentials are incorrect.'],
+                ]);
+            }
+
+            $request['email'] = $userMire->CORREO;
+
+            $user = $userMire->migrate($request, $userMire);
+        } else {
+            DB::setDefaultConnection('pgsql');
+
+            //Search for the user where the customer is
+            $user = User::where('email', $request->email)->first();
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                throw ValidationException::withMessages([
+                    'email' => ['The provided credentials are incorrect.'],
+                ]);
+            }
+        }
+
+        $token = $user->createToken($request->device_name . $request->email . $request->password);
+        $csrf_token = csrf_token();
+
+        if(isset($request->to) && $request->to == "view"){
+    
+            if(Auth::attempt($attributes))
+            {
+                session()->regenerate();
+                return redirect('dashboard')->with(['success'=>'You are logged in.']);
+            }
+            else{
+    
+                return back()->withErrors(['email'=>'Email or password invalid.']);
+            }
+            
+            session()->regenerate();
+            return redirect('dashboard')->with(['success'=>'has iniciado sesion.']);
+        }else{
+    } */
 }

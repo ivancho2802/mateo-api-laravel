@@ -7,7 +7,6 @@ use App\Models\MFormularios;
 use App\Models\MKoboFormularios;
 use App\Models\DContactos;
 use App\Http\Controllers\helper;
-use App\Http\Controllers\UrlController;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
@@ -223,14 +222,6 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
         ] */;
     });
 });
-
-
-// route for urls
-Route::resource('urls', UrlController::class)
-->middleware(['auth', 'verified']);
-
-// route for get shortener url
-Route::get('{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
 
 
 /*

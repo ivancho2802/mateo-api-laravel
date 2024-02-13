@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Url;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class UrlController extends Controller
 {
@@ -15,8 +17,10 @@ class UrlController extends Controller
     public function index()
     {
         //
+        $urls = Url::with('user')->latest()->get();
+
         return view('urls.index', [
-            'urls' => Url::with('user')->latest()->get(),
+            'urls' => $urls,
         ]);
     }
 
@@ -108,10 +112,15 @@ class UrlController extends Controller
         $url->delete();
         return redirect(route('urls.index'));
     }
-    
+
     public function shortenLink($shortener_url)
     {
         $find = Url::where('shortener_url', $shortener_url)->first();
-        return redirect($find->original_url);
+
+        if(isset($find) && $find->original_url){
+            return redirect($find->original_url);
+        }
+
+        return 'Url rota o incorrecta';
     }
 }
