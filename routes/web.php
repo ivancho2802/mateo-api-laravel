@@ -46,6 +46,6 @@ Route::resource('urls', UrlController::class)
 }); */
 
 // route for get shortener url
-Route::get('{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
+Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
 
 require __DIR__.'/auth.php';
