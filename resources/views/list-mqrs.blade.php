@@ -1,10 +1,18 @@
-<h4>Registros enviados: {{$record_excel}}</h4>
-<h4>Registros guardados: {{count($mmqrs)}}</h4>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/ach/herramientas/estilo/bootstrap/bootstrap-4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/ach/herramientas/estilo/nblue/estilo.css?609cdc1f744d8f00ccbd22e3179ff78c">
+    <link rel="stylesheet" type="text/css" href="/ach/variables.css?609cdc1f744d8f00ccbd22e3179ff78c">
+    <link rel="stylesheet" type="text/css" href="/ach/herramientas/estilo/bulma/bulma.min.css?609cdc1f744d8f00ccbd22e3179ff78c">
+    <link rel="stylesheet" type="text/css" href="/ach/herramientas/estilo/fontawesome/css/all.min.css">
+</head>
 
 <div id="grid_container_m_lpa" data-origen="auditoria_atendidas/m_lpa" class="grid_contenedor origen grid_activo" data-grid="m_lpa" style="height: auto; min-height: 530px; z-index: 2; display: block;">
+    <h4>Registros enviados: {{$record_excel}}</h4>
+    <h4>Registros guardados: {{count($mmqrs)}}</h4>
     <div id="grid_tabla" class="grid_cuadro_activo" style="overflow: hidden; width: 915px;">
-        <table id="m_lpa_encabezado">
-            <thead class="text-center">
+        <table id="m_lpa_encabezado table table-responsive table-bordered">
+            <thead class="text-center  bg-info">
                 <tr>
                     <td class="grid_encab" id="rm_lpa_9" data-campo="rango" style="width: 13px; min-width: 13px; cursor: pointer;">
                         <div style=" float: left; text-align:left">Fecha Creacion</div>
