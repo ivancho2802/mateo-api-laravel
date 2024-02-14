@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UrlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::resource('urls', UrlController::class)
+->middleware(['auth']);//, 'verified'
+
+
+// route for get shortener url
+Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
