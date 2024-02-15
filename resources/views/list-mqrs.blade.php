@@ -9,7 +9,7 @@
 
 <div id="grid_container_m_lpa" data-origen="auditoria_atendidas/m_lpa" class="grid_contenedor origen grid_activo" data-grid="m_lpa" style="height: auto; min-height: 530px; z-index: 2; display: block;">
     <h4>Registros enviados: {{$record_excel}}</h4>
-    <h4>Registros guardados: {{count($mmqrs)}}</h4>
+    <h4>Registros guardados: {{($record_saved)}}</h4>
     <div id="grid_tabla" class="grid_cuadro_activo" style="overflow: hidden; width: 915px;">
         <table id="m_lpa_encabezado table table-responsive table-bordered">
             <thead class="text-center  bg-info">

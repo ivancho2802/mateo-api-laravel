@@ -201,3 +201,50 @@ ASIENTO_ACTIVO_FIJO                    ASIENTO_AJUSTE_INVENTARIO
        ZZZ_CXC                                ZZZ_M_CLIENTES
        ZZZ_M_PRODUCTOS                        ZZZ_TRIGGERS_DELETE
        ZZZ_USUARIOS
+
+
+
+
+
+M_MENU
+
+ID_M_MENU                       VARCHAR(16) Not Null 
+ROTULO                          VARCHAR(200) Nullable 
+ID_PADRE                        VARCHAR(16) Nullable 
+POSICION                        INTEGER Nullable 
+URL                             VARCHAR(128) Nullable 
+PARAMS                          VARCHAR(128) Nullable 
+TARGET                          VARCHAR(32) Nullable 
+ICONO                           VARCHAR(128) Nullable 
+ID_M_USUARIOS                   VARCHAR(16) Nullable 
+ID_M_AREAS                      VARCHAR(16) Nullable 
+FECHA                           TIMESTAMP Nullable DEFAULT 'NOW'
+ACCION                          VARCHAR(1) Nullable DEFAULT 'I'
+UNICO                           VARCHAR(32) Nullable 
+BARCODE                         VARCHAR(20) Nullable 
+ID                              INTEGER Nullable 
+ID_EMPRESA                      VARCHAR(10) Nullable 
+CAMPO1                          VARCHAR(60) Nullable 
+CAMPO2                          VARCHAR(60) Nullable 
+CAMPO3                          VARCHAR(60) Nullable 
+CAMPO4                          VARCHAR(60) Nullable 
+CAMPO5                          VARCHAR(60) Nullable 
+FECHA_REGISTRO                  TIMESTAMP Nullable DEFAULT 'NOW'
+ESTATUS                         VARCHAR(3) Nullable DEFAULT 'ACT'
+PARTICULAR                      VARCHAR(1) Nullable 
+XGRUPO_DESTINO                  VARCHAR(16) Nullable 
+XROTULO                         VARCHAR(120) Nullable 
+NIVEL                           INTEGER Nullable DEFAULT 0
+XID_PADRE                       INTEGER Nullable DEFAULT 0
+CONSTRAINT PK_M_MENU:
+  Primary key (ID_M_MENU)
+CONSTRAINT UK_ID_M_MENU:
+  Unique key (ID, ID_EMPRESA)
+
+Triggers on Table M_MENU:
+T_ID_M_MENU, Sequence: 0, Type: BEFORE INSERT, Active
+T_F_M_MENU, Sequence: 0, Type: BEFORE UPDATE, Active
+T_M_MENU_PARTICULAR, Sequence: 1, Type: BEFORE UPDATE, Active
+T_M_MENU_XGRUPO, Sequence: 2, Type: BEFORE UPDATE, Active
+T_M_MENU_APLICA_TODOS_GRUP, Sequence: 3, Type: BEFORE UPDATE, Active
+T_M_MENU_NIVEL, Sequence: 2, Type: BEFORE INSERT OR UPDATE, Active

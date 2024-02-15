@@ -17,7 +17,6 @@ class PersonComplainted extends Controller
         try {
 
             //validacion para que no se cargue el mismo archivo en el mismo mes
-
             //dd("file", $request->file('file'));
 
             // Validate the uploaded file
@@ -53,13 +52,19 @@ class PersonComplainted extends Controller
 
             $migrate_custom->save();
 
-            $id_mqrs = explode(" ,", $migrate_custom->table_id);
+            $id_mqrs = explode(", ", $migrate_custom->table_id);
+            
+            $query_mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
+            
+            $count_mmqrs = count($query_mmqrs->get());
 
-            $mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc')->paginate(10);
+            $mmqrs = $query_mmqrs->paginate(10);
 
             $data['mmqrs'] = $mmqrs;
 
+
             $data['record_excel'] = $count_record_excel - 1;
+            $data['record_saved'] = $count_mmqrs;
 
             //MQR devolver tabla con los resultados creados 
             return view('list-mqrs', $data);
