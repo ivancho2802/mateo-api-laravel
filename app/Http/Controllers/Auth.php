@@ -84,6 +84,8 @@ class Auth extends Controller
             ['LOGIN', $request->email]
         ])->first();
 
+        dd($userMire);
+
         if ($userMire) {
 
             //dd(md5(strtoupper($request->password)) . ' ' . $userMire->CLAVE);

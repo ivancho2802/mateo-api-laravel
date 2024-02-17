@@ -25,7 +25,9 @@ si no tiene permisos el archivo de base ddartos dale con
 
 chmod 777 ruta del arcivo
 
-linux
+linux 
+
+/opt/firebird/bin/isql
 
 connect "/opt/lampp/firebird/db/ach.gdb" user 'SYSDBA' password 'masterkey';
 
