@@ -75,7 +75,7 @@ class Auth extends Controller
      */
     public function login(LoginRequest $request)
     {
-        DB::setDefaultConnection('firebird');
+        DB::setDefaultConnection('odbc');
         $user = null;
         //este swra especial usare encript md5 y comparare
         $userMire = MUsuarios::orWhere([
