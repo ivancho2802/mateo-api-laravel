@@ -21,11 +21,17 @@ class MqrClass implements ToCollection
 
         $id_mqr = [];
 
+        $filtered = $rows->filter(function (object $value, int $key) {
+            return $value[0] == "Organización que reporta";
+        });
+
+        $indexheader = $filtered->keys()[0] ?? 1;
+
         foreach ($rows as $row) {
 
-            $countElement = count($row->filter()->all());
+            $countElement = count($row->filter()->all());//|| !$row[0] || !$row[1] || $countElement < 15 || $countElement > 16
 
-            if ($i <2 || !$row[0] || !$row[1] || $countElement < 15 || $countElement > 16) {
+            if ($i <=  $indexheader ) {
                 $i++;
                 continue;
             }
@@ -36,7 +42,6 @@ class MqrClass implements ToCollection
             }
             
             $date_in = Date::excelToDateTimeObject($row[3]);
-            if($i>2) dd($row);
 
             $DATE_IN = $date_in; //date('d-m-Y', strtotime($date_birday));
             

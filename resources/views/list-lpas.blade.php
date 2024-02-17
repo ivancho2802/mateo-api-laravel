@@ -11,7 +11,7 @@
     <div id="grid_tabla" class="grid_cuadro_activo" style="overflow: hidden; width: 915px;">
 
         <h4>Registros enviados: {{$record_excel}}</h4>
-        <h4>Registros guardados: {{count($mlpas)}}</h4>
+        <h4>Registros guardados: {{$record_saved}}</h4>
 
         <table id="m_lpa_encabezado" class="table table-responsive table-bordered">
 

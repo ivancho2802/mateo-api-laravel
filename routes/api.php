@@ -186,6 +186,13 @@ Route::prefix('meal')->group(function () {
     Route::post('/mqr/upload', [App\Http\Controllers\PersonComplainted::class, 'stored']);
 
     Route::middleware(['auth:sanctum'])->get('/mqr', [App\Http\Controllers\Meal::class, 'getMqr']);
+
+    //carga de actividades
+    Route::post('/actividades/upload', [App\Http\Controllers\Activity::class, 'stored']);
+
+    Route::middleware(['auth:sanctum'])->get('/actividades', [App\Http\Controllers\Meal::class, 'getActivity']);
+    
+
 });
 
 

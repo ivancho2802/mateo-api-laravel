@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\MLpaEmergencia;
-use App\Models\activities;
+use App\Models\Activities;
 
 class MLpa extends Model
 {
@@ -58,7 +58,7 @@ class MLpa extends Model
     
     public function actividad()
     {
-        return $this->hasOne(MLpaEmergencia::class, 'cod', 'COD_ACTIVIDAD' );
+        return $this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD' );
     }
 
 }

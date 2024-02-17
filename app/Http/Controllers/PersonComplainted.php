@@ -64,7 +64,7 @@ class PersonComplainted extends Controller
 
 
             $data['record_excel'] = $count_record_excel - 1;
-            $data['record_saved'] = $count_mmqrs;
+            $data['record_saved'] = $count_mmqrs + 1;
 
             //MQR devolver tabla con los resultados creados 
             return view('list-mqrs', $data);

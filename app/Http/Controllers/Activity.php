@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ImportActivityClass;
 use Excel;
-use App\Http\Controllers\PaImportClass;
 use App\Models\migrateCustom;
-use App\Models\MLpa;
+use App\Models\Activities;
 
-class PersonAttended extends Controller
+use Illuminate\Http\Request;
+
+class Activity extends Controller
 {
     //
     function stored(Request $request){
@@ -25,19 +26,19 @@ class PersonAttended extends Controller
         $file = $request->file('file');
         
         //get data excel
-        $collection = (new MlpasClass)->toCollection($file);
+        $collection = (new ActivityClass)->toCollection($file);
 
-        $import = new PaImportClass();
+        $import = new ImportActivityClass();
 
-        $import->onlySheets('BD');
+        $import->onlySheets('SHELTER', 'WASH', 'EiE', 'SAN', 'SALUD', 'PROTECCIÓN');
 
         // Process the Excel file
         Excel::import($import, $file);
 
-        $count_record_excel = helper::countValidValues($collection[2]);
+        $count_record_excel = helper::countValidValues($collection[0]);
 
         $migrate_custom = migrateCustom::where([
-            'table' => "M_LPAS"
+            'table' => "activities"
         ])->get()->last();
 
         $excel = file_get_contents($file);
@@ -47,25 +48,23 @@ class PersonAttended extends Controller
 
         $migrate_custom->save();
 
-        $id_lpas = explode(", ", $migrate_custom->table_id);
+        $id_activities = explode(", ", $migrate_custom->table_id);
 
-        $query_mlpas = MLpa::whereIn('ID', $id_lpas);
-        $count_mlpas = count($query_mlpas->get());
+        $query_activities = Activities::whereIn('id', $id_activities);
+        $count_activities = count($query_activities->get());
         
-        $mlpas = $query_mlpas
+        $activities = $query_activities
         ->orderBy('created_at', 'desc')
         ->paginate(10);
 
-        $mlpas->load('emergencia');
-
-        $data['mlpas'] = $mlpas;
+        $data['activities'] = $activities;
 
         $data['record_excel'] = $count_record_excel - 1;
 
-        $data['record_saved'] = $count_mlpas;
+        $data['record_saved'] = $count_activities;
 
         //terminar devolver tabla
-        return view('list-lpas', $data);
+        return view('list-activities', $data);
         //return response()->json(["message" => "operacion hecha con exito"]);
         
     }

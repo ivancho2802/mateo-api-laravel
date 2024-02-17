@@ -19,6 +19,10 @@ class CreateActivitiesTable extends Migration
             $table->string('sector');
             $table->string('cod');
             $table->string('actividad');
+            
+            $table->unsignedBigInteger('ID_M_USUARIOS');
+            $table->foreign('ID_M_USUARIOS')
+                ->references('ID')->on('M_USUARIOS');
         });
     }
 

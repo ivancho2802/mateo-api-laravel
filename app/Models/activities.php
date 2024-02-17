@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\MLpa;
 
-class activities extends Model
+class Activities extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'sector', 'cod', 'actividad', 'fk_lpa'
+        'sector', 'cod', 'actividad', 'ID_M_USUARIOS'
     ];
 
     /* public function lpa()

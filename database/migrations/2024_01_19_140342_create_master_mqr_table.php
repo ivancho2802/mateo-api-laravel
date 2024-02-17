@@ -44,6 +44,6 @@ class CreateMasterMqrTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_mqr');
+        Schema::dropIfExists('M_MQR');
     }
 }

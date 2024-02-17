@@ -9,6 +9,7 @@ use App\Models\MLpaPersona;
 use App\Models\MMqr;
 use App\Models\MFormulario;
 use App\Models\MKoboRespuestas;
+use App\Models\Activities;
 
 class Meal extends Controller
 {
@@ -29,7 +30,7 @@ class Meal extends Controller
             $mlpas = MLpa::get();
         }
 
-        $mlpas->load('emergencia');
+        $mlpas->load(['emergencia', 'actividad']);
 
         return $mlpas;
     }
@@ -65,5 +66,11 @@ class Meal extends Controller
         }
 
         return  $mmpdsArray;
+    }
+
+    function getActivity(Request $request){
+        $activities = Activities::get();
+
+        return  $activities;
     }
 }
