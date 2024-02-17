@@ -75,7 +75,7 @@ class Auth extends Controller
      */
     public function login(LoginRequest $request)
     {
-        DB::setDefaultConnection('odbc');
+        DB::setDefaultConnection('firebird');
         $user = null;
         //este swra especial usare encript md5 y comparare
         $userMire = MUsuarios::orWhere([
@@ -83,8 +83,6 @@ class Auth extends Controller
         ])->orWhere([
             ['LOGIN', $request->email]
         ])->first();
-
-        dd($userMire);
 
         if ($userMire) {
 
