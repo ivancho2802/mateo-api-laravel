@@ -14,7 +14,7 @@ class AlterMasterLpasTable extends Migration
     public function up()
     {
         //
-        Schema::table("M_LPAS", function (Blueprint $table) {
+        Schema::table("'M_LPAS'", function (Blueprint $table) {
             $table->string('COD_ACTIVIDAD')->unique()->nullable()->change();
 
             $table->foreign('COD_ACTIVIDAD')
