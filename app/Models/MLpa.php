@@ -58,7 +58,7 @@ class MLpa extends Model
     
     public function actividad()
     {
-        return $this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD' );
+        return $this->belongsTo(Activities::class, 'cod', 'COD_ACTIVIDAD' );
     }
 
 }
