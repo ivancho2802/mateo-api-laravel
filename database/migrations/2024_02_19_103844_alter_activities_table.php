@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterMasterLpasTable extends Migration
+class AlterActivitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,8 @@ class AlterMasterLpasTable extends Migration
     public function up()
     {
         //
-        Schema::table('"M_LPAS"', function (Blueprint $table) {
-            $table->string('COD_ACTIVIDAD')->unique()->nullable();
-
-            $table->foreign('COD_ACTIVIDAD')
-                ->references('cod')->on('activities');
+        Schema::table('activities', function (Blueprint $table) {
+            $table->string('cod')->unique();
         });
     }
 
