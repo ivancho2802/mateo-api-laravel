@@ -15,7 +15,7 @@ class AlterActivitiesTable extends Migration
     {
         //
         Schema::table('activities', function (Blueprint $table) {
-            $table->string('cod')->unique();
+            $table->string('cod')->unique()->change();
         });
     }
 
