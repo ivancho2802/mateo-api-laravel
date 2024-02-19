@@ -30,6 +30,6 @@ class CreateUrlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('urls');
+        //Schema::dropIfExists('urls');
     }
 }

@@ -15,9 +15,9 @@ class AlterMasterLpasTable extends Migration
     {
         //
         Schema::table('"M_LPAS"', function (Blueprint $table) {
-            $table->string('COD_ACTIVIDAD')->unsigned()->change();
-            $table->foreign('COD_ACTIVIDAD')
-                ->references('cod')->on('activities')->change();
+            //$table->string('COD_ACTIVIDAD')->change();
+            /* $table->foreign('COD_ACTIVIDAD')
+                ->references('cod')->on('activities')->change(); */
         });
     }
 

@@ -68,6 +68,6 @@ class CreateMasterUsuarios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('M_USUARIOS');
+       // Schema::dropIfExists('M_USUARIOS');
     }
 }

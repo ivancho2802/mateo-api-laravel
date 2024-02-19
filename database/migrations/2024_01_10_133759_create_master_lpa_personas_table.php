@@ -92,8 +92,8 @@ class CreateMasterLpaPersonasTable extends Migration
      */
     public function down()
     {
-        Schema::table('M_LPA_PERSONAS', function (Blueprint $table) {
+        /* Schema::table('M_LPA_PERSONAS', function (Blueprint $table) {
             //
-        });
+        }); */
     }
 }

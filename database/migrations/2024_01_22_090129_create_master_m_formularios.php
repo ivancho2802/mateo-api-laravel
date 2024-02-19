@@ -61,8 +61,8 @@ class CreateMasterMFormularios extends Migration
      */
     public function down()
     {
-        Schema::table('M_FORMULARIOS', function (Blueprint $table) {
+       /*  Schema::table('M_FORMULARIOS', function (Blueprint $table) {
             //
-        });
+        }); */
     }
 }

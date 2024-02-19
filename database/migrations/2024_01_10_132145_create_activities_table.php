@@ -17,7 +17,7 @@ class CreateActivitiesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('sector');
-            $table->string('cod');
+            $table->string('cod')->unique();
             $table->string('actividad');
             
             $table->unsignedBigInteger('ID_M_USUARIOS');
@@ -33,6 +33,6 @@ class CreateActivitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities');
+        //Schema::dropIfExists('activities');
     }
 }

@@ -82,8 +82,8 @@ class CreateMasterMKoboRespuestas extends Migration
      */
     public function down()
     {
-        Schema::table('M_KOBO_RESPUESTAS', function (Blueprint $table) {
+        /* Schema::table('M_KOBO_RESPUESTAS', function (Blueprint $table) {
             //
-        });
+        }); */
     }
 }

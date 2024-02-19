@@ -57,8 +57,8 @@ class CreateMasterLpaEmergenciasTable extends Migration
      */
     public function down()
     {
-        Schema::table('M_LPA_EMERGENCIAS', function (Blueprint $table) {
+       /*  Schema::table('M_LPA_EMERGENCIAS', function (Blueprint $table) {
             //
-        });
+        }); */
     }
 }

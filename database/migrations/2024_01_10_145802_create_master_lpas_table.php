@@ -39,7 +39,10 @@ class CreateMasterLpasTable extends Migration
             $table->string('DONANTE');
 
             //Código de Actividad (string) OBLIGATORIA	
-            $table->string('COD_ACTIVIDAD');
+            $table->string('COD_ACTIVIDAD')->unique()->nullable();
+
+            $table->foreign('COD_ACTIVIDAD')
+                ->references('cod')->on('activities');
 
             //Fecha de atención	(string) OBLIGATORIA
             $table->date('FECHA_ATENCION');
@@ -86,8 +89,8 @@ class CreateMasterLpasTable extends Migration
      */
     public function down()
     {
-        Schema::table('M_LPA', function (Blueprint $table) {
+       /*  Schema::table('M_LPA', function (Blueprint $table) {
             //
-        });
+        }); */
     }
 }

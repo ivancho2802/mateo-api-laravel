@@ -30,6 +30,6 @@ class CreateMigrateCustomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('migrate_customs');
+       // Schema::dropIfExists('migrate_customs');
     }
 }

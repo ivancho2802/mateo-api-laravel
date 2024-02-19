@@ -75,6 +75,6 @@ class CreateMasterMKoboFormulariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_m_kobo_formularios');
+        //Schema::dropIfExists('master_m_kobo_formularios');
     }
 }
