@@ -243,7 +243,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 */
 Route::post('login', [Auth::class, 'login'])->name('api/login');
 
-Route::post('register', [Auth::class, 'register']);
+//Route::post('register', [Auth::class, 'register']);
 
 Route::post('logout', [Auth::class, 'logout']);
 
