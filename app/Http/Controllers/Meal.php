@@ -10,6 +10,7 @@ use App\Models\MMqr;
 use App\Models\MFormulario;
 use App\Models\MKoboRespuestas;
 use App\Models\Activities;
+use Illuminate\Support\Facades\Auth;
 
 class Meal extends Controller
 {
@@ -73,4 +74,19 @@ class Meal extends Controller
 
         return  $activities;
     }
+
+    function setActivity(Request $request){
+
+        $data = $request->all();
+        $data['sector'] = $request->sector;
+        $data['cod'] = $request->cod;
+        $data['actividad'] = $request->actividad;
+        $data['ID_M_USUARIOS'] = Auth::user()->id ?? Auth::user()->ID;
+
+        $activities = Activities::create($data);
+
+        return  $activities;
+    }
+
+    
 }

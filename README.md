@@ -259,6 +259,10 @@ mostrar postgresql las tablas \dt
 # describe table 
  \d  "M_LPA_EMERGENCIAS";
 
+# como ver la configuracion actual
+
+SHOW config_file;
+
 # OTRAS FURNTAS 
 https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e
 https://www.hostinger.co/tutoriales/instalar-postgresql-ubuntu

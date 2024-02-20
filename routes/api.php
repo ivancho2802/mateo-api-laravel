@@ -192,6 +192,7 @@ Route::prefix('meal')->group(function () {
 
     Route::middleware(['auth:sanctum'])->get('/actividades', [App\Http\Controllers\Meal::class, 'getActivity']);
     
+    Route::middleware(['auth:sanctum'])->post('/actividades', [App\Http\Controllers\Meal::class, 'setActivity']);
 
 });
 
@@ -243,7 +244,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 */
 Route::post('login', [Auth::class, 'login'])->name('api/login');
 
-Route::post('register', [Auth::class, 'register']);
+//Route::post('register', [Auth::class, 'register']);
 
 Route::post('logout', [Auth::class, 'logout']);
 
