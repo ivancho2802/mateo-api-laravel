@@ -17,7 +17,7 @@ class CreateMigrateCustomsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('table');
-            $table->string('table_id');
+            $table->text('table_id');
             $table->string('file_ref');
             $table->binary('file')->nullable();
         });

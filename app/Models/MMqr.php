@@ -4,14 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\TraitDepartments;
 
 class MMqr extends Model
 {
     use HasFactory;
+    use TraitDepartments;
 
     protected $table = 'M_MQR';
 
     public $incrementing = false;
+
+    protected $primaryKey = "ID";
 
     /**
      * The attributes that are mass assignable.
@@ -37,4 +41,7 @@ class MMqr extends Model
         'VALID',
         'RECIVE'
     ];
+
+
+    
 }

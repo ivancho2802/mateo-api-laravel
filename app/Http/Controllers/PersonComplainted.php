@@ -11,6 +11,7 @@ use App\Http\Controllers\helper;
 
 class PersonComplainted extends Controller
 {
+
     function stored(Request $request)
     {
 
@@ -53,9 +54,9 @@ class PersonComplainted extends Controller
             $migrate_custom->save();
 
             $id_mqrs = explode(", ", $migrate_custom->table_id);
-            
+
             $query_mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
-            
+
             $count_mmqrs = count($query_mmqrs->get());
 
             $mmqrs = $query_mmqrs->paginate(10);
@@ -73,5 +74,21 @@ class PersonComplainted extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    function reapairMunicipies()
+    {
+        $mqrs = MMqr::get();
+
+        foreach ($mqrs as $mqr) {
+           /*  MMqr::where("ID", $mqr->ID)
+            ->update(['SEXO' => ucfirst(strtolower($mqr->SEXO))]); */
+            $mqr->SEXO =  ucfirst(strtolower($mqr->SEXO));
+            $mqr->save();
+
+        }
+        $mqrs = MMqr::get();
+
+        return $mqrs;
     }
 }

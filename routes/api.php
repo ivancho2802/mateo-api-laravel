@@ -12,6 +12,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 //use Excel;
 use App\Http\Controllers\Auth;
+use App\Http\Controllers\echoController;
 use App\Models\MUsuarios;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -193,6 +194,8 @@ Route::prefix('meal')->group(function () {
     Route::middleware(['auth:sanctum'])->get('/actividades', [App\Http\Controllers\Meal::class, 'getActivity']);
     
     Route::middleware(['auth:sanctum'])->post('/actividades', [App\Http\Controllers\Meal::class, 'setActivity']);
+    
+    Route::middleware(['auth:sanctum'])->post('/echo/upload', [App\Http\Controllers\echoController::class, 'stored']);
 
 });
 
