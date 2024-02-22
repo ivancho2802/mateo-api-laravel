@@ -39,7 +39,7 @@ class CreateMasterLpasTable extends Migration
             $table->string('DONANTE');
 
             //Código de Actividad (string) OBLIGATORIA	
-            $table->string('COD_ACTIVIDAD')->unique()->nullable();
+            $table->string('COD_ACTIVIDAD')->unsigned()->nullable();
 
             $table->foreign('COD_ACTIVIDAD')
                 ->references('cod')->on('activities');

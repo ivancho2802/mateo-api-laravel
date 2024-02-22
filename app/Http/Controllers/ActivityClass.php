@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Activities;
-use PhpOffice\PhpSpreadsheet\Shared\Date;
 use App\Models\migrateCustom;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use App\Models\MMqr;
 use Maatwebsite\Excel\Concerns\Importable;
 
 class ActivityClass implements ToCollection
@@ -23,7 +20,7 @@ class ActivityClass implements ToCollection
         $activities = array();
 
         //FALTA TERMINAR SACAR DEL TOKEN
-        $ID_USER = 1;
+        $ID_USER = Auth::user()->id ?? Auth::user()->ID;
 
         $id_activities = [];
 

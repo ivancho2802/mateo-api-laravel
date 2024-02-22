@@ -34,7 +34,9 @@ class PersonAttended extends Controller
         // Process the Excel file
         Excel::import($import, $file);
 
-        $count_record_excel = helper::countValidValues($collection[2]);
+        $collectExcel = $collection[2] ?? $collection[0];
+
+        $count_record_excel = helper::countValidValues($collectExcel);
 
         $migrate_custom = migrateCustom::where([
             'table' => "M_LPAS"

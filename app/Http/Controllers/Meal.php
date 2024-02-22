@@ -26,7 +26,7 @@ class Meal extends Controller
     function getLpa(Request $request)
     {
         if ($request->pagination) {
-            $mlpas = MLpa::paginate(7);
+            $mlpas = MLpa::paginate(5);
         } else {
             $mlpas = MLpa::get();
         }

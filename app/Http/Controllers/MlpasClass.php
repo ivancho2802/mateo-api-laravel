@@ -36,7 +36,7 @@ class MlpasClass implements ToCollection
                 continue;
             }
             
-            $mlpa_emergencia = MLpaEmergencia::create([
+            $mlpa_emergencia = MLpaEmergencia::firstOrCreate([
                 
                 'COD_EMERGENCIAS' => $row[0],
                 'TIPO_EVENTO' => $row[1],
