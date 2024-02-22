@@ -13,6 +13,8 @@ class EchoModel extends Model
 
     protected $fillable = [
         //taliz 
-        'cod', 'indicador', 'subactividad',
+        'cod', 'indicador', 'ID_M_USUARIOS'
     ];
+
+    //subactividad
 }

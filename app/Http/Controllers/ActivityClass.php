@@ -7,6 +7,7 @@ use App\Models\migrateCustom;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\Importable;
+use Illuminate\Support\Facades\Auth;
 
 class ActivityClass implements ToCollection
 {

@@ -24,8 +24,6 @@ class EchoClass implements ToCollection
         //FALTA TERMINAR SACAR DEL TOKEN
         $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
-        dd($ID_USER, Auth::user());
-
         $id_echos_actividad = [];
 
         foreach ($rows as $row) { 
@@ -35,20 +33,31 @@ class EchoClass implements ToCollection
                 continue;
             }
 
-            $echo = EchoModel::create([
+            if($row[0]=="Beneficiarixs unicxs"){
+                break;
+            }
+
+            $echo = EchoModel::firstOrCreate([
                 'cod' => $row[0],
                 'indicador' => $row[1],
                 'ID_M_USUARIOS' => $ID_USER
             ]);
 
-            $echo_actividad = EchoActivityModel::create([
-                'fk_echo' => $echo->id,
-                'fk_activity' => $row[2],
-                'ID_M_USUARIOS' => $ID_USER
-            ]);
+            $id_activities = [];
+            $id_activities = explode('/', $row[2]);
 
-            $echos_actividad[] = $echo_actividad;
-            $id_echos_actividad[] = $echo_actividad->get()->last()->id;
+            foreach ($id_activities as $id_activity) {
+
+                $echo_actividad = EchoActivityModel::create([
+                    'fk_echo' => $echo->cod,
+                    'fk_activity' => rtrim(ltrim($id_activity)),
+                    'ID_M_USUARIOS' => $ID_USER
+                ]);
+    
+                $echos_actividad[] = $echo_actividad;
+                $id_echos_actividad[] = $echo_actividad->get()->last()->id;
+
+            }
         }
         //array_push($id_emergenciasz, $mlpa_emergencia)
 

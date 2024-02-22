@@ -16,12 +16,12 @@ class CreateEchoActivityTable extends Migration
         Schema::create('echo_activity', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('fk_echo')->unique();
+            $table->string('fk_echo')->unsigned();
 
             $table->foreign('fk_echo')
                 ->references('cod')->on('echos');
 
-            $table->string('fk_activity')->unique();
+            $table->string('fk_activity')->unsigned();
 
             $table->foreign('fk_activity')
                 ->references('cod')->on('activities');

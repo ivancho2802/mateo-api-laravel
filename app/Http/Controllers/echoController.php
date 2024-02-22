@@ -9,16 +9,12 @@ use Excel;
 
 use App\Http\Controllers\ImportEchoClass;
 use App\Models\EchoActivityModel;
-use Illuminate\Support\Facades\Auth;
 
 class echoController extends Controller
 {
     
-    public function stored(Request $request)
+    function stored(Request $request)
     {
-        $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
-
-        dd("asd", $ID_USER, Auth::user());
 
         //dd("file", $request->file('file'));
         //echo csrf_token(); 
