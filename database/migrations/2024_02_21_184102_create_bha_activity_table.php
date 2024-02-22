@@ -17,12 +17,12 @@ class CreateBhaActivityTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->string('fk_bha')->unique();
+            $table->string('fk_bha')->unsigned();
 
             $table->foreign('fk_bha')
                 ->references('cod')->on('bhas');
 
-            $table->string('fk_activity')->unique();
+            $table->string('fk_activity')->unsigned();
 
             $table->foreign('fk_activity')
                 ->references('cod')->on('activities');

@@ -197,6 +197,9 @@ Route::prefix('meal')->group(function () {
     
     Route::middleware(['auth:sanctum'])->post('/echo/upload', [App\Http\Controllers\echoController::class, 'stored']);
 
+    Route::middleware(['auth:sanctum'])->post('/bha/upload', [App\Http\Controllers\BhaController::class, 'stored']);
+
+
 });
 
 

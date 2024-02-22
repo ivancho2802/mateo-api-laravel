@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EchoModel;
-use App\Models\EchoActivityModel;
+use App\Models\BhaModel;
+use App\Models\BhaActivityModel;
 use App\Models\migrateCustom;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\Importable;
 use Illuminate\Support\Facades\Auth;
 
-class EchoClass implements ToCollection
+class BhaClass implements ToCollection
 {
     //
     use Importable;
@@ -19,12 +19,12 @@ class EchoClass implements ToCollection
     {
         $i = 0;
 
-        $echos = array();
+        $bhas = array();
 
         //FALTA TERMINAR SACAR DEL TOKEN
         $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
-        $id_echos_actividad = [];
+        $id_bhas_actividad = [];
 
         foreach ($rows as $row) { 
             
@@ -37,7 +37,7 @@ class EchoClass implements ToCollection
                 break;
             }
 
-            $echo = EchoModel::firstOrCreate([
+            $bha = BhaModel::firstOrCreate([
                 'cod' => $row[0],
                 'indicador' => $row[1],
                 'ID_M_USUARIOS' => $ID_USER
@@ -48,26 +48,25 @@ class EchoClass implements ToCollection
 
             foreach ($id_activities as $id_activity) {
 
-                $echo_actividad = EchoActivityModel::create([
-                    'fk_echo' => $echo->cod,
+                $bha_actividad = BhaActivityModel::create([
+                    'fk_bha' => $bha->cod,
                     'fk_activity' => rtrim(ltrim($id_activity)),
                     'ID_M_USUARIOS' => $ID_USER
                 ]);
     
-                $echos_actividad[] = $echo_actividad;
-                $id_echos_actividad[] = $echo_actividad->get()->last()->id;
+                $bhas_actividad[] = $bha_actividad;
+                $id_bhas_actividad[] = $bha_actividad->get()->last()->id;
 
             }
         }
         //array_push($id_emergenciasz, $mlpa_emergencia)
 
         migrateCustom::create([
-            'table' => 'echo_activity',
-            'table_id' => implode(", ", $id_echos_actividad),
+            'table' => 'bha_activity',
+            'table_id' => implode(", ", $id_bhas_actividad),
             'file_ref' => '-',
         ]);
 
-        return $echos;
+        return $bhas;
     }
 }
-
