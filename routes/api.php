@@ -174,6 +174,8 @@ Route::prefix('meal')->group(function () {
 
     Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
 
+    Route::middleware(['auth:sanctum'])->post('/lpa/refreshMigrations', [App\Http\Controllers\PersonAttended::class, 'refreshMigrations']);
+
     Route::middleware(['auth:sanctum'])->get('/lpa', [App\Http\Controllers\Meal::class, 'getLpa']);
 
     //monitorio post distribucion pda
@@ -198,6 +200,7 @@ Route::prefix('meal')->group(function () {
     Route::middleware(['auth:sanctum'])->post('/echo/upload', [App\Http\Controllers\echoController::class, 'stored']);
 
     Route::middleware(['auth:sanctum'])->post('/bha/upload', [App\Http\Controllers\BhaController::class, 'stored']);
+
 
 
 });
@@ -236,6 +239,13 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
         ] */;
     });
 });
+
+//creacion de matriz de palabras clave
+
+Route::middleware(['auth:sanctum'])->post('/matriz/minas', [App\Http\Controllers\MatrizController::class, 'stored']);
+
+Route::middleware(['auth:sanctum'])->get('/matriz/minas', [App\Http\Controllers\MatrizController::class, 'all']);
+
 
 
 /*

@@ -10,74 +10,114 @@ use App\Models\MLpaPersona;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use App\Models\migrateCustom;
 use Maatwebsite\Excel\Concerns\Importable;
+use Illuminate\Support\Carbon;
+use Illuminate\Validation\ValidationException;
 
 class MlpasClass implements ToCollection
 {
     use Importable;
-    
+
     public function collection(Collection $rows)
     {
-        $i = 0;
+        try {
+            //code...
+            $i = 0;
 
-        $mlpas = array();
+            $mlpas = array();
 
-        //FALTA TERMINAR SACAR DEL TOKEN
-        $ID_USER = 1;
+            //FALTA TERMINAR SACAR DEL TOKEN
+            $ID_USER = 1;
 
-        $id_lpas = [];
+            $id_lpas = [];
 
-        foreach ($rows as $row) {
-            /* if (!$row[0] || $row[0] == '') {
+            $body_lpas = collect();
+
+            $date_begin = "";
+            $date_end = "";
+
+            $rows->shift();
+
+            /* $rows = $rows->chunk(600);
+
+            dd($rows[0]->toArray()); */
+
+            $mlpas = migrateCustom::create([
+                'table' => 'M_LPAS',
+                'table_id' =>  json_encode($rows->all()),
+                'file_ref' => 'PENDING',
+            ]);
+
+            return $mlpas;
+
+
+            foreach ($rows as $row) {
+                /* if (!$row[0] || $row[0] == '') {
                 break;
-            } */
+                } */
+                //\DB::table('readings')->insert($chunk->toArray());
 
-            if ($i == 0 || !$row[0]) {
-                $i++;
-                continue;
-            }
-            
-            $mlpa_emergencia = MLpaEmergencia::firstOrCreate([
-                
-                'COD_EMERGENCIAS' => $row[0],
-                'TIPO_EVENTO' => $row[1],
-                'SOCIO' => $row[2],
-                'DEPARTAMENTO' => $row[3],
-                'MUNICIPIO' => $row[4],
-                'LUGAR_ATENCION' => $row[5]
+                if (!$row[0]) {
+                    $i++;
+                    continue;
+                }
 
-            ]);
+                $mlpa_emergencia = MLpaEmergencia::firstOrCreate([
 
-            //dd($mlpa_emergencia->get()->last()->ID);
+                    'COD_EMERGENCIAS' => $row[0],
+                    'TIPO_EVENTO' => $row[1],
+                    'SOCIO' => $row[2],
+                    'DEPARTAMENTO' => $row[3],
+                    'MUNICIPIO' => $row[4],
+                    'LUGAR_ATENCION' => $row[5]
 
-            //ojo esto actualiza o crea una
-            /* $mlpa_emergencia = new MLpaEmergencia;
-            
-            $mlpa_emergencia->COD_EMERGENCIAS = $row[0];
-            $mlpa_emergencia->TIPO_EVENTO = $row[1];
-            $mlpa_emergencia->SOCIO = $row[2];
-            $mlpa_emergencia->DEPARTAMENTO = $row[3];
-            $mlpa_emergencia->MUNICIPIO = $row[4];
-            $mlpa_emergencia->LUGAR_ATENCION = $row[5];
-            
-            $mlpa_emergencia->save();
+                ]);
 
-            $mlpa_emergencia = $mlpa_emergencia->first(); 
-            */
+                $date_birday = Date::excelToDateTimeObject($row[14]);
 
-            $date_birday = Date::excelToDateTimeObject($row[14]);
+                $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
 
-            $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
+                $mlpa_persona = MLpaPersona::where([
+                    'TIPO_DOCUMENTO' => $row[7],
+                    'DOCUMENTO' => $row[6]
+                ]);
 
-            $mlpa_persona = MLpaPersona::where([
-                'TIPO_DOCUMENTO' => $row[7],
-                'DOCUMENTO' => $row[6]
-            ]);
+                //actualizo
+                if ($mlpa_persona->exists()) {
 
-            //actualizo
-            if ($mlpa_persona->exists()) {
+                    $mlpa_persona->update(
+                        [
+                            'DOCUMENTO' => $row[6],
+                            'TIPO_DOCUMENTO' => $row[7],
+                            'NOMBRE_PRIMERO' => $row[8],
+                            'NOMBRE_OTROS' => $row[9],
+                            'APELLIDO_PRIMERO' => $row[10],
+                            'APELLIDO_OTRO' => $row[11],
+                            'GENERO' => $row[12],
+                            'IDENTIDAD_GENERO' => $row[13],
+                            'FECHA_NACIMIENTO' => $FECHA_NACIMIENTO,
+                            'NACIONALIDAD' => $row[15],
+                            'PERFIL_MIGRATORIO' => $row[16],
+                            'SITUACION' => $row[17],
+                            'ETNIA' => $row[18],
+                            'PERFIL' => $row[19],
+                            'NIVEL_ESCOLARIDAD' => $row[20],
+                            'CARACTERISTICAS_MADRE' => $row[21],
+                            'DISCAPACIDAD_VER' => $row[22],
+                            'DISCAPACIDAD_OIR' => $row[23],
+                            'DISCAPACIDAD_CAMINAR' => $row[24],
+                            'DISCAPACIDAD_RECORDAR' => $row[25],
+                            'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
+                            'DISCAPACIDAD_COMUNICAR' => $row[27],
+                            'TELEFONO' => $row[28]
+                        ]
+                    );
 
-                $mlpa_persona->update(
-                    [
+                    $mlpa_persona = $mlpa_persona->first();
+                    //creacion
+                } else
+                if ($mlpa_persona->exists() == false) {
+
+                    $mlpa_persona = MLpaPersona::create([
                         'DOCUMENTO' => $row[6],
                         'TIPO_DOCUMENTO' => $row[7],
                         'NOMBRE_PRIMERO' => $row[8],
@@ -101,79 +141,76 @@ class MlpasClass implements ToCollection
                         'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
                         'DISCAPACIDAD_COMUNICAR' => $row[27],
                         'TELEFONO' => $row[28]
-                    ]
-                );
-                
-                $mlpa_persona = $mlpa_persona->first();
-                //creacion
-            }else
-            if ($mlpa_persona->exists() == false) {
+                    ]);
+                }
 
-                $mlpa_persona = MLpaPersona::create([
-                    'DOCUMENTO' => $row[6],
-                    'TIPO_DOCUMENTO' => $row[7],
-                    'NOMBRE_PRIMERO' => $row[8],
-                    'NOMBRE_OTROS' => $row[9],
-                    'APELLIDO_PRIMERO' => $row[10],
-                    'APELLIDO_OTRO' => $row[11],
-                    'GENERO' => $row[12],
-                    'IDENTIDAD_GENERO' => $row[13],
-                    'FECHA_NACIMIENTO' => $FECHA_NACIMIENTO,
-                    'NACIONALIDAD' => $row[15],
-                    'PERFIL_MIGRATORIO' => $row[16],
-                    'SITUACION' => $row[17],
-                    'ETNIA' => $row[18],
-                    'PERFIL' => $row[19],
-                    'NIVEL_ESCOLARIDAD' => $row[20],
-                    'CARACTERISTICAS_MADRE' => $row[21],
-                    'DISCAPACIDAD_VER' => $row[22],
-                    'DISCAPACIDAD_OIR' => $row[23],
-                    'DISCAPACIDAD_CAMINAR' => $row[24],
-                    'DISCAPACIDAD_RECORDAR' => $row[25],
-                    'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
-                    'DISCAPACIDAD_COMUNICAR' => $row[27],
-                    'TELEFONO' => $row[28]
+                $FECHA_ATENCION = Date::excelToDateTimeObject($row[31]);
+
+                $body_lpas->push([
+
+                    "DONANTE" => $row[29],
+                    "COD_ACTIVIDAD" => $row[30],
+                    "FECHA_ATENCION" => $FECHA_ATENCION,
+                    "REPRESENTANTE" => $row[32],
+                    "DOC_REPRESENTANTE" => $row[33],
+                    "TIPO_TRANFERENCIA" => $row[34],
+                    "MODO_ENTREGA" => $row[35],
+                    "PROVEEDOR_FINANCIERO" => $row[36],
+                    "MONTO_MENSUAL" => $row[37],
+
+                    //laura reemplzar por el id desde el token 5 en lcal 1 online
+                    "ID_M_USUARIOS" => $ID_USER,
+
+                    "FK_LPA_EMERGENCIA" => $mlpa_emergencia->get()->last()->ID,
+                    "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
+
                 ]);
-                
+
+                if ($i == 1) {
+                    $date_begin = $mlpa_emergencia->get()->last()->created_at->format("Y-m-d") . " 00:00:01";
+                }
+
+                $date_end = $mlpa_emergencia->get()->last()->created_at->format("Y-m-d H:i:s");
+                $i++;
+            }
+            //dd($date_begin, $date_end);
+
+            $body_lpas = ($body_lpas)->chunk(600);
+            foreach ($body_lpas as $body) {
+                $bodyArray = $body->toArray();
+                MLpa::insert($bodyArray);
+            }
+
+            //dd(MLpa::get());
+
+            $queryLpa = MLpa::all();//whereBetween('created_at', [$date_begin, Carbon::now()->addDays(1)->format("Y-m-d H:i:s")]);// 
+            $mlpas = $queryLpa;//->get();
+            $id_lpas = $queryLpa->pluck('ID')->all();
+
+            if (count($mlpas) > 0) {
+                migrateCustom::create([
+                    'table' => 'M_LPAS',
+                    'table_id' => implode(", ", $id_lpas),
+                    'file_ref' => '-',
+                ]);
+            } else {
+
+                /* throw ValidationException::withMessages([
+                    'msg' => ['No se guardaron los registros.'],
+                ]); */
+                return MLpa::get();
 
             }
 
-            $FECHA_ATENCION = Date::excelToDateTimeObject($row[31]);
+            //array_push($id_emergenciasz, $mlpa_emergencia)
+            //dd($mlpas->pluck('ID'),$id_lpas);
+            return $mlpas;
+        } catch (\Throwable $th) {
 
-            $mlpa = MLpa::create([
-
-                "DONANTE" => $row[29],
-                "COD_ACTIVIDAD" => $row[30],
-                "FECHA_ATENCION" => $FECHA_ATENCION,
-                "REPRESENTANTE" => $row[32],
-                "DOC_REPRESENTANTE" => $row[33],
-                "TIPO_TRANFERENCIA" => $row[34],
-                "MODO_ENTREGA" => $row[35],
-                "PROVEEDOR_FINANCIERO" => $row[36],
-                "MONTO_MENSUAL" => $row[37],
-
-                //laura reemplzar por el id desde el token 5 en lcal 1 online
-                "ID_M_USUARIOS" => $ID_USER,
-
-                "FK_LPA_EMERGENCIA" => $mlpa_emergencia->get()->last()->ID,
-                "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
-
+            throw ValidationException::withMessages([
+                'msg' => ['No se guardaron los registros.' . ($th)],
             ]);
-
-            //dd($mlpa);
-
-            $mlpas[] = $mlpa;
-            $id_lpas[] = $mlpa->get()->last()->ID;
         }
-        //array_push($id_emergenciasz, $mlpa_emergencia)
-
-        migrateCustom::create([
-            'table' => 'M_LPAS',
-            'table_id' => implode(", ", $id_lpas),
-            'file_ref' => '-',
-        ]);
-
-        return $mlpas;
     }
 
     public function formatBirdday($date_birday)

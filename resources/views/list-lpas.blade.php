@@ -10,6 +10,7 @@
 <div id="grid_container_m_lpa" data-origen="auditoria_atendidas/m_lpa" class="grid_contenedor origen grid_activo container" data-grid="m_lpa" style="height: auto; min-height: 530px; z-index: 2; display: block;">
     <div id="grid_tabla" class="grid_cuadro_activo" style="overflow: hidden; width: 915px;">
 
+        <h4>Es posible que la migracion sea demasiado grande por lo que la informacion sera procesada periodicamente</h4>
         <h4>Registros enviados: {{$record_excel}}</h4>
         <h4>Registros guardados: {{$record_saved}}</h4>
 

@@ -18,7 +18,11 @@ class PersonComplainted extends Controller
         try {
 
             //validacion para que no se cargue el mismo archivo en el mismo mes
+            //lo que hre es validar si ya hay una migracion en el mes que se enviaron los datos y guardar o actualizar 
+            //parece que debo pedir mes de la migracion
             //dd("file", $request->file('file'));
+
+            //para el analisis recibir un string como analisis y que se edite en otro lado
 
             // Validate the uploaded file
             $request->validate([
