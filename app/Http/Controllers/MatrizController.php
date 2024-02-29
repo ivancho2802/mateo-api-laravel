@@ -8,9 +8,12 @@ use Excel;
 use App\Http\Controllers\ImportMatrizClass;
 use App\Models\Matriz;
 use Illuminate\Support\Collection;
+use App\Traits\TraitDepartments;
 
 class MatrizController extends Controller
 {
+    use TraitDepartments;
+
     //
     function stored(Request $request)
     {
@@ -48,77 +51,88 @@ class MatrizController extends Controller
 
         $matrizMinas = Matriz::where(['origin' => 'minas'])->get()->groupBy('type');
 
-        //dd($matrizMinas->all());
-        //return $matrizMinas;
-
-        //$matrizMinasKeys = array_keys($matrizMinas);array_values
-        $matrizMinasValues = ($matrizMinas);
-
-        $matrizMinasValuesFormated = [$matrizMinasValues->keys()[0] => collect(), $matrizMinasValues->keys()[1] => collect(), $matrizMinasValues->keys()[2] => collect(), $matrizMinasValues->keys()[3] => collect()];
-
-        //dd($matrizMinasValuesFormated);
-
-        $count = count($matrizMinasValues);
         $i = 0;
-        $matrizMinasValues->eachSpread(function (Collection $previous, Collection $types) use ($matrizMinasValues, $matrizMinasValuesFormated, $count, $i) {
+        /**
+         * 
+            * $matrizMinasValues
+            [
+                'Codigo' => [
+                    [
+                        'descriptionc' => '',
+                        'type_descriptionc' => 'Codigo',
+                    ],
+                    3333
+                ]
+            ]
+        */
+
+        $matrizMinasFormat = $matrizMinas->map(function (Collection $types) use ($i) {
             $i++;
 
-            dd($previous, $types);
+            $typesOriginal = collect($types);
 
-            // Process the log entry...
-            $types->each(function (object $value)  use ($matrizMinasValues, $matrizMinasValuesFormated, $count) {
-                // Process the log entry...
-                $words = explode(" ", $value->description);
-                $count--;
-                echo count($matrizMinasValues) / $count . '\n';
+            $wordsArray = 
+            collect(
+                explode(
+                    " ",
+                    mb_convert_encoding(
+                        preg_replace(
+                            '/([^A-Za-z0-9])/',
+                            " ",
+                            strtoupper($this->eliminar_acentos(
+                                $typesOriginal->map(function ($type) {
+                                    return $type->description;
+                                })->implode(' ')
+                            ))
+                        ),
+                        'UTF-8', 
+                        'UTF-8'
+                    )
+                )
+            )->filter()->toArray();
+            
+            
+            $wordsArrayCounted = collect(array_count_values(($wordsArray)));
 
-                $matrizMinasValues->each(function (object $types2)  use ($words, $value, $matrizMinasValuesFormated) {
-                    // Process the log entry...
-                    $types2->each(function (object $value2)  use ($words, $value, $matrizMinasValuesFormated) {
-                        // Process the log entry...
-                        $words2 = explode(" ", $value2->description);
-                        if ($value2->id !== $value->id && $value2->type !== $value->type) {
-                            //contateno words y words2 
-                            //agrupo alli contaria
-                            $wordsTodas = array();
-                            $wordsTodas[] = $words;
-                            $wordsTodas[] = $words2;
-                            $matrizMinasValuesFormated[$value->type] = $matrizMinasValuesFormated[$value->type]->concat($wordsTodas);
-                        }
-                    });
-                });
-            });
+            /**
+             * filtro de
+             * repeticiones mayor a 2 
+             * tamañp de string mayor a 3
+             * conectores podria ser con 4 letras o con definidos como EL LA DEL EN DENTRO CON LAS LOS 
+             * que en solicitud elimine "Solicitud de verificación"
+             * ver como sacar horas
+             * ver como sacar fechas 
+                * SEP/2020
+                * 31/10/2019
+                * 29/6/2023
+             * solo numeros
+             * letras con codigos DIV04
+             * letras con codigos BATOT24
+             * quitar simbolos meno los : y los - y los / por que definen fecha y hora
+             */
+            $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) {
+                return 
+                    $value > 2 && 
+                    strlen($key) > 3 &&
+                    strtolower($key) !== 'solicitud' && strtolower($key) !== 'verificación' &&
+                    !preg_match("/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/", $key) &&
+                    !preg_match("/^([0-2][0-9]|3[0-1])(\/|-)(0?[1-9]|1[1-2])\2(\d{4})$/", $key) &&
+                    !is_numeric($key) &&
+                    !preg_match("/DIV[0-9][0-9]$/", $key)  &&
+                    !preg_match("/BATOT[0-9][0-9]$/", $key) 
+                ;
+            })->sortDesc();
+
+            $types = ([
+                'data' => $typesOriginal,
+                'words' => $wordsArrayCountedFiltered//
+            ]);
+
+            return $types;
+
         });
 
-        /* foreach ($matrizMinas as $key => $types) {
-            foreach ($types as $key2 => $value) {
-                
-                $words = explode($value->description, ' ');
-
-                $types->search(function (object $item, int $key) {
-                    $words2 = explode($item->description, ' ');
-                    return $item->description;
-                });
-
-                array_push($matrizMinasValuesFormated, [
-                    
-                ]);
-            }
-        } */
-        //dd($matrizMinasValuesFormated);
-
-        //$format
-
-        //descartar 
-        //conectores podria ser con 4 letras o con definidos como EL LA DEL EN DENTRO CON LAS LOS 
-        //letras con codigos
-        //solo numeros
-        //simbolos
-        //ver como sacar fechas 
-        //ver como sacar horas
-        //que en solicitud elimine "Solicitud de verificación"
-
-        return $matrizMinasValuesFormated;
+        return $matrizMinasFormat;//->dot();
     }
 
     function compareWords($words1, $words2)
