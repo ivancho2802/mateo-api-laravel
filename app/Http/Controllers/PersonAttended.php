@@ -90,7 +90,11 @@ class PersonAttended extends Controller
             'file_ref', 'PENDING',
         )->first();
 
-        $stringArray = $migrationPendings->table_id;
+        if(!optional($migrationPendings)->table_id){
+            return ['restante' => 0];
+        }
+
+        $stringArray = optional($migrationPendings)->table_id;
 
         $elementsForMigration = collect(json_decode($stringArray));
 
