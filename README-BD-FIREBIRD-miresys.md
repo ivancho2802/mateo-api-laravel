@@ -10,6 +10,7 @@ comando en llonux para activar foirebird temporalmemte
 
 export PATH="/opt/firebird/bin:$PATH"
 set PATH="/opt/firebird/bin:$PATH"
+/opt/firebird/bin/isql
 
 windows
 

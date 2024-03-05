@@ -18,6 +18,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Collection;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -101,13 +102,13 @@ Route::middleware(['auth:sanctum'])->get('/formularios_kobo_master', function (R
 });
 
 Route::middleware(['auth:sanctum'])->post('/mireusers', function (Request $request) {
-    
+
     try {
-        
+
         DB::setDefaultConnection('firebird');
-        
+
         $body = $request->body ?? [
-            
+
             //"NOMBRES",
             //"APELLIDOS",
             //"NOMBRE_COMPLETO",
@@ -120,7 +121,7 @@ Route::middleware(['auth:sanctum'])->post('/mireusers', function (Request $reque
             "UNICO",
             "ID",
             "ID_EMPRESA",
-            
+
             "HUELLA",
             "SESSION_ID",
             "ESTATUS",
@@ -136,7 +137,7 @@ Route::middleware(['auth:sanctum'])->post('/mireusers', function (Request $reque
             "CODIGO1",
             "CODIGO2",
             "CODIGO3",
-            
+
             "FRASE",
             "FORMULA",
             "FECHA_NAC",
@@ -194,39 +195,77 @@ Route::prefix('meal')->group(function () {
     Route::middleware(['auth:sanctum'])->post('/actividades/upload', [App\Http\Controllers\Activity::class, 'stored']);
 
     Route::middleware(['auth:sanctum'])->get('/actividades', [App\Http\Controllers\Meal::class, 'getActivity']);
-    
+
     Route::middleware(['auth:sanctum'])->post('/actividades', [App\Http\Controllers\Meal::class, 'setActivity']);
-    
+
     Route::middleware(['auth:sanctum'])->post('/echo/upload', [App\Http\Controllers\echoController::class, 'stored']);
 
     Route::middleware(['auth:sanctum'])->post('/bha/upload', [App\Http\Controllers\BhaController::class, 'stored']);
-
-
-
 });
 
 
 Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
-    Route::get('{uui}', function ($uui) {
+    Route::get('{uui}/export/{token}', function ($uui, $token) {
 
-        $jsonurl = "https://kf.acf-e.org/assets/" . $uui . "/submissions/?format=json";
+        //dd($uui, $token);
 
-        /* $response = Http::accept('application/json')
-            ->withBasicAuth('ugi', 'ugiach')//ugi@co.acfspain.org | ugi
-            ->get($jsonurl); */
+        //https://kc.acf-e.org/api/v1/forms?id_string=a4E3J9gkULZe5eRqQph8zh
+        $jsonurlform = "https://kc.acf-e.org/api/v1/forms?id_string=" . $uui;
 
-        $response = Http::withHeaders([
-            'Authorization' => 'Token 322f65e3677ee93aa36d34c9a89e70e66fa9bdd4',
+        $dataForm = Http::withHeaders([
+            'Authorization' => 'Token ' . $token . '',
+            'Accept' => '*/*'
+        ])
+            ->get($jsonurlform)
+            ->json();
+
+        $formid = collect($dataForm[0])->get('formid');
+
+        //submissions es lo mismo que data
+        //...{_id_formulario}
+        //https://kc.acf-e.org/api/v1/data/2486
+        $jsonurlData = "https://kf.acf-e.org/assets/" . $uui . "/submissions/?format=json";
+
+        $dataSubmissionsResponse = Http::withHeaders([
+            'Authorization' => 'Token ' . $token . '',
             'Accept' => 'application/json'
         ])
-            ->get($jsonurl);
+            ->get($jsonurlData)
+            ->json();
 
+        $dataSubmissionsData = collect($dataSubmissionsResponse);
 
-        /*
-        dd($response->getHeaderLine('content-type'));
-        */
+        //contruccion de json con los datos para generar links de keto temporar para generar html luego ajustar html luego generar pdf
 
-        return $response->json()
+        /* $dataSubmissionsData->each(function (Collection $item) {
+            // ...
+        }); */
+
+        $dataId = $dataSubmissionsData->first()['_id'];
+
+        //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
+        $jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
+
+        $dataEnketoResponse = Http::withHeaders([
+            'Authorization' => 'Token ' . $token . '',
+            'Accept' => 'application/json'
+        ])
+            ->get($jsonurlDataEnketo)
+            ->json();
+
+        $dataEnketo = collect($dataEnketoResponse);
+
+        $urlHtmlPdf = $dataEnketo->first();
+
+        //dd($urlHtmlPdf);
+
+        $dataHtmlPdfResponse = Http::withHeaders([
+            'Authorization' => 'Token ' . $token . '',
+            'Accept' => 'application/json'
+        ])
+            ->get($urlHtmlPdf);
+
+        return $dataHtmlPdfResponse
             /* [
             "status" => $response->getStatusCode(),
             "data" => $response->body(),
@@ -238,6 +277,8 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
             //"mkoboformulario" => $formulario->get()
         ] */;
     });
+
+    Route::get('{uui}/data/{token}', [App\Http\Controllers\Kobo::class, 'getKoboLabels']);
 });
 
 //creacion de matriz de palabras clave
@@ -268,11 +309,11 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/testmd5', function(Request $request){
+Route::post('/testmd5', function (Request $request) {
 
     $string = "";
 
-    if($request->obj == "d"){
+    if ($request->obj == "d") {
         $string = md5($request->text);
     } else {
         $string = md5($request->text);
