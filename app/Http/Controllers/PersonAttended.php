@@ -27,9 +27,6 @@ class PersonAttended extends Controller
 
         // Get the uploaded file
         $file = $request->file('file');
-        
-        //get data excel
-        $collection = (new MlpasClass)->toCollection($file);
 
         $import = new PaImportClass();
 
@@ -37,10 +34,13 @@ class PersonAttended extends Controller
 
         // Process the Excel file
         Excel::import($import, $file);
+        
+        //get data excel
+        $collection = (new MlpasClass)->toCollection($file);
 
-        $collectExcel = $collection[2] ?? $collection[0];
+        //$collectExcel = $collection[2] ?? $collection[0];
 
-        $count_record_excel = helper::countValidValues($collectExcel);
+        $count_record_excel = 0;//helper::countValidValues($collectExcel)
 
         $migrate_custom = migrateCustom::where([
             'table' => "M_LPAS"
@@ -84,21 +84,51 @@ class PersonAttended extends Controller
             return "error";
         }
 
-        $migrationPendings = migrateCustom::where(
-            'table', 'M_LPAS'
-        )->where(
-            'file_ref', 'PENDING',
-        )->first();
+        $migrationPendings = migrateCustom::where([
+            ['table', 'M_LPAS'],
+            ['table_id', '!=', '[]'],
+            ['file_ref', 'PENDING']
+        ])->first();
 
-        if(!optional($migrationPendings)->table_id){
-            return ['restante' => 0];
-        }
+        
+        /*
+            $migrationPendingsAll = $migrationPendings->get();
+            if($migrationPendings->count() > 4){
+            $migrationPendingsFirst = $migrationPendings->first();
 
-        $stringArray = optional($migrationPendings)->table_id;
+            $migrationPendingsSecond = $migrationPendingsAll[1];
+            $migrationPendingsThreed = $migrationPendingsAll[2];
+            $migrationPendingsFourthed = $migrationPendingsAll[3];
+    
+            if(isset(optional($migrationPendingsFirst)->table_id)  !== true ){
+                return ['restante' => strlen(optional($migrationPendingsFirst)->table_id)];
+            }
+    
+            //4 unidos
+    
+            //dd("migrationPendings", strlen(optional($migrationPendings)->table_id));
+    
+            $stringArrayFirst = optional($migrationPendingsFirst)->table_id;
+            $stringArraySecond = optional($migrationPendingsSecond)->table_id;
+            $stringArrayThreed = optional($migrationPendingsThreed)->table_id;
+            $stringArrayFourthed = optional($migrationPendingsFourthed)->table_id;
+    
+            $stringArrayFirstCollect = collect(json_decode($stringArrayFirst));
+    
+            $stringArraySecondCollect = collect(json_decode($stringArraySecond));
+            $stringArrayThreedCollect = collect(json_decode($stringArrayThreed));
+            $stringArrayFourthedCollect = collect(json_decode($stringArrayFourthed));
+    
+            $elementsForMigration = $stringArrayFirstCollect
+            ->concat($stringArraySecondCollect)
+            ->concat($stringArrayThreedCollect)
+            ->concat($stringArrayFourthedCollect);
+    
+            //dd(count($elementsForMigration));//9568 7568
 
-        $elementsForMigration = collect(json_decode($stringArray));
-
-        //dd(count($elementsForMigration));//9568 7568
+        } else { */
+            $elementsForMigration = collect(json_decode($migrationPendings->table_id));
+        //}
 
         $elementsForMigrationChunked = $elementsForMigration->chunk(2000);
 
@@ -131,7 +161,7 @@ class PersonAttended extends Controller
             $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
 
             $mlpa_persona = MLpaPersona::where([
-                'TIPO_DOCUMENTO' => $row[7],
+                //'TIPO_DOCUMENTO' => $row[7],
                 'DOCUMENTO' => $row[6]
             ]);
 
