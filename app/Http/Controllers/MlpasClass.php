@@ -37,23 +37,35 @@ class MlpasClass implements ToCollection
 
             $rows->shift();
 
-            /* $rows = $rows->chunk(600);
+            //dd("count rows", count($rows->all()));
 
-            dd($rows[0]->toArray()); */
+            $rowsChuck = $rows->chunk(600);
 
-            $mlpas = migrateCustom::create([
-                'table' => 'M_LPAS',
-                'table_id' =>  json_encode($rows->all()),
-                'file_ref' => 'PENDING',
-            ]);
+            //dd(($rowsChuck[1]));
+
+            foreach ($rowsChuck as $body) {
+                # code...
+                $bodyArray = $body->toArray();
+                $mlpas = migrateCustom::create([
+                    'table' => 'M_LPAS',
+                    'table_id' =>  json_encode($bodyArray),
+                    'file_ref' => 'PENDING',
+                ]);
+            }
+
+            /* 
+            $body_lpas = ($body_lpas)->chunk(600);
+            foreach ($body_lpas as $body) {
+                $bodyArray = $body->toArray();
+                MLpa::insert($bodyArray);
+            } */
 
             return $mlpas;
 
 
-            foreach ($rows as $row) {
-                /* if (!$row[0] || $row[0] == '') {
-                break;
-                } */
+            /* foreach ($rows as $row) {
+                // if (!$row[0] || $row[0] == '') {
+                //break;
                 //\DB::table('readings')->insert($chunk->toArray());
 
                 if (!$row[0]) {
@@ -183,8 +195,8 @@ class MlpasClass implements ToCollection
 
             //dd(MLpa::get());
 
-            $queryLpa = MLpa::all();//whereBetween('created_at', [$date_begin, Carbon::now()->addDays(1)->format("Y-m-d H:i:s")]);// 
-            $mlpas = $queryLpa;//->get();
+            $queryLpa = MLpa::all(); //whereBetween('created_at', [$date_begin, Carbon::now()->addDays(1)->format("Y-m-d H:i:s")]);// 
+            $mlpas = $queryLpa; //->get();
             $id_lpas = $queryLpa->pluck('ID')->all();
 
             if (count($mlpas) > 0) {
@@ -195,16 +207,15 @@ class MlpasClass implements ToCollection
                 ]);
             } else {
 
-                /* throw ValidationException::withMessages([
-                    'msg' => ['No se guardaron los registros.'],
-                ]); */
+                //throw ValidationException::withMessages([
+                //    'msg' => ['No se guardaron los registros.'],
+                //]);
                 return MLpa::get();
-
             }
 
             //array_push($id_emergenciasz, $mlpa_emergencia)
             //dd($mlpas->pluck('ID'),$id_lpas);
-            return $mlpas;
+            return $mlpas; */
         } catch (\Throwable $th) {
 
             throw ValidationException::withMessages([
