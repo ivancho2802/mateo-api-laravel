@@ -33,7 +33,12 @@ class Meal extends Controller
 
         $mlpas->load(['emergencia', 'actividad']);
 
-        return $mlpas;
+        $erns = [];
+
+        return [
+            "lpas" => $mlpas,
+            "erns" => $erns
+        ];
     }
 
     function getMqr(Request $request)
