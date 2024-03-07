@@ -11,6 +11,7 @@ use App\Models\MFormulario;
 use App\Models\MKoboRespuestas;
 use App\Models\Activities;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Meal extends Controller
 {
@@ -27,13 +28,17 @@ class Meal extends Controller
     {
         if ($request->pagination) {
             $mlpas = MLpa::paginate(5);
+            $mlpas->load(['emergencia', 'actividad']);
+            return $mlpas;
         } else {
             $mlpas = MLpa::get();
         }
 
         $mlpas->load(['emergencia', 'actividad']);
 
-        $erns = [];
+        DB::setDefaultConnection('firebird');
+
+        $erns = DB::select('SELECT * FROM V_M_KOBO_FORMULARIOS WHERE ID_M_FORMULARIOS ="0012";');;
 
         return [
             "lpas" => $mlpas,
@@ -67,20 +72,22 @@ class Meal extends Controller
 
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
-        }else {
+        } else {
             $mmpdsArray = $mmpds;
         }
 
         return  $mmpdsArray;
     }
 
-    function getActivity(Request $request){
+    function getActivity(Request $request)
+    {
         $activities = Activities::get();
 
         return  $activities;
     }
 
-    function setActivity(Request $request){
+    function setActivity(Request $request)
+    {
 
         $data = $request->all();
         $data['sector'] = $request->sector;
@@ -92,6 +99,4 @@ class Meal extends Controller
 
         return  $activities;
     }
-
-    
 }
