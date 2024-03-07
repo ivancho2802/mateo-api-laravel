@@ -38,7 +38,7 @@ class Meal extends Controller
 
         DB::setDefaultConnection('firebird');
 
-        $erns = DB::select('SELECT * FROM V_M_KOBO_FORMULARIOS WHERE ID_M_FORMULARIOS ="0012";');;
+        $erns = DB::select("SELECT * FROM V_M_KOBO_FORMULARIOS WHERE ID_M_FORMULARIOS = '0012';");
 
         return [
             "lpas" => $mlpas,
