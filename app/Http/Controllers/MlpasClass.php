@@ -37,7 +37,7 @@ class MlpasClass implements ToCollection
 
             $rows->shift();
 
-            //dd("count rows", count($rows->all()));
+            dd("count rows", count($rows->all()));
 
             $rowsChuck = $rows->chunk(2000);
 
