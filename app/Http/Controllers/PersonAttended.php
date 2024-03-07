@@ -16,6 +16,9 @@ class PersonAttended extends Controller
     //
     function stored(Request $request){
 
+        ini_set('memory_limit', '2024M');
+        set_time_limit(3000000);//0
+
         //dd("file", $request->file('file'));
         //echo csrf_token(); 
         //return response()->json(["request" => $request]);
