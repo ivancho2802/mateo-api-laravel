@@ -36,7 +36,7 @@ class PersonAttended extends Controller
         Excel::import($import, $file);
         
         //get data excel
-        $collection = (new MlpasClass)->toCollection($file);
+        //$collection = (new MlpasClass)->toCollection($file);
 
         //$collectExcel = $collection[2] ?? $collection[0];
 

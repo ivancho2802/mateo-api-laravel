@@ -46,10 +46,11 @@ service nginx restart
  /etc/php/7.3/fpm/php.ini
 
 post_max_size=100M
-upload_max_filesize = 500M
+upload_max_filesize = 1G
 
 # esto no funciona para reniciar
 systemctl reload nginx
+systemctl restart php7.3-fpm 
 # esto si
 service nginx restart
 # este tambien importante
@@ -139,8 +140,8 @@ http {
 ## error de carga de archivo agregar al php.ini
  /etc/php/7.3/fpm/php.ini
 
-max_execution_time = 300
-max_input_time = 180
+max_execution_time = 600s
+max_input_time = 600s
 memory_limit = 1200M
 
 ## editar 504 error timeout ngx 
@@ -162,7 +163,7 @@ sudo systemctl restart nginx.service
 
 systemctl restart nginx
 
-
+systemctl restart php7.3-fpm 
 
 DO
 
