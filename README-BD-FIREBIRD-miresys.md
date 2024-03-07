@@ -31,6 +31,7 @@ linux
 /opt/firebird/bin/isql
 
 connect "/opt/lampp/firebird/db/ach.gdb" user 'SYSDBA' password 'masterkey';
+connect "192.168.1.150/3050:/opt/lampp/firebird/db/ach.gdb" user 'SYSDBA' password 'masterkey';
 
 windows
 

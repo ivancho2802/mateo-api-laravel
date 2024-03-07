@@ -91,7 +91,7 @@ Route::middleware(['auth:sanctum'])->get('/formularios_master', function (Reques
 
 Route::middleware(['auth:sanctum'])->get('/formularios_kobo_master', function (Request $request) {
 
-    DB::setDefaultConnection('odbc');
+    DB::setDefaultConnection('firebird');
 
     $formulario = MKoboFormularios::with(
         ['localidad', 'usuario', 'area', 'master_f']
