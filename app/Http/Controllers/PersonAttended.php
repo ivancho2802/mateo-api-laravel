@@ -90,7 +90,9 @@ class PersonAttended extends Controller
             ['file_ref', 'PENDING']
         ])->first();
 
-        
+        if(!$migrationPendings){
+            return ['restante' => 0];
+        }
         /*
             $migrationPendingsAll = $migrationPendings->get();
             if($migrationPendings->count() > 4){
