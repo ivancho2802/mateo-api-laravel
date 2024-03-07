@@ -93,12 +93,14 @@ Route::middleware(['auth:sanctum'])->get('/formularios_kobo_master', function (R
 
     DB::setDefaultConnection('firebird');
 
-    $formulario = MKoboFormularios::with(
+    return MKoboFormularios::get();
+
+    /* $formulario = MKoboFormularios::with(
         ['localidad', 'usuario', 'area', 'master_f']
     );
 
     //return utf8_encode($formulario->get());
-    return response()->json(["formularios_kobo_master" => json_decode($formulario->get())]);
+    return response()->json(["formularios_kobo_master" => json_decode($formulario->get())]); */
 });
 
 Route::middleware(['auth:sanctum'])->post('/mireusers', function (Request $request) {
