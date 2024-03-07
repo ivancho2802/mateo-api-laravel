@@ -90,9 +90,16 @@ class PersonAttended extends Controller
             ['file_ref', 'PENDING']
         ])->first();
 
-        if(!$migrationPendings){
+        $idTable = optional($migrationPendings)->table_id;
+
+        if(!isset($migrationPendings) || !isset($idTable)){
             return ['restante' => 0];
         }
+
+        if(isset(optional($migrationPendings)->table_id)  !== true ){
+            return ['restante' => strlen(optional($migrationPendings)->table_id)];
+        }
+
         /*
             $migrationPendingsAll = $migrationPendings->get();
             if($migrationPendings->count() > 4){
@@ -129,7 +136,7 @@ class PersonAttended extends Controller
             //dd(count($elementsForMigration));//9568 7568
 
         } else { */
-            $elementsForMigration = collect(json_decode($migrationPendings->table_id));
+            $elementsForMigration = collect(json_decode($idTable));
         //}
 
         $elementsForMigrationChunked = $elementsForMigration->chunk(2000);
