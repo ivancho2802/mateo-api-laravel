@@ -9,6 +9,7 @@ use App\Http\Controllers\ImportMatrizClass;
 use App\Models\Matriz;
 use Illuminate\Support\Collection;
 use App\Traits\TraitDepartments;
+use Illuminate\Support\Arr;
 
 class MatrizController extends Controller
 {
@@ -45,6 +46,13 @@ class MatrizController extends Controller
         return response()->json(["message" => "operacion hecha con exito"]);
     }
 
+    /**
+     * diccionario
+     *      analisis general
+     * palabras clave
+     *      que cuente solo una palabra por descripcion
+     *      podder asociar lo que salio del diccinoaroi con el id de los casos  
+     */
     function all(Request $request)
     {
         $format = $request->format;
@@ -55,15 +63,15 @@ class MatrizController extends Controller
         /**
          * 
             * $matrizMinasValues
-            [
-                'Codigo' => [
-                    [
-                        'descriptionc' => '',
-                        'type_descriptionc' => 'Codigo',
-                    ],
-                    3333
-                ]
-            ]
+            *[
+            *   'Codigo' => [
+            *       [
+            *           'descriptionc' => '',
+            *           'type_descriptionc' => 'Codigo',
+            *       ],
+            *       3333
+            *   ]
+            *]
         */
 
         $matrizMinasFormat = $matrizMinas->map(function (Collection $types) use ($i) {
@@ -109,6 +117,28 @@ class MatrizController extends Controller
              * letras con codigos DIV04
              * letras con codigos BATOT24
              * quitar simbolos meno los : y los - y los / por que definen fecha y hora
+             * 
+             * BADRA12
+             * BADRA7
+             * CODIV8
+             * BR15
+             * BR22
+             * X000D
+             * CFUDRA2
+             * FUDRA3
+             * donde
+             * para
+             * cuando
+             * como
+             * cual
+             * quien 
+             * hasta
+             * pero 
+             * entre
+             * eno
+             * tiene
+             * tienen
+             * 
              */
             $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) {
                 return 
@@ -124,7 +154,7 @@ class MatrizController extends Controller
             })->sortDesc();
 
             $types = ([
-                'data' => $typesOriginal,
+                //'data' => $typesOriginal,
                 'words' => $wordsArrayCountedFiltered//
             ]);
 
@@ -132,7 +162,9 @@ class MatrizController extends Controller
 
         });
 
-        return $matrizMinasFormat;//->dot();
+        $flattened = Arr::dot($matrizMinasFormat);
+        
+        return $flattened;
     }
 
     function compareWords($words1, $words2)

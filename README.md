@@ -110,6 +110,10 @@ line
 ;extension=fileinfo
 
 
+## error timeout excel
+
+= Web.Page(Web.Contents("URL", [Timeout=#duration(0,0,15,0)]))
+
 ## mapa de rutas 
 
 > php artisan route:list
