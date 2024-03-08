@@ -36,9 +36,29 @@ class Meal extends Controller
 
         $mlpas->load(['emergencia', 'actividad']);
 
-        DB::setDefaultConnection('firebird');
+        DB::setDefaultConnection('odbc');
 
-        $erns = DB::select("SELECT NOMBRE_FORMULARIO FROM V_M_KOBO_FORMULARIOS WHERE ID_M_FORMULARIOS = '0012';");
+        $erns = DB::select("SELECT 
+        ID_M_KOBO_FORMULARIOS,
+        ID_M_USUARIOS,        
+        FECHA,   
+        FECHA_REGISTRO,  
+        ID, 
+        ESTATUS,     
+        ID_M_FORMULARIOS, 
+        FECHA_FORMULARIO,
+        UID, 
+        FUID, 
+        NOMBRE_FORMULARIO, 
+        GRUPO, 
+        NOMBRE_ESTATUS, 
+        NOMBRE_USUARIO, 
+        FECHA_ESTADISTICA, 
+        REGION,    
+        DEPARTAMENTO, 
+        MUNICIPIO, 
+        CODIGO_ALERTA
+        FROM V_M_KOBO_FORMULARIOS WHERE ID_M_FORMULARIOS = '0012';");
 
         return [
             "lpas" => $mlpas,
