@@ -7,6 +7,7 @@ esta la ip publica 190.145.110.149
 
 comando en llonux para activar foirebird temporalmemte
 
+nano ~/.bashrc
 
 export PATH="/opt/firebird/bin:$PATH"
 set PATH="/opt/firebird/bin:$PATH"

@@ -99,7 +99,7 @@ class MatrizController extends Controller
              * repeticiones mayor a 2 
              * tamañp de string mayor a 3
              * conectores podria ser con 4 letras o con definidos como EL LA DEL EN DENTRO CON LAS LOS 
-             * que en solicitud elimine "Solicitud de verificación"
+             * que en la cadena de texto elimine la palabra "Solicitud de verificación"
              * ver como sacar horas
              * ver como sacar fechas 
                 * SEP/2020
