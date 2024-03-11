@@ -225,7 +225,8 @@ class MonitorPostDist extends Controller
         return response()
             ->json([
                 'code'      =>  500,
-                 'message'   =>  $request
+                'message2' => file_get_contents("php://input"),
+                'message'   =>  $request->all()
             ], 500);
 
         var_dump("data_servicio_de_migracion_automatizado_a_miresys", $request);
