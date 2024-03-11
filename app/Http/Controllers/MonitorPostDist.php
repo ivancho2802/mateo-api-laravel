@@ -234,7 +234,8 @@ class MonitorPostDist extends Controller
         return response()
         ->json([
             'code'      =>  500,
-             'message'   =>  $request->all()
+            'message2' => file_get_contents("php://input"),
+            'message'   =>  $request->all()
         ], 500);
     }
 
