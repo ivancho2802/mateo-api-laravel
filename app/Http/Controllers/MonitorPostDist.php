@@ -222,15 +222,20 @@ class MonitorPostDist extends Controller
 
     function refresh(Request $request){
 
-       /*  return response()
+        return response()
             ->json([
                 'code'      =>  500,
                  'message'   =>  $request
-            ], 500); */
+            ], 500);
 
         var_dump("data_servicio_de_migracion_automatizado_a_miresys", $request);
 
-        return $request;
+        //return $request;
+        return response()
+        ->json([
+            'code'      =>  500,
+             'message'   =>  $request
+        ], 500);
     }
 
 
