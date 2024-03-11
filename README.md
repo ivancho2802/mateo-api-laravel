@@ -26,6 +26,8 @@ systemctl reload apache2
 
 > tail -f /var/log/nginx/domain1.access.log
 
+> storage/logs/laravel.log
+
 ## para que mer permita cargar archivos grnades
 
 #falta editar en las lineas de 
