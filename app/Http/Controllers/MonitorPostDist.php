@@ -234,7 +234,7 @@ class MonitorPostDist extends Controller
         return response()
         ->json([
             'code'      =>  500,
-             'message'   =>  $request
+             'message'   =>  $request->all()
         ], 500);
     }
 
