@@ -231,7 +231,8 @@ class MonitorPostDist extends Controller
 
                 $json_response = $request;
 
-                return  $request->_xform_id_string;
+            return response()->json(['status' => false, 'message' => $request->_xform_id_string, 'data' => $request->all()], 503);
+
 
                 $m_formulario_id = null;
 
