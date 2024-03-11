@@ -228,7 +228,7 @@ class MonitorPostDist extends Controller
                  'message'   =>  $request
             ], 500); */
 
-        dd("data_servicio_de_migracion_automatizado_a_miresys", $request);
+        var_dump("data_servicio_de_migracion_automatizado_a_miresys", $request);
 
         return $request;
     }
