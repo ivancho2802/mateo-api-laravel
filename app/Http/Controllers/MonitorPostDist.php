@@ -219,4 +219,19 @@ class MonitorPostDist extends Controller
             return response()->json(['status' => false, 'message' => $th], 503);
         }
     }
+
+    function refresh(Request $request){
+
+       /*  return response()
+            ->json([
+                'code'      =>  500,
+                 'message'   =>  $request
+            ], 500); */
+
+        dd("data_servicio_de_migracion_automatizado_a_miresys", $request);
+
+        return $request;
+    }
+
+
 }
