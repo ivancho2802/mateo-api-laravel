@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\MLpaEmergencia;
 use App\Models\Activities;
+use App\Models\MLpaPersona;
 
 class MLpa extends Model
 {
@@ -60,5 +61,12 @@ class MLpa extends Model
     {
         return $this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD' );
     }
+
+    public function persona()
+    {
+        return $this->hasOne(MLpaPersona::class, 'DOCUMENTO', 'FK_LPA_PERSONA' );
+    }
+
+    
 
 }
