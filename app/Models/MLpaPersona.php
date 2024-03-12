@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class MLpaPersona extends Model
 {
@@ -45,4 +46,19 @@ class MLpaPersona extends Model
         "TELEFONO"
 
     ];
+
+    //protected $appends = ['edad'];
+
+    /**
+     * calculo de la edad apartie de la fecha de nacimiento
+     */
+    public function getEdadAttribute()
+    {
+        $fecha_nac = $this->FECHA_NACIMIENTO;
+
+        $howOldAmI = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac)->age;  // 46 1999-08-30
+
+        return $howOldAmI;
+    }
+
 }

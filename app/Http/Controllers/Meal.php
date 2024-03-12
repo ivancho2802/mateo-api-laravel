@@ -13,6 +13,8 @@ use App\Models\Activities;
 use App\Models\Analisis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Arr;
 
 class Meal extends Controller
 {
@@ -69,8 +71,15 @@ class Meal extends Controller
         CODIGO_ALERTA
         FROM V_M_KOBO_FORMULARIOS WHERE ID_M_FORMULARIOS = '0012';"); */
 
+        $mlpasFormated = $mlpas->map(function ( $lpa) {
+            $lpa->persona->append('edad');
+            return $lpa;
+        });
+
+        $flattenedMlpas = Arr::dot($mlpasFormated);
+
         return [
-            "lpas" => $mlpas,
+            "lpas" => $flattenedMlpas,
             //"erns" => $erns
         ];
     }
