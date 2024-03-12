@@ -10,6 +10,7 @@ use App\Models\MMqr;
 use App\Models\MFormulario;
 use App\Models\MKoboRespuestas;
 use App\Models\Activities;
+use App\Models\Analisis;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -72,7 +73,10 @@ class Meal extends Controller
         if ($request->pagination) {
             $mmqrs = MMqr::paginate(7);
         } else {
-            $mmqrs = MMqr::all();
+            $mmqrs = [
+                "mqr" => MMqr::all(),
+                "analisis" => Analisis::all()
+            ];
         }
 
         return $mmqrs;
