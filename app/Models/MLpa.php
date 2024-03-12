@@ -64,7 +64,7 @@ class MLpa extends Model
 
     public function persona()
     {
-        return $this->hasOne(MLpaPersona::class, 'DOCUMENTO', 'FK_LPA_PERSONA' );
+        return $this->hasOne(MLpaPersona::class, 'ID', 'FK_LPA_PERSONA' );
     }
 
     
