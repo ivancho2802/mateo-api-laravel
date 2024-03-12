@@ -8,6 +8,7 @@ use App\Http\Controllers\MqrImportClass;
 use App\Models\migrateCustom;
 use App\Models\MMqr;
 use App\Http\Controllers\helper;
+use App\Models\Analisis;
 
 class PersonComplainted extends Controller
 {
@@ -16,6 +17,15 @@ class PersonComplainted extends Controller
     {
 
         try {
+
+            if($request->analisis && $request->month){
+                $resulAlaisis = Analisis::updateOrCreate([
+                    "texto" => $request->analisis,
+                    "month" => $request->month,
+                    "type" => "MQR"
+                ]);
+                //return $resulAlaisis;
+            }
 
             //validacion para que no se cargue el mismo archivo en el mismo mes
             //lo que hre es validar si ya hay una migracion en el mes que se enviaron los datos y guardar o actualizar 

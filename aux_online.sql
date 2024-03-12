@@ -12,3 +12,7 @@ where
 AND file_ref = 'PENDING'
 
 select * from "M_LPAS" ;
+--para saber cuantas respuestas a formularios de mpd se han realizado
+select count(*) from "M_KOBO_RESPUESTAS" group by "_ID";
+--esto es solo para ver las preguntas guardadas
+select count(*) from "M_KOBO_FORMULARIOS"
