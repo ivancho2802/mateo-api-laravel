@@ -12,6 +12,15 @@ class MLpaPersona extends Model
 
     protected $table = 'M_LPA_PERSONAS';
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'DOCUMENTO', 'NOMBRE_PRIMERO','NOMBRE_OTROS','APELLIDO_PRIMERO','APELLIDO_OTRO','TELEFONO'
+    ];
+
     public $incrementing = false;
 
     /**

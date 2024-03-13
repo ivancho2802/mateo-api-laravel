@@ -18,13 +18,21 @@ class PersonComplainted extends Controller
 
         try {
 
-            if($request->analisis && $request->month){
+            if ($request->analisis && $request->month) {
                 $resulAlaisis = Analisis::updateOrCreate([
                     "texto" => $request->analisis,
                     "month" => $request->month,
                     "type" => "MQR"
                 ]);
                 //return $resulAlaisis;
+                if (!$request->file) {
+
+                    $data['mmqrs'] = [];
+                    $data['record_excel'] = 0;
+                    $data['record_saved'] = 0;
+                    //terminar devolver tabla
+                    return view('list-lpas', $data);
+                }
             }
 
             //validacion para que no se cargue el mismo archivo en el mismo mes
@@ -95,11 +103,10 @@ class PersonComplainted extends Controller
         $mqrs = MMqr::get();
 
         foreach ($mqrs as $mqr) {
-           /*  MMqr::where("ID", $mqr->ID)
+            /*  MMqr::where("ID", $mqr->ID)
             ->update(['SEXO' => ucfirst(strtolower($mqr->SEXO))]); */
             $mqr->SEXO =  ucfirst(strtolower($mqr->SEXO));
             $mqr->save();
-
         }
         $mqrs = MMqr::get();
 

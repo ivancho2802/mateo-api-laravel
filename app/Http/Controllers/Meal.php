@@ -73,13 +73,16 @@ class Meal extends Controller
 
         $mlpasFormated = $mlpas->map(function ( $lpa) {
             $lpa->persona->append('edad');
-            return $lpa;
+            $lpaArray = $lpa->toArray();
+            $lpaDoted = Arr::dot($lpaArray); 
+            return  $lpaDoted;
         });
 
-        $flattenedMlpas = Arr::dot($mlpasFormated);
+        $flattenedMlpas =  ($mlpasFormated);
 
         return [
             "lpas" => $flattenedMlpas,
+            "analisis" => Analisis::where(["type" => "LPA"])->get(),
             //"erns" => $erns
         ];
     }
@@ -92,7 +95,7 @@ class Meal extends Controller
         } else {
             $mmqrs = [
                 "mqr" => MMqr::all(),
-                "analisis" => Analisis::all()
+                "analisis" => Analisis::where(["type" => "MQR"])->get()
             ];
         }
 

@@ -10,11 +10,35 @@ use App\Models\MLpaEmergencia;
 use App\Models\MLpaPersona;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Analisis;
+
 
 class PersonAttended extends Controller
 {
     //
     function stored(Request $request){
+
+        
+        if($request->analisis && $request->month){
+            $resulAlaisis = Analisis::updateOrCreate([
+                "texto" => $request->analisis,
+                "month" => $request->month,
+                "type" => "LPA"
+            ]);
+            //return $resulAlaisis;
+
+            if(!$request->file){
+                
+                $data['mlpas'] = [];
+
+                $data['record_excel'] = 0;
+
+                $data['record_saved'] = 0;
+
+                //terminar devolver tabla
+                return view('list-lpas', $data);
+            }
+        }
 
         ini_set('memory_limit', '2024M');
         set_time_limit(3000000);//0
