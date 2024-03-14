@@ -173,7 +173,7 @@ class MonitorPostDist extends Controller
                         })->first();
 
                         if(!optional($desired_object)->id){
-                            dd($desired_object, $pregunta);
+                            continue;
                         }
 
                         array_push($body_respuestas, [
