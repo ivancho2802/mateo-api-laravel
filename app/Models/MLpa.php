@@ -36,7 +36,8 @@ class MLpa extends Model
         "PROVEEDOR_FINANCIERO",
         "MONTO_MENSUAL",
         "ID_M_USUARIOS",
-        "STATUS"
+        "STATUS",
+        "FASE_ATENCION"
     ];
 
     /**
