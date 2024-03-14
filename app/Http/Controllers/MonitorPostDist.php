@@ -24,9 +24,9 @@ class MonitorPostDist extends Controller
         $m_formularios = MFormulario::where(['ACCION' => "MPD"]);
         $m_formulario_ids = $m_formularios->pluck('ID_M_FORMULARIOS');
         dd($m_formulario_ids);
-        MKoboFormularios::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->truncate();
-        MKoboRespuestas::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->truncate();
-        $m_formularios->truncate();
+        MKoboFormularios::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
+        MKoboRespuestas::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
+        $m_formularios->delete();
 
         if (!$request->kobo_url || !strpos($request->kobo_url, "assets") || !strpos($request->kobo_url, "submissions/?format=json")) {
             return response()->json(['status' => false, 'message' => "formato de kobo_url incorrecto o faltante"], 402);
