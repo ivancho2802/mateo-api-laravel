@@ -23,7 +23,6 @@ class MonitorPostDist extends Controller
     {
         $m_formularios = MFormulario::where(['ACCION' => "MPD"]);
         $m_formulario_ids = $m_formularios->pluck('ID_M_FORMULARIOS');
-        dd($m_formulario_ids);
         MKoboFormularios::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
         MKoboRespuestas::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
         $m_formularios->delete();
