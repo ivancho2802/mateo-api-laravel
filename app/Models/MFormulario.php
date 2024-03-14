@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\MKoboRespuestas;
+use App\Models\MKoboFormularios;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MFormulario extends Model
@@ -59,6 +60,10 @@ class MFormulario extends Model
     
     public function respuestas(): HasMany{
         return $this->hasMany(MKoboRespuestas::class, "ID_M_FORMULARIOS");
+    }
+
+    public function preguntas(): HasMany{
+        return $this->hasMany(MKoboFormularios::class, "ID_M_FORMULARIOS");
     }
 
     /* 

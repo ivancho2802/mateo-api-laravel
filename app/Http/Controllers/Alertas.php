@@ -389,4 +389,14 @@ class Alertas extends Controller
             return response()->json(['status' => false, 'message' => $th, 'data' => $request->all()], 503);
         }
     }
+
+    function all(Request $request){
+
+        $formulario_alertas = MFormulario::where(['ACCION' => "ALERTA"])->get();
+
+        $formulario_alertas->load(['respuestas']);
+
+        return response()->json(['status' => true, 'data' => $formulario_alertas, 200]);
+
+    }
 }

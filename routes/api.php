@@ -191,6 +191,9 @@ Route::prefix('meal')->group(function () {
     Route::middleware(['auth:sanctum'])->post('/alerta/update', [App\Http\Controllers\Alertas::class, 'stored']);
     
     Route::middleware(['auth:sanctum'])->post('/alerta/refresh', [App\Http\Controllers\Alertas::class, 'refresh']);//receptor
+
+    Route::middleware(['auth:sanctum'])->get('/alerta', [App\Http\Controllers\Alertas::class, 'all']);//receptor
+
     //FIN MIGRACIONS DESDE EL KOBO
 
     //quejas y reclamos
