@@ -109,6 +109,8 @@ class MonitorPostDist extends Controller
 
                 $creation_failed = [];
 
+                dd(count($json_response));
+
                 for ($i = 0; $i < count($json_response); $i++) {
                     //ojo esto actualiza o crea una
                     $object = (object)helper::formatObject($json_response[$i], "/");
