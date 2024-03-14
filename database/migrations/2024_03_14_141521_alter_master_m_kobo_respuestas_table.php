@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterMasterMKoboFormulariosTable extends Migration
+class AlterMasterMKoboRespuestasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AlterMasterMKoboFormulariosTable extends Migration
     public function up()
     {
         //
-        Schema::table('"M_KOBO_FORMULARIOS"', function (Blueprint $table) {
-            $table->string('CAMPO1')->change();
+        Schema::table('"M_KOBO_RESPUESTAS"', function (Blueprint $table) {
+            $table->string('VALOR')->nullable()->change();
         });
     }
 
