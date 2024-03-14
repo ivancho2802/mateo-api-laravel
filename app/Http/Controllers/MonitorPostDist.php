@@ -208,8 +208,6 @@ class MonitorPostDist extends Controller
                     
                 }
 
-                dd($creation_failed);
-
                 if (count($creation_failed) > 0) {
                     return response()->json([
                         'status' => false,
