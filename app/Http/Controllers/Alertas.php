@@ -185,7 +185,7 @@ class Alertas extends Controller
                             "FECHA" => $json_response[$i]->_submission_time,
                             "FECHA_REGISTRO" => $json_response[$i]->start,
                             "_ID" => $id_kobo_respuesta,
-                            "VALOR" => json_decode($respuesta),
+                            "VALOR" => $respuesta ? json_decode($respuesta) : "",
                             "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
                             "ID_M_FORMULARIOS" => $m_formulario_id,
                             "ID_M_USUARIOS" => $ID_USER
