@@ -188,21 +188,21 @@ class MonitorPostDist extends Controller
                     //crean respuestas
                     $m_respuestas = MKoboRespuestas::insert($body_respuestas);
                     
-                    dd($m_respuestas);
-
+                    
                     if (!$m_respuestas) {
                         array_push(
                             $creation_failed,
                             ["respuestas" => $body_respuestas]//$body_respuestas
                         );
                     }
-
-                    migrateCustom::create([
+                    
+                    $createMigrationRespald = migrateCustom::create([
                         'table' => 'M_KOBO_RESPUESTAS',
                         'table_id' => implode(", ", $ids_kobo_respuesta),
                         'file_ref' => '-',
                     ]);
-
+                    
+                    dd($createMigrationRespald);
                 }
 
                 if (count($creation_failed) > 0) {
