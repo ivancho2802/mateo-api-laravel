@@ -172,6 +172,10 @@ class MonitorPostDist extends Controller
                             return $item->CAMPO1 == $pregunta;
                         })->first();
 
+                        if(!optional($desired_object)->id){
+                            dd($desired_object, $pregunta);
+                        }
+
                         array_push($body_respuestas, [
                             "FECHA" => $json_response[$i]->_submission_time,
                             "FECHA_REGISTRO" => $json_response[$i]->start,
