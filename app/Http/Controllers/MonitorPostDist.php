@@ -118,7 +118,7 @@ class MonitorPostDist extends Controller
                     $id_kobo_respuesta = $json_response[$i]->_id;
 
                     //$object->preguntas 34
-                    dd(count($object->preguntas));
+                    //dd(count($object->preguntas));
 
                     $body_m_kobo_preguntas = [];
                     $body_respuestas = [];
