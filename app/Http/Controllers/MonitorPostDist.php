@@ -202,8 +202,9 @@ class MonitorPostDist extends Controller
                         'file_ref' => '-',
                     ]);
                     
-                    dd($createMigrationRespald);
                 }
+
+                dd($creation_failed);
 
                 if (count($creation_failed) > 0) {
                     return response()->json([
