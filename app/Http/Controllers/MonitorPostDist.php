@@ -23,6 +23,7 @@ class MonitorPostDist extends Controller
     {
         $m_formularios = MFormulario::where(['ACCION' => "MPD"]);
         $m_formulario_ids = $m_formularios->pluck('ID_M_FORMULARIOS');
+        dd($m_formulario_ids);
         MKoboFormularios::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->truncate();
         MKoboRespuestas::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->truncate();
         $m_formularios->truncate();
@@ -145,7 +146,7 @@ class MonitorPostDist extends Controller
                         $body_m_kobo_preguntas,
                         // second argument lists the column(s) that uniquely identify records within the associated table.
                         //El segundo argumento enumera las columnas que identifican de forma única los registros dentro de la tabla asociada.
-                        ['CAMPO1'],//, '_ID' error rparar
+                        ['CAMPO1'],//, '_ID' error rparar ID_M_FORMULARIOS
                         //The method's third and final argument is an array of the columns that should be updated if a matching record already exists in the database.
                         //El tercer y último argumento del método es una matriz de columnas que deben actualizarse si ya existe un registro coincidente en la base de datos.
                         ['ID_M_KOBO_FORMULARIOS', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
