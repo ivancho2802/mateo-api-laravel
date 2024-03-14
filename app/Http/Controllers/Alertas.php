@@ -157,7 +157,7 @@ class Alertas extends Controller
                     //['ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
                 );
 
-                if ($m_kobo_preguntas !== count($body_m_kobo_preguntas)) {
+                if (!$m_kobo_preguntas) { //!== count($body_m_kobo_preguntas)
                     array_push(
                         $creation_failed,
                         ["preguntas" => $body_m_kobo_preguntas]
@@ -185,7 +185,7 @@ class Alertas extends Controller
                             "FECHA" => $json_response[$i]->_submission_time,
                             "FECHA_REGISTRO" => $json_response[$i]->start,
                             "_ID" => $id_kobo_respuesta,
-                            "VALOR" => $respuesta ? json_decode($respuesta) : "",
+                            "VALOR" => json_encode($respuesta),
                             "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
                             "ID_M_FORMULARIOS" => $m_formulario_id,
                             "ID_M_USUARIOS" => $ID_USER
@@ -244,8 +244,10 @@ class Alertas extends Controller
 
         try {
 
+            $count = 0;
+
             //FALTA TERMINAR SACAR DEL TOKEN
-            $ID_USER = 1;
+            $ID_USER = Auth::user()->id ?? Auth::user()->ID;
 
             // Procesar la respuesta obtenida
 
@@ -317,13 +319,13 @@ class Alertas extends Controller
                 );
             }
 
-            $m_kobo_preguntas = MKoboFormularios::upsert(
+            $m_kobo_preguntas = MKoboFormularios::insert(
                 $body_m_kobo_preguntas,
-                ['CAMPO1'], //, '_ID'
-                ['ID_M_KOBO_FORMULARIOS', '_ID', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
+                //['CAMPO1'], //, '_ID'
+                //['ID_M_KOBO_FORMULARIOS', '_ID', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
             );
 
-            if ($m_kobo_preguntas !== count($body_m_kobo_preguntas)) {
+            if (!$m_kobo_preguntas) {// !== count($body_m_kobo_preguntas)
                 array_push(
                     $creation_failed,
                     ["preguntas" => $body_m_kobo_preguntas]
@@ -354,6 +356,7 @@ class Alertas extends Controller
                     "ID_M_USUARIOS" => $ID_USER
                 ]);
                 $ids_kobo_respuesta[] = $id_kobo_respuesta;
+                $count++;
             }
 
             //crean respuestas
@@ -380,7 +383,7 @@ class Alertas extends Controller
                 ], 503);
             }
 
-            return response()->json(['status' => true, 'data' => ($json_response)], 200);
+            return response()->json(['status' => true, 'data' => [($json_response), $count]], 200);
         } catch (\Exception $th) {
 
             return response()->json(['status' => false, 'message' => $th, 'data' => $request->all()], 503);
