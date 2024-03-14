@@ -109,9 +109,11 @@ class MonitorPostDist extends Controller
 
                 $creation_failed = [];
 
-                dd(count($json_response));
-
                 for ($i = 0; $i < count($json_response); $i++) {
+
+                    $body_m_kobo_preguntas = [];
+                    $body_respuestas = [];
+
                     //ojo esto actualiza o crea una
                     $object = (object)helper::formatObject($json_response[$i], "/");
 
@@ -121,9 +123,6 @@ class MonitorPostDist extends Controller
 
                     //$object->preguntas 34
                     //dd(count($object->preguntas));
-
-                    $body_m_kobo_preguntas = [];
-                    $body_respuestas = [];
 
                     for ($j = 0; $j < count($object->preguntas); $j++) {
 
@@ -174,20 +173,19 @@ class MonitorPostDist extends Controller
                             return $item->CAMPO1 == $pregunta;
                         })->first();
 
-                        if(!optional($desired_object)->id){
-                            continue;
+                        if(optional($desired_object)->id){
+                            array_push($body_respuestas, [
+                                "FECHA" => $json_response[$i]->_submission_time,
+                                "FECHA_REGISTRO" => $json_response[$i]->start,
+                                "_ID" => $id_kobo_respuesta,
+                                "VALOR" => json_encode($respuesta),
+                                "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
+                                "ID_M_FORMULARIOS" => $m_formulario_id,
+                                "ID_M_USUARIOS" => $ID_USER
+                            ]);
+                            $ids_kobo_respuesta[] = $id_kobo_respuesta;
                         }
 
-                        array_push($body_respuestas, [
-                            "FECHA" => $json_response[$i]->_submission_time,
-                            "FECHA_REGISTRO" => $json_response[$i]->start,
-                            "_ID" => $id_kobo_respuesta,
-                            "VALOR" => json_encode($respuesta),
-                            "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
-                            "ID_M_FORMULARIOS" => $m_formulario_id,
-                            "ID_M_USUARIOS" => $ID_USER
-                        ]);
-                        $ids_kobo_respuesta[] = $id_kobo_respuesta;
                     }
 
                     
@@ -218,7 +216,7 @@ class MonitorPostDist extends Controller
                     ], 503);
                 }
 
-                return response()->json(['status' => true, 'data' => count($json_response)], 200);
+                return response()->json(['status' => true, 'data' => [count($json_response), count($body_respuestas)]], 200);
             } else {
                 // Manejar el error de la solicitud
                 $msg = 'Error al realizar la solicitud GET: ' . error_get_last()['message'];
