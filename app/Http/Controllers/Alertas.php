@@ -9,19 +9,21 @@ use App\Models\MFormulario;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\helper;
 use App\Models\migrateCustom;
+use Illuminate\Support\Facades\Auth;
 
-class MonitorPostDist extends Controller
+class Alertas extends Controller
 {
+    //
     /**
      * el objetivo es recibir un formulario kobo 
      * con las credenciales de token acceder a los datos 
      * obtener un json 
-     * verificar los datos y llenar las tablas correspondientes
-     * kobo_url https://eu.kobotoolbox.org/assets/aQxrcJYzPy4nzzVRXZVSBC/submissions/?format=json
+     * verificar los datos y llenar las tablas correspondientes 
+     * kobo_url https://eu.kobotoolbox.org/assets/aERiZwVqPrcEbYzhFux5au/submissions/?format=json
      */
     function stored(Request $request)
     {
-        $m_formularios = MFormulario::where(['ACCION' => "MPD"]);
+        $m_formularios = MFormulario::where(['ACCION' => "ALERTA"]);
         $m_formulario_ids = $m_formularios->pluck('ID_M_FORMULARIOS');
         MKoboFormularios::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->truncate();
         MKoboRespuestas::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->truncate();
@@ -34,7 +36,7 @@ class MonitorPostDist extends Controller
         try {
 
             //FALTA TERMINAR SACAR DEL TOKEN
-            $ID_USER = 1;
+            $ID_USER = Auth::user()->id ?? Auth::user()->ID;
 
             //iobtener los datos segun el kobo recibido
             //procesar los datos y registrarlos en los kobo preguntas y respuestas
@@ -81,7 +83,7 @@ class MonitorPostDist extends Controller
                 $m_formulario = MFormulario::updateOrCreate(
                     ['ID_M_FORMULARIOS' => $json_response[0]->_xform_id_string],
                     [
-                        'ACCION' => "MPD",
+                        'ACCION' => "ALERTA",
                         'ID_M_FORMULARIOS' => $json_response[0]->_xform_id_string,
                         "ASSET_UID" => $json_response[0]->_xform_id_string,
                         "UID" => $json_response[0]->_uuid,
@@ -98,8 +100,9 @@ class MonitorPostDist extends Controller
                     ]
                 );
 
+                
                 $m_formulario = MFormulario::where(["ID_M_FORMULARIOS" => $json_response[0]->_xform_id_string])->first();
-
+                
                 $m_formulario_id = $m_formulario->ID_M_FORMULARIOS;
 
                 if (!isset($m_formulario_id)) {
@@ -118,7 +121,7 @@ class MonitorPostDist extends Controller
                     $id_kobo_respuesta = $json_response[$i]->_id;
 
                     //$object->preguntas 34
-                    //dd(count($object->preguntas));
+                    dd(count($object->preguntas));
 
                     $body_m_kobo_preguntas = [];
                     $body_respuestas = [];
@@ -139,6 +142,8 @@ class MonitorPostDist extends Controller
                             ]
                         );
                     }
+
+                    dd("body_m_kobo_preguntas", $body_m_kobo_preguntas);
                     
                     $m_kobo_preguntas = MKoboFormularios::upsert(
                         //The method's first argument consists of the values to insert or update
@@ -249,7 +254,7 @@ class MonitorPostDist extends Controller
             $m_formulario = MFormulario::updateOrCreate(
                 ['ID_M_FORMULARIOS' => $json_response->_xform_id_string],
                 [
-                    'ACCION' => "MPD",
+                    'ACCION' => "ALERTA",
                     'ID_M_FORMULARIOS' => $json_response->_xform_id_string,
                     "ASSET_UID" => $json_response->_xform_id_string,
                     "UID" => $json_response->_uuid,
@@ -375,6 +380,4 @@ class MonitorPostDist extends Controller
         }
 
     }
-
-
 }

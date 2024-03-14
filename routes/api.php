@@ -187,6 +187,11 @@ Route::prefix('meal')->group(function () {
     Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
 
     Route::post('/mpd/refresh', [App\Http\Controllers\MonitorPostDist::class, 'refresh']);//receptor
+    
+    Route::middleware(['auth:sanctum'])->post('/alerta/update', [App\Http\Controllers\Alertas::class, 'stored']);
+    
+    Route::middleware(['auth:sanctum'])->post('/alerta/refresh', [App\Http\Controllers\Alertas::class, 'refresh']);//receptor
+    //FIN MIGRACIONS DESDE EL KOBO
 
     //quejas y reclamos
     Route::get('/mqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);
@@ -305,7 +310,7 @@ Route::middleware(['auth:sanctum'])->get('/matriz/minas', [App\Http\Controllers\
 */
 Route::post('login', [Auth::class, 'login'])->name('api/login');
 
-Route::post('register', [Auth::class, 'register']);
+//Route::post('register', [Auth::class, 'register']);
 
 Route::post('logout', [Auth::class, 'logout']);
 
