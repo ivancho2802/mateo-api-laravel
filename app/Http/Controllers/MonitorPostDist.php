@@ -176,7 +176,7 @@ class MonitorPostDist extends Controller
                             "FECHA" => $json_response[$i]->_submission_time,
                             "FECHA_REGISTRO" => $json_response[$i]->start,
                             "_ID" => $id_kobo_respuesta,
-                            "VALOR" => $respuesta,
+                            "VALOR" => json_encode($respuesta),
                             "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
                             "ID_M_FORMULARIOS" => $m_formulario_id,
                             "ID_M_USUARIOS" => $ID_USER
