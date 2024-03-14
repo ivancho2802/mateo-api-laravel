@@ -150,7 +150,7 @@ class Alertas extends Controller
                         $body_m_kobo_preguntas,
                         // second argument lists the column(s) that uniquely identify records within the associated table.
                         //El segundo argumento enumera las columnas que identifican de forma única los registros dentro de la tabla asociada.
-                        ['CAMPO1', '_ID'],
+                        ['CAMPO1'],//, '_ID' error reaprar
                         //The method's third and final argument is an array of the columns that should be updated if a matching record already exists in the database.
                         //El tercer y último argumento del método es una matriz de columnas que deben actualizarse si ya existe un registro coincidente en la base de datos.
                         ['ID_M_KOBO_FORMULARIOS', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
@@ -311,7 +311,7 @@ class Alertas extends Controller
                     
             $m_kobo_preguntas = MKoboFormularios::upsert(
                 $body_m_kobo_preguntas,
-                ['CAMPO1', '_ID'],
+                ['CAMPO1'],//, '_ID'
                 ['ID_M_KOBO_FORMULARIOS', '_ID', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
             );
                     
