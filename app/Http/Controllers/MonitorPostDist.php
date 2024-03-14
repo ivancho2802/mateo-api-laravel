@@ -184,6 +184,8 @@ class MonitorPostDist extends Controller
                         $ids_kobo_respuesta[] = $id_kobo_respuesta;
                     }
 
+                    dd($body_respuestas);
+
                     //crean respuestas
                     $m_respuestas = MKoboRespuestas::insert($body_respuestas);
 
