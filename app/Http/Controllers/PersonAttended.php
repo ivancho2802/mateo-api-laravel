@@ -11,7 +11,7 @@ use App\Models\MLpaPersona;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Analisis;
-
+use Illuminate\Support\Facades\Storage;
 
 class PersonAttended extends Controller
 {
@@ -57,12 +57,30 @@ class PersonAttended extends Controller
         $file = $request->file('file');
         $path = $file->store('migrationsLpa');
 
-        return migrateCustom::create([
+        $data['mlpas'] = [];
+
+        $data['record_excel'] = 1;
+
+        $data['record_saved'] = 0;
+
+        //terminar devolver tabla
+        return view('list-lpas', $data);
+
+        /* return migrateCustom::create([
             'table' => 'M_LPAS',
             'table_id' =>  $path,
             'file_ref' => 'UPLOADED',
-        ]);
+        ]); */
+        
+    }
 
+    function process(Request $request){
+        $migration = migrateCustom::where([
+            'table' => 'M_LPAS',
+            'file_ref' => 'UPLOADED',
+        ])->first();
+
+        $file = Storage::path($migration->table_id);
 
         $import = new PaImportClass();
 
@@ -109,14 +127,6 @@ class PersonAttended extends Controller
         //terminar devolver tabla
         return view('list-lpas', $data);
         //return response()->json(["message" => "operacion hecha con exito"]);
-        
-    }
-
-    function process(Request $request){
-        $migration = migrateCustom::where([
-            'table' => 'M_LPAS',
-            'file_ref' => 'UPLOADED',
-        ])->first();
 
         return $migration;//table_id
     }
