@@ -91,7 +91,7 @@ class MLpaPersona extends Model
     }
 
     /**
-     * calculo de la edad apartie de la fecha de nacimiento
+     * calculo de la edad apartie de la fecha de nacimiento cant_atenciones_by_departamento
      */
     public function getCantAtencionesByDepartamentoAttribute()
     {
@@ -115,7 +115,7 @@ class MLpaPersona extends Model
         }); */
 
 
-        return $grouped;
+        return $atencionDoted;
     }
 
 }

@@ -30,11 +30,11 @@ class Meal extends Controller
     function getLpa(Request $request)
     {
         if ($request->pagination) {
-            $mlpas = MLpaPersona::paginate(5);
-            //$mlpas->load(['emergencia', 'actividad']);
+            $mlpas = MLpa::paginate(5);
+            $mlpas->load(['emergencia', 'actividad']);
             return $mlpas;
         } else {
-            $mlpas = MLpaPersona::get();
+            $mlpas = MLpa::get();
         }
 
         //PONER LA PERSONA CON SU EDAD
@@ -45,23 +45,7 @@ class Meal extends Controller
         //"Rango BHA"
         //=SI(AM2="";"";SI(AM2<=4;"0 to 4";SI(AM2<=9;"5 to 9";SI(AM2<=14;"10 to 14";SI(AM2<=18;"15 to 18";SI(AM2<=29;"19 to 29";SI(AM2<=59;"30 to 59";SI(AM2>=60;"> 60"))))))))
 
-        $mlpas->load(['atenciones']);
-
-        $mlpasFormated = $mlpas->map(function ( $persona) {
-            $persona->append('edad');
-            $persona->append('cant_atenciones');
-
-            $persona->atenciones->map(function ( $atencion) {
-                $atencion->load(['emergencia', 'actividad']);
-                //$atencion->append('cant_atenciones');
-                $atencionDoted = Arr::dot($atencion); 
-                return $atencionDoted;
-            });
-                
-
-            $lpaArray = $persona->toArray();
-            return  $lpaArray;
-        });
+        $mlpas->load(['emergencia', 'actividad', 'persona']);
 
         /* DB::setDefaultConnection('odbc');
 
@@ -87,13 +71,13 @@ class Meal extends Controller
         CODIGO_ALERTA
         FROM V_M_KOBO_FORMULARIOS WHERE ID_M_FORMULARIOS = '0012';"); */
 
-        /* $mlpasFormated = $mlpas->map(function ( $lpa) {
+        $mlpasFormated = $mlpas->map(function ( $lpa) {
             $lpa->persona->append('edad');
             $lpaArray = $lpa->toArray();
             $lpaDoted = Arr::dot($lpaArray); 
             return  $lpaDoted;
         });
-        */
+
         $flattenedMlpas =  ($mlpasFormated);
 
         return [
