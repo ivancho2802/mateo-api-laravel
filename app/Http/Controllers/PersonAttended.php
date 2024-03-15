@@ -51,9 +51,18 @@ class PersonAttended extends Controller
         $request->validate([
             'file' => 'required|mimes:xlsx,xls',
         ]);
+        
 
         // Get the uploaded file
         $file = $request->file('file');
+        $path = $file->store('migrationsLpa');
+
+        return migrateCustom::create([
+            'table' => 'M_LPAS',
+            'table_id' =>  $path,
+            'file_ref' => 'PENDING',
+        ]);
+
 
         $import = new PaImportClass();
 
