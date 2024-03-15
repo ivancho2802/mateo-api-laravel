@@ -56,11 +56,16 @@ class PersonAttended extends Controller
         // Get the uploaded file
         $file = $request->file('file');
         $path = $file->store('migrationsLpa');
-
+        
+        migrateCustom::create([
+            'table' => 'M_LPAS',
+            'table_id' =>  $path,
+            'file_ref' => 'UPLOADED',
+        ]);
         
         $mlpas = MLpa::
         orderBy('created_at', 'desc')
-        ->paginate(10);
+        ->paginate(10); 
 
         $mlpas->load('emergencia');
 
@@ -72,13 +77,6 @@ class PersonAttended extends Controller
 
         //terminar devolver tabla
         return view('list-lpas', $data);
-
-        /* return migrateCustom::create([
-            'table' => 'M_LPAS',
-            'table_id' =>  $path,
-            'file_ref' => 'UPLOADED',
-        ]); */
-        
     }
 
     function process(Request $request){
@@ -127,7 +125,7 @@ class PersonAttended extends Controller
 
         $data['mlpas'] = $mlpas;
 
-        $data['record_excel'] = $count_record_excel - 1;
+        $data['record_excel'] = $count_record_excel ;
 
         $data['record_saved'] = $count_mlpas;
 
