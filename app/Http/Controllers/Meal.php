@@ -45,13 +45,19 @@ class Meal extends Controller
         //"Rango BHA"
         //=SI(AM2="";"";SI(AM2<=4;"0 to 4";SI(AM2<=9;"5 to 9";SI(AM2<=14;"10 to 14";SI(AM2<=18;"15 to 18";SI(AM2<=29;"19 to 29";SI(AM2<=59;"30 to 59";SI(AM2>=60;"> 60"))))))))
 
-        $mlpas->load(['atenciones']);//, 'emergencia', 'actividad', 'persona'
+        $mlpas->load(['atenciones']);
 
         $mlpasFormated = $mlpas->map(function ( $persona) {
             $persona->append('edad');
             $persona->append('cant_atenciones');
+            $persona->atenciones->map(function ( $atencion) {
+                $atencion->load(['emergencia', 'actividad']);
+                $atencionDoted = Arr::dot($atencion); 
+                return $atencionDoted;
+            });
+                
+
             $lpaArray = $persona->toArray();
-            //$lpaDoted = Arr::dot($lpaArray); 
             return  $lpaArray;
         });
 
