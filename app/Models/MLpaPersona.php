@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use App\Models\MLpa;
 
 class MLpaPersona extends Model
 {
@@ -68,6 +69,24 @@ class MLpaPersona extends Model
         $howOldAmI = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac)->age;  // 46 1999-08-30
 
         return $howOldAmI;
+    }
+    
+    public function emergencia()
+    {
+        return $this->hasOne(MLpaEmergencia::class, 'ID', 'FK_LPA_EMERGENCIA' );
+    }
+    
+    public function atenciones()
+    {
+        return $this->hasMany(MLpa::class, 'FK_LPA_PERSONA', 'ID' );
+    }
+
+    /**
+     * calculo de la edad apartie de la fecha de nacimiento
+     */
+    public function getCantAtencionesAttribute()
+    {
+        return count($this->atenciones);
     }
 
 }

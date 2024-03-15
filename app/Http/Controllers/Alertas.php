@@ -389,6 +389,16 @@ class Alertas extends Controller
             return response()->json(['status' => false, 'message' => $th, 'data' => $request->all()], 503);
         }
     }
+    
+    
+    /**
+     *  select 
+     *      "_ID" 
+        from 
+            "M_KOBO_RESPUESTAS" 
+        where "ID_M_FORMULARIOS" = 'aERiZwVqPrcEbYzhFux5au' group by "_ID"
+
+     */
 
     function all(Request $request){
 
