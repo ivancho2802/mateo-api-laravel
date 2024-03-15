@@ -57,7 +57,14 @@ class PersonAttended extends Controller
         $file = $request->file('file');
         $path = $file->store('migrationsLpa');
 
-        $data['mlpas'] = [];
+        
+        $mlpas = MLpa::
+        orderBy('created_at', 'desc')
+        ->paginate(10);
+
+        $mlpas->load('emergencia');
+
+        $data['mlpas'] =  $mlpas;
 
         $data['record_excel'] = 1;
 
