@@ -177,6 +177,8 @@ Route::prefix('meal')->group(function () {
 
     Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
 
+    Route::middleware(['auth:sanctum'])->post('/lpa/process', [App\Http\Controllers\PersonAttended::class, 'process']);
+
     Route::middleware(['auth:sanctum'])->post('/lpa/refreshMigrations', [App\Http\Controllers\PersonAttended::class, 'refreshMigrations']);
 
     Route::middleware(['auth:sanctum'])->get('/lpa', [App\Http\Controllers\Meal::class, 'getLpa']);

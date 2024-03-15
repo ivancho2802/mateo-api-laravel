@@ -60,7 +60,7 @@ class PersonAttended extends Controller
         return migrateCustom::create([
             'table' => 'M_LPAS',
             'table_id' =>  $path,
-            'file_ref' => 'PENDING',
+            'file_ref' => 'UPLOADED',
         ]);
 
 
@@ -110,6 +110,15 @@ class PersonAttended extends Controller
         return view('list-lpas', $data);
         //return response()->json(["message" => "operacion hecha con exito"]);
         
+    }
+
+    function process(Request $request){
+        $migration = migrateCustom::where([
+            'table' => 'M_LPAS',
+            'file_ref' => 'UPLOADED',
+        ])->first();
+
+        return $migration;//table_id
     }
 
     function refreshMigrations(Request $request){
