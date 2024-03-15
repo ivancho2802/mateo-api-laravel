@@ -50,8 +50,10 @@ class Meal extends Controller
         $mlpasFormated = $mlpas->map(function ( $persona) {
             $persona->append('edad');
             $persona->append('cant_atenciones');
+
             $persona->atenciones->map(function ( $atencion) {
                 $atencion->load(['emergencia', 'actividad']);
+                //$atencion->append('cant_atenciones');
                 $atencionDoted = Arr::dot($atencion); 
                 return $atencionDoted;
             });

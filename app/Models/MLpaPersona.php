@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use App\Models\MLpa;
+use Illuminate\Support\Arr;
 
 class MLpaPersona extends Model
 {
@@ -87,6 +88,34 @@ class MLpaPersona extends Model
     public function getCantAtencionesAttribute()
     {
         return count($this->atenciones);
+    }
+
+    /**
+     * calculo de la edad apartie de la fecha de nacimiento
+     */
+    public function getCantAtencionesByDepartamentoAttribute()
+    {
+
+        $atenciones = $this->atenciones;
+
+        $atencionDoted = $atenciones->map(function ( $atencion) {
+            $atencion->load(['emergencia', 'actividad']);
+            $atencion->append('cant_atenciones');
+            $atencionDoted = Arr::dot($atencion); 
+            return $atencionDoted;
+        }); 
+
+        $grouped = $atencionDoted->countBy('emergencia.DEPARTAMENTO');
+        
+        /* ->atenciones->map(function ( $atencion) {
+            $atencion->load(['emergencia', 'actividad']);
+            $atencion->append('cant_atenciones');
+            $atencionDoted = Arr::dot($atencion); 
+            return $atencionDoted;
+        }); */
+
+
+        return $grouped;
     }
 
 }
