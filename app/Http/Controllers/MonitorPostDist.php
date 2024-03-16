@@ -31,7 +31,7 @@ class MonitorPostDist extends Controller
             return response()->json(['status' => false, 'message' => "formato de kobo_url incorrecto o faltante"], 402);
         }
 
-        try {
+       /*  try { */
 
             //FALTA TERMINAR SACAR DEL TOKEN
             $ID_USER = 1;
@@ -114,8 +114,8 @@ class MonitorPostDist extends Controller
                     $body_m_kobo_preguntas = [];
                     $body_respuestas = [];
 
-                    //ojo esto actualiza o crea una
-                    $object = (object)helper::formatObject($json_response[$i], "/");
+                    //ojo esto actualiza o crea una Y PARA ESTE CASO NO ES SIMPLE POR LO TANTO APLICA /
+                    $object = (object)helper::formatObject($json_response[$i], "");
 
                     //crear preguntas
 
@@ -141,18 +141,18 @@ class MonitorPostDist extends Controller
                         );
                     }
                     
-                    $m_kobo_preguntas = MKoboFormularios::upsert(
+                    $m_kobo_preguntas = MKoboFormularios::insert(
                         //The method's first argument consists of the values to insert or update
                         $body_m_kobo_preguntas,
                         // second argument lists the column(s) that uniquely identify records within the associated table.
                         //El segundo argumento enumera las columnas que identifican de forma única los registros dentro de la tabla asociada.
-                        ['CAMPO1'],//, '_ID' error rparar ID_M_FORMULARIOS
+                        //['CAMPO1'],//, '_ID' error rparar ID_M_FORMULARIOS
                         //The method's third and final argument is an array of the columns that should be updated if a matching record already exists in the database.
                         //El tercer y último argumento del método es una matriz de columnas que deben actualizarse si ya existe un registro coincidente en la base de datos.
-                        ['ID_M_KOBO_FORMULARIOS', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
+                        //['ID_M_KOBO_FORMULARIOS', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
                     );
                     
-                    if ($m_kobo_preguntas !== count($body_m_kobo_preguntas)) {
+                    if (!$m_kobo_preguntas) {// !== count($body_m_kobo_preguntas)
                         array_push(
                             $creation_failed,
                             ["preguntas" => $body_m_kobo_preguntas]
@@ -227,10 +227,10 @@ class MonitorPostDist extends Controller
 
 
             //code...
-        } catch (\Exception $th) {
+        /* } catch (\Exception $th) {
             
             return response()->json(['status' => false, 'message' => $th], 503);
-        }
+        } */
     }
 
     function refresh(Request $request){
@@ -284,7 +284,7 @@ class MonitorPostDist extends Controller
             $creation_failed = [];
 
             //ojo esto actualiza o crea una
-            $object = (object)helper::formatObject($json_response, "/");
+            $object = (object)helper::formatObject($json_response, "");
 
             //crear preguntas
 

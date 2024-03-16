@@ -115,7 +115,7 @@ class Alertas extends Controller
 
             for ($i = 0; $i < count($json_response); $i++) {
                 //ojo esto actualiza o crea una
-                $object = (object)helper::formatObject($json_response[$i], "/");
+                $object = (object)helper::formatObject($json_response[$i], "");
 
                 //crear preguntas
 
@@ -293,7 +293,7 @@ class Alertas extends Controller
             $creation_failed = [];
 
             //ojo esto actualiza o crea una
-            $object = (object)helper::formatObject($json_response, "/");
+            $object = (object)helper::formatObject($json_response, "");
 
             //crear preguntas
 

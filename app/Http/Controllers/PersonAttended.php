@@ -93,6 +93,10 @@ class PersonAttended extends Controller
 
         // Process the Excel file
         Excel::import($import, $file);
+
+        $migration->file_ref = 'PENDING';
+
+        $migration->save();
         
         //get data excel
         //$collection = (new MlpasClass)->toCollection($file);

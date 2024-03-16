@@ -79,16 +79,16 @@ class helper extends Controller
             $pregunta = $keys[$i];
             $respuesta = $values[$i];
 
-            if (false !== stripos($pregunta, $preindex) || $pregunta == "_OBSERVACIONES" || $pregunta == "_id") {
+            //if (false !== stripos($pregunta, $preindex)) {// || $pregunta == "_OBSERVACIONES" || $pregunta == "_id"
                 array_push($preguntas, $pregunta);
                 array_push($respuestas, $respuesta);
-            }
+            //}
         }
 
-        $preguntas = array_map(function ($x) use ($preindex) {
+        /* $preguntas = array_map(function ($x) use ($preindex) {
             $partsQuestion = explode($preindex, $x);
             return end($partsQuestion);
-        }, $preguntas);
+        }, $preguntas); */
 
         return ["preguntas" => $preguntas, "respuestas" => $respuestas];
     }
