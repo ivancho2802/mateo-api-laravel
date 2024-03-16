@@ -99,6 +99,8 @@ class PersonAttended extends Controller
 
         ini_set('memory_limit', '2024M');
         set_time_limit(3000000);//0
+        ini_set('max_execution_time', '280');
+        ini_set('max_input_time', '180');
 
         $migration = migrateCustom::where([
             'table' => 'M_LPAS',
