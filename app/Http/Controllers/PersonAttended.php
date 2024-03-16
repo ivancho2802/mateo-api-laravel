@@ -96,6 +96,10 @@ class PersonAttended extends Controller
     }
 
     function process(Request $request){
+
+        ini_set('memory_limit', '2024M');
+        set_time_limit(3000000);//0
+
         $migration = migrateCustom::where([
             'table' => 'M_LPAS',
             'file_ref' => 'UPLOADED',
