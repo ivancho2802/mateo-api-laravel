@@ -79,6 +79,22 @@ class PersonAttended extends Controller
         return view('list-lpas', $data);
     }
 
+    function checked(Request $request){
+
+        $migration = migrateCustom::where([
+            'table' => 'M_LPAS',
+            'file_ref' => 'UPLOADED',
+        ])->first();
+
+        $file = Storage::path($migration->table_id);
+
+        $headers = array(
+                'Content-Type: application/vnd.ms-excel',
+                );
+
+        return Storage::download($migration->table_id, 'filename.xlsx', $headers);
+    }
+
     function process(Request $request){
         $migration = migrateCustom::where([
             'table' => 'M_LPAS',
