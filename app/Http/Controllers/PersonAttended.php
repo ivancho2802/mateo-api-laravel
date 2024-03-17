@@ -111,7 +111,7 @@ class PersonAttended extends Controller
 
         $import = new PaImportClass();
 
-        //$import->onlySheets('BD');
+        $import->onlySheets('BD');
 
         // Process the Excel file
         Excel::import($import, $file);
