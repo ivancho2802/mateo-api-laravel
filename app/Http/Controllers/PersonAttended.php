@@ -249,9 +249,7 @@ class PersonAttended extends Controller
             } */
             $row = collect(collect($row)->toArray())->flatten();
 
-            dd(collect($row[14])->date, collect($row[14])->toArray()["date"]);
-
-            $date_birday = Date::excelToDateTimeObject($row[14]->toArray());
+            $date_birday = collect($row[14])->toArray()["date"];//Date::excelToDateTimeObject($row[14]->toArray());
 
             dd($date_birday);
 
@@ -266,7 +264,7 @@ class PersonAttended extends Controller
 
             ]);
 
-            $date_birday = Date::excelToDateTimeObject($row[14]);
+            $date_birday = collect($row[14])->toArray()["date"];//Date::excelToDateTimeObject($row[14]);
 
             $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
 
