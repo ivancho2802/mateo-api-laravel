@@ -247,9 +247,11 @@ class PersonAttended extends Controller
                 $i++;
                 continue;
             } */
-            dd(collect(collect($row)->toArray())->flatten());
+            $row = collect(collect($row)->toArray())->flatten();
 
-            $row = collect($row);
+            $date_birday = Date::excelToDateTimeObject($row[14]);
+
+            dd($date_birday);
 
             $mlpa_emergencia = MLpaEmergencia::firstOrCreate([
 
