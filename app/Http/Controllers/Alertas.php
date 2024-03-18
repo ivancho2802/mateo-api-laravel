@@ -404,7 +404,7 @@ class Alertas extends Controller
 
         $formulario_alertas = MFormulario::where(['ACCION' => "ALERTA"])->paginate(10);
 
-        $formulario_alertas->load(['respuestas']);
+        //$formulario_alertas->load(['respuestas']);
 
         return response()->json(['status' => true, 'data' => $formulario_alertas, 200]);
 

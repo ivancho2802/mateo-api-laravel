@@ -260,7 +260,8 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
         $dataId = $dataSubmissionsData->first()['_id'];
 
         //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
-        $jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
+        //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
+        $jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid ;
 
         $dataEnketoResponse = Http::withHeaders([
             'Authorization' => 'Token ' . $token . '',
@@ -281,7 +282,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
         ])
             ->get($urlHtmlPdf); */
 
-        return $dataEnketoResponse
+        return $dataEnketo
             /* [
             "status" => $response->getStatusCode(),
             "data" => $response->body(),
