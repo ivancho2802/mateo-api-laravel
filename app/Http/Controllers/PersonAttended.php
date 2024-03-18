@@ -247,7 +247,7 @@ class PersonAttended extends Controller
                 $i++;
                 continue;
             } */
-            dd(json_decode($row));
+            dd(collect($row)[0]);
 
             $row = collect($row);
 
