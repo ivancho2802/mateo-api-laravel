@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Collection;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -274,15 +275,18 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
         $urlHtmlPdf = $dataEnketo->first();
 
-        //dd($urlHtmlPdf);
+        //return ($urlHtmlPdf);
 
         /* $dataHtmlPdfResponse = Http::withHeaders([
             'Authorization' => 'Token ' . $token . '',
             'Accept' => 'application/json'
         ])
             ->get($urlHtmlPdf); */
+        return $dataEnketo;
 
-        return $dataEnketo
+        $pdf = Pdf::loadView('pdf.formulario', $dataEnketo);
+        return $pdf->download('invoice.pdf');
+
             /* [
             "status" => $response->getStatusCode(),
             "data" => $response->body(),

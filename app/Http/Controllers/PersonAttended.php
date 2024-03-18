@@ -232,7 +232,7 @@ class PersonAttended extends Controller
             $elementsForMigration = collect(json_decode($idTable));
         //}
 
-        $elementsForMigrationChunked = $elementsForMigration->chunk(2000);
+        $elementsForMigrationChunked = $elementsForMigration->chunk(1000);
 
 
         $i = 0;
@@ -365,14 +365,14 @@ class PersonAttended extends Controller
         }
         //dd($date_begin, $date_end);
 
-        $body_lpas = ($body_lpas)->chunk(600);
+        $body_lpas = ($body_lpas)->chunk(1000);
         foreach ($body_lpas as $body) {
             $bodyArray = $body->toArray();
             MLpa::insert($bodyArray);
         }
 
         //eliminar los 2000 primeros registros de $elementsForMigration
-        $elementsForMigration->shift(2000);
+        $elementsForMigration->shift(1000);
 
         $restante = $elementsForMigration;
 
