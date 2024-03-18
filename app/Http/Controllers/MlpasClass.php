@@ -13,9 +13,9 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\ValidationException;
 
-class MlpasClass implements ToCollection
+class MlpasClass extends Controller///implements ToCollection
 {
-    use Importable;
+   // use Importable;
 
     public function collection(Collection $rows)
     {
@@ -37,7 +37,7 @@ class MlpasClass implements ToCollection
 
             $rows->shift();
 
-            dd("count rows", count($rows->all()));
+            //dd("count rows", count($rows->all()));
 
             $rowsChuck = $rows->chunk(1000);
 

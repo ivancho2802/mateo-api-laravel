@@ -12,6 +12,7 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Analisis;
 use Illuminate\Support\Facades\Storage;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class PersonAttended extends Controller
 {
@@ -109,12 +110,18 @@ class PersonAttended extends Controller
 
         $file = Storage::path($migration->table_id);
 
-        $import = new PaImportClass();
+        $sheets = (new FastExcel)->withSheetsNames()->importSheets($file);
+
+        $result = (new MlpasClass)->collection(collect($sheets['BD']));
+
+        //dd($result);
+
+        /* $import = new PaImportClass();
 
         $import->onlySheets('BD');
 
         // Process the Excel file
-        Excel::import($import, $file);
+        Excel::import($import, $file); */
 
         $migration->file_ref = 'PENDING';
 
