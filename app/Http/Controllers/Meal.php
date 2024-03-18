@@ -30,11 +30,11 @@ class Meal extends Controller
     function getLpa(Request $request)
     {
         if ($request->pagination) {
-            $mlpas = MLpa::where(["FECHA_ATENCION", ">=", "2024-01-01"])->paginate(5);
+            $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2024-01-01")->paginate(5);
             $mlpas->load(['emergencia', 'actividad']);
             return $mlpas;
         } else {
-            $mlpas = MLpa::where(["FECHA_ATENCION", ">=", "2024-01-01"])->get();
+            $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2024-01-01")->get();
         }
 
         //PONER LA PERSONA CON SU EDAD
