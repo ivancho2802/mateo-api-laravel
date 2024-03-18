@@ -96,7 +96,7 @@ return [
             'driver'   => 'firebird',
             'host'     => env('DB_FIREBIRD_DB_HOST', 'localhost'),
             'port'     => env('DB_FIREBIRD_DB_PORT', '3050'),
-            'database' => env('DB_FIREBIRD_DB_DATABASE', '192.168.1.150/3050:/opt/lampp/firebird/db/ach.gdb'),
+            'database' => env('DB_FIREBIRD_DB_DATABASE', '/opt/lampp/firebird/db/ach.gdb'),
             //C:\opt\lampp\firebird\db\ach.gdb
             //'database' => env('DB_FIREBIRD_DB_DATABASE', '192.168.1.150/3050:/opt/lampp/firebird/db/ach.gdb'),
             'username' => env('DB_FIREBIRD_DB_USERNAME', 'SYSDBA'),

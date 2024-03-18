@@ -285,8 +285,6 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
             ->get($urlHtmlPdf); */
         //return $dataEnketo;
 
-        return response()->view('pdf.formulario');
-
         $pdf = Pdf::loadView('pdf.formulario', [$dataEnketo]);
         return $pdf->download('invoice.pdf');
 
