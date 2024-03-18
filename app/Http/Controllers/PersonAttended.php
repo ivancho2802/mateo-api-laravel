@@ -247,7 +247,7 @@ class PersonAttended extends Controller
                 $i++;
                 continue;
             } */
-            dd($row, $row['Socio'] );
+            dd($row);
 
             $row = collect($row);
 
