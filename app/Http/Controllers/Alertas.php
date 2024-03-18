@@ -402,7 +402,7 @@ class Alertas extends Controller
 
     function all(Request $request){
 
-        $formulario_alertas = MFormulario::where(['ACCION' => "ALERTA"])->get();
+        $formulario_alertas = MFormulario::where(['ACCION' => "ALERTA"])->paginate(10);
 
         $formulario_alertas->load(['respuestas']);
 

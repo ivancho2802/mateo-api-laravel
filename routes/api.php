@@ -275,13 +275,13 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
         //dd($urlHtmlPdf);
 
-        $dataHtmlPdfResponse = Http::withHeaders([
+        /* $dataHtmlPdfResponse = Http::withHeaders([
             'Authorization' => 'Token ' . $token . '',
             'Accept' => 'application/json'
         ])
-            ->get($urlHtmlPdf);
+            ->get($urlHtmlPdf); */
 
-        return $dataHtmlPdfResponse
+        return $dataEnketoResponse
             /* [
             "status" => $response->getStatusCode(),
             "data" => $response->body(),
