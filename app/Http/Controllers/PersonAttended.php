@@ -249,10 +249,6 @@ class PersonAttended extends Controller
             } */
             $row = collect(collect($row)->toArray())->flatten();
 
-            $date_birday = collect($row[14])->toArray()["date"];//Date::excelToDateTimeObject($row[14]->toArray());
-
-            dd($date_birday);
-
             $mlpa_emergencia = MLpaEmergencia::firstOrCreate([
 
                 'COD_EMERGENCIAS' => $row[0],
@@ -336,7 +332,7 @@ class PersonAttended extends Controller
                 ]);
             }
 
-            $FECHA_ATENCION = Date::excelToDateTimeObject($row[31]);
+            $FECHA_ATENCION = collect($row[31])->toArray()["date"];//Date::excelToDateTimeObject($row[31]);
 
             $body_lpas->push([
 
