@@ -247,7 +247,7 @@ class PersonAttended extends Controller
                 $i++;
                 continue;
             } */
-            dd(collect($row)->toArray());
+            dd(collect(collect($row)->toArray())->flatten());
 
             $row = collect($row);
 
