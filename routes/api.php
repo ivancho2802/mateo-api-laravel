@@ -276,15 +276,18 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
         $urlHtmlPdf = $dataEnketo->first();
 
         //return ($urlHtmlPdf);
-
+        //onbtener url de lso iagens https://kc.acf-e.org/api/v1/media/2486
+        
         /* $dataHtmlPdfResponse = Http::withHeaders([
             'Authorization' => 'Token ' . $token . '',
             'Accept' => 'application/json'
         ])
             ->get($urlHtmlPdf); */
-        return $dataEnketo;
+        //return $dataEnketo;
 
-        $pdf = Pdf::loadView('pdf.formulario', $dataEnketo);
+        return response()->view('pdf.formulario');
+
+        $pdf = Pdf::loadView('pdf.formulario', [$dataEnketo]);
         return $pdf->download('invoice.pdf');
 
             /* [
