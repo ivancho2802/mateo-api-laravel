@@ -234,6 +234,7 @@ class PersonAttended extends Controller
 
         $elementsForMigrationChunked = $elementsForMigration->chunk(2000);
 
+
         $i = 0;
         $body_lpas = collect();
 
@@ -246,6 +247,9 @@ class PersonAttended extends Controller
                 $i++;
                 continue;
             } */
+            dd($row, $row->Socio, $row['Socio'] );
+
+            $row = collect($row);
 
             $mlpa_emergencia = MLpaEmergencia::firstOrCreate([
 

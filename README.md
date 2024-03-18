@@ -282,6 +282,9 @@ crear keys
 
 agregar key a linux la privada con la credencial creada v24150144
     ssh-add ~/.ssh/ach-iodiazacf
+    ssh-add ../iodiazachapi
+    ssh-add ../iodiazapiach2023
+
 agregar la key a github
 
     https://github.com/IODIAZACF/ach-api-laravel/settings/keys
