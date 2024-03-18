@@ -285,7 +285,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
             ->get($urlHtmlPdf); */
         //return $dataEnketo;
 
-        $pdf = Pdf::loadView('pdf.formulario', [$dataEnketo]);
+        $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
         return $pdf->download('invoice.pdf');
 
             /* [
@@ -323,7 +323,7 @@ Route::middleware(['auth:sanctum'])->get('/matriz/minas', [App\Http\Controllers\
 */
 Route::post('login', [Auth::class, 'login'])->name('api/login');
 
-//Route::post('register', [Auth::class, 'register']);
+Route::post('register', [Auth::class, 'register']);
 
 Route::post('logout', [Auth::class, 'logout']);
 
