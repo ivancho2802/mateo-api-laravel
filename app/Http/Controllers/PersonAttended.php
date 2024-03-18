@@ -249,7 +249,7 @@ class PersonAttended extends Controller
             } */
             $row = collect(collect($row)->toArray())->flatten();
 
-            dd(collect($row[14])->toArray());
+            dd(collect($row[14])->date, collect($row[14])->toArray()["date"]);
 
             $date_birday = Date::excelToDateTimeObject($row[14]->toArray());
 
