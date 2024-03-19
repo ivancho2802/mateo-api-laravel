@@ -91,7 +91,7 @@ class Auth extends Controller
 
             if (!$userMire || strtoupper(md5(strtoupper($request->password))) !== $userMire->CLAVE) {
                 throw ValidationException::withMessages([
-                    'email' => ['The provided credentials are incorrect.'],
+                    'email' => ['Las credenciales son incorrectas.', strtoupper(md5(strtoupper($request->password))) == $userMire->CLAVE],
                 ]);
             }
 
@@ -105,7 +105,7 @@ class Auth extends Controller
             $user = User::where('email', $request->email)->first();
             if (!$user || !Hash::check($request->password, $user->password)) {
                 throw ValidationException::withMessages([
-                    'email' => ['The provided credentials are incorrect.'],
+                    'email' => ['Las credenciales son incorrectas.', strtoupper(md5(strtoupper($request->password))) == $userMire->CLAVE],
                 ]);
             }
         }
@@ -202,7 +202,7 @@ class Auth extends Controller
 
             if (!$userMire || strtoupper(md5(strtoupper($request->password))) !== $userMire->CLAVE) {
                 throw ValidationException::withMessages([
-                    'email' => ['The provided credentials are incorrect.'],
+                    'email' => ['Las credenciales son incorrectas.'],
                 ]);
             }
 
@@ -216,7 +216,7 @@ class Auth extends Controller
             $user = User::where('email', $request->email)->first();
             if (!$user || !Hash::check($request->password, $user->password)) {
                 throw ValidationException::withMessages([
-                    'email' => ['The provided credentials are incorrect.'],
+                    'email' => ['Las credenciales son incorrectas.'],
                 ]);
             }
         }
