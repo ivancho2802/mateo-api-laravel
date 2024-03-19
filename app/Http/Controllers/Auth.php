@@ -76,6 +76,7 @@ class Auth extends Controller
     public function login(LoginRequest $request)
     {
         DB::setDefaultConnection('firebird');
+
         $user = null;
         //este swra especial usare encript md5 y comparare
         $userMire = MUsuarios::orWhere([
@@ -84,9 +85,9 @@ class Auth extends Controller
             ['LOGIN', $request->email]
         ])->first();
 
-        if ($userMire) {
+        if (isset($userMire)) {
 
-            //dd(md5(strtoupper($request->password)) . ' ' . $userMire->CLAVE);
+            dd(strtoupper(md5(strtoupper($request->password))) . ' ' . $userMire->CLAVE);
 
             if (!$userMire || strtoupper(md5(strtoupper($request->password))) !== $userMire->CLAVE) {
                 throw ValidationException::withMessages([
