@@ -87,8 +87,6 @@ class Auth extends Controller
 
         if (isset($userMire)) {
 
-            dd(strtoupper(md5(strtoupper($request->password))) . ' ' . $userMire->CLAVE);
-
             if (!$userMire || strtoupper(md5(strtoupper($request->password))) !== $userMire->CLAVE) {
                 throw ValidationException::withMessages([
                     'email' => ['Las credenciales son incorrectas.', strtoupper(md5(strtoupper($request->password))) == $userMire->CLAVE],
