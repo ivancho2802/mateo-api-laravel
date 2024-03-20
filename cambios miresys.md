@@ -1,4 +1,6 @@
 Do
+
+    * junto a la casa el logo de mire y portal web 
     * diseño de 
     * quitar lapicito
     * quitar findo blanco 
@@ -10,21 +12,22 @@ Do
         * poner menu de camila
     * poner acceso para documentos en repositorio
     * cuando este en inicio no mostaat la tirilla
-    * 
-
-
     * que le scrol funcione en la paginade forma de foco y no con clic
     * que las tablas tablas qse vean mejor con proporcion a tamaño
     * error al filtran datos 
 
 does
 
+    * que la linea de donates se mejor y al final abajo en el cierre
     * color azul de accion contra el hambre 025da9
     * quitar la pestaña de soporte BARRA_LATERAL
     * poner info en el boton del usuario
     * poner home en el menu
 
 do 
+
+    * lineas verticales en las 
+    * portal mire web con p 
 
 
 cambiar en estilos 

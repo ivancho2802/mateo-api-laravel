@@ -26,8 +26,10 @@ class PersonComplainted extends Controller
                 ]);
                 //return $resulAlaisis;
                 if (!$request->file) {
+                    $query_mmqrs = MMqr::get()->orderBy('created_at', 'desc');
+                    $mmqrs = $query_mmqrs->paginate(10);
 
-                    $data['mmqrs'] = [];
+                    $data['mmqrs'] = $mmqrs;
                     $data['record_excel'] = 0;
                     $data['record_saved'] = 0;
                     //terminar devolver tabla

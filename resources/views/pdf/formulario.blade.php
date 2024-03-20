@@ -113,6 +113,11 @@
       border-color: #0d6efd !important;
       background-image: radial-gradient(4px, blue 0%, blue 99%, transparent 100%);
     }
+
+    .question input[type=radio]:checked {
+      border-color: black !important;
+      background-image: radial-gradient(4px, black 0%, black 99%, transparent 100%) !important;
+    }
   </style>
   <link rel="stylesheet" media="all" type="text/css" href="https://ee.acf-e.org/css/theme-grid.css">
   <link rel="stylesheet" media="all" type="text/css" href="https://ee.acf-e.org/css/theme-grid.print.css">
@@ -20155,7 +20160,7 @@
           <h4><span lang="" class="question-label active">ACUERDO DE TRANSFERENCIAS</span></h4>
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 235px;">
             <span lang="default" class="question-label active" data-itext-id="/a4E3J9gkULZe5eRqQph8zh/grupo_preambulo/logo:label">This note can be read out loud</span>
-            <img lang="default" class="active" src="/media/get/http/kc.acf-e.org/comeal13/xformsMedia/2486/10076.png" data-itext-id="/a4E3J9gkULZe5eRqQph8zh/grupo_preambulo/logo:label" alt="image">
+            <img lang="default" class="active" src="https://kc.acf-e.org/comeal13/forms/a4E3J9gkULZe5eRqQph8zh/formid-media/10076" data-itext-id="/a4E3J9gkULZe5eRqQph8zh/grupo_preambulo/logo:label" alt="image">
             <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_preambulo/logo" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000"></label><label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 140px;"><span lang="" class="question-label active">Con el apoyo financiero del Departamento para la Ayuda Humanitaria de la Comunidad Europea (ECHO), la Fundación Acción Contra el Hambre (ACH), ejecuta el proyecto MIRE+ para protección y asistencia humanitaria a personas recientemente desplazadas y comunidades confinadas en Colombia, asegurando que las necesidades humanitarias urgentes insatisfechas de las poblaciones más vulnerables sean cubiertas durante las primeras etapas de la emergencia a través de programa MPCA ayuda en efectivo para múltiples propósitos.</span>
             <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_preambulo/nota_preambulo" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000"></label>
         </section><!--end of group -->
