@@ -105,7 +105,7 @@ return [
             'role'     => null,
         ],
         'odbc' => [
-            'driver' => 'odbc',//Firebird/InterBase(r) driver
+            'driver' => 'odbc',//
             'dsn' => 'Driver={iSeries Access ODBC Driver};DBQ=192.168.1.150/3050:/opt/lampp/firebird/db/ach.gdb',
             'grammar' => 'DB2',
             'username' => 'SYSDBA',

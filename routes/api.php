@@ -192,12 +192,24 @@ Route::prefix('meal')->group(function () {
     Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
 
     Route::post('/mpd/refresh', [App\Http\Controllers\MonitorPostDist::class, 'refresh']);//receptor
+
+    //ALERTAS
     
     Route::middleware(['auth:sanctum'])->post('/alerta/update', [App\Http\Controllers\Alertas::class, 'stored']);
     
     Route::middleware(['auth:sanctum'])->post('/alerta/refresh', [App\Http\Controllers\Alertas::class, 'refresh']);//receptor
 
     Route::middleware(['auth:sanctum'])->get('/alerta', [App\Http\Controllers\Alertas::class, 'all']);//receptor
+
+    //ERN
+    
+    Route::middleware(['auth:sanctum'])->post('/ern/update', [App\Http\Controllers\Erns::class, 'stored']);
+    
+    Route::middleware(['auth:sanctum'])->post('/ern/refresh', [App\Http\Controllers\Erns::class, 'refresh']);//receptor
+
+    Route::middleware(['auth:sanctum'])->get('/ern', [App\Http\Controllers\Erns::class, 'all']);//receptor
+
+    
 
     //FIN MIGRACIONS DESDE EL KOBO
 
@@ -323,7 +335,7 @@ Route::middleware(['auth:sanctum'])->get('/matriz/minas', [App\Http\Controllers\
 */
 Route::post('login', [Auth::class, 'login'])->name('api/login');
 
-Route::post('register', [Auth::class, 'register']);
+//Route::post('register', [Auth::class, 'register']);
 
 Route::post('logout', [Auth::class, 'logout']);
 

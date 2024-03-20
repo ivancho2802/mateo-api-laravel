@@ -75,6 +75,17 @@ class Auth extends Controller
      */
     public function login(LoginRequest $request)
     {
+        
+        DB::setDefaultConnection('firebird');
+        //DB::setDefaultConnection('odbc');
+
+
+        dd($userMire = MUsuarios::orWhere([
+            ['CORREO', $request->email],
+        ])->orWhere([
+            ['LOGIN', $request->email]
+        ])->first());
+
         DB::setDefaultConnection('firebird');
 
         $user = null;

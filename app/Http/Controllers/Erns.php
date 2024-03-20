@@ -11,7 +11,7 @@ use App\Http\Controllers\helper;
 use App\Models\migrateCustom;
 use Illuminate\Support\Facades\Auth;
 
-class Alertas extends Controller
+class Erns extends Controller
 {
     //
     /**
@@ -23,7 +23,7 @@ class Alertas extends Controller
      */
     function stored(Request $request)
     {
-        $m_formularios = MFormulario::where(['ACCION' => "ALERTA"]);
+        $m_formularios = MFormulario::where(['ACCION' => "ERN"]);
         $m_formulario_ids = $m_formularios->pluck('ID_M_FORMULARIOS');
         MKoboRespuestas::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
         MKoboFormularios::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
@@ -83,7 +83,7 @@ class Alertas extends Controller
             $m_formulario = MFormulario::updateOrCreate(
                 ['ID_M_FORMULARIOS' => $json_response[0]->_xform_id_string],
                 [
-                    'ACCION' => "ALERTA",
+                    'ACCION' => "ERN",
                     'ID_M_FORMULARIOS' => $json_response[0]->_xform_id_string,
                     "ASSET_UID" => $json_response[0]->_xform_id_string,
                     "UID" => $json_response[0]->_uuid,
@@ -264,7 +264,7 @@ class Alertas extends Controller
             $m_formulario = MFormulario::updateOrCreate(
                 ['ID_M_FORMULARIOS' => $json_response->_xform_id_string],
                 [
-                    'ACCION' => "ALERTA",
+                    'ACCION' => "ERN",
                     'ID_M_FORMULARIOS' => $json_response->_xform_id_string,
                     "ASSET_UID" => $json_response->_xform_id_string,
                     "UID" => $json_response->_uuid,
@@ -402,11 +402,11 @@ class Alertas extends Controller
 
     function all(Request $request){
 
-        $formulario_alertas = MFormulario::where(['ACCION' => "ALERTA"])->paginate(10);
+        $formulario_erns = MFormulario::where(['ACCION' => "ERN"])->paginate(10);
 
-        //$formulario_alertas->load(['respuestas']);
+        //$formulario_erns->load(['respuestas']);
 
-        return response()->json(['status' => true, 'data' => $formulario_alertas, 200]);
+        return response()->json(['status' => true, 'data' => $formulario_erns, 200]);
 
     }
 }
