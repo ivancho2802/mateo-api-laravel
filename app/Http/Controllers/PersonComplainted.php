@@ -26,7 +26,7 @@ class PersonComplainted extends Controller
                 ]);
                 //return $resulAlaisis;
                 if (!$request->file) {
-                    $query_mmqrs = MMqr::get()->orderBy('created_at', 'desc');
+                    $query_mmqrs = MMqr::orderBy('created_at', 'desc');
                     $mmqrs = $query_mmqrs->paginate(10);
 
                     $data['mmqrs'] = $mmqrs;
