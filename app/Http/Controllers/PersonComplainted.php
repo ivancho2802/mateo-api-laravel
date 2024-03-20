@@ -33,7 +33,7 @@ class PersonComplainted extends Controller
                     $data['record_excel'] = 0;
                     $data['record_saved'] = 0;
                     //terminar devolver tabla
-                    return view('list-lpas', $data);
+                    return view('list-mqrs', $data);
                 }
             }
 
