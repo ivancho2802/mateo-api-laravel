@@ -123,7 +123,7 @@ class PersonAttended extends Controller
         // Process the Excel file
         Excel::import($import, $file); */
 
-        $migration->file_ref = 'PENDING';
+        $migration->file_ref = 'PROCECED';
 
         $migration->save();
         
@@ -234,8 +234,7 @@ class PersonAttended extends Controller
 
         $elementsForMigrationChunked = $elementsForMigration->chunk(600);
 
-        dd($elementsForMigrationChunked);
-
+        //dd($elementsForMigrationChunked);
 
         $i = 0;
         $body_lpas = collect();
