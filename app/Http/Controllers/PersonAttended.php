@@ -234,6 +234,8 @@ class PersonAttended extends Controller
 
         $elementsForMigrationChunked = $elementsForMigration->chunk(600);
 
+        dd($elementsForMigrationChunked);
+
 
         $i = 0;
         $body_lpas = collect();
