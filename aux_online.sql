@@ -4,12 +4,13 @@ select * from activities where cod='CS2'
 select * from migrate_customs where "table" like '%echos_%'
 
 --PARA LA VALIDACION DE PROESOS PENDIENTE PÓR MES
-SELECT * 
+SELECT count(*) 
 FROM 
 public.migrate_customs 
 where 
-"table" = 'M_LPAS' 
-AND file_ref = 'PENDING'
+table_id != '[]' AND
+"table" = 'M_LPAS'  AND 
+file_ref = 'PENDING'
 
 select * from "M_LPAS" ;
 --para saber cuantas respuestas a formularios de mpd se han realizado

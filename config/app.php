@@ -42,7 +42,7 @@ return [
     */
 
     //'debug' => (bool) env('APP_DEBUG', true),
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -129,6 +129,8 @@ return [
     //token de https://eu.kobotoolbox.org sera eliminado
     'tokenkobo' =>  env('ACH_TOKENKOBO', '0a4363a291013a98e3e574a1713f9f9702c1d739'),
     'tokenkobonrc' =>  env('ACH_TOKENKOBONRC', '0a4363a291013a98e3e574a1713f9f9702c1d739'),
+    'tokenkobowendy' =>  env('ACH_TOKENKOBONRC', '322f65e3677ee93aa36d34c9a89e70e66fa9bdd4'),
+    
 
     /*
     |--------------------------------------------------------------------------
