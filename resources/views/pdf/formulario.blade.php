@@ -20176,9 +20176,9 @@
               <legend><span lang="" class="question-label active">1. Autoriza de manera previa, expresa, e informada a Acción contra el Hambre, para el tratamiento de los datos personales y sensibles suministrados dentro de las finalidades legales, contractuales, comerciales y las aquí contempladas.</span>
               </legend>
               <div class="option-wrapper"><label class="" data-checked="true">
-                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" value="si" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos']) == 'si' ? 'checked' : ''}}>
+                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" value="si" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos']) && $data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos'] == 'si' ? 'checked' : ''}}>
                   <span lang="" class="option-label active">SI</span></label><label class="">
-                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" value="no" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos']) == 'no' ? 'checked' : ''}}>
+                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" value="no" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos']) && $data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos'] == 'no' ? 'checked' : ''}}>
                   <span lang="" class="option-label active">NO</span></label><label class="filler"></label>
               </div>
             </fieldset>
@@ -20188,9 +20188,9 @@
               <legend><span lang="" class="question-label active">2. Autorizo la toma de fotografías / videos /audios en el marco de las actividades desarrolladas para este proyecto por Acción contra el Hambre para publicarse de forma digital o impresa por Acción contra el Hambre. Autorizo el uso de la imagen en las comunicaciones internas y externas dirigidas a los diferentes públicos con los que se relaciona Acción contra el Hambre.</span>
               </legend>
               <div class="option-wrapper"><label class="" data-checked="true">
-                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_multimedia" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_multimedia" value="si" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_multimedia']) == 'si' ? 'checked' : ''}}>
+                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_multimedia" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_multimedia" value="si" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_multimedia']) && $data['autorizacion_acuerdo/autorizacion_multimedia'] == 'si' ? 'checked' : ''}}>
                   <span lang="" class="option-label active">SI</span></label><label class="">
-                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_multimedia" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_multimedia" value="no" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_multimedia']) == 'no' ? 'checked' : ''}}>
+                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_multimedia" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_multimedia" value="no" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_multimedia']) && $data['autorizacion_acuerdo/autorizacion_multimedia'] == 'no' ? 'checked' : ''}}>
                   <span lang="" class="option-label active">NO</span></label><label class="filler"></label></div>
             </fieldset>
           </fieldset>
@@ -20199,8 +20199,8 @@
               <legend><span lang="" class="question-label active">3. Autorizo a Acción contra el Hambre el uso de fotografías, videos o audios sin que en esta autorización medien prestaciones en moneda o en especie y sin límite temporal ni territorial, para que pueda ser tomadas durante mi participación en las actividades desarrolladas.</span>
               </legend>
               <div class="option-wrapper"><label class="" data-checked="true">
-                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_uso_fotografias" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_uso_fotografias" value="si" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_uso_fotografias']) == 'si' ? 'checked' : ''}}><span lang="" class="option-label active">SI</span></label><label class="">
-                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_uso_fotografias" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_uso_fotografias" value="no" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_uso_fotografias']) == 'no' ? 'checked' : ''}}><span lang="" class="option-label active">NO</span></label><label class="filler"></label>
+                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_uso_fotografias" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_uso_fotografias" value="si" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_uso_fotografias']) && $data['autorizacion_acuerdo/autorizacion_uso_fotografias'] == 'si' ? 'checked' : ''}}><span lang="" class="option-label active">SI</span></label><label class="">
+                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_uso_fotografias" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_uso_fotografias" value="no" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_uso_fotografias']) && $data['autorizacion_acuerdo/autorizacion_uso_fotografias'] == 'no' ? 'checked' : ''}}><span lang="" class="option-label active">NO</span></label><label class="filler"></label>
               </div>
             </fieldset>
           </fieldset><label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 56px;"><span lang="" class="question-label active">Todos los datos personales que proporcione a Acción contra el Hambre se reunirán, utilizarán y compartirán únicamente con los siguientes fines:</span><input type="text" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/datos_recolectados" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000"></label><label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;"><span lang="" class="question-label active">• Entrega de la asistencia humanitaria</span><input type="text" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/entrega_de_la_asistencia_humanitaria" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000"></label><label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;"><span lang="" class="question-label active">• Evaluación, monitoreo y seguimiento de la entrega de asistencia humanitaria</span><input type="text" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/monitoreo_de_la_entrega" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000"></label><label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;"><span lang="" class="question-label active">• Medios y soportes de comprobación ante el donante.</span><input type="text" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/medios_soportes" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000"></label><label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;"><span lang="" class="question-label active">• Comunicación en caso de que se interpongan peticiones, quejas y retroalimentaciones.</span><input type="text" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/rendicion_de_cuentas" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000"></label><label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 182px;"><span lang="" class="question-label active"><strong>Nota:</strong> Le informamos que todos los datos personales, especialmente los de carácter sensible o especial que usted autorice (Información sobre menores de edad, genero, origen étnico, víctimas de conflicto armado, estatus migratorio, declaración de personas en condición de discapacidad y las que hubiese lugar de especial protección.) y que nos suministre, serán tratados mediante el uso de medidas de seguridad técnicas, físicas y administrativas con el fin garantizar su protección reforzada. En cualquier caso, usted se puede comunicar a nuestros canales para ejercer sus derechos de eliminación, actualización, rectificación y conocimiento sobre sus Datos Personales, mediante la línea celular (+57) 322 341 2814. y el correo electrónico: protecciondatos@co.acfspain.org</span><input type="text" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/seguridad_de_los_datos" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000"></label>
@@ -20213,11 +20213,11 @@
               <legend><span lang="" class="question-label active">Si la información corresponde a un menor de edad seleccione la siguinte opción, de lo contrario continue con Nombres y apellidos del participante.</span>
               </legend>
               <div class="option-wrapper"><label class="">
-                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion" value="menor_edad" data-type-xml="select1" {{isset($data['grupo_datos_beneficiario/tipo_persona_autorizacion']) == 'si' ? 'checked' : ''}}><span lang="" class="option-label active">Persona menor de edad con representante legal</span></label></div>
+                  <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion" value="menor_edad" data-type-xml="select1" {{isset($data['grupo_datos_beneficiario/tipo_persona_autorizacion']) && $data['grupo_datos_beneficiario/tipo_persona_autorizacion'] == 'si' ? 'checked' : ''}}><span lang="" class="option-label active">Persona menor de edad con representante legal</span></label></div>
             </fieldset>
           </fieldset>
           <label class="question non-select print-width-adjusted print-height-adjusted" style="width: 100%; height: 84px;"><span lang="" class="question-label active">Nombres y apellidos:</span><span lang="" class="or-hint active">(Datos del participante dividir por primer nombre, segundo nombre, primer apellido y segundo apellido)</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/nombre_participante" data-constraint="regex(., '^[a-zA-Z\D]{7,60}$')" data-type-xml="string" maxlength="2000" value="{{isset($data['grupo_datos_beneficiario/nombre_participante'])}}"><span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Este valor no está permitido.</span>
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/nombre_participante" data-constraint="regex(., '^[a-zA-Z\D]{7,60}$')" data-type-xml="string" maxlength="2000" value="{{ ($data['grupo_datos_beneficiario/nombre_participante']) ?? ''}}"><span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Este valor no está permitido.</span>
           </label>
           <!-- datos del representante legas -->
           <?php if (isset($data['grupo_datos_beneficiario/tipo_persona_autorizacion']) == 'menor_edad') { ?>
@@ -20230,17 +20230,17 @@
                   </legend>
                   <div class="option-wrapper">
                     <label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" value="colombiano_a" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante']) == 'colombiano_a' ? 'checked' : ''}}><span lang="" class="option-label active">Colombiano/a</span></label><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" value="venezolano_a" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante']) == 'venezolano_a' ? 'checked' : ''}}><span lang="" class="option-label active">Venezolano/a</span></label><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" value="colombovenezolano" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante']) == 'colombovenezolano' ? 'checked' : ''}}><span lang="" class="option-label active">Colombo-Venezolano</span></label><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" value="otra_nacionalidad" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante']) == 'otra_nacionalidad' ? 'checked' : ''}}><span lang="" class="option-label active">Otra</span>
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" value="colombiano_a" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante'] == 'colombiano_a' ? 'checked' : ''}}><span lang="" class="option-label active">Colombiano/a</span></label><label class="">
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" value="venezolano_a" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante'] == 'venezolano_a' ? 'checked' : ''}}><span lang="" class="option-label active">Venezolano/a</span></label><label class="">
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" value="colombovenezolano" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante'] == 'colombovenezolano' ? 'checked' : ''}}><span lang="" class="option-label active">Colombo-Venezolano</span></label><label class="">
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante" value="otra_nacionalidad" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante'] == 'otra_nacionalidad' ? 'checked' : ''}}><span lang="" class="option-label active">Otra</span>
                     </label>
                   </div>
                 </fieldset><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
               </fieldset>
 
               <label class="question or-branch non-select disabled"><span lang="" class="question-label active">Nombre de representante legal</span><span class="required">*</span>
-                <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nombre_representante" data-required="true()" data-constraint="regex(., '^[a-zA-Z\D]{10,150}$')" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="string" maxlength="2000" disabled="" value="{{isset($data['grupo_datos_beneficiario/datos_representante_legal/nombre_representante'])}}"><span lang="" class="or-constraint-msg active">Este campo sólo permite texto</span><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+                <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nombre_representante" data-required="true()" data-constraint="regex(., '^[a-zA-Z\D]{10,150}$')" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="string" maxlength="2000" disabled="" value="{{($data['grupo_datos_beneficiario/datos_representante_legal/nombre_representante']) ?? ''}}"><span lang="" class="or-constraint-msg active">Este campo sólo permite texto</span><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
               </label>
 
               <!-- cuando es otra nacionalidad -->
@@ -20250,7 +20250,7 @@
               if (isset($data['grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante']) == 'otra_nacionalidad') {
               ?>
                 <label class="question or-branch non-select disabled"><span lang="" class="question-label active">Otra nacionalidad, ¿Cuál?</span><span class="required">*</span>
-                  <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/otra_nacionalidad_representante" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante  = 'otra_nacionalidad'" data-type-xml="string" maxlength="2000" disabled="" value="{{isset($data['grupo_datos_beneficiario/datos_representante_legal/otra_nacionalidad_representante'])}}">
+                  <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/otra_nacionalidad_representante" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante  = 'otra_nacionalidad'" data-type-xml="string" maxlength="2000" disabled="" value="{{ ($data['grupo_datos_beneficiario/datos_representante_legal/otra_nacionalidad_representante']) ?? ''}}">
                   <span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
                 </label>
 
@@ -20258,10 +20258,10 @@
                   <span lang="" class="question-label active">Tipo de documentación de representante legal</span><span class="required">*</span>
                   <select name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante  = 'otra_nacionalidad'" data-type-xml="select1" style="display: none;" disabled="">
                     <option value="">...</option>
-                    <option value="pasaporte_7" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) == "pasaporte_7" ? "selected": ''}}>Pasaporte</option>
-                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) == "cedula_extranjera" ? "selected": ''}}>Cédula de extranjería</option>
-                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) == "visa" ? "selected": ''}}>Visa</option>
-                    <option value="otro_id_4" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) == "otro_id_4" ? "selected": ''}}>Otro</option>
+                    <option value="pasaporte_7" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "pasaporte_7" ? "selected": ''}}>Pasaporte</option>
+                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "cedula_extranjera" ? "selected": ''}}>Cédula de extranjería</option>
+                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "visa" ? "selected": ''}}>Visa</option>
+                    <option value="otro_id_4" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "otro_id_4" ? "selected": ''}}>Otro</option>
                   </select>
 
                   <div class="btn-group bootstrap-select widget clearfix">
@@ -20272,7 +20272,7 @@
                       <li class="disabled">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="39643.87468881256" value="pasaporte_7" disabled="" readonly="" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) == "pasaporte_7" ? "checked": ''}}>
+                            <input class="ignore" type="radio" name="39643.87468881256" value="pasaporte_7" disabled="" readonly="" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "pasaporte_7" ? "checked": ''}}>
                             <span class="option-label">Pasaporte</span>
                           </label>
                         </a>
@@ -20280,7 +20280,7 @@
                       <li class="disabled">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="39643.87468881256" value="cedula_extranjera" disabled="" readonly="" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) == "cedula_extranjera" ? "checked": ''}}>
+                            <input class="ignore" type="radio" name="39643.87468881256" value="cedula_extranjera" disabled="" readonly="" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "cedula_extranjera" ? "checked": ''}}>
                             <span class="option-label">Cédula de extranjería</span>
                           </label>
                         </a>
@@ -20288,7 +20288,7 @@
                       <li class="disabled">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="39643.87468881256" value="visa" disabled="" readonly="" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) == "visa" ? "checked": ''}}>
+                            <input class="ignore" type="radio" name="39643.87468881256" value="visa" disabled="" readonly="" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "visa" ? "checked": ''}}>
                             <span class="option-label">Visa</span>
                           </label>
                         </a>
@@ -20296,7 +20296,7 @@
                       <li class="disabled">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="39643.87468881256" value="otro_id_4" disabled="" readonly="" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) == "otro_id_4" ? "checked": ''}}>
+                            <input class="ignore" type="radio" name="39643.87468881256" value="otro_id_4" disabled="" readonly="" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "otro_id_4" ? "checked": ''}}>
                             <span class="option-label">Otro</span>
                           </label>
                         </a>
@@ -20317,8 +20317,8 @@
                 <label class="question or-appearance-minimal or-branch"><span lang="" class="question-label active">Tipo de identificación de representante legal</span><span class="required">*</span>
                   <select name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante  = 'colombiano_a'" data-type-xml="select1" style="display: none;">
                     <option class="itemset-template" value="" data-items-path="instance('tipo_idcolombia')/root/item[nacionalidad_representante= /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante ]">...</option>
-                    <option value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante']) =="cedula_colombiana" ? 'selected' : '' }}>Cédula colombiana</option>
-                    <option value="pasaporte_13" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante']) =="pasaporte_13" ? 'selected' : '' }}>Pasaporte colombiano</option>
+                    <option value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante'] =="cedula_colombiana" ? 'selected' : '' }}>Cédula colombiana</option>
+                    <option value="pasaporte_13" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante'] =="pasaporte_13" ? 'selected' : '' }}>Pasaporte colombiano</option>
                   </select>
                   <div class="btn-group bootstrap-select widget clearfix">
                     <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -20328,7 +20328,7 @@
                       <li class="active">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="6746.255451479954" value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante']) =="cedula_colombiana" ? 'checked' : '' }}>
+                            <input class="ignore" type="radio" name="6746.255451479954" value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante'] =="cedula_colombiana" ? 'checked' : '' }}>
                             <span class="option-label">Cédula colombiana</span>
                           </label>
                         </a>
@@ -20336,7 +20336,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="6746.255451479954" value="pasaporte_13" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante']) =="pasaporte_13" ? 'checked' : '' }}>
+                            <input class="ignore" type="radio" name="6746.255451479954" value="pasaporte_13" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idcolombia_representante'] =="pasaporte_13" ? 'checked' : '' }}>
                             <span class="option-label">Pasaporte colombiano</span>
                           </label>
                         </a>
@@ -20364,18 +20364,18 @@
                 <label class="question or-appearance-minimal or-branch"><span lang="" class="question-label active">Tipo de identificación de representante legal</span><span class="required">*</span>
                   <select name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante  = 'venezolano_a'" data-type-xml="select1" style="display: none;">
                     <option class="itemset-template" value="" data-items-path="instance('tipo_idvenezuela')/root/item[nacionalidad_representante= /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante ]">...</option>
-                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='cedula_extranjera' ? 'selected': ''}}>Cédula de extranjería</option>
-                    <option value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='pasaporte_venezolano' ? 'selected': ''}}>Pasaporte venezolano</option>
-                    <option value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='permiso_especial_permanencia' ? 'selected': ''}}>Permiso Especial de Permanencia (PEP)</option>
-                    <option value="pepff" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='pepff' ? 'selected': ''}}>Permiso Especial de Permanencia para el Fomento de la Formalización (PFF)</option>
-                    <option value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='permiso_permanencia' ? 'selected': ''}}>Permiso de Ingreso y Permanencia (PIP)</option>
-                    <option value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='permiso_temporal_proteccion' ? 'selected': ''}}>Permiso Temporal de Protección (PTP)</option>
-                    <option value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='permiso_transito_temporal' ? 'selected': ''}}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
-                    <option value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='tarjeta_movilidad_fronteriza' ? 'selected': ''}}>Tarjeta de movilidad fronteriza (TMF)</option>
-                    <option value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='carta_solicitud_asilo' ? 'selected': ''}}>Carta Solicitante de Refugio o Asilo</option>
-                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='visa' ? 'selected': ''}}>Visa</option>
-                    <option value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='sin_identificacion_col' ? 'selected': ''}}>Sin identificación colombiana con documento venezolano</option>
-                    <option value="otro_id_1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='otro_id_1' ? 'selected': ''}}>Otro</option>
+                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='cedula_extranjera' ? 'selected': ''}}>Cédula de extranjería</option>
+                    <option value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='pasaporte_venezolano' ? 'selected': ''}}>Pasaporte venezolano</option>
+                    <option value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='permiso_especial_permanencia' ? 'selected': ''}}>Permiso Especial de Permanencia (PEP)</option>
+                    <option value="pepff" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='pepff' ? 'selected': ''}}>Permiso Especial de Permanencia para el Fomento de la Formalización (PFF)</option>
+                    <option value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='permiso_permanencia' ? 'selected': ''}}>Permiso de Ingreso y Permanencia (PIP)</option>
+                    <option value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='permiso_temporal_proteccion' ? 'selected': ''}}>Permiso Temporal de Protección (PTP)</option>
+                    <option value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='permiso_transito_temporal' ? 'selected': ''}}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
+                    <option value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='tarjeta_movilidad_fronteriza' ? 'selected': ''}}>Tarjeta de movilidad fronteriza (TMF)</option>
+                    <option value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='carta_solicitud_asilo' ? 'selected': ''}}>Carta Solicitante de Refugio o Asilo</option>
+                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='visa' ? 'selected': ''}}>Visa</option>
+                    <option value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='sin_identificacion_col' ? 'selected': ''}}>Sin identificación colombiana con documento venezolano</option>
+                    <option value="otro_id_1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']=='otro_id_1' ? 'selected': ''}}>Otro</option>
                   </select>
                   <div class="btn-group bootstrap-select widget clearfix">
                     <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -20385,7 +20385,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='cedula_extranjera' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='cedula_extranjera' ? 'checked': ''}}>
                             <span class="option-label">Cédula de extranjería</span>
                           </label>
                         </a>
@@ -20393,7 +20393,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='pasaporte_venezolano' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='pasaporte_venezolano' ? 'checked': ''}}>
                             <span class="option-label">Pasaporte venezolano</span>
                           </label>
                         </a>
@@ -20401,7 +20401,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='permiso_especial_permanencia' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='permiso_especial_permanencia' ? 'checked': ''}}>
                             <span class="option-label">Permiso Especial de Permanencia (PEP)</span>
                           </label>
                         </a>
@@ -20409,7 +20409,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="pepff" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='pepff' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="pepff" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='pepff' ? 'checked': ''}}>
                             <span class="option-label">Permiso Especial de Permanencia para el Fomento de la Formalización (PFF)</span>
                           </label>
                         </a>
@@ -20417,7 +20417,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='permiso_permanencia' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='permiso_permanencia' ? 'checked': ''}}>
                             <span class="option-label">Permiso de Ingreso y Permanencia (PIP)</span>
                           </label>
                         </a>
@@ -20425,7 +20425,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='permiso_temporal_proteccion' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='permiso_temporal_proteccion' ? 'checked': ''}}>
                             <span class="option-label">Permiso Temporal de Protección (PTP)</span>
                           </label>
                         </a>
@@ -20433,7 +20433,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='permiso_transito_temporal' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='permiso_transito_temporal' ? 'checked': ''}}>
                             <span class="option-label">Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</span>
                           </label>
                         </a>
@@ -20441,7 +20441,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='tarjeta_movilidad_fronteriza' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='tarjeta_movilidad_fronteriza' ? 'checked': ''}}>
                             <span class="option-label">Tarjeta de movilidad fronteriza (TMF)</span>
                           </label>
                         </a>
@@ -20449,7 +20449,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='carta_solicitud_asilo' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='carta_solicitud_asilo' ? 'checked': ''}}>
                             <span class="option-label">Carta Solicitante de Refugio o Asilo</span>
                           </label>
                         </a>
@@ -20457,7 +20457,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="visa" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='visa' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="visa" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='visa' ? 'checked': ''}}>
                             <span class="option-label">Visa</span>
                           </label>
                         </a>
@@ -20465,7 +20465,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='sin_identificacion_col' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='sin_identificacion_col' ? 'checked': ''}}>
                             <span class="option-label">Sin identificación colombiana con documento venezolano</span>
                           </label>
                         </a>
@@ -20473,7 +20473,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="46844.42235337292" value="otro_id_1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'])=='otro_id_1' ? 'checked': ''}}>
+                            <input class="ignore" type="radio" name="46844.42235337292" value="otro_id_1" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idvenezuela_representante'] =='otro_id_1' ? 'checked': ''}}>
                             <span class="option-label">Otro</span>
                           </label>
                         </a>
@@ -20492,18 +20492,18 @@
                 <label class="question or-appearance-minimal or-branch"><span lang="" class="question-label active">Tipo de identificación de representante legal</span><span class="required">*</span>
                   <select name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante  = 'colombovenezolano'" data-type-xml="select1" style="display: none;">
                     <option class="itemset-template" value="" data-items-path="instance('tipo_idbinacional')/root/item[nacionalidad_representante= /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante ]">...</option>
-                    <option value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "cedula_colombiana" ? "selected": ""}}>Cédula colombiana</option>
-                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "cedula_extranjera" ? "selected": ""}}>Cédula de extranjería</option>
-                    <option value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "pasaporte_venezolano" ? "selected": ""}}>Pasaporte venezolano</option>
-                    <option value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "permiso_especial_permanencia" ? "selected": ""}}>Permiso Especial de Permanencia (PEP)</option>
-                    <option value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "permiso_permanencia" ? "selected": ""}}>Permiso de Ingreso y Permanencia (PIP)</option>
-                    <option value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "permiso_temporal_proteccion" ? "selected": ""}}>Permiso Temporal de Protección (PTP)</option>
-                    <option value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "permiso_transito_temporal" ? "selected": ""}}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
-                    <option value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "tarjeta_movilidad_fronteriza" ? "selected": ""}}>Tarjeta de movilidad fronteriza (TMF)</option>
-                    <option value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "carta_solicitud_asilo" ? "selected": ""}}>Carta Solicitante de Refugio o Asilo</option>
-                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "visa" ? "selected": ""}}>Visa</option>
-                    <option value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "sin_identificacion_col" ? "selected": ""}}>Sin identificación colombiana con documento venezolano</option>
-                    <option value="otro_id_3" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) == "otro_id_3" ? "selected": ""}}>Otro</option>
+                    <option value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "cedula_colombiana" ? "selected": ""}}>Cédula colombiana</option>
+                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "cedula_extranjera" ? "selected": ""}}>Cédula de extranjería</option>
+                    <option value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "pasaporte_venezolano" ? "selected": ""}}>Pasaporte venezolano</option>
+                    <option value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "permiso_especial_permanencia" ? "selected": ""}}>Permiso Especial de Permanencia (PEP)</option>
+                    <option value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "permiso_permanencia" ? "selected": ""}}>Permiso de Ingreso y Permanencia (PIP)</option>
+                    <option value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "permiso_temporal_proteccion" ? "selected": ""}}>Permiso Temporal de Protección (PTP)</option>
+                    <option value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "permiso_transito_temporal" ? "selected": ""}}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
+                    <option value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "tarjeta_movilidad_fronteriza" ? "selected": ""}}>Tarjeta de movilidad fronteriza (TMF)</option>
+                    <option value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "carta_solicitud_asilo" ? "selected": ""}}>Carta Solicitante de Refugio o Asilo</option>
+                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "visa" ? "selected": ""}}>Visa</option>
+                    <option value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "sin_identificacion_col" ? "selected": ""}}>Sin identificación colombiana con documento venezolano</option>
+                    <option value="otro_id_3" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idbinacional_representante'] == "otro_id_3" ? "selected": ""}}>Otro</option>
                   </select>
                   <div class="btn-group bootstrap-select widget clearfix">
                     <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -20654,34 +20654,34 @@
                   <legend><span lang="" class="question-label active">Nacionalidad de representante legal</span><span class="required">*</span>
                   </legend>
                   <div class="option-wrapper"><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" value="colombiano_a" {{isset($data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad']) == "colombiano_a" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Colombiano/a</span></label><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" value="venezolano_a" {{isset($data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad']) == "venezolano_a" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Venezolano/a</span></label><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" value="colombovenezolano" {{isset($data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad']) == "colombovenezolano" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Colombo-Venezolano</span></label><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" value="otra_nacionalidad" {{isset($data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad']) == "otra_nacionalidad" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Otra</span></label></div>
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" value="colombiano_a" {{isset($data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad'] == "colombiano_a" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Colombiano/a</span></label><label class="">
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" value="venezolano_a" {{isset($data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad'] == "venezolano_a" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Venezolano/a</span></label><label class="">
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" value="colombovenezolano" {{isset($data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad'] == "colombovenezolano" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Colombo-Venezolano</span></label><label class="">
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad" value="otra_nacionalidad" {{isset($data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad'] == "otra_nacionalidad" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Otra</span></label></div>
                 </fieldset><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
               </fieldset>
 
               <?php if (isset($data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad']) == 'otra_nacionalidad') { ?>
 
                 <label class="question or-branch non-select disabled"><span lang="" class="question-label active">Otra nacionalidad, ¿Cuál?</span><span class="required">*</span>
-                  <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/otra_nacionalidad_menor_edad" value="{{isset($data['grupo_datos_beneficiario/datos_representado/otra_nacionalidad_menor_edad'])}}" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'otra_nacionalidad'" data-type-xml="string" maxlength="2000" disabled=""><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+                  <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/otra_nacionalidad_menor_edad" value="{{ ($data['grupo_datos_beneficiario/datos_representado/otra_nacionalidad_menor_edad']) ?? ''}}" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'otra_nacionalidad'" data-type-xml="string" maxlength="2000" disabled=""><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
                 </label>
 
               <?php } ?>
 
               <label class="question or-branch non-select disabled"><span lang="" class="question-label active">Nombre completo del/la niño, niña o adolescente</span><span class="required">*</span>
-                <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nombre_menor_edad" value="{{isset($data['grupo_datos_beneficiario/datos_representado/nombre_menor_edad'])}}" data-required="true()" data-constraint="regex(., '^[a-zA-Z\D]{10,150}$')" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="string" maxlength="2000" disabled=""><span lang="" class="or-constraint-msg active">Este campo sólo permite texto</span><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+                <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nombre_menor_edad" value="{{ ($data['grupo_datos_beneficiario/datos_representado/nombre_menor_edad']) ?? ''}}" data-required="true()" data-constraint="regex(., '^[a-zA-Z\D]{10,150}$')" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="string" maxlength="2000" disabled=""><span lang="" class="or-constraint-msg active">Este campo sólo permite texto</span><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
               </label>
 
               <?php if (isset($data['grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad'])   == 'colombiano_a') { ?>
                 <label class="question or-appearance-minimal or-branch"><span lang="" class="question-label active">Tipo de documento de identidad del/la niño, niña o adolescente</span><span class="required">*</span>
                   <select name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'colombiano_a'" data-type-xml="select1" style="display: none;">
                     <option class="itemset-template" value="" data-items-path="instance('tipo_idcolombia')/root/item[tipo_persona_autorizacion= /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion ]">...</option>
-                    <option value="tarjeta_identidad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) == "tarjeta_identidad" ? "selected" : ""}}>Tarjeta de identidad</option>
-                    <option value="registro_civil" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) == "registro_civil" ? "selected" : ""}}>Registro civil de nacimiento</option>
-                    <option value="certificado_nvivo" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) == "certificado_nvivo" ? "selected" : ""}}>Certificado de nacido/a vivo/a</option>
-                    <option value="acta_nacinamiento" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) == "acta_nacinamiento" ? "selected" : ""}}>Acta de nacimiento</option>
-                    <option value="sin_identificacion_men" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) == "sin_identificacion_men" ? "selected" : ""}}>Sin identificación</option>
+                    <option value="tarjeta_identidad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad'] == "tarjeta_identidad" ? "selected" : ""}}>Tarjeta de identidad</option>
+                    <option value="registro_civil" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad'] == "registro_civil" ? "selected" : ""}}>Registro civil de nacimiento</option>
+                    <option value="certificado_nvivo" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad'] == "certificado_nvivo" ? "selected" : ""}}>Certificado de nacido/a vivo/a</option>
+                    <option value="acta_nacinamiento" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad'] == "acta_nacinamiento" ? "selected" : ""}}>Acta de nacimiento</option>
+                    <option value="sin_identificacion_men" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad'] == "sin_identificacion_men" ? "selected" : ""}}>Sin identificación</option>
                   </select>
                   <div class="btn-group bootstrap-select widget clearfix">
                     <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -20691,7 +20691,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="3351.519609182674" value="tarjeta_identidad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) == "tarjeta_identidad" ? "checked" : ""}}>
+                            <input class="ignore" type="radio" name="3351.519609182674" value="tarjeta_identidad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad'] == "tarjeta_identidad" ? "checked" : ""}}>
                             <span class="option-label">Tarjeta de identidad</span>
                           </label>
                         </a>
@@ -20699,7 +20699,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="3351.519609182674" value="registro_civil" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) == "registro_civil" ? "checked" : ""}}>
+                            <input class="ignore" type="radio" name="3351.519609182674" value="registro_civil" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad'] == "registro_civil" ? "checked" : ""}}>
                             <span class="option-label">Registro civil de nacimiento</span>
                           </label>
                         </a>
@@ -20707,7 +20707,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="3351.519609182674" value="certificado_nvivo" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) == "certificado_nvivo" ? "checked" : ""}}>
+                            <input class="ignore" type="radio" name="3351.519609182674" value="certificado_nvivo" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad'] == "certificado_nvivo" ? "checked" : ""}}>
                             <span class="option-label">Certificado de nacido/a vivo/a</span>
                           </label>
                         </a>
@@ -20715,7 +20715,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="3351.519609182674" value="acta_nacinamiento" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) == "acta_nacinamiento" ? "checked" : ""}}>
+                            <input class="ignore" type="radio" name="3351.519609182674" value="acta_nacinamiento" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad'] == "acta_nacinamiento" ? "checked" : ""}}>
                             <span class="option-label">Acta de nacimiento</span>
                           </label>
                         </a>
@@ -20723,7 +20723,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="3351.519609182674" value="sin_identificacion_men" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) == "sin_identificacion_men" ? "checked" : ""}}>
+                            <input class="ignore" type="radio" name="3351.519609182674" value="sin_identificacion_men" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad'] == "sin_identificacion_men" ? "checked" : ""}}>
                             <span class="option-label">Sin identificación</span>
                           </label>
                         </a>
@@ -20734,7 +20734,7 @@
                 </label>
 
                 <label class="question or-branch non-select"><span lang="" class="question-label active">Número de identificación del/la niño, niña o adolescente</span><span class="required">*</span>
-                  <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/numeroid_menor_edad" value="{{isset($data['grupo_datos_beneficiario/datos_representado/numeroid_menor_edad'])}}" data-required="true()" data-relevant="selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion ,'menor_edad') and (( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad !='' and ( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad !='' or  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad !='' or  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad !='')) or (selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad ,'colombiano_a') and not(selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad ,'sin_identificacion'))))" data-type-xml="string" maxlength="2000"><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+                  <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/numeroid_menor_edad" value="{{ ($data['grupo_datos_beneficiario/datos_representado/numeroid_menor_edad']) ?? ''}}" data-required="true()" data-relevant="selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion ,'menor_edad') and (( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad !='' and ( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad !='' or  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad !='' or  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad !='')) or (selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad ,'colombiano_a') and not(selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idcolombia_menor_edad ,'sin_identificacion'))))" data-type-xml="string" maxlength="2000"><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
                 </label>
 
               <?php } ?>
@@ -20744,15 +20744,15 @@
                 <label class="question or-appearance-minimal or-branch"><span lang="" class="question-label active">Tipo de documento de identidad del/la niño, niña o adolescente</span><span class="required">*</span>
                   <select name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'venezolano_a'" data-type-xml="select1" style="display: none;">
                     <option class="itemset-template" value="" data-items-path="instance('tipo_idvenezuela')/root/item[tipo_persona_autorizacion= /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion ]">...</option>
-                    <option value="cedula_extranjera" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="cedula_extranjera" ? "selected": ""}}>Cédula de extranjería</option>
-                    <option value="pasaporte_venezolano" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="pasaporte_venezolano" ? "selected": ""}}>Pasaporte venezolano</option>
-                    <option value="acta_nacinamiento" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="acta_nacinamiento" ? "selected": ""}}>Acta de nacimiento</option>
-                    <option value="permiso_especial_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="permiso_especial_permanencia" ? "selected": ""}}>Permiso Especial de Permanencia (PEP)</option>
-                    <option value="permiso_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="permiso_permanencia" ? "selected": ""}}>Permiso de Ingreso y Permanencia (PIP)</option>
-                    <option value="permiso_temporal_proteccion" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="permiso_temporal_proteccion" ? "selected": ""}}>Permiso Temporal de Protección (PTP)</option>
-                    <option value="permiso_transito_temporal" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="permiso_transito_temporal" ? "selected": ""}}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
-                    <option value="tarjeta_movilidad_fronteriza" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="tarjeta_movilidad_fronteriza" ? "selected": ""}}>Tarjeta de movilidad fronteriza (TMF)</option>
-                    <option value="carta_solicitud_asilo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="carta_solicitud_asilo" ? "selected": ""}}>Carta Solicitante de Refugio o Asilo</option>
+                    <option value="cedula_extranjera" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="cedula_extranjera" ? "selected": ""}}>Cédula de extranjería</option>
+                    <option value="pasaporte_venezolano" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="pasaporte_venezolano" ? "selected": ""}}>Pasaporte venezolano</option>
+                    <option value="acta_nacinamiento" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="acta_nacinamiento" ? "selected": ""}}>Acta de nacimiento</option>
+                    <option value="permiso_especial_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="permiso_especial_permanencia" ? "selected": ""}}>Permiso Especial de Permanencia (PEP)</option>
+                    <option value="permiso_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="permiso_permanencia" ? "selected": ""}}>Permiso de Ingreso y Permanencia (PIP)</option>
+                    <option value="permiso_temporal_proteccion" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="permiso_temporal_proteccion" ? "selected": ""}}>Permiso Temporal de Protección (PTP)</option>
+                    <option value="permiso_transito_temporal" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="permiso_transito_temporal" ? "selected": ""}}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
+                    <option value="tarjeta_movilidad_fronteriza" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="tarjeta_movilidad_fronteriza" ? "selected": ""}}>Tarjeta de movilidad fronteriza (TMF)</option>
+                    <option value="carta_solicitud_asilo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="carta_solicitud_asilo" ? "selected": ""}}>Carta Solicitante de Refugio o Asilo</option>
                   </select>
                   <div class="btn-group bootstrap-select widget clearfix">
                     <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -20762,7 +20762,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="66834.55339487163" value="cedula_extranjera" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="cedula_extranjera" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="66834.55339487163" value="cedula_extranjera" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="cedula_extranjera" ? "checked": ""}}>
                             <span class="option-label">Cédula de extranjería</span>
                           </label>
                         </a>
@@ -20770,7 +20770,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="66834.55339487163" value="pasaporte_venezolano" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="pasaporte_venezolano" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="66834.55339487163" value="pasaporte_venezolano" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="pasaporte_venezolano" ? "checked": ""}}>
                             <span class="option-label">Pasaporte venezolano</span>
                           </label>
                         </a>
@@ -20778,7 +20778,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="66834.55339487163" value="acta_nacinamiento" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="acta_nacinamiento" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="66834.55339487163" value="acta_nacinamiento" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="acta_nacinamiento" ? "checked": ""}}>
                             <span class="option-label">Acta de nacimiento</span>
                           </label>
                         </a>
@@ -20786,7 +20786,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="66834.55339487163" value="permiso_especial_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="permiso_especial_permanencia" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="66834.55339487163" value="permiso_especial_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="permiso_especial_permanencia" ? "checked": ""}}>
                             <span class="option-label">Permiso Especial de Permanencia (PEP)</span>
                           </label>
                         </a>
@@ -20794,7 +20794,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="66834.55339487163" value="permiso_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="permiso_permanencia" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="66834.55339487163" value="permiso_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="permiso_permanencia" ? "checked": ""}}>
                             <span class="option-label">Permiso de Ingreso y Permanencia (PIP)</span>
                           </label>
                         </a>
@@ -20802,7 +20802,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="66834.55339487163" value="permiso_temporal_proteccion" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="permiso_temporal_proteccion" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="66834.55339487163" value="permiso_temporal_proteccion" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="permiso_temporal_proteccion" ? "checked": ""}}>
                             <span class="option-label">Permiso Temporal de Protección (PTP)</span>
                           </label>
                         </a>
@@ -20810,7 +20810,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="66834.55339487163" value="permiso_transito_temporal" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="permiso_transito_temporal" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="66834.55339487163" value="permiso_transito_temporal" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="permiso_transito_temporal" ? "checked": ""}}>
                             <span class="option-label">Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</span>
                           </label>
                         </a>
@@ -20818,7 +20818,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="66834.55339487163" value="tarjeta_movilidad_fronteriza" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="tarjeta_movilidad_fronteriza" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="66834.55339487163" value="tarjeta_movilidad_fronteriza" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="tarjeta_movilidad_fronteriza" ? "checked": ""}}>
                             <span class="option-label">Tarjeta de movilidad fronteriza (TMF)</span>
                           </label>
                         </a>
@@ -20826,7 +20826,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="66834.55339487163" value="carta_solicitud_asilo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"])=="carta_solicitud_asilo" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="66834.55339487163" value="carta_solicitud_asilo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idvenezuela_menor_edad"]=="carta_solicitud_asilo" ? "checked": ""}}>
                             <span class="option-label">Carta Solicitante de Refugio o Asilo</span>
                           </label>
                         </a>
@@ -20843,21 +20843,21 @@
                 <label class="question or-appearance-minimal or-branch"><span lang="" class="question-label active">Tipo de documento de identidad del/la niño, niña o adolescente</span><span class="required">*</span>
                   <select name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'colombovenezolano'" data-type-xml="select1" style="display: none;">
                     <option class="itemset-template" value="" data-items-path="instance('tipo_idbinacional')/root/item[tipo_persona_autorizacion= /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion ]">...</option>
-                    <option value="tarjeta_identidad" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="tarjeta_identidad" ? "selected": ""}}>Tarjeta de identidad</option>
-                    <option value="registro_civil" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="registro_civil" ? "selected": ""}}>Registro civil de nacimiento</option>
-                    <option value="certificado_nvivo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="certificado_nvivo" ? "selected": ""}}>Certificado de nacido/a vivo/a</option>
-                    <option value="cedula_extranjera" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="cedula_extranjera" ? "selected": ""}}>Cédula de extranjería</option>
-                    <option value="pasaporte_venezolano" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="pasaporte_venezolano" ? "selected": ""}}>Pasaporte venezolano</option>
-                    <option value="acta_nacinamiento" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="acta_nacinamiento" ? "selected": ""}}>Acta de nacimiento</option>
-                    <option value="permiso_especial_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="permiso_especial_permanencia" ? "selected": ""}}>Permiso Especial de Permanencia (PEP)</option>
-                    <option value="permiso_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="permiso_permanencia" ? "selected": ""}}>Permiso de Ingreso y Permanencia (PIP)</option>
-                    <option value="permiso_temporal_proteccion" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="permiso_temporal_proteccion" ? "selected": ""}}>Permiso Temporal de Protección (PTP)</option>
-                    <option value="permiso_transito_temporal" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="permiso_transito_temporal" ? "selected": ""}}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
-                    <option value="tarjeta_movilidad_fronteriza" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="tarjeta_movilidad_fronteriza" ? "selected": ""}}>Tarjeta de movilidad fronteriza (TMF)</option>
-                    <option value="carta_solicitud_asilo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="carta_solicitud_asilo" ? "selected": ""}}>Carta Solicitante de Refugio o Asilo</option>
-                    <option value="visa" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="visa" ? "selected": ""}}>Visa</option>
-                    <option value="otro_id_2" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="otro_id_2" ? "selected": ""}}>Otro tipo de identificación</option>
-                    <option value="sin_identificacion_n" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="sin_identificacion_n" ? "selected": ""}}>Sin identificación</option>
+                    <option value="tarjeta_identidad" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="tarjeta_identidad" ? "selected": ""}}>Tarjeta de identidad</option>
+                    <option value="registro_civil" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="registro_civil" ? "selected": ""}}>Registro civil de nacimiento</option>
+                    <option value="certificado_nvivo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="certificado_nvivo" ? "selected": ""}}>Certificado de nacido/a vivo/a</option>
+                    <option value="cedula_extranjera" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="cedula_extranjera" ? "selected": ""}}>Cédula de extranjería</option>
+                    <option value="pasaporte_venezolano" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="pasaporte_venezolano" ? "selected": ""}}>Pasaporte venezolano</option>
+                    <option value="acta_nacinamiento" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="acta_nacinamiento" ? "selected": ""}}>Acta de nacimiento</option>
+                    <option value="permiso_especial_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="permiso_especial_permanencia" ? "selected": ""}}>Permiso Especial de Permanencia (PEP)</option>
+                    <option value="permiso_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="permiso_permanencia" ? "selected": ""}}>Permiso de Ingreso y Permanencia (PIP)</option>
+                    <option value="permiso_temporal_proteccion" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="permiso_temporal_proteccion" ? "selected": ""}}>Permiso Temporal de Protección (PTP)</option>
+                    <option value="permiso_transito_temporal" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="permiso_transito_temporal" ? "selected": ""}}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
+                    <option value="tarjeta_movilidad_fronteriza" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="tarjeta_movilidad_fronteriza" ? "selected": ""}}>Tarjeta de movilidad fronteriza (TMF)</option>
+                    <option value="carta_solicitud_asilo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="carta_solicitud_asilo" ? "selected": ""}}>Carta Solicitante de Refugio o Asilo</option>
+                    <option value="visa" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="visa" ? "selected": ""}}>Visa</option>
+                    <option value="otro_id_2" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="otro_id_2" ? "selected": ""}}>Otro tipo de identificación</option>
+                    <option value="sin_identificacion_n" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="sin_identificacion_n" ? "selected": ""}}>Sin identificación</option>
                   </select>
                   <div class="btn-group bootstrap-select widget clearfix">
                     <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -20867,7 +20867,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="tarjeta_identidad" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="tarjeta_identidad" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="tarjeta_identidad" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="tarjeta_identidad" ? "checked": ""}}>>
                             <span class="option-label">Tarjeta de identidad</span>
                           </label>
                         </a>
@@ -20875,7 +20875,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="registro_civil" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="registro_civil" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="registro_civil" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="registro_civil" ? "checked": ""}}>>
                             <span class="option-label">Registro civil de nacimiento</span>
                           </label>
                         </a>
@@ -20883,7 +20883,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="certificado_nvivo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="certificado_nvivo" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="certificado_nvivo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="certificado_nvivo" ? "checked": ""}}>>
                             <span class="option-label">Certificado de nacido/a vivo/a</span>
                           </label>
                         </a>
@@ -20891,7 +20891,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="cedula_extranjera" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="cedula_extranjera" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="cedula_extranjera" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="cedula_extranjera" ? "checked": ""}}>>
                             <span class="option-label">Cédula de extranjería</span>
                           </label>
                         </a>
@@ -20899,7 +20899,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="pasaporte_venezolano" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="pasaporte_venezolano" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="pasaporte_venezolano" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="pasaporte_venezolano" ? "checked": ""}}>>
                             <span class="option-label">Pasaporte venezolano</span>
                           </label>
                         </a>
@@ -20907,7 +20907,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="acta_nacinamiento" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="acta_nacinamiento" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="acta_nacinamiento" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="acta_nacinamiento" ? "checked": ""}}>>
                             <span class="option-label">Acta de nacimiento</span>
                           </label>
                         </a>
@@ -20915,7 +20915,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="permiso_especial_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="permiso_especial_permanencia" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="permiso_especial_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="permiso_especial_permanencia" ? "checked": ""}}>>
                             <span class="option-label">Permiso Especial de Permanencia (PEP)</span>
                           </label>
                         </a>
@@ -20923,7 +20923,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="permiso_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="permiso_permanencia" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="permiso_permanencia" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="permiso_permanencia" ? "checked": ""}}>>
                             <span class="option-label">Permiso de Ingreso y Permanencia (PIP)</span>
                           </label>
                         </a>
@@ -20931,7 +20931,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="permiso_temporal_proteccion" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="permiso_temporal_proteccion" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="permiso_temporal_proteccion" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="permiso_temporal_proteccion" ? "checked": ""}}>>
                             <span class="option-label">Permiso Temporal de Protección (PTP)</span>
                           </label>
                         </a>
@@ -20939,7 +20939,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="permiso_transito_temporal" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="permiso_transito_temporal" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="permiso_transito_temporal" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="permiso_transito_temporal" ? "checked": ""}}>>
                             <span class="option-label">Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</span>
                           </label>
                         </a>
@@ -20947,7 +20947,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="tarjeta_movilidad_fronteriza" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="tarjeta_movilidad_fronteriza" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="tarjeta_movilidad_fronteriza" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="tarjeta_movilidad_fronteriza" ? "checked": ""}}>>
                             <span class="option-label">Tarjeta de movilidad fronteriza (TMF)</span>
                           </label>
                         </a>
@@ -20955,7 +20955,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="carta_solicitud_asilo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="carta_solicitud_asilo" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="carta_solicitud_asilo" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="carta_solicitud_asilo" ? "checked": ""}}>>
                             <span class="option-label">Carta Solicitante de Refugio o Asilo</span>
                           </label>
                         </a>
@@ -20963,7 +20963,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="visa" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="visa" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="visa" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="visa" ? "checked": ""}}>>
                             <span class="option-label">Visa</span>
                           </label>
                         </a>
@@ -20971,7 +20971,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="otro_id_2" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="otro_id_2" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="otro_id_2" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="otro_id_2" ? "checked": ""}}>>
                             <span class="option-label">Otro tipo de identificación</span>
                           </label>
                         </a>
@@ -20979,7 +20979,7 @@
                       <li class="">
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="48984.12073574192" value="sin_identificacion_n" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"])=="sin_identificacion_n" ? "checked": ""}}>>
+                            <input class="ignore" type="radio" name="48984.12073574192" value="sin_identificacion_n" {{isset($data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]) && $data["grupo_datos_beneficiario/datos_representado/tipo_idbinacional_menor_edad"]=="sin_identificacion_n" ? "checked": ""}}>>
                             <span class="option-label">Sin identificación</span>
                           </label>
                         </a>
@@ -20996,10 +20996,10 @@
                   <fieldset>
                     <legend><span lang="" class="question-label active">Tipo de documento de identidad del/la niño, niña o adolescente</span><span class="required">*</span></legend>
                     <div class="option-wrapper"><label class="">
-                        <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad']) == "pasaporte_7" ? "checked" : ""}} data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" value="pasaporte_7" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'otra_nacionalidad'" data-type-xml="select1"><span lang="" class="option-label active">Pasaporte</span></label><label class="">
-                        <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad']) == "cedula_extranjera" ? "checked" : ""}} data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" value="cedula_extranjera" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'otra_nacionalidad'" data-type-xml="select1"><span lang="" class="option-label active">Cédula de extranjería</span></label><label class="">
-                        <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad']) == "visa" ? "checked" : ""}} data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" value="visa" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'otra_nacionalidad'" data-type-xml="select1"><span lang="" class="option-label active">Visa</span></label><label class="">
-                        <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad']) == "otro_id_4" ? "checked" : ""}} data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" value="otro_id_4" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'otra_nacionalidad'" data-type-xml="select1"><span lang="" class="option-label active">Otro</span></label>
+                        <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad'] == "pasaporte_7" ? "checked" : ""}} data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" value="pasaporte_7" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'otra_nacionalidad'" data-type-xml="select1"><span lang="" class="option-label active">Pasaporte</span></label><label class="">
+                        <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad'] == "cedula_extranjera" ? "checked" : ""}} data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" value="cedula_extranjera" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'otra_nacionalidad'" data-type-xml="select1"><span lang="" class="option-label active">Cédula de extranjería</span></label><label class="">
+                        <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad'] == "visa" ? "checked" : ""}} data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" value="visa" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'otra_nacionalidad'" data-type-xml="select1"><span lang="" class="option-label active">Visa</span></label><label class="">
+                        <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" {{isset($data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad']) && $data['grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad'] == "otro_id_4" ? "checked" : ""}} data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/tipo_idnacionalidad_menor_edad" value="otro_id_4" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/nacionalidad_menor_edad  = 'otra_nacionalidad'" data-type-xml="select1"><span lang="" class="option-label active">Otro</span></label>
                     </div>
                   </fieldset><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
                 </fieldset>
@@ -21007,7 +21007,7 @@
               <?php } ?>
 
               <label class="question or-branch non-select disabled"><span lang="" class="question-label active">Edad del/la niño, niña o adolescente</span><span class="required">*</span>
-                <input type="number" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/edad_menor_edad" value="{{isset($data['grupo_datos_beneficiario/datos_representado/edad_menor_edad'])}}" data-required="true()" data-constraint=". >= 0 and . <= 17" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="int" disabled=""><span lang="" class="or-constraint-msg active">Ingrese un valor adecuado'</span><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+                <input type="number" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representado/edad_menor_edad" value="{{ ($data['grupo_datos_beneficiario/datos_representado/edad_menor_edad']) ?? ''}}" data-required="true()" data-constraint=". >= 0 and . <= 17" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="int" disabled=""><span lang="" class="or-constraint-msg active">Ingrese un valor adecuado'</span><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
               </label>
 
             </section><!--end of group -->
@@ -21020,10 +21020,10 @@
                   <legend><span lang="" class="question-label active">Nacionalidad de la persona participante</span><span class="required">*</span>
                   </legend>
                   <div class="option-wrapper"><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" value="colombiano_a" {{isset($data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"]) == "colombiano_a" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Colombiano/a</span></label><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" value="venezolano_a" {{isset($data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"]) == "venezolano_a" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Venezolano/a</span></label><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" value="colombovenezolano" {{isset($data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"]) == "colombovenezolano" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Colombo-Venezolano</span></label><label class="">
-                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" value="otra_nacionalidad" {{isset($data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"]) == "otra_nacionalidad" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Otra</span></label>
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" value="colombiano_a" {{isset($data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"]) && $data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"] == "colombiano_a" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Colombiano/a</span></label><label class="">
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" value="venezolano_a" {{isset($data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"]) && $data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"] == "venezolano_a" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Venezolano/a</span></label><label class="">
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" value="colombovenezolano" {{isset($data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"]) && $data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"] == "colombovenezolano" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Colombo-Venezolano</span></label><label class="">
+                      <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad" value="otra_nacionalidad" {{isset($data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"]) && $data["grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad"] == "otra_nacionalidad" ? "checked": ""}} data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="select1"><span lang="" class="option-label active">Otra</span></label>
                     </div>
                 </fieldset><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
               </fieldset>
@@ -21033,7 +21033,7 @@
               <?php if ($data['grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad']   == 'otra_nacionalidad') { ?>
 
                 <label class="question or-branch non-select disabled"><span lang="" class="question-label active">Otra nacionalidad, ¿Cuál?</span><span class="required">*</span>
-                  <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/otra_nacionalidad_mayor_edad" value="{{isset($data['grupo_datos_beneficiario/datos_participante/otra_nacionalidad_mayor_edad'])}}" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad  = 'otra_nacionalidad'" data-type-xml="string" maxlength="2000" disabled=""><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+                  <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/otra_nacionalidad_mayor_edad" value="{{ ($data['grupo_datos_beneficiario/datos_participante/otra_nacionalidad_mayor_edad']) ?? ''}}" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad  = 'otra_nacionalidad'" data-type-xml="string" maxlength="2000" disabled=""><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
                 </label>
                 
 
@@ -21041,7 +21041,7 @@
               <!-- end si es otra -->
               
               <label class="question or-branch non-select disabled"><span lang="" class="question-label active">Nombre completo de la persona participante</span><span class="required">*</span>
-                <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nombre_mayor_edad" value="{{isset($data['grupo_datos_beneficiario/datos_participante/nombre_mayor_edad'])}}" data-required="true()" data-constraint="regex(., '^[a-zA-Z\D]{10,150}$')" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="string" maxlength="2000" disabled=""><span lang="" class="or-constraint-msg active">Este campo sólo permite texto'</span><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+                <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nombre_mayor_edad" value="{{ ($data['grupo_datos_beneficiario/datos_participante/nombre_mayor_edad']) ?? ''}}" data-required="true()" data-constraint="regex(., '^[a-zA-Z\D]{10,150}$')" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad'" data-type-xml="string" maxlength="2000" disabled=""><span lang="" class="or-constraint-msg active">Este campo sólo permite texto'</span><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
               </label>
 
 
@@ -21058,8 +21058,8 @@
                     <option class="itemset-template" value=""
                       data-items-path="instance('tipo_idcolombia')/root/item[nacionalidad_mayor_edad= /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad ]">
                       ...</option>
-                    <option value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad']) == "cedula_colombiana" ? "selected" : ""}}>Cédula colombiana</option>
-                    <option value="pasaporte_13" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad']) == "pasaporte_13" ? "selected" : ""}}>Pasaporte colombiano</option>
+                    <option value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad'] == "cedula_colombiana" ? "selected" : ""}}>Cédula colombiana</option>
+                    <option value="pasaporte_13" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad'] == "pasaporte_13" ? "selected" : ""}}>Pasaporte colombiano</option>
                   </select>
                   <div class="btn-group bootstrap-select widget clearfix">
                     <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -21069,7 +21069,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="62983.862067422146" value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad']) == "cedula_colombiana" ? "checked" : ""}}>
+                            <input class="ignore" type="radio" name="62983.862067422146" value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad'] == "cedula_colombiana" ? "checked" : ""}}>
                             <span class="option-label">Cédula colombiana</span>
                           </label>
                         </a>
@@ -21077,7 +21077,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="62983.862067422146" value="pasaporte_13" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad']) == "pasaporte_13" ? "checked" : ""}}>
+                            <input class="ignore" type="radio" name="62983.862067422146" value="pasaporte_13" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad'] == "pasaporte_13" ? "checked" : ""}}>
                             <span class="option-label">Pasaporte colombiano</span>
                           </label>
                         </a>
@@ -21115,18 +21115,18 @@
                     <option class="itemset-template" value=""
                       data-items-path="instance('tipo_idvenezuela')/root/item[nacionalidad_mayor_edad= /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad ]">
                       ...</option>
-                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "cedula_extranjera" ? "selected": ""}}>Cédula de extranjería</option>
-                    <option value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "pasaporte_venezolano" ? "selected": ""}}>Pasaporte venezolano</option>
-                    <option value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "permiso_especial_permanencia" ? "selected": ""}}>Permiso Especial de Permanencia (PEP)</option>
-                    <option value="pepff" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "pepff" ? "selected": ""}}>Permiso Especial de Permanencia para el Fomento de la Formalización (PFF)</option>
-                    <option value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "permiso_permanencia" ? "selected": ""}}>Permiso de Ingreso y Permanencia (PIP)</option>
-                    <option value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "permiso_temporal_proteccion" ? "selected": ""}}>Permiso Temporal de Protección (PTP)</option>
-                    <option value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "permiso_transito_temporal" ? "selected": ""}}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
-                    <option value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "tarjeta_movilidad_fronteriza" ? "selected": ""}}>Tarjeta de movilidad fronteriza (TMF)</option>
-                    <option value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "carta_solicitud_asilo" ? "selected": ""}}>Carta Solicitante de Refugio o Asilo</option>
-                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "visa" ? "selected": ""}}>Visa</option>
-                    <option value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "sin_identificacion_col" ? "selected": ""}}>Sin identificación colombiana con documento venezolano</option>
-                    <option value="otro_id_1" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "otro_id_1" ? "selected": ""}}>Otro</option>
+                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "cedula_extranjera" ? "selected": ""}}>Cédula de extranjería</option>
+                    <option value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "pasaporte_venezolano" ? "selected": ""}}>Pasaporte venezolano</option>
+                    <option value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "permiso_especial_permanencia" ? "selected": ""}}>Permiso Especial de Permanencia (PEP)</option>
+                    <option value="pepff" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "pepff" ? "selected": ""}}>Permiso Especial de Permanencia para el Fomento de la Formalización (PFF)</option>
+                    <option value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "permiso_permanencia" ? "selected": ""}}>Permiso de Ingreso y Permanencia (PIP)</option>
+                    <option value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "permiso_temporal_proteccion" ? "selected": ""}}>Permiso Temporal de Protección (PTP)</option>
+                    <option value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "permiso_transito_temporal" ? "selected": ""}}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
+                    <option value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "tarjeta_movilidad_fronteriza" ? "selected": ""}}>Tarjeta de movilidad fronteriza (TMF)</option>
+                    <option value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "carta_solicitud_asilo" ? "selected": ""}}>Carta Solicitante de Refugio o Asilo</option>
+                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "visa" ? "selected": ""}}>Visa</option>
+                    <option value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "sin_identificacion_col" ? "selected": ""}}>Sin identificación colombiana con documento venezolano</option>
+                    <option value="otro_id_1" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "otro_id_1" ? "selected": ""}}>Otro</option>
                   </select>
                   <div class="btn-group bootstrap-select widget clearfix">
                     <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -21136,7 +21136,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "cedula_extranjera" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "cedula_extranjera" ? "checked": ""}}>
                             <span class="option-label">Cédula de extranjería</span>
                           </label>
                         </a>
@@ -21144,7 +21144,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "pasaporte_venezolano" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "pasaporte_venezolano" ? "checked": ""}}>
                             <span class="option-label">Pasaporte venezolano</span>
                           </label>
                         </a>
@@ -21152,7 +21152,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "permiso_especial_permanencia" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "permiso_especial_permanencia" ? "checked": ""}}>
                             <span class="option-label">Permiso Especial de Permanencia (PEP)</span>
                           </label>
                         </a>
@@ -21160,7 +21160,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="pepff" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "pepff" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="pepff" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "pepff" ? "checked": ""}}>
                             <span class="option-label">Permiso Especial de Permanencia para el Fomento de la Formalización (PFF)</span>
                           </label>
                         </a>
@@ -21168,7 +21168,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "permiso_permanencia" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "permiso_permanencia" ? "checked": ""}}>
                             <span class="option-label">Permiso de Ingreso y Permanencia (PIP)</span>
                           </label>
                         </a>
@@ -21176,7 +21176,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "permiso_temporal_proteccion" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "permiso_temporal_proteccion" ? "checked": ""}}>
                             <span class="option-label">Permiso Temporal de Protección (PTP)</span>
                           </label>
                         </a>
@@ -21184,7 +21184,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "permiso_transito_temporal" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "permiso_transito_temporal" ? "checked": ""}}>
                             <span class="option-label">Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</span>
                           </label>
                         </a>
@@ -21192,7 +21192,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "tarjeta_movilidad_fronteriza" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "tarjeta_movilidad_fronteriza" ? "checked": ""}}>
                             <span class="option-label">Tarjeta de movilidad fronteriza (TMF)</span>
                           </label>
                         </a>
@@ -21200,7 +21200,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "carta_solicitud_asilo" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "carta_solicitud_asilo" ? "checked": ""}}>
                             <span class="option-label">Carta Solicitante de Refugio o Asilo</span>
                           </label>
                         </a>
@@ -21208,7 +21208,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="visa" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "visa" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="visa" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "visa" ? "checked": ""}}>
                             <span class="option-label">Visa</span>
                           </label>
                         </a>
@@ -21216,7 +21216,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "sin_identificacion_col" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "sin_identificacion_col" ? "checked": ""}}>
                             <span class="option-label">Sin identificación colombiana con documento venezolano</span>
                           </label>
                         </a>
@@ -21224,7 +21224,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="56152.31546827783" value="otro_id_1" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) == "otro_id_1" ? "checked": ""}}>
+                            <input class="ignore" type="radio" name="56152.31546827783" value="otro_id_1" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad'] == "otro_id_1" ? "checked": ""}}>
                             <span class="option-label">Otro</span>
                           </label>
                         </a>
@@ -21271,18 +21271,18 @@
                     <option class="itemset-template" value=""
                       data-items-path="instance('tipo_idbinacional')/root/item[nacionalidad_mayor_edad= /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad ]">
                       ...</option>
-                    <option value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "cedula_colombiana" ? "selected" : "" }}>Cédula colombiana</option>
-                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "cedula_extranjera" ? "selected" : "" }}>Cédula de extranjería</option>
-                    <option value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "pasaporte_venezolano" ? "selected" : "" }}>Pasaporte venezolano</option>
-                    <option value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "permiso_especial_permanencia" ? "selected" : "" }}>Permiso Especial de Permanencia (PEP)</option>
-                    <option value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "permiso_permanencia" ? "selected" : "" }}>Permiso de Ingreso y Permanencia (PIP)</option>
-                    <option value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "permiso_temporal_proteccion" ? "selected" : "" }}>Permiso Temporal de Protección (PTP)</option>
-                    <option value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "permiso_transito_temporal" ? "selected" : "" }}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
-                    <option value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "tarjeta_movilidad_fronteriza" ? "selected" : "" }}>Tarjeta de movilidad fronteriza (TMF)</option>
-                    <option value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "carta_solicitud_asilo" ? "selected" : "" }}>Carta Solicitante de Refugio o Asilo</option>
-                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "visa" ? "selected" : "" }}>Visa</option>
-                    <option value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "sin_identificacion_col" ? "selected" : "" }}>Sin identificación colombiana con documento venezolano</option>
-                    <option value="otro_id_3" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "otro_id_3" ? "selected" : "" }}>Otro</option>
+                    <option value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "cedula_colombiana" ? "selected" : "" }}>Cédula colombiana</option>
+                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "cedula_extranjera" ? "selected" : "" }}>Cédula de extranjería</option>
+                    <option value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "pasaporte_venezolano" ? "selected" : "" }}>Pasaporte venezolano</option>
+                    <option value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "permiso_especial_permanencia" ? "selected" : "" }}>Permiso Especial de Permanencia (PEP)</option>
+                    <option value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "permiso_permanencia" ? "selected" : "" }}>Permiso de Ingreso y Permanencia (PIP)</option>
+                    <option value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "permiso_temporal_proteccion" ? "selected" : "" }}>Permiso Temporal de Protección (PTP)</option>
+                    <option value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "permiso_transito_temporal" ? "selected" : "" }}>Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</option>
+                    <option value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "tarjeta_movilidad_fronteriza" ? "selected" : "" }}>Tarjeta de movilidad fronteriza (TMF)</option>
+                    <option value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "carta_solicitud_asilo" ? "selected" : "" }}>Carta Solicitante de Refugio o Asilo</option>
+                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "visa" ? "selected" : "" }}>Visa</option>
+                    <option value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "sin_identificacion_col" ? "selected" : "" }}>Sin identificación colombiana con documento venezolano</option>
+                    <option value="otro_id_3" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "otro_id_3" ? "selected" : "" }}>Otro</option>
                   </select>
                   <div class="btn-group bootstrap-select widget clearfix">
                     <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -21292,7 +21292,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "cedula_colombiana" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="cedula_colombiana" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "cedula_colombiana" ? "checked" : "" }}>
                             <span class="option-label">Cédula colombiana</span>
                           </label>
                         </a>
@@ -21300,7 +21300,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "cedula_extranjera" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "cedula_extranjera" ? "checked" : "" }}>
                             <span class="option-label">Cédula de extranjería</span>
                           </label>
                         </a>
@@ -21308,7 +21308,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "pasaporte_venezolano" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="pasaporte_venezolano" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "pasaporte_venezolano" ? "checked" : "" }}>
                             <span class="option-label">Pasaporte venezolano</span>
                           </label>
                         </a>
@@ -21316,7 +21316,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "permiso_especial_permanencia" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="permiso_especial_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "permiso_especial_permanencia" ? "checked" : "" }}>
                             <span class="option-label">Permiso Especial de Permanencia (PEP)</span>
                           </label>
                         </a>
@@ -21324,7 +21324,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "permiso_permanencia" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="permiso_permanencia" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "permiso_permanencia" ? "checked" : "" }}>
                             <span class="option-label">Permiso de Ingreso y Permanencia (PIP)</span>
                           </label>
                         </a>
@@ -21332,7 +21332,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "permiso_temporal_proteccion" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="permiso_temporal_proteccion" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "permiso_temporal_proteccion" ? "checked" : "" }}>
                             <span class="option-label">Permiso Temporal de Protección (PTP)</span>
                           </label>
                         </a>
@@ -21340,7 +21340,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "permiso_transito_temporal" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="permiso_transito_temporal" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "permiso_transito_temporal" ? "checked" : "" }}>
                             <span class="option-label">Permiso de Ingreso y Permanencia de Tránsito Temporal (PIP-TT)</span>
                           </label>
                         </a>
@@ -21348,7 +21348,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "tarjeta_movilidad_fronteriza" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="tarjeta_movilidad_fronteriza" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "tarjeta_movilidad_fronteriza" ? "checked" : "" }}>
                             <span class="option-label">Tarjeta de movilidad fronteriza (TMF)</span>
                           </label>
                         </a>
@@ -21356,7 +21356,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "carta_solicitud_asilo" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="carta_solicitud_asilo" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "carta_solicitud_asilo" ? "checked" : "" }}>
                             <span class="option-label">Carta Solicitante de Refugio o Asilo</span>
                           </label>
                         </a>
@@ -21364,7 +21364,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="visa" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "visa" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="visa" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "visa" ? "checked" : "" }}>
                             <span class="option-label">Visa</span>
                           </label>
                         </a>
@@ -21372,7 +21372,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "sin_identificacion_col" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="sin_identificacion_col" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "sin_identificacion_col" ? "checked" : "" }}>
                             <span class="option-label">Sin identificación colombiana con documento venezolano</span>
                           </label>
                         </a>
@@ -21380,7 +21380,7 @@
                       <li>
                         <a class="option-wrapper" tabindex="-1" href="#">
                           <label>
-                            <input class="ignore" type="radio" name="88477.29068247075" value="otro_id_3" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) == "otro_id_3" ? "checked" : "" }}>
+                            <input class="ignore" type="radio" name="88477.29068247075" value="otro_id_3" {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad'] == "otro_id_3" ? "checked" : "" }}>
                             <span class="option-label">Otro</span>
                           </label>
                         </a>
@@ -21432,7 +21432,7 @@
                         name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad"
                         data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad"
                         value="pasaporte_7" 
-                        {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad'])=="pasaporte_7" ? "checked": ""}}
+                        {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad']=="pasaporte_7" ? "checked": ""}}
                         data-required="true()"
                         data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad  = 'otra_nacionalidad'"
                         data-type-xml="select1"><span lang="" class="option-label active">Pasaporte</span></label><label class="">
@@ -21440,7 +21440,7 @@
                         name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad"
                         data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad"
                         value="cedula_extranjera" 
-                        {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad'])=="cedula_extranjera" ? "checked": ""}}
+                        {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad']=="cedula_extranjera" ? "checked": ""}}
                         data-required="true()"
                         data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad  = 'otra_nacionalidad'"
                         data-type-xml="select1"><span lang="" class="option-label active">Cédula de extranjería</span></label><label
@@ -21449,7 +21449,7 @@
                         name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad"
                         data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad"
                         value="visa" 
-                        {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad'])=="visa" ? "checked": ""}}
+                        {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad']=="visa" ? "checked": ""}}
                         data-required="true()"
                         data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad  = 'otra_nacionalidad'"
                         data-type-xml="select1"><span lang="" class="option-label active">Visa</span></label><label class="">
@@ -21457,7 +21457,7 @@
                         name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad"
                         data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad"
                         value="otro_id_4" 
-                        {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad'])=="otro_id_4" ? "checked": ""}}
+                        {{isset($data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad']) && $data['grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad']=="otro_id_4" ? "checked": ""}}
                         data-required="true()"
                         data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad  = 'otra_nacionalidad'"
                         data-type-xml="select1"><span lang="" class="option-label active">Otro</span></label></div>
@@ -21480,7 +21480,7 @@
             ) {
               ?>
             <label class="question or-branch non-select disabled"><span lang="" class="question-label active">Número de identificación de la persona participante</span><span class="required">*</span>
-              <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/numeroid_mayor_edad" value="{{isset($data['grupo_datos_beneficiario/datos_participante/numeroid_mayor_edad'])}}" data-required="true()" data-relevant="selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion ,'mayor_edad') and (( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad !='' and ( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad !='' or  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad !='' or  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad !='')) or (selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad ,'colombiano_a') and not(selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad ,'sin_identificacion'))))" data-type-xml="string" maxlength="2000" disabled=""><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+              <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/numeroid_mayor_edad" value="{{ ($data['grupo_datos_beneficiario/datos_participante/numeroid_mayor_edad']) ?? ''}}" data-required="true()" data-relevant="selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion ,'mayor_edad') and (( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad !='' and ( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idvenezuela_mayor_edad !='' or  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idbinacional_mayor_edad !='' or  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idnacionalidad_mayor_edad !='')) or (selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/nacionalidad_mayor_edad ,'colombiano_a') and not(selected( /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_participante/tipo_idcolombia_mayor_edad ,'sin_identificacion'))))" data-type-xml="string" maxlength="2000" disabled=""><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
             </label>
           <?php } ?>
           <!--end of group -->
@@ -21489,15 +21489,15 @@
             <span lang="" class="question-label active">Tipo De Documento</span><span class="required">*</span><span lang="" class="or-hint active">Lista de documentos aceptados por proveedor financiero ej.: cedula, Tarjeta de identidad, pasaporte, PEP, PPT entre otras</span>
             <select name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_documento_participante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_documento_participante" data-required="true()" data-type-xml="select1" style="display: none;">
               <option value="">...</option>
-              <option value="cedula_de_ciudadania" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "cedula_de_ciudadania" ? "selected": ""}}>Cédula de Ciudadanía</option>
-              <option value="tarjeta_de_identidad" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "tarjeta_de_identidad" ? "selected": ""}}>Tarjeta de identidad</option>
-              <option value="cedula_de_extranjeria" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "cedula_de_extranjeria" ? "selected": ""}}>Cédula de Extranjería</option>
-              <option value="cedula_venezolana" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "cedula_venezolana" ? "selected": ""}}>Cédula Venezolana</option>
-              <option value="nit" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "nit" ? "selected": ""}}>NIT</option>
-              <option value="pasaporte" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "pasaporte" ? "selected": ""}}>Pasaporte</option>
-              <option value="permiso_especial_de_permanencia" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "permiso_especial_de_permanencia" ? "selected": ""}}>Permiso Especial de Permanencia</option>
-              <option value="permiso_por_proteccion_temporal" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "permiso_por_proteccion_temporal" ? "selected": ""}}>Permiso por Protección Temporal</option>
-              <option value="permiso_especial_permanencia_fomento_formalizacion" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "permiso_especial_permanencia_fomento_formalizacion" ? "selected": ""}}>Permiso Especial de Permanencia Fomento Formalización</option>
+              <option value="cedula_de_ciudadania" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "cedula_de_ciudadania" ? "selected": ""}}>Cédula de Ciudadanía</option>
+              <option value="tarjeta_de_identidad" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "tarjeta_de_identidad" ? "selected": ""}}>Tarjeta de identidad</option>
+              <option value="cedula_de_extranjeria" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "cedula_de_extranjeria" ? "selected": ""}}>Cédula de Extranjería</option>
+              <option value="cedula_venezolana" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "cedula_venezolana" ? "selected": ""}}>Cédula Venezolana</option>
+              <option value="nit" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "nit" ? "selected": ""}}>NIT</option>
+              <option value="pasaporte" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "pasaporte" ? "selected": ""}}>Pasaporte</option>
+              <option value="permiso_especial_de_permanencia" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "permiso_especial_de_permanencia" ? "selected": ""}}>Permiso Especial de Permanencia</option>
+              <option value="permiso_por_proteccion_temporal" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "permiso_por_proteccion_temporal" ? "selected": ""}}>Permiso por Protección Temporal</option>
+              <option value="permiso_especial_permanencia_fomento_formalizacion" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "permiso_especial_permanencia_fomento_formalizacion" ? "selected": ""}}>Permiso Especial de Permanencia Fomento Formalización</option>
             </select>
             <div class="btn-group bootstrap-select widget clearfix">
               <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -21507,7 +21507,7 @@
                 <li class="active">
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label data-checked="true">
-                      <input class="ignore" type="radio" name="30122.78395387238" value="cedula_de_ciudadania" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "cedula_de_ciudadania" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="30122.78395387238" value="cedula_de_ciudadania" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "cedula_de_ciudadania" ? "checked": ""}}>
                       <span class="option-label">Cédula de Ciudadanía</span>
                     </label>
                   </a>
@@ -21515,7 +21515,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="30122.78395387238" value="tarjeta_de_identidad" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "tarjeta_de_identidad" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="30122.78395387238" value="tarjeta_de_identidad" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "tarjeta_de_identidad" ? "checked": ""}}>
                       <span class="option-label">Tarjeta de identidad</span>
                     </label>
                   </a>
@@ -21523,7 +21523,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="30122.78395387238" value="cedula_de_extranjeria" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "cedula_de_extranjeria" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="30122.78395387238" value="cedula_de_extranjeria" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "cedula_de_extranjeria" ? "checked": ""}}>
                       <span class="option-label">Cédula de Extranjería</span>
                     </label>
                   </a>
@@ -21531,7 +21531,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="30122.78395387238" value="cedula_venezolana" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "cedula_venezolana" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="30122.78395387238" value="cedula_venezolana" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "cedula_venezolana" ? "checked": ""}}>
                       <span class="option-label">Cédula Venezolana</span>
                     </label>
                   </a>
@@ -21539,7 +21539,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="30122.78395387238" value="nit" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "nit" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="30122.78395387238" value="nit" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "nit" ? "checked": ""}}>
                       <span class="option-label">NIT</span>
                     </label>
                   </a>
@@ -21547,7 +21547,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="30122.78395387238" value="pasaporte" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "pasaporte" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="30122.78395387238" value="pasaporte" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "pasaporte" ? "checked": ""}}>
                       <span class="option-label">Pasaporte</span>
                     </label>
                   </a>
@@ -21555,7 +21555,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="30122.78395387238" value="permiso_especial_de_permanencia" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "permiso_especial_de_permanencia" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="30122.78395387238" value="permiso_especial_de_permanencia" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "permiso_especial_de_permanencia" ? "checked": ""}}>
                       <span class="option-label">Permiso Especial de Permanencia</span>
                     </label>
                   </a>
@@ -21563,7 +21563,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="30122.78395387238" value="permiso_por_proteccion_temporal" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "permiso_por_proteccion_temporal" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="30122.78395387238" value="permiso_por_proteccion_temporal" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "permiso_por_proteccion_temporal" ? "checked": ""}}>
                       <span class="option-label">Permiso por Protección Temporal</span>
                     </label>
                   </a>
@@ -21571,7 +21571,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="30122.78395387238" value="permiso_especial_permanencia_fomento_formalizacion" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) == "permiso_especial_permanencia_fomento_formalizacion" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="30122.78395387238" value="permiso_especial_permanencia_fomento_formalizacion" {{isset($data['grupo_datos_beneficiario/tipo_documento_participante']) && $data['grupo_datos_beneficiario/tipo_documento_participante'] == "permiso_especial_permanencia_fomento_formalizacion" ? "checked": ""}}>
                       <span class="option-label">Permiso Especial de Permanencia Fomento Formalización</span>
                     </label>
                   </a>
@@ -21584,54 +21584,54 @@
 
           <label class="question non-select print-width-adjusted print-height-adjusted" style="width: 100%; height: 68px;">
             <span lang="" class="question-label active">Número de identificación de participante:</span><span class="required">*</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/numero_identificacion_participante" value="{{isset($data['grupo_datos_beneficiario/numero_identificacion_participante'])}}" data-required="true()" data-constraint="regex(.,'^([\d]{6,14})$')" data-type-xml="string" maxlength="2000"><span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Este valor no está permitido.</span><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/numero_identificacion_participante" value="{{ ($data['grupo_datos_beneficiario/numero_identificacion_participante']) ?? ''}}" data-required="true()" data-constraint="regex(.,'^([\d]{6,14})$')" data-type-xml="string" maxlength="2000"><span class="or-constraint-msg active" lang="" data-i18n="constraint.invalid">Este valor no está permitido.</span><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
           </label>
             
           <label class="question non-select print-width-adjusted print-height-adjusted" style="width: 100%; height: 84px;">
             <span lang="" class="question-label active">Dirección (Comunidad)</span><span lang="" class="or-hint active">(Opcional, solo si cuentan con esta información)</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/Direcci_n_Comunidad" value="{{isset($data['grupo_datos_beneficiario/Direcci_n_Comunidad'])}}" data-type-xml="string" maxlength="2000">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/Direcci_n_Comunidad" value="{{ ($data['grupo_datos_beneficiario/Direcci_n_Comunidad']) ?? ''}}" data-type-xml="string" maxlength="2000">
           </label>
         
           <label class="question or-appearance-minimal-autocomplete print-width-adjusted print-height-adjusted" style="width: 100%; height: 72px;">
             <span lang="" class="question-label active">Departamento</span><span class="required">*</span>
-            <input name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/departamento" value="{{isset($data['grupo_datos_beneficiario/departamento'])}}" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/departamento" data-required="true()" data-type-xml="select1" type="text" list="a4E3J9gkULZe5eRqQph8zhgrupodatosbeneficiariodepartamento" class="hide">
-            <input type="text" class="ignore widget autocomplete" list="a4E3J9gkULZe5eRqQph8zhgrupodatosbeneficiariodepartamento" value="{{isset($data['grupo_datos_beneficiario/departamento'])}}">
+            <input name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/departamento" value="{{ ($data['grupo_datos_beneficiario/departamento']) ?? ''}}" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/departamento" data-required="true()" data-type-xml="select1" type="text" list="a4E3J9gkULZe5eRqQph8zhgrupodatosbeneficiariodepartamento" class="hide">
+            <input type="text" class="ignore widget autocomplete" list="a4E3J9gkULZe5eRqQph8zhgrupodatosbeneficiariodepartamento" value="{{ ($data['grupo_datos_beneficiario/departamento']) ?? ''}}">
             
             <datalist id="a4E3J9gkULZe5eRqQph8zhgrupodatosbeneficiariodepartamento">
               <option value="..." data-value=""></option>
-              <option value="Antioquia" {{isset($data['grupo_datos_beneficiario/departamento']) == "Antioquia" ? "checked" : ""}} data-value="antioquia"></option>
-              <option value="Atlántico" {{isset($data['grupo_datos_beneficiario/departamento']) == "Atlántico" ? "checked" : ""}} data-value="atlantico"></option>
-              <option value="Bogotá D.C."  {{isset($data['grupo_datos_beneficiario/departamento']) == "Bogotá D.C." ? "checked" : ""}} data-value="bogota"></option>
-              <option value="Bolívar" {{isset($data['grupo_datos_beneficiario/departamento']) == "Bolívar" ? "checked" : ""}} data-value="bolivar"></option>
-              <option value="Boyacá" {{isset($data['grupo_datos_beneficiario/departamento']) == "Boyacá" ? "checked" : ""}} data-value="boyaca"></option>
-              <option value="Caldas" {{isset($data['grupo_datos_beneficiario/departamento']) == "Caldas" ? "checked" : ""}} data-value="caldas"></option>
-              <option value="Caquetá" {{isset($data['grupo_datos_beneficiario/departamento']) == "Caquetá" ? "checked" : ""}} data-value="caqueta"></option>
-              <option value="Cauca" {{isset($data['grupo_datos_beneficiario/departamento']) == "Cauca" ? "checked" : ""}} data-value="cauca"></option>
-              <option value="Cesar" {{isset($data['grupo_datos_beneficiario/departamento']) == "Cesar" ? "checked" : ""}} data-value="cesar"></option>
-              <option value="Córdoba" {{isset($data['grupo_datos_beneficiario/departamento']) == "Córdoba" ? "checked" : ""}} data-value="cordoba"></option>
-              <option value="Cundinamarca" {{isset($data['grupo_datos_beneficiario/departamento']) == "Cundinamarca" ? "checked" : ""}} data-value="cundinamarca"></option>
-              <option value="Chocó" {{isset($data['grupo_datos_beneficiario/departamento']) == "Chocó" ? "checked" : ""}} data-value="choco"></option>
-              <option value="Huila" {{isset($data['grupo_datos_beneficiario/departamento']) == "Huila" ? "checked" : ""}} data-value="huila"></option>
-              <option value="La Guajira" {{isset($data['grupo_datos_beneficiario/departamento']) == "La Guajira" ? "checked" : ""}} data-value="laguajira"></option>
-              <option value="Magdalena" {{isset($data['grupo_datos_beneficiario/departamento']) == "Magdalena" ? "checked" : ""}} data-value="magdalena"></option>
-              <option value="Meta" {{isset($data['grupo_datos_beneficiario/departamento']) == "Meta" ? "checked" : ""}} data-value="meta"></option>
-              <option value="Nariño" {{isset($data['grupo_datos_beneficiario/departamento']) == "Nariño" ? "checked" : ""}} data-value="narino"></option>
-              <option value="Norte de Santander" {{isset($data['grupo_datos_beneficiario/departamento']) == "Norte de Santander" ? "checked" : ""}} data-value="nortedesantander"></option>
-              <option value="Quindio" {{isset($data['grupo_datos_beneficiario/departamento']) == "Quindio" ? "checked" : ""}} data-value="quindio"></option>
-              <option value="Risaralda" {{isset($data['grupo_datos_beneficiario/departamento']) == "Risaralda" ? "checked" : ""}} data-value="risaralda"></option>
-              <option value="Santander" {{isset($data['grupo_datos_beneficiario/departamento']) == "Santander" ? "checked" : ""}} data-value="santander"></option>
-              <option value="Sucre" {{isset($data['grupo_datos_beneficiario/departamento']) == "Sucre" ? "checked" : ""}} data-value="sucre"></option>
-              <option value="Tolima" {{isset($data['grupo_datos_beneficiario/departamento']) == "Tolima" ? "checked" : ""}} data-value="tolima"></option>
-              <option value="Valle del Cauca" {{isset($data['grupo_datos_beneficiario/departamento']) == "Valle del Cauca" ? "checked" : ""}} data-value="valledelcauca"></option>
-              <option value="Arauca" {{isset($data['grupo_datos_beneficiario/departamento']) == "Arauca" ? "checked" : ""}} data-value="arauca"></option>
-              <option value="Casanare" {{isset($data['grupo_datos_beneficiario/departamento']) == "Casanare" ? "checked" : ""}} data-value="casanare"></option>
-              <option value="Putumayo" {{isset($data['grupo_datos_beneficiario/departamento']) == "Putumayo" ? "checked" : ""}} data-value="putumayo"></option>
-              <option value="San Andrés" {{isset($data['grupo_datos_beneficiario/departamento']) == "San Andrés" ? "checked" : ""}} data-value="sanandres"></option>
-              <option value="Amazonas" {{isset($data['grupo_datos_beneficiario/departamento']) == "Amazonas" ? "checked" : ""}} data-value="amazonas"></option>
-              <option value="Guainía" {{isset($data['grupo_datos_beneficiario/departamento']) == "Guainía" ? "checked" : ""}} data-value="guainia"></option>
-              <option value="Guaviare" {{isset($data['grupo_datos_beneficiario/departamento']) == "Guaviare" ? "checked" : ""}} data-value="guaviare"></option>
-              <option value="Vaupes" {{isset($data['grupo_datos_beneficiario/departamento']) == "Vaupes" ? "checked" : ""}} data-value="vaupes"></option>
-              <option value="Vichada" {{isset($data['grupo_datos_beneficiario/departamento']) == "Vichada" ? "checked" : ""}} data-value="vichada"></option>
+              <option value="Antioquia" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Antioquia" ? "checked" : ""}} data-value="antioquia"></option>
+              <option value="Atlántico" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Atlántico" ? "checked" : ""}} data-value="atlantico"></option>
+              <option value="Bogotá D.C."  {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Bogotá D.C." ? "checked" : ""}} data-value="bogota"></option>
+              <option value="Bolívar" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Bolívar" ? "checked" : ""}} data-value="bolivar"></option>
+              <option value="Boyacá" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Boyacá" ? "checked" : ""}} data-value="boyaca"></option>
+              <option value="Caldas" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Caldas" ? "checked" : ""}} data-value="caldas"></option>
+              <option value="Caquetá" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Caquetá" ? "checked" : ""}} data-value="caqueta"></option>
+              <option value="Cauca" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Cauca" ? "checked" : ""}} data-value="cauca"></option>
+              <option value="Cesar" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Cesar" ? "checked" : ""}} data-value="cesar"></option>
+              <option value="Córdoba" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Córdoba" ? "checked" : ""}} data-value="cordoba"></option>
+              <option value="Cundinamarca" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Cundinamarca" ? "checked" : ""}} data-value="cundinamarca"></option>
+              <option value="Chocó" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Chocó" ? "checked" : ""}} data-value="choco"></option>
+              <option value="Huila" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Huila" ? "checked" : ""}} data-value="huila"></option>
+              <option value="La Guajira" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "La Guajira" ? "checked" : ""}} data-value="laguajira"></option>
+              <option value="Magdalena" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Magdalena" ? "checked" : ""}} data-value="magdalena"></option>
+              <option value="Meta" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Meta" ? "checked" : ""}} data-value="meta"></option>
+              <option value="Nariño" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Nariño" ? "checked" : ""}} data-value="narino"></option>
+              <option value="Norte de Santander" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Norte de Santander" ? "checked" : ""}} data-value="nortedesantander"></option>
+              <option value="Quindio" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Quindio" ? "checked" : ""}} data-value="quindio"></option>
+              <option value="Risaralda" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Risaralda" ? "checked" : ""}} data-value="risaralda"></option>
+              <option value="Santander" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Santander" ? "checked" : ""}} data-value="santander"></option>
+              <option value="Sucre" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Sucre" ? "checked" : ""}} data-value="sucre"></option>
+              <option value="Tolima" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Tolima" ? "checked" : ""}} data-value="tolima"></option>
+              <option value="Valle del Cauca" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Valle del Cauca" ? "checked" : ""}} data-value="valledelcauca"></option>
+              <option value="Arauca" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Arauca" ? "checked" : ""}} data-value="arauca"></option>
+              <option value="Casanare" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Casanare" ? "checked" : ""}} data-value="casanare"></option>
+              <option value="Putumayo" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Putumayo" ? "checked" : ""}} data-value="putumayo"></option>
+              <option value="San Andrés" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "San Andrés" ? "checked" : ""}} data-value="sanandres"></option>
+              <option value="Amazonas" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Amazonas" ? "checked" : ""}} data-value="amazonas"></option>
+              <option value="Guainía" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Guainía" ? "checked" : ""}} data-value="guainia"></option>
+              <option value="Guaviare" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Guaviare" ? "checked" : ""}} data-value="guaviare"></option>
+              <option value="Vaupes" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Vaupes" ? "checked" : ""}} data-value="vaupes"></option>
+              <option value="Vichada" {{isset($data['grupo_datos_beneficiario/departamento']) && $data['grupo_datos_beneficiario/departamento'] == "Vichada" ? "checked" : ""}} data-value="vichada"></option>
             </datalist>
             
             <span class="or-option-translations" style="display:none;">
@@ -21642,9 +21642,9 @@
 
           <label class="question or-appearance-minimal-autocomplete print-width-adjusted print-height-adjusted" style="width: 100%; height: 72px;">
             <span lang="" class="question-label active">Municipio</span><span class="required">*</span>
-            <input name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/municipio" value="{{isset($data['grupo_datos_beneficiario/municipio'])}}" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/municipio" data-required="true()" data-type-xml="select1" type="text" list="a4E3J9gkULZe5eRqQph8zhgrupodatosbeneficiariomunicipio" class="hide">
+            <input name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/municipio" value="{{ ($data['grupo_datos_beneficiario/municipio']) ?? ''}}" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/municipio" data-required="true()" data-type-xml="select1" type="text" list="a4E3J9gkULZe5eRqQph8zhgrupodatosbeneficiariomunicipio" class="hide">
             
-            <input type="text" class="ignore widget autocomplete" list="a4E3J9gkULZe5eRqQph8zhgrupodatosbeneficiariomunicipio" value="{{isset($data['grupo_datos_beneficiario/municipio'])}}">
+            <input type="text" class="ignore widget autocomplete" list="a4E3J9gkULZe5eRqQph8zhgrupodatosbeneficiariomunicipio" value="{{ ($data['grupo_datos_beneficiario/municipio']) ?? ''}}">
             <datalist id="a4E3J9gkULZe5eRqQph8zhgrupodatosbeneficiariomunicipio">
                 <option class="itemset-template" value="" data-items-path="instance('municipio')/root/item[departamento= /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/departamento ]">...</option>
                 <option value="Albán" data-value="52019_alban1"></option>
@@ -21717,13 +21717,13 @@
         
           <label class="question non-select print-width-adjusted print-height-adjusted" style="width: 100%; height: 68px;">
             <span lang="" class="question-label active">Corregimiento/Vereda/Barrio/Territorio colectivo/Comunidad</span><span class="required">*</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/corregimiento_comunidad" value="{{isset($data['grupo_datos_beneficiario/corregimiento_comunidad'])}}" data-required="true()" data-type-xml="string" maxlength="2000"><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/corregimiento_comunidad" value="{{ ($data['grupo_datos_beneficiario/corregimiento_comunidad']) ?? ''}}" data-required="true()" data-type-xml="string" maxlength="2000"><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
           </label>
             
           <label class="question non-select print-width-adjusted print-height-adjusted" style="width: 100%; height: 84px;">
             <span lang="" class="question-label active">Teléfono de Contacto</span>
             <span lang="" class="or-hint active">(Opcional, solo si cuentan con esta información)</span>
-            <input type="number" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/Tel_fono_de_Contacto" value="{{isset($data['grupo_datos_beneficiario/Tel_fono_de_Contacto'])}}" data-type-xml="int">
+            <input type="number" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/Tel_fono_de_Contacto" value="{{ ($data['grupo_datos_beneficiario/Tel_fono_de_Contacto']) ?? ''}}" data-type-xml="int">
           </label>
             
           <label class="question or-appearance-minimal print-width-adjusted print-height-adjusted" style="width: 100%; height: 99px;">
@@ -21731,11 +21731,11 @@
             
             <select name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/numero_integrantes_hogar" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/numero_integrantes_hogar" data-required="true()" data-type-xml="select1" style="display: none;">
               <option value="">...</option>
-              <option value="1_$300.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])=="1_$300.000" ? "selected": ""}}>1 - $300.000</option>
-              <option value="2_$510.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])=="2_$510.000" ? "selected": ""}}>2 - $510.000</option>
-              <option value="3_$690.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])=="3_$690.000" ? "selected": ""}}>3 - $690.000</option>
-              <option value="4_$840.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])=="4_$840.000" ? "selected": ""}}>4 -$ 840.000</option>
-              <option value="5_$990.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])=="5_$990.000" ? "selected": ""}}>5 o Más - $990.000</option>
+              <option value="1_$300.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar']) && $data['grupo_datos_beneficiario/numero_integrantes_hogar'] =="1_$300.000" ? "selected": ""}}>1 - $300.000</option>
+              <option value="2_$510.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar']) && $data['grupo_datos_beneficiario/numero_integrantes_hogar'] =="2_$510.000" ? "selected": ""}}>2 - $510.000</option>
+              <option value="3_$690.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar']) && $data['grupo_datos_beneficiario/numero_integrantes_hogar'] =="3_$690.000" ? "selected": ""}}>3 - $690.000</option>
+              <option value="4_$840.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar']) && $data['grupo_datos_beneficiario/numero_integrantes_hogar'] =="4_$840.000" ? "selected": ""}}>4 -$ 840.000</option>
+              <option value="5_$990.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar']) && $data['grupo_datos_beneficiario/numero_integrantes_hogar'] =="5_$990.000" ? "selected": ""}}>5 o Más - $990.000</option>
             </select>
 
             <div class="btn-group bootstrap-select widget clearfix">
@@ -21746,7 +21746,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="75888.81622464691" value="1_$300.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])=="1_$300.000" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="75888.81622464691" value="1_$300.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar']) && $data['grupo_datos_beneficiario/numero_integrantes_hogar']=="1_$300.000" ? "checked": ""}}>
                       <span class="option-label">1 - $300.000</span>
                     </label>
                   </a>
@@ -21754,7 +21754,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="75888.81622464691" value="2_$510.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])=="2_$510.000" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="75888.81622464691" value="2_$510.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar']) && $data['grupo_datos_beneficiario/numero_integrantes_hogar']=="2_$510.000" ? "checked": ""}}>
                       <span class="option-label">2 - $510.000</span>
                     </label>
                   </a>
@@ -21762,7 +21762,7 @@
                 <li class="active">
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label data-checked="true">
-                      <input class="ignore" type="radio" name="75888.81622464691" value="3_$690.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])=="3_$690.000" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="75888.81622464691" value="3_$690.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar']) && $data['grupo_datos_beneficiario/numero_integrantes_hogar']=="3_$690.000" ? "checked": ""}}>
                       <span class="option-label">3 - $690.000</span>
                     </label>
                   </a>
@@ -21770,7 +21770,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="75888.81622464691" value="4_$840.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])=="4_$840.000" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="75888.81622464691" value="4_$840.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar']) && $data['grupo_datos_beneficiario/numero_integrantes_hogar']=="4_$840.000" ? "checked": ""}}>
                       <span class="option-label">4 -$ 840.000</span>
                     </label>
                   </a>
@@ -21778,7 +21778,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="75888.81622464691" value="5_$990.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])=="5_$990.000" ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="75888.81622464691" value="5_$990.000" {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar']) && $data['grupo_datos_beneficiario/numero_integrantes_hogar']=="5_$990.000" ? "checked": ""}}>
                       <span class="option-label">5 o Más - $990.000</span>
                     </label>
                   </a>
@@ -21793,32 +21793,32 @@
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;">
             <span lang="" class="question-label active">De acuerdo con la composición del hogar el monto a entregar es: <strong>
               <span class="or-output" data-value=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/numero_integrantes_hogar ">
-                {{isset($data['grupo_datos_beneficiario/numero_integrantes_hogar'])}}
+                {{($data['grupo_datos_beneficiario/numero_integrantes_hogar']) ?? ''}}
               </span>
             </strong> 
             </span>
             
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/nota_monto_entregado_condicionado" value="{{isset($data['grupo_datos_beneficiario/nota_monto_entregado_condicionado'])}}" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/nota_monto_entregado_condicionado" value="{{ ($data['grupo_datos_beneficiario/nota_monto_entregado_condicionado']) ?? ''}}" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000">
           </label>
           
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;">
             <span lang="" class="question-label active"><strong>Socio Implementador - FUNDACIÓN ACCIÓN CONTRA EL HAMBRE</strong></span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/Socio_Implementador_I_N_CONTRA_EL_HAMBRE" value="{{isset($data['grupo_datos_beneficiario/Socio_Implementador_I_N_CONTRA_EL_HAMBRE'])}}" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/Socio_Implementador_I_N_CONTRA_EL_HAMBRE" value="{{ ($data['grupo_datos_beneficiario/Socio_Implementador_I_N_CONTRA_EL_HAMBRE']) ?? ''}}" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000">
           </label>
           
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;">
             <span lang="" class="question-label active"><strong>Código del Proyecto - COA1BL</strong></span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/C_digo_del_Proyecto_COA1BL" value="{{isset($data['grupo_datos_beneficiario/C_digo_del_Proyecto_COA1BL'])}}" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/C_digo_del_Proyecto_COA1BL" value="{{ ($data['grupo_datos_beneficiario/C_digo_del_Proyecto_COA1BL']) ?? ''}}" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000">
           </label>
             
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;">
             <span lang="" class="question-label active"><strong>Proyecto Consorcio MIRE – Mecanismo Intersectorial de Respuesta a Emergencias</strong></span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/Proyecto_Consorcio_M_puesta_a_Emergencias" value="{{isset($data['grupo_datos_beneficiario/Proyecto_Consorcio_M_puesta_a_Emergencias'])}}" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/Proyecto_Consorcio_M_puesta_a_Emergencias" value="{{ ($data['grupo_datos_beneficiario/Proyecto_Consorcio_M_puesta_a_Emergencias']) ?? ''}}" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000">
           </label>
           
           <label class="question non-select print-width-adjusted print-height-adjusted" style="width: 100%; height: 68px;">
             <span lang="" class="question-label active">Código/ Emergencia:</span><span class="required">*</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/C_digo_Emergencia" value="{{isset($data['grupo_datos_beneficiario/C_digo_Emergencia'])}}" data-required="true()" data-type-xml="string" maxlength="2000"><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/C_digo_Emergencia" value="{{ ($data['grupo_datos_beneficiario/C_digo_Emergencia']) ?? ''}}" data-required="true()" data-type-xml="string" maxlength="2000"><span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
           </label>
 
         </section>
@@ -21845,17 +21845,17 @@
 
           <label class="question non-select with-media clearfix print-width-adjusted print-height-adjusted" style="width: 100%; height: 394px;">
             <span lang="" class="question-label active">Fotografía de documento de identidad o fotocopia lado 1.</span><span class="required">*</span>
-            <input type="file" name="/a4E3J9gkULZe5eRqQph8zh/group_ww55p84/imagen_documento_identidad_lado1" value="{{isset($data['group_ww55p84/imagen_documento_identidad_lado1'])}}" data-required="true()" data-max-pixels="1024" data-type-xml="binary" accept="image/*" data-loaded-file-name="1696275778312.jpg" class="hide">
+            <input type="file" name="/a4E3J9gkULZe5eRqQph8zh/group_ww55p84/imagen_documento_identidad_lado1" value="{{ ($data['group_ww55p84/imagen_documento_identidad_lado1']) ?? ''}}" data-required="true()" data-max-pixels="1024" data-type-xml="binary" accept="image/*" data-loaded-file-name="1696275778312.jpg" class="hide">
             
             <div class="widget file-picker">
               <input class="ignore fake-file-input" readonly="" placeholder="Haga clic aquí para subir el archivo. (<10MB)">
               <button type="button" class="btn-icon-only btn-reset" aria-label="reset">
                 <i class="icon icon-refresh"> </i>
               </button>
-              <a class="btn-icon-only btn-download" aria-label="download" download="1696275778312.jpg" href="{{isset($data['group_ww55p84/imagen_documento_identidad_lado1'])}}"><i class="icon icon-download"> </i></a>
+              <a class="btn-icon-only btn-download" aria-label="download" download="1696275778312.jpg" href="{{ ($data['group_ww55p84/imagen_documento_identidad_lado1']) ?? ''}}"><i class="icon icon-download"> </i></a>
               <div class="file-feedback "></div>
               <div class="file-preview">
-                <img src="{{isset($data['group_ww55p84/imagen_documento_identidad_lado1'])}}">
+                <img src="{{ ($data['group_ww55p84/imagen_documento_identidad_lado1']) ?? ''}}">
               </div>
             </div>
             <span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
@@ -21868,10 +21868,10 @@
               <input class="ignore fake-file-input" readonly="" placeholder="Haga clic aquí para subir el archivo. (<10MB)"><button type="button" class="btn-icon-only btn-reset" aria-label="reset">
                 <i class="icon icon-refresh"> </i>
               </button>
-              <a class="btn-icon-only btn-download" aria-label="download" download="1696275797719.jpg" href="{{isset($data['group_ww55p84/imagen_documento_identidad_lado2'])}}"><i class="icon icon-download"> </i></a>
+              <a class="btn-icon-only btn-download" aria-label="download" download="1696275797719.jpg" href="{{ ($data['group_ww55p84/imagen_documento_identidad_lado2']) ?? ''}}"><i class="icon icon-download"> </i></a>
               <div class="file-feedback "></div>
               <div class="file-preview">
-                <img src="{{isset($data['group_ww55p84/imagen_documento_identidad_lado2'])}}"></div>
+                <img src="{{ ($data['group_ww55p84/imagen_documento_identidad_lado2']) ?? ''}}"></div>
             </div>
             <span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
           </label>
@@ -21882,20 +21882,20 @@
           <h4><span lang="" class="question-label active">MENSAJES CLAVE SOBRE PROCESO DE RETIRO.</span></h4>
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;">
             <span lang="" class="question-label active">• El día de retirar la asistencia, lleve su documento original al punto de pago o transferencia.</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_claves/_El_d_a_de_retirar_pago_o_transferencia" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{isset($data['group_mensajes_claves/_El_d_a_de_retirar_pago_o_transferencia'])}}">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_claves/_El_d_a_de_retirar_pago_o_transferencia" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{ ($data['group_mensajes_claves/_El_d_a_de_retirar_pago_o_transferencia']) ?? ''}}">
           </label>
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 56px;">
             <span lang="" class="question-label active">• Solamente se entregará el recurso a la persona titular que firma este documento en el punto del proveedor financiero</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_claves/_Solamente_se_entre_proveedor_financiero" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{isset($data['group_mensajes_claves/_Solamente_se_entre_proveedor_financiero'])}}">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_claves/_Solamente_se_entre_proveedor_financiero" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{ ($data['group_mensajes_claves/_Solamente_se_entre_proveedor_financiero']) ?? ''}}">
           </label>
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;"><span lang="" class="question-label active">• No acepte ayudas de terceros o personas inescrupulosas que puedan estafarlo (a).</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_claves/_No_acepte_ayudas_d_puedan_estafarlo_a" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{isset($data['group_mensajes_claves/_No_acepte_ayudas_d_puedan_estafarlo_a'])}}">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_claves/_No_acepte_ayudas_d_puedan_estafarlo_a" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{ ($data['group_mensajes_claves/_No_acepte_ayudas_d_puedan_estafarlo_a']) ?? ''}}">
           </label>
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 35px;"><span lang="" class="question-label active">• Asista en compañía de un miembro de su hogar o familiar sí le genera más confianza</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_claves/_Asista_en_compa_a_genera_m_s_confianza" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{isset($data['group_mensajes_claves/_Asista_en_compa_a_genera_m_s_confianza'])}}">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_claves/_Asista_en_compa_a_genera_m_s_confianza" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{ ($data['group_mensajes_claves/_Asista_en_compa_a_genera_m_s_confianza']) ?? ''}}">
           </label>
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 56px;"><span lang="" class="question-label active">• Tener en cuenta las recomendaciones de retiro y uso de la asistencia brindadas en las jornadas de sensibilización por los profesionales de Acción Contra el Hambre y el consorcio MIRE</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_claves/_Tener_en_cuenta_la_y_el_consorcio_MIRE" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{isset($data['group_mensajes_claves/_Tener_en_cuenta_la_y_el_consorcio_MIRE'])}}">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_claves/_Tener_en_cuenta_la_y_el_consorcio_MIRE" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{ ($data['group_mensajes_claves/_Tener_en_cuenta_la_y_el_consorcio_MIRE']) ?? ''}}">
           </label>
         </section><!--end of group -->
 
@@ -21903,19 +21903,19 @@
           <h4><span lang="" class="question-label active">MENSAJES CLAVES SOBRE PREVENCIÓN DE FRAUDE:</span></h4>
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 77px;">
             <span lang="" class="question-label active">Recuerde que la Fundación Acción contra el Hambre y el Consorcio MIRE realizamos nuestros proyectos bajo principios de NEUTRALIDAD, INDEPENDENCIA E IMPARCIALIDAD. Nuestra asistencia humanitaria es totalmente gratuita. Tenemos CERO tolerancia con cualquier tipo de fraude.</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_fraude/Recuerde_que_la_Fund_quier_tipo_de_fraude" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{isset($data['group_mensajes_fraude/Recuerde_que_la_Fund_quier_tipo_de_fraude'])}}">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_fraude/Recuerde_que_la_Fund_quier_tipo_de_fraude" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{ ($data['group_mensajes_fraude/Recuerde_que_la_Fund_quier_tipo_de_fraude']) ?? ''}}">
           </label>
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 119px;">
             <span lang="" class="question-label active">Ninguna persona puede ofrecerle ser parte de nuestro programa a cambio de dinero o bienes, en caso de conocer algún caso o si ha sido víctima, por favor reportarlo con nuestro personal en sitio de la emergencia y a través del Mecanismo de retroalimentación dispuesto en nuestros canales MQR: correo electrónico pqr@co.acfspain.org – línea de atención gratuita 01800519758 y buzón WEB www.accioncontraelhambre.co/contacto-pqr</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_fraude/Ninguna_persona_pued_mbre_co_contacto_pqr" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{isset($data['group_mensajes_fraude/Ninguna_persona_pued_mbre_co_contacto_pqr'])}}">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_fraude/Ninguna_persona_pued_mbre_co_contacto_pqr" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{ ($data['group_mensajes_fraude/Ninguna_persona_pued_mbre_co_contacto_pqr']) ?? ''}}">
           </label>
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 56px;">
             <span lang="" class="question-label active">Toda la información que usted proporciona en el marco de cualquier caso de fraude será confidencial y estrictamente protegida, en ningún caso afectará su participación en el proyecto.</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_fraude/Toda_la_informaci_n_aci_n_en_el_proyecto" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{isset($data['group_mensajes_fraude/Toda_la_informaci_n_aci_n_en_el_proyecto'])}}">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_fraude/Toda_la_informaci_n_aci_n_en_el_proyecto" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{ ($data['group_mensajes_fraude/Toda_la_informaci_n_aci_n_en_el_proyecto']) ?? ''}}">
           </label>
           <label class="question non-select readonly print-width-adjusted print-height-adjusted" style="width: 100%; height: 56px;">
             <span lang="" class="question-label active">Ambas partes declaran de haber leído y entendido este acuerdo, aceptando todas los numerales y obligaciones contenidas a través de sus firmas:</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_fraude/Ambas_partes_declara_trav_s_de_sus_firmas" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{isset($data['group_mensajes_fraude/Ambas_partes_declara_trav_s_de_sus_firmas'])}}">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/group_mensajes_fraude/Ambas_partes_declara_trav_s_de_sus_firmas" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{ ($data['group_mensajes_fraude/Ambas_partes_declara_trav_s_de_sus_firmas']) ?? ''}}">
           </label>
         </section><!--end of group -->
 
@@ -21925,20 +21925,20 @@
             <span lang="" class="or-hint active">Nombres y apellidos del la persona que esta diligenciando el formulario</span>
             <select name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/personal_ach" data-name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/personal_ach" data-required="true()" data-constraint="regex(., '^[a-zA-Z\D]{7,60}$')" data-type-xml="select1" style="display: none;">
               <option value="">...</option>
-              <option value="alejandra_sanjuan" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'alejandra_sanjuan' ? "selected": ""}}>Alejandra Sanjuan</option>
-              <option value="angie_carvajal" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'angie_carvajal' ? "selected": ""}}>Angie Carvajal</option>
-              <option value="camilo_ruiz" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'camilo_ruiz' ? "selected": ""}}>Camilo Ruiz</option>
-              <option value="david_escobar" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'david_escobar' ? "selected": ""}}>David Escobar</option>
-              <option value="gina_roa" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'gina_roa' ? "selected": ""}}>Gina Roa</option>
-              <option value="kevin_alir_s_n" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'kevin_alir_s_n' ? "selected": ""}}>Kevin Alir Sánchez</option>
-              <option value="laura_juliana_" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'laura_juliana_' ? "selected": ""}}>Laura Juliana Montenegro</option>
-              <option value="wendy_rubiano" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'wendy_rubiano' ? "selected": ""}}>Lina Trujillo</option>
-              <option value="lizeth_moncada" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'lizeth_moncada' ? "selected": ""}}>Lizeth Moncada</option>
-              <option value="camila_morales" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'camila_morales' ? "selected": ""}}>María Camila Morales</option>
-              <option value="miguel__ngel_g" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'miguel__ngel_g' ? "selected": ""}}>Miguel Ángel Garavito</option>
-              <option value="paolin_andrade" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'paolin_andrade' ? "selected": ""}}>Paolin andrade</option>
-              <option value="sofia_mora" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'sofia_mora' ? "selected": ""}}>Sofia Mora</option>
-              <option value="camilo_villate" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'camilo_villate' ? "selected": ""}}>Camilo Villate</option>
+              <option value="alejandra_sanjuan" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'alejandra_sanjuan' ? "selected": ""}}>Alejandra Sanjuan</option>
+              <option value="angie_carvajal" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'angie_carvajal' ? "selected": ""}}>Angie Carvajal</option>
+              <option value="camilo_ruiz" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'camilo_ruiz' ? "selected": ""}}>Camilo Ruiz</option>
+              <option value="david_escobar" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'david_escobar' ? "selected": ""}}>David Escobar</option>
+              <option value="gina_roa" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'gina_roa' ? "selected": ""}}>Gina Roa</option>
+              <option value="kevin_alir_s_n" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'kevin_alir_s_n' ? "selected": ""}}>Kevin Alir Sánchez</option>
+              <option value="laura_juliana_" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'laura_juliana_' ? "selected": ""}}>Laura Juliana Montenegro</option>
+              <option value="wendy_rubiano" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'wendy_rubiano' ? "selected": ""}}>Lina Trujillo</option>
+              <option value="lizeth_moncada" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'lizeth_moncada' ? "selected": ""}}>Lizeth Moncada</option>
+              <option value="camila_morales" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'camila_morales' ? "selected": ""}}>María Camila Morales</option>
+              <option value="miguel__ngel_g" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'miguel__ngel_g' ? "selected": ""}}>Miguel Ángel Garavito</option>
+              <option value="paolin_andrade" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'paolin_andrade' ? "selected": ""}}>Paolin andrade</option>
+              <option value="sofia_mora" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'sofia_mora' ? "selected": ""}}>Sofia Mora</option>
+              <option value="camilo_villate" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'camilo_villate' ? "selected": ""}}>Camilo Villate</option>
             </select>
             <div class="btn-group bootstrap-select widget clearfix">
               <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -21948,7 +21948,7 @@
                 <li class="active">
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label data-checked="true">
-                      <input class="ignore" type="radio" name="59264.75640967346"  value="alejandra_sanjuan" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'alejandra_sanjuan' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346"  value="alejandra_sanjuan" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'alejandra_sanjuan' ? "checked": ""}}>
                       <span class="option-label">Alejandra Sanjuan</span>
                     </label>
                   </a>
@@ -21956,7 +21956,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="angie_carvajal" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'angie_carvajal' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="angie_carvajal" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'angie_carvajal' ? "checked": ""}}>
                       <span class="option-label">Angie Carvajal</span>
                     </label>
                   </a>
@@ -21964,7 +21964,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="camilo_ruiz" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'camilo_ruiz' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="camilo_ruiz" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'camilo_ruiz' ? "checked": ""}}>
                       <span class="option-label">Camilo Ruiz</span>
                     </label>
                   </a>
@@ -21972,7 +21972,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="david_escobar" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'david_escobar' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="david_escobar" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'david_escobar' ? "checked": ""}}>
                       <span class="option-label">David Escobar</span>
                     </label>
                   </a>
@@ -21980,7 +21980,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="gina_roa" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'gina_roa' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="gina_roa" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'gina_roa' ? "checked": ""}}>
                       <span class="option-label">Gina Roa</span>
                     </label>
                   </a>
@@ -21988,7 +21988,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="kevin_alir_s_n" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'kevin_alir_s_n' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="kevin_alir_s_n" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'kevin_alir_s_n' ? "checked": ""}}>
                       <span class="option-label">Kevin Alir Sánchez</span>
                     </label>
                   </a>
@@ -21996,7 +21996,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="laura_juliana_" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'laura_juliana_' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="laura_juliana_" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'laura_juliana_' ? "checked": ""}}>
                       <span class="option-label">Laura Juliana Montenegro</span>
                     </label>
                   </a>
@@ -22004,7 +22004,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="wendy_rubiano" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'wendy_rubiano' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="wendy_rubiano" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'wendy_rubiano' ? "checked": ""}}>
                       <span class="option-label">Lina Trujillo</span>
                     </label>
                   </a>
@@ -22012,7 +22012,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="lizeth_moncada" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'lizeth_moncada' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="lizeth_moncada" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'lizeth_moncada' ? "checked": ""}}>
                       <span class="option-label">Lizeth Moncada</span>
                     </label>
                   </a>
@@ -22020,7 +22020,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="camila_morales" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'camila_morales' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="camila_morales" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'camila_morales' ? "checked": ""}}>
                       <span class="option-label">María Camila Morales</span>
                     </label>
                   </a>
@@ -22028,7 +22028,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="miguel__ngel_g" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'miguel__ngel_g' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="miguel__ngel_g" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'miguel__ngel_g' ? "checked": ""}}>
                       <span class="option-label">Miguel Ángel Garavito</span>
                     </label>
                   </a>
@@ -22036,7 +22036,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="paolin_andrade" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'paolin_andrade' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="paolin_andrade" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'paolin_andrade' ? "checked": ""}}>
                       <span class="option-label">Paolin andrade</span>
                     </label>
                   </a>
@@ -22044,7 +22044,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="sofia_mora" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'sofia_mora' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="sofia_mora" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'sofia_mora' ? "checked": ""}}>
                       <span class="option-label">Sofia Mora</span>
                     </label>
                   </a>
@@ -22052,7 +22052,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="59264.75640967346" value="camilo_villate" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) == 'camilo_villate' ? "checked": ""}}>
+                      <input class="ignore" type="radio" name="59264.75640967346" value="camilo_villate" {{isset($data['firma_acuerdo_de_transferencias/personal_ach']) && $data['firma_acuerdo_de_transferencias/personal_ach'] == 'camilo_villate' ? "checked": ""}}>
                       <span class="option-label">Camilo Villate</span>
                     </label>
                   </a>
@@ -22067,12 +22067,12 @@
             <span lang="" class="question-label active">Cargo de personal de Acción contra el Hambre</span><span class="required">*</span>
             <select name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/cargo_personal_ach" data-name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/cargo_personal_ach" data-required="true()" data-type-xml="select1" style="display: none;">
               <option value="">...</option>
-              <option value="monitor/a_san" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "monitor/a_san" ? "selected" : ""}}>Monitor/a SAN</option>
-              <option value="monitor/a_wash" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "monitor/a_wash" ? "selected" : ""}}>Monitor/a WASH</option>
-              <option value="profesional_en_agua_saneamiento en emergencia" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "profesional_en_agua_saneamiento en emergencia" ? "selected" : ""}}>Profesional en agua y saneamiento en emergencia</option>
-              <option value="profesional_Seguridad_Alimentaria_Medios de Vida" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "profesional_Seguridad_Alimentaria_Medios de Vida" ? "selected" : ""}}>Profesional Seguridad Alimentaria y Medios de Vida</option>
-              <option value="asistente_data" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "asistente_data" ? "selected" : ""}}>Profesional de protección</option>
-              <option value="asistente_meal" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "asistente_meal" ? "selected" : ""}}>Oficila MEAL</option>
+              <option value="monitor/a_san" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "monitor/a_san" ? "selected" : ""}}>Monitor/a SAN</option>
+              <option value="monitor/a_wash" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "monitor/a_wash" ? "selected" : ""}}>Monitor/a WASH</option>
+              <option value="profesional_en_agua_saneamiento en emergencia" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "profesional_en_agua_saneamiento en emergencia" ? "selected" : ""}}>Profesional en agua y saneamiento en emergencia</option>
+              <option value="profesional_Seguridad_Alimentaria_Medios de Vida" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "profesional_Seguridad_Alimentaria_Medios de Vida" ? "selected" : ""}}>Profesional Seguridad Alimentaria y Medios de Vida</option>
+              <option value="asistente_data" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "asistente_data" ? "selected" : ""}}>Profesional de protección</option>
+              <option value="asistente_meal" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "asistente_meal" ? "selected" : ""}}>Oficila MEAL</option>
             </select>
             <div class="btn-group bootstrap-select widget clearfix">
               <button type="button" class="btn btn-default dropdown-toggle clearfix" data-toggle="dropdown">
@@ -22082,7 +22082,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="68880.15147503646" value="monitor/a_san" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "monitor/a_san" ? "selected" :""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="monitor/a_san" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "monitor/a_san" ? "selected" :""}}>
                       <span class="option-label">Monitor/a SAN</span>
                     </label>
                   </a>
@@ -22090,7 +22090,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="68880.15147503646" value="monitor/a_wash" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "monitor/a_wash" ? "selected" :""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="monitor/a_wash" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "monitor/a_wash" ? "selected" :""}}>
                       <span class="option-label">Monitor/a WASH</span>
                     </label>
                   </a>
@@ -22098,7 +22098,7 @@
                 <li class="active">
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label data-checked="true">
-                      <input class="ignore" type="radio" name="68880.15147503646" value="profesional_en_agua_saneamiento en emergencia" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "profesional_en_agua_saneamiento en emergencia" ? "selected": ""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="profesional_en_agua_saneamiento en emergencia" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "profesional_en_agua_saneamiento en emergencia" ? "selected": ""}}>
                       <span class="option-label">Profesional en agua y saneamiento en emergencia</span>
                     </label>
                   </a>
@@ -22106,7 +22106,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="68880.15147503646" value="profesional_Seguridad_Alimentaria_Medios de Vida" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "profesional_Seguridad_Alimentaria_Medios de Vida" ? "selected" : ""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="profesional_Seguridad_Alimentaria_Medios de Vida" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "profesional_Seguridad_Alimentaria_Medios de Vida" ? "selected" : ""}}>
                       <span class="option-label">Profesional Seguridad Alimentaria y Medios de Vida</span>
                     </label>
                   </a>
@@ -22114,7 +22114,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="68880.15147503646" value="asistente_data" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "asistente_data" ? "selected" : ""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="asistente_data" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "asistente_data" ? "selected" : ""}}>
                       <span class="option-label">Profesional de protección</span>
                     </label>
                   </a>
@@ -22122,7 +22122,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="68880.15147503646" value="asistente_meal" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) == "asistente_meal" ? "selected" : ""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="asistente_meal" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "asistente_meal" ? "selected" : ""}}>
                       <span class="option-label">Oficila MEAL</span>
                     </label>
                   </a>
@@ -22148,7 +22148,7 @@
                   <i class="icon icon-refresh"> </i>
                 </button>
                 
-                <a class="btn-icon-only btn-download" aria-label="download" download="1696275861284-22_12_2.jpg" href="{{isset($data['firma_acuerdo_de_transferencias/firma_personal_ach'])}}">
+                <a class="btn-icon-only btn-download" aria-label="download" download="1696275861284-22_12_2.jpg" href="{{ ($data['firma_acuerdo_de_transferencias/firma_personal_ach']) ?? ''}}">
                   <i class="icon icon-download"> </i>
                 </a>
                 <div class="draw-widget__feedback"></div>
@@ -22161,20 +22161,20 @@
             <span lang="" class="question-label active">Yo, 
               <strong>
                 <span class="or-output" data-value=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/nombre_participante ">
-                  {{isset($data['grupo_datos_beneficiario/nombre_participante'])}}
+                  {{ ($data['grupo_datos_beneficiario/nombre_participante']) ?? ''}}
                 </span>
               </strong>
               , identificado/a con documento 
               <span class="or-output" data-value=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_documento_participante ">
-                {{isset($data['grupo_datos_beneficiario/tipo_documento_participante'])}}
+                {{ ($data['grupo_datos_beneficiario/tipo_documento_participante']) ?? ''}}
               </span> y número 
               <span class="or-output" data-value=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/numero_identificacion_participante ">
-                {{isset($data['grupo_datos_beneficiario/numero_identificacion_participante'])}}
+                {{ ($data['grupo_datos_beneficiario/numero_identificacion_participante']) ?? ''}}
               </span>
             </span>
             
             <span lang="" class="or-hint active">Nombres y apellidos</span>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/nota_datos_personales_participantes" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{isset($date['firma_acuerdo_de_transferencias/nota_datos_personales_participantes'])}}">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/nota_datos_personales_participantes" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" value="{{ ($date['firma_acuerdo_de_transferencias/nota_datos_personales_participantes']) ?? ''}}">
           </label>
 
           <fieldset class="question simple-select print-width-adjusted print-height-adjusted" style="width: 100%; height: 101px;">
@@ -22185,12 +22185,12 @@
 
               <div class="option-wrapper">
                 <label class="">
-                  <input type="checkbox" name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/forma_consentimiento_informado" value="audio" {{isset($data['firma_acuerdo_de_transferencias/forma_consentimiento_informado'] == "audio" ? "checked" : ""}} data-required="true()" data-type-xml="select">
+                  <input type="checkbox" name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/forma_consentimiento_informado" value="audio" {{isset($data['firma_acuerdo_de_transferencias/forma_consentimiento_informado']) && $data['firma_acuerdo_de_transferencias/forma_consentimiento_informado'] == "audio" ? "checked" : ""}} data-required="true()" data-type-xml="select">
                   <span lang="" class="option-label active">Audio / Foto</span>
                 </label>
               
                 <label class="" data-checked="true">
-                  <input type="checkbox" name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/forma_consentimiento_informado" value="firma" {{isset($data['firma_acuerdo_de_transferencias/forma_consentimiento_informado'] == "firma" ? "checked" : ""}} data-required="true()" data-type-xml="select">
+                  <input type="checkbox" name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/forma_consentimiento_informado" value="firma" {{isset($data['firma_acuerdo_de_transferencias/forma_consentimiento_informado']) && $data['firma_acuerdo_de_transferencias/forma_consentimiento_informado'] == "firma" ? "checked" : ""}} data-required="true()" data-type-xml="select">
                   <span lang="" class="option-label active">Firma</span>
                 </label>
               </div>
@@ -22202,7 +22202,7 @@
           <label class="question or-branch non-select or-appearance-signature or-signature-initialized print-width-adjusted print-height-adjusted" style="width: 100%; height: 409px;">
             <span lang="" class="question-label active">Firma</span><span class="required">*</span>
 
-            <?php if($data['firma_acuerdo_de_transferencias/forma_consentimiento_informado'] == 'firma') {?>
+            <?php if(isset($data['firma_acuerdo_de_transferencias/forma_consentimiento_informado']) == 'firma') {?>
               <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/aceptacion_firma" data-required="true()" data-relevant="selected( /a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/forma_consentimiento_informado , 'firma')" data-max-pixels="1024" data-type-xml="binary" accept="image/*" data-loaded-file-name="1696275896367.jpg" data-drawing="true" data-filename-postfix="-22_12_3">
 
               <div class="widget draw-widget">
@@ -22217,7 +22217,7 @@
                   <button type="button" class="btn-icon-only btn-reset" aria-label="reset">
                     <i class="icon icon-refresh"> </i>
                   </button>
-                  <a class="btn-icon-only btn-download" aria-label="download" download="1696275896367-22_12_3.jpg" href="{{isset($data['firma_acuerdo_de_transferencias/aceptacion_firma'])}}"><i class="icon icon-download"> </i></a>
+                  <a class="btn-icon-only btn-download" aria-label="download" download="1696275896367-22_12_3.jpg" href="{{ ($data['firma_acuerdo_de_transferencias/aceptacion_firma']) ?? ''}}"><i class="icon icon-download"> </i></a>
                   <div class="draw-widget__feedback"></div>
                 </div>
               </div>
@@ -22228,7 +22228,7 @@
           <label class="question or-branch non-select with-media clearfix disabled">
             <span lang="" class="question-label active">Foto</span><span class="required">*</span>
 
-            <?php if($data['firma_acuerdo_de_transferencias/forma_consentimiento_informado'] == 'audio'){?>
+            <?php if(isset($data['firma_acuerdo_de_transferencias/forma_consentimiento_informado']) == 'audio'){?>
 
               <input type="file" name="/a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/Foto" data-required="true()" data-relevant="selected( /a4E3J9gkULZe5eRqQph8zh/firma_acuerdo_de_transferencias/forma_consentimiento_informado , 'audio')" data-max-pixels="1024" data-type-xml="binary" accept="image/*" class="hide">
               <div class="widget file-picker">
@@ -22237,7 +22237,7 @@
                   <i class="icon icon-refresh"> </i>
                 </button>
                 
-                <a class="btn-icon-only btn-download" aria-label="download" download="" href="{{isset($data['firma_acuerdo_de_transferencias/Foto'])}}"><i class="icon icon-download"> </i></a>
+                <a class="btn-icon-only btn-download" aria-label="download" download="" href="{{ ($data['firma_acuerdo_de_transferencias/Foto']) ?? ''}}"><i class="icon icon-download"> </i></a>
                 
                 <div class="file-feedback "></div>
                 <div class="file-preview"></div>
@@ -22255,7 +22255,7 @@
           <span lang="" class="question-label active"><span style="color:red;"><strong>IMPORTANTE:</strong>     </span> 
           <em>Teniendo en cuenta que no se han brindando todas las autorizaciones no se puede continuar con el formulario. Gracias por participar.</em></span>
           <?php if(isset($data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos'])   == 'no' || $data['autorizacion_acuerdo/autorizacion_uso_fotografias']   == 'no'){?>
-            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/nota_final_formulario" value="{{isset($data['nota_final_formulario'])}}" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos  = 'no' or  /a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_uso_fotografias  = 'no'" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" disabled="">
+            <input type="text" name="/a4E3J9gkULZe5eRqQph8zh/nota_final_formulario" value="{{ ($data['nota_final_formulario']) ?? ''}}" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos  = 'no' or  /a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_uso_fotografias  = 'no'" data-type-xml="string" readonly="readonly" class="empty" maxlength="2000" disabled="">
           <?php }?>
         </label>
 
