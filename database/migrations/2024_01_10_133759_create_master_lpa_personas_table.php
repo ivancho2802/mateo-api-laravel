@@ -41,7 +41,7 @@ class CreateMasterLpaPersonasTable extends Migration
             $table->string('IDENTIDAD_GENERO')->nullable();
             
             //Fecha de nacimiento	(string) OBLIGATORIA
-            $table->date('FECHA_NACIMIENTO');
+            $table->date('FECHA_NACIMIENTO')->nullable();
             
             //Nacionalidad	(string) OBLIGATORIA
             $table->string('NACIONALIDAD');

@@ -20258,10 +20258,10 @@
                   <span lang="" class="question-label active">Tipo de documentación de representante legal</span><span class="required">*</span>
                   <select name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante" data-name="/a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante" data-required="true()" data-relevant=" /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/tipo_persona_autorizacion  = 'menor_edad' and  /a4E3J9gkULZe5eRqQph8zh/grupo_datos_beneficiario/datos_representante_legal/nacionalidad_representante  = 'otra_nacionalidad'" data-type-xml="select1" style="display: none;" disabled="">
                     <option value="">...</option>
-                    <option value="pasaporte_7" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "pasaporte_7" ? "selected": ''}}>Pasaporte</option>
-                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "cedula_extranjera" ? "selected": ''}}>Cédula de extranjería</option>
-                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "visa" ? "selected": ''}}>Visa</option>
-                    <option value="otro_id_4" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "otro_id_4" ? "selected": ''}}>Otro</option>
+                    <option value="pasaporte_7" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "pasaporte_7" ? "selected": ''}}>Pasaporte</option>
+                    <option value="cedula_extranjera" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "cedula_extranjera" ? "selected": ''}}>Cédula de extranjería</option>
+                    <option value="visa" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "visa" ? "selected": ''}}>Visa</option>
+                    <option value="otro_id_4" {{isset($data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante']) && $data['grupo_datos_beneficiario/datos_representante_legal/tipo_idnacionalidad_representante'] == "otro_id_4" ? "selected": ''}}>Otro</option>
                   </select>
 
                   <div class="btn-group bootstrap-select widget clearfix">
@@ -21855,10 +21855,11 @@
               <a class="btn-icon-only btn-download" aria-label="download" download="1696275778312.jpg" href="{{ ($data['group_ww55p84/imagen_documento_identidad_lado1']) ?? ''}}"><i class="icon icon-download"> </i></a>
               <div class="file-feedback "></div>
               <div class="file-preview">
-                <img src="{{ ($data['group_ww55p84/imagen_documento_identidad_lado1']) ?? ''}}">
+                <img src="{{ ($data['group_ww55p84/imagen_documento_identidad_lado1']) ?? ''}}" />
               </div>
             </div>
             <span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+            <img src="{{ ($data['group_ww55p84/imagen_documento_identidad_lado1']) ?? ''}}" alt="{{ ($data['group_ww55p84/imagen_documento_identidad_lado1']) ?? ''}}" />
           </label>
           
           <label class="question non-select with-media clearfix print-width-adjusted print-height-adjusted" style="width: 100%; height: 394px;">
@@ -21874,6 +21875,7 @@
                 <img src="{{ ($data['group_ww55p84/imagen_documento_identidad_lado2']) ?? ''}}"></div>
             </div>
             <span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
+            <img src="{{ ($data['group_ww55p84/imagen_documento_identidad_lado2']) ?? ''}}" alt="{{ ($data['group_ww55p84/imagen_documento_identidad_lado2']) ?? ''}}" />
           </label>
 
         </section><!--end of group -->
@@ -22082,7 +22084,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="68880.15147503646" value="monitor/a_san" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "monitor/a_san" ? "selected" :""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="monitor/a_san" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "monitor/a_san" ? "checked" :""}}>
                       <span class="option-label">Monitor/a SAN</span>
                     </label>
                   </a>
@@ -22090,7 +22092,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="68880.15147503646" value="monitor/a_wash" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "monitor/a_wash" ? "selected" :""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="monitor/a_wash" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "monitor/a_wash" ? "checked" :""}}>
                       <span class="option-label">Monitor/a WASH</span>
                     </label>
                   </a>
@@ -22098,7 +22100,7 @@
                 <li class="active">
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label data-checked="true">
-                      <input class="ignore" type="radio" name="68880.15147503646" value="profesional_en_agua_saneamiento en emergencia" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "profesional_en_agua_saneamiento en emergencia" ? "selected": ""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="profesional_en_agua_saneamiento en emergencia" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "profesional_en_agua_saneamiento en emergencia" ? "checked": ""}}>
                       <span class="option-label">Profesional en agua y saneamiento en emergencia</span>
                     </label>
                   </a>
@@ -22106,7 +22108,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="68880.15147503646" value="profesional_Seguridad_Alimentaria_Medios de Vida" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "profesional_Seguridad_Alimentaria_Medios de Vida" ? "selected" : ""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="profesional_Seguridad_Alimentaria_Medios de Vida" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "profesional_Seguridad_Alimentaria_Medios de Vida" ? "checked" : ""}}>
                       <span class="option-label">Profesional Seguridad Alimentaria y Medios de Vida</span>
                     </label>
                   </a>
@@ -22114,7 +22116,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="68880.15147503646" value="asistente_data" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "asistente_data" ? "selected" : ""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="asistente_data" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "asistente_data" ? "checked" : ""}}>
                       <span class="option-label">Profesional de protección</span>
                     </label>
                   </a>
@@ -22122,7 +22124,7 @@
                 <li>
                   <a class="option-wrapper" tabindex="-1" href="#">
                     <label>
-                      <input class="ignore" type="radio" name="68880.15147503646" value="asistente_meal" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "asistente_meal" ? "selected" : ""}}>
+                      <input class="ignore" type="radio" name="68880.15147503646" value="asistente_meal" {{isset($data['firma_acuerdo_de_transferencias/cargo_personal_ach']) && $data['firma_acuerdo_de_transferencias/cargo_personal_ach'] == "asistente_meal" ? "checked" : ""}}>
                       <span class="option-label">Oficila MEAL</span>
                     </label>
                   </a>
@@ -22141,6 +22143,7 @@
 
                 <canvas class="draw-widget__body__canvas noSwipe" tabindex="0" width="1495" style="touch-action: none;" height="673"></canvas>
                 <div class="draw-widget__colorpicker"></div>
+                <img class="" src="{{ ($data['firma_acuerdo_de_transferencias/firma_personal_ach']) ?? ''}}" />
 
               </div>
               <div class="draw-widget__footer">
@@ -22210,6 +22213,7 @@
 
                   <canvas class="draw-widget__body__canvas noSwipe" tabindex="0" width="1495" style="touch-action: none;" height="673"></canvas>
                   <div class="draw-widget__colorpicker"></div>
+                  <img class="" src="{{ ($data['firma_acuerdo_de_transferencias/aceptacion_firma']) ?? ''}}" />
 
                 </div>
 

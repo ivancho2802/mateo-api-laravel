@@ -437,8 +437,16 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
     //dd("dataEnketoWithImage", $dataEnketoWithImage->first());//, $dataEnketoWithImage->first()->toArray()['grupo_datos_beneficiario/numero_identificacion_participante']
 
-    return view('pdf.formulario', ["data" => $dataEnketoWithImage->first()]);
+    //$response->header('Authorization', 'Token ' . $token);
+    
+    $headers=array('Authorization'=>'Token ' . $token);
 
+    //View::share('headers', $headers);
+
+    //return view('pdf.formulario', ["data" => $dataEnketoWithImage->first()]);
+    return response()
+            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
+            ->header('Authorization', 'Token ' . $token);
       /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
         return $pdf->download('invoice.pdf'); */
 
