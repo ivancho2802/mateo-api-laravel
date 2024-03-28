@@ -192,6 +192,8 @@ Route::prefix('meal')->group(function () {
   //MIGRACIONS DESDE EL KOBO
   Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
 
+  Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'process']);
+
   Route::post('/mpd/refresh', [App\Http\Controllers\MonitorPostDist::class, 'refresh']); //receptor
 
   //ALERTAS
@@ -394,7 +396,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
     //return $dataEnketo;,
 
     //contruyrndo las imagenes del formulario
-    dd($dataEnketo[0]);
+    dd($dataEnketo);
 
     $dataEnketoWithImage = collect($dataEnketo[0]->map(function ($chield) use ($token){
       $formulario = collect($chield); //->forget('name');

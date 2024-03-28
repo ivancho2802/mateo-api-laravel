@@ -60,9 +60,6 @@ class MonitorPostDist extends Controller
             ]
         ]);
 
-        //id para save history
-        $id_m_formulario = [];
-
         // Enviar la solicitud GET aQxrcJYzPy4nzzVRXZVSBC
         $response = file_get_contents($url, false, $context);
 
@@ -74,21 +71,21 @@ class MonitorPostDist extends Controller
 
             $rows = $json_response;
 
-            $rowsChuck = $rows->chunk(1000);
+            $rowsChuck = $rows->chunk(600);
 
             $procecedPending = [];
 
             foreach ($rowsChuck as $body) {
                 # code...
                 $bodyArray = $body->toArray();
-                $mlpas = migrateCustom::create([
+                $mmpds = migrateCustom::insert([
                     'table' => 'MPD',
                     'table_id' =>  json_encode($bodyArray),
-                    'file_ref' => 'PENDING',
+                    'file_ref' => 'UPLOADED',
                 ]);
 
-                if($mlpas){
-                    array_push($procecedPending, $mlpas);
+                if($mmpds){
+                    array_push($procecedPending, $mmpds);
                 }
             }
 
@@ -113,11 +110,16 @@ class MonitorPostDist extends Controller
 
     function process(Request $request)
     {
-        $m_formularios = MFormulario::where(['ACCION' => "MPD"]);
-        $m_formulario_ids = $m_formularios->pluck('ID_M_FORMULARIOS');
-        MKoboRespuestas::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
-        MKoboFormularios::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
-        $m_formularios->delete();
+
+        ini_set('memory_limit', '2044M');
+        set_time_limit(3000000);//0
+        ini_set('max_execution_time', '60000');
+        ini_set('max_input_time', '60000');
+
+        $migration = migrateCustom::where([
+            'table' => 'MPD',
+            'file_ref' => 'UPLOADED',
+        ])->first();
 
         if (!$request->kobo_url || !strpos($request->kobo_url, "assets") || !strpos($request->kobo_url, "submissions/?format=json")) {
             return response()->json(['status' => false, 'message' => "formato de kobo_url incorrecto o faltante"], 402);
@@ -130,7 +132,7 @@ class MonitorPostDist extends Controller
         foreach ($rowsChuck as $body) {
             # code...
             $bodyArray = $body->toArray();
-            $mlpas = migrateCustom::create([
+            $mmpds = migrateCustom::create([
                 'table' => 'MPD',
                 'table_id' =>  json_encode($bodyArray),
                 'file_ref' => 'PENDING',
