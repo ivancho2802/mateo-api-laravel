@@ -27,6 +27,13 @@ class MonitorPostDist extends Controller
         MKoboFormularios::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
         $m_formularios->delete();
 
+        $migrations = migrateCustom::where([
+            'table' => 'MPD',
+            'file_ref' => 'UPLOADED'
+        ]);
+        $migrations->delete();
+
+
         if (!$request->kobo_url || !strpos($request->kobo_url, "assets") || !strpos($request->kobo_url, "submissions/?format=json")) {
             return response()->json(['status' => false, 'message' => "formato de kobo_url incorrecto o faltante"], 402);
         }
@@ -71,7 +78,7 @@ class MonitorPostDist extends Controller
 
             $rows = collect($json_response);
 
-            $rowsChuck = $rows->chunk(600);count($rowsChuck);
+            $rowsChuck = $rows->chunk(600);
 
             $procecedPending = [];
 
