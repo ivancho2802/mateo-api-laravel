@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class helper extends Controller
 {
@@ -80,8 +81,8 @@ class helper extends Controller
             $respuesta = $values[$i];
 
             //if (false !== stripos($pregunta, $preindex)) {// || $pregunta == "_OBSERVACIONES" || $pregunta == "_id"
-                array_push($preguntas, $pregunta);
-                array_push($respuestas, $respuesta);
+            array_push($preguntas, $pregunta);
+            array_push($respuestas, $respuesta);
             //}
         }
 
@@ -102,8 +103,65 @@ class helper extends Controller
         $array = array_values((array)$object);
         //$values = array_values((array)$array);
         //$result = array_filter($array, fn ($value) => !is_null($value[0]));
-        $result = (array_filter($array, function($value) { return !is_null($value) && $value !== ''; }));
+        $result = (array_filter($array, function ($value) {
+            return !is_null($value) && $value !== '';
+        }));
 
         return count($result);
+    }
+
+    /**
+     * para convertir las imagenes en response con headers
+     */
+    public static function getImageWithHeaders($url, $token)
+    {
+
+        // Create a stream
+        $opts = [
+            "http" => [
+                "method" => "GET",
+                "header" => "Authorization: Token " . $token . "\r\n" .
+                    "Cookie: foo=bar\r\n"
+            ]
+        ];
+
+        // DOCS: https://www.php.net/manual/en/function.stream-context-create.php
+        $context = stream_context_create($opts);
+
+        $contents = file_get_contents($url, false, $context);
+
+        if (!$contents) {
+            return '';
+        }
+
+        $imageData = base64_encode($contents);
+
+        $mimeType = self::detectMimeType($imageData) ?? "image/jpg"; //mime_content_type($contents)
+
+        // Format the image SRC: data:{mime};base64,{data}; 
+        $src = 'data: ' . $mimeType . ';base64,' . $imageData;
+
+        return $src;
+    }
+
+    public function detectMimeType($b64)
+    {
+
+        $signatures = [
+            "JVBERi0" => "application/pdf",
+            "R0lGODdh" => "image/gif",
+            "R0lGODlh" => "image/gif",
+            "iVBORw0KGgo" => "image/png",
+            "//9j//" => "image/jpg"
+        ];
+
+        $keys = array_keys($signatures);
+        //$values = array_values($signatures);
+
+        foreach ($keys as &$s) {
+            if (strpos($b64, $s) === 0) {
+                return $signatures[$s];
+            }
+        }
     }
 }

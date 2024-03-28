@@ -393,7 +393,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
     //contruyrndo las imagenes del formulario
 
-    $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) {
+    $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($token){
       $formulario = collect($chield); //->forget('name');
 
       $claves = collect($formulario->keys())->filter()->all();;
@@ -424,7 +424,11 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
             //dd("urlImg", $urlImg, $urlImg->first(), $urlImg->first()['download_url']);
 
             if(count($urlImgFirst)>0){
-              $formulario[$clave] = $urlImg->first()['download_url'];
+
+              //convertir la imagen en su respuesta
+              $imageResponse = Helper::getImageWithHeaders($urlImg->first()['download_url'], $token);
+
+              $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
             }
             /* else
               dd("esto no deberia psasr"); */
@@ -435,19 +439,13 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       return $formulario;
     }));
 
-    //dd("dataEnketoWithImage", $dataEnketoWithImage->first());//, $dataEnketoWithImage->first()->toArray()['grupo_datos_beneficiario/numero_identificacion_participante']
-
-    //$response->header('Authorization', 'Token ' . $token);
-    
-    $headers=array('Authorization'=>'Token ' . $token);
-
-    //View::share('headers', $headers);
+    dd("dataEnketoWithImage", $dataEnketoWithImage->first());//, $dataEnketoWithImage->first()->toArray()['grupo_datos_beneficiario/numero_identificacion_participante']
 
     //return view('pdf.formulario', ["data" => $dataEnketoWithImage->first()]);
     return response()
             ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
             ->header('Authorization', 'Token ' . $token);
-      /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
+            /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
         return $pdf->download('invoice.pdf'); */
 
       /* [
