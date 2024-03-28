@@ -17,3 +17,12 @@ select * from "M_LPAS" ;
 select count(*) from "M_KOBO_RESPUESTAS" group by "_ID";
 --esto es solo para ver las preguntas guardadas
 select count(*) from "M_KOBO_FORMULARIOS"
+
+--PARA LA VALIDACION DE PROESOS PENDIENTE  
+SELECT count(*) 
+FROM 
+public.migrate_customs 
+where 
+table_id != '[]' AND
+"table" = 'MPD'  AND 
+file_ref = 'UPLOADED'

@@ -13,9 +13,9 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\ValidationException;
 
-class MlpasClass extends Controller///implements ToCollection
+class MlpasClass extends Controller ///implements ToCollection
 {
-   // use Importable;
+    // use Importable;
 
     public function collection(Collection $rows)
     {
@@ -35,7 +35,15 @@ class MlpasClass extends Controller///implements ToCollection
             $date_begin = "";
             $date_end = "";
 
-            $rows->shift();
+            $filtered = $rows->filter(function (object $value, int $key) {
+                return $value[0] == "Identidad de género";
+            });
+
+            $indexheader = $filtered->keys()[0] ?? 1;
+
+            if ($indexheader == 0) {
+                $rows->shift();
+            }
 
             //dd("count rows", count($rows->all()));
 

@@ -449,6 +449,9 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
     $pdf->loadHTML('<h1>Test</h1>');
     return $pdf->stream(); */
     $ramdom = 0;
+
+    $stream = Storage::disk('local')->readStream('/migrationsLpa/67qa1KmGY5Pe09C5jDEzG4P34U5jl19eOUA9FUjX.xlsx');
+    dd("stream", $stream);
     
     $dataEnketoWithImage->each(function (Collection $item) use ($ramdom){
       $pdf = Pdf::loadView('pdf.formulario', ["data" => $item]);
@@ -456,7 +459,9 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
       //$pdf->stream()->store('htmlToPdf');
 
-      $stream = $pdf->stream()->content;
+      $stream = $pdf->stream()['content'];
+
+      dd("stream", $stream);
       
       Storage::disk('local')->writeStream('/htmlToPdf/Acuerdo De Transferencia Monetarias - Cash ECHO' .$ramdom. '.pdf', $stream);
 
