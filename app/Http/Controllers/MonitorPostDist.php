@@ -66,6 +66,112 @@ class MonitorPostDist extends Controller
         // Enviar la solicitud GET aQxrcJYzPy4nzzVRXZVSBC
         $response = file_get_contents($url, false, $context);
 
+        // Verificar si la solicitud fue exitosa
+        if ($response !== false) {
+            // Procesar la respuesta obtenida
+
+            $json_response = json_decode($response);
+
+            $rows = $json_response;
+
+            $rowsChuck = $rows->chunk(1000);
+
+            $procecedPending = [];
+
+            foreach ($rowsChuck as $body) {
+                # code...
+                $bodyArray = $body->toArray();
+                $mlpas = migrateCustom::create([
+                    'table' => 'MPD',
+                    'table_id' =>  json_encode($bodyArray),
+                    'file_ref' => 'PENDING',
+                ]);
+
+                if($mlpas){
+                    array_push($procecedPending, $mlpas);
+                }
+            }
+
+            $status = count($json_response) == count($procecedPending);
+
+            return response()->json(['status' => $status, 'data' => [count($json_response), count($procecedPending)]], 200);
+        } else {
+            // Manejar el error de la solicitud
+            $msg = 'Error al realizar la solicitud GET: ' . error_get_last()['message'];
+            return response()->json(['status' => false, 'message' => $msg], 503);
+        }
+
+        //MKoboFormularios
+
+
+        //code...
+        /* } catch (\Exception $th) {
+            
+            return response()->json(['status' => false, 'message' => $th], 503);
+        } */
+    }
+
+    function process(Request $request)
+    {
+        $m_formularios = MFormulario::where(['ACCION' => "MPD"]);
+        $m_formulario_ids = $m_formularios->pluck('ID_M_FORMULARIOS');
+        MKoboRespuestas::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
+        MKoboFormularios::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
+        $m_formularios->delete();
+
+        if (!$request->kobo_url || !strpos($request->kobo_url, "assets") || !strpos($request->kobo_url, "submissions/?format=json")) {
+            return response()->json(['status' => false, 'message' => "formato de kobo_url incorrecto o faltante"], 402);
+        }
+
+        $rowsChuck = $rows->chunk(1000);
+
+        //dd(($rowsChuck[1]));
+
+        foreach ($rowsChuck as $body) {
+            # code...
+            $bodyArray = $body->toArray();
+            $mlpas = migrateCustom::create([
+                'table' => 'MPD',
+                'table_id' =>  json_encode($bodyArray),
+                'file_ref' => 'PENDING',
+            ]);
+        }
+
+        /*  try { */
+
+        //FALTA TERMINAR SACAR DEL TOKEN
+        $ID_USER = 1;
+
+        //iobtener los datos segun el kobo recibido
+        //procesar los datos y registrarlos en los kobo preguntas y respuestas
+        //
+
+        // URL a la que se enviará la solicitud GET
+        $url = $request->kobo_url;
+        //$hash = helper::extactHash($request->kobo_url);
+
+        // Credenciales de autorización
+        /* $username = 'tu_usuario';
+                $password = 'tu_contraseña'; */
+
+        // Crear la cadena de autorización en formato Basic
+        $token = Config::get('app.tokenkobonrc');
+
+        $auth_header = 'Authorization: Token ' . $token; //base64_encode($username . ':' . $password)
+
+        // Crear opciones de contexto de flujo
+        $context = stream_context_create([
+            'http' => [
+                'header' => $auth_header
+            ]
+        ]);
+
+        //id para save history
+        $id_m_formulario = [];
+
+        // Enviar la solicitud GET aQxrcJYzPy4nzzVRXZVSBC
+        $response = file_get_contents($url, false, $context);
+
 
         // Verificar si la solicitud fue exitosa
         if ($response !== false) {
@@ -216,7 +322,7 @@ class MonitorPostDist extends Controller
                         ["respuestas" => $body_respuestas] //$body_respuestas
                     );
                 }
- */
+                */
                 $createMigrationRespald = migrateCustom::create([
                     'table' => 'M_KOBO_RESPUESTAS',
                     'table_id' => implode(", ", $ids_kobo_respuesta),

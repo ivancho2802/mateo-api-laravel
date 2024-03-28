@@ -115,33 +115,42 @@ class helper extends Controller
      */
     public static function getImageWithHeaders($url, $token)
     {
+        try {
+            ini_set('default_socket_timeout', 900); // 900 Seconds = 15 Minutes
+            // Create a stream
+            $opts = [
+                "http" => [
+                    "method" => "GET",
+                    "header" => "Authorization: Token " . $token . "\r\n" .
+                        "Cookie: foo=bar\r\n",
+                    //'timeout' => 1200,  //1200 Seconds is 20 Minutes
+                ]
+            ];
 
-        // Create a stream
-        $opts = [
-            "http" => [
-                "method" => "GET",
-                "header" => "Authorization: Token " . $token . "\r\n" .
-                    "Cookie: foo=bar\r\n"
-            ]
-        ];
+            // DOCS: https://www.php.net/manual/en/function.stream-context-create.php
+            $context = stream_context_create($opts);
+            //dd("contents", $url, $token);
 
-        // DOCS: https://www.php.net/manual/en/function.stream-context-create.php
-        $context = stream_context_create($opts);
+            $contents = file_get_contents($url, false, $context);
 
-        $contents = file_get_contents($url, false, $context);
+            if (!$contents) {
+                return '';
+            }
 
-        if (!$contents) {
-            return '';
+            dd("contents", $contents);
+
+            $imageData = base64_encode($contents);
+
+            $mimeType = self::detectMimeType($imageData) ?? "image/jpg"; //mime_content_type($contents)
+
+            // Format the image SRC: data:{mime};base64,{data}; 
+            $src = 'data:' . $mimeType . ';base64,' . $imageData;
+
+            return $src;
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $url;
         }
-
-        $imageData = base64_encode($contents);
-
-        $mimeType = self::detectMimeType($imageData) ?? "image/jpg"; //mime_content_type($contents)
-
-        // Format the image SRC: data:{mime};base64,{data}; 
-        $src = 'data: ' . $mimeType . ';base64,' . $imageData;
-
-        return $src;
     }
 
     public function detectMimeType($b64)

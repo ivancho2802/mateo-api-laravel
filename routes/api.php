@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Collection;
 use Barryvdh\DomPDF\Facade\Pdf;
+use SebastianBergmann\Diff\Chunk;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -366,6 +367,8 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
     //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
     $jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
+    ini_set('default_socket_timeout', 900); // 900 Seconds = 15 Minutes
+    //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
     $dataEnketoResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
@@ -374,11 +377,10 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       ->get($jsonurlDataEnketo)
       ->json();
 
-    $dataEnketo = collect($dataEnketoResponse);
+    $dataEnketo = collect($dataEnketoResponse)->chunk(1);
 
     //$urlHtmlPdf = $dataEnketo->first();
 
-    //return ($urlHtmlPdf);
     //onbtener url de lso iagens https://kc.acf-e.org/api/v1/media/2486
 
     //imagenes del formulario
@@ -392,13 +394,13 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
     //return $dataEnketo;,
 
     //contruyrndo las imagenes del formulario
+    dd($dataEnketo[0]);
 
-    $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($token){
+    $dataEnketoWithImage = collect($dataEnketo[0]->map(function ($chield) use ($token){
       $formulario = collect($chield); //->forget('name');
 
-      $claves = collect($formulario->keys())->filter()->all();;
-      $valores =  array_values($chield);
-      //!id_object($valor) && 
+      $claves = collect($formulario->keys())->filter()->all();
+      $valores =  array_values($formulario->toArray());
 
       for ($i = 0; $i < count($claves); $i++) {
         # code...
