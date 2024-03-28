@@ -193,8 +193,21 @@ class MonitorPostDist extends Controller
                 }
 
 
+                $body_mpds_respuestas = collect($body_respuestas)->chunk(600);
+                foreach ($body_mpds_respuestas as $body) {
+                    $bodyArray = $body->toArray();
+                    $m_respuestas = MKoboRespuestas::insert($bodyArray);
+
+                    if (!$m_respuestas) {
+                        array_push(
+                            $creation_failed,
+                            ["respuestas" => $body_respuestas] //$body_respuestas
+                        );
+                    }
+                }
+
                 //crean respuestas
-                $m_respuestas = MKoboRespuestas::insert($body_respuestas);
+                /* $m_respuestas = MKoboRespuestas::insert($body_respuestas);
 
 
                 if (!$m_respuestas) {
@@ -203,7 +216,7 @@ class MonitorPostDist extends Controller
                         ["respuestas" => $body_respuestas] //$body_respuestas
                     );
                 }
-
+ */
                 $createMigrationRespald = migrateCustom::create([
                     'table' => 'M_KOBO_RESPUESTAS',
                     'table_id' => implode(", ", $ids_kobo_respuesta),
