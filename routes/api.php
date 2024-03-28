@@ -192,7 +192,7 @@ Route::prefix('meal')->group(function () {
   //MIGRACIONS DESDE EL KOBO
   Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
 
-  Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'process']);
+  Route::post('/mpd/process', [App\Http\Controllers\MonitorPostDist::class, 'process']);
 
   Route::post('/mpd/refresh', [App\Http\Controllers\MonitorPostDist::class, 'refresh']); //receptor
 
