@@ -137,7 +137,7 @@ class helper extends Controller
                 return '';
             }
 
-            dd("contents", $contents);
+            //dd("contents", $contents);
 
             $imageData = base64_encode($contents);
 

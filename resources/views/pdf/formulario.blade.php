@@ -21859,7 +21859,6 @@
               </div>
             </div>
             <span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
-            <img src="{{ ($data['group_ww55p84/imagen_documento_identidad_lado1']) ?? ''}}" alt="{{ ($data['group_ww55p84/imagen_documento_identidad_lado1']) ?? ''}}" />
           </label>
           
           <label class="question non-select with-media clearfix print-width-adjusted print-height-adjusted" style="width: 100%; height: 394px;">
@@ -21875,7 +21874,6 @@
                 <img src="{{ ($data['group_ww55p84/imagen_documento_identidad_lado2']) ?? ''}}"></div>
             </div>
             <span class="or-required-msg active" lang="" data-i18n="constraint.required">Este campo es obligatorio</span>
-            <img src="{{ ($data['group_ww55p84/imagen_documento_identidad_lado2']) ?? ''}}" alt="{{ ($data['group_ww55p84/imagen_documento_identidad_lado2']) ?? ''}}" />
           </label>
 
         </section><!--end of group -->
@@ -22141,9 +22139,10 @@
               <div class="draw-widget__body">
 
 
-                <canvas class="draw-widget__body__canvas noSwipe" tabindex="0" width="1495" style="touch-action: none;" height="673"></canvas>
+                <canvas class="draw-widget__body__canvas noSwipe" tabindex="0" width="1495" style="touch-action: none;" height="673">
+                  <img class="" src="{{ ($data['firma_acuerdo_de_transferencias/firma_personal_ach']) ?? ''}}" />
+                </canvas>
                 <div class="draw-widget__colorpicker"></div>
-                <img class="" src="{{ ($data['firma_acuerdo_de_transferencias/firma_personal_ach']) ?? ''}}" />
 
               </div>
               <div class="draw-widget__footer">
@@ -22211,10 +22210,10 @@
               <div class="widget draw-widget">
                 <div class="draw-widget__body">
 
-                  <canvas class="draw-widget__body__canvas noSwipe" tabindex="0" width="1495" style="touch-action: none;" height="673"></canvas>
+                  <canvas class="draw-widget__body__canvas noSwipe" tabindex="0" width="1495" style="touch-action: none;" height="673">
+                    <img class="" src="{{ ($data['firma_acuerdo_de_transferencias/aceptacion_firma']) ?? ''}}" />
+                  </canvas>
                   <div class="draw-widget__colorpicker"></div>
-                  <img class="" src="{{ ($data['firma_acuerdo_de_transferencias/aceptacion_firma']) ?? ''}}" />
-
                 </div>
 
                 <div class="draw-widget__footer">

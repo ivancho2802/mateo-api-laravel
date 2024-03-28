@@ -21,6 +21,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Collection;
 use Barryvdh\DomPDF\Facade\Pdf;
 use SebastianBergmann\Diff\Chunk;
+use Illuminate\Support\Facades\Storage;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -343,8 +344,6 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       return $formulario;
     });
 
-    dd($dataEnketoWithImage->first()['autorizacion_auxiliar/firma_auxiliar_o_profesional']);
-
     return view('pdf.formulario', ["data" => $dataEnketo->first()]);
 
       /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
@@ -396,7 +395,6 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
     //return $dataEnketo;,
 
     //contruyrndo las imagenes del formulario
-    dd($dataEnketo);
 
     $dataEnketoWithImage = collect($dataEnketo[0]->map(function ($chield) use ($token){
       $formulario = collect($chield); //->forget('name');
@@ -443,25 +441,32 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       return $formulario;
     }));
 
-    dd("dataEnketoWithImage", $dataEnketoWithImage->first());//, $dataEnketoWithImage->first()->toArray()['grupo_datos_beneficiario/numero_identificacion_participante']
+    //dd("dataEnketoWithImage", $dataEnketoWithImage->first());//, $dataEnketoWithImage->first()->toArray()['grupo_datos_beneficiario/numero_identificacion_participante']
 
     //return view('pdf.formulario', ["data" => $dataEnketoWithImage->first()]);
+
+    /* $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML('<h1>Test</h1>');
+    return $pdf->stream(); */
+    $ramdom = 0;
+    
+    $dataEnketoWithImage->each(function (Collection $item) use ($ramdom){
+      $pdf = Pdf::loadView('pdf.formulario', ["data" => $item]);
+      //dd("pdf", $pdf->stream());
+
+      //$pdf->stream()->store('htmlToPdf');
+
+      $stream = $pdf->stream()->content;
+      
+      Storage::disk('local')->writeStream('/htmlToPdf/Acuerdo De Transferencia Monetarias - Cash ECHO' .$ramdom. '.pdf', $stream);
+
+    });
+
+    /* return $pdf->download('invoice.pdf'); */
+
     return response()
             ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
             ->header('Authorization', 'Token ' . $token);
-            /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
-        return $pdf->download('invoice.pdf'); */
-
-      /* [
-            "status" => $response->getStatusCode(),
-            "data" => $response->body(),
-            "json" => $response->json() ,
-            "object" => $response->object() ,
-            "status" => $response->status() ,
-            "successful" => $response->successful() ,
-            "clientError" => $response->clientError() ,
-            //"mkoboformulario" => $formulario->get()
-        ] */;
   });
 
   

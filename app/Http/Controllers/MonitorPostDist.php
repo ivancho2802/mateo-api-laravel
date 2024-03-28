@@ -69,9 +69,9 @@ class MonitorPostDist extends Controller
 
             $json_response = json_decode($response);
 
-            $rows = $json_response;
+            $rows = collect($json_response);
 
-            $rowsChuck = $rows->chunk(600);
+            $rowsChuck = $rows->chunk(600);count($rowsChuck);
 
             $procecedPending = [];
 
@@ -110,20 +110,6 @@ class MonitorPostDist extends Controller
 
     function process(Request $request)
     {
-
-        ini_set('memory_limit', '2044M');
-        set_time_limit(3000000);//0
-        ini_set('max_execution_time', '60000');
-        ini_set('max_input_time', '60000');
-
-        $migration = migrateCustom::where([
-            'table' => 'MPD',
-            'file_ref' => 'UPLOADED',
-        ])->first();
-
-        if (!$request->kobo_url || !strpos($request->kobo_url, "assets") || !strpos($request->kobo_url, "submissions/?format=json")) {
-            return response()->json(['status' => false, 'message' => "formato de kobo_url incorrecto o faltante"], 402);
-        }
     }
 
     function refresh(Request $request)
