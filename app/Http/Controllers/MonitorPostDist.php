@@ -125,7 +125,7 @@ class MonitorPostDist extends Controller
             return response()->json(['status' => false, 'message' => "formato de kobo_url incorrecto o faltante"], 402);
         }
 
-        $rowsChuck = $rows->chunk(1000);
+        $rowsChuck = $migration->chunk(1000);
 
         //dd(($rowsChuck[1]));
 
