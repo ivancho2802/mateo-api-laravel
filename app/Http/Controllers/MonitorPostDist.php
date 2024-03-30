@@ -319,7 +319,7 @@ class MonitorPostDist extends Controller
 
         $migrationPendings->save();
 
-        return response()->json(['status' => true, 'data' => [count($elementsForMigrationProceced), count($countInserts)]], 200);
+        return response()->json(['status' => true, 'data' => [count($elementsForMigrationProceced), ($countInserts)]], 200);
     }
 
     function refresh(Request $request)
