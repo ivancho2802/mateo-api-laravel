@@ -305,7 +305,7 @@ class MonitorPostDist extends Controller
 
         }
 
-        $elementsForMigrationProceced = json_decode($idTable);
+        $elementsForMigrationProceced = collect(json_decode($idTable));
 
         if($countInserts !== count($elementsForMigrationProceced)){
             return response()->json([

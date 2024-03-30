@@ -313,7 +313,6 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       $claves = $formulario->keys();
       $valores =  array_values($chield);
       //!id_object($valor) && 
-      dd("count", count($claves));
 
       for ($i = 0; $i < count($claves); $i++) {
         # code...
@@ -432,8 +431,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
               $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
             }
-            /* else
-              dd("esto no deberia psasr"); */
+            /* elsedd("esto no deberia psasr"); */
           }
         }
       }
