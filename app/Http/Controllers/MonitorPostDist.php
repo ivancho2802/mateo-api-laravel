@@ -307,7 +307,7 @@ class MonitorPostDist extends Controller
 
         $elementsForMigrationProceced = json_decode($idTable);
 
-        if($countInserts !== count($elementsForMigrationProceced->toArray())){
+        if($countInserts !== count($elementsForMigrationProceced)){
             return response()->json([
                 'status' => false,
                 'message' => "no se terminaron de cargar los registros ponte en contacto con soporte",
