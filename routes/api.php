@@ -18,10 +18,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Collection;
-use Barryvdh\DomPDF\Facade\Pdf;
 use SebastianBergmann\Diff\Chunk;
-use Illuminate\Support\Facades\Storage;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -94,7 +91,8 @@ Route::middleware(['auth:sanctum'])->get('/formularios_master', function (Reques
 
 Route::middleware(['auth:sanctum'])->get('/formularios_kobo_master', function (Request $request) {
 
-  DB::setDefaultConnection('firebird');
+  DB::setDefaultConnection('odbc');
+  //DB::setDefaultConnection('firebird');
 
   return MKoboFormularios::get();
 
@@ -360,110 +358,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
         ] */;
   });
 
-  Route::get('{id}/exportByid/{token}', function ($id, $token) {
-
-    $formid = $id;
-
-    //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
-    //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
-    $jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
-    ini_set('default_socket_timeout', 900); // 900 Seconds = 15 Minutes
-    //'timeout' => 1200,  //1200 Seconds is 20 Minutes
-
-    $dataEnketoResponse = Http::withHeaders([
-      'Authorization' => 'Token ' . $token . '',
-      'Accept' => 'application/json'
-    ])
-      ->get($jsonurlDataEnketo)
-      ->json();
-
-    $dataEnketo = collect($dataEnketoResponse)->chunk(1);
-
-    //$urlHtmlPdf = $dataEnketo->first();
-
-    //onbtener url de lso iagens https://kc.acf-e.org/api/v1/media/2486
-
-    //imagenes del formulario
-    /* $urlMedia = "https://kc.acf-e.org/api/v1/media/";
-        
-        $dataMediaResponse = Http::withHeaders([
-            'Authorization' => 'Token ' . $token . '',
-            'Accept' => 'application/json'
-        ])
-            ->get($urlMedia); */
-    //return $dataEnketo;,
-
-    //contruyrndo las imagenes del formulario
-
-    $dataEnketoWithImage = collect($dataEnketo[0]->map(function ($chield) use ($token){
-      $formulario = collect($chield); //->forget('name');
-
-      $claves = collect($formulario->keys())->filter()->all();
-      $valores =  array_values($formulario->toArray());
-
-      for ($i = 0; $i < count($claves); $i++) {
-        # code...
-        $clave = ($claves[$i]);
-        $valor = $valores[$i];
-
-        if (!is_array($valor) && isset($clave)) {
-
-          if (
-            (stripos($valor, '.jpg') !== false && stripos($valor, '.jpg') == (strlen($valor) - strlen('.jpg'))) ||
-            (stripos($valor, '.png') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
-            (stripos($valor, '.jpeg') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
-            (stripos($valor, '.svg') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png')))
-          ) {
-            $chield_attachments = collect($chield['_attachments']);
-
-            $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
-              return isset($atached['download_url']) && (stripos($atached['download_url'], $valor) !== false);
-            });
-
-
-            $urlImg = collect($urlImgFirst);
-            //dd("urlImg", $urlImg, $urlImg->first(), $urlImg->first()['download_url']);
-
-            if(count($urlImgFirst)>0){
-
-              //convertir la imagen en su respuesta
-              $imageResponse = Helper::getImageWithHeaders($urlImg->first()['download_url'], $token);
-
-              $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
-            }
-            /* elsedd("esto no deberia psasr"); */
-          }
-        }
-      }
-
-      return $formulario;
-    }));
-
-    //dd("dataEnketoWithImage", $dataEnketoWithImage->first());//, $dataEnketoWithImage->first()->toArray()['grupo_datos_beneficiario/numero_identificacion_participante']
-
-    //return view('pdf.formulario', ["data" => $dataEnketoWithImage->first()]);
-
-    /* $pdf = App::make('dompdf.wrapper');
-    $pdf->loadHTML('<h1>Test</h1>');
-    return $pdf->stream(); */
-    $ramdom = 0;
-    
-    $dataEnketoWithImage->each(function (Collection $item) use ($ramdom){
-      $pdf = Pdf::loadView('pdf.formulario', ["data" => $item]);
-
-      $content = $pdf->download()->getOriginalContent();
-      Storage::put('/htmlToPdf/Acuerdo De Transferencia Monetarias - Cash ECHO' .$ramdom. '.pdf',$content);
-
-    });
-
-    /* return $pdf->download('invoice.pdf'); */
-
-    return response()
-            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
-            ->header('Authorization', 'Token ' . $token);
-  });
-
-  
+  Route::get('{id}/exportByid/{token}', [App\Http\Controllers\Kobo::class, 'exportByid']);
 
   Route::get('{uui}/data/{token}', [App\Http\Controllers\Kobo::class, 'getKoboLabels']);
 });

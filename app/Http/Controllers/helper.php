@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use ZipArchive;
 
 class helper extends Controller
 {
@@ -172,5 +173,35 @@ class helper extends Controller
                 return $signatures[$s];
             }
         }
+    }
+
+    public static function makeZipWithFiles(string $zipPathAndName, array $filesAndPaths) {
+        $zip = new ZipArchive;
+        $zipFileName = $zipPathAndName;
+
+        $filesToZip = collect($filesAndPaths)->map(function ($item) { 
+            return storage_path("/app/" . $item); 
+        });
+
+        if ($zip->open(public_path($zipFileName), ZipArchive::CREATE) === TRUE) {
+
+            /* $filesToZip = [
+                public_path('file1.txt'),
+                public_path('file2.txt'),
+            ]; */
+
+            $filesToZip->each(function ($file) use ($zip){
+                $zip->addFile($file, basename($file));
+            });
+
+            $zip->close();
+
+            return true;
+
+            //return response()->download(public_path($zipFileName))->deleteFileAfterSend(true);
+        } else {
+            return "Failed to create the zip file.";
+        }
+        
     }
 }

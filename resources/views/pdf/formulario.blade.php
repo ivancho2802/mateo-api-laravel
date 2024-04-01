@@ -115,12 +115,12 @@
     input[type=radio]:checked {
       background-color: #0d6efd !important;
       border-color: #0d6efd !important;
-      background-image: radial-gradient(4px, blue 0%, blue 99%, transparent 100%);
+      background-image: radial-gradient(4px, blue 0%, blue 99%, transparent 100%) !important;
     }
 
     .question input[type=radio]:checked {
-      border-color: black !important;
-      background-image: radial-gradient(4px, black 0%, black 99%, transparent 100%) !important;
+      border-color: #0d6efd !important;
+      background-image: radial-gradient(4px, blue 0%, blue 99%, transparent 100%) !important;
     }
   </style>
 
