@@ -251,7 +251,7 @@ class Kobo extends Controller
             "exportaciones faltantes", count($dataEnketoResponse) - count($filesExported)
             ); */
 
-            $dataEnketo = collect($dataEnketoResponseFiltered)->chunk(50); //;
+            $dataEnketo = collect($dataEnketoResponseFiltered)->chunk(45); //;
 
             if (count($dataEnketoResponse) == count($filesExported)) {
 
@@ -356,7 +356,9 @@ class Kobo extends Controller
 
                 if ($currentTimeExecuted > $limit_minutes_ajust) {
                     $filesExported = Storage::files("/htmlToPdf/cash_echo/");
-                    echo " si entro \n";
+                    echo "exportaciones totales" .count($dataEnketoResponse) ." \n";
+                    echo "exportaciones procesadas" .count($filesExported) ." \n";
+                    echo "exportaciones faltantes" .count($dataEnketoResponse) - count($filesExported)." \n";
 
                     return response()->json([
                         "exportaciones totales" => count($dataEnketoResponse),

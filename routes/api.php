@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Http;
 //use Excel;
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\echoController;
+use App\Models\MGrupos;
 use App\Models\MUsuarios;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -34,6 +35,8 @@ use SebastianBergmann\Diff\Chunk;
 */
 
 Route::middleware(['auth:sanctum'])->get('/formularios_master', function (Request $request) {
+
+  DB::setDefaultConnection('firebird');
 
   $body = [
     "NOMBRES",
@@ -91,8 +94,8 @@ Route::middleware(['auth:sanctum'])->get('/formularios_master', function (Reques
 
 Route::middleware(['auth:sanctum'])->get('/formularios_kobo_master', function (Request $request) {
 
-  DB::setDefaultConnection('odbc');
-  //DB::setDefaultConnection('firebird');
+  //DB::setDefaultConnection('odbc');
+  DB::setDefaultConnection('firebird');
 
   return MKoboFormularios::get();
 
@@ -165,6 +168,20 @@ Route::middleware(['auth:sanctum'])->post('/mireusers', function (Request $reque
     $m_usuarios = MUsuarios::select($body)->get(); //where("CORREO" , "!=", "testroles@gmail.com")->
 
     return response()->json(["users" => helper::convert_from_latin1_to_utf8_recursively($m_usuarios)]);
+  } catch (\Throwable $exception) {
+    return response()->json(['Error' => $exception->getMessage()]);
+  }
+});
+
+Route::middleware(['auth:sanctum'])->post('/grupos', function (Request $request) {
+
+  try {
+
+    DB::setDefaultConnection('firebird');
+
+    $m_grupos = MGrupos::get(); 
+
+    return response()->json(["grupos" => helper::convert_from_latin1_to_utf8_recursively($m_grupos)]);
   } catch (\Throwable $exception) {
     return response()->json(['Error' => $exception->getMessage()]);
   }
