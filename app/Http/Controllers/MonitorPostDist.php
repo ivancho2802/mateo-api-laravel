@@ -9,6 +9,7 @@ use App\Models\MFormulario;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\helper;
 use App\Models\migrateCustom;
+use Illuminate\Support\Facades\Auth;
 
 class MonitorPostDist extends Controller
 {
@@ -40,7 +41,7 @@ class MonitorPostDist extends Controller
         /*  try { */
 
         //FALTA TERMINAR SACAR DEL TOKEN
-        $ID_USER = 1;
+        $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
         //iobtener los datos segun el kobo recibido
         //procesar los datos y registrarlos en los kobo preguntas y respuestas
@@ -141,7 +142,7 @@ class MonitorPostDist extends Controller
             $m_formulario_first = $json_response->first();
 
             //FALTA TERMINAR SACAR DEL TOKEN
-            $ID_USER = 1;
+            $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
             // Procesar la respuesta obtenida
 
@@ -328,7 +329,7 @@ class MonitorPostDist extends Controller
         try {
 
             //FALTA TERMINAR SACAR DEL TOKEN
-            $ID_USER = 1;
+            $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
             // Procesar la respuesta obtenida
 

@@ -12,6 +12,7 @@ use App\Models\migrateCustom;
 use Maatwebsite\Excel\Concerns\Importable;
 use Illuminate\Support\Carbon;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 class MlpasClass extends Controller ///implements ToCollection
 {
@@ -26,7 +27,7 @@ class MlpasClass extends Controller ///implements ToCollection
             $mlpas = array();
 
             //FALTA TERMINAR SACAR DEL TOKEN
-            $ID_USER = 1;
+            $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
             $id_lpas = [];
 

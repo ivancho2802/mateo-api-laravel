@@ -206,11 +206,11 @@ Route::prefix('meal')->group(function () {
   //monitorio post distribucion pda
   Route::middleware(['auth:sanctum'])->get('/mpd', [App\Http\Controllers\Meal::class, 'geMpd']);
   //MIGRACIONS DESDE EL KOBO
-  Route::post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
+  Route::middleware(['auth:sanctum'])->post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
 
-  Route::post('/mpd/process', [App\Http\Controllers\MonitorPostDist::class, 'process']);
+  Route::middleware(['auth:sanctum'])->post('/mpd/process', [App\Http\Controllers\MonitorPostDist::class, 'process']);
 
-  Route::post('/mpd/refresh', [App\Http\Controllers\MonitorPostDist::class, 'refresh']); //receptor
+  Route::middleware(['auth:sanctum'])->post('/mpd/refresh', [App\Http\Controllers\MonitorPostDist::class, 'refresh']); //receptor
 
   //ALERTAS
 

@@ -203,7 +203,7 @@ class Kobo extends Controller
 
     public function exportByid($id, $token)
     {
-        try {
+        /* try { */
 
             $limit_minutes = 900;
             ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
@@ -403,14 +403,15 @@ class Kobo extends Controller
             /* return response()
             ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
             ->header('Authorization', 'Token ' . $token); */
-        } catch (\Throwable $th) {
+        /* } catch (\Throwable $th) {
+            
+
             $filesExported = Storage::files("/htmlToPdf/cash_echo/");
 
             return response()->json([
-                "exportaciones totales" => count($dataEnketoResponse),
+                "error" => $th,
                 "exportaciones procesadas" => count($filesExported),
-                "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported)
             ]);
-        }
+        } */
     }
 }

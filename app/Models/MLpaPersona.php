@@ -67,7 +67,11 @@ class MLpaPersona extends Model
     {
         $fecha_nac = $this->FECHA_NACIMIENTO;
 
-        $howOldAmI = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac)->age;  // 46 1999-08-30
+        $howOldAmI = 0;
+
+        if(isset($fecha_nac)){
+            $howOldAmI = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac)->age;  // 46 1999-08-30
+        }
 
         return $howOldAmI;
     }
