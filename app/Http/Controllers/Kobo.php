@@ -251,7 +251,7 @@ class Kobo extends Controller
             "exportaciones faltantes", count($dataEnketoResponse) - count($filesExported)
             ); */
 
-            $dataEnketo = collect($dataEnketoResponseFiltered)->chunk(1);
+            $dataEnketo = collect($dataEnketoResponseFiltered)->chunk(45);
             
             if (count($dataEnketoResponse) == count($filesExported)) {
 
@@ -266,20 +266,6 @@ class Kobo extends Controller
                     return response()->json(['status' => false, 'message' => $resultCreated], 503);
                 }
             }
-
-            //$urlHtmlPdf = $dataEnketo->first();
-
-            //onbtener url de lso iagens https://kc.acf-e.org/api/v1/media/2486
-
-            //imagenes del formulario
-            /* $urlMedia = "https://kc.acf-e.org/api/v1/media/";
-                
-                $dataMediaResponse = Http::withHeaders([
-                    'Authorization' => 'Token ' . $token . '',
-                    'Accept' => 'application/json'
-                ])
-                    ->get($urlMedia); */
-            //return $dataEnketo;,
 
             //contruyrndo las imagenes del formulario
 
@@ -327,14 +313,6 @@ class Kobo extends Controller
                 return $formulario;
             }));
 
-            //dd("dataEnketoWithImage", $dataEnketoWithImage->first());//, $dataEnketoWithImage->first()->toArray()['grupo_datos_beneficiario/numero_identificacion_participante']
-
-            //return view('pdf.formulario', ["data" => $dataEnketoWithImage->first()]);
-
-            /* $pdf = App::make('dompdf.wrapper');
-            $pdf->loadHTML('<h1>Test</h1>');
-            return $pdf->stream(); */
-
             $dataEnketoWithImage->filter()->all();
 
             $dataEnketoWithImage->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse) {
@@ -358,7 +336,7 @@ class Kobo extends Controller
                     $filesExported = Storage::files("/htmlToPdf/cash_echo/");
                     echo "exportaciones totales" .count($dataEnketoResponse) ." \n";
                     echo "exportaciones procesadas" .count($filesExported) ." \n";
-                    echo "exportaciones faltantes" .count($dataEnketoResponse) - count($filesExported)." \n";
+                    echo "exportaciones faltantes" .(count($dataEnketoResponse) - count($filesExported))." \n";
 
                     return response()->json([
                         "exportaciones totales" => count($dataEnketoResponse),
@@ -368,18 +346,10 @@ class Kobo extends Controller
                 }
             });
 
-            return response()
+            /* return response()
             ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200);
-            dd("esta en 45 no se proceso por time out ver como estan los estilos con uno revisar des pues de _318932");
-            //$dataEnketo = collect($dataEnketoResponseFiltered)->chunk(1);
-
-            /* $resultCreated = helper::makeZipWithFiles("cash_echo.zip", $filesExported);
-        
-            if($resultCreated === true){
-              return response()->download(public_path("cash_echo.zip"))->deleteFileAfterSend(true);
-            }else {
-              return response()->json(['status' => false, 'message' => $resultCreated], 503);
-            } */
+            dd("esta en 45 no se proceso por time out ver como estan los estilos con uno revisar des pues de _318932"); */
+            
             if (count($dataEnketoResponse) == count($filesExported)) {
 
                 $resultCreated = helper::makeZipWithFiles("cash_echo.zip", $filesExported);
@@ -402,8 +372,6 @@ class Kobo extends Controller
                     "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported)
                 ]);
             }
-
-            /* return $pdf->download('invoice.pdf'); */
 
             /* return response()
             ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
@@ -579,7 +547,7 @@ class Kobo extends Controller
                     $filesExported = Storage::files("/htmlToPdf/cash_echo/");
                     echo "exportaciones totales" .count($dataEnketoResponse) ." \n";
                     echo "exportaciones procesadas" .count($filesExported) ." \n";
-                    echo "exportaciones faltantes" .count($dataEnketoResponse) - count($filesExported)." \n";
+                    echo "exportaciones faltantes" .(count($dataEnketoResponse) - count($filesExported))." \n";
 
                     return response()->json([
                         "exportaciones totales" => count($dataEnketoResponse),

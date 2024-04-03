@@ -110,8 +110,8 @@
     }
   </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-  <link rel="stylesheet" media="all" type="text/css" href="http://ach.dyndns.info:6180/theme-grid.css">
   <link rel="stylesheet" media="all" type="text/css" href="https://ee.acf-e.org/css/theme-grid.print.css">
+  <link rel="stylesheet" media="all" type="text/css" href="http://ach.dyndns.info:6180/theme-grid.css">
 
   <style>
     input[type=radio]:checked {
@@ -149,6 +149,7 @@
       box-shadow: 0 0 0 1px #66afe9, 0 0 8px rgba(102, 175, 233, 0.6)!important; 
     }
 
+    /* 
     input[type="radio"]:checked ~ * { 
       background:pink !important;
     }
@@ -156,7 +157,6 @@
     input[type="checkbox"]:checked ~ * { 
       background:pink !important;
     }
-    /* 
 
     input:checked+span::before {
       content: "";
