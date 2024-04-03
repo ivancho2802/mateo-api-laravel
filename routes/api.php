@@ -276,7 +276,7 @@ Route::prefix('firebird')->group(function (){
   
       DB::setDefaultConnection('firebird');
   
-      $users = DB::select('select * from users');
+      $users = DB::select('SELECT * FROM "M_FORMULARIOS"');
       dd($users);
   
       return response()->json(["query" =>  $users ]);
