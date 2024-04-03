@@ -276,7 +276,7 @@ Route::prefix('firebird')->group(function (){
   
       DB::setDefaultConnection('firebird');
   
-      $result = DB::select($request->query);
+      $result = DB::select($request->query, []);
 
       dd($result);
   
