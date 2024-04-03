@@ -122,6 +122,39 @@
       border-color: #0d6efd !important;
       background-image: radial-gradient(4px, blue 0%, blue 99%, transparent 100%) !important;
     }
+    
+    .question input[type=radio]:checked:focus {
+      outline: 0 !important;
+      -webkit-box-shadow: 0 0 0 1px #66afe9, 0 0 8px rgba(102, 175, 233, 0.6)!important;
+      box-shadow: 0 0 0 1px #66afe9, 0 0 8px rgba(102, 175, 233, 0.6)!important; 
+    }
+
+    
+    input[type=checkbox]:checked {
+      background-color: #0d6efd !important;
+      border-color: #0d6efd !important;
+      background-image: radial-gradient(4px, blue 0%, blue 99%, transparent 100%) !important;
+    }
+
+    .question input[type=checkbox]:checked {
+      border-color: #0d6efd !important;
+      background-image: radial-gradient(4px, blue 0%, blue 99%, transparent 100%) !important;
+    }
+    
+    .question input[type=checkbox]:checked:focus {
+      outline: 0 !important;
+      -webkit-box-shadow: 0 0 0 1px #66afe9, 0 0 8px rgba(102, 175, 233, 0.6)!important;
+      box-shadow: 0 0 0 1px #66afe9, 0 0 8px rgba(102, 175, 233, 0.6)!important; 
+    }
+
+    input[type="radio"]:checked ~ * { 
+      background:pink !important;
+    }
+
+    input[type="checkbox"]:checked ~ * { 
+      background:pink !important;
+    }
+
   </style>
 
   <!-- src="chrome-extension://nngceckbapebfimnlniiiahkandclblb/content/fido2/page-script.js" -->
@@ -20175,11 +20208,16 @@
             <fieldset>
               <legend><span lang="" class="question-label active">1. Autoriza de manera previa, expresa, e informada a Acción contra el Hambre, para el tratamiento de los datos personales y sensibles suministrados dentro de las finalidades legales, contractuales, comerciales y las aquí contempladas.</span>
               </legend>
-              <div class="option-wrapper"><label class="" data-checked="true">
+              <div class="option-wrapper">
+                <label class="" data-checked="true">
                   <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" value="si" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos']) && $data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos'] == 'si' ? 'checked' : ''}}>
-                  <span lang="" class="option-label active">SI</span></label><label class="">
+                  <span lang="" class="option-label active">SI</span>
+                </label>
+                <label class="">
                   <input type="radio" name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" data-name="/a4E3J9gkULZe5eRqQph8zh/autorizacion_acuerdo/autorizacion_tratamiento_de_datos" value="no" data-type-xml="select1" {{isset($data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos']) && $data['autorizacion_acuerdo/autorizacion_tratamiento_de_datos'] == 'no' ? 'checked' : ''}}>
-                  <span lang="" class="option-label active">NO</span></label><label class="filler"></label>
+                  <span lang="" class="option-label active">NO</span>
+                </label>
+                <label class="filler"></label>
               </div>
             </fieldset>
           </fieldset>

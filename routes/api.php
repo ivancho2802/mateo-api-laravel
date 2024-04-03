@@ -377,6 +377,8 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
   Route::get('{id}/exportByid/{token}', [App\Http\Controllers\Kobo::class, 'exportByid']);
 
+  Route::get('{id}/exportByuui/{token}', [App\Http\Controllers\Kobo::class, 'exportByuui']);
+
   Route::get('{uui}/data/{token}', [App\Http\Controllers\Kobo::class, 'getKoboLabels']);
 });
 
