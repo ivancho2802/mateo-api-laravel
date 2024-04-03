@@ -278,7 +278,7 @@ Route::prefix('firebird')->group(function (){
 
       $resultados = DB::select($request->sql); 
   
-      return response()->json(["resultados" =>  $resultados ]);
+      return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados) ]);
     /* } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     } */
