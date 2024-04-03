@@ -368,6 +368,8 @@ class Kobo extends Controller
                 }
             });
 
+            return response()
+            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200);
             dd("esta en 45 no se proceso por time out ver como estan los estilos con uno revisar des pues de _318932");
             //$dataEnketo = collect($dataEnketoResponseFiltered)->chunk(1);
 

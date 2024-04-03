@@ -123,8 +123,8 @@
         }
 
         .question input[type=radio]:checked {
-            border-color: black !important;
-            background-image: radial-gradient(4px, black 0%, black 99%, transparent 100%) !important;
+            border-color: #0d6efd !important;
+            background-image: radial-gradient(4px, #0d6efd 0%, #0d6efd 99%, transparent 100%) !important;
         }
 
         input[type="radio"]:checked ~ * { 
@@ -132,9 +132,8 @@
             position: relative;
         }
 
-        input[type="radio"] + label span {
+        input[type="radio"] + span {
             display:inline-block;
-            width:30px;
             height:10px;
             margin:1px 0px 0 -30px;                       
             cursor:pointer;
@@ -144,12 +143,10 @@
         input:checked+span::before {
           content: "";
           position: absolute;
-          width: 50px;
           height: 50px;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Light_green_check.svg/1200px-Light_green_check.svg.png') no-repeat;
+          top: 4px;
+          left: -25px;
+          background: url('http://ach.dyndns.info:6180/cheque.png') no-repeat;
           background-size: contain;
         }
 
