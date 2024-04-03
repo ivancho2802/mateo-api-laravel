@@ -276,9 +276,7 @@ Route::prefix('firebird')->group(function (){
   
       DB::setDefaultConnection('firebird');
 
-      dd($request->query);
-  
-      $resultados = DB::select($request->query); 
+      $resultados = DB::select($request->sql); 
   
       return response()->json(["resultados" =>  $resultados ]);
     /* } catch (\Throwable $exception) {
