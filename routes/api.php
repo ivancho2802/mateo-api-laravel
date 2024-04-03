@@ -276,7 +276,7 @@ Route::prefix('firebird')->group(function (){
   
       DB::setDefaultConnection('firebird');
   
-      $result = DB::query($request); 
+      $result = DB::query($request->query); 
   
       return response()->json(["query" => helper::convert_from_latin1_to_utf8_recursively($result->get())]);
     } catch (\Throwable $exception) {
