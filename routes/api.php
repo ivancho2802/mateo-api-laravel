@@ -276,10 +276,9 @@ Route::prefix('firebird')->group(function (){
   
       DB::setDefaultConnection('firebird');
   
-      $users = DB::select('SELECT * FROM "M_FORMULARIOS"');
-      dd($users);
+      $resultados = DB::select($request->query); 
   
-      return response()->json(["query" =>  $users ]);
+      return response()->json(["resultados" =>  $resultados ]);
     /* } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     } */
