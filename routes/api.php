@@ -98,7 +98,7 @@ Route::prefix('meal')->group(function () {
   Route::middleware(['auth:sanctum'])->post('/bha/upload', [App\Http\Controllers\BhaController::class, 'stored']);
 });
 
-Route::prefix('firebid')->group(function (){
+Route::prefix('firebird')->group(function (){
 
   Route::middleware(['auth:sanctum'])->get('/formularios_master', function (Request $request) {
 
@@ -278,7 +278,7 @@ Route::prefix('firebid')->group(function (){
   
       $result = DB::query($request); 
   
-      return response()->json(["query" => helper::convert_from_latin1_to_utf8_recursively($result)]);
+      return response()->json(["query" => helper::convert_from_latin1_to_utf8_recursively($result->get())]);
     } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     }
