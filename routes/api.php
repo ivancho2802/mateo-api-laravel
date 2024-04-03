@@ -276,10 +276,10 @@ Route::prefix('firebird')->group(function (){
   
       DB::setDefaultConnection('firebird');
   
-      $result = DB::select($request->query, [1]);
-      dd($result);
+      $users = DB::select('select * from users');
+      dd($users);
   
-      return response()->json(["query" =>  $result ]);
+      return response()->json(["query" =>  $users ]);
     /* } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     } */
