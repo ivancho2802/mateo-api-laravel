@@ -272,7 +272,7 @@ Route::prefix('firebird')->group(function (){
   
   Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {
   
-    try {
+  /*   try { */
   
       DB::setDefaultConnection('firebird');
   
@@ -280,9 +280,9 @@ Route::prefix('firebird')->group(function (){
       dd($result);
   
       return response()->json(["query" =>  $result ]);
-    } catch (\Throwable $exception) {
+    /* } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
-    }
+    } */
   });
 });
 
