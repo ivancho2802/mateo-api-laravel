@@ -1,0 +1,40 @@
+{
+    "resultados": [
+        {
+            "ID_M_KOBO_RESPUESTAS": "001125608",
+            "ID_M_USUARIOS": null,
+            "FECHA": "2024-03-21 11:49:39",
+            "FECHA_REGISTRO": "2024-03-21 11:49:39",
+            "ID": 125608,
+            "ESTATUS": "ACT",
+            "ID_M_KOBO_FORMULARIOS": "0014230",
+            "ID_M_FORMULARIOS": "0012",
+            "ID_P_FORMULARIOS": "001197",
+            "TIPO": null,
+            "ROTULO": "1. Codigo",
+            "VALOR_C": "LARI-985.1",
+            "VALOR_N": null,
+            "VALOR": "LARI-985.1",
+            "REFERENCIA": "_1_C_digo",
+            "UID": "8785806",
+            "FUID": "aCZ9DfhLrtUETS2GvRDtRm",
+            "ID_TMP_RESPUESTAS": "0011481902",
+            "XROTULO": "1. CODIGO",
+            "XVALOR": "LARI-985.1",
+            "ROTULO_PLANTILLA": "1. Codigo",
+            "XROTULO_PLANTILLA": "1. CODIGO",
+            "NOMBRE_ESTATUS": "ACTIVO",
+            "NOMBRE_USUARIO": null,
+            "XGRUPO": "A. IDENTIFICACION DE LA EMERGENCIA",
+            "POSICION": 100,
+            "POSICION_GRUPO": 1,
+            "MUNICIPIO": null,
+            "DEPARTAMENTO": null,
+            "REGION": null,
+            "NOMBRE_FORMULARIO": "2. EVALUACIÓN RÁPIDA DE NECESIDADES MIRE+",
+            "XCODIGO_ALERTA": "LARI-985.1",
+            "FECHA_ESTADISTICA": null,
+            "FECHA_FORMULARIO": "2024-03-21 11:49:37"
+        }
+    ]
+}

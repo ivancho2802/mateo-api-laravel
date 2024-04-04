@@ -1,10 +1,10 @@
     * PARA REVERTIR LOS ESTILOS PONER ESTILO.CSS Y VARIABLES.CSS 
 Do
 
-    * poner acceso para documentos en repositorio
     * cuando este en inicio no mostaat la tirilla
     * que las tablas tablas qse vean mejor con proporcion a tamaño
     * error al filtran datos 
+    * poner acceso para documentos en repositorio
 
 does
 
