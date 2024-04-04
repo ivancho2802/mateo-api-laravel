@@ -440,7 +440,7 @@ class Kobo extends Controller
 
             $dataEnketo = collect($dataEnketoResponseFiltered)->chunk(45); //;
 
-            dd(count(collect($dataEnketoResponse)), $dataEnketoResponse);
+            
 
             if (count($dataEnketoResponse) == count($filesExported)) {
 

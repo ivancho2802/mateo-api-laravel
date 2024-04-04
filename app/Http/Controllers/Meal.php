@@ -95,6 +95,17 @@ class Meal extends Controller
             $mlpas->load(['emergencia', 'actividad']);
             return $mlpas;
         } else {
+
+            
+
+            $limit_minutes = 10000;
+            ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
+            ini_set('memory_limit', '2044M');
+            set_time_limit($limit_minutes); //0
+            ini_set('max_execution_time', '' . $limit_minutes . '');
+            ini_set('max_input_time', '' . $limit_minutes . '');
+
+
             $mlpas = MLpa::get();//where("FECHA_ATENCION", ">=", "2024-01-01")->
         }
 
