@@ -12,7 +12,7 @@ class QrCodeController extends Controller
         
         $data = QrCode::size(512)
             ->format('png')
-            ->merge('/storage/app/logo_ach.png')
+            ->merge('/public/logo_ach_only_icon.png')
             ->errorCorrection('M')
             ->generate(
                 $request->url ?? 'https://www.accioncontraelhambre.org/',
