@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UrlController;
+use App\Http\Controllers\QrCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::resource('urls', UrlController::class)
 
 // route for get shortener url
 Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
+
+Route::get('/qr', [QrCodeController::class, 'show']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
