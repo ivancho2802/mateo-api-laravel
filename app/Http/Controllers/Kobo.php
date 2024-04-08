@@ -392,7 +392,7 @@ class Kobo extends Controller
     {
         /* try { */
 
-            $limit_minutes = 900;
+            $limit_minutes = 800;
             ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
             ini_set('memory_limit', '2044M');
             set_time_limit($limit_minutes); //0
