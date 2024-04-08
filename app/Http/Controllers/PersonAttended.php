@@ -349,7 +349,7 @@ class PersonAttended extends Controller
                 "PROVEEDOR_FINANCIERO" => $row[36],
                 "MONTO_MENSUAL" => $row[37],
                 "FASE_ATENCION" => $row[38],
-                //"STATUS" => $row[41],
+                "STATUS" => $row[43],
 
                 //laura reemplzar por el id desde el token 5 en lcal 1 online
                 "ID_M_USUARIOS" => $ID_USER,
