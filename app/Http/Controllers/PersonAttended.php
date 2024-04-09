@@ -416,7 +416,7 @@ class PersonAttended extends Controller
             ['table', 'M_LPAS'],
             ['table_id', '!=', '[]'],
             ['file_ref', 'PENDING']
-        ]);
+        ])->get();
 
         return ['restanteParte' => count($restante), 'restanteTotal' => count($restanteTot)];
 

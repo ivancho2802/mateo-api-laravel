@@ -16,15 +16,17 @@ class Jobs extends Controller
 
         if ($jobname == 'generate_pdf'){
 
-            $numeror = 1;
-
-            if($numeror == 2){
-                generatePdf::dispatch()->onConnection('database');
-            }
-            
             $numeror = rand(0, 10);
+
+            //if($numeror == 2){
+                generatePdf::dispatch()->onConnection('database');
+            //}
+            
+            echo $numeror;
             //desplegar en una cola diferente
             //generatePdf::dispatch()->onQueue('cola2');
+
+            generatePdf::dispatchAfterResponse();
 
         }
         
