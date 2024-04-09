@@ -443,7 +443,7 @@ Route::middleware(['auth:sanctum'])->post('/matriz/minas', [App\Http\Controllers
 Route::middleware(['auth:sanctum'])->get('/matriz/minas', [App\Http\Controllers\MatrizController::class, 'all']);
 
 // jobs
-Route::middleware(['auth:sanctum'])->post('/job/deploy', [App\Http\Controllers\Jobs::class, 'deploy']);
+Route::middleware(['auth:sanctum'])->post('/job/deploy/{id}/{token}', [App\Http\Controllers\Jobs::class, 'exportByuui']);
 
 
 /*

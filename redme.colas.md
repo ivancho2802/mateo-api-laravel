@@ -6,7 +6,7 @@ php artisan make:job NewJob
 
 para ver como esos funcionan no recomendado en prod
 
-php artisan queue:list
+php artisan queue:listen
 
 para produccion toma el por defecto los procesa o finaliza
 
