@@ -36,9 +36,9 @@ class MlpasClass extends Controller ///implements ToCollection
             $date_begin = "";
             $date_end = "";
 
-            $filtered = $rows->filter(function ( $value, int $key) {
-                dd("value", $value);
-                return $value == "Codigo de la emergencia";
+            $filtered = $rows->filter(function ( $value,  $key) {
+                echo "value". $value. $key;
+                return $key == "Codigo de la emergencia";
             });
 
             $indexheader = $filtered->keys()[0] ?? 1;
