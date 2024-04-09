@@ -50,6 +50,8 @@ Route::prefix('meal')->group(function () {
 
   Route::middleware(['auth:sanctum'])->get('/lpa', [App\Http\Controllers\Meal::class, 'getLpa']);
 
+  Route::middleware(['auth:sanctum'])->get('/lpaGraficos', [App\Http\Controllers\Meal::class, 'getLpaGraficos']);
+
   //seguuimiento
   Route::middleware(['auth:sanctum'])->get('/lpaseg', [App\Http\Controllers\Meal::class, 'getLpaSeg']);
 
