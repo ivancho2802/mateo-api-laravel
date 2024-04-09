@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use SebastianBergmann\Diff\Chunk;
+use App\Http\Controllers\Jobs;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -441,6 +442,8 @@ Route::middleware(['auth:sanctum'])->post('/matriz/minas', [App\Http\Controllers
 
 Route::middleware(['auth:sanctum'])->get('/matriz/minas', [App\Http\Controllers\MatrizController::class, 'all']);
 
+// jobs
+Route::middleware(['auth:sanctum'])->post('/job/deploy', [App\Http\Controllers\Jobs::class, 'deploy']);
 
 
 /*
