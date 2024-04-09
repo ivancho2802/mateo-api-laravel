@@ -32,12 +32,11 @@ class MatrizClass  implements ToCollection
 
         foreach ($rows as $row) {
 
-
-            if ($i == 0 || !$row || !$row[0] || !$row[20]) {
+            if ($i == 0 || !$row || !$row[0] || !$row[26]) {
                 $i++;
                 continue;
             }
-            array_push($matrizBase, ["description" => $row[20], "type" => $row[21], "id" => $row[0], "origin" => 'minas']);
+            array_push($matrizBase, ["description" => $row[26], "type" => $row[2] . ','. $row[3], "id" => $row[0], "origin" => 'Afectacion_MAPAEI']);
         }
 
         Matriz::insert($matrizBase);

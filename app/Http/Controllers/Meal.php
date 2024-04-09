@@ -582,7 +582,9 @@ class Meal extends Controller
 
     function getLpaGraficos(Request $request)
     {
+        DB::setDefaultConnection('firebird');
 
+        
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2024-01-01")->get();
 

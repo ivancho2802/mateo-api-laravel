@@ -9,205 +9,218 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use App\Models\JobsModel;
+use App\Models\migrateCustom;
 
 class Jobs extends Controller
 {
     //
 
-    function deploy(Request $request){
+    function deploy(Request $request)
+    {
 
         $jobname = $request->jobname;
 
-        if ($jobname == 'generate_pdf'){
+        if ($jobname == 'generate_pdf') {
 
             /* generatePdf::dispatch();//->onConnection('database');
             generatePdf::dispatchAfterResponse(); */
 
-            
+
             //desplegar en una cola diferente
             //generatePdf::dispatch()->onQueue('cola2');
 
 
         }
-        
     }
 
     public function exportByuui($id, $token)
     {
         /* try { */
 
-            $limit_minutes = 900;
-            ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
-            ini_set('memory_limit', '2044M');
-            set_time_limit($limit_minutes); //0
-            ini_set('max_execution_time', '' . $limit_minutes . '');
-            ini_set('max_input_time', '' . $limit_minutes . '');
+        $limit_minutes = 900;
+        ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
+        ini_set('memory_limit', '2044M');
+        set_time_limit($limit_minutes); //0
+        ini_set('max_execution_time', '' . $limit_minutes . '');
+        ini_set('max_input_time', '' . $limit_minutes . '');
 
-            $filesExported = Storage::files("/htmlToPdf/cash_echo/");
+        $filesExported = Storage::files("/htmlToPdf/cash_echo/");
 
-            $timestart = time();
+        $timestart = time();
 
-            $formid = $id;
+        $formid = $id;
 
-            //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
-            //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
-            //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
-            $jsonurlDataEnketo = "https://kf.acf-e.org/assets/" . $formid . "/submissions/?format=json";
-            //'timeout' => 1200,  //1200 Seconds is 20 Minutes
+        //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
+        //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
+        //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
+        $jsonurlDataEnketo = "https://kf.acf-e.org/assets/" . $formid . "/submissions/?format=json";
+        //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
-            $dataEnketoResponse = Http::withHeaders([
-                'Authorization' => 'Token ' . $token . '',
-                'Accept' => 'application/json'
-            ])
-                ->get($jsonurlDataEnketo)
-                ->json();
+        $dataEnketoResponse = Http::withHeaders([
+            'Authorization' => 'Token ' . $token . '',
+            'Accept' => 'application/json'
+        ])
+            ->get($jsonurlDataEnketo)
+            ->json();
 
-            $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
+        $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
 
-                $filesExportedCollect = collect($filesExported);
+            $filesExportedCollect = collect($filesExported);
 
-                $filesExportedCollect = $filesExportedCollect->map(function ($fileExport) {
-                    $extract_id = explode('_', $fileExport);
-                    $extract_id = str_replace(".pdf", "", $extract_id[2]);
-                    return '' . $extract_id . '';
-                });
-
-                return ($filesExportedCollect->search($item['_id'])) === false;
+            $filesExportedCollect = $filesExportedCollect->map(function ($fileExport) {
+                $extract_id = explode('_', $fileExport);
+                $extract_id = str_replace(".pdf", "", $extract_id[2]);
+                return '' . $extract_id . '';
             });
 
-            /* dd(
-            "exportaciones totales" , count($dataEnketoResponse),
-            "exportaciones que se procesaran" , count($dataEnketoResponseFiltered),
-            "exportaciones procesadas", count($filesExported),
-            "exportaciones faltantes", count($dataEnketoResponse) - count($filesExported)
-            ); */
+            return ($filesExportedCollect->search($item['_id'])) === false;
+        }); 
 
-            $dataEnketo = collect($dataEnketoResponseFiltered)->chunk(45);
-            
-            if (count($dataEnketoResponse) == count($filesExported)) {
+        $dataEnketo = collect($dataEnketoResponseFiltered)->chunk(45);
 
-                $resultCreated = helper::makeZipWithFiles("cash_echo.zip", $filesExported);
+        if (count($dataEnketoResponse) == count($filesExported)) {
 
-                //$ramdom = Carbon\Carbon::now()->timestamp;
-                //dd(Carbon\Carbon::now()->timestamp, time());
+            $resultCreated = helper::makeZipWithFiles("cash_echo.zip", $filesExported);
 
-                if ($resultCreated === true) {
-                    return response()->download(public_path("cash_echo.zip"))->deleteFileAfterSend(true);
-                } else {
-                    return response()->json(['status' => false, 'message' => $resultCreated], 503);
+            if ($resultCreated === true) {
+                return response()->download(public_path("cash_echo.zip"))->deleteFileAfterSend(true);
+            } else {
+                return response()->json(['status' => false, 'message' => $resultCreated], 503);
+            }
+        }
+
+        //contruyrndo las imagenes del formulario
+
+        $dataEnketoWithImage = collect($dataEnketo[0]->map(function ($chield) use ($token, $filesExported) {
+            $formulario = collect($chield); //->forget('name');
+
+            $claves = collect($formulario->keys())->filter()->all();
+            $valores =  array_values($formulario->toArray());
+
+            for ($i = 0; $i < count($claves); $i++) {
+                # code...
+                $clave = ($claves[$i]);
+                $valor = $valores[$i];
+
+                if (!is_array($valor) && isset($clave)) {
+
+                    if (
+                        (stripos($valor, '.jpg') !== false && stripos($valor, '.jpg') == (strlen($valor) - strlen('.jpg'))) ||
+                        (stripos($valor, '.png') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
+                        (stripos($valor, '.jpeg') !== false && stripos($valor, '.jpeg') == (strlen($valor) - strlen('.jpeg'))) ||
+                        (stripos($valor, '.svg') !== false && stripos($valor, '.svg') == (strlen($valor) - strlen('.svg')))
+                    ) {
+
+
+                        $verificationImage = migrateCustom::where([
+                            'table' => "a4E3J9gkULZe5eRqQph8zh",
+                            'file_ref' => $valor . $formulario['_id']
+                        ]);
+
+                        if ($verificationImage->exists()) {
+                            $formulario[$clave] = $verificationImage->first()->table_id;
+                            continue;
+                        }
+
+                        $chield_attachments = collect($chield['_attachments']);
+
+                        $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
+                            return isset($atached['download_url']) && (stripos($atached['download_url'], $valor) !== false);
+                        });
+
+
+                        $urlImg = collect($urlImgFirst);
+                        //dd("urlImg", $urlImg, $urlImg->first(), $urlImg->first()['download_url']);
+
+                        if (count($urlImgFirst) > 0) {
+
+                            //convertir la imagen en su respuesta
+                            $imageResponse = Helper::getImageWithHeaders($urlImg->first()['download_url'], $token);
+
+                            $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
+
+                            migrateCustom::create([
+                                'table' => "a4E3J9gkULZe5eRqQph8zh",
+                                'table_id' => $formulario[$clave],
+                                'file_ref' => $valor . $formulario['_id']
+                            ]);
+                        }
+                        /* elsedd("esto no deberia psasr"); */
+                    }
                 }
             }
 
-            //contruyrndo las imagenes del formulario
+            return $formulario;
+        }));
 
-            $dataEnketoWithImage = collect($dataEnketo[0]->map(function ($chield) use ($token, $filesExported) {
-                $formulario = collect($chield); //->forget('name');
+        $dataEnketoWithImage->filter()->all();
 
-                $claves = collect($formulario->keys())->filter()->all();
-                $valores =  array_values($formulario->toArray());
+        $dataEnketoWithImage->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse) {
 
-                for ($i = 0; $i < count($claves); $i++) {
-                    # code...
-                    $clave = ($claves[$i]);
-                    $valor = $valores[$i];
+            $id_file = $item->get('_id');
 
-                    if (!is_array($valor) && isset($clave)) {
+            $filename = '/htmlToPdf/cash_echo/Acuerdo De Transferencia Monetarias - Cash ECHO_' . $id_file . '.pdf';
 
-                        if (
-                            (stripos($valor, '.jpg') !== false && stripos($valor, '.jpg') == (strlen($valor) - strlen('.jpg'))) ||
-                            (stripos($valor, '.png') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
-                            (stripos($valor, '.jpeg') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
-                            (stripos($valor, '.svg') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png')))
-                        ) {
-                            $chield_attachments = collect($chield['_attachments']);
+            $existQueue = JobsModel::where("payload", "like", "%" . $id_file . "%")->exists();
 
-                            $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
-                                return isset($atached['download_url']) && (stripos($atached['download_url'], $valor) !== false);
-                            });
-
-
-                            $urlImg = collect($urlImgFirst);
-                            //dd("urlImg", $urlImg, $urlImg->first(), $urlImg->first()['download_url']);
-
-                            if (count($urlImgFirst) > 0) {
-
-                                //convertir la imagen en su respuesta
-                                $imageResponse = Helper::getImageWithHeaders($urlImg->first()['download_url'], $token);
-
-                                $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
-                            }
-                            /* elsedd("esto no deberia psasr"); */
-                        }
-                    }
+            if (!Storage::disk('local')->exists($filename) && !$existQueue) {
+                if (isset($item)   && isset($filename)) {
+                    generatePdf::dispatch($item, $filename); //->onConnection('database');
+                    //generatePdf::dispatchAfterResponse();
                 }
+            }
 
-                return $formulario;
-            }));
+            $currentTimeExecuted = time() - $timestart;
 
-            $dataEnketoWithImage->filter()->all();
+            $limit_minutes_ajust = $limit_minutes - 100;
+            //echo $currentTimeExecuted . " > " . $limit_minutes_ajust . ' = ' . (intval($currentTimeExecuted) > intval($limit_minutes_ajust)) . "\n";
 
-            $dataEnketoWithImage->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse) {
-
-                $id_file = $item->get('_id');
-
-                $filename = '/htmlToPdf/cash_echo/Acuerdo De Transferencia Monetarias - Cash ECHO_' . $id_file . '.pdf';
-
-                $existQueue = JobsModel::where("payload", "like", "%" . $id_file . "%")->exists();
-
-                if (!Storage::disk('local')->exists($filename) && !$existQueue) {
-                    if(isset($item) && count($item)>0 && isset($filename)){
-                        generatePdf::dispatch($item, $filename);//->onConnection('database');
-                        //generatePdf::dispatchAfterResponse();
-                    }
-                }
-
-                $currentTimeExecuted = time() - $timestart;
-
-                $limit_minutes_ajust = $limit_minutes - 100;
-                echo $currentTimeExecuted . " > " . $limit_minutes_ajust . ' = ' . ($currentTimeExecuted > $limit_minutes_ajust) ."\n";
-
-                if ($currentTimeExecuted > $limit_minutes_ajust) {
-                    $filesExported = Storage::files("/htmlToPdf/cash_echo/");
-                    echo "exportaciones totales" .count($dataEnketoResponse) ." \n";
-                    echo "exportaciones procesadas" .count($filesExported) ." \n";
-                    echo "exportaciones faltantes" .(count($dataEnketoResponse) - count($filesExported))." \n";
-
-                    return response()->json([
-                        "exportaciones totales" => count($dataEnketoResponse),
-                        "exportaciones procesadas" => count($filesExported),
-                        "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported),
-                    ]);
-                }
-            });
-
-            /* return response()
-            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200);
-            dd("esta en 45 no se proceso por time out ver como estan los estilos con uno revisar des pues de _318932"); */
-            
-            if (count($dataEnketoResponse) == count($filesExported)) {
-
-                $resultCreated = helper::makeZipWithFiles("cash_echo.zip", $filesExported);
-
-                //$ramdom = Carbon\Carbon::now()->timestamp;
-                //dd(Carbon\Carbon::now()->timestamp, time());
-
-                if ($resultCreated === true) {
-                    return response()->download(public_path("cash_echo.zip"))->deleteFileAfterSend(true);
-                } else {
-                    return response()->json(['status' => false, 'message' => $resultCreated], 503);
-                }
-            } else {
+            if (intval($currentTimeExecuted) >= intval($limit_minutes_ajust)) {
 
                 $filesExported = Storage::files("/htmlToPdf/cash_echo/");
+                echo "exportaciones totales" . count($dataEnketoResponse) . " \n";
+                echo "exportaciones procesadas" . count($filesExported) . " \n";
+                echo "exportaciones faltantes" . (count($dataEnketoResponse) - count($filesExported)) . " \n";
 
                 return response()->json([
                     "exportaciones totales" => count($dataEnketoResponse),
                     "exportaciones procesadas" => count($filesExported),
-                    "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported)
+                    "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported),
                 ]);
             }
+        });
 
-            /* return response()
+        /* return response()
+            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200);
+            dd("esta en 45 no se proceso por time out ver como estan los estilos con uno revisar des pues de _318932"); */
+
+        if (count($dataEnketoResponse) == count($filesExported)) {
+
+            $resultCreated = helper::makeZipWithFiles("cash_echo.zip", $filesExported);
+
+            //$ramdom = Carbon\Carbon::now()->timestamp;
+            //dd(Carbon\Carbon::now()->timestamp, time());
+
+            if ($resultCreated === true) {
+                return response()->download(public_path("cash_echo.zip"))->deleteFileAfterSend(true);
+            } else {
+                return response()->json(['status' => false, 'message' => $resultCreated], 503);
+            }
+        } else {
+
+            $filesExported = Storage::files("/htmlToPdf/cash_echo/");
+
+            $jobsCreated = JobsModel::all();
+
+            return response()->json([
+                "exportaciones totales" => count($dataEnketoResponse),
+                "exportaciones procesadas" => count($filesExported),
+                "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported),
+                "trabajos en proceso" => count($jobsCreated) 
+            ]);
+        }
+
+        /* return response()
             ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
             ->header('Authorization', 'Token ' . $token); */
         /* } catch (\Throwable $th) {

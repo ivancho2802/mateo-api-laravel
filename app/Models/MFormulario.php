@@ -59,11 +59,11 @@ class MFormulario extends Model
     ];
     
     public function respuestas(): HasMany{
-        return $this->hasMany(MKoboRespuestas::class, "ID_M_FORMULARIOS");
+        return $this->hasMany(MKoboRespuestas::class, "ID_M_FORMULARIOS", "ID_M_FORMULARIOS");
     }
 
     public function preguntas(): HasMany{
-        return $this->hasMany(MKoboFormularios::class, "ID_M_FORMULARIOS");
+        return $this->hasMany(MKoboFormularios::class, "ID_M_FORMULARIOS", "ID_M_FORMULARIOS");
     }
 
     /* 

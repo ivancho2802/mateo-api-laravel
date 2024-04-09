@@ -11,6 +11,7 @@ use App\Models\MFormulario;
 //use App\Traits\HasNextSequenceValue;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class MKoboFormularios extends Model
 {
@@ -108,5 +109,9 @@ class MKoboFormularios extends Model
         $sequenceName = "{$self->getTable()}_ID_seq";
 
         return DB::selectOne("SELECT nextval('\"{$sequenceName}\"') AS val")->val;
+    }
+
+    public function respuesta(): HasOne{
+        return $this->hasOne(MKoboRespuestas::class, "_ID", "_ID");
     }
 }

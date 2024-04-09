@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\helper;
 use App\Models\migrateCustom;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Erns extends Controller
 {
@@ -402,11 +403,49 @@ class Erns extends Controller
 
     function all(Request $request){
 
-        $formulario_erns = MFormulario::where(['ACCION' => "ERN"])->paginate(10);
+        
+        ini_set('memory_limit', '2044M');
+        set_time_limit(3000000);//0
+        ini_set('max_execution_time', '60000');
+        ini_set('max_input_time', '60000');
 
-        //$formulario_erns->load(['respuestas']);
+        /* $formulario_erns = MFormulario::where(['ACCION' => "ERN"])->get();
 
+        $formulario_erns->load(['preguntas']);
+
+        $formulario_erns->map(function ($formulario) {
+            $preguntas = collect($formulario->preguntas);
+
+            $preguntas->map(function ($pregunta) {
+                $pregunta->load(['respuesta']);
+
+                return $pregunta;
+            });
+
+            return $preguntas;
+        }); 
         return response()->json(['status' => true, 'data' => $formulario_erns, 200]);
+        
+        */
+
+        //alternativa
+
+        DB::setDefaultConnection('firebird');
+
+        $resultados = DB::select("SELECT P_FORMULARIOS.ROTULO, M_KOBO_RESPUESTAS.VALOR FROM M_KOBO_RESPUESTAS  INNER JOIN M_KOBO_FORMULARIOS ON (M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS) INNER JOIN P_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_P_FORMULARIOS=P_FORMULARIOS.ID_P_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_M_FORMULARIOS='0012' GROUP BY P_FORMULARIOS.ROTULO, M_KOBO_RESPUESTAS.VALOR");
+
+        $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
+
+        $resultados = collect($resultados);
+
+        $formularioNew = collect();
+        $formulariosNew = collect();
+
+        $formulariosNew = $resultados->map(function ($formulario) use ($formularioNew, $formulariosNew) {
+            return $formulario = [$formulario->ROTULO => $formulario->VALOR];
+        });
+
+        return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => count($formulariosNew), 200]);
 
     }
 }
