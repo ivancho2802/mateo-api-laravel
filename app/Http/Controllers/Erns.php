@@ -441,9 +441,11 @@ class Erns extends Controller
         $formularioNew = collect();
         $formulariosNew = collect();
 
-        $formulariosNew = $resultados->map(function ($formulario) use ($formularioNew, $formulariosNew) {
+        /* $formulariosNew = $resultados->map(function ($formulario) use ($formularioNew, $formulariosNew) {
             return $formulario = [$formulario->ROTULO => $formulario->VALOR];
-        });
+        }); */
+
+        $formulariosNew = $resultados->groupBy('ROTULO');
 
         return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => count($formulariosNew), 200]);
 
