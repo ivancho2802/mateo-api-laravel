@@ -176,6 +176,8 @@ class PersonAttended extends Controller
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
+        $lotes = 600;
+
         $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
         if (!$ID_USER) {
@@ -237,9 +239,11 @@ class PersonAttended extends Controller
             $elementsForMigration = collect(json_decode($idTable));
         //}
 
-        $elementsForMigrationChunked = $elementsForMigration->chunk(600);
+        echo count($elementsForMigration);
 
-        //dd($elementsForMigrationChunked);
+        $elementsForMigrationChunked = $elementsForMigration->chunk($lotes);
+
+        dd("elementsForMigrationChunked", $elementsForMigrationChunked, $elementsForMigrationChunked[0]);
 
         $i = 0;
         $body_lpas = collect();
@@ -373,7 +377,7 @@ class PersonAttended extends Controller
         }
         //dd($date_begin, $date_end);
 
-        $body_lpas = ($body_lpas)->chunk(600);
+        $body_lpas = ($body_lpas)->chunk($lotes);
         foreach ($body_lpas as $body) {
             $bodyArray = $body->toArray();
             MLpa::insert($bodyArray);

@@ -15,7 +15,11 @@ class Jobs extends Controller
         $jobname = $request->jobname;
 
         if ($jobname == 'generate_pdf'){
-            generatePdf::dispatch();
+            generatePdf::dispatch()->onConnection('database');
+
+            //desplegar en una cola diferente
+            //generatePdf::dispatch()->onQueue('cola2');
+
         }
         
     }
