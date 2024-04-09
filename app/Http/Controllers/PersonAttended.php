@@ -412,7 +412,13 @@ class PersonAttended extends Controller
         //array_push($id_emergenciasz, $mlpa_emergencia)
         //dd($mlpas->pluck('ID'),$id_lpas);
 
-        return ['restante' => count($restante)];
+        $restanteTot = migrateCustom::where([
+            ['table', 'M_LPAS'],
+            ['table_id', '!=', '[]'],
+            ['file_ref', 'PENDING']
+        ]);
+
+        return ['restanteParte' => count($restante), 'restanteTotal' => count($restanteTot)];
 
         //return response()->json(["message" => "operacion hecha con exito"]);
 
