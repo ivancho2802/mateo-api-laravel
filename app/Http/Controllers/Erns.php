@@ -451,7 +451,7 @@ class Erns extends Controller
             $objectFormulario = collect();
 
             $valorFormated = $valor->each( function ($item) use ($objectFormulario){
-                $objectFormulario->$item->ROTULO = $item->VALOR;
+                $objectFormulario[$item->ROTULO] = $item->VALOR;
             });
 
             $formulariosNew->push($objectFormulario);
