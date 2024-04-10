@@ -450,11 +450,13 @@ class Erns extends Controller
 
         $resultadosGruped->each(function ($valor, $key) use ($formularioNew, $formulariosNew) {
 
-            $valorFormated = $valor->map( function ($item) {
-                return $item->VALOR;
+            $objectFormulario = collect();
+
+            $valorFormated = $valor->each( function ($item) use ($objectFormulario){
+                $objectFormulario[$item->ROTULO] = $item->VALOR;
             });
 
-            $formulariosNew->push([$key => $valorFormated]);
+            $formulariosNew->push($objectFormulario);
         });
 
         return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => ($formulariosNew), 200]);
