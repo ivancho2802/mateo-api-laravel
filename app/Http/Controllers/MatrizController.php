@@ -305,7 +305,7 @@ class MatrizController extends Controller
                 //dd("repitions", $repitions);
 
                 for ($k=0; $k < count($words); $k++) { 
-                    dd("comparation", $$matriz->description, $words[$k]);
+                    dd("comparation", $matriz->description, $words[$k]);
                     if(strpos($matriz->description, $words[$k])){
 
                         if(!isset($matriz['palabras_clave'])){
