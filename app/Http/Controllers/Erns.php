@@ -432,14 +432,14 @@ class Erns extends Controller
 
         DB::setDefaultConnection('firebird'); 
 
-        $resultados = DB::select("SELECT * FROM V_M_KOBO_RESPUESTAS WHERE ID_M_FORMULARIOS = '0012'");
+        $resultados = DB::select("SELECT * FROM M_KOBO_RESPUESTAS WHERE ID_M_FORMULARIOS = '0012'");
 
         
         $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
 
         $resultados = collect($resultados);
 
-        $resultadosGruped = $resultados->groupBy('ROTULO');
+        $resultadosGruped = $resultados->groupBy('ID_M_KOBO_FORMULARIOS');
 
         dd(count($resultadosGruped));
         $formularioNew = collect();
