@@ -454,7 +454,23 @@ class Erns extends Controller
             $formulariosNew->push([$key => $valorFormated]);
         });
 
-        return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => count($formulariosNew), 200]);
+        $formulariosNew = collect([
+            ["a" => "a"],
+            ["a" => "a"],
+            ["a" => "a"],
+            ["a" => "a"],
+            ["b" => "b"],
+        ]);
+
+        $formulariosNew2 = collect([
+            ["a" => "a", "b" => "b"],
+            ["a" => "a", "b" => "b"],
+            ["a" => "a", "b" => "b"],
+            ["a" => "a", "b" => "b"],
+            ["a" => "a", "b" => "b"],
+        ]);
+
+        return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => ($formulariosNew2), 200]);
 
     }
 }
