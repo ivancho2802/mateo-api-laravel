@@ -432,8 +432,10 @@ class Erns extends Controller
 
         DB::setDefaultConnection('firebird'); 
 
-        $resultados = DB::select("SELECT P_FORMULARIOS.ROTULO, M_KOBO_RESPUESTAS.VALOR FROM M_KOBO_RESPUESTAS  INNER JOIN M_KOBO_FORMULARIOS ON (M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS) INNER JOIN P_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_P_FORMULARIOS=P_FORMULARIOS.ID_P_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_M_FORMULARIOS='0012' GROUP BY P_FORMULARIOS.ROTULO, M_KOBO_RESPUESTAS.VALOR");
+        $resultados = DB::select("SELECT * FROM V_M_KOBO_RESPUESTAS WHERE ID_M_FORMULARIOS = '0012'");
 
+        dd($resultados);
+        
         $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
 
         $resultados = collect($resultados);
