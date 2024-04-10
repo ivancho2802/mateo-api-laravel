@@ -452,8 +452,7 @@ class Erns extends Controller
 
             $valorFormated = $valor->each( function ($item) use ($objectFormulario){
                 $objectFormulario[$item->ROTULO] = $item->VALOR;
-                if($item->ROTULO == '1. Codigo' && isset($item->VALOR)){
-                    dd($item);
+                if($item->ROTULO == '1. Codigo' && empty($item->VALOR)){
                     $objectFormulario[$item->ROTULO] = $item->CODIGO_ALERTA;
                 }
             });
