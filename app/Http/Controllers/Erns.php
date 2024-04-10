@@ -448,7 +448,7 @@ class Erns extends Controller
 
         //$formulariosNew->keys();
 
-        $resultadosGruped->each(function ($valor, $key) use ($formularioNew, $formulariosNew) {
+        $formularioNew = $resultadosGruped->each(function ($valor, $key) use ($formularioNew, $formulariosNew) {
 
             $objectFormulario = collect();
 
@@ -457,9 +457,11 @@ class Erns extends Controller
             });
 
             $formulariosNew->push($objectFormulario);
+
+            return $formulariosNew;
         });
 
-        return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => ($formulariosNew), 200]);
+        return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => ($formulariosNew)]);
 
     }
 }
