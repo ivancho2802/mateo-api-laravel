@@ -441,8 +441,6 @@ class Erns extends Controller
 
         $resultadosGruped = $resultados->groupBy('ID_M_KOBO_FORMULARIOS');
 
-        return response()->json(['status' => true, 'data' => $resultadosGruped]);
-
         $formularioNew = collect();
         $formulariosNew = collect([]);
 
