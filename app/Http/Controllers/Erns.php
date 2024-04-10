@@ -432,7 +432,7 @@ class Erns extends Controller
 
         DB::setDefaultConnection('firebird'); 
 
-        $resultados = DB::select("SELECT * FROM M_KOBO_RESPUESTAS WHERE ID_M_FORMULARIOS = '0012'");
+        $resultados = DB::select("SELECT * FROM v_M_KOBO_RESPUESTAS WHERE ID_M_FORMULARIOS = '0012'");
 
         
         $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
@@ -441,7 +441,8 @@ class Erns extends Controller
 
         $resultadosGruped = $resultados->groupBy('ID_M_KOBO_FORMULARIOS');
 
-        dd(count($resultadosGruped));
+        dd(($resultadosGruped));
+
         $formularioNew = collect();
         $formulariosNew = collect([]);
 
@@ -456,23 +457,7 @@ class Erns extends Controller
             $formulariosNew->push([$key => $valorFormated]);
         });
 
-        $formulariosNew = collect([
-            ["a" => "a"],
-            ["a" => "a"],
-            ["a" => "a"],
-            ["a" => "a"],
-            ["b" => "b"],
-        ]);
-
-        $formulariosNew2 = collect([
-            ["a" => "a", "b" => "b"],
-            ["a" => "a", "b" => "b"],
-            ["a" => "a", "b" => "b"],
-            ["a" => "a", "b" => "b"],
-            ["a" => "a", "b" => "b"],
-        ]);
-
-        return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => ($formulariosNew2), 200]);
+        return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => ($formulariosNew), 200]);
 
     }
 }
