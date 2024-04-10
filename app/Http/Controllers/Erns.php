@@ -461,7 +461,7 @@ class Erns extends Controller
             return $formulariosNew;
         });
 
-        return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => ($formulariosNew)]);
+        return response()->json(['status' => true, 'data' => ($formulariosNew), 'total' => ($formularioNew)]);
 
     }
 }
