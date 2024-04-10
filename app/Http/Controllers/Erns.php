@@ -434,7 +434,6 @@ class Erns extends Controller
 
         $resultados = DB::select("SELECT * FROM V_M_KOBO_RESPUESTAS WHERE ID_M_FORMULARIOS = '0012'");
 
-        dd($resultados);
         
         $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
 
@@ -442,6 +441,7 @@ class Erns extends Controller
 
         $resultadosGruped = $resultados->groupBy('ROTULO');
 
+        dd(count($resultadosGruped));
         $formularioNew = collect();
         $formulariosNew = collect([]);
 
