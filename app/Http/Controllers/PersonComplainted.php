@@ -49,6 +49,18 @@ class PersonComplainted extends Controller
                 'file' => 'required|mimes:xlsx,xls',
             ]);
 
+            //guardo el archiv
+
+            // Get the uploaded file
+            $file = $request->file('file');
+            $path = $file->store('migrationsMqr');
+            
+            migrateCustom::create([
+                'table' => 'M_MQR',
+                'table_id' =>  $path,
+                'file_ref' => 'UPLOADED',
+            ]);
+
             // Get the uploaded file
             $file = $request->file('file');
 
