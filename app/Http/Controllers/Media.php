@@ -46,9 +46,11 @@ class Media extends Controller
         return response()->download($path, $filename, $headers);
     }
 
-    function downloadMediaPqrPath($filepath)
+    function downloadMediaPqrPath(Request $request)
     {//migrationsMqr/nLOPShZMEMu1AjqYuNWsP7miBWl32gTyO72Lu2ex.xlsx
-        $file = Storage::path($filepath);
+        $filepath = $request->url;
+
+        //$file = Storage::path($filepath);
 
         $headers = array(
             'Content-Type: application/vnd.ms-excel',

@@ -88,7 +88,7 @@ Route::prefix('meal')->group(function () {
   //quejas y reclamos
   Route::get('/mqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);
 
-  Route::get('/mqr/download/:filepath', [App\Http\Controllers\Media::class, 'downloadMediaPqrPath']);
+  Route::post('/mqr/download/path', [App\Http\Controllers\Media::class, 'downloadMediaPqrPath']);
 
   Route::post('/mqr/upload', [App\Http\Controllers\PersonComplainted::class, 'stored']);
 
