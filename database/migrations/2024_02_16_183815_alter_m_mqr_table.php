@@ -19,6 +19,7 @@ class AlterMMqrTable extends Migration
             $table->string('RANGE_EDAD')->nullable()->change();
             $table->string('ADDRESS')->nullable()->change();
             $table->string('VALID')->nullable()->change();
+            $table->string('SUB_CATEGORY')->nullable();
             
         });
     }

@@ -311,7 +311,7 @@ class MatrizController extends Controller
                             $matriz['palabras_clave'] = "";
                         }
 
-                        $matriz['palabras_clave'] .= $words[$k];
+                        $matriz['palabras_clave'] .= $words[$k] . ", ";
                         $matriz[$words[$k]] = $repitions[$k];
                     }
                     
