@@ -36,7 +36,7 @@ class MatrizClass  implements ToCollection
                 $i++;
                 continue;
             }
-            array_push($matrizBase, ["description" => $row[26], "type" => $row[2] . ','. $row[3], "id" => $row[0], "origin" => 'Afectacion_MAPAEI']);
+            array_push($matrizBase, ["description" => $row[26], "type" => $row[2] . ','. $row[3], "id" => null, "origin" => 'Afectacion_MAPAEI']);//$row[0]
         }
 
         Matriz::insert($matrizBase);
