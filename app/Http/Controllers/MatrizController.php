@@ -18,6 +18,12 @@ class MatrizController extends Controller
     //
     function stored(Request $request)
     {
+        
+        ini_set('memory_limit', '2044M');
+        set_time_limit(3000000);//0
+        ini_set('max_execution_time', '60000');
+        ini_set('max_input_time', '60000');
+
         //dd("file", $request->file('file'));
         //echo csrf_token(); 
         //return response()->json(["request" => $request]);
