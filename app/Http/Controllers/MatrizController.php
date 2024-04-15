@@ -439,7 +439,7 @@ class MatrizController extends Controller
         /* $check = $intersect->search(function ($element) use ($wordDiccionary) {
           return $element == $wordDiccionary;
         });
- */
+        */
         /* if ($wordDiccionary == 'EN') {
           dd("check", $check, $intersect, $wordDiccionary);
         } */
