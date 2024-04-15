@@ -191,8 +191,6 @@ class MatrizController extends Controller
   function getMAPAEI(Request $request)
   {
 
-
-    
     ini_set('memory_limit', '2044M');
     set_time_limit(3000000); //0
     ini_set('max_execution_time', '60000');
@@ -312,34 +310,79 @@ class MatrizController extends Controller
     $diccionary = ($wordsArrayCountedFiltered);
 
     $matrizMinasMatheched = $matrizMinas->map(function ($matriz) use ($diccionary) {
+
+      //$matriz = collect($matrizOrigin);
+
+      /* $matriz['foo'] = 42; */
+      //dd("matriz", $matriz);
+
       $diccionaryCollection = collect($diccionary);
+
+      $wordsArray =
+        collect(
+          explode(
+            " ",
+            mb_convert_encoding(
+              preg_replace(
+                '/([^A-Za-z0-9])/',
+                " ",
+                strtoupper(
+                  $this->eliminar_acentos(
+                    $matriz['description']
+                  )
+                )
+              ),
+              'UTF-8',
+              'UTF-8'
+            )
+          )
+        )->filter()->toArray();
+
+
+      $words = $diccionaryCollection->keys();
+      $repitions = $diccionaryCollection->values()->all();
+
+      $intersect = collect($wordsArray)->intersect($words);
+
+      $intersect->all();
+
+      //dd("intersect", $intersect, $wordsArray, $words);
 
 
       //$diccionaryCollection->each(function ($item, $key) use ($matriz) {
 
-        $words = $diccionaryCollection->keys();
-        $repitions = $diccionaryCollection->values()->all();
-        //dd($repitions);
+      //dd($repitions);
+      
+      $resultMatriz = collect($wordsArray)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
 
-        for ($k = 0; $k < count($words); $k++) {
+        $check = $intersect->search(function ($element) use ($wordDiccionary) {
+          return $element == $wordDiccionary;
+        });
 
-          //dd(strpos(strtoupper($matriz->description), strtoupper($words[$k])));
+        /* if ($wordDiccionary == 'EN') {
+          dd("check", $check, $intersect, $wordDiccionary);
+        } */
+        //echo "check" . $check;
 
-          if (strpos(strtoupper($matriz->description), strtoupper($words[$k])) >= 0) {
+        if ($check !== false && $check >= 0) {
 
-            if (!isset($matriz['palabras_clave'])) {
-              $matriz['palabras_clave'] = "";
-            }
-
-            if (!(strpos(strtoupper($matriz['palabras_clave']), strtoupper($words[$k])) >= 0)) {
-              $matriz['palabras_clave'] .= $words[$k] . ", ";
-            }
-
-            $matriz[$words[$k]] = $repitions[$k];
-          } else {
-            $matriz[$words[$k]] = 0;
+          if (!isset($matriz['palabras_clave'])) {
+            $matriz['palabras_clave'] = "";
           }
+
+          if (!(strpos(strtoupper($matriz['palabras_clave']), strtoupper($wordDiccionary)) >= 0)) {
+            $matriz['palabras_clave'] .= $wordDiccionary . ", ";
+          }
+
+          $matriz['' . $wordDiccionary . ''] = $diccionaryCollection[$wordDiccionary];
+        } else {
+          $matriz['' . $wordDiccionary . ''] = 0;
         }
+
+        //echo "matriz" . implode(",", $matriz);
+
+        //return $matriz;
+      }); 
       //});
 
       return $matriz;
