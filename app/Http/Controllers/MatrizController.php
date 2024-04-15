@@ -198,9 +198,11 @@ class MatrizController extends Controller
 
     $format = $request->format;
 
-    $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get();
+    $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get()->except(['created_at', 'updated_at']);
 
-    $matrizMinasGroupType = $matrizMinas->groupBy('type');
+    //dd("matrizMinas", $matrizMinas->first());
+
+    //$matrizMinasGroupType = $matrizMinas->groupBy('type');
 
     $i = 0;
     /**
@@ -359,8 +361,6 @@ class MatrizController extends Controller
       "CON"
     ]);
 
-    //dd(is_numeric(""));
-
     $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) use ($wordsConectors){
 
       $seachConnectors = $wordsConectors->search(function ($word) use ($key){
@@ -432,7 +432,7 @@ class MatrizController extends Controller
         $matriz['' . $key . ''] = 0;
       });
 
-      //return $matriz;
+      return $matriz;
       
       $resultMatriz = collect($intersect)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
 
