@@ -434,19 +434,19 @@ class MatrizController extends Controller
 
       //return $matriz;
       
-      $resultMatriz = collect($wordsArray)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
+      $resultMatriz = collect($intersect)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
 
-        $check = $intersect->search(function ($element) use ($wordDiccionary) {
+        /* $check = $intersect->search(function ($element) use ($wordDiccionary) {
           return $element == $wordDiccionary;
         });
-
+ */
         /* if ($wordDiccionary == 'EN') {
           dd("check", $check, $intersect, $wordDiccionary);
         } */
         //echo "check" . $check;
 
 
-        if ($check !== false && $check >= 0) {
+        //if ($check !== false && $check >= 0) {
 
           if (!isset($matriz['palabras_clave'])) {
             $matriz['palabras_clave'] = "";
@@ -457,9 +457,9 @@ class MatrizController extends Controller
           }
 
           $matriz['' . $wordDiccionary . ''] = $diccionaryCollection[$wordDiccionary];
-        } else {
+        /* } else {
           $matriz['' . $wordDiccionary . ''] = 0;
-        }
+        } */
 
         //echo "matriz" . implode(",", $matriz);
 
