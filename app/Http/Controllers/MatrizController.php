@@ -294,27 +294,94 @@ class MatrizController extends Controller
      * tienen
      * 
      */
+    $wordsConectors = collect([
+      "EN",
+      "ES",
+      "ESO",
+      "ESTO",
+      "EL",
+      "ELLA",
+      "LA",
+      "DEL",
+      "LOS",
+      "LAS",
+      "YA",
+      "SEA",
+      "QUE",
+      "CUAL",
+      "CUANDO",
+      "DONDE",
+      "DONDE",
+      "HASTA",
+      "DONDE",
+      "DENTRO",
+      "POR",
+      "UNO",
+      "UNA",
+      "DOS",
+      "FUE",
+      "SAN",
+      "SUS",
+      "PARA",
+      "TODO",
+      "LADO",
+      "TRES",
+      "TOTAL",
+      "TIENE",
+      "SER",
+      "POST",
+      "MAS",
+      "PERO",
+      "AÑO",
+      "PERO",
+      "MISMO",
+      "LUEGO",
+      "COMO",
+      "SON",
+      "DADOS",
+      "DIA",
+      "DIAS",
+      "OTRA",
+      "ASI",
+      "OTRO",
+      "OTRA",
+      "TUVO",
+      "DEJO",
+      "DEJA",
+      "MUY",
+      "HACE",
+      "CON"
+    ]);
 
-    $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) {
+    $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) use ($wordsConectors){
+
+      $seachConnectors = $wordsConectors->search(function ($word) use ($key){
+        return $word == $key;
+      });
+
       return
         $value > 3 &&
         strlen($key) > 2 &&
+        !($seachConnectors !== false && $seachConnectors >= 0) &&
         strtolower($key) !== 'solicitud' && strtolower($key) !== 'verificación' &&
         !preg_match("/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/", $key) &&
         !preg_match("/^([0-2][0-9]|3[0-1])(\/|-)(0?[1-9]|1[1-2])\2(\d{4})$/", $key) &&
         !is_numeric($key) &&
         !preg_match("/DIV[0-9][0-9]$/", $key)  &&
+        !preg_match("/X[0-9][0-9]$/", $key)  &&
         !preg_match("/BATOT[0-9][0-9]$/", $key);
     })->sortDesc();
 
     $diccionary = ($wordsArrayCountedFiltered);
+    //dd("diccionary", $diccionary);
+
+
 
     $matrizMinasMatheched = $matrizMinas->map(function ($matriz) use ($diccionary) {
 
       //$matriz = collect($matrizOrigin);
 
       /* $matriz['foo'] = 42; */
-      //dd("matriz", $matriz);
 
       $diccionaryCollection = collect($diccionary);
 
@@ -356,6 +423,8 @@ class MatrizController extends Controller
       $diccionaryCollection->each(function ($word, $key) use ($matriz){
         $matriz['' . $key . ''] = 0;
       });
+
+      //return $matriz;
       
       $resultMatriz = collect($wordsArray)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
 
