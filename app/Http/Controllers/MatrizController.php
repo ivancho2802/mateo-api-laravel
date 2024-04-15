@@ -352,6 +352,10 @@ class MatrizController extends Controller
       //$diccionaryCollection->each(function ($item, $key) use ($matriz) {
 
       //dd($repitions);
+
+      $diccionaryCollection->each(function ($word, $key) use ($matriz){
+        $matriz['' . $key . ''] = 0;
+      });
       
       $resultMatriz = collect($wordsArray)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
 
@@ -363,6 +367,7 @@ class MatrizController extends Controller
           dd("check", $check, $intersect, $wordDiccionary);
         } */
         //echo "check" . $check;
+
 
         if ($check !== false && $check >= 0) {
 
