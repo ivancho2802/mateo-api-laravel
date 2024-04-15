@@ -306,6 +306,7 @@ class MatrizController extends Controller
       "LOS",
       "LAS",
       "YA",
+      "SIN",
       "SEA",
       "QUE",
       "CUAL",
@@ -338,6 +339,10 @@ class MatrizController extends Controller
       "LUEGO",
       "COMO",
       "SON",
+      "BIEN",
+      "SALE",
+      "TODO",
+      "TODA",
       "DADOS",
       "DIA",
       "DIAS",
@@ -349,9 +354,12 @@ class MatrizController extends Controller
       "DEJO",
       "DEJA",
       "MUY",
+      "LES",
       "HACE",
       "CON"
     ]);
+
+    //dd(is_numeric(""));
 
     $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) use ($wordsConectors){
 
@@ -366,7 +374,7 @@ class MatrizController extends Controller
         strtolower($key) !== 'solicitud' && strtolower($key) !== 'verificación' &&
         !preg_match("/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/", $key) &&
         !preg_match("/^([0-2][0-9]|3[0-1])(\/|-)(0?[1-9]|1[1-2])\2(\d{4})$/", $key) &&
-        !is_numeric($key) &&
+        is_numeric($key) &&
         !preg_match("/DIV[0-9][0-9]$/", $key)  &&
         !preg_match("/X[0-9][0-9]$/", $key)  &&
         !preg_match("/BATOT[0-9][0-9]$/", $key);
