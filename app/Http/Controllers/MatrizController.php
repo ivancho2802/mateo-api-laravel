@@ -432,7 +432,7 @@ class MatrizController extends Controller
         $matriz['' . $key . ''] = 0;
       });
 
-      return $matriz;
+      //return $matriz;
       
       $resultMatriz = collect($intersect)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
 
