@@ -841,7 +841,7 @@ class MatrizController extends Controller
 
       $intersect = ($collapsedFiltered)->intersect($intersectWordsVsMatriz);
 
-      dd("intersect", $intersect, $collapsedFiltered, $intersectWordsVsMatriz);
+      //dd("intersect", $intersect, $collapsedFiltered, $intersectWordsVsMatriz);
 
 
       //$diccionaryCollection->each(function ($item, $key) use ($matriz) {
