@@ -198,7 +198,13 @@ class MatrizController extends Controller
 
     $format = $request->format;
 
-    $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get()->except(['created_at', 'updated_at']);
+    $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get();
+
+    $matrizMinas = $matrizMinas->map(function ($matriz){
+      $matrizCollect = collect($matriz);
+      $filtered = $matrizCollect->except(['created_at', 'updated_at']);
+      return $filtered;
+    });
 
     //dd("matrizMinas", $matrizMinas->first());
 
@@ -236,7 +242,7 @@ class MatrizController extends Controller
                 " ",
                 strtoupper(
                   $this->eliminar_acentos(
-                    $typesOriginal->description
+                    $typesOriginal['description']
                   )
                 )
               ),
@@ -491,7 +497,13 @@ class MatrizController extends Controller
 
     $format = $request->format;
 
-    $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get()->except(['created_at', 'updated_at']);
+    $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get();
+
+    $matrizMinas = $matrizMinas->map(function ($matriz){
+      $matrizCollect = collect($matriz);
+      $filtered = $matrizCollect->except(['created_at', 'updated_at']);
+      return $filtered;
+    });
 
     //dd("matrizMinas", $matrizMinas->first());
 
@@ -529,7 +541,7 @@ class MatrizController extends Controller
                 " ",
                 strtoupper(
                   $this->eliminar_acentos(
-                    $typesOriginal->description
+                    $typesOriginal['description']
                   )
                 )
               ),
