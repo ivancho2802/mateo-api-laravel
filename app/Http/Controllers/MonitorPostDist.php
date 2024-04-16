@@ -324,7 +324,6 @@ class MonitorPostDist extends Controller
 
     function refresh(Request $request)
     {
-
         /* try { */
 
         //FALTA TERMINAR SACAR DEL TOKEN
@@ -332,7 +331,7 @@ class MonitorPostDist extends Controller
 
         // Procesar la respuesta obtenida
 
-        $json_response = $request;
+        //$json_response = $request;
 
         if (!optional($request->_xform_id_string)) {
             return response()->json(
@@ -369,7 +368,7 @@ class MonitorPostDist extends Controller
             ]
         );
 
-        $m_formulario = MFormulario::where(["ID_M_FORMULARIOS" => $json_response->_xform_id_string])->first();
+        $m_formulario = MFormulario::where(["ID_M_FORMULARIOS" => $request->_xform_id_string])->first();
 
         $m_formulario_id = $m_formulario->ID_M_FORMULARIOS;
 
@@ -383,11 +382,11 @@ class MonitorPostDist extends Controller
         $body_respuestas = [];
 
         //ojo esto actualiza o crea una Y PARA ESTE CASO NO ES SIMPLE POR LO TANTO APLICA /
-        $object = (object)helper::formatObject($json_response, "");
+        $object = (object)helper::formatObject($request, "");
 
         //crear preguntas
 
-        $id_kobo_respuesta = $json_response->_id;
+        $id_kobo_respuesta = $request->_id;
 
         //$object->preguntas 34
         //dd(count($object->preguntas));
@@ -448,8 +447,8 @@ class MonitorPostDist extends Controller
 
             if (optional($desired_object)->id) {
                 array_push($body_respuestas, [
-                    "FECHA" => $json_response->_submission_time,
-                    "FECHA_REGISTRO" => $json_response->start,
+                    "FECHA" => $request->_submission_time,
+                    "FECHA_REGISTRO" => $request->start,
                     "_ID" => $id_kobo_respuesta,
                     "VALOR" => json_encode($respuesta),
                     "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
@@ -499,7 +498,7 @@ class MonitorPostDist extends Controller
             ], 503);
         }
 
-        return response()->json(['status' => true, 'data' => ($json_response)], 200);
+        return response()->json(['status' => true, 'data' => $request->all()], 200);
         /* } catch (\Exception $th) {
 
             return response()->json(['status' => false, 'message' => $th, 'data' => $request->all()], 503);
