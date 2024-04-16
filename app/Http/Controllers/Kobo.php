@@ -619,6 +619,8 @@ class Kobo extends Controller
         ->load('pregunta')
             ->groupBy('_ID');
 
+        dd($mmpds);
+
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
         } else {
