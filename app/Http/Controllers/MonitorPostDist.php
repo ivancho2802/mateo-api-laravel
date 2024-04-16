@@ -336,10 +336,15 @@ class MonitorPostDist extends Controller
             $json_response = $request;
 
             if (!optional($request->_xform_id_string)) {
-                return response()->json(['status' => false, 'message' => optional($request->_xform_id_string), 'data' => $request->all()], 503);
+                return response()->json(
+                    [
+                        'status' => false, 
+                        'message' => optional($request->_xform_id_string), 
+                        'data' => $request->all()
+                    ], 503);
             }
 
-            $url = 'https://eu.kobotoolbox.org/assets/ ' . $request->_xform_id_string . ' /submissions/?format=json';
+            $url = 'https://collect.nrc.no/assets/ ' . $request->_xform_id_string . ' /submissions/?format=json';
 
             $m_formulario_id = null;
 
@@ -374,87 +379,120 @@ class MonitorPostDist extends Controller
 
             $creation_failed = [];
 
-            //ojo esto actualiza o crea una
-            $object = (object)helper::formatObject($json_response, "");
+            foreach ($json_response as $json_r) {
 
-            //crear preguntas
+                $body_m_kobo_preguntas = [];
+                $body_respuestas = [];
 
-            $id_kobo_respuesta = $json_response->_id;
+                //ojo esto actualiza o crea una Y PARA ESTE CASO NO ES SIMPLE POR LO TANTO APLICA /
+                $object = (object)helper::formatObject($json_r, "");
 
-            $body_m_kobo_preguntas = [];
-            $body_respuestas = [];
+                //crear preguntas
 
-            for ($j = 0; $j < count($object->preguntas); $j++) {
+                $id_kobo_respuesta = $json_r->_id;
 
-                $pregunta = $object->preguntas[$j];
+                //$object->preguntas 34
+                //dd(count($object->preguntas));
 
-                array_push(
-                    $body_m_kobo_preguntas,
-                    [
-                        "ID_M_KOBO_FORMULARIOS" => "nextId",
-                        "_ID" => $id_kobo_respuesta,
-                        "CAMPO1" => $pregunta,
-                        "ID_M_FORMULARIOS" => $m_formulario_id,
-                        "ESTATUS" => 1,
-                        "ID_M_USUARIOS" => $ID_USER,
-                    ]
-                );
-            }
+                for ($j = 0; $j < count($object->preguntas); $j++) {
 
-            $m_kobo_preguntas = MKoboFormularios::upsert(
-                $body_m_kobo_preguntas,
-                ['CAMPO1'], //, '_ID'
-                ['ID_M_KOBO_FORMULARIOS', '_ID', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
-            );
+                    $pregunta = $object->preguntas[$j];
 
-            if ($m_kobo_preguntas !== count($body_m_kobo_preguntas)) {
-                array_push(
-                    $creation_failed,
-                    ["preguntas" => $body_m_kobo_preguntas]
-                );
-            }
+                    array_push(
+                        $body_m_kobo_preguntas,
+                        [
+                            "ID_M_KOBO_FORMULARIOS" => "nextId",
+                            "_ID" => $id_kobo_respuesta,
+                            "CAMPO1" => $pregunta,
+                            "ID_M_FORMULARIOS" => $m_formulario_id,
+                            "ESTATUS" => 1,
+                            "ID_M_USUARIOS" => $ID_USER,
+                        ]
+                    );
+                }
+
+                $body_mpds = collect($body_m_kobo_preguntas)->chunk(600);
+                foreach ($body_mpds as $body) {
+                    $bodyArray = $body->toArray();
+                    $m_kobo_preguntas = MKoboFormularios::insert($bodyArray);
+
+                    if (!$m_kobo_preguntas) { // !== count($body_m_kobo_preguntas)
+                        array_push(
+                            $creation_failed,
+                            ["preguntas" => $body_m_kobo_preguntas]
+                        );
+                    }
+                }
+
+                /* $m_kobo_preguntas = MKoboFormularios::insert(
+                        //The method's first argument consists of the values to insert or update
+                        $body_m_kobo_preguntas,
+                        // second argument lists the column(s) that uniquely identify records within the associated table.
+                        //El segundo argumento enumera las columnas que identifican de forma única los registros dentro de la tabla asociada.
+                        //['CAMPO1'],//, '_ID' error rparar ID_M_FORMULARIOS
+                        //The method's third and final argument is an array of the columns that should be updated if a matching record already exists in the database.
+                        //El tercer y último argumento del método es una matriz de columnas que deben actualizarse si ya existe un registro coincidente en la base de datos.
+                        //['ID_M_KOBO_FORMULARIOS', 'ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
+                    ); */
+
+                //crear respuesta
+                $preguntas_created = collect(MKoboFormularios::where(["_ID" => $id_kobo_respuesta])->get());
+                $ids_kobo_respuesta = [];
+
+                for ($k = 0; $k < count($object->respuestas); $k++) {
+
+                    $respuesta = $object->respuestas[$k];
+                    $pregunta = $object->preguntas[$k];
+
+                    $desired_object = $preguntas_created->filter(function ($item) use ($pregunta) {
+                        return $item->CAMPO1 == $pregunta;
+                    })->first();
+
+                    if (optional($desired_object)->id) {
+                        array_push($body_respuestas, [
+                            "FECHA" => $json_r->_submission_time,
+                            "FECHA_REGISTRO" => $json_r->start,
+                            "_ID" => $id_kobo_respuesta,
+                            "VALOR" => json_encode($respuesta),
+                            "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
+                            "ID_M_FORMULARIOS" => $m_formulario_id,
+                            "ID_M_USUARIOS" => $ID_USER
+                        ]);
+                        $ids_kobo_respuesta[] = $id_kobo_respuesta;
+                    }
+                }
 
 
-            //crear respuesta
-            $preguntas_created = collect(MKoboFormularios::where(["_ID" => $id_kobo_respuesta])->get());
-            $ids_kobo_respuesta = [];
+                $body_mpds_respuestas = collect($body_respuestas)->chunk(600);
+                foreach ($body_mpds_respuestas as $body) {
+                    $bodyArray = $body->toArray();
+                    $m_respuestas = MKoboRespuestas::insert($bodyArray);
 
-            for ($k = 0; $k < count($object->respuestas); $k++) {
+                    if (!$m_respuestas) {
+                        array_push(
+                            $creation_failed,
+                            ["respuestas" => $body_respuestas] //$body_respuestas
+                        );
+                    }
+                }
 
-                $respuesta = $object->respuestas[$k];
-                $pregunta = $object->preguntas[$k];
-
-                $desired_object = $preguntas_created->filter(function ($item) use ($pregunta) {
-                    return $item->CAMPO1 == $pregunta;
-                })->first();
-
-                array_push($body_respuestas, [
-                    "FECHA" => $json_response->_submission_time,
-                    "FECHA_REGISTRO" => $json_response->start,
-                    "_ID" => $id_kobo_respuesta,
-                    "VALOR" => $respuesta,
-                    "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
-                    "ID_M_FORMULARIOS" => $m_formulario_id,
-                    "ID_M_USUARIOS" => $ID_USER
+                //crean respuestas
+                /* $m_respuestas = MKoboRespuestas::insert($body_respuestas);
+    
+    
+                    if (!$m_respuestas) {
+                        array_push(
+                            $creation_failed,
+                            ["respuestas" => $body_respuestas] //$body_respuestas
+                        );
+                    }
+                    */
+                $createMigrationRespald = migrateCustom::create([
+                    'table' => 'M_KOBO_RESPUESTAS',
+                    'table_id' => implode(", ", $ids_kobo_respuesta),
+                    'file_ref' => 'MPD',
                 ]);
-                $ids_kobo_respuesta[] = $id_kobo_respuesta;
             }
-
-            //crean respuestas
-            $m_respuestas = MKoboRespuestas::insert($body_respuestas);
-
-            if (!$m_respuestas) {
-                array_push(
-                    $creation_failed,
-                    ["respuestas" => $body_respuestas] //$body_respuestas
-                );
-            }
-
-            migrateCustom::create([
-                'table' => 'M_KOBO_RESPUESTAS',
-                'table_id' => implode(", ", $ids_kobo_respuesta),
-                'file_ref' => '-',
-            ]);
 
             if (count($creation_failed) > 0) {
                 return response()->json([
