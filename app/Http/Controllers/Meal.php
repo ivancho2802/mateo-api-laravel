@@ -689,6 +689,7 @@ class Meal extends Controller
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
         } else {
+            dd($mmpds);
             $mmpdsArray = collect([]);
             
             $mmpdsValues = ($mmpds)->values();
