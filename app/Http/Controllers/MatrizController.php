@@ -482,6 +482,7 @@ class MatrizController extends Controller
    */
   function getMAPAEICustomDictionary(Request $request)
   {
+ 
 
     ini_set('memory_limit', '2044M');
     set_time_limit(3000000); //0
@@ -490,9 +491,11 @@ class MatrizController extends Controller
 
     $format = $request->format;
 
-    $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get();
+    $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get()->except(['created_at', 'updated_at']);
 
-    $matrizMinasGroupType = $matrizMinas->groupBy('type');
+    //dd("matrizMinas", $matrizMinas->first());
+
+    //$matrizMinasGroupType = $matrizMinas->groupBy('type');
 
     $i = 0;
     /**
@@ -650,8 +653,133 @@ class MatrizController extends Controller
       "HACE",
       "CON"
     ]);
+    
+    $diccionaryCustom = json_decode('[
+      {
+        "ojos": "ocular",
+        "cabeza": "craneo",
+        "piernas": "miembro inferior",
+        "pie": "pies",
+        "manos": "dedo",
+        "brazos": "brazo",
+        "torso": "Espalda",
+        "oido": "auditiva",
+        "genitales": "testiculo",
+        "rostro": "Cara",
+        "cuello": ""
+      },
+      {
+        "ojos": "visual",
+        "cabeza": "",
+        "piernas": "extremidad inferior",
+        "pie": "astragalo",
+        "manos": "dedos",
+        "brazos": "hombro",
+        "torso": "toracico",
+        "oido": "auditivos",
+        "genitales": "genital",
+        "rostro": "pomulo",
+        "cuello": ""
+      },
+      {
+        "ojos": "ceguera",
+        "cabeza": "",
+        "piernas": "pierna",
+        "pie": "tibia",
+        "manos": "mano",
+        "brazos": "antebrazo",
+        "torso": "abdominal",
+        "oido": "auditivo",
+        "genitales": "pene",
+        "rostro": "parpado",
+        "cuello": ""
+      },
+      {
+        "ojos": "retina",
+        "cabeza": "",
+        "piernas": "miembros inferiores",
+        "pie": "perone",
+        "manos": "muñeca",
+        "brazos": "antebrazos",
+        "torso": "pulmon",
+        "oido": "auditivas",
+        "genitales": "vagina",
+        "rostro": "",
+        "cuello": ""
+      },
+      {
+        "ojos": "vision",
+        "cabeza": "",
+        "piernas": "extremidades inferiores",
+        "pie": "",
+        "manos": "artejo",
+        "brazos": "hombros",
+        "torso": "abdomen",
+        "oido": "oidos",
+        "genitales": "testiculos",
+        "rostro": "",
+        "cuello": ""
+      },
+      {
+        "ojos": "",
+        "cabeza": "",
+        "piernas": "",
+        "pie": "",
+        "manos": "artejos",
+        "brazos": "miembros superiores",
+        "torso": "torax",
+        "oido": "audicion",
+        "genitales": "escroto",
+        "rostro": "",
+        "cuello": ""
+      },
+      {
+        "ojos": "",
+        "cabeza": "",
+        "piernas": "",
+        "pie": "",
+        "manos": "",
+        "brazos": "miembro superior",
+        "torso": "higado",
+        "oido": "",
+        "genitales": "",
+        "rostro": "",
+        "cuello": ""
+      },
+      {
+        "ojos": "",
+        "cabeza": "",
+        "piernas": "",
+        "pie": "",
+        "manos": "",
+        "brazos": "",
+        "torso": "clavicula",
+        "oido": "",
+        "genitales": "",
+        "rostro": "",
+        "cuello": ""
+      }
+    ]');
 
-    //dd(is_numeric(""));
+    $diccionaryCustomCollect = collect($diccionaryCustom);
+
+    $diccionaryCustomCollectFormat = $diccionaryCustomCollect->map(function ($groupWord){
+      $groupWordCollect = collect($groupWord);
+      $groupWordValues = $groupWordCollect->values();
+      $groupWordKeys = $groupWordCollect->keys();
+
+      $groupWordValues = $groupWordValues->concat($groupWordKeys);
+
+      return $groupWordValues;
+    });
+
+    $collapsed = $diccionaryCustomCollectFormat->collapse();
+    
+    $collapsedFiltered = $collapsed->filter()->unique()->all();
+
+    $collapsedFiltered = collect($collapsedFiltered)->map(function ($word){
+      return strtoupper($word);
+    });
 
     $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) use ($wordsConectors){
 
@@ -666,7 +794,7 @@ class MatrizController extends Controller
         strtolower($key) !== 'solicitud' && strtolower($key) !== 'verificación' &&
         !preg_match("/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/", $key) &&
         !preg_match("/^([0-2][0-9]|3[0-1])(\/|-)(0?[1-9]|1[1-2])\2(\d{4})$/", $key) &&
-        is_numeric($key) &&
+        !is_numeric($key) &&
         !preg_match("/DIV[0-9][0-9]$/", $key)  &&
         !preg_match("/X[0-9][0-9]$/", $key)  &&
         !preg_match("/BATOT[0-9][0-9]$/", $key);
@@ -674,10 +802,8 @@ class MatrizController extends Controller
 
     $diccionary = ($wordsArrayCountedFiltered);
     //dd("diccionary", $diccionary);
-
-
-
-    $matrizMinasMatheched = $matrizMinas->map(function ($matriz) use ($diccionary) {
+    
+    $matrizMinasMatheched = $matrizMinas->map(function ($matriz) use ($diccionary, $collapsedFiltered) {
 
       //$matriz = collect($matrizOrigin);
 
@@ -709,36 +835,38 @@ class MatrizController extends Controller
       $words = $diccionaryCollection->keys();
       $repitions = $diccionaryCollection->values()->all();
 
-      $intersect = collect($wordsArray)->intersect($words);
+      $intersectWordsVsMatriz = collect($wordsArray)->intersect($words);
 
-      $intersect->all();
+      $intersectWordsVsMatriz->all();
 
-      //dd("intersect", $intersect, $wordsArray, $words);
+      $intersect = ($collapsedFiltered)->intersect($intersectWordsVsMatriz);
+
+      dd("intersect", $intersect, $collapsedFiltered, $intersectWordsVsMatriz);
 
 
       //$diccionaryCollection->each(function ($item, $key) use ($matriz) {
 
       //dd($repitions);
 
-      $diccionaryCollection->each(function ($word, $key) use ($matriz){
-        $matriz['' . $key . ''] = 0;
+      $intersect->each(function ($word, $key) use ($matriz){
+        $matriz['' . $word . ''] = 0;
       });
 
       //return $matriz;
       
-      $resultMatriz = collect($wordsArray)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
+      $resultMatriz = collect($intersect)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
 
-        $check = $intersect->search(function ($element) use ($wordDiccionary) {
+        /* $check = $intersect->search(function ($element) use ($wordDiccionary) {
           return $element == $wordDiccionary;
         });
-
+        */
         /* if ($wordDiccionary == 'EN') {
           dd("check", $check, $intersect, $wordDiccionary);
         } */
         //echo "check" . $check;
 
 
-        if ($check !== false && $check >= 0) {
+        //if ($check !== false && $check >= 0) {
 
           if (!isset($matriz['palabras_clave'])) {
             $matriz['palabras_clave'] = "";
@@ -749,9 +877,9 @@ class MatrizController extends Controller
           }
 
           $matriz['' . $wordDiccionary . ''] = $diccionaryCollection[$wordDiccionary];
-        } else {
+        /* } else {
           $matriz['' . $wordDiccionary . ''] = 0;
-        }
+        } */
 
         //echo "matriz" . implode(",", $matriz);
 
