@@ -120,9 +120,6 @@ class MKoboRespuestas extends Model
         return $this->hasOne(MFormularios::class, 'ID_M_FORMULARIOS', 'ID_M_FORMULARIOS');
     }
     
-    public function preguntas() {
-        return $this->hasOne(MKoboFormularios::class, 'id', 'ID_M_KOBO_FORMULARIOS');
-    }
 
     public function formulariompd(){
         return $this->belongsToMany(MFormularios::class, 'ID_M_FORMULARIOS', 'ID_M_FORMULARIOS');
@@ -130,5 +127,9 @@ class MKoboRespuestas extends Model
 
     public function formulario(){
         return $this->hasOne(MFormulario::class, 'ID_M_FORMULARIOS', 'ID_M_FORMULARIOS');
+    }
+
+    public function pregunta() {
+        return $this->hasOne(MKoboFormularios::class, 'id', 'ID_M_KOBO_FORMULARIOS');
     }
 }

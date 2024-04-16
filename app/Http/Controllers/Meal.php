@@ -659,17 +659,52 @@ class Meal extends Controller
     function geMpd(Request $request)
     {
 
+        /* $formulario_erns = MFormulario::where(['ACCION' => "ERN"])->get();
+
+        $formulario_erns->load(['preguntas']);
+
+        $formulario_erns->map(function ($formulario) {
+            $preguntas = collect($formulario->preguntas);
+
+            $preguntas->map(function ($pregunta) {
+                $pregunta->load(['respuesta']);
+
+                return $pregunta;
+            });
+
+            return $preguntas;
+        }); 
+        return response()->json(['status' => true, 'data' => $formulario_erns, 200]); */
+        
+
         $mmpds = MKoboRespuestas::whereHas('formulario', function ($q) {
             $q->where('ACCION', '=', "MPD");
         })
-            ->limit(10)
-            ->get()
+        ->limit(1000)
+        ->get()
+        ->load('pregunta')
             ->groupBy('_ID');
 
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
         } else {
-            $mmpdsArray = ($mmpds)->values();
+            $mmpdsArray = collect([]);
+            
+            $mmpdsValues = ($mmpds)->values();
+
+
+            $mmpdsValues->each(function ($formulario) use ($mmpdsArray){
+
+                $objectPresuntaRespuesta = collect();
+                //$formulario [{VALOR: "", pregunta: {ROTULO}}, {VALOR: "", pregunta: {ROTULO}}]
+                $formulario->each(function ($respuesta) use ($objectPresuntaRespuesta){
+                    //dd($respuesta->VALOR, $respuesta->pregunta);
+                    
+                    $objectPresuntaRespuesta[$respuesta->pregunta->CAMPO1] = $respuesta->VALOR;
+                });
+
+                $mmpdsArray->push($objectPresuntaRespuesta);
+            });
         }
 
         return  $mmpdsArray;
