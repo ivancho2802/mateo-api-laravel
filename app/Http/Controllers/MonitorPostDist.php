@@ -326,7 +326,7 @@ class MonitorPostDist extends Controller
     function refresh(Request $request)
     {
 
-        try {
+        /* try { */
 
             //FALTA TERMINAR SACAR DEL TOKEN
             $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
@@ -503,9 +503,9 @@ class MonitorPostDist extends Controller
             }
 
             return response()->json(['status' => true, 'data' => ($json_response)], 200);
-        } catch (\Exception $th) {
+        /* } catch (\Exception $th) {
 
             return response()->json(['status' => false, 'message' => $th, 'data' => $request->all()], 503);
-        }
+        } */
     }
 }
