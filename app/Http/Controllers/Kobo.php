@@ -603,4 +603,40 @@ class Kobo extends Controller
             ]);
         } */
     }
+
+    public function getKoboSaved(Request $request){
+
+        $mmpds = MKoboRespuestas::whereHas('formulario', function ($q) {
+            $q->where('ACCION', '=', "MPD");
+        })
+        ->where('_ID', '=', 8914355)
+        ->limit(1000)
+        ->get()
+        ->load('pregunta')
+            ->groupBy('_ID');
+
+        if ($request->pagination) {
+            $mmpdsArray = $this->paginateCollection($mmpds, 10);
+        } else {
+            $mmpdsArray = collect([]);
+            
+            $mmpdsValues = ($mmpds)->values();
+
+
+            $mmpdsValues->each(function ($formulario) use ($mmpdsArray){
+
+                $objectPresuntaRespuesta = collect();
+                //$formulario [{VALOR: "", pregunta: {ROTULO}}, {VALOR: "", pregunta: {ROTULO}}]
+                $formulario->each(function ($respuesta) use ($objectPresuntaRespuesta){
+                    //dd($respuesta->VALOR, $respuesta->pregunta);
+                    
+                    $objectPresuntaRespuesta[$respuesta->pregunta->CAMPO1] = $respuesta->VALOR;
+                });
+
+                $mmpdsArray->push($objectPresuntaRespuesta);
+            });
+        }
+
+        return  $mmpdsArray;
+    }
 }
