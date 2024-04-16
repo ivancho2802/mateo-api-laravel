@@ -382,7 +382,9 @@ class MonitorPostDist extends Controller
         $body_respuestas = [];
 
         //ojo esto actualiza o crea una Y PARA ESTE CASO NO ES SIMPLE POR LO TANTO APLICA /
-        $object = (object)helper::formatObject($request, "");
+        $object = (object)helper::formatObject($request->all(), "");
+
+        //dd($object->preguntas, $object->respuestas);
 
         //crear preguntas
 
