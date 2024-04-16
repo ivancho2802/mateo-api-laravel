@@ -902,6 +902,65 @@ class MatrizController extends Controller
       return $matriz;
     });
 
-    return $matrizMinasMatheched;
+    $matrizMinasMathechedGrouped = collect([]);
+
+    $matrizMinasMathechedGrouped = $matrizMinas->map(function ($matriz) use ($diccionaryCustom, $diccionary) {
+
+      $wordsArray =
+        collect(
+          explode(
+            " ",
+            mb_convert_encoding(
+              preg_replace(
+                '/([^A-Za-z0-9])/',
+                " ",
+                strtoupper(
+                  $this->eliminar_acentos(
+                    $matriz['description']
+                  )
+                )
+              ),
+              'UTF-8',
+              'UTF-8'
+            )
+          )
+        )->filter()->toArray();
+
+      $diccionaryCustom = collect($diccionaryCustom);
+
+      $diccionaryCustom = $diccionaryCustom->map(function ($dic){
+        return collect($dic)->mapWithKeys(function ($word, $key){
+          return [strtoupper($key) => strtoupper($word)];
+        });
+      });
+
+      //estraer el objeto complementario base
+      $matrizObject = $diccionaryCustom->first();
+
+      $matrizObject = ($matrizObject)->keys();
+ 
+      //fin estraer el objeto complementario base
+
+      foreach ($wordsArray as $key => $value) {
+        //dd("value", $value);
+
+        $keyfiltered = $diccionaryCustom->filter(function ($wordM, $key) use ($value){
+          return $wordM == $value || $key == $value;
+        });
+
+        dd($keyfiltered);
+
+        if(count($keyfiltered) > 0){
+          if(isset($keyfiltered[0])){
+            $matriz[$keyfiltered[0]];
+          }
+
+        }
+      }
+
+      
+    });
+
+    return ["group" => $matrizMinasMathechedGrouped, 'total'=>$matrizMinasMatheched];
   }
 }

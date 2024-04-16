@@ -662,13 +662,14 @@ class Meal extends Controller
         $mmpds = MKoboRespuestas::whereHas('formulario', function ($q) {
             $q->where('ACCION', '=', "MPD");
         })
+            ->limit(10)
             ->get()
             ->groupBy('_ID');
 
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
         } else {
-            $mmpdsArray = $mmpds;
+            $mmpdsArray = ($mmpds)->values();
         }
 
         return  $mmpdsArray;
