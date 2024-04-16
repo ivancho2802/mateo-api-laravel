@@ -675,12 +675,12 @@ class Meal extends Controller
             return $preguntas;
         }); 
         return response()->json(['status' => true, 'data' => $formulario_erns, 200]); */
-        
+        //8914355
+        //8916210
 
         $mmpds = MKoboRespuestas::whereHas('formulario', function ($q) {
             $q->where('ACCION', '=', "MPD");
         })
-        ->where('_ID', '=', 8914355)
         ->limit(1000)
         ->get()
         ->load('pregunta')
@@ -689,7 +689,7 @@ class Meal extends Controller
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
         } else {
-            dd($mmpds);
+            //dd($mmpds);
             $mmpdsArray = collect([]);
             
             $mmpdsValues = ($mmpds)->values();

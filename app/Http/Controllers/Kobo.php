@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Collection;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\MKoboRespuestas;
 
 class Kobo extends Controller
 {
@@ -604,12 +605,15 @@ class Kobo extends Controller
         } */
     }
 
+    /**
+     * 8914355 8916210 "MPD"
+     */
     public function getKoboSaved(Request $request){
 
-        $mmpds = MKoboRespuestas::whereHas('formulario', function ($q) {
-            $q->where('ACCION', '=', "MPD");
+        $mmpds = MKoboRespuestas::whereHas('formulario', function ($q) use ($request){
+            $q->where('ACCION', '=', $request->ACCION);
         })
-        ->where('_ID', '=', 8914355)
+        ->where('_ID', '=', $request->_ID)
         ->limit(1000)
         ->get()
         ->load('pregunta')

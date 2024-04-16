@@ -436,6 +436,9 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
   Route::get('{id}/exportByuui/{token}', [App\Http\Controllers\Kobo::class, 'exportByuui']);
 
   Route::get('{uui}/data/{token}', [App\Http\Controllers\Kobo::class, 'getKoboLabels']);
+
+  Route::post('seach', [App\Http\Controllers\Kobo::class, 'getKoboSaved']);
+  
 });
 
 //creacion de matriz de palabras clave
