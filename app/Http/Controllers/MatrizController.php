@@ -951,7 +951,7 @@ class MatrizController extends Controller
         $diccionaryCustom->each(function ($wordM, $key) use ($value, $diccionary, $matriz) {
 
           $filteredWord = $wordM->filter(function ($wordF, $keyF) use ($value) {
-            return $wordF == $value || $keyF == $value;
+            return isset($wordF) && isset($keyF) && ($wordF == $value || $keyF == $value);
           });
 
           if (count($filteredWord) > 0) {
@@ -960,10 +960,10 @@ class MatrizController extends Controller
               //dd($matriz[$valueF], $diccionary[$valueF]);
               if (!isset($diccionary[$valueF])) {
                 $matriz[$valueF] = 0;
-                $matriz[$valueF . 'group'] = $keyF;
+                //$matriz[$valueF . 'group'] = $keyF;
               } else {
                 $matriz[$valueF] = $diccionary[$valueF];
-                $matriz[$valueF . 'group'] = $keyF;
+                $matriz['group'] = $keyF;
               }
             });
           }
