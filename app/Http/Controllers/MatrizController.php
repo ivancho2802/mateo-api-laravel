@@ -200,7 +200,7 @@ class MatrizController extends Controller
 
     $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get();
 
-    $matrizMinas = $matrizMinas->map(function ($matriz){
+    $matrizMinas = $matrizMinas->map(function ($matriz) {
       $matrizCollect = collect($matriz);
       $filtered = $matrizCollect->except(['created_at', 'updated_at']);
       return $filtered;
@@ -367,9 +367,9 @@ class MatrizController extends Controller
       "CON"
     ]);
 
-    $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) use ($wordsConectors){
+    $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) use ($wordsConectors) {
 
-      $seachConnectors = $wordsConectors->search(function ($word) use ($key){
+      $seachConnectors = $wordsConectors->search(function ($word) use ($key) {
         return $word == $key;
       });
 
@@ -434,13 +434,13 @@ class MatrizController extends Controller
 
       //dd($repitions);
 
-      $diccionaryCollection->each(function ($word, $key) use ($matriz){
+      $diccionaryCollection->each(function ($word, $key) use ($matriz) {
         $matriz['' . $key . ''] = 0;
       });
 
       //return $matriz;
-      
-      $resultMatriz = collect($intersect)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
+
+      $resultMatriz = collect($intersect)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection) {
 
         /* $check = $intersect->search(function ($element) use ($wordDiccionary) {
           return $element == $wordDiccionary;
@@ -454,15 +454,15 @@ class MatrizController extends Controller
 
         //if ($check !== false && $check >= 0) {
 
-          if (!isset($matriz['palabras_clave'])) {
-            $matriz['palabras_clave'] = "";
-          }
+        if (!isset($matriz['palabras_clave'])) {
+          $matriz['palabras_clave'] = "";
+        }
 
-          if (!(strpos(strtoupper($matriz['palabras_clave']), strtoupper($wordDiccionary)) >= 0)) {
-            $matriz['palabras_clave'] .= $wordDiccionary . ", ";
-          }
+        if (!(strpos(strtoupper($matriz['palabras_clave']), strtoupper($wordDiccionary)) >= 0)) {
+          $matriz['palabras_clave'] .= $wordDiccionary . ", ";
+        }
 
-          $matriz['' . $wordDiccionary . ''] = $diccionaryCollection[$wordDiccionary];
+        $matriz['' . $wordDiccionary . ''] = $diccionaryCollection[$wordDiccionary];
         /* } else {
           $matriz['' . $wordDiccionary . ''] = 0;
         } */
@@ -470,7 +470,7 @@ class MatrizController extends Controller
         //echo "matriz" . implode(",", $matriz);
 
         //return $matriz;
-      }); 
+      });
       //});
 
       return $matriz;
@@ -488,7 +488,7 @@ class MatrizController extends Controller
    */
   function getMAPAEICustomDictionary(Request $request)
   {
- 
+
 
     ini_set('memory_limit', '2044M');
     set_time_limit(3000000); //0
@@ -499,7 +499,7 @@ class MatrizController extends Controller
 
     $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get();
 
-    $matrizMinas = $matrizMinas->map(function ($matriz){
+    $matrizMinas = $matrizMinas->map(function ($matriz) {
       $matrizCollect = collect($matriz);
       $filtered = $matrizCollect->except(['created_at', 'updated_at']);
       return $filtered;
@@ -665,7 +665,7 @@ class MatrizController extends Controller
       "HACE",
       "CON"
     ]);
-    
+
     $diccionaryCustom = json_decode('[
       {
         "ojos": "ocular",
@@ -775,7 +775,7 @@ class MatrizController extends Controller
 
     $diccionaryCustomCollect = collect($diccionaryCustom);
 
-    $diccionaryCustomCollectFormat = $diccionaryCustomCollect->map(function ($groupWord){
+    $diccionaryCustomCollectFormat = $diccionaryCustomCollect->map(function ($groupWord) {
       $groupWordCollect = collect($groupWord);
       $groupWordValues = $groupWordCollect->values();
       $groupWordKeys = $groupWordCollect->keys();
@@ -786,16 +786,16 @@ class MatrizController extends Controller
     });
 
     $collapsed = $diccionaryCustomCollectFormat->collapse();
-    
+
     $collapsedFiltered = $collapsed->filter()->unique()->all();
 
-    $collapsedFiltered = collect($collapsedFiltered)->map(function ($word){
+    $collapsedFiltered = collect($collapsedFiltered)->map(function ($word) {
       return strtoupper($word);
     });
 
-    $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) use ($wordsConectors){
+    $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) use ($wordsConectors) {
 
-      $seachConnectors = $wordsConectors->search(function ($word) use ($key){
+      $seachConnectors = $wordsConectors->search(function ($word) use ($key) {
         return $word == $key;
       });
 
@@ -814,7 +814,7 @@ class MatrizController extends Controller
 
     $diccionary = ($wordsArrayCountedFiltered);
     //dd("diccionary", $diccionary);
-    
+
     $matrizMinasMatheched = $matrizMinas->map(function ($matriz) use ($diccionary, $collapsedFiltered) {
 
       //$matriz = collect($matrizOrigin);
@@ -860,13 +860,13 @@ class MatrizController extends Controller
 
       //dd($repitions);
 
-      $intersect->each(function ($word, $key) use ($matriz){
+      $intersect->each(function ($word, $key) use ($matriz) {
         $matriz['' . $word . ''] = 0;
       });
 
       //return $matriz;
-      
-      $resultMatriz = collect($intersect)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection){
+
+      $resultMatriz = collect($intersect)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection) {
 
         /* $check = $intersect->search(function ($element) use ($wordDiccionary) {
           return $element == $wordDiccionary;
@@ -880,15 +880,15 @@ class MatrizController extends Controller
 
         //if ($check !== false && $check >= 0) {
 
-          if (!isset($matriz['palabras_clave'])) {
-            $matriz['palabras_clave'] = "";
-          }
+        if (!isset($matriz['palabras_clave'])) {
+          $matriz['palabras_clave'] = "";
+        }
 
-          if (!(strpos(strtoupper($matriz['palabras_clave']), strtoupper($wordDiccionary)) >= 0)) {
-            $matriz['palabras_clave'] .= $wordDiccionary . ", ";
-          }
+        if (!(strpos(strtoupper($matriz['palabras_clave']), strtoupper($wordDiccionary)) >= 0)) {
+          $matriz['palabras_clave'] .= $wordDiccionary . ", ";
+        }
 
-          $matriz['' . $wordDiccionary . ''] = $diccionaryCollection[$wordDiccionary];
+        $matriz['' . $wordDiccionary . ''] = $diccionaryCollection[$wordDiccionary];
         /* } else {
           $matriz['' . $wordDiccionary . ''] = 0;
         } */
@@ -896,7 +896,7 @@ class MatrizController extends Controller
         //echo "matriz" . implode(",", $matriz);
 
         //return $matriz;
-      }); 
+      });
       //});
 
       return $matriz;
@@ -928,8 +928,8 @@ class MatrizController extends Controller
 
       $diccionaryCustom = collect($diccionaryCustom);
 
-      $diccionaryCustom = $diccionaryCustom->map(function ($dic){
-        return collect($dic)->mapWithKeys(function ($word, $key){
+      $diccionaryCustom = $diccionaryCustom->map(function ($dic) {
+        return collect($dic)->mapWithKeys(function ($word, $key) {
           return [strtoupper($key) => strtoupper($word)];
         });
       });
@@ -938,29 +938,49 @@ class MatrizController extends Controller
       $matrizObject = $diccionaryCustom->first();
 
       $matrizObject = ($matrizObject)->keys();
- 
+
+      $matrizObject->each(function ($wordObject) use ($matriz) {
+        $matriz[$wordObject] = 0;
+      });
+
       //fin estraer el objeto complementario base
 
       foreach ($wordsArray as $key => $value) {
         //dd("value", $value);
 
-        $keyfiltered = $diccionaryCustom->filter(function ($wordM, $key) use ($value){
-          return $wordM == $value || $key == $value;
-        });
+        $diccionaryCustom->each(function ($wordM, $key) use ($value, $diccionary, $matriz) {
 
-        dd($keyfiltered);
+          $filteredWord = $wordM->filter(function ($wordF, $keyF) use ($value) {
+            return $wordF == $value || $keyF == $value;
+          });
 
-        if(count($keyfiltered) > 0){
-          if(isset($keyfiltered[0])){
-            $matriz[$keyfiltered[0]];
+          if (count($filteredWord) > 0) {
+            //["PIERNAS" => "PIERNA"    ]
+            $filteredWord->each(function ($valueF, $keyF) use ($diccionary, $matriz) {
+              //dd($matriz[$valueF], $diccionary[$valueF]);
+              if (!isset($diccionary[$valueF])) {
+                $matriz[$valueF] = 0;
+                $matriz[$valueF . 'group'] = $keyF;
+              } else {
+                $matriz[$valueF] = $diccionary[$valueF];
+                $matriz[$valueF . 'group'] = $keyF;
+              }
+            });
           }
 
-        }
+          /* if( == $value){
+            dd($diccionary, $value);
+            $matriz[$value] = $value;
+          }
+          if($wordM == $key){
+            $matriz[$key] = $key;
+          } */
+        });
       }
 
-      
+      return $matriz;
     });
 
-    return ["group" => $matrizMinasMathechedGrouped, 'total'=>$matrizMinasMatheched];
+    return ["group" => $matrizMinasMathechedGrouped, 'total' => $matrizMinasMatheched];
   }
 }
