@@ -954,17 +954,23 @@ class MatrizController extends Controller
             return isset($wordF) && isset($keyF) && ($wordF == $value || $keyF == $value);
           });
 
+
           if (count($filteredWord) > 0) {
+
             //["PIERNAS" => "PIERNA"    ]
             $filteredWord->each(function ($valueF, $keyF) use ($diccionary, $matriz) {
-              //dd($matriz[$valueF], $diccionary[$valueF]);
-              if (!isset($diccionary[$valueF])) {
-                $matriz[$valueF] = 0;
-                //$matriz[$valueF . 'group'] = $keyF;
-              } else {
-                $matriz[$valueF] = $diccionary[$valueF];
-                $matriz['group'] = $keyF;
+
+              if(isset($valueF) && ($valueF) !== ""){
+                //dd($matriz[$valueF], $diccionary[$valueF]);
+                if (!isset($diccionary[$valueF])) {
+                  $matriz[$valueF] = 0;
+                  //$matriz[$valueF . 'group'] = $keyF;
+                } else {
+                  $matriz[$valueF] = $diccionary[$valueF];
+                  $matriz['group'] = $keyF;
+                }
               }
+
             });
           }
 
