@@ -500,7 +500,12 @@ class MonitorPostDist extends Controller
             ], 503);
         }
 
-        return response()->json(['status' => true, 'data' => $request->all()], 200);
+        return response()->json([
+            'status' => true, 
+            'data' => $request->all(),
+            'createMigrationRespald' => $createMigrationRespald,
+            
+        ], 200);
         /* } catch (\Exception $th) {
 
             return response()->json(['status' => false, 'message' => $th, 'data' => $request->all()], 503);
