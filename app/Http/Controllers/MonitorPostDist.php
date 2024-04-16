@@ -349,17 +349,17 @@ class MonitorPostDist extends Controller
         $m_formulario_id = null;
 
         $m_formulario = MFormulario::updateOrCreate(
-            ['ID_M_FORMULARIOS' => $json_response->_xform_id_string],
+            ['ID_M_FORMULARIOS' => $request->_xform_id_string],
             [
                 'ACCION' => "MPD",
-                'ID_M_FORMULARIOS' => $json_response->_xform_id_string,
-                "ASSET_UID" => $json_response->_xform_id_string,
-                "UID" => $json_response->_uuid,
+                'ID_M_FORMULARIOS' => $request->_xform_id_string,
+                "ASSET_UID" => $request->_xform_id_string,
+                "UID" => $request->_uuid,
                 "URL_DATA" => $url,
                 "URL_CAMPOS" =>  $url,
-                "ESTATUS" => $json_response->_status,
-                "FECHA" => $json_response->_submission_time,
-                "FECHA_REGISTRO" => $json_response->start,
+                "ESTATUS" => $request->_status,
+                "FECHA" => $request->_submission_time,
+                "FECHA_REGISTRO" => $request->start,
 
                 //"formhub\/uuid": "5ac352c78ba544559fed4783264c14df",
                 //"meta\/instanceID": "uuid:f58da61d-dffd-4dc6-b770-3670807f7c6b",
