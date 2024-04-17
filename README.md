@@ -288,3 +288,7 @@ agregar key a linux la privada con la credencial creada v24150144
 agregar la key a github
 
     https://github.com/IODIAZACF/ach-api-laravel/settings/keys
+
+
+cuando no haya coneccion reparar el error con 
+ssh-agent -s
