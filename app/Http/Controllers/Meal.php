@@ -626,7 +626,7 @@ class Meal extends Controller
 
         }
 
-        dd("grafica", $grafica, "graficasql", $graficaSql);
+        //dd("grafica", $grafica, "graficasql", $graficaSql);
 
         DB::setDefaultConnection('pgsql');
 
