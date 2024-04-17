@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
+use App\Models\mGraficos;
 
 class Meal extends Controller
 {
@@ -584,7 +585,26 @@ class Meal extends Controller
     {
         DB::setDefaultConnection('firebird');
 
+        /*[{{
+            "ROTULO": "COLOMBIA",
+            "valor1": 292,
+            "valor2": 0,
+            "valor3": 0,
+            "valor4": 0,
+            "valor5": 0
+        }}]
+        */
+
+        //SELECT * FROM (SELECT * FROM V_M_GRAFICOS WHERE CLASE LIKE 'LPA%' ) ORDER BY ORDEN ROWS 1 TO 1000
         
+        $graficas = mGraficos::where([
+            "ID_M_GRAFICOS"=>$request->ID_M_GRAFICOS
+        ])->where("CLASE", "LIKE", "LPA%")
+        ->orderBy('ORDEN')
+        ->limit(1000)
+        ->get();
+
+        dd("graficas", $graficas);
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2024-01-01")->get();
 
