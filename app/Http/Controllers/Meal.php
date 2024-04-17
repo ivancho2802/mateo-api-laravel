@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
 use App\Models\mGraficos;
+use Illuminate\Support\Facades\Config;
 
 class Meal extends Controller
 {
@@ -597,64 +598,44 @@ class Meal extends Controller
 
         //SELECT * FROM (SELECT * FROM V_M_GRAFICOS WHERE CLASE LIKE 'LPA%' ) ORDER BY ORDEN ROWS 1 TO 1000
         
-        $graficas = mGraficos::where([
+        $grafica = mGraficos::where([
             "ID_M_GRAFICOS"=>$request->ID_M_GRAFICOS
         ])->where("CLASE", "LIKE", "LPA%")
         ->orderBy('ORDEN')
         ->limit(1000)
-        ->get();
+        ->first();
 
-        dd("graficas", $graficas);
+        // {CONDICION1}, {FECHA_DESDE}" '01/01/2021' AND "{FECHA_HASTA}" '12/31/2024'
+        $matrizSqlGraficos = Config::get('app.matrizSqlGraficos');
 
-        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2024-01-01")->get();
+        if($request->ID_M_GRAFICOS == '00146'){
 
-        //PONER LA PERSONA CON SU EDAD
-        //=SI($O2="";"";SI(SIFECHA($O2;Lista!$V$2;"y")=122;"";SIFECHA($O2;Lista!$V$2;"y")))
-        //PONER QUE SALGA LA FECHA
-        //"Rango ECHO"
-        //=SI(AM2="";"";SI(AM2<=5;"0 to 5";SI(AM2<=17;"6 to 17";SI(AM2<=49;"18 to 49";SI(AM2>=50;"> 50")))))
-        //"Rango BHA"
-        //=SI(AM2="";"";SI(AM2<=4;"0 to 4";SI(AM2<=9;"5 to 9";SI(AM2<=14;"10 to 14";SI(AM2<=18;"15 to 18";SI(AM2<=29;"19 to 29";SI(AM2<=59;"30 to 59";SI(AM2>=60;"> 60"))))))))
+            $graficaSql = $matrizSqlGraficos['lpaetnia'];
+                
+            if(optional($grafica->CONDICION1)){
+                $graficaSql = str_replace("{CONDICION1}", $grafica->CONDICION1, $graficaSql);
+            }
+            
+            if(optional($grafica->FECHA_DESDE)){
+                $graficaSql = str_replace("{FECHA_DESDE}", $grafica->FECHA_DESDE, $graficaSql);
+            }
 
-        $mlpas->load(['emergencia', 'actividad', 'persona']);
+            if(optional($grafica->FECHA_HASTA)){
+                $graficaSql = str_replace("{FECHA_HASTA}", $grafica->FECHA_HASTA, $graficaSql);
+            }
 
-        /* DB::setDefaultConnection('odbc');
+        }
 
-        $erns = DB::select("SELECT 
-        ID_M_KOBO_FORMULARIOS,
-        ID_M_USUARIOS,        
-        FECHA,   
-        FECHA_REGISTRO,  
-        ID, 
-        ESTATUS,     
-        ID_M_FORMULARIOS, 
-        FECHA_FORMULARIO,
-        UID, 
-        FUID, 
-        NOMBRE_FORMULARIO, 
-        GRUPO, 
-        NOMBRE_ESTATUS, 
-        NOMBRE_USUARIO, 
-        FECHA_ESTADISTICA, 
-        REGION,    
-        DEPARTAMENTO, 
-        MUNICIPIO, 
-        CODIGO_ALERTA
-        FROM V_M_KOBO_FORMULARIOS WHERE ID_M_FORMULARIOS = '0012';"); */
+        dd("grafica", $grafica, "graficasql", $graficaSql);
 
-        $mlpasFormated = $mlpas->map(function ( $lpa) {
-            $lpa->persona->append('edad');
-            $lpaArray = $lpa->toArray();
-            $lpaDoted = Arr::dot($lpaArray); 
-            return  $lpaDoted;
-        });
+        DB::setDefaultConnection('pgsql');
 
-        $flattenedMlpas =  ($mlpasFormated);
+        $statics = DB::select($graficaSql);
+
+        dd("statics", $statics);
 
         return [
-            "lpas" => $flattenedMlpas,
-            "analisis" => Analisis::where(["type" => "LPA"])->get(),
-            //"erns" => $erns
+            "statics" => $statics,
         ];
     }
 
