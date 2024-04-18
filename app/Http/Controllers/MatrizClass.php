@@ -32,7 +32,7 @@ class MatrizClass  implements ToCollection
 
         foreach ($rows as $row) {
 
-            if ($i == 0 || !$row || !$row[0] || !$row[26]) {
+            if ($i == 0 || !$row || !$row[0] || !$row[16]) {
                 $i++;
                 continue;
             }
