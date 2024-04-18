@@ -44,7 +44,7 @@ class MatrizClass  implements ToCollection
             array_push($matrizBase, ["description" => $row[16], "type" => $row[2] . ','. $row[3], "id" => $row[0], "origin" => 'Afectacion_MAPAEI']);
         }
 
-        Matriz::insert($matrizBase);
+        Matriz::insertOrIgnore($matrizBase);
 
         return $matrizBase;
     }
