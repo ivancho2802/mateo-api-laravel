@@ -632,10 +632,15 @@ class Meal extends Controller
 
         $statics = DB::select($graficaSql);
 
-        dd("statics", $statics);
+        //dd("statics", $statics);
 
         return [
-            "statics" => $statics,
+            "tabla" => [
+                "registro" => $statics,
+                "query" => [
+                    "sql" => $graficaSql
+                ]
+            ]
         ];
     }
 
