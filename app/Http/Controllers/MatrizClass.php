@@ -19,6 +19,11 @@ class MatrizClass  implements ToCollection
     public function collection(Collection $rows)
     {
         //DB::setDefaultConnection('pgsql');
+        
+        ini_set('memory_limit', '2044M');
+        set_time_limit(3000000); //0
+        ini_set('max_execution_time', '60000');
+        ini_set('max_input_time', '60000');
 
         $i = 0;
 
