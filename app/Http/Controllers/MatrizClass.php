@@ -19,7 +19,7 @@ class MatrizClass  implements ToCollection
     public function collection(Collection $rows)
     {
         //DB::setDefaultConnection('pgsql');
-        
+
         ini_set('memory_limit', '2044M');
         set_time_limit(3000000); //0
         ini_set('max_execution_time', '60000');
@@ -41,10 +41,23 @@ class MatrizClass  implements ToCollection
                 $i++;
                 continue;
             }
-            array_push($matrizBase, ["description" => $row[16], "type" => $row[2] . ','. $row[3], "id" => $row[0], "origin" => 'Afectacion_MAPAEI']);
+            array_push($matrizBase, ["description" => $row[16], "type" => $row[2] . ',' . $row[3], "id" => $row[0], "origin" => 'Afectacion_MAPAEI']);
         }
 
-        Matriz::insert($matrizBase);
+        $matrizBaseCollect = collect($matrizBase);
+
+        $rowsChuck = $matrizBaseCollect->chunk(1000);
+
+        //dd(($rowsChuck[1]));
+
+        foreach ($rowsChuck as $body) {
+            # code...
+            $bodyArray = $body->toArray();
+            Matriz::create($bodyArray);
+        }
+
+
+        //Matriz::insert($matrizBase);
 
         return $matrizBase;
     }
