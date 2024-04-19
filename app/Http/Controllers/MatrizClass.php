@@ -53,7 +53,8 @@ class MatrizClass  implements ToCollection
         foreach ($rowsChuck as $body) {
             # code...
             $bodyArray = $body->toArray();
-            Matriz::create($bodyArray);
+            dd($bodyArray);
+            Matriz::insert($bodyArray);
         }
 
 
