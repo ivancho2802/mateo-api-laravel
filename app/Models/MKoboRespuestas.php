@@ -77,7 +77,7 @@ class MKoboRespuestas extends Model
     ];
     //public $keyType = "string";
 
-    
+
     /**
      * MPD -> monitore post distribucion
      * public function getWithMpd() with_mpd
@@ -115,8 +115,8 @@ class MKoboRespuestas extends Model
         ];
     } */
 
-    
-   /*  public function formulario() {
+
+    /*  public function formulario() {
         return $this->hasOne(MFormularios::class, 'ID_M_FORMULARIOS', 'ID_M_FORMULARIOS');
     }
     
@@ -125,11 +125,32 @@ class MKoboRespuestas extends Model
         return $this->belongsToMany(MFormularios::class, 'ID_M_FORMULARIOS', 'ID_M_FORMULARIOS');
     } */
 
-    public function formulario(){
+    public function formulario()
+    {
         return $this->hasOne(MFormulario::class, 'ID_M_FORMULARIOS', 'ID_M_FORMULARIOS');
     }
 
-    public function pregunta() {
+    public function pregunta()
+    {
         return $this->hasOne(MKoboFormularios::class, 'id', 'ID_M_KOBO_FORMULARIOS');
+    }
+
+
+    /**
+     * scope
+     */
+    public function scopePdm($query)
+    {
+        return $query->whereHas('formulario', function ($q) {
+            $q->where('ACCION', '=', "MPD");
+        })->get();
+        //return $query->where('est_empre', 1)->first();
+    }
+
+    public function getIsPdmAttribute()
+    {
+        return self::whereHas('formulario', function ($q) {
+            $q->where('ACCION', '=', "MPD");
+        })->exists();
     }
 }

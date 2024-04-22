@@ -694,12 +694,14 @@ class Meal extends Controller
         //8914355
         //8916210
 
-        $mmpds = MKoboRespuestas::get()
-        ->load(['pregunta'])
-        ->whereHas('formulario', function ($q) {
+        $mmpds = MKoboRespuestas::pdm()
+        //->get()
+        //->append('isPdm')
+        //->load(['pregunta'])
+        /* ->whereHas('formulario', function ($q) {
             $q->where('ACCION', '=', "MPD");
-        })
-        ->limit(1000)
+        }) */
+        //->limit(1000)
         ->groupBy('_ID');
 
         dd(count($mmpds));
