@@ -698,7 +698,7 @@ class Meal extends Controller
             $q->where('ACCION', '=', "MPD");
         })
         ->get()
-        ->with(['pregunta'])
+        ->load(['pregunta'])
         ->groupBy('_ID');
 
         dd(count($mmpds));
