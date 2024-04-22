@@ -674,6 +674,11 @@ class Meal extends Controller
      */
     function geMpd(Request $request)
     {
+        
+        ini_set('memory_limit', '2044M');
+        set_time_limit(3000000); //0
+        ini_set('max_execution_time', '60000');
+        ini_set('max_input_time', '60000');
 
         /* $formulario_erns = MFormulario::where(['ACCION' => "ERN"])->get();
 
