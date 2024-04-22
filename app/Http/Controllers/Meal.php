@@ -595,7 +595,8 @@ class Meal extends Controller
             "valor5": 0
         }}]
         */
-
+        $graficaSql = '';
+        
         //SELECT * FROM (SELECT * FROM V_M_GRAFICOS WHERE CLASE LIKE 'LPA%' ) ORDER BY ORDEN ROWS 1 TO 1000
         
         $grafica = mGraficos::where([

@@ -18,4 +18,7 @@ class Activities extends Model
     {
         return $this->hasOne(MLpa::class, 'COD_ACTIVIDAD', 'fk_lpa' );
     } */
+    public function indiceActividad(){
+        $this->actividad;
+    }
 }
