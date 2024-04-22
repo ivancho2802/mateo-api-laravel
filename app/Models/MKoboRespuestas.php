@@ -143,7 +143,7 @@ class MKoboRespuestas extends Model
     {
         return $query->whereHas('formulario', function ($q) {
             $q->where('ACCION', '=', "MPD");
-        })->get();
+        });
         //return $query->where('est_empre', 1)->first();
     }
 

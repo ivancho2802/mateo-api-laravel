@@ -695,16 +695,19 @@ class Meal extends Controller
         //8916210
 
         $mmpds = MKoboRespuestas::pdm()
-        //->get()
+        ->get()
         //->append('isPdm')
-        ->load(['pregunta'])
+        ->map(function ($respuesta) {
+            $respuesta->load(['pregunta']);
+            return $respuesta;
+        })
         /* ->whereHas('formulario', function ($q) {
             $q->where('ACCION', '=', "MPD");
         }) */
         //->limit(1000)
         ->groupBy('_ID');
 
-        dd(count($mmpds));
+        dd(count($mmpds), $mmpds->first());
 
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
