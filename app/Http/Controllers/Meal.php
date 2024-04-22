@@ -596,7 +596,7 @@ class Meal extends Controller
         }}]
         */
         $graficaSql = '';
-        
+
         //SELECT * FROM (SELECT * FROM V_M_GRAFICOS WHERE CLASE LIKE 'LPA%' ) ORDER BY ORDEN ROWS 1 TO 1000
         
         $grafica = mGraficos::where([
@@ -625,6 +625,15 @@ class Meal extends Controller
                 $graficaSql = str_replace("{FECHA_HASTA}", $grafica->FECHA_HASTA, $graficaSql);
             }
 
+        }else {
+            return [
+                "tabla" => [
+                    "registro" => [],
+                    "query" => [
+                        "sql" => $graficaSql
+                    ]
+                ]
+            ];
         }
 
         //dd("grafica", $grafica, "graficasql", $graficaSql);
