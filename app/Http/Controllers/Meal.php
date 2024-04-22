@@ -697,7 +697,7 @@ class Meal extends Controller
         $mmpds = MKoboRespuestas::pdm()
         //->get()
         //->append('isPdm')
-        //->load(['pregunta'])
+        ->load(['pregunta'])
         /* ->whereHas('formulario', function ($q) {
             $q->where('ACCION', '=', "MPD");
         }) */
