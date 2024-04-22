@@ -702,6 +702,8 @@ class Meal extends Controller
         ->load('pregunta')
             ->groupBy('_ID');
 
+        dd(count($mmpds));
+
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
         } else {
