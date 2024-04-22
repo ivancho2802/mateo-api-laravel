@@ -987,6 +987,9 @@ class MatrizController extends Controller
       return $matriz;
     });
 
-    return ["group" => $matrizMinasMathechedGrouped, 'total' => $matrizMinasMatheched];
+    $matrizMinasMathechedGroupedC = collect($matrizMinasMathechedGrouped);
+    $matrizMinasMathechedGroupedC = $matrizMinasMathechedGroupedC->sortBy("id");
+
+    return ["group" => $matrizMinasMathechedGroupedC->values()->all(), 'total' => $matrizMinasMatheched];
   }
 }
