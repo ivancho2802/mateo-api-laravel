@@ -609,7 +609,7 @@ class Meal extends Controller
         // {CONDICION1}, {FECHA_DESDE}" '01/01/2021' AND "{FECHA_HASTA}" '12/31/2024'
         $matrizSqlGraficos = Config::get('app.matrizSqlGraficos');
 
-        if($request->ID_M_GRAFICOS == '00146' || $request->ID_M_GRAFICOS == '00145'){
+        if($request->ID_M_GRAFICOS){// == '00146' || $request->ID_M_GRAFICOS == '00145'
 
             $graficaSql = $matrizSqlGraficos[$request->ID_M_GRAFICOS];//'lpaetnia'
                 
