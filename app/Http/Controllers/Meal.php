@@ -687,7 +687,7 @@ class Meal extends Controller
         ->get()
         ->groupBy('_ID');
 
-        dd(count($mmpds));
+        dd(($mmpds)->first());
 
         $mmpds = $mmpds
         ->map(function ($respuesta) {
