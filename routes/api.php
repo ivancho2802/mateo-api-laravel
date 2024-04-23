@@ -437,6 +437,8 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
   Route::get('{uui}/data/{token}', [App\Http\Controllers\Kobo::class, 'getKoboLabels']);
 
+  Route::get('{uui}/datawithid/{token}', [App\Http\Controllers\Kobo::class, 'getKoboWidthId']);
+
   Route::post('seach', [App\Http\Controllers\Kobo::class, 'getKoboSaved']);
   
 });

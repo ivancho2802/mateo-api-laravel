@@ -643,4 +643,171 @@ class Kobo extends Controller
 
         return  $mmpdsArray;
     }
+
+    public function getKoboWidthId($uui, $token)
+    {
+
+        $jsonurl = "https://kf.acf-e.org/assets/" . $uui . "/submissions/?format=json";
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Token ' . $token,
+            'Accept' => 'application/json'
+        ])
+            ->get($jsonurl)
+            ->json();
+
+        $dataSubdmissions = collect($response);
+
+        //obtener los labes
+
+        //https://kc.acf-e.org/api/v1/forms?id_string=a4E3J9gkULZe5eRqQph8zh
+        $jsonurlform = "https://kc.acf-e.org/api/v1/forms?id_string=" . $uui;
+
+        $dataForm = Http::withHeaders([
+            'Authorization' => 'Token ' . $token . '',
+            'Accept' => '*/*'
+        ])
+            ->get($jsonurlform)
+            ->json();
+
+        $formid = collect($dataForm[0])->get('formid');
+
+        //https://kc.acf-e.org/api/v1/forms/2433/form.json
+        $jsonurlDataLabels = "https://kc.acf-e.org/api/v1/forms/" . $formid . "/form.json";
+
+        $dataDataLabelsResponse = Http::withHeaders([
+            'Authorization' => 'Token ' . $token . '',
+            'Accept' => 'application/json'
+        ])
+            ->get($jsonurlDataLabels)
+            ->json();
+
+        $dataLabels = collect($dataDataLabelsResponse);
+        
+        $index = 0;
+        $formated = $dataSubdmissions->map(function ($submission) use ($dataLabels, $index) {
+
+            $submission['_index'] = $submission['_id'];
+            $index++;
+            //dd("submission", $submission);//224
+
+            $dataLabelsCollection = collect($dataLabels);
+
+            //dd("dataLabels", $dataLabelsCollection->get("children")[6]['name']);
+
+            //[
+            // * "pregunta" => "respuesta",
+            // * "pregunta2" => "respuesta2",
+            // * ]
+            // *
+
+            /**
+             * "name" => "valoracion_seguimiento_ninos_as"
+             *  "bind" => array:1 [ …1]
+             *   "label" => "Valoración y seguimiento médico nutricional de niños y niñas"
+             */
+            $dataLabelsChildren = collect($dataLabelsCollection->get("children"));
+            //dd("dataLabelsChildren", $dataLabelsChildren);
+            //dd($keys, $values);
+
+            $submissionFormated = collect($submission)->flatMap(function ($valueSub, $keySub) use ($dataLabelsChildren, $submission) {
+
+                if($keySub == "detalle_compra_acciones_partic"){
+                    $valueSubCollect = collect($valueSub);
+                    $valueSubMap = $valueSubCollect->map(function ($value) use ($submission){
+                        $value['_parent_index'] = $submission['_index'];
+                        return $value;
+                    });
+                    $valueSub = $valueSubMap->toArray();
+                    //dd("itemSub detalle_compra_acciones_partic", $valueSub, $keySub);
+                }
+
+                $collectionName = collect(explode('/', $keySub));
+
+                $itemKeyFiltered = $dataLabelsChildren->filter(function ($item) use ($collectionName) {
+                    //echo $item['name'] . '--' . json_encode( explode('/', $keySub)) . '----------\n';
+
+                    //dd(($collectionName)->first(), ($collectionName)->last());
+
+                    $itemCollection = collect($item);
+
+                    //dd($item['name'] .  $collectionName->first());//->get("children")
+
+                    if (count($collectionName) > 0 && optional($itemCollection)->get("children")) {
+
+                        $children2 = collect(optional($itemCollection)->get("children"));
+
+                        //dd("children2", $children2);
+
+                        $children2Fortmat = $children2->map(function ($chield) {
+                            $children2Collect = collect($chield); //->forget('name');
+                            return $children2Collect['name'];
+                        });
+
+                        $children2FortmatCollect = collect($children2Fortmat);
+
+                        return ($collectionName->first() == $item['name'] && $children2FortmatCollect->search($collectionName->last())) !== false;
+                    }
+
+                    return ($item['name'] == $collectionName->first()) !== false;
+                });
+
+                $itemKeyFilteredCollect = collect(collect($itemKeyFiltered)->first());
+                //dd("itemKeyFilteredCollect", $itemKeyFilteredCollect->get('label'));
+
+                $children2Label = '';
+
+                if (count($collectionName) > 0 && optional($itemKeyFilteredCollect)->get("children")) {
+
+                    $children2Collect = collect(optional($itemKeyFilteredCollect)->get("children"));
+                    //dd("children2", $children2, $collectionName->last());
+
+                    $children2FortmatCollectFiltered = $children2Collect
+                        ->filter(function ($children2) use ($collectionName) {
+                            return $children2['name'] == $collectionName->last();
+                        })->first();
+
+                    //dd($children2FortmatCollectFiltered['label']);
+
+                    $children2Label = isset($children2FortmatCollectFiltered['label']) ? $children2FortmatCollectFiltered['label'] : $collectionName->last();
+                }
+
+                $itemSub = collect([
+                    optional($itemKeyFilteredCollect)->get('label') ? optional($itemKeyFilteredCollect)->get('label') . '/' . $children2Label : $keySub => $valueSub
+                ]);
+
+                return $itemSub;
+            });
+
+            //dd("submissionFormated", $submissionFormated); //224
+
+            /* for ($i = 0; $i < count($keys); $i++) {
+                    $keysCurrent = $keys[$i];
+                    $valuesCurrent = $values[$i];
+    
+                    $indexLabelsChildren = $dataLabelsChildren->filter(function ( $item, int $key) use ($keysCurrent) {
+                        return strpos($keysCurrent, $item['name']);
+                    });
+                    
+                    dd($indexLabelsChildren->first());
+    
+                    $submissionFormated[] = [
+    
+                    ];
+                } */
+
+            //dd($submission);
+
+
+            //$submission->valoracion_seguimiento_ninos_as
+
+            //$submission[] = $submissionFormated;
+
+            
+
+            return $submissionFormated;
+        });
+
+        return $formated;
+    }
 }
