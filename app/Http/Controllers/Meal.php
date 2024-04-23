@@ -712,7 +712,7 @@ class Meal extends Controller
         //->limit(1000)
         ->groupBy('_ID');
 
-        dd(count($mmpds), $mmpds->first());
+        dd(count($mmpds));
 
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
