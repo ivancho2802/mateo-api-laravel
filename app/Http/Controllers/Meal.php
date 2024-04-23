@@ -691,10 +691,11 @@ class Meal extends Controller
 
         $mmpds = $mmpds
         ->map(function ($formulario) {
-            $formulario->map( function ($respuesta) {
+            $formulario->load(['pregunta']);
+            /* $formulario->map( function ($respuesta) {
                 $respuesta->load(['pregunta']);
                 return $respuesta;
-            });
+            }); */
             return $formulario;
         });
 
@@ -704,7 +705,7 @@ class Meal extends Controller
         }) */
         //->limit(1000)
 
-        dd(count($mmpds));
+        //dd(count($mmpds));
 
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
