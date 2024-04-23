@@ -38,13 +38,20 @@ SELECT
 	GROUP BY "ETNIA"
 	
 
-select * from "M_LPAS" ;
+select count(*) from "M_LPAS" ;
 --para saber cuantas respuestas a formularios de mpd se han realizado
 -- ver cuantos formularios de mpd hay
 select 
+	*
+from 
+	 "M_KOBO_RESPUESTAS" 
+where 
+	 "M_KOBO_RESPUESTAS"."ID_M_KOBO_FORMULARIOS" is NULL
+	and "M_KOBO_RESPUESTAS"."ID_M_KOBO_FORMULARIOS" = 985001
+select 
 count(*) 
 from "M_KOBO_RESPUESTAS", "M_FORMULARIOS"
-where "M_KOBO_RESPUESTAS"."ID_M_FORMULARIOS" = "M_FORMULARIOS"."ID_M_FORMULARIOS" and "M_FORMULARIOS"."ACCION" = 'M_LPAS'
+where "M_KOBO_RESPUESTAS"."ID_M_FORMULARIOS" = "M_FORMULARIOS"."ID_M_FORMULARIOS" and "M_FORMULARIOS"."ACCION" = 'MPD'
  group by "M_KOBO_RESPUESTAS"."_ID";
 --esto es solo para ver las preguntas guardadas
 select count(*) from "M_KOBO_FORMULARIOS"

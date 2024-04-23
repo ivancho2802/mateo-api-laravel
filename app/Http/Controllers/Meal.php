@@ -679,38 +679,20 @@ class Meal extends Controller
         set_time_limit(3000000); //0
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
-        //8914355
-        //8916210
 
         $mmpds = MKoboRespuestas::pdm()
-        //->limit(2000)
         ->get()
         ->groupBy('_ID');
-
-        //dd(($mmpds)->first());
 
         $mmpds = $mmpds
         ->map(function ($formulario) {
             $formulario->load(['pregunta']);
-            /* $formulario->map( function ($respuesta) {
-                $respuesta->load(['pregunta']);
-                return $respuesta;
-            }); */
             return $formulario;
         });
-
-        //->append('isPdm')
-        /* ->whereHas('formulario', function ($q) {
-            $q->where('ACCION', '=', "MPD");
-        }) */
-        //->limit(1000)
-
-        //dd(count($mmpds));
 
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
         } else {
-            //dd($mmpds);
             $mmpdsArray = collect([]);
             
             $mmpdsValues = ($mmpds)->values();
