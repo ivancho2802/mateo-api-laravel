@@ -424,9 +424,7 @@ class Erns extends Controller
 
             return $preguntas;
         }); 
-        return response()->json(['status' => true, 'data' => $formulario_erns, 200]);
-        
-        */
+        return response()->json(['status' => true, 'data' => $formulario_erns, 200]); */
 
         //alternativa
 

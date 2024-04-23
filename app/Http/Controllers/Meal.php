@@ -679,40 +679,27 @@ class Meal extends Controller
         set_time_limit(3000000); //0
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
-
-        /* $formulario_erns = MFormulario::where(['ACCION' => "ERN"])->get();
-
-        $formulario_erns->load(['preguntas']);
-
-        $formulario_erns->map(function ($formulario) {
-            $preguntas = collect($formulario->preguntas);
-
-            $preguntas->map(function ($pregunta) {
-                $pregunta->load(['respuesta']);
-
-                return $pregunta;
-            });
-
-            return $preguntas;
-        }); 
-        return response()->json(['status' => true, 'data' => $formulario_erns, 200]); */
         //8914355
         //8916210
 
         $mmpds = MKoboRespuestas::pdm()
-        ->get()
-        //->append('isPdm')
+        ->get();
+
+        $mmpds = $mmpds
         ->map(function ($respuesta) {
             $respuesta->load(['pregunta']);
             return $respuesta;
-        })
+        });
+
+        $mmpds = $mmpds
+        //->append('isPdm')
         /* ->whereHas('formulario', function ($q) {
             $q->where('ACCION', '=', "MPD");
         }) */
         //->limit(1000)
         ->groupBy('_ID');
 
-        dd(count($mmpds));
+        //dd(count($mmpds));
 
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
