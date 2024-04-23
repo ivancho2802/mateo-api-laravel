@@ -683,8 +683,11 @@ class Meal extends Controller
         //8916210
 
         $mmpds = MKoboRespuestas::pdm()
-        ->limit(2000)
-        ->get();
+        //->limit(2000)
+        ->get()
+        ->groupBy('_ID');
+
+        dd(count($mmpds));
 
         $mmpds = $mmpds
         ->map(function ($respuesta) {
