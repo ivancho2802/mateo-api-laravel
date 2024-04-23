@@ -683,7 +683,7 @@ class Meal extends Controller
         //8916210
 
         $mmpds = MKoboRespuestas::pdm()
-        ->limit(1000)
+        ->limit(2000)
         ->get();
 
         $mmpds = $mmpds
