@@ -687,23 +687,24 @@ class Meal extends Controller
         ->get()
         ->groupBy('_ID');
 
-        dd(($mmpds)->first());
+        //dd(($mmpds)->first());
 
         $mmpds = $mmpds
-        ->map(function ($respuesta) {
-            $respuesta->load(['pregunta']);
-            return $respuesta;
+        ->map(function ($formulario) {
+            $formulario->map( function ($respuesta) {
+                $respuesta->load(['pregunta']);
+                return $respuesta;
+            });
+            return $formulario;
         });
 
-        $mmpds = $mmpds
         //->append('isPdm')
         /* ->whereHas('formulario', function ($q) {
             $q->where('ACCION', '=', "MPD");
         }) */
         //->limit(1000)
-        ->groupBy('_ID');
 
-        //dd(count($mmpds));
+        dd(count($mmpds));
 
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
