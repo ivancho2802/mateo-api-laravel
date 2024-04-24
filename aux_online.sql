@@ -91,3 +91,14 @@ where "M_KOBO_RESPUESTAS"."ID_M_FORMULARIOS" = "M_FORMULARIOS"."ID_M_FORMULARIOS
  
  SELECT count(*) FROM \"M_KOBO_RESPUESTAS\" WHERE \"_ID\" = '8916210' AND \"ID_M_FORMULARIOS\" = 'aQxrcJYzPy4nzzVRXZVSBC'
  SELECT count(*) FROM \"M_KOBO_FORMULARIOS\" WHERE \"_ID\" = '8916210' AND \"ID_M_FORMULARIOS\" = 'aQxrcJYzPy4nzzVRXZVSBC'
+ 
+ -- jautar actividades
+insert into 
+	activities 
+		(sector, cod, actividad, "ID_M_USUARIOS") 
+	values 
+		('PROTECCIÃN', 'P13', 'P13_Espacios de sensibilización en temas de genero', 1),
+		('PROTECCIÃN', 'P14', 'P14_Identificación y remisión de casos de protección', 1)
+	
+	
+	
