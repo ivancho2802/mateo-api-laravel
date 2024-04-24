@@ -43,6 +43,8 @@ Route::prefix('meal')->group(function () {
 
   Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
 
+  Route::post('/lpaActivities/upload', [App\Http\Controllers\PersonAttended::class, 'storedActivities']);
+
   Route::middleware(['auth:sanctum'])->post('/lpa/checked', [App\Http\Controllers\PersonAttended::class, 'checked']);
 
   Route::middleware(['auth:sanctum'])->post('/lpa/process', [App\Http\Controllers\PersonAttended::class, 'process']);

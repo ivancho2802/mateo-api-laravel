@@ -55,33 +55,11 @@ class Meal extends Controller
         //"Rango BHA"
         //=SI(AM2="";"";SI(AM2<=4;"0 to 4";SI(AM2<=9;"5 to 9";SI(AM2<=14;"10 to 14";SI(AM2<=18;"15 to 18";SI(AM2<=29;"19 to 29";SI(AM2<=59;"30 to 59";SI(AM2>=60;"> 60"))))))))
 
-        $mlpas->load(['emergencia', 'actividad', 'persona']);
-
-        /* DB::setDefaultConnection('odbc');
-
-        $erns = DB::select("SELECT 
-        ID_M_KOBO_FORMULARIOS,
-        ID_M_USUARIOS,        
-        FECHA,   
-        FECHA_REGISTRO,  
-        ID, 
-        ESTATUS,     
-        ID_M_FORMULARIOS, 
-        FECHA_FORMULARIO,
-        UID, 
-        FUID, 
-        NOMBRE_FORMULARIO, 
-        GRUPO, 
-        NOMBRE_ESTATUS, 
-        NOMBRE_USUARIO, 
-        FECHA_ESTADISTICA, 
-        REGION,    
-        DEPARTAMENTO, 
-        MUNICIPIO, 
-        CODIGO_ALERTA
-        FROM V_M_KOBO_FORMULARIOS WHERE ID_M_FORMULARIOS = '0012';"); */
+        $mlpas->load(['emergencia', 'actividad', 'persona', 'actividad.directory']);
+  
 
         $mlpasFormated = $mlpas->map(function ( $lpa) {
+            $lpa->append('tipo_lpa');
             $lpa->persona->append('edad');
             $lpaArray = $lpa->toArray();
             $lpaDoted = Arr::dot($lpaArray); 

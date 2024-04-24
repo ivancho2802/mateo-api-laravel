@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Excel;
 use App\Http\Controllers\PaImportClass;
@@ -8,6 +9,7 @@ use App\Models\migrateCustom;
 use App\Models\MLpa;
 use App\Models\MLpaEmergencia;
 use App\Models\MLpaPersona;
+use App\Models\activitiesDirectories;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Analisis;
@@ -17,10 +19,11 @@ use Rap2hpoutre\FastExcel\FastExcel;
 class PersonAttended extends Controller
 {
     //
-    function stored(Request $request){
+    function stored(Request $request)
+    {
 
-        
-        if($request->analisis && $request->month){
+
+        if ($request->analisis && $request->month) {
             $resulAlaisis = Analisis::updateOrCreate([
                 "texto" => $request->analisis,
                 "month" => $request->month,
@@ -28,8 +31,8 @@ class PersonAttended extends Controller
             ]);
             //return $resulAlaisis;
 
-            if(!$request->file){
-                
+            if (!$request->file) {
+
                 $data['mlpas'] = [];
 
                 $data['record_excel'] = 0;
@@ -42,7 +45,7 @@ class PersonAttended extends Controller
         }
 
         ini_set('memory_limit', '2024M');
-        set_time_limit(3000000);//0
+        set_time_limit(3000000); //0
 
         //dd("file", $request->file('file'));
         //echo csrf_token(); 
@@ -52,21 +55,20 @@ class PersonAttended extends Controller
         $request->validate([
             'file' => 'required|mimes:xlsx,xls',
         ]);
-        
+
 
         // Get the uploaded file
         $file = $request->file('file');
         $path = $file->store('migrationsLpa');
-        
+
         migrateCustom::create([
             'table' => 'M_LPAS',
             'table_id' =>  $path,
             'file_ref' => 'UPLOADED',
         ]);
-        
-        $mlpas = MLpa::
-        orderBy('created_at', 'desc')
-        ->paginate(10); 
+
+        $mlpas = MLpa::orderBy('created_at', 'desc')
+            ->paginate(10);
 
         $mlpas->load('emergencia');
 
@@ -80,7 +82,82 @@ class PersonAttended extends Controller
         return view('list-lpas', $data);
     }
 
-    function checked(Request $request){
+    function storedActivities(Request $request)
+    {
+
+        ini_set('memory_limit', '2024M');
+        set_time_limit(3000000); //0
+
+        try {
+            $request->validate([
+                'file' => 'required|mimes:xlsx,xls',
+            ]);
+
+            // Get the uploaded file
+            $file = $request->file('file');
+
+            $import = new MlpasActivityImportClass();
+
+            $import->onlySheets('DIRECTORIO');
+
+            // Process the Excel file
+            Excel::import($import, $file);
+
+            //$collection = (new MqrClass)->toCollection($file);
+
+            $count_record_excel = 0;//helper::countValidValues($collection[0]);
+
+            $migrate_custom = migrateCustom::where([
+                'table' => "actividades_directory"
+            ])->get()->last();
+
+            $excel = file_get_contents($file);
+            $base64 = base64_encode($excel);
+
+            $migrate_custom->file = $base64;
+
+            $migrate_custom->save();
+
+            $id_activities_directories = explode(", ", $migrate_custom->table_id);
+
+            $query_activities_directories = activitiesDirectories::whereIn('id', $id_activities_directories)->orderBy('created_at', 'desc');
+
+            $count_activities_directories = count($query_activities_directories->get());
+
+            $activities_directories = $query_activities_directories->paginate(10);
+
+            $data['mmqrs'] = $activities_directories;
+
+
+            $data['record_excel'] = $count_record_excel - 1;
+            $data['record_saved'] = $count_activities_directories + 1;
+
+            //MQR devolver tabla con los resultados creados 
+            return view('list-lpas', $data);
+            //return response()->json(["message" => "operacion hecha con exito"]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+
+        $mlpas = MLpa::orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        $mlpas->load('emergencia');
+
+        $data['mlpas'] =  $mlpas;
+
+        $data['record_excel'] = 1;
+
+        $data['record_saved'] = 0;
+
+        //terminar devolver tabla
+        return view('list-lpas', $data);
+    }
+
+    function checked(Request $request)
+    {
 
         $migration = migrateCustom::where([
             'table' => 'M_LPAS',
@@ -90,16 +167,17 @@ class PersonAttended extends Controller
         $file = Storage::path($migration->table_id);
 
         $headers = array(
-                'Content-Type: application/vnd.ms-excel',
-                );
+            'Content-Type: application/vnd.ms-excel',
+        );
 
         return Storage::download($migration->table_id, 'filename.xlsx', $headers);
     }
 
-    function process(Request $request){
+    function process(Request $request)
+    {
 
         ini_set('memory_limit', '2044M');
-        set_time_limit(3000000);//0
+        set_time_limit(3000000); //0
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
@@ -126,13 +204,13 @@ class PersonAttended extends Controller
         $migration->file_ref = 'PROCECED';
 
         $migration->save();
-        
+
         //get data excel
         //$collection = (new MlpasClass)->toCollection($file);
 
         //$collectExcel = $collection[2] ?? $collection[0];
 
-        $count_record_excel = 0;//helper::countValidValues($collectExcel)
+        $count_record_excel = 0; //helper::countValidValues($collectExcel)
 
         $migrate_custom = migrateCustom::where([
             'table' => "M_LPAS"
@@ -148,17 +226,16 @@ class PersonAttended extends Controller
         //$id_lpas = explode(", ", $migrate_custom->table_id);
 
         //$query_mlpas = MLpa::whereIn('ID', $id_lpas);//;
-        $count_mlpas = 0;//count($query_mlpas->get());
-        
-        $mlpas = MLpa::
-        orderBy('created_at', 'desc')
-        ->paginate(10);
+        $count_mlpas = 0; //count($query_mlpas->get());
+
+        $mlpas = MLpa::orderBy('created_at', 'desc')
+            ->paginate(10);
 
         $mlpas->load('emergencia');
 
         $data['mlpas'] = $mlpas;
 
-        $data['record_excel'] = $count_record_excel ;
+        $data['record_excel'] = $count_record_excel;
 
         $data['record_saved'] = $count_mlpas;
 
@@ -166,13 +243,14 @@ class PersonAttended extends Controller
         return view('list-lpas', $data);
         //return response()->json(["message" => "operacion hecha con exito"]);
 
-        return $migration;//table_id
+        return $migration; //table_id
     }
 
-    function refreshMigrations(Request $request){
+    function refreshMigrations(Request $request)
+    {
 
         ini_set('memory_limit', '2044M');
-        set_time_limit(3000000);//0
+        set_time_limit(3000000); //0
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
@@ -192,11 +270,11 @@ class PersonAttended extends Controller
 
         $idTable = optional($migrationPendings)->table_id;
 
-        if(!isset($migrationPendings) || !isset($idTable)){
+        if (!isset($migrationPendings) || !isset($idTable)) {
             return ['restante' => 0];
         }
 
-        if(isset(optional($migrationPendings)->table_id)  !== true ){
+        if (isset(optional($migrationPendings)->table_id)  !== true) {
             return ['restante' => strlen(optional($migrationPendings)->table_id)];
         }
 
@@ -236,7 +314,7 @@ class PersonAttended extends Controller
             //dd(count($elementsForMigration));//9568 7568
 
         } else { */
-            $elementsForMigration = collect(json_decode($idTable));
+        $elementsForMigration = collect(json_decode($idTable));
         //}
 
         echo count($elementsForMigration);
@@ -270,7 +348,7 @@ class PersonAttended extends Controller
 
             $dateArray = collect($row[14])->toArray();
 
-            $date_birday = (isset($dateArray) && isset($dateArray["date"])) ? $dateArray["date"]: null;//Date::excelToDateTimeObject($row[14]);
+            $date_birday = (isset($dateArray) && isset($dateArray["date"])) ? $dateArray["date"] : null; //Date::excelToDateTimeObject($row[14]);
 
             $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
 
@@ -342,7 +420,7 @@ class PersonAttended extends Controller
                 ]);
             }
 
-            $FECHA_ATENCION = collect($row[31])->toArray()["date"];//Date::excelToDateTimeObject($row[31]);
+            $FECHA_ATENCION = collect($row[31])->toArray()["date"]; //Date::excelToDateTimeObject($row[31]);
 
             $body_lpas->push([
 
@@ -375,7 +453,7 @@ class PersonAttended extends Controller
         }
         //dd($date_begin, $date_end);
 
-        $body_lpas = ($body_lpas)->chunk(($lotes/2));
+        $body_lpas = ($body_lpas)->chunk(($lotes / 2));
         foreach ($body_lpas as $body) {
             $bodyArray = $body->toArray();
             MLpa::insert($bodyArray);
@@ -390,8 +468,8 @@ class PersonAttended extends Controller
 
         $migrationPendings->save();
 
-        $queryLpa = MLpa::all();//whereBetween('created_at', [$date_begin, Carbon::now()->addDays(1)->format("Y-m-d H:i:s")]);// 
-        $mlpas = $queryLpa;//->get();
+        $queryLpa = MLpa::all(); //whereBetween('created_at', [$date_begin, Carbon::now()->addDays(1)->format("Y-m-d H:i:s")]);// 
+        $mlpas = $queryLpa; //->get();
         $id_lpas = $queryLpa->pluck('ID')->all();
 
         if (count($mlpas) > 0) {
@@ -406,7 +484,6 @@ class PersonAttended extends Controller
                 'msg' => ['No se guardaron los registros.'],
             ]); */
             return MLpa::get();
-
         }
 
         //array_push($id_emergenciasz, $mlpa_emergencia)

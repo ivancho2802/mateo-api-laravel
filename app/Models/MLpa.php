@@ -12,7 +12,7 @@ use App\Models\MLpaPersona;
 class MLpa extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'M_LPAS';
 
     public $incrementing = false;
@@ -43,7 +43,8 @@ class MLpa extends Model
     /**
      * SCOPES
      */
-    public function scopeActive(Builder  $query):void {
+    public function scopeActive(Builder  $query): void
+    {
         $query->orWhere([
             ['STATUS', true],
             ['STATUS', 1],
@@ -51,23 +52,37 @@ class MLpa extends Model
         ]);
     }
 
-    
-    public function emergencia()
+    public function getTipoLpaAttribute()
     {
-        return $this->hasOne(MLpaEmergencia::class, 'ID', 'FK_LPA_EMERGENCIA' );
+        //fase 'FASE 1' || 'FASE 2'
+        //respuesta rapida fase 1, fase 2
+        //recuperacion temprana fase 3, 4, 5
+        $fase = $this->actividad->directory->fase;
+        //dd("directory", $this->actividad->directory, $fase);
+
+        $tipoLpa = 'Recuperacion Temprana';
+
+        if ($fase == 'FASE 1' || $fase == 'FASE 2') {
+            $tipoLpa = 'Respuesta Rapida';
+        }
+
+        return $tipoLpa;
     }
 
-    
+
+    public function emergencia()
+    {
+        return $this->hasOne(MLpaEmergencia::class, 'ID', 'FK_LPA_EMERGENCIA');
+    }
+
+
     public function actividad()
     {
-        return $this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD' );
+        return $this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD');
     }
 
     public function persona()
     {
-        return $this->hasOne(MLpaPersona::class, 'ID', 'FK_LPA_PERSONA' );
+        return $this->hasOne(MLpaPersona::class, 'ID', 'FK_LPA_PERSONA');
     }
-
-    
-
 }
