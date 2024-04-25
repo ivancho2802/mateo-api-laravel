@@ -16,7 +16,7 @@ class CreateMatrizsTable extends Migration
         Schema::create('matrizs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('type')->nullable();
             $table->string('origin')->nullable();
 
