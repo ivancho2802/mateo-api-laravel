@@ -789,6 +789,7 @@ class MatrizController extends Controller
 
     $collapsedFiltered = $collapsed->filter()->unique()->all();
 
+    //snon las palabras del diccionario custom donde se combinan las keys y los valores
     $collapsedFiltered = collect($collapsedFiltered)->map(function ($word) {
       return strtoupper($word);
     });
@@ -812,53 +813,54 @@ class MatrizController extends Controller
         !preg_match("/BATOT[0-9][0-9]$/", $key);
     })->sortDesc();
 
+    //es el diccionario filtrado con las repeticiones key son las palabras values son las repeticiones
     $diccionary = ($wordsArrayCountedFiltered);
     //dd("diccionary", $diccionary);
 
-    $matrizMinasMatheched = $matrizMinas->map(function ($matriz) use ($diccionary, $collapsedFiltered) {
+    /* $matrizMinasMatheched = $matrizMinas->map(function ($matriz) use ($diccionary, $collapsedFiltered) {
 
       //$matriz = collect($matrizOrigin);
 
-      /* $matriz['foo'] = 42; */
+      // $matriz['foo'] = 42;
+      //dd("collapsedFiltered", $collapsedFiltered);
 
       $diccionaryCollection = collect($diccionary);
 
       $wordsArray =
-        collect(
-          explode(
-            " ",
-            mb_convert_encoding(
-              preg_replace(
-                '/([^A-Za-z0-9])/',
-                " ",
-                strtoupper(
-                  $this->eliminar_acentos(
-                    $matriz['description']
-                  )
+      collect(
+        explode(
+          " ",
+          mb_convert_encoding(
+            preg_replace(
+              '/([^A-Za-z0-9])/',
+              " ",
+              strtoupper(
+                $this->eliminar_acentos(
+                  $matriz['description']
                 )
-              ),
-              'UTF-8',
-              'UTF-8'
-            )
+              )
+            ),
+            'UTF-8',
+            'UTF-8'
           )
-        )->filter()->toArray();
+        )
+      )->filter()->toArray();
 
 
       $words = $diccionaryCollection->keys();
       $repitions = $diccionaryCollection->values()->all();
 
+      //lo intercepto para que solo salgan laspalabras del registro de la matriz actual y las palabras del diccionario de datos
       $intersectWordsVsMatriz = collect($wordsArray)->intersect($words);
 
       $intersectWordsVsMatriz->all();
+        
+      //se intercepta las palabras del diccionario custom con las palabras del registro filtrada por las palabras clave
+      $intersect = ($intersectWordsVsMatriz)->intersect($collapsedFiltered);
 
-      $intersect = ($collapsedFiltered)->intersect($intersectWordsVsMatriz);
+      $intersect->all();
 
       //dd("intersect", $intersect, $collapsedFiltered, $intersectWordsVsMatriz);
-
-
-      //$diccionaryCollection->each(function ($item, $key) use ($matriz) {
-
-      //dd($repitions);
 
       $intersect->each(function ($word, $key) use ($matriz) {
         $matriz['' . $word . ''] = 0;
@@ -866,19 +868,8 @@ class MatrizController extends Controller
 
       //return $matriz;
 
+      //se rrecorre el intersect para que en cada posisicoin quede 
       $resultMatriz = collect($intersect)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection) {
-
-        /* $check = $intersect->search(function ($element) use ($wordDiccionary) {
-          return $element == $wordDiccionary;
-        });
-        */
-        /* if ($wordDiccionary == 'EN') {
-          dd("check", $check, $intersect, $wordDiccionary);
-        } */
-        //echo "check" . $check;
-
-
-        //if ($check !== false && $check >= 0) {
 
         if (!isset($matriz['palabras_clave'])) {
           $matriz['palabras_clave'] = "";
@@ -889,9 +880,9 @@ class MatrizController extends Controller
         }
 
         $matriz['' . $wordDiccionary . ''] = $diccionaryCollection[$wordDiccionary];
-        /* } else {
-          $matriz['' . $wordDiccionary . ''] = 0;
-        } */
+        // } else {
+        //  $matriz['' . $wordDiccionary . ''] = 0;
+        //} 
 
         //echo "matriz" . implode(",", $matriz);
 
@@ -900,7 +891,7 @@ class MatrizController extends Controller
       //});
 
       return $matriz;
-    });
+    }); */
 
     $matrizMinasMathechedGrouped = collect([]);
 
@@ -967,7 +958,13 @@ class MatrizController extends Controller
                   //$matriz[$valueF . 'group'] = $keyF;
                 } else {
                   $matriz[$valueF] = $diccionary[$valueF];
-                  $matriz['group'] = $keyF;
+                  if(!isset($matriz['group'])){
+                    $matriz['group'] = '';
+                  }
+                  if(stripos($matriz['group'], $keyF) === false){
+                    $matriz['group'] .= $keyF . ', ';
+
+                  }
                 }
               }
 
@@ -990,6 +987,6 @@ class MatrizController extends Controller
     $matrizMinasMathechedGroupedC = collect($matrizMinasMathechedGrouped);
     $matrizMinasMathechedGroupedC = $matrizMinasMathechedGroupedC->sortBy("id");
 
-    return ["group" => $matrizMinasMathechedGroupedC->values()->all(), 'total' => $matrizMinasMatheched];
+    return ["group" => $matrizMinasMathechedGroupedC->values()->all()];//, 'total' => $matrizMinasMatheched
   }
 }
