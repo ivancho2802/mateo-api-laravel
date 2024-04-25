@@ -52,17 +52,25 @@ class MLpa extends Model
         ]);
     }
 
+    /**
+     * tipo_lpa
+     */
     public function getTipoLpaAttribute()
     {
         //fase 'FASE 1' || 'FASE 2'
         //respuesta rapida fase 1, fase 2
         //recuperacion temprana fase 3, 4, 5
+        $fase = '';
 
-        if(!isset(optional($this->actividad->directory)->fase)){
-            return 'Indefinido';
+        if(isset($this->FASE_ATENCION)){
+            $fase = $this->FASE_ATENCION;
+        }else {
+            if(!isset(optional($this->actividad->directory)->fase)){
+                return 'Indefinido';
+            }else{
+                $fase = $this->actividad->directory->fase;
+            }
         }
-
-        $fase = $this->actividad->directory->fase;
         //dd("directory", $this->actividad->directory, $fase);
 
         $tipoLpa = 'Recuperacion Temprana';
