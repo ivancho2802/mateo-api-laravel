@@ -37,11 +37,11 @@ class MatrizClass  implements ToCollection
 
         foreach ($rows as $row) {
 
-            if ($i == 0 || !$row || !$row[0] || !$row[16]) {
+            if ($i == 0 || !$row || !$row[0] || !$row[26]) {
                 $i++;
                 continue;
             }
-            array_push($matrizBase, ["description" => $row[16], "type" => $row[2] . ',' . $row[3], "id" => $row[0], "origin" => 'Afectacion_MAPAEI']);
+            array_push($matrizBase, ["description" => $row[26], "type" => $row[2] . ',' . $row[3], "id" => $row[0], "origin" => 'Afectacion_MAPAEI']);
         }
 
         $matrizBaseCollect = collect($matrizBase);
