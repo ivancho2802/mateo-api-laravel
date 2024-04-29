@@ -74,8 +74,6 @@ class ActivityClass implements ToCollection
                 $activity->ID_M_USUARIOS = $ID_USER;
                 $activity->save();
                 
-                dd("activity", $activity);
-
             } else {
                 $activity = Activities::create([
                     'sector' => $sector,
@@ -84,6 +82,8 @@ class ActivityClass implements ToCollection
                     'ID_M_USUARIOS' => $ID_USER
                 ]);
             }
+            
+            dd("activity", $activity);
 
             $activity = helper::convert_from_latin1_to_utf8_recursively($activity);
 
