@@ -89,16 +89,16 @@ class ActivityClass implements ToCollection
             if (isset($activity)) {
                 
                 $activity = Activities::where(['cod' => $row[0]])->first();
-                dd("===", $activity);
-
+                
                 if (!isset($activity)) {
                     dd("activity", $activity);
                 }
-
+                
                 $activities[] = $activity;
                 $id_activities[] = $activity->id;
             }
         }
+        dd("===", $id_activities);
         //array_push($id_emergenciasz, $mlpa_emergencia)
 
         migrateCustom::create([
