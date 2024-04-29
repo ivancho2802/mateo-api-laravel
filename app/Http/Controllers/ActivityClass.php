@@ -64,7 +64,7 @@ class ActivityClass implements ToCollection
                 continue;
             }
 
-            $search = utf8_encode(helper::convert_from_latin1_to_utf8_recursively($row[0]));
+            $search = utf8_encode(($row[0]));
 
             $activity = Activities::where(['cod' => $search])->first();
 
