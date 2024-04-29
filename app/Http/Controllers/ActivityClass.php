@@ -62,21 +62,23 @@ class ActivityClass implements ToCollection
                 continue;
             }
 
-            $activity = Activities::firstOrCreate(
-            ['cod' => $row[0]],
-            [
+            $activity = Activities::insertOrIgnore([
                 'sector' => $sector,
                 'cod' => $row[0],
                 'actividad' => $row[1],
                 'ID_M_USUARIOS' => $ID_USER
             ]);
 
-            if(!isset($activity)  ){
-                dd("activity", $activity->get()->last()->id);
-            }
+            if($activity > 0){
+                $activity = Activities::where(['cod' => $row[0]]);
 
-            $activities[] = $activity;
-            $id_activities[] = $activity->get()->last()->id;
+                if(!isset($activity)){
+                    dd("activity", $activity);
+                }
+                
+                $activities[] = $activity;
+                $id_activities[] = $activity->get()->last()->id;
+            }
         }
         //array_push($id_emergenciasz, $mlpa_emergencia)
 
