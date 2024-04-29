@@ -66,25 +66,37 @@ class ActivityClass implements ToCollection
 
             $search = ''.$row[0].'' ;
 
-            $activity = Activities::where('cod', pg_escape_string(utf8_encode($search)))->first();
+            echo '-----------'.$search.'-------------';
 
-            if (isset($activity)) {
-
-                $activity->sector =  $sector;
-                $activity->cod = $row[0];
-                $activity->actividad = $row[1];
-                $activity->ID_M_USUARIOS = $ID_USER;
-                $activity->save();
-                
-            } else {
+            if($search == 'P13'){
                 $activity = Activities::create([
                     'sector' => $sector,
-                    'cod' => $row[0],
+                    'cod' => 'P13',
                     'actividad' => $row[1],
                     'ID_M_USUARIOS' => $ID_USER
                 ]);
-            }
+                $search = 'P13';
+            }else {
 
+                $activity = Activities::where('cod', pg_escape_string(utf8_encode($search)))->first();
+
+                if (isset($activity)) {
+    
+                    $activity->sector =  $sector;
+                    $activity->cod = $row[0];
+                    $activity->actividad = $row[1];
+                    $activity->ID_M_USUARIOS = $ID_USER;
+                    $activity->save();
+                    
+                } else {
+                    $activity = Activities::create([
+                        'sector' => $sector,
+                        'cod' => $row[0],
+                        'actividad' => $row[1],
+                        'ID_M_USUARIOS' => $ID_USER
+                    ]);
+                }
+            }
             
             $activity = helper::convert_from_latin1_to_utf8_recursively($activity);
             
