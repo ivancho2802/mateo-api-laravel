@@ -76,17 +76,23 @@ class ActivityClass implements ToCollection
             $activity = Activities::where('cod', ($search))->first();
 
             if (isset($activity)) {
-                
 
-                $activity->sector =  $sector;
+                $activity = $activity->update(
+                [
+                    'cod' => $row[0]
+                ],
+                [
+                    'sector' => $sector,
+                    'cod' => $row[0],
+                    'actividad' => $this->eliminar_acentos(helper::convert_from_latin1_to_utf8_recursively($row[1])),
+                    'ID_M_USUARIOS' => $ID_USER
+                ]);
+                
+                /* $activity->sector =  $sector;
                 $activity->cod = $row[0];
                 $activity->actividad =  $this->eliminar_acentos(helper::convert_from_latin1_to_utf8_recursively($row[1]));
                 $activity->ID_M_USUARIOS = $ID_USER;
-                $activity->save();
-
-                if($search == 'P10'){
-                    dd("activity", $activity);
-                }
+                $activity->save(); */
 
             } else {
                 $activity = Activities::create([
