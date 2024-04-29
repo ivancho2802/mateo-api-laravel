@@ -62,14 +62,16 @@ class ActivityClass implements ToCollection
                 continue;
             }
 
-            $activity = Activities::insertOrIgnore([
+            $activity = Activities::firstOrCreate(
+            ['cod' => $row[0]],
+            [
                 'sector' => $sector,
                 'cod' => $row[0],
                 'actividad' => $row[1],
                 'ID_M_USUARIOS' => $ID_USER
             ]);
 
-            if(isset($activity) && $activity !== 0){
+            if(isset($activity)  ){
                 if(!optional($activity)->get()){
                     dd("activity", $activity);
                 }
