@@ -77,11 +77,7 @@ class ActivityClass implements ToCollection
 
             if (isset($activity)) {
 
-                $activity = $activity->update(
-                [
-                    'cod' => $row[0]
-                ],
-                [
+                $activity = $activity->update([
                     'sector' => $sector,
                     'cod' => $row[0],
                     'actividad' => $this->eliminar_acentos(helper::convert_from_latin1_to_utf8_recursively($row[1])),
