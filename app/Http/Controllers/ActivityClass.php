@@ -73,7 +73,7 @@ class ActivityClass implements ToCollection
 
                 $activity->sector =  $sector;
                 $activity->cod = $row[0];
-                $activity->actividad = $row[1];
+                $activity->actividad =  $this->eliminar_acentos(helper::convert_from_latin1_to_utf8_recursively($row[1]));
                 $activity->ID_M_USUARIOS = $ID_USER;
                 $activity->save();
             } else {
