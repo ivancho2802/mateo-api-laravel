@@ -11,6 +11,8 @@ class Activities extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     protected $fillable = [
         'sector', 'cod', 'actividad', 'ID_M_USUARIOS'
     ];

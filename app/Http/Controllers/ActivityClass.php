@@ -23,29 +23,29 @@ class ActivityClass implements ToCollection
         //FALTA TERMINAR SACAR DEL TOKEN
         $ID_USER = Auth::user()->id ?? Auth::user()->ID;
 
-        dd($rows[1][0][0], $rows[1][0], $rows[1]);
+        $letterBegin = preg_replace('/[0-9]+/', '', $rows[1][0]);
 
         $id_activities = [];
 
         $sector = "";
 
-        switch ($rows[1][0][0]) {
-            case 'S':
+        switch ($letterBegin) {
+            case 'S' || 'CS':
                 $sector = "SHELTER";
                 break;
-            case 'W':
+            case 'W' || 'CW':
                 $sector = "WASH";
                 break;
-            case 'E':
+            case 'E' || 'CE':
                 $sector = "EiE";
                 break;
-            case 'F':
+            case 'F' || 'CF':
                 $sector = "SAN";
                 break;
-            case 'H':
+            case 'H' || 'CH':
                 $sector = "SALUD";
                 break;
-            case 'P':
+            case 'P' || 'CP':
                 $sector = "PROTECCIÓN";
                 break;
 
@@ -70,7 +70,6 @@ class ActivityClass implements ToCollection
                 'actividad' => $row[1],
                 'ID_M_USUARIOS' => $ID_USER
             ]);
-            dd("activity", $activity);
 
             if($activity > 0){
 
