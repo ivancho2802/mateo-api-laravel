@@ -65,7 +65,7 @@ class ActivityClass implements ToCollection
             }
 
             $activity = Activities::updateOrCreate(
-            ['"cod"' => $row[0]],
+            ['\"cod\"' => $row[0]],
             [
                 'sector' => $sector,
                 'cod' => $row[0],
