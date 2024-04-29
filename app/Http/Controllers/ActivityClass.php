@@ -69,8 +69,10 @@ class ActivityClass implements ToCollection
                 'ID_M_USUARIOS' => $ID_USER
             ]);
 
-            $activities[] = $activity;
-            $id_activities[] = $activity->get()->last()->id;
+            if(isset($activity)){
+                $activities[] = $activity;
+                $id_activities[] = $activity->get()->last()->id;
+            }
         }
         //array_push($id_emergenciasz, $mlpa_emergencia)
 
