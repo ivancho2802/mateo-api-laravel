@@ -64,7 +64,9 @@ class ActivityClass implements ToCollection
                 continue;
             }
 
-            $activity = Activities::where(['cod' => $row[0]])->first();
+            $search = utf8_decode(helper::convert_from_latin1_to_utf8_recursively($row[0]));
+
+            $activity = Activities::where(['cod' => $search])->first();
 
             if (isset($activity)) {
 
@@ -88,7 +90,7 @@ class ActivityClass implements ToCollection
             
             if (isset($activity)) {
                 
-                $activity = Activities::where(['cod' => $row[0]])->first();
+                $activity = Activities::where(['cod' => $search])->first();
                 
                 if (!isset($activity)) {
                     dd("activity", $activity);
