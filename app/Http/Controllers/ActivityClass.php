@@ -75,9 +75,6 @@ class ActivityClass implements ToCollection
 
             $activity = Activities::where('cod', ($search))->first();
 
-            if($search == 'P10')
-                dd("activity", $activity);
-
             if (isset($activity)) {
                 
 
@@ -86,6 +83,11 @@ class ActivityClass implements ToCollection
                 $activity->actividad =  $this->eliminar_acentos(helper::convert_from_latin1_to_utf8_recursively($row[1]));
                 $activity->ID_M_USUARIOS = $ID_USER;
                 $activity->save();
+
+                if($search == 'P10'){
+                    dd("activity", $activity);
+                }
+
             } else {
                 $activity = Activities::create([
                     'sector' => $sector,
