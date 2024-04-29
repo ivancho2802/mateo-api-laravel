@@ -70,6 +70,9 @@ class ActivityClass implements ToCollection
             ]);
 
             if(isset($activity)){
+                if(!optional($activity)->get()){
+                    dd("activity", $activity);
+                }
                 $activities[] = $activity;
                 $id_activities[] = $activity->get()->last()->id;
             }
