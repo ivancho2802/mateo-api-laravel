@@ -65,7 +65,6 @@ class ActivityClass implements ToCollection
             }
 
             $activity = Activities::where(['cod' => $row[0]])->first();
-            dd("activity", $activity);
 
             if (isset($activity)) {
 
@@ -74,6 +73,9 @@ class ActivityClass implements ToCollection
                 $activity->actividad = $row[1];
                 $activity->ID_M_USUARIOS = $ID_USER;
                 $activity->save();
+                
+                dd("activity", $activity);
+
             } else {
                 $activity = Activities::create([
                     'sector' => $sector,
