@@ -77,16 +77,16 @@ class ActivityClass implements ToCollection
 
             dd($activity);
 
-            if($activity > 0){
+            if(isset($activity)){
 
-                $activity = Activities::where(['cod' => $row[0]]);
+                $activity = Activities::where(['cod' => $row[0]])->first();
 
                 if(!isset($activity)){
                     dd("activity", $activity);
                 }
 
                 $activities[] = $activity;
-                $id_activities[] = $activity->get()->last()->id;
+                $id_activities[] = $activity->id;
             }
         }
         //array_push($id_emergenciasz, $mlpa_emergencia)
