@@ -69,7 +69,7 @@ class ActivityClass implements ToCollection
                 'ID_M_USUARIOS' => $ID_USER
             ]);
 
-            if(isset($activity)){
+            if(isset($activity) && isset($activity)!==0){
                 if(!optional($activity)->get()){
                     dd("activity", $activity);
                 }
