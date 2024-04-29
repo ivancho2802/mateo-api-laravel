@@ -86,10 +86,10 @@ class ActivityClass implements ToCollection
             
             $activity = helper::convert_from_latin1_to_utf8_recursively($activity);
             
-            dd("activity", $activity);
             if (isset($activity)) {
-
+                
                 $activity = Activities::where(['cod' => $row[0]])->first();
+                dd("===", $activity);
 
                 if (!isset($activity)) {
                     dd("activity", $activity);
