@@ -23,6 +23,8 @@ class ActivityClass implements ToCollection
         //FALTA TERMINAR SACAR DEL TOKEN
         $ID_USER = Auth::user()->id ?? Auth::user()->ID;
 
+        dd($rows[1][0][0], $rows[1][0], $rows[1]);
+
         $id_activities = [];
 
         $sector = "";
