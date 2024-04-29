@@ -31,22 +31,28 @@ class ActivityClass implements ToCollection
         $sector = "";
 
         switch ($letterBegin) {
-            case 'S' || 'CS':
+            case 'S':
+            case 'CS':
                 $sector = "SHELTER";
                 break;
-            case 'W' || 'CW':
+            case 'W':
+            case 'CW':
                 $sector = "WASH";
                 break;
-            case 'E' || 'CE':
+            case 'E':
+            case 'CE':
                 $sector = "EiE";
                 break;
-            case 'F' || 'CF':
+            case 'F':
+            case 'CF':
                 $sector = "SAN";
                 break;
-            case 'H' || 'CH':
+            case 'H':
+            case 'CH':
                 $sector = "SALUD";
                 break;
-            case 'P' || 'CP':
+            case 'P':
+            case 'CP':
                 $sector = "PROTECCION";
                 break;
 
@@ -70,6 +76,8 @@ class ActivityClass implements ToCollection
             $activity = Activities::where('cod', ($search))->first();
 
             if (isset($activity)) {
+
+                if($search == 'H10')
 
                 $activity->sector =  $sector;
                 $activity->cod = $row[0];
