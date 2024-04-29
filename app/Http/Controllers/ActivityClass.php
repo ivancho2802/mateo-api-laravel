@@ -68,9 +68,9 @@ class ActivityClass implements ToCollection
                 'actividad' => $row[1],
                 'ID_M_USUARIOS' => $ID_USER
             ]);
+            dd("activity", $activity);
 
             if($activity > 0){
-                dd("activity", $activity);
 
                 $activity = Activities::where(['cod' => $row[0]]);
 
