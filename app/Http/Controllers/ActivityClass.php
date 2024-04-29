@@ -65,6 +65,7 @@ class ActivityClass implements ToCollection
             }
 
             $activity = Activities::where(['cod' => $row[0]])->first();
+            dd("activity", $activity);
 
             if (isset($activity)) {
 
