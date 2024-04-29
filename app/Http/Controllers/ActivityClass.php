@@ -61,8 +61,6 @@ class ActivityClass implements ToCollection
                 break;
         }
 
-        echo $sector . ' ---------- ' . $letterBegin; 
-
         foreach ($rows as $row) {
             /* if (!$row[0] || $row[0] == '') {
                 break;
@@ -77,9 +75,11 @@ class ActivityClass implements ToCollection
 
             $activity = Activities::where('cod', ($search))->first();
 
-            if (isset($activity)) {
+            if($search == 'P10')
+                dd("activity", $activity);
 
-                if($search == 'H10')
+            if (isset($activity)) {
+                
 
                 $activity->sector =  $sector;
                 $activity->cod = $row[0];
