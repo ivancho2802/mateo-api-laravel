@@ -64,24 +64,31 @@ class ActivityClass implements ToCollection
                 continue;
             }
 
-            echo $sector . $row[0] . $row[1];
+            $activity = Activities::where(['cod' => $row[0]])->first();
 
-            $activity = Activities::updateOrCreate(
-            ['cod' => utf8_encode($row[0])],
-            [
-                'sector' => $sector,
-                'cod' => $row[0],
-                'actividad' => $row[1],
-                'ID_M_USUARIOS' => $ID_USER
-            ]);
+            if (isset($activity)) {
+
+                $activity->sector =  $sector;
+                $activity->cod = $row[0];
+                $activity->actividad = $row[1];
+                $activity->ID_M_USUARIOS = $ID_USER;
+                $activity->save();
+            } else {
+                $activity = Activities::create([
+                    'sector' => $sector,
+                    'cod' => $row[0],
+                    'actividad' => $row[1],
+                    'ID_M_USUARIOS' => $ID_USER
+                ]);
+            }
 
             $activity = helper::convert_from_latin1_to_utf8_recursively($activity);
 
-            if(isset($activity)){
+            if (isset($activity)) {
 
                 $activity = Activities::where(['cod' => $row[0]])->first();
 
-                if(!isset($activity)){
+                if (!isset($activity)) {
                     dd("activity", $activity);
                 }
 
