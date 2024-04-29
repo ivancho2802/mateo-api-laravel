@@ -65,51 +65,36 @@ class ActivityClass implements ToCollection
                 continue;
             }
 
-            $search = ''.$row[0].'' ;
+            $search = '' . $row[0] . '';
 
-            echo '-----------'.$search.'-------------';
+            $activity = Activities::where('cod', ($search))->first();
 
-            if($search == 'P13'){
-                $activity = Activities::where('cod', 'P13')->first();
-                
+            if (isset($activity)) {
+
                 $activity->sector =  $sector;
                 $activity->cod = $row[0];
                 $activity->actividad = $row[1];
                 $activity->ID_M_USUARIOS = $ID_USER;
                 $activity->save();
-                $search = 'P13';
-            }else {
-
-                $activity = Activities::where('cod', pg_escape_string(utf8_encode($search)))->first();
-
-                if (isset($activity)) {
-    
-                    $activity->sector =  $sector;
-                    $activity->cod = $row[0];
-                    $activity->actividad = $row[1];
-                    $activity->ID_M_USUARIOS = $ID_USER;
-                    $activity->save();
-                    
-                } else {
-                    $activity = Activities::create([
-                        'sector' => $sector,
-                        'cod' => $row[0],
-                        'actividad' => $row[1],
-                        'ID_M_USUARIOS' => $ID_USER
-                    ]);
-                }
+            } else {
+                $activity = Activities::create([
+                    'sector' => $sector,
+                    'cod' => $row[0],
+                    'actividad' => $row[1],
+                    'ID_M_USUARIOS' => $ID_USER
+                ]);
             }
-            
+
             $activity = helper::convert_from_latin1_to_utf8_recursively($activity);
-            
+
             if (isset($activity)) {
-                
+
                 $activity = Activities::where(['cod' => $search])->first();
-                
+
                 if (!isset($activity)) {
                     dd("activity", $activity);
                 }
-                
+
                 $activities[] = $activity;
                 $id_activities[] = $activity->id;
             }
