@@ -70,12 +70,14 @@ class ActivityClass implements ToCollection
             ]);
 
             if($activity > 0){
+                dd("activity", $activity);
+
                 $activity = Activities::where(['cod' => $row[0]]);
 
                 if(!isset($activity)){
                     dd("activity", $activity);
                 }
-                
+
                 $activities[] = $activity;
                 $id_activities[] = $activity->get()->last()->id;
             }
