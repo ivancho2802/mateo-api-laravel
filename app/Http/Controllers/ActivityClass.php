@@ -8,11 +8,12 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\Importable;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\TraitDepartments;
 
 class ActivityClass implements ToCollection
 {
     //
-    use Importable;
+    use Importable, TraitDepartments;
 
     public function collection(Collection $rows)
     {
@@ -46,7 +47,7 @@ class ActivityClass implements ToCollection
                 $sector = "SALUD";
                 break;
             case 'P' || 'CP':
-                $sector = "PROTECCIÓN";
+                $sector = "PROTECCION";
                 break;
 
             default:
