@@ -64,9 +64,9 @@ class ActivityClass implements ToCollection
                 continue;
             }
 
-            $search = utf8_encode(($row[0]));
+            $search = ''.$row[0].'' ;
 
-            $activity = Activities::where(['cod' => $search])->first();
+            $activity = Activities::where('cod', pg_escape_string(utf8_encode($search)))->first();
 
             if (isset($activity)) {
 
