@@ -69,12 +69,13 @@ class ActivityClass implements ToCollection
             echo '-----------'.$search.'-------------';
 
             if($search == 'P13'){
-                $activity = Activities::create([
-                    'sector' => $sector,
-                    'cod' => 'P13',
-                    'actividad' => $row[1],
-                    'ID_M_USUARIOS' => $ID_USER
-                ]);
+                $activity = Activities::where('cod', 'P13')->first();
+                
+                $activity->sector =  $sector;
+                $activity->cod = $row[0];
+                $activity->actividad = $row[1];
+                $activity->ID_M_USUARIOS = $ID_USER;
+                $activity->save();
                 $search = 'P13';
             }else {
 
