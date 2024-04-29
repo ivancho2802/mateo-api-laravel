@@ -75,8 +75,6 @@ class ActivityClass implements ToCollection
                 'ID_M_USUARIOS' => $ID_USER
             ]);
 
-            dd($activity);
-
             if(isset($activity)){
 
                 $activity = Activities::where(['cod' => $row[0]])->first();
