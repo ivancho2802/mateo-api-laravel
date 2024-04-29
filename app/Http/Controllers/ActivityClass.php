@@ -64,8 +64,10 @@ class ActivityClass implements ToCollection
                 continue;
             }
 
+            echo $sector . $row[0] . $row[1];
+
             $activity = Activities::updateOrCreate(
-            ["'cod'" => $row[0]],
+            ["cod" => $row[0]],
             [
                 'sector' => $sector,
                 'cod' => $row[0],
