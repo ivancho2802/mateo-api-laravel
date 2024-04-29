@@ -62,7 +62,7 @@ class ActivityClass implements ToCollection
                 continue;
             }
 
-            $activity = Activities::create([
+            $activity = Activities::insertOrIgnore([
                 'sector' => $sector,
                 'cod' => $row[0],
                 'actividad' => $row[1],
