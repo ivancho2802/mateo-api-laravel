@@ -82,11 +82,11 @@ class ActivityClass implements ToCollection
                     'ID_M_USUARIOS' => $ID_USER
                 ]);
             }
+
+            
+            $activity = helper::convert_from_latin1_to_utf8_recursively($activity);
             
             dd("activity", $activity);
-
-            $activity = helper::convert_from_latin1_to_utf8_recursively($activity);
-
             if (isset($activity)) {
 
                 $activity = Activities::where(['cod' => $row[0]])->first();
