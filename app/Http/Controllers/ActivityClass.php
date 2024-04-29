@@ -61,6 +61,8 @@ class ActivityClass implements ToCollection
                 break;
         }
 
+        echo $sector . ' ---------- ' . $letterBegin; 
+
         foreach ($rows as $row) {
             /* if (!$row[0] || $row[0] == '') {
                 break;
