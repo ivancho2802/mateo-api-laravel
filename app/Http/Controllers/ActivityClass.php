@@ -67,7 +67,7 @@ class ActivityClass implements ToCollection
             echo $sector . $row[0] . $row[1];
 
             $activity = Activities::updateOrCreate(
-            ["cod" => $row[0]],
+            ["cod" => helper::convert_from_latin1_to_utf8_recursively($row[0])],
             [
                 'sector' => $sector,
                 'cod' => $row[0],
