@@ -454,7 +454,7 @@ Route::middleware(['auth:sanctum'])->get('/matriz/minas', [App\Http\Controllers\
 Route::middleware(['auth:sanctum'])->get('/matriz/MAPAEI', [App\Http\Controllers\MatrizController::class, 'getMAPAEI']);
 Route::middleware(['auth:sanctum'])->get('/matriz/MAPAEICustomDictionary', [App\Http\Controllers\MatrizController::class, 'getMAPAEICustomDictionary']);
 
-Route::post('/matriz/diccionario/download', [App\Http\Controllers\Media::class, 'downloadMediaMatriz']);
+Route::get('/matriz/diccionario/download', [App\Http\Controllers\Media::class, 'downloadMediaMatriz']);
 
 // jobs
 Route::middleware(['auth:sanctum'])->post('/job/deploy/{id}/{token}', [App\Http\Controllers\Jobs::class, 'exportByuui']);

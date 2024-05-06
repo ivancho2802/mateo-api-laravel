@@ -322,7 +322,7 @@
 
                         <div class="mb-3">
 
-                          <a target="_blank" class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4" type="button" href="http://localhost:3000/generate-founts/templates/diccionario_de_datos.csv">
+                          <a target="_blank" class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4" type="button" href="https://mireview.api.ach.dyndns.info/api/matriz/diccionario/download">
                             Descargar Template
                           </a>
                         </div>
