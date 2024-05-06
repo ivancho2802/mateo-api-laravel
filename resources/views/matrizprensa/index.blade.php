@@ -27,7 +27,12 @@
               <!-- Filters -->
               <form class="  lg:block">
 
-                <div class="relative border-b border-gray-200 py-6" x-data="{ isOpen: false }">
+                <div class="relative border-b border-gray-200 py-6" x-data="{
+                    isOpen: false, 
+                    set(value) {
+                      this.isOpen = value;
+                    }
+                  }">
 
                   <h3 class="-my-3 flow-root">
                     <!-- Expand/collapse section button -->
