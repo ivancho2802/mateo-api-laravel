@@ -19,16 +19,6 @@
     <div class="bg-white">
       <div>
 
-        <!--  <div x-data="{ isOpen: false }" class="relative ...">
-          <button type="button" @click="isOpen = !isOpen" class="...">
-            Options
-          </button>
-
-          <div x-show="isOpen"  >
-            a
-          </div>
-        </div> -->
-
         <main class="mx-auto  px-4 sm:px-6 lg:px-8">
 
           <section aria-labelledby="products-heading" class="pb-24 pt-6">
