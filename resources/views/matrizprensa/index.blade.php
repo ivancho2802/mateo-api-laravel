@@ -55,7 +55,7 @@
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                       <h1 class="h3 mb-3 fw-normal text-center">Formulario de generacion de matriz </h1>
 
-                      <form method="post" action="http://ach.dyndns.info:7777/generate-founts" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                      <form method="post" action="https://tools.api.ach.dyndns.info/generate-founts" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                         @csrf
 
                         <label for="exampleFormControlTextarea1" class="form-label">Pais de Busqueda</label>
@@ -160,7 +160,7 @@
 
                         <div class="mb-3">
 
-                          <a target="_blank" class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4" type="button" href="http://ach.dyndns.info:7777/generate-founts/templates/diccionario_de_datos.csv">
+                          <a target="_blank" class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4" type="button" href="https://tools.api.ach.dyndns.info/generate-founts/templates/diccionario_de_datos.csv">
                             Descargar Template
                           </a>
                         </div>
@@ -169,7 +169,7 @@
                         <x-primary-button class="mt-4">Enviar Datos</x-primary-button>
                       </form>
 
-                      <form method="post" action="http://ach.dyndns.info:7777/generate-founts" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                      <form method="post" action="https://tools.api.ach.dyndns.info/generate-founts" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
 
 
                       </form>
@@ -201,7 +201,7 @@
                   <div class="pt-6" id="filter-section-1" x-show="isOpenB">
                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 
-                      <form method="post" action="http://ach.dyndns.info:7777/generate-founts-lite" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                      <form method="post" action="https://tools.api.ach.dyndns.info/generate-founts-lite" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
 
                         <h1 class="h3 mb-3 fw-normal text-center">Formulario de generacion de matriz </h1>
 
