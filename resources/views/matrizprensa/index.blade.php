@@ -27,7 +27,7 @@
               <!-- Filters -->
               <form class="  lg:block">
 
-                <div class="relative border-b border-gray-200 py-6" x-data="{
+                <div class="relative border-b border-gray-200 py-6" x-init="isOpen=false" x-data="{
                     isOpen: false, 
                     set(value) {
                       this.isOpen = value;
