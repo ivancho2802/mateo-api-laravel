@@ -278,7 +278,7 @@ https://www.hostinger.co/tutoriales/instalar-postgresql-ubuntu
 ## agregando credenciales ssh a linux y github
 
 crear keys
-    ssh-keygen -t ed25519-sk -C "your_email@example.com"
+    ssh-keygen -t ed25519  -C "iodiaz@co.acfspain.org" iodiaznameforkeys
 
 agregar key a linux la privada con la credencial creada v24150144
     ssh-add ~/.ssh/ach-iodiazacf
@@ -292,3 +292,6 @@ agregar la key a github
 
 cuando no haya coneccion reparar el error con 
 ssh-agent -s
+
+eval `ssh-agent -s`
+ssh-add
