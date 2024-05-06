@@ -15,6 +15,20 @@ class MatrizController extends Controller
 {
   use TraitDepartments;
 
+
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+    //
+    //$urls = Url::with('user')->latest()->get();
+
+    return view('matrizprensa.index');
+  }
+
   //
   function stored(Request $request)
   {
@@ -951,23 +965,21 @@ class MatrizController extends Controller
             //["PIERNAS" => "PIERNA"    ]
             $filteredWord->each(function ($valueF, $keyF) use ($diccionary, $matriz) {
 
-              if(isset($valueF) && ($valueF) !== ""){
+              if (isset($valueF) && ($valueF) !== "") {
                 //dd($matriz[$valueF], $diccionary[$valueF]);
                 if (!isset($diccionary[$valueF])) {
                   $matriz[$valueF] = 0;
                   //$matriz[$valueF . 'group'] = $keyF;
                 } else {
                   $matriz[$valueF] = $diccionary[$valueF];
-                  if(!isset($matriz['group'])){
+                  if (!isset($matriz['group'])) {
                     $matriz['group'] = '';
                   }
-                  if(stripos($matriz['group'], $keyF) === false){
+                  if (stripos($matriz['group'], $keyF) === false) {
                     $matriz['group'] .= $keyF . ', ';
-
                   }
                 }
               }
-
             });
           }
 
@@ -987,6 +999,6 @@ class MatrizController extends Controller
     $matrizMinasMathechedGroupedC = collect($matrizMinasMathechedGrouped);
     $matrizMinasMathechedGroupedC = $matrizMinasMathechedGroupedC->sortBy("id");
 
-    return ["group" => $matrizMinasMathechedGroupedC->values()->all()];//, 'total' => $matrizMinasMatheched
+    return ["group" => $matrizMinasMathechedGroupedC->values()->all()]; //, 'total' => $matrizMinasMatheched
   }
 }

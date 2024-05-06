@@ -90,7 +90,7 @@ Route::prefix('meal')->group(function () {
   //quejas y reclamos
   Route::get('/mqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);
 
-  Route::post('/mqr/download/path', [App\Http\Controllers\Media::class, 'downloadMediaPqrPath']);
+  Route::post('/mqr/download/path', [App\Http\Controllers\Media::class, 'downloadMediaPqrPath']);  
 
   Route::post('/mqr/upload', [App\Http\Controllers\PersonComplainted::class, 'stored']);
 
@@ -453,6 +453,8 @@ Route::middleware(['auth:sanctum'])->get('/matriz/minas', [App\Http\Controllers\
 
 Route::middleware(['auth:sanctum'])->get('/matriz/MAPAEI', [App\Http\Controllers\MatrizController::class, 'getMAPAEI']);
 Route::middleware(['auth:sanctum'])->get('/matriz/MAPAEICustomDictionary', [App\Http\Controllers\MatrizController::class, 'getMAPAEICustomDictionary']);
+
+Route::post('/matriz/diccionario/download', [App\Http\Controllers\Media::class, 'downloadMediaMatriz']);
 
 // jobs
 Route::middleware(['auth:sanctum'])->post('/job/deploy/{id}/{token}', [App\Http\Controllers\Jobs::class, 'exportByuui']);

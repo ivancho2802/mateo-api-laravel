@@ -67,6 +67,19 @@ class Media extends Controller
     }
 
 
+    function downloadMediaMatriz()
+    {
+
+        $headers = array(
+            'Content-Type: application/vnd.ms-excel',
+        );
+        
+        $filename = "diccionario_de_datos_lite.csv";
+        $path = (public_path() . '/download/' . $filename);
+
+        // Download file with custom headers
+        return response()->download($path, $filename, $headers);
+    }
 
     
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UrlController;
 use App\Http\Controllers\QrCodeController;
+use App\Http\Controllers\MatrizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::get('/dashboard', function () {
 Route::resource('urls', UrlController::class)
 ->middleware(['auth']);//, 'verified'
 
+Route::resource('matrizprensa', MatrizController::class);
+//->middleware(['auth']);//, 'verified'
 
 // route for get shortener url
 Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
