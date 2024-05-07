@@ -169,11 +169,6 @@
                         <x-primary-button class="mt-4">Enviar Datos</x-primary-button>
                       </form>
 
-                      <form method="post" action="https://tools.api.ach.dyndns.info/generate-founts" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
-
-
-                      </form>
-
                     </div>
                   </div>
 
@@ -199,7 +194,8 @@
                   </h3>
                   <!-- Filter section, show/hide based on section state. -->
                   <div class="pt-6" id="filter-section-1" x-show="isOpenB">
-                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                    <div x-data="{ loader: false }" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
 
                       <form method="post" action="https://tools.api.ach.dyndns.info/generate-founts-lite" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
 
@@ -248,7 +244,7 @@
                         </div>
 
                         <div class="row">
- 
+
                           <div class="col">
 
                             <div class="mb-3">
@@ -323,9 +319,20 @@
                         </div>
 
                         <!-- <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar Datos</button> -->
-                        <x-primary-button class="mt-4">Enviar Datos</x-primary-button>
+                        <x-primary-button class="mt-4" name="generate-founts-lite">Enviar Datos</x-primary-button>
+                        <!-- <button class="mt-4" name="generate-founts-lite" type="button">Enviar Datos</button> -->
 
-                        <p class="mt-5 mb-3 text-muted">&copy; 2023–2024</p>
+                        <div x-show="loader" x-on:click.document="if($event.target && $event.target.name == 'generate-founts-lite') {loader = true;console.log('>>>', $event.target && $event.target.name == 'generate-founts-lite');} else {loader = false;console.log($event);}" x-on:load.window="loader = false" x-transition.opacity.duration.1000ms   x-transition.opacity.duration.1000ms class="w-screen h-screen absolute left-0 top-0 z-50 bg-gray-500 items-center text-center" style="height: 250vh;">
+                          <div class="" style="height: 100%;    display: grid;    vertical-align: middle;    align-items: center;">
+
+                            <p class="text-white">
+                              Cargando ...
+
+                            </p>
+                          </div>
+
+                        </div>
+
                       </form>
 
                     </div>
