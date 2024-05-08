@@ -433,7 +433,7 @@
       @endif
 
       <div class="flex justify-center pt-8 sm:justify-center sm:pt-0 bg-white ">
-        <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/Bandera_Logos_MIRE.png" class="h-16 w-auto text-gray-700 sm:h-20" />
+        <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/TIRA_MIRE+_SOCIOS_DONANTES_COLOR.png" class="h-16 w-auto text-gray-700 sm:h-20" />
 
       </div>
 
