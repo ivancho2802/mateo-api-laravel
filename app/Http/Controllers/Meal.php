@@ -694,14 +694,23 @@ class Meal extends Controller
 
                 $pregunta_respuesta = collect($pregunta_respuesta);
 
-                $pregunta_respuesta->each(function($respuestas, $preguntas) use ($pregunta_respuesta){
-
-                    if($preguntas== 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten'){
-                        $pregunta_respuesta['elementos_hogar_permiten.' . $respuestas] = 1;
-                        $pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestas => 1]);
-                    }
-                    
+                $filtered = $pregunta_respuesta->filter(function ( $value,  $key) {
+                    return $key == 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten';
                 });
+                 
+                $respuestas = $filtered->first();
+
+                //$pregunta_respuesta->each(function($respuestas, $preguntas) use ($pregunta_respuesta){
+
+                    //if($preguntas== 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten'){
+                        if(isset($respuestas)){
+                            $pregunta_respuesta['elementos_hogar_permiten.' . $respuestas] = 1;
+                            $pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestas => 1]);
+
+                        }
+                    //}
+                    
+                //});
 
                /*  if($pregunta == 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten'){
 
