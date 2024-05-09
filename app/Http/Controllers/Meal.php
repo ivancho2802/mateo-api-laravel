@@ -685,25 +685,41 @@ class Meal extends Controller
                     //dd($respuesta->VALOR, $respuesta->pregunta);
                     
                     $objectPresuntaRespuesta[$respuesta->pregunta->CAMPO1] = $respuesta->VALOR;
-
-                    if($respuesta->pregunta->CAMPO1 == 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten'){
-
-                        $elementsRespuesta = collect(explode(" ", $respuesta->VALOR));
-                        
-                        $elementsRespuesta->each(function ($eleme) use ($objectPresuntaRespuesta){
-                            $eleme = str_replace("\"", "", $eleme);
-                            $objectPresuntaRespuesta['elementos_hogar_permiten.' . $eleme] = 1;
-                            
-                            $objectPresuntaRespuesta = $objectPresuntaRespuesta->merge(['elementos_hogar_permiten' . $eleme => 1]);
-
-                        });
-
-                        //dd("objectPresuntaRespuesta", $objectPresuntaRespuesta);
-
-                    }
                 });
 
                 $mmpdsArray->push($objectPresuntaRespuesta);
+            });
+
+            $mmpdsArray = $mmpdsArray->map(function (  $pregunta_respuesta)  {
+
+                $pregunta_respuesta = collect($pregunta_respuesta);
+
+                $pregunta_respuesta->each(function($respuestas, $preguntas) use ($pregunta_respuesta){
+
+                    if($preguntas== 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten'){
+                        $pregunta_respuesta['elementos_hogar_permiten.' . $respuestas] = 1;
+                        $pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestas => 1]);
+                    }
+                    
+                });
+
+               /*  if($pregunta == 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten'){
+
+                    $elementsRespuesta = collect(explode(" ", $respuesta->VALOR));
+                    
+                    $elementsRespuesta->each(function ($eleme) use ($objectPresuntaRespuesta){
+                        $eleme = str_replace("\"", "", $eleme);
+                        $objectPresuntaRespuesta['elementos_hogar_permiten.' . $eleme] = 1;
+                        
+                        $objectPresuntaRespuesta = $objectPresuntaRespuesta->merge(['elementos_hogar_permiten' . $eleme => 1]);
+
+                    });
+
+                    //dd("objectPresuntaRespuesta", $objectPresuntaRespuesta);
+
+                } */
+
+                return $pregunta_respuesta;
             });
         }
 
