@@ -689,10 +689,16 @@ class Meal extends Controller
                     if($respuesta->pregunta->CAMPO1 == 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten'){
 
                         $elementsRespuesta = collect(explode(" ", $respuesta->VALOR));
+                        
+                        $elementsRespuesta->each(function ($eleme) use ($objectPresuntaRespuesta){
+                            $eleme = str_replace("\"", "", $eleme);
+                            $objectPresuntaRespuesta['elementos_hogar_permiten.' . $eleme] = 1;
+                            
+                            $objectPresuntaRespuesta = $objectPresuntaRespuesta->merge(['elementos_hogar_permiten' . $eleme => 1]);
 
-                        $elementsRespuesta->each(function ($eleme) {
-                            $objectPresuntaRespuesta['elementos_hogar_permiten' . $eleme] = 1;
                         });
+
+                        //dd("objectPresuntaRespuesta", $objectPresuntaRespuesta);
 
                     }
                 });
