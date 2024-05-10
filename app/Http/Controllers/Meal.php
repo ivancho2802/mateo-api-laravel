@@ -683,8 +683,8 @@ class Meal extends Controller
                 //$formulario [{VALOR: "", pregunta: {ROTULO}}, {VALOR: "", pregunta: {ROTULO}}]
                 $formulario->each(function ($respuesta) use ($objectPresuntaRespuesta) {
                     //dd($respuesta->VALOR, $respuesta->pregunta);
-
-                    $objectPresuntaRespuesta[$respuesta->pregunta->CAMPO1] = $respuesta->VALOR;
+                    $valor = $respuesta->VALOR;
+                    $objectPresuntaRespuesta[$respuesta->pregunta->CAMPO1] = trim($valor,'"');
                 });
 
                 $mmpdsArray->push($objectPresuntaRespuesta);
