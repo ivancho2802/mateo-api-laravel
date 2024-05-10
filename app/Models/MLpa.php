@@ -16,7 +16,7 @@ class MLpa extends Model
     protected $table = 'M_LPAS';
 
     public $incrementing = false;
-
+    protected $appends = ['tipo_lpa'];
     /**
      * The attributes that are mass assignable.
      *
@@ -61,6 +61,7 @@ class MLpa extends Model
         //respuesta rapida fase 1, fase 2
         //recuperacion temprana fase 3, 4, 5
         $fase = '';
+        $this->load(['actividad.directory']);
 
         if(isset($this->FASE_ATENCION)){
             $fase = $this->FASE_ATENCION;

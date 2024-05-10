@@ -61,7 +61,7 @@ class Meal extends Controller
 
         $mlpasFormated = $mlpas->map(function ($lpa) {
             //$lpa->load('actividad.directory');
-            $lpa->append('tipo_lpa');
+            //$lpa->append('tipo_lpa');
             $lpa->persona->append('edad');
             $lpaArray = $lpa->toArray();
             $lpaDoted = Arr::dot($lpaArray);
