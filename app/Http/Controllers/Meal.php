@@ -723,7 +723,7 @@ class Meal extends Controller
                     for ($i = 0; $i < count($respuestaArray); $i++) {
                         # code...
                         $pregunta_respuesta['elementos_hogar_permiten.' . $respuestaArray[$i]] = 1;
-                        $pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestaArray[$i] => 1]);
+                        //$pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestaArray[$i] => 1]);
                     }
                 }
                 
@@ -752,9 +752,6 @@ class Meal extends Controller
                         $pregunta_respuesta['MEA 2_ conoce personas'] = "0";
                 }
                 
-                /* 
-                
-                
                 //columna sexo
                 $filtered_sexo = $pregunta_respuesta->filter(function ($value,  $key) {
                     return $key == 'group_df15y81/_1e_Sexo';
@@ -766,7 +763,7 @@ class Meal extends Controller
                     $pregunta_respuesta['SEXO'] = $respuestas_sexo == 'option_1' ? 'Hombre' : 'Mujer';
                 }
 
-                */
+               
                 return $pregunta_respuesta;
             });
         }
