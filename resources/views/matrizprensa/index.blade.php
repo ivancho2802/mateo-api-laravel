@@ -343,7 +343,7 @@
                         <x-primary-button class="mt-4" name="generate-founts-lite">Enviar Datos</x-primary-button>
                         <!-- <button class="mt-4" name="generate-founts-lite" type="button">Enviar Datos</button> -->
 
-                        <div x-show="loader" x-on:click.document="if($event.target && $event.target.name == 'generate-founts-lite') {loader = true;console.log('>>>', $event.target && $event.target.name == 'generate-founts-lite');} else {loader = false;console.log($event);}" x-on:load.window="loader = false" x-transition.opacity.duration.1000ms x-transition.opacity.duration.1000ms class="w-screen h-screen absolute left-0 top-0 z-50 bg-gray-500 items-center text-center" style="height: 250vh;">
+                        <div x-show="loader" x-on:click.document="if($event.target && $event.target.name == 'generate-founts-lite') {loader = true;console.log('>>>', $event.target && $event.target.name == 'generate-founts-lite');} else {loader = false;console.log($event);}" x-on:load.window="loader = false" x-transition.opacity.duration.1000ms x-transition.opacity.duration.1000ms class="w-screen h-screen absolute left-0 top-0 z-50 bg-gray-500 items-center text-center" ><!-- style="height: 250vh;" -->
                           <div class="" style="height: 100%;    display: grid;    vertical-align: middle;    align-items: center;">
 
                             <p class="text-white">
