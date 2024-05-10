@@ -31,7 +31,7 @@ class Meal extends Controller
 
     function getLpa(Request $request)
     {
-        
+
         $limit_minutes = 800;
         ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
         ini_set('memory_limit', '2044M');
@@ -40,11 +40,12 @@ class Meal extends Controller
         ini_set('max_input_time', '' . $limit_minutes . '');
 
         if ($request->pagination) {
-            $mlpas = MLpa::paginate(5);//where("FECHA_ATENCION", ">=", "2024-01-01")->
+            $mlpas = MLpa::paginate(5); //where("FECHA_ATENCION", ">=", "2024-01-01")->
             $mlpas->load(['emergencia', 'actividad']);
             return $mlpas;
         } else {
-            $mlpas = MLpa::get();//where("FECHA_ATENCION", ">=", "2024-01-01")
+            $mlpas = MLpa::get(); //where("FECHA_ATENCION", ">=", "2024-01-01")
+            //$mlpas = MLpa::limit(1000); //where("FECHA_ATENCION", ">=", "2024-01-01")
         }
 
         //PONER LA PERSONA CON SU EDAD
@@ -56,14 +57,14 @@ class Meal extends Controller
         //=SI(AM2="";"";SI(AM2<=4;"0 to 4";SI(AM2<=9;"5 to 9";SI(AM2<=14;"10 to 14";SI(AM2<=18;"15 to 18";SI(AM2<=29;"19 to 29";SI(AM2<=59;"30 to 59";SI(AM2>=60;"> 60"))))))))
 
         $mlpas->load(['emergencia', 'actividad', 'persona']);
-  
 
-        $mlpasFormated = $mlpas->map(function ( $lpa) {
+
+        $mlpasFormated = $mlpas->map(function ($lpa) {
             $lpa->load('actividad.directory');
             $lpa->append('tipo_lpa');
             $lpa->persona->append('edad');
             $lpaArray = $lpa->toArray();
-            $lpaDoted = Arr::dot($lpaArray); 
+            $lpaDoted = Arr::dot($lpaArray);
             return  $lpaDoted;
         });
 
@@ -82,7 +83,7 @@ class Meal extends Controller
     function getLpaSeg(Request $request)
     {
         if ($request->pagination) {
-            $mlpas = MLpa::paginate(5);//where("FECHA_ATENCION", ">=", "2024-01-01")->
+            $mlpas = MLpa::paginate(5); //where("FECHA_ATENCION", ">=", "2024-01-01")->
             $mlpas->load(['emergencia', 'actividad']);
             return $mlpas;
         } else {
@@ -95,7 +96,7 @@ class Meal extends Controller
             ini_set('max_input_time', '' . $limit_minutes . '');
 
 
-            $mlpas = MLpa::get();//where("FECHA_ATENCION", ">=", "2024-01-01")->
+            $mlpas = MLpa::get(); //where("FECHA_ATENCION", ">=", "2024-01-01")->
         }
 
         //PONER LA PERSONA CON SU EDAD
@@ -132,10 +133,10 @@ class Meal extends Controller
         CODIGO_ALERTA
         FROM V_M_KOBO_FORMULARIOS WHERE ID_M_FORMULARIOS = '0012';"); */
 
-        $mlpasFormated = $mlpas->map(function ( $lpa) {
+        $mlpasFormated = $mlpas->map(function ($lpa) {
             $lpa->persona->append('edad');
             $lpaArray = $lpa->toArray();
-            $lpaDoted = Arr::dot($lpaArray); 
+            $lpaDoted = Arr::dot($lpaArray);
             return  $lpaDoted;
         });
 
@@ -148,7 +149,7 @@ class Meal extends Controller
         ];
     }
 
-    
+
 
     /**
      * funcion para generar graficos en mire sys
@@ -324,7 +325,7 @@ class Meal extends Controller
             } 
         }
     }
-    * resultados lleno
+     * resultados lleno
     {
         "tabla": {
             "registro": [
@@ -577,34 +578,33 @@ class Meal extends Controller
         $graficaSql = '';
 
         //SELECT * FROM (SELECT * FROM V_M_GRAFICOS WHERE CLASE LIKE 'LPA%' ) ORDER BY ORDEN ROWS 1 TO 1000
-        
+
         $grafica = mGraficos::where([
-            "ID_M_GRAFICOS"=>$request->ID_M_GRAFICOS
+            "ID_M_GRAFICOS" => $request->ID_M_GRAFICOS
         ])->where("CLASE", "LIKE", "LPA%")
-        ->orderBy('ORDEN')
-        ->limit(1000)
-        ->first();
+            ->orderBy('ORDEN')
+            ->limit(1000)
+            ->first();
 
         // {CONDICION1}, {FECHA_DESDE}" '01/01/2021' AND "{FECHA_HASTA}" '12/31/2024'
         $matrizSqlGraficos = Config::get('app.matrizSqlGraficos');
 
-        if($request->ID_M_GRAFICOS){// == '00146' || $request->ID_M_GRAFICOS == '00145'
+        if ($request->ID_M_GRAFICOS) { // == '00146' || $request->ID_M_GRAFICOS == '00145'
 
-            $graficaSql = $matrizSqlGraficos[$request->ID_M_GRAFICOS];//'lpaetnia'
-                
-            if(optional($grafica->CONDICION1)){
+            $graficaSql = $matrizSqlGraficos[$request->ID_M_GRAFICOS]; //'lpaetnia'
+
+            if (optional($grafica->CONDICION1)) {
                 $graficaSql = str_replace("{CONDICION1}", $grafica->CONDICION1, $graficaSql);
             }
-            
-            if(optional($grafica->FECHA_DESDE)){
+
+            if (optional($grafica->FECHA_DESDE)) {
                 $graficaSql = str_replace("{FECHA_DESDE}", $grafica->FECHA_DESDE, $graficaSql);
             }
 
-            if(optional($grafica->FECHA_HASTA)){
+            if (optional($grafica->FECHA_HASTA)) {
                 $graficaSql = str_replace("{FECHA_HASTA}", $grafica->FECHA_HASTA, $graficaSql);
             }
-
-        }else {
+        } else {
             return [
                 "tabla" => [
                     "registro" => [],
@@ -653,78 +653,62 @@ class Meal extends Controller
      */
     function geMpd(Request $request)
     {
-        
+
         ini_set('memory_limit', '2044M');
         set_time_limit(3000000); //0
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
         $mmpds = MKoboRespuestas::pdm()
-        ->get()
-        ->groupBy('_ID');
+            ->get()
+            ->groupBy('_ID');
 
         $mmpds = $mmpds
-        ->map(function ($formulario) {
-            $formulario->load(['pregunta']);
-            return $formulario;
-        });
+            ->map(function ($formulario) {
+                $formulario->load(['pregunta']);
+                return $formulario;
+            });
 
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
         } else {
             $mmpdsArray = collect([]);
-            
+
             $mmpdsValues = ($mmpds)->values();
 
 
-            $mmpdsValues->each(function ($formulario) use ($mmpdsArray){
+            $mmpdsValues->each(function ($formulario) use ($mmpdsArray) {
 
                 $objectPresuntaRespuesta = collect();
                 //$formulario [{VALOR: "", pregunta: {ROTULO}}, {VALOR: "", pregunta: {ROTULO}}]
-                $formulario->each(function ($respuesta) use ($objectPresuntaRespuesta){
+                $formulario->each(function ($respuesta) use ($objectPresuntaRespuesta) {
                     //dd($respuesta->VALOR, $respuesta->pregunta);
-                    
+
                     $objectPresuntaRespuesta[$respuesta->pregunta->CAMPO1] = $respuesta->VALOR;
                 });
 
                 $mmpdsArray->push($objectPresuntaRespuesta);
             });
 
-            $mmpdsArray = $mmpdsArray->map(function (  $pregunta_respuesta)  {
+            $mmpdsArray = $mmpdsArray->map(function ($pregunta_respuesta) {
 
                 $pregunta_respuesta = collect($pregunta_respuesta);
 
-                $filtered = $pregunta_respuesta->filter(function ( $value,  $key) {
+                $filtered = $pregunta_respuesta->filter(function ($value,  $key) {
                     return $key == 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten';
                 });
-                 
+
                 $respuestas = $filtered->first();
 
-                    //if($preguntas== 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten'){
-                        if(isset($respuestas)){
-                            $pregunta_respuesta['elementos_hogar_permiten.' . $respuestas] = 1;
-                            $pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestas => 1]);
-
-                        }
-                    //}
-                    
-                //});
-
-               /*  if($pregunta == 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten'){
-
-                    $elementsRespuesta = collect(explode(" ", $respuesta->VALOR));
-                    
-                    $elementsRespuesta->each(function ($eleme) use ($objectPresuntaRespuesta){
-                        $eleme = str_replace("\"", "", $eleme);
-                        $objectPresuntaRespuesta['elementos_hogar_permiten.' . $eleme] = 1;
-                        
-                        $objectPresuntaRespuesta = $objectPresuntaRespuesta->merge(['elementos_hogar_permiten' . $eleme => 1]);
-
-                    });
-
-                    //dd("objectPresuntaRespuesta", $objectPresuntaRespuesta);
-
-                } */
+                if (isset($respuestas)) {
+                    $respuestaArray = explode(' ', $respuestas);
+                    for ($i=0; $i <count($respuestaArray) ; $i++) { 
+                        # code...
+                        $respuestaArray[$i];
+                        $pregunta_respuesta['elementos_hogar_permiten.' . $respuestaArray[$i]] = 1;
+                        $pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestaArray[$i] => 1]);
+                    }
+                }
 
                 return $pregunta_respuesta;
             });
