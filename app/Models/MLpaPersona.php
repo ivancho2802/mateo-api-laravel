@@ -58,7 +58,7 @@ class MLpaPersona extends Model
 
     ];
 
-    //protected $appends = ['edad'];
+    protected $appends = ['edad'];
 
     /**
      * calculo de la edad apartie de la fecha de nacimiento
