@@ -711,7 +711,7 @@ class Meal extends Controller
 
                 $pregunta_respuesta = collect($pregunta_respuesta);
 
-                /* $filtered_elem_ogar = $pregunta_respuesta->filter(function ($value,  $key) {
+                $filtered_elem_ogar = $pregunta_respuesta->filter(function ($value,  $key) {
                     return $key == 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten';
                 });
 
@@ -726,6 +726,8 @@ class Meal extends Controller
                         $pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestaArray[$i] => 1]);
                     }
                 }
+                
+                /* 
 
                 //columna sexo
                 $filtered_sexo = $pregunta_respuesta->filter(function ($value,  $key) {
