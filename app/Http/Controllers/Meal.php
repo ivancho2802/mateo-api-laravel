@@ -704,7 +704,6 @@ class Meal extends Controller
                     $respuestaArray = explode(' ', $respuestas);
                     for ($i=0; $i <count($respuestaArray) ; $i++) { 
                         # code...
-                        $respuestaArray[$i];
                         $pregunta_respuesta['elementos_hogar_permiten.' . $respuestaArray[$i]] = 1;
                         $pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestaArray[$i] => 1]);
                     }
