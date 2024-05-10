@@ -684,7 +684,7 @@ class Meal extends Controller
                 $formulario->each(function ($respuesta) use ($objectPresuntaRespuesta) {
                     //dd($respuesta->VALOR, $respuesta->pregunta);
                     $valor = $respuesta->VALOR;
-                    $objectPresuntaRespuesta[$respuesta->pregunta->CAMPO1] = trim($valor,'"');
+                    $objectPresuntaRespuesta[$respuesta->pregunta->CAMPO1] = trim($valor, '"');
                 });
 
                 $mmpdsArray->push($objectPresuntaRespuesta);
@@ -694,19 +694,56 @@ class Meal extends Controller
 
                 $pregunta_respuesta = collect($pregunta_respuesta);
 
-                $filtered = $pregunta_respuesta->filter(function ($value,  $key) {
+                $filtered_elem_ogar = $pregunta_respuesta->filter(function ($value,  $key) {
                     return $key == 'group_rr4kx59/group_qx4of81/_OPO_2_Tiene_elem_ogar_que_le_permiten';
                 });
 
-                $respuestas = $filtered->first();
+                //columna seleccion multiple
+                $respuestas_elem_ogar = $filtered_elem_ogar->first();
 
-                if (isset($respuestas)) {
-                    $respuestaArray = explode(' ', $respuestas);
-                    for ($i=0; $i <count($respuestaArray) ; $i++) { 
+                if (isset($respuestas_elem_ogar)) {
+                    $respuestaArray = explode(' ', $respuestas_elem_ogar);
+                    for ($i = 0; $i < count($respuestaArray); $i++) {
                         # code...
                         $pregunta_respuesta['elementos_hogar_permiten.' . $respuestaArray[$i]] = 1;
                         $pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestaArray[$i] => 1]);
                     }
+                }
+
+                //columna sexo
+                $filtered_sexo = $pregunta_respuesta->filter(function ($value,  $key) {
+                    return $key == 'group_df15y81/_1e_Sexo';
+                });
+
+                $respuestas_sexo = $filtered_sexo->first();
+
+                if (isset($respuestas_sexo)) {
+                    $pregunta_respuesta['SEXO'] = $respuestas_sexo == 'option_1' ? 'Hombre' : 'Mujer';
+                }
+
+                //
+                $filtered_conoce_personas = $pregunta_respuesta->filter(function ($value,  $key) {
+                    return $key == 'group_lf0rj78/_MEA_2_Conoce_personas_de_s';
+                });
+
+                $respuestas_conoce_personas = $filtered_conoce_personas->first();
+
+                if (isset($respuestas_conoce_personas)) {
+
+                    if ($respuestas_conoce_personas == 'si')
+                        $pregunta_respuesta['MEA 2_ conoce personas'] = "Si, muchos";
+                    else if ($respuestas_conoce_personas ==  "tal_vez")
+                        $pregunta_respuesta['MEA 2_ conoce personas'] = "Si, pocos";
+                    else if ($respuestas_conoce_personas ==  "no")
+                        $pregunta_respuesta['MEA 2_ conoce personas'] = "No muchos";
+                    else if ($respuestas_conoce_personas ==  "no_sabe___no_responde")
+                        $pregunta_respuesta['MEA 2_ conoce personas'] = "En absoluto";
+                    else if ($respuestas_conoce_personas ==  "no_lo_s")
+                        $pregunta_respuesta['MEA 2_ conoce personas'] = "No lo sé";
+                    else if ($respuestas_conoce_personas ==  "sin_respuesta")
+                        $pregunta_respuesta['MEA 2_ conoce personas'] = "Sin respuesta";
+                    else
+                        $pregunta_respuesta['MEA 2_ conoce personas'] = "0";
                 }
 
                 return $pregunta_respuesta;
