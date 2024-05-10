@@ -45,7 +45,7 @@ class Meal extends Controller
             return $mlpas;
         } else {
             
-            $mlpas = MLpa::limit(5000)->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")
+            $mlpas = MLpa::limit(50000)->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")
         }
 
         //PONER LA PERSONA CON SU EDAD
@@ -727,19 +727,6 @@ class Meal extends Controller
                     }
                 }
                 
-                /* 
-
-                //columna sexo
-                $filtered_sexo = $pregunta_respuesta->filter(function ($value,  $key) {
-                    return $key == 'group_df15y81/_1e_Sexo';
-                });
-
-                $respuestas_sexo = $filtered_sexo->first();
-
-                if (isset($respuestas_sexo)) {
-                    $pregunta_respuesta['SEXO'] = $respuestas_sexo == 'option_1' ? 'Hombre' : 'Mujer';
-                }
-
                 //
                 $filtered_conoce_personas = $pregunta_respuesta->filter(function ($value,  $key) {
                     return $key == 'group_lf0rj78/_MEA_2_Conoce_personas_de_s';
@@ -764,7 +751,22 @@ class Meal extends Controller
                     else
                         $pregunta_respuesta['MEA 2_ conoce personas'] = "0";
                 }
- */
+                
+                /* 
+                
+                
+                //columna sexo
+                $filtered_sexo = $pregunta_respuesta->filter(function ($value,  $key) {
+                    return $key == 'group_df15y81/_1e_Sexo';
+                });
+                
+                $respuestas_sexo = $filtered_sexo->first();
+                
+                if (isset($respuestas_sexo)) {
+                    $pregunta_respuesta['SEXO'] = $respuestas_sexo == 'option_1' ? 'Hombre' : 'Mujer';
+                }
+
+                */
                 return $pregunta_respuesta;
             });
         }
