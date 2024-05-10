@@ -78,6 +78,7 @@ class MLpa extends Model
         if ($fase == 'FASE 1' || $fase == 'FASE 2') {
             $tipoLpa = 'Respuesta Rapida';
         }
+        $tipoLpa = 'Respuesta Rapida';
 
         return $tipoLpa;
     }
