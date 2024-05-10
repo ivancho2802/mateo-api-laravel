@@ -62,6 +62,7 @@ class MLpa extends Model
         //recuperacion temprana fase 3, 4, 5
         $fase = '';
         $this->load(['actividad.directory']);
+        //dd("actividad", $this->actividad->directory->fase);
 
         if(isset($this->FASE_ATENCION)){
             $fase = $this->FASE_ATENCION;
