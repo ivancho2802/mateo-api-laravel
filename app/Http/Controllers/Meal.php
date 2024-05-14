@@ -690,8 +690,6 @@ class Meal extends Controller
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
         } else {
 
-            return  count($mmpds);
-
             $mmpdsArray = collect([]);
 
             $mmpdsValues = ($mmpds)->values();
