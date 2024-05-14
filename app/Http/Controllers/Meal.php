@@ -32,12 +32,12 @@ class Meal extends Controller
     function getLpa(Request $request)
     {
 
-        /* $limit_minutes = 800;
+        $limit_minutes = 800;
         ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
         ini_set('memory_limit', '2044M');
         set_time_limit($limit_minutes); //0
         ini_set('max_execution_time', '' . $limit_minutes . '');
-        ini_set('max_input_time', '' . $limit_minutes . ''); */
+        ini_set('max_input_time', '' . $limit_minutes . '');
 
         if ($request->pagination) {
             $mlpas = MLpa::paginate(5); //where("FECHA_ATENCION", ">=", "2024-01-01")->
@@ -72,7 +72,7 @@ class Meal extends Controller
 
         return [
             "lpas" => $flattenedMlpas,
-            "analisis" => Analisis::where(["type" => "LPA"])->get(),
+            //"analisis" => Analisis::where(["type" => "LPA"])->get(),
             //"erns" => $erns
         ];
     }
