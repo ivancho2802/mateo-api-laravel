@@ -689,6 +689,9 @@ class Meal extends Controller
         if ($request->pagination) {
             $mmpdsArray = $this->paginateCollection($mmpds, 10);
         } else {
+
+            return  count($mmpds);
+
             $mmpdsArray = collect([]);
 
             $mmpdsValues = ($mmpds)->values();
@@ -767,6 +770,8 @@ class Meal extends Controller
                 return $pregunta_respuesta;
             });
         }
+
+
 
         return  $mmpdsArray;
     }

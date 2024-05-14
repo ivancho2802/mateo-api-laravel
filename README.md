@@ -200,6 +200,12 @@ docker run -d -p 80:80 ach-api-laravel
 cat /etc/issue
 Debian GNU/Linux 11 \n \l
 
+## architecture
+
+    dpkg --print-architecture
+amd64
+
+
 ## para intalar potgresq directo
 
 https://www.devart.com/dbforge/postgresql/how-to-install-postgresql-on-linux/
@@ -295,3 +301,17 @@ ssh-agent -s
 
 eval `ssh-agent -s`
 ssh-add
+
+## como ver las versiones que puedo descra des de apt get debina
+
+apt-cache policy <packageName>
+
+## localizacion en debian de algunas fuentes de donde salen los proveedores de instaldaores de paquetes
+
+/etc/apt/sources.list.d/
+
+## otra fuentre sde a rchivos esta aqui pero no l si son 
+
+ls /usr/share/keyrings/
+
+
