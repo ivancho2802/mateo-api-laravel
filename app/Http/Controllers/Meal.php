@@ -45,7 +45,7 @@ class Meal extends Controller
             return $mlpas;
         } else {
             
-            $mlpas = MLpa::limit(40000)->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")
+            $mlpas = MLpa::limit(30000)->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")
         }
 
         //PONER LA PERSONA CON SU EDAD
@@ -56,7 +56,7 @@ class Meal extends Controller
         //"Rango BHA"
         //=SI(AM2="";"";SI(AM2<=4;"0 to 4";SI(AM2<=9;"5 to 9";SI(AM2<=14;"10 to 14";SI(AM2<=18;"15 to 18";SI(AM2<=29;"19 to 29";SI(AM2<=59;"30 to 59";SI(AM2>=60;"> 60"))))))))
 
-        //$mlpas->load(['emergencia', 'actividad', 'persona']);//, 'actividad.directory'
+        $mlpas->load(['emergencia', 'actividad', 'persona']);//, 'actividad.directory'
 
 
         /* $mlpasFormated = $mlpas->map(function ($lpa) {
