@@ -17,9 +17,11 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Arr;
 use App\Models\mGraficos;
 use Illuminate\Support\Facades\Config;
+use App\Traits\TraitDepartments;
 
 class Meal extends Controller
 {
+    use TraitDepartments;
     //
     public function paginateCollection($items, $perPage = 15, $page = null, $options = [])
     {
@@ -702,7 +704,7 @@ class Meal extends Controller
                 $formulario->each(function ($respuesta) use ($objectPresuntaRespuesta) {
                     //dd($respuesta->VALOR, $respuesta->pregunta);
                     $valor = $respuesta->VALOR;
-                    $objectPresuntaRespuesta[$respuesta->pregunta->CAMPO1] = trim($valor, '"');
+                    $objectPresuntaRespuesta[$respuesta->pregunta->CAMPO1] = $this->eliminar_acentos(trim($valor, '"'));
                 });
 
                 $mmpdsArray->push($objectPresuntaRespuesta);
