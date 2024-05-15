@@ -105,13 +105,19 @@ return [
             'role'     => null,
         ],
         'odbc' => [
-            'driver' => 'odbc',//
+            'driver' => 'odbc', //
             'dsn' => 'Driver={Devart ODBC Driver for Firebird};Database=192.168.1.150/3050:/opt/lampp/firebird/db/ach.gdb',
             //'grammar' => 'DB2',
             'username' => 'SYSDBA',
             'password' => 'masterkey',
             'database' => 'ach',
             'grammar' => 'SqlServerGrammar',
+        ],
+
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'dsn' => env('DB_URI'),
+            'database' => 'local',
         ],
     ],
 
