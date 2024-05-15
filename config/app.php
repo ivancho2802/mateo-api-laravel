@@ -206,7 +206,7 @@ return [
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
-
+        MongoDB\Laravel\MongoDBServiceProvider::class,
     ],
 
     /*

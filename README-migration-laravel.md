@@ -12,3 +12,6 @@ php artisan migrate:refresh --path=/database/migrations/2024_02_19_084557_alter_
 
 php artisan make:model -mrc Url
 
+# crar un modelo con su controlador
+
+php artisan make:model Movie -cr

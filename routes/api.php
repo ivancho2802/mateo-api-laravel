@@ -300,6 +300,23 @@ Route::prefix('firebird')->group(function (){
   });
 });
 
+Route::prefix('mongo')->group(function (){
+  
+  Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {
+  
+    /*   try { */
+    
+        DB::setDefaultConnection('mongodb');
+  
+        $resultados = DB::select($request->sql); 
+    
+        return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados) ]);
+      /* } catch (\Throwable $exception) {
+        return response()->json(['Error' => $exception->getMessage()]);
+      } */
+    });
+});
+
 Route::middleware((['auth:sanctum']))->prefix('pgsql')->group(function (){
 
   Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {

@@ -156,6 +156,8 @@ apt-get install php7.4-pgsql
 
 apt-get install php7.4-firebird
 
+apt-get install php7.4-mongodb 
+
 ## editar 504 error timeout ngx 
 
 https://easycloudsupport.zendesk.com/hc/en-us/articles/360002057472-How-to-Fix-504-Gateway-Timeout-using-Nginx
