@@ -327,4 +327,30 @@ ls /usr/share/keyrings/
 
 https://phoenixnap.com/kb/upgrade-debian-10-to-11
 
-## 
+## mongodb con debian 11 y bullselle
+
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-debian/
+## docu mongo
+
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-debian/
+
+## if fail
+
+sudo systemctl daemon-reload
+
+## para entrar a la termianl de mongo
+
+mongosh
+
+https://www.mongodb.com/docs/mongodb-shell/
+
+## php.ini
+
+;php_mongodb
+
+## logos
+
+sudo rm -r /var/log/mongodb
+sudo rm -r /var/lib/mongodb
+
+
