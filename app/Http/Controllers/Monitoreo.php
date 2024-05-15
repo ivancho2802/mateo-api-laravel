@@ -54,7 +54,7 @@ class Monitoreo extends Controller
 
     function reportDownload(Request $request){
 
-        return response()->download(storage_path('monitoreoEvaluacion/' . $request->path));//->deleteFileAfterSend(true);
+        return response()->download(storage_path('app/monitoreoEvaluacion/' . $request->path));//->deleteFileAfterSend(true);
 
 
     }
