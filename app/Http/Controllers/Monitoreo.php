@@ -18,8 +18,8 @@ class Monitoreo extends Controller
         ini_set('max_input_time', '60000');
 
 
-        $filesExported = Storage::disk('public')->files('download/monitoreoEvaluacion');
-        //$filesExported = Storage::files("/monitoreoEvaluacion");
+        //$filesExported = Storage::disk('public')->files('download/monitoreoEvaluacion');
+        $filesExported = Storage::files("/monitoreoEvaluacion");
 
         //dd($filesExported);
 
@@ -30,7 +30,7 @@ class Monitoreo extends Controller
 
         $filesExported->each(function ($fileExport) use ($reports){
 
-            $fileExport = str_replace("download/monitoreoEvaluacion/", "", $fileExport);
+            $fileExport = str_replace("monitoreoEvaluacion/", "", $fileExport);
 
             $path = 'https://'.$_SERVER['HTTP_HOST'] ."/api/meal/moni_eva/report/download/";//:path;
 
