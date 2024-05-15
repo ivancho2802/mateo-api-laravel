@@ -46,9 +46,9 @@ class Monitoreo extends Controller
 
         $reports = collect($reports);
 
-        $reportsOrdered = $reports->sortBy('order'); 
+        $reportsOrdered = $reports->sortBy('order');
 
-        return response()->json(['status' => true, 'data' => ($reportsOrdered)]);
+        return response()->json(['status' => true, 'data' => ($reportsOrdered->values())]);
 
     }
 
