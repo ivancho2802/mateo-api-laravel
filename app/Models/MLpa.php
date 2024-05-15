@@ -51,6 +51,10 @@ class MLpa extends Model
             ['STATUS', '1']
         ]);
     }
+    public function scopeNodeleted(Builder  $query): void
+    {
+        $query->whereNull('deleted_at');
+    }
 
     /**
      * tipo_lpa
