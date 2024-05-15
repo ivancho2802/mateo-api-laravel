@@ -88,7 +88,7 @@ Route::prefix('meal')->group(function () {
 
   Route::middleware(['auth:sanctum'])->get('/moni_eva/report', [App\Http\Controllers\Monitoreo::class, 'reports']);
   
-  Route::middleware(['auth:sanctum'])->get('/moni_eva/report/download/{path}', [App\Http\Controllers\Monitoreo::class, 'reportDownload']);
+  Route::get('/moni_eva/report/download/{path}', [App\Http\Controllers\Monitoreo::class, 'reportDownload']);
 
   //FIN MIGRACIONS DESDE EL KOBO
 
