@@ -150,6 +150,12 @@ max_execution_time = 600s
 max_input_time = 600s
 memory_limit = 1200M
 
+## si actualizo el software ojo con el postgresql y el firebird que van ligados con el php
+
+apt-get install php7.4-pgsql
+
+apt-get install php7.4-firebird
+
 ## editar 504 error timeout ngx 
 
 https://easycloudsupport.zendesk.com/hc/en-us/articles/360002057472-How-to-Fix-504-Gateway-Timeout-using-Nginx
@@ -221,6 +227,8 @@ sudo apt update
 sudo apt install postgresql postgresql-contrib
 
 sudo systemctl start postgresql.service
+sudo systemctl enable postgresql.service
+
 
 sudo -i -u postgres
 
@@ -315,3 +323,8 @@ apt-cache policy <packageName>
 ls /usr/share/keyrings/
 
 
+## como actualizar debian de 10 a 11
+
+https://phoenixnap.com/kb/upgrade-debian-10-to-11
+
+## 
