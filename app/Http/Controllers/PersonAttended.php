@@ -254,7 +254,7 @@ class PersonAttended extends Controller
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
-        $lotes = 400;
+        $lotes = 40;
 
         $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
