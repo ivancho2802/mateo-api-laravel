@@ -258,7 +258,7 @@ class PersonAttended extends Controller
         //try {
 
 
-            $lotes = 80;
+            $lotes = 50;
 
             $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
