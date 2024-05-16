@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 echo "Running composer"
 composer global require hirak/prestissimo
-composer update
+#composer update
 composer install --no-dev --working-dir=/var/www/html
 php artisan key:generate
 php artisan storage:link
