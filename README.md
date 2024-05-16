@@ -17,7 +17,7 @@ https://nginx.org/en/linux_packages.html#Debian
 
 ## servicios para ver el estado de los servicio
 
-systemctl status php7.3-fpm 
+systemctl status php7.4-fpm 
 systemctl status nginx
 service apache2 restart
 systemctl reload apache2

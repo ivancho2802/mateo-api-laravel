@@ -255,10 +255,10 @@ class PersonAttended extends Controller
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
-        try {
+        //try {
 
 
-            $lotes = 80;
+            $lotes = 70;
 
             $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
@@ -424,11 +424,11 @@ class PersonAttended extends Controller
 
             //return response()->json(["message" => "operacion hecha con exito"]);
 
-        } catch (\Throwable $th) {
+        //} catch (\Throwable $th) {
 
-            throw ValidationException::withMessages([
-                'msg' => ['No se guardaron los registros.' . ($th)],
-            ]);
-        }
+            //throw ValidationException::withMessages([
+            //    'msg' => ['No se guardaron los registros.' . ($th)],
+            //]);
+        //}
     }
 }
