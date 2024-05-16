@@ -376,7 +376,7 @@ class PersonAttended extends Controller
                 ]);
             }
 
-            dd("body_lpas", count($body_lpas), $body_lpas);
+            //dd("body_lpas", count($body_lpas), $body_lpas);
 
             $body_lpas = ($body_lpas)->chunk(($lotes / 4));
             foreach ($body_lpas as $body) {
