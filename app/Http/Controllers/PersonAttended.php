@@ -287,7 +287,8 @@ class PersonAttended extends Controller
         $i = 0;
         $body_lpas = collect();
 
-        dd("elementsForMigrationChunked", $elementsForMigrationChunked);
+
+        //estoy tomando solo la primera 500
 
         foreach ($elementsForMigrationChunked[0] as $row) {
             /* if (!$row[0] || $row[0] == '') {
@@ -417,6 +418,7 @@ class PersonAttended extends Controller
             $i++;
         }
         //dd($date_begin, $date_end);
+        dd("body_lpas", $body_lpas);
 
         $body_lpas = ($body_lpas)->chunk(($lotes / 2));
         foreach ($body_lpas as $body) {
