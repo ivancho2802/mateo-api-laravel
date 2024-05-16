@@ -284,9 +284,7 @@ class PersonAttended extends Controller
 
         $elementsForMigrationChunked = $elementsForMigration->chunk($lotes);
 
-        $i = 0;
         $body_lpas = collect();
-
 
         //estoy tomando solo la primera 500
 
@@ -318,48 +316,11 @@ class PersonAttended extends Controller
 
             $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
 
-            $mlpa_persona = MLpaPersona::where([
-                //'TIPO_DOCUMENTO' => $row[7],
-                'DOCUMENTO' => $row[6]
-            ]);
+            //REPARO DE CONSULTA Y CREACION DE PERSONA POR TIMEOUT?
 
-            //actualizo
-            if ($mlpa_persona->exists()) {
-
-                $mlpa_persona->update(
-                    [
-                        'DOCUMENTO' => $row[6],
-                        'TIPO_DOCUMENTO' => $row[7],
-                        'NOMBRE_PRIMERO' => $row[8],
-                        'NOMBRE_OTROS' => $row[9],
-                        'APELLIDO_PRIMERO' => $row[10],
-                        'APELLIDO_OTRO' => $row[11],
-                        'GENERO' => $row[12],
-                        'IDENTIDAD_GENERO' => $row[13],
-                        'FECHA_NACIMIENTO' => $FECHA_NACIMIENTO,
-                        'NACIONALIDAD' => $row[15],
-                        'PERFIL_MIGRATORIO' => $row[16],
-                        'SITUACION' => $row[17],
-                        'ETNIA' => $row[18],
-                        'PERFIL' => $row[19],
-                        'NIVEL_ESCOLARIDAD' => $row[20],
-                        'CARACTERISTICAS_MADRE' => $row[21],
-                        'DISCAPACIDAD_VER' => $row[22],
-                        'DISCAPACIDAD_OIR' => $row[23],
-                        'DISCAPACIDAD_CAMINAR' => $row[24],
-                        'DISCAPACIDAD_RECORDAR' => $row[25],
-                        'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
-                        'DISCAPACIDAD_COMUNICAR' => $row[27],
-                        'TELEFONO' => $row[28]
-                    ]
-                );
-
-                $mlpa_persona = $mlpa_persona->first();
-                //creacion
-            } else
-            if ($mlpa_persona->exists() == false) {
-
-                $mlpa_persona = MLpaPersona::create([
+            $mlpa_persona = MLpaPersona::firstOrCreate(
+                ['DOCUMENTO' => $row[6]],
+                [
                     'DOCUMENTO' => $row[6],
                     'TIPO_DOCUMENTO' => $row[7],
                     'NOMBRE_PRIMERO' => $row[8],
@@ -383,8 +344,8 @@ class PersonAttended extends Controller
                     'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
                     'DISCAPACIDAD_COMUNICAR' => $row[27],
                     'TELEFONO' => $row[28]
-                ]);
-            }
+                ]
+            );
 
             $FECHA_ATENCION = collect($row[31])->toArray()["date"]; //Date::excelToDateTimeObject($row[31]);
 
@@ -410,17 +371,11 @@ class PersonAttended extends Controller
 
             ]);
 
-            if ($i == 1) {
-                $date_begin = $mlpa_emergencia->get()->last()->created_at->format("Y-m-d") . " 00:00:01";
-            }
-
-            $date_end = $mlpa_emergencia->get()->last()->created_at->format("Y-m-d H:i:s");
-            $i++;
         }
-        //dd($date_begin, $date_end);
+
         dd("body_lpas", $body_lpas);
 
-        $body_lpas = ($body_lpas)->chunk(($lotes / 2));
+        $body_lpas = ($body_lpas)->chunk(($lotes / 4));
         foreach ($body_lpas as $body) {
             $bodyArray = $body->toArray();
             MLpa::insert($bodyArray);
