@@ -178,8 +178,11 @@ location ~ \.php$ {
 sudo systemctl restart nginx.service
 
 systemctl restart nginx
+service nginx reload
+systemctl reload nginx
 
-systemctl restart php7.3-fpm 
+
+systemctl restart php7.4-fpm 
 
 DO
 
@@ -358,3 +361,12 @@ sudo rm -r /var/log/mongodb
 sudo rm -r /var/lib/mongodb
 
 
+## para php fpm errores
+
+/var/log/php7.4-fpm.log
+
+...timeout 10000
+
+nano /etc/php/7.4/fpm/pool.d/www.conf
+
+request_terminate_timeout 10000
