@@ -254,7 +254,7 @@ class PersonAttended extends Controller
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
-        $lotes = 200;
+        $lotes = 500;
 
         $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
@@ -323,6 +323,8 @@ class PersonAttended extends Controller
 
         $i = 0;
         $body_lpas = collect();
+
+        dd("elementsForMigration", $elementsForMigration);
 
         foreach ($elementsForMigrationChunked[0] as $row) {
             /* if (!$row[0] || $row[0] == '') {

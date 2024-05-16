@@ -46,6 +46,7 @@ service nginx restart
 
 # editar el phpini de fpm
  /etc/php/7.3/fpm/php.ini
+ /etc/php/7.4/fpm/php.ini
 
 post_max_size=100M
 upload_max_filesize = 1G
@@ -145,6 +146,7 @@ http {
 
 ## error de carga de archivo agregar al php.ini
  /etc/php/7.3/fpm/php.ini
+ /etc/php/7.4/fpm/php.ini
 
 max_execution_time = 600s
 max_input_time = 600s
