@@ -254,7 +254,7 @@ class PersonAttended extends Controller
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
-        $lotes = 250;
+        $lotes = 500;
 
         $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
@@ -277,45 +277,8 @@ class PersonAttended extends Controller
         if (isset(optional($migrationPendings)->table_id)  !== true) {
             return ['restante' => strlen(optional($migrationPendings)->table_id)];
         }
-
-        /*
-            $migrationPendingsAll = $migrationPendings->get();
-            if($migrationPendings->count() > 4){
-            $migrationPendingsFirst = $migrationPendings->first();
-
-            $migrationPendingsSecond = $migrationPendingsAll[1];
-            $migrationPendingsThreed = $migrationPendingsAll[2];
-            $migrationPendingsFourthed = $migrationPendingsAll[3];
-    
-            if(isset(optional($migrationPendingsFirst)->table_id)  !== true ){
-                return ['restante' => strlen(optional($migrationPendingsFirst)->table_id)];
-            }
-    
-            //4 unidos
-    
-            //dd("migrationPendings", strlen(optional($migrationPendings)->table_id));
-    
-            $stringArrayFirst = optional($migrationPendingsFirst)->table_id;
-            $stringArraySecond = optional($migrationPendingsSecond)->table_id;
-            $stringArrayThreed = optional($migrationPendingsThreed)->table_id;
-            $stringArrayFourthed = optional($migrationPendingsFourthed)->table_id;
-    
-            $stringArrayFirstCollect = collect(json_decode($stringArrayFirst));
-    
-            $stringArraySecondCollect = collect(json_decode($stringArraySecond));
-            $stringArrayThreedCollect = collect(json_decode($stringArrayThreed));
-            $stringArrayFourthedCollect = collect(json_decode($stringArrayFourthed));
-    
-            $elementsForMigration = $stringArrayFirstCollect
-            ->concat($stringArraySecondCollect)
-            ->concat($stringArrayThreedCollect)
-            ->concat($stringArrayFourthedCollect);
-    
-            //dd(count($elementsForMigration));//9568 7568
-
-        } else { */
+ 
         $elementsForMigration = collect(json_decode($idTable));
-        //}
 
         echo count($elementsForMigration);
 
@@ -324,7 +287,7 @@ class PersonAttended extends Controller
         $i = 0;
         $body_lpas = collect();
 
-        //dd("elementsForMigration", $elementsForMigration);
+        dd("elementsForMigrationChunked", $elementsForMigrationChunked);
 
         foreach ($elementsForMigrationChunked[0] as $row) {
             /* if (!$row[0] || $row[0] == '') {
