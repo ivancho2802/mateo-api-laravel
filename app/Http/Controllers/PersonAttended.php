@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Analisis;
 use Illuminate\Support\Facades\Storage;
 use Rap2hpoutre\FastExcel\FastExcel;
+use Illuminate\Validation\ValidationException;
 
 class PersonAttended extends Controller
 {
@@ -105,7 +106,7 @@ class PersonAttended extends Controller
 
             //$collection = (new MqrClass)->toCollection($file);
 
-            $count_record_excel = 0;//helper::countValidValues($collection[0]);
+            $count_record_excel = 0; //helper::countValidValues($collection[0]);
 
             $migrate_custom = migrateCustom::where([
                 'table' => "actividades_directory"
@@ -254,172 +255,181 @@ class PersonAttended extends Controller
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
-        $lotes = 40;
+        try {
 
-        $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
-        if (!$ID_USER) {
-            return "error";
-        }
 
-        $migrationPendings = migrateCustom::where([
-            ['table', 'M_LPAS'],
-            ['table_id', '!=', '[]'],
-            ['file_ref', 'PENDING']
-        ])->first();
+            $lotes = 40;
 
-        $idTable = optional($migrationPendings)->table_id;
+            $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
 
-        if (!isset($migrationPendings) || !isset($idTable)) {
-            return ['restante' => 0];
-        }
+            if (!$ID_USER) {
+                return "error";
+            }
 
-        if (isset(optional($migrationPendings)->table_id)  !== true) {
-            return ['restante' => strlen(optional($migrationPendings)->table_id)];
-        }
- 
-        $elementsForMigration = collect(json_decode($idTable));
+            $migrationPendings = migrateCustom::where([
+                ['table', 'M_LPAS'],
+                ['table_id', '!=', '[]'],
+                ['file_ref', 'PENDING']
+            ])->first();
 
-        echo count($elementsForMigration);
+            $idTable = optional($migrationPendings)->table_id;
 
-        $elementsForMigrationChunked = $elementsForMigration->chunk($lotes);
+            if (!isset($migrationPendings) || !isset($idTable)) {
+                return ['restante' => 0];
+            }
 
-        $body_lpas = collect();
+            if (isset(optional($migrationPendings)->table_id)  !== true) {
+                return ['restante' => strlen(optional($migrationPendings)->table_id)];
+            }
 
-        //estoy tomando solo la primera 500
+            $elementsForMigration = collect(json_decode($idTable));
 
-        foreach ($elementsForMigrationChunked[0] as $row) {
-            /* if (!$row[0] || $row[0] == '') {
+            echo count($elementsForMigration);
+
+            $elementsForMigrationChunked = $elementsForMigration->chunk($lotes);
+
+            $body_lpas = collect();
+
+            //estoy tomando solo la primera 500
+
+            foreach ($elementsForMigrationChunked[0] as $row) {
+                /* if (!$row[0] || $row[0] == '') {
             break;
             } */
-            //\DB::table('readings')->insert($chunk->toArray());
-            /* if (!$row[0]) {
+                //\DB::table('readings')->insert($chunk->toArray());
+                /* if (!$row[0]) {
                 $i++;
                 continue;
             } */
-            $row = collect(collect($row)->toArray())->flatten();
+                $row = collect(collect($row)->toArray())->flatten();
 
-            $mlpa_emergencia = MLpaEmergencia::firstOrCreate([
+                $mlpa_emergencia = MLpaEmergencia::firstOrCreate([
 
-                'COD_EMERGENCIAS' => $row[0],
-                'TIPO_EVENTO' => $row[1],
-                'SOCIO' => $row[2],
-                'DEPARTAMENTO' => $row[3],
-                'MUNICIPIO' => $row[4],
-                'LUGAR_ATENCION' => $row[5]
+                    'COD_EMERGENCIAS' => $row[0],
+                    'TIPO_EVENTO' => $row[1],
+                    'SOCIO' => $row[2],
+                    'DEPARTAMENTO' => $row[3],
+                    'MUNICIPIO' => $row[4],
+                    'LUGAR_ATENCION' => $row[5]
 
-            ]);
+                ]);
 
-            $dateArray = collect($row[14])->toArray();
+                $dateArray = collect($row[14])->toArray();
 
-            $date_birday = (isset($dateArray) && isset($dateArray["date"])) ? $dateArray["date"] : null; //Date::excelToDateTimeObject($row[14]);
+                $date_birday = (isset($dateArray) && isset($dateArray["date"])) ? $dateArray["date"] : null; //Date::excelToDateTimeObject($row[14]);
 
-            $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
+                $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
 
-            //REPARO DE CONSULTA Y CREACION DE PERSONA POR TIMEOUT?
+                //REPARO DE CONSULTA Y CREACION DE PERSONA POR TIMEOUT?
 
-            $mlpa_persona = MLpaPersona::firstOrCreate(
-                ['DOCUMENTO' => $row[6]],
-                [
-                    'DOCUMENTO' => $row[6],
-                    'TIPO_DOCUMENTO' => $row[7],
-                    'NOMBRE_PRIMERO' => $row[8],
-                    'NOMBRE_OTROS' => $row[9],
-                    'APELLIDO_PRIMERO' => $row[10],
-                    'APELLIDO_OTRO' => $row[11],
-                    'GENERO' => $row[12],
-                    'IDENTIDAD_GENERO' => $row[13],
-                    'FECHA_NACIMIENTO' => $FECHA_NACIMIENTO,
-                    'NACIONALIDAD' => $row[15],
-                    'PERFIL_MIGRATORIO' => $row[16],
-                    'SITUACION' => $row[17],
-                    'ETNIA' => $row[18],
-                    'PERFIL' => $row[19],
-                    'NIVEL_ESCOLARIDAD' => $row[20],
-                    'CARACTERISTICAS_MADRE' => $row[21],
-                    'DISCAPACIDAD_VER' => $row[22],
-                    'DISCAPACIDAD_OIR' => $row[23],
-                    'DISCAPACIDAD_CAMINAR' => $row[24],
-                    'DISCAPACIDAD_RECORDAR' => $row[25],
-                    'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
-                    'DISCAPACIDAD_COMUNICAR' => $row[27],
-                    'TELEFONO' => $row[28]
-                ]
-            );
+                $mlpa_persona = MLpaPersona::firstOrCreate(
+                    ['DOCUMENTO' => $row[6]],
+                    [
+                        'DOCUMENTO' => $row[6],
+                        'TIPO_DOCUMENTO' => $row[7],
+                        'NOMBRE_PRIMERO' => $row[8],
+                        'NOMBRE_OTROS' => $row[9],
+                        'APELLIDO_PRIMERO' => $row[10],
+                        'APELLIDO_OTRO' => $row[11],
+                        'GENERO' => $row[12],
+                        'IDENTIDAD_GENERO' => $row[13],
+                        'FECHA_NACIMIENTO' => $FECHA_NACIMIENTO,
+                        'NACIONALIDAD' => $row[15],
+                        'PERFIL_MIGRATORIO' => $row[16],
+                        'SITUACION' => $row[17],
+                        'ETNIA' => $row[18],
+                        'PERFIL' => $row[19],
+                        'NIVEL_ESCOLARIDAD' => $row[20],
+                        'CARACTERISTICAS_MADRE' => $row[21],
+                        'DISCAPACIDAD_VER' => $row[22],
+                        'DISCAPACIDAD_OIR' => $row[23],
+                        'DISCAPACIDAD_CAMINAR' => $row[24],
+                        'DISCAPACIDAD_RECORDAR' => $row[25],
+                        'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
+                        'DISCAPACIDAD_COMUNICAR' => $row[27],
+                        'TELEFONO' => $row[28]
+                    ]
+                );
 
-            $FECHA_ATENCION = collect($row[31])->toArray()["date"]; //Date::excelToDateTimeObject($row[31]);
+                $FECHA_ATENCION = collect($row[31])->toArray()["date"]; //Date::excelToDateTimeObject($row[31]);
 
-            $body_lpas->push([
+                $body_lpas->push([
 
-                "DONANTE" => $row[29],
-                "COD_ACTIVIDAD" => $row[30],
-                "FECHA_ATENCION" => $FECHA_ATENCION,
-                "REPRESENTANTE" => $row[32],
-                "DOC_REPRESENTANTE" => $row[33],
-                "TIPO_TRANFERENCIA" => $row[34],
-                "MODO_ENTREGA" => $row[35],
-                "PROVEEDOR_FINANCIERO" => $row[36],
-                "MONTO_MENSUAL" => $row[37],
-                "FASE_ATENCION" => $row[38],
-                "STATUS" => $row[42],
+                    "DONANTE" => $row[29],
+                    "COD_ACTIVIDAD" => $row[30],
+                    "FECHA_ATENCION" => $FECHA_ATENCION,
+                    "REPRESENTANTE" => $row[32],
+                    "DOC_REPRESENTANTE" => $row[33],
+                    "TIPO_TRANFERENCIA" => $row[34],
+                    "MODO_ENTREGA" => $row[35],
+                    "PROVEEDOR_FINANCIERO" => $row[36],
+                    "MONTO_MENSUAL" => $row[37],
+                    "FASE_ATENCION" => $row[38],
+                    "STATUS" => $row[42],
 
-                //laura reemplzar por el id desde el token 5 en lcal 1 online
-                "ID_M_USUARIOS" => $ID_USER,
+                    //laura reemplzar por el id desde el token 5 en lcal 1 online
+                    "ID_M_USUARIOS" => $ID_USER,
 
-                "FK_LPA_EMERGENCIA" => $mlpa_emergencia->get()->last()->ID,
-                "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
+                    "FK_LPA_EMERGENCIA" => $mlpa_emergencia->get()->last()->ID,
+                    "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
 
-            ]);
+                ]);
+            }
 
-        }
+            dd("body_lpas", $body_lpas);
 
-        dd("body_lpas", $body_lpas);
+            $body_lpas = ($body_lpas)->chunk(($lotes / 4));
+            foreach ($body_lpas as $body) {
+                $bodyArray = $body->toArray();
+                MLpa::insert($bodyArray);
+            }
 
-        $body_lpas = ($body_lpas)->chunk(($lotes / 4));
-        foreach ($body_lpas as $body) {
-            $bodyArray = $body->toArray();
-            MLpa::insert($bodyArray);
-        }
+            //eliminar los 350 primeros registros de $elementsForMigration
+            $elementsForMigration->shift($lotes);
 
-        //eliminar los 350 primeros registros de $elementsForMigration
-        $elementsForMigration->shift($lotes);
+            $restante = $elementsForMigration;
 
-        $restante = $elementsForMigration;
+            $migrationPendings->table_id = json_encode($restante);
 
-        $migrationPendings->table_id = json_encode($restante);
+            $migrationPendings->save();
 
-        $migrationPendings->save();
+            $queryLpa = MLpa::all(); //whereBetween('created_at', [$date_begin, Carbon::now()->addDays(1)->format("Y-m-d H:i:s")]);// 
+            $mlpas = $queryLpa; //->get();
+            $id_lpas = $queryLpa->pluck('ID')->all();
 
-        $queryLpa = MLpa::all(); //whereBetween('created_at', [$date_begin, Carbon::now()->addDays(1)->format("Y-m-d H:i:s")]);// 
-        $mlpas = $queryLpa; //->get();
-        $id_lpas = $queryLpa->pluck('ID')->all();
+            if (count($mlpas) > 0) {
+                migrateCustom::create([
+                    'table' => 'M_LPAS',
+                    'table_id' => implode(", ", $id_lpas),
+                    'file_ref' => '-',
+                ]);
+            } else {
 
-        if (count($mlpas) > 0) {
-            migrateCustom::create([
-                'table' => 'M_LPAS',
-                'table_id' => implode(", ", $id_lpas),
-                'file_ref' => '-',
-            ]);
-        } else {
-
-            /* throw ValidationException::withMessages([
+                /* throw ValidationException::withMessages([
                 'msg' => ['No se guardaron los registros.'],
             ]); */
-            return MLpa::get();
+                return MLpa::get();
+            }
+
+            //array_push($id_emergenciasz, $mlpa_emergencia)
+            //dd($mlpas->pluck('ID'),$id_lpas);
+
+            $restanteTot = migrateCustom::where([
+                ['table', 'M_LPAS'],
+                ['table_id', '!=', '[]'],
+                ['file_ref', 'PENDING']
+            ])->get();
+
+            return ['restanteParte' => count($restante), 'restanteTotal' => count($restanteTot)];
+
+            //return response()->json(["message" => "operacion hecha con exito"]);
+
+        } catch (\Throwable $th) {
+
+            throw ValidationException::withMessages([
+                'msg' => ['No se guardaron los registros.' . ($th)],
+            ]);
         }
-
-        //array_push($id_emergenciasz, $mlpa_emergencia)
-        //dd($mlpas->pluck('ID'),$id_lpas);
-
-        $restanteTot = migrateCustom::where([
-            ['table', 'M_LPAS'],
-            ['table_id', '!=', '[]'],
-            ['file_ref', 'PENDING']
-        ])->get();
-
-        return ['restanteParte' => count($restante), 'restanteTotal' => count($restanteTot)];
-
-        //return response()->json(["message" => "operacion hecha con exito"]);
-
     }
 }
