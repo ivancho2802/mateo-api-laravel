@@ -410,3 +410,7 @@ nginx
 
 
 
+## para vel el formatio de nginx config
+
+nginx -t
+
