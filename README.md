@@ -24,7 +24,7 @@ systemctl reload apache2
 
 ## para ver los logs errores 
 
-> tail -f /var/log/nginx/domain1.access.log
+> tail -f /var/log/nginx/example.journaldev.com-access.log
 
 > storage/logs/laravel.log
 
@@ -375,3 +375,38 @@ sudo rm -r /var/lib/mongodb
 nano /etc/php/7.4/fpm/pool.d/www.conf
 
 request_terminate_timeout 10000
+
+## para el timeout  este funciono hago respaldo del documento ngingx.conf en local en el repositorio del gloval y el local
+
+client_body_timeout 120s;
+client_header_timeout 120s;
+
+global
+
+en 
+
+/etc/nginx/nginx.conf
+
+local en 
+
+/etc/nginx/conf.d/ach.conf
+
+    sudo systemctl restart nginx
+
+
+## nginx logs este
+
+/var/log/nginx/error.log
+
+/var/log/nginx/access.log 
+
+## como ver puertos en uso 
+
+netstat -ano
+
+## como ver si nginx se esta usando 
+
+nginx
+
+
+
