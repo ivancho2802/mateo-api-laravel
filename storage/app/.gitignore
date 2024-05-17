@@ -2,3 +2,5 @@
 !public/download/monitoreoEvaluacion
 !.gitignore
 !monitoreoEvaluacion
+!monitoreoEvaluacion/*
+!monitoreoEvaluacion/
