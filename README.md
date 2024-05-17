@@ -28,6 +28,10 @@ systemctl reload apache2
 
 > storage/logs/laravel.log
 
+
+    access_log /var/log/nginx/example.journaldev.com-access.log;
+    error_log  /var/log/nginx/example.journaldev.com-error.log;
+
 ## para que mer permita cargar archivos grnades
 
 #falta editar en las lineas de 
@@ -182,6 +186,7 @@ service nginx reload
 systemctl reload nginx
 
 
+systemctl status php7.4-fpm 
 systemctl restart php7.4-fpm 
 
 DO
