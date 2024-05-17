@@ -24,7 +24,8 @@ systemctl reload apache2
 
 ## para ver los logs errores 
 
-> tail -f /var/log/nginx/example.journaldev.com-access.log
+nano /var/log/nginx/example.journaldev.com-access.log
+nano /var/log/nginx/example.journaldev.com-error.log
 
 > storage/logs/laravel.log
 
