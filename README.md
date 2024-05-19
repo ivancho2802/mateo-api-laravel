@@ -48,6 +48,7 @@ http {
 systemctl reload nginx
 # esto si
 service nginx restart
+systemctl restart nginx
 
 # editar el phpini de fpm
  /etc/php/7.3/fpm/php.ini
@@ -61,6 +62,7 @@ systemctl reload nginx
 systemctl restart php7.3-fpm 
 # esto si
 service nginx restart
+systemctl restart nginx
 # este tambien importante
 systemctl status php7.3-fpm 
 
@@ -181,8 +183,11 @@ location ~ \.php$ {
 }
     
 sudo systemctl restart nginx.service
+service nginx restart
 
 systemctl restart nginx
+service nginx restart
+
 service nginx reload
 systemctl reload nginx
 
@@ -393,6 +398,7 @@ local en
 /etc/nginx/conf.d/ach.conf
 
     sudo systemctl restart nginx
+service nginx restart
 
 
 ## nginx logs este
@@ -415,3 +421,44 @@ nginx
 
 nginx -t
 
+## para ver la configuracion actual de nginx
+
+cat /proc/$(cat /var/run/nginx.pid)/limits
+## OR ##
+grep -i 'Max open files' /proc/$(cat /var/run/nginx.pid)/limits
+## OR ##
+
+runuser -u nginx -- bash
+
+ulimit -Hn
+
+ ulimit -Sn
+## error to many files open
+https://www.cyberciti.biz/faq/linux-unix-nginx-too-many-open-files/
+## metodo 1
+edite el archvios
+
+nano /etc/sysctl.conf
+fs.file-max = 70000
+
+nano /etc/security/limits.conf
+
+nginx       soft    nofile   10000
+nginx       hard    nofile  30000
+
+sysctl -p
+
+
+sysctl: setting key "fs.file-max": Read-only file system
+
+## metodo 2 
+
+systemctl edit nginx.service
+
+se editara el archvio 
+/etc/systemd/system/nginx.service.d/override.conf
+puse [Service]
+LimitNOFILE=65535
+
+## otro reinicio de los demon
+sudo systemctl daemon-reload
