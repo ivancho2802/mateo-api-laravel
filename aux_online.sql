@@ -1,3 +1,4 @@
+.
 select "DEPARTMENT"  from "M_MQR"   group by "DEPARTMENT"
 select "SEXO"  from "M_MQR"   group by "SEXO"
 select * from activities where cod='CS2'
@@ -10,7 +11,9 @@ public.migrate_customs
 where 
 table_id != '[]' AND
 "table" = 'M_LPAS'  AND 
-file_ref = 'PENDING'
+file_ref = 'PENDING';
+
+select count(*) from "M_LPAS";
 
 -- cuantas personas
 select COUNT("GENERO"), "GENERO" from "M_LPA_PERSONAS" GROUP BY "GENERO";

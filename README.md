@@ -531,3 +531,4 @@ chmod -R 775 /opt/api/ach-api-laravel
 grep -R default_server /etc/nginx/sites-enabled/
 service nginx restart
 
+## posibles perdidas de datos el dia 21 05 2024 a las 4:04 pm se cambio el servidor la base de daros se migro a las 2 

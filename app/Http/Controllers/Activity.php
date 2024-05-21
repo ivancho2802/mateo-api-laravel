@@ -38,6 +38,7 @@ class Activity extends Controller
         $count_record_excel = helper::countValidValues($collection[0]);
 
         $migrate_custom = migrateCustom::where([
+            ['table_id', '!=', ''],
             'table' => "activities"
         ])->get()->last();
 
