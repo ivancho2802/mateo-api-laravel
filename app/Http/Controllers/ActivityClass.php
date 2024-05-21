@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+//
 use App\Models\Activities;
 use App\Models\migrateCustom;
 use Illuminate\Support\Collection;
