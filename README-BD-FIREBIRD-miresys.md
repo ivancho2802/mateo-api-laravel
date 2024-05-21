@@ -9,6 +9,8 @@ comando en llonux para activar foirebird temporalmemte
 
 nano ~/.bashrc
 
+export PATH="$PATH:/opt/firebird/bin"
+
 export PATH="/opt/firebird/bin:$PATH"
 set PATH="/opt/firebird/bin:$PATH"
 /opt/firebird/bin/isql
@@ -106,3 +108,25 @@ METAS
         que pueda organizar los dats por hombres mujeres niños de quienes han sido
         atendidos
 
+
+
+## como instalar
+
+descargar la fuente necesaria desde la pagina ofical
+
+https://www.firebirdsql.org/en/firebird-2-5/#Linux_AMD64
+
+wget -c https://github.com/FirebirdSQL/firebird/releases/download/R2_5_9/FirebirdCS-2.5.9.27139-0.amd64.tar.gz
+
+tar -xvzf  FirebirdCS-2.5.9.27139-0.amd64.tar.gz
+
+cd 
+FirebirdCS-2.5.9.27139-0.amd64
+run
+./install.sh
+
+
+## comover la versual actual
+
+
+tar.gz

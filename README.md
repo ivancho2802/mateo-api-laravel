@@ -234,11 +234,9 @@ amd64
 
 https://www.devart.com/dbforge/postgresql/how-to-install-postgresql-on-linux/
 
-sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release
--cs)-pgdg main" &gt; /etc/apt/sources.list.d/pgdg.list'
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release-cs)-pgdg main" &gt; /etc/apt/sources.list.d/pgdg.list'
 
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo
-apt-key add - s
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc |   apt-key add - s
 
 sudo apt update
 
@@ -265,7 +263,13 @@ sudo -u postgres createuser --login --pwprompt SYSDBA
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 local   ach             SYSDBA                                  md5
 
+# Database administrative login by Unix domain socket 
+local   all             postgres                                peer 
+# TYPE  DATABASE        USER            ADDRESS                 METHOD 
+local   ach             SYSDBA                                  md5 
 
+
+host    all             all             0.0.0.0 0.0.0.0         md5
 
 ## COMO HACER QUERIES EN LA BASE DE DATOS DE PROUDCCION
 
@@ -274,6 +278,8 @@ sudo systemctl start postgresql.service
 # ACCEDER CON EL USUARIO SYSDBA
 
 sudo -i -u SYSDBA
+
+psql -h localhost -U SYSDBA -d ach
 
 # CONECTAR A LA BD
 
@@ -316,6 +322,11 @@ agregar key a linux la privada con la credencial creada v24150144
     ssh-add ~/.ssh/ach-iodiazacf
     ssh-add ../iodiazachapi
     ssh-add ../iodiazapiach2023
+
+para el servidor 162 
+    ssh-add ~/.ssh/id_ed25519
+
+
 
 agregar la key a github
 
@@ -397,7 +408,7 @@ local en
 
 /etc/nginx/conf.d/ach.conf
 
-    sudo systemctl restart nginx
+systemctl restart nginx
 service nginx restart
 
 
@@ -462,3 +473,60 @@ LimitNOFILE=65535
 
 ## otro reinicio de los demon
 sudo systemctl daemon-reload
+
+
+## como descomprimir tar -xf archive.tar.gz
+https://www.tecmint.com/add-delete-and-update-files-in-tar-archive/#:~:text=Adding%20files%20to%20an%20existing,files%20you%20want%20to%20add.
+
+tar -xf archive.tar.gz
+tar -xvf archive.tar.gz
+tar -xf debian-11-turnkey-moodle_17.1-1_amd64.tar.gz -C /var/lib/vz/template/cache/
+
+## para descargar de proxmos imagen
+
+https://mirror.umd.edu/turnkeylinux/images/proxmox/
+
+
+## credenciales 162 api mire
+
+mysql
+adminer
+ach2024*
+
+servicio hub disable
+
+
+## como configurar site
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04
+
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/mireview.com
+
+sudo chown -R $USER:$USER /opt/api/ach-api-laravel
+sudo chown -R $USER:$USER /var/www/test.com/html
+
+sudo chmod -R 755 /opt/api/ach-api-laravel
+
+editar para publicar o activar la configuracion
+
+grep -R default_server /etc/nginx/sites-enabled/
+
+para habilitar los bloques
+
+  ln -s /etc/nginx/sites-available/mireview.com /etc/nginx/sites-enabled/
+  ln -s /etc/nginx/sites-available/test.com /etc/nginx/sites-enabled/
+
+
+chmod -R 777 storage bootstrap/cache
+
+chgrp -R www-data /opt/api/ach-api-laravel
+chmod -R 775 /opt/api/ach-api-laravel
+
+## para aplicar cambios en nginx.conf
+
+ rm /etc/nginx/sites-enabled/mireview.com
+ ln -s /etc/nginx/sites-available/mireview.com /etc/nginx/sites-enabled/
+ 
+grep -R default_server /etc/nginx/sites-enabled/
+service nginx restart
+
