@@ -164,6 +164,7 @@ memory_limit = 1200M
 apt-get install php7.4-pgsql
 
 apt-get install php7.4-firebird
+apt-get install php7.4-interbase
 
 apt-get install php7.4-mongodb 
 

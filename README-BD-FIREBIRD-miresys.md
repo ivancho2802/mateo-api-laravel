@@ -111,7 +111,7 @@ METAS
 
 
 ## como instalar
-
+https://packages.debian.org/bullseye/php7.4-interbase
 descargar la fuente necesaria desde la pagina ofical
 
 https://www.firebirdsql.org/en/firebird-2-5/#Linux_AMD64
