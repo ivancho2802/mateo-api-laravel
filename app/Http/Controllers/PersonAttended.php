@@ -396,7 +396,7 @@ class PersonAttended extends Controller
 
             $restante = $elementsForMigration;
 
-            $migrationPendings->table_id = json_encode($restante);
+            $migrationPendings->table_id = json_decode(json_encode($restante), FALSE);
 
             $migrationPendings->save();
 
