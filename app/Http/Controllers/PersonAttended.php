@@ -379,7 +379,7 @@ class PersonAttended extends Controller
 
                 $i++;
 
-                echo ("i proceced: " . $i);
+                //echo ("i proceced: " . $i);
 
             }
 
@@ -394,9 +394,9 @@ class PersonAttended extends Controller
             //eliminar los 350 primeros registros de $elementsForMigration
             $elementsForMigration->shift($lotes);
 
-            $restante = $elementsForMigration;
+            $restante = json_decode(json_encode($elementsForMigration), FALSE);
 
-            $migrationPendings->table_id = json_decode(json_encode($restante), FALSE);
+            $migrationPendings->table_id = $restante;
 
             $migrationPendings->save();
 
