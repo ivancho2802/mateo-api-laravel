@@ -286,7 +286,6 @@ class PersonAttended extends Controller
 
             echo count($elementsForMigration);
 
-            dd("elementsForMigration", $elementsForMigration);
 
             $elementsForMigrationChunked = $elementsForMigration->chunk($lotes);
 
@@ -296,13 +295,13 @@ class PersonAttended extends Controller
 
             foreach ($elementsForMigrationChunked[0] as $row) {
                 /* if (!$row[0] || $row[0] == '') {
-            break;
-            } */
-                //\DB::table('readings')->insert($chunk->toArray());
-                /* if (!$row[0]) {
-                $i++;
-                continue;
-            } */
+                break;
+                } */
+                    //\DB::table('readings')->insert($chunk->toArray());
+                    /* if (!$row[0]) {
+                    $i++;
+                    continue;
+                } */
                 $row = collect(collect($row)->toArray())->flatten();
 
                 $mlpa_emergencia = MLpaEmergencia::firstOrCreate([
@@ -376,6 +375,8 @@ class PersonAttended extends Controller
                     "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
 
                 ]);
+                dd("body_lpas", $body_lpas);
+
             }
 
             //dd("body_lpas", count($body_lpas), $body_lpas);
