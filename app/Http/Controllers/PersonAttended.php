@@ -375,11 +375,10 @@ class PersonAttended extends Controller
                     "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
 
                 ]);
-                dd("body_lpas", $body_lpas);
 
             }
 
-            //dd("body_lpas", count($body_lpas), $body_lpas);
+            dd("body_lpas", count($body_lpas), $body_lpas);
 
             $body_lpas = ($body_lpas)->chunk(($lotes / 4));
             foreach ($body_lpas as $body) {
