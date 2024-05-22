@@ -394,7 +394,7 @@ class PersonAttended extends Controller
             //eliminar los 350 primeros registros de $elementsForMigration
             $elementsForMigration->shift($lotes);
 
-            $restante = json_decode(json_encode($elementsForMigration), FALSE);
+            $restante = json_encode(json_decode(json_encode($elementsForMigration), FALSE));
 
             $migrationPendings->table_id = $restante;
 
