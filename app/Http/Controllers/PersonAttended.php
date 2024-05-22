@@ -282,7 +282,16 @@ class PersonAttended extends Controller
                 return ['restante' => strlen(optional($migrationPendings)->table_id)];
             }
 
-            $elementsForMigration = collect(json_decode($idTable));
+            //validar para parchar por que si es arreglo se procesara mal
+            //es objeto
+            if(substr($idTable, 0, 1) == '{'){
+                $elementsForMigration = collect(json_decode($idTable));
+
+            } else {
+                //es arreglo
+                $elementsForMigration = collect(json_decode($idTable));
+
+            }
 
             echo count($elementsForMigration);
 
@@ -427,7 +436,7 @@ class PersonAttended extends Controller
                 ['file_ref', 'PENDING']
             ])->get();
 
-            return ['restanteParte' => count($restante), 'restanteTotal' => count($restanteTot)];
+            return ['restanteParte' => count($elementsForMigration), 'restanteTotal' => count($restanteTot)];
 
             //return response()->json(["message" => "operacion hecha con exito"]);
 
