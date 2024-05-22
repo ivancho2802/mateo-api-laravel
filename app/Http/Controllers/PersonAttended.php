@@ -294,6 +294,7 @@ class PersonAttended extends Controller
             //estoy tomando solo la primera 500
 
             foreach ($elementsForMigrationChunked[0] as $row) {
+                $i = 0;
                 /* if (!$row[0] || $row[0] == '') {
                 break;
                 } */
@@ -304,16 +305,16 @@ class PersonAttended extends Controller
                 } */
                 $row = collect(collect($row)->toArray())->flatten();
 
-                $mlpa_emergencia = MLpaEmergencia::firstOrCreate([
-
-                    'COD_EMERGENCIAS' => $row[0],
-                    'TIPO_EVENTO' => $row[1],
-                    'SOCIO' => $row[2],
-                    'DEPARTAMENTO' => $row[3],
-                    'MUNICIPIO' => $row[4],
-                    'LUGAR_ATENCION' => $row[5]
-
-                ]);
+                $mlpa_emergencia = MLpaEmergencia::firstOrCreate(
+                    [
+                        'COD_EMERGENCIAS' => $row[0],
+                        'TIPO_EVENTO' => $row[1],
+                        'SOCIO' => $row[2],
+                        'DEPARTAMENTO' => $row[3],
+                        'MUNICIPIO' => $row[4],
+                        'LUGAR_ATENCION' => $row[5]
+                    ]
+                );
 
                 $dateArray = collect($row[14])->toArray();
 
@@ -375,6 +376,10 @@ class PersonAttended extends Controller
                     "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
 
                 ]);
+
+                $i++;
+
+                echo ("i proceced: " . $i);
 
             }
 
