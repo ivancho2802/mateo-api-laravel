@@ -286,6 +286,8 @@ class PersonAttended extends Controller
 
             echo count($elementsForMigration);
 
+            dd("elementsForMigration", $elementsForMigration);
+
             $elementsForMigrationChunked = $elementsForMigration->chunk($lotes);
 
             $body_lpas = collect();
