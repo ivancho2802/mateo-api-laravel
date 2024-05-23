@@ -290,7 +290,7 @@ class PersonAttended extends Controller
             } else {
                 //es arreglo
                 $elementsForMigration = collect(json_decode($idTable));
-
+                return ["elementsForMigration"=>$elementsForMigration];
             }
 
             echo count($elementsForMigration);

@@ -12,8 +12,19 @@ where
 table_id != '[]' AND
 "table" = 'M_LPAS'  AND 
 file_ref = 'PENDING';
+SELECT COUNT(*)
+FROM 
+public.migrate_customs 
+where 
+table_id != '[]' AND
+"table" = 'M_LPAS'  AND 
+file_ref = 'UPLOADED';
+
 
 select count(*) from "M_LPAS";
+--SEgunad migrCION HAY SIN FEBRERO 53897
+-- solo desde febrero deben de haber 20632
+-- validar que no haya repetidas entre el 1 de grebrero y el 5
 
 -- cuantas personas
 select COUNT("GENERO"), "GENERO" from "M_LPA_PERSONAS" GROUP BY "GENERO";
@@ -41,7 +52,6 @@ SELECT
 	GROUP BY "ETNIA"
 	
 
-select count(*) from "M_LPAS" ;
 --para saber cuantas respuestas a formularios de mpd se han realizado
 -- ver cuantos formularios de mpd hay
 select 
