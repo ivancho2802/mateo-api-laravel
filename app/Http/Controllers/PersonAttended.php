@@ -362,6 +362,8 @@ class PersonAttended extends Controller
                     ]
                 );
 
+                dd("mlpa_persona", $mlpa_persona->ID);
+
                 $FECHA_ATENCION = collect($row[31])->toArray()["date"]; //Date::excelToDateTimeObject($row[31]);
 
                 $body_lpas->push([
@@ -381,8 +383,8 @@ class PersonAttended extends Controller
                     //laura reemplzar por el id desde el token 5 en lcal 1 online
                     "ID_M_USUARIOS" => $ID_USER,
 
-                    "FK_LPA_EMERGENCIA" => $mlpa_emergencia->get()->last()->ID,
-                    "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
+                    "FK_LPA_EMERGENCIA" => $mlpa_emergencia->ID,
+                    "FK_LPA_PERSONA" => $mlpa_persona->ID
 
                 ]);
 
