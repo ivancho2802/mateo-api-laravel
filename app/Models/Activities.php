@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\MLpa;
-use App\Models\activitiesDirectories;
+use App\Models\ActivitiesDirectories;
 
 class Activities extends Model
 {
@@ -27,6 +27,6 @@ class Activities extends Model
 
     public function directory()
     {
-        return $this->hasOne(activitiesDirectories::class, 'cod_actividad', 'cod' );
+        return $this->hasOne(ActivitiesDirectories::class, 'cod_actividad', 'cod' );
     }
 }
