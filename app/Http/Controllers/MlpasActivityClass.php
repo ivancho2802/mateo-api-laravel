@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use App\Models\activitiesDirectories;
+use App\Models\ActivitiesDirectories;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use App\Models\migrateCustom;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -37,7 +37,7 @@ class MlpasActivityClass  implements ToCollection
                 continue;
             }
             
-            $lpaactivity = activitiesDirectories::create([
+            $lpaactivity = ActivitiesDirectories::create([
 
                 'cod_actividad' => $row[0],
                 'sectores_echo' => $row[3],

@@ -9,7 +9,7 @@ use App\Models\migrateCustom;
 use App\Models\MLpa;
 use App\Models\MLpaEmergencia;
 use App\Models\MLpaPersona;
-use App\Models\activitiesDirectories;
+use App\Models\ActivitiesDirectories;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Analisis;
@@ -121,7 +121,7 @@ class PersonAttended extends Controller
 
             $id_activities_directories = explode(", ", $migrate_custom->table_id);
 
-            $query_activities_directories = activitiesDirectories::whereIn('id', $id_activities_directories)->orderBy('created_at', 'desc');
+            $query_activities_directories = ActivitiesDirectories::whereIn('id', $id_activities_directories)->orderBy('created_at', 'desc');
 
             $count_activities_directories = count($query_activities_directories->get());
 
