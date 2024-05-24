@@ -20,4 +20,6 @@ select "ID_M_USUARIOS" from "M_LPAS" LIMIT 10
 select "DOCUMENTO", "TIPO_DOCUMENTO"  from "M_LPA_PERSONAS" order by "DOCUMENTO"
 
 select * FROM "M_LPAS" where "FECHA_ATENCION" >= '2024-02-01'
-select * from migrate_customs where "table" = 'M_LPAS' and file_ref='PENDING' limit 1
+select * from migrate_customs where "table" = 'M_LPAS' and file_ref = 'UPLOADED' limit 10
+
+select * from migrate_customs where "table" = 'M_LPAS' and table_id like '%migrationsLpa%'  order by updated_at desc limit 20

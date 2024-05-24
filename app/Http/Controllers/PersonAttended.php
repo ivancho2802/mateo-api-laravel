@@ -171,8 +171,9 @@ class PersonAttended extends Controller
             'Content-Type: application/vnd.ms-excel',
         );
         //return Storage::download("migrationsLpa/P1NbVt8r2vVH76QKOkJigTOOMJi1UggewaFJ50gy.xlsx", 'filename.xlsx', $headers);
+        return Storage::download("migrationsLpa/h0R5RfbLVuBjetZLTRG9c5xHVABG054Qm0GPIG7S.xlsx", 'filename.xlsx', $headers);
 
-        return Storage::download($migration->table_id, 'filename.xlsx', $headers);
+       // return Storage::download($migration->table_id, 'filename.xlsx', $headers);
     }
 
     function process(Request $request)
