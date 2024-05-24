@@ -290,7 +290,7 @@ class PersonAttended extends Controller
             } else {
                 //es arreglo
                 $elementsForMigration = collect(json_decode($idTable));
-                //return ["elementsForMigration"=>$elementsForMigration];
+                return ["elementsForMigration"=>$elementsForMigration];
             }
 
             echo count($elementsForMigration);
@@ -361,8 +361,6 @@ class PersonAttended extends Controller
                         'TELEFONO' => $row[28]
                     ]
                 );
-
-                dd("mlpa_persona", $mlpa_persona->ID);
 
                 $FECHA_ATENCION = collect($row[31])->toArray()["date"]; //Date::excelToDateTimeObject($row[31]);
 
