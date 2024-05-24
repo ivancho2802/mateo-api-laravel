@@ -362,6 +362,11 @@ class PersonAttended extends Controller
                     ]
                 );
 
+
+                if(!isset($mlpa_persona) || !isset($mlpa_emergencia) && (!optional($mlpa_persona)->ID || !optional($mlpa_emergencia)->ID)){
+                    return ["mlpa_persona"=>$mlpa_persona, "mlpa_emergencia" => $mlpa_emergencia];
+                }
+
                 $FECHA_ATENCION = collect($row[31])->toArray()["date"]; //Date::excelToDateTimeObject($row[31]);
 
                 $body_lpas->push([
