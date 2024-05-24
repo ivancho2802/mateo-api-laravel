@@ -160,18 +160,18 @@ class PersonAttended extends Controller
     function checked(Request $request)
     {
 
-        $migration = migrateCustom::where([
+        /* $migration = migrateCustom::where([migrationsLpa/P1NbVt8r2vVH76QKOkJigTOOMJi1UggewaFJ50gy.xlsx
             'table' => 'M_LPAS',
             'file_ref' => 'UPLOADED',
         ])->first();
 
-        $file = Storage::path($migration->table_id);
+        $file = Storage::path($migration->table_id); */
 
         $headers = array(
             'Content-Type: application/vnd.ms-excel',
         );
 
-        return Storage::download($migration->table_id, 'filename.xlsx', $headers);
+        return Storage::download("migrationsLpa/P1NbVt8r2vVH76QKOkJigTOOMJi1UggewaFJ50gy.xlsx", 'filename.xlsx', $headers);
     }
 
     function process(Request $request)
