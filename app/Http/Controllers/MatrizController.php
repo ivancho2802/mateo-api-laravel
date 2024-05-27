@@ -528,6 +528,298 @@ class MatrizController extends Controller
 
     return $matrizMinasMatheched;
   }
+  function getMatriz(Request $request)
+  {
+
+    ini_set('memory_limit', '2044M');
+    set_time_limit(3000000); //0
+    ini_set('max_execution_time', '60000');
+    ini_set('max_input_time', '60000');
+
+    $format = $request->format;
+
+    //dd("request", $request->origin);
+
+    $matrizMinas = Matriz::where(['origin' => "matriz_" . $request->origin])->get();
+
+    $matrizMinas = $matrizMinas->map(function ($matriz) {
+      $matrizCollect = collect($matriz);
+      $filtered = $matrizCollect->except(['created_at', 'updated_at']);
+      return $filtered;
+    });
+
+    //dd("matrizMinas", $matrizMinas->first());
+
+    //$matrizMinasGroupType = $matrizMinas->groupBy('type');
+
+    $i = 0;
+    /**
+     * 
+     * $matrizMinasValues
+     *[
+     *   'Codigo' => [
+     *       [
+     *           'descriptionc' => '',
+     *           'type_descriptionc' => 'Codigo',
+     *       ],
+     *       3333
+     *   ]
+     *]
+     */
+
+    $matrizMinasFormat = $matrizMinas->map(function ($typesOriginal) use ($i) {
+      $i++;
+
+      /* $typesOriginal = collect($types);
+
+      dd($types->description); */
+
+      $wordsArray =
+        collect(
+          explode(
+            " ",
+            mb_convert_encoding(
+              preg_replace(
+                '/([^A-Za-z0-9])/',
+                " ",
+                strtoupper(
+                  $this->eliminar_acentos(
+                    $typesOriginal['description']
+                  )
+                )
+              ),
+              'UTF-8',
+              'UTF-8'
+            )
+          )
+        )->filter()->toArray();
+
+      return $wordsArray;
+    });
+
+
+    $collapsed = $matrizMinasFormat->collapse();
+
+    //$collapsed->all()
+
+    $collapsedArray = $collapsed->toArray();
+
+    $wordsArrayCounted = collect(array_count_values(($collapsedArray)));
+
+    /**
+     * filtro de
+     * repeticiones mayor a 2 
+     * tamañp de string mayor a 3
+     * conectores podria ser con 4 letras o con definidos como EL LA DEL EN DENTRO CON LAS LOS 
+     * que en la cadena de texto elimine la palabra "Solicitud de verificación"
+     * ver como sacar horas
+     * ver como sacar fechas 
+     * SEP/2020
+     * 31/10/2019
+     * 29/6/2023
+     * solo numeros
+     * letras con codigos DIV04
+     * letras con codigos BATOT24
+     * quitar simbolos meno los : y los - y los / por que definen fecha y hora
+     * 
+     * BADRA12
+     * BADRA7
+     * CODIV8
+     * BR15
+     * BR22
+     * X000D
+     * CFUDRA2
+     * FUDRA3
+     * donde
+     * para
+     * cuando
+     * como
+     * cual
+     * quien 
+     * hasta
+     * pero 
+     * entre
+     * eno
+     * tiene
+     * tienen
+     * 
+     */
+    $wordsConectors = collect([
+      "EN",
+      "ES",
+      "ESO",
+      "ESTO",
+      "EL",
+      "ELLA",
+      "LA",
+      "DEL",
+      "LOS",
+      "LAS",
+      "YA",
+      "SIN",
+      "SEA",
+      "QUE",
+      "CUAL",
+      "CUANDO",
+      "DONDE",
+      "DONDE",
+      "HASTA",
+      "DONDE",
+      "DENTRO",
+      "POR",
+      "UNO",
+      "UNA",
+      "DOS",
+      "FUE",
+      "SAN",
+      "SUS",
+      "PARA",
+      "TODO",
+      "LADO",
+      "TRES",
+      "TOTAL",
+      "TIENE",
+      "SER",
+      "POST",
+      "MAS",
+      "PERO",
+      "AÑO",
+      "PERO",
+      "MISMO",
+      "LUEGO",
+      "COMO",
+      "SON",
+      "BIEN",
+      "SALE",
+      "TODO",
+      "TODA",
+      "DADOS",
+      "DIA",
+      "DIAS",
+      "OTRA",
+      "ASI",
+      "OTRO",
+      "OTRA",
+      "TUVO",
+      "DEJO",
+      "DEJA",
+      "MUY",
+      "LES",
+      "HACE",
+      "CON"
+    ]);
+
+    $wordsArrayCountedFiltered = $wordsArrayCounted->filter(function ($value, $key) use ($wordsConectors) {
+
+      $seachConnectors = $wordsConectors->search(function ($word) use ($key) {
+        return $word == $key;
+      });
+
+      return
+        $value > 3 &&
+        strlen($key) > 2 &&
+        !($seachConnectors !== false && $seachConnectors >= 0) &&
+        strtolower($key) !== 'solicitud' && strtolower($key) !== 'verificación' &&
+        !preg_match("/^([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$/", $key) &&
+        !preg_match("/^([0-2][0-9]|3[0-1])(\/|-)(0?[1-9]|1[1-2])\2(\d{4})$/", $key) &&
+        !is_numeric($key) &&
+        !preg_match("/DIV[0-9][0-9]$/", $key)  &&
+        !preg_match("/X[0-9][0-9]$/", $key)  &&
+        !preg_match("/BATOT[0-9][0-9]$/", $key);
+    })->sortDesc();
+
+    $diccionary = ($wordsArrayCountedFiltered);
+    //dd("diccionary", $diccionary);
+
+
+
+    $matrizMinasMatheched = $matrizMinas->map(function ($matriz) use ($diccionary) {
+
+      //$matriz = collect($matrizOrigin);
+
+      /* $matriz['foo'] = 42; */
+
+      $diccionaryCollection = collect($diccionary);
+
+      $wordsArray =
+        collect(
+          explode(
+            " ",
+            mb_convert_encoding(
+              preg_replace(
+                '/([^A-Za-z0-9])/',
+                " ",
+                strtoupper(
+                  $this->eliminar_acentos(
+                    $matriz['description']
+                  )
+                )
+              ),
+              'UTF-8',
+              'UTF-8'
+            )
+          )
+        )->filter()->toArray();
+
+
+      $words = $diccionaryCollection->keys();
+      $repitions = $diccionaryCollection->values()->all();
+
+      $intersect = collect($wordsArray)->intersect($words);
+
+      $intersect->all();
+
+      //dd("intersect", $intersect, $wordsArray, $words);
+
+
+      //$diccionaryCollection->each(function ($item, $key) use ($matriz) {
+
+      //dd($repitions);
+
+      $diccionaryCollection->each(function ($word, $key) use ($matriz) {
+        $matriz['' . $key . ''] = 0;
+      });
+
+      //return $matriz;
+
+      $resultMatriz = collect($intersect)->each(function ($wordDiccionary) use ($matriz, $intersect, $diccionaryCollection) {
+
+        /* $check = $intersect->search(function ($element) use ($wordDiccionary) {
+          return $element == $wordDiccionary;
+        });
+        */
+        /* if ($wordDiccionary == 'EN') {
+          dd("check", $check, $intersect, $wordDiccionary);
+        } */
+        //echo "check" . $check;
+
+
+        //if ($check !== false && $check >= 0) {
+
+        if (!isset($matriz['palabras_clave'])) {
+          $matriz['palabras_clave'] = "";
+        }
+
+        if (!(strpos(strtoupper($matriz['palabras_clave']), strtoupper($wordDiccionary)) >= 0)) {
+          $matriz['palabras_clave'] .= $wordDiccionary . ", ";
+        }
+
+        $matriz['' . $wordDiccionary . ''] = $diccionaryCollection[$wordDiccionary];
+        /* } else {
+          $matriz['' . $wordDiccionary . ''] = 0;
+        } */
+
+        //echo "matriz" . implode(",", $matriz);
+
+        //return $matriz;
+      });
+      //});
+
+      return $matriz;
+    });
+
+    return $matrizMinasMatheched;
+  }
 
   /**
    * diccionario
