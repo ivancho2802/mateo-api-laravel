@@ -19,6 +19,7 @@ class CreateMatrizsTable extends Migration
             $table->text('description')->nullable();
             $table->string('type')->nullable();
             $table->string('origin')->nullable();
+            $table->text('otros')->nullable();
 
         });
     }

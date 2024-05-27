@@ -66,6 +66,42 @@ class MatrizController extends Controller
     return response()->json(["message" => "operacion hecha con exito"]);
   }
 
+  function storedMatriz(Request $request)
+  {
+
+    ini_set('memory_limit', '2044M');
+    set_time_limit(3000000); //0
+    ini_set('max_execution_time', '60000');
+    ini_set('max_input_time', '60000');
+
+    //dd("file", $request->file('file'));
+    //echo csrf_token(); 
+    //return response()->json(["request" => $request]);
+
+    // Validate the uploaded file
+    $request->validate([
+      'file' => 'required|mimes:xlsx,xls',
+    ]);
+
+    // Get the uploaded file
+    $file = $request->file('file');
+
+    //get data excel
+    $collection = (new MatrizClass)->toCollection($file);
+
+    $import = new ImportMatrizClass();
+
+    $import->onlySheets('Hoja1');
+
+    // Process the Excel file
+    Excel::import($import, $file);
+
+
+    //terminar devolver tabla
+    //return view('list-activities', $data);, "data" => $data
+    return response()->json(["message" => "operacion hecha con exito"]);
+  }
+
   /**
    * diccionario
    *      analisis general
