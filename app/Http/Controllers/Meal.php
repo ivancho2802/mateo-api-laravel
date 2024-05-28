@@ -47,7 +47,7 @@ class Meal extends Controller
             return $mlpas;
         } else {
             
-            $mlpas = MLpa::limit(10000)->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->
+            $mlpas = MLpa::nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->
         }
 
         //PONER LA PERSONA CON SU EDAD
