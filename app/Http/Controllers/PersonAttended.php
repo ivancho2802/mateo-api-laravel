@@ -321,8 +321,8 @@ class PersonAttended extends Controller
                         'COD_EMERGENCIAS' => $row[0],
                         'TIPO_EVENTO' => $row[1],
                         'SOCIO' => $row[2],
-                        'DEPARTAMENTO' => $row[3],
-                        'MUNICIPIO' => $row[4],
+                        'DEPARTAMENTO' => isset($row[3]) ? strtoupper($row[3]): $row[3],
+                        'MUNICIPIO' => isset($row[4]) ? strtoupper($row[4]): $row[4],
                         'LUGAR_ATENCION' => $row[5]
                     ]
                 );
