@@ -85,7 +85,11 @@ Route::prefix('meal')->group(function () {
   //firebird
   Route::middleware(['auth:sanctum'])->get('/erns', [App\Http\Controllers\Erns::class, 'all']); 
 
-  Route::middleware(['auth:sanctum'])->get('/alertasFirebird', [App\Http\Controllers\Alertas::class, 'allFirebird']); 
+  
+  //seguimiento de emergencias
+  Route::middleware(['auth:sanctum'])->get('/alertasFirebird', [App\Http\Controllers\Alertas::class, 'allFirebird']);
+
+  Route::middleware(['auth:sanctum'])->get('/fuente', [App\Http\Controllers\Emergencias::class, 'fuente']);
 
   //monitoreo y evaluacion
 
