@@ -94,6 +94,8 @@ Route::prefix('meal')->group(function () {
   Route::middleware(['auth:sanctum'])->get('/ruralurbano', [App\Http\Controllers\Emergencias::class, 'ruralurbano']);
 
   Route::middleware(['auth:sanctum'])->get('/crucesector', [App\Http\Controllers\Emergencias::class, 'crucesector']);
+  
+  Route::middleware(['auth:sanctum'])->get('/fce', [App\Http\Controllers\Emergencias::class, 'fce']);
 
   //monitoreo y evaluacion
 

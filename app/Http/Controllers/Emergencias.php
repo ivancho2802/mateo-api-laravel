@@ -117,5 +117,26 @@ class Emergencias extends Controller
         return response()->json($resultados);
 
     }
+
+    
+    function fce(Request $request){
+
+        ini_set('memory_limit', '2044M');
+        set_time_limit(3000000);//0
+        ini_set('max_execution_time', '60000');
+        ini_set('max_input_time', '60000');
+
+        DB::setDefaultConnection('firebird'); 
+
+        $resultados = DB::select("SELECT codigo,departamento, municipio, Sectores_intervencion, cast(cast(M_KOBO_RESPUESTAS.XVALOR as blob sub_type text character set ISO8859_1) as varchar(2000)) comunidades from ( SELECT m_kobo_formularios.xCODIGO_ALERTA codigo, m_kobo_formularios.municipio municipio, m_kobo_formularios.departamento departamento, cast(cast(M_KOBO_RESPUESTAS.XVALOR as blob sub_type text character set ISO8859_1) as varchar(2000)) Sectores_intervencion, M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS IDFORM FROM M_KOBO_RESPUESTAS INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='00144') inner join M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001724'        ");
+        
+        $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
+
+        $resultados = collect($resultados);
+ 
+
+        return response()->json($resultados);
+
+    }
     
 }
