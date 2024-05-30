@@ -52,4 +52,50 @@ class Emergencias extends Controller
         return response()->json($resultados);
 
     }
+
+    
+    function ruralurbano(Request $request){
+
+        ini_set('memory_limit', '2044M');
+        set_time_limit(3000000);//0
+        ini_set('max_execution_time', '60000');
+        ini_set('max_input_time', '60000');
+
+        DB::setDefaultConnection('firebird'); 
+
+        $resultados = DB::select("SELECT 	m_kobo_formularios.xCODIGO_ALERTA CODIGO, 	M_KOBO_FORMULARIOS.MUNICIPIO,  	M_KOBO_FORMULARIOS.DEPARTAMENTO,         M_KOBO_FORMULARIOS.ESTATUS, cast(cast(M_KOBO_RESPUESTAS.XVALOR as blob sub_type text character set ISO8859_1) as varchar(2000)) Urbano_Rural FROM M_KOBO_RESPUESTAS INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001681'        ");
+        
+        $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
+
+        $resultados = collect($resultados);
+
+        /* $resultadosGruped = $resultados->groupBy('ID_M_KOBO_FORMULARIOS');
+
+        $formularioNew = collect();
+        $formulariosNew = collect([]);
+
+        //$formulariosNew->keys();
+
+        $formularioNew = $resultadosGruped->map(function ($valor, $key) use ($formularioNew, $formulariosNew) {
+
+            $objectFormulario = collect();
+
+            $valorFormated = $valor->each( function ($item) use ($objectFormulario){
+                $objectFormulario[$item->ROTULO] = $item->VALOR;
+                if($item->ROTULO == '1. Codigo' && empty($item->VALOR)){
+                    $objectFormulario[$item->ROTULO] = $item->CODIGO_ALERTA;
+                }
+            });
+
+            $formulariosNew->push($objectFormulario);
+
+            return $objectFormulario;
+            ['status' => true, 'data' => ($formulariosNew), 'total' => ($formularioNew)]
+        }); */
+
+        return response()->json($resultados);
+
+    }
+
+    
 }
