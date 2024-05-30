@@ -1,7 +1,16 @@
 <x-app-layout>
   <script>
-    document.generate-matriz-prensa
-    
+    document.querySelector('#formSave').addEventListener('submit', (event) => {
+
+      event.preventDefault();
+
+      console.log("HAGO UN SUBMIT", event);
+      var url = "https://tools.api.ach.dyndns.info/scraping-founds";
+
+      //document.generate - matriz - prensa
+
+    });
+
   </script>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -444,12 +453,12 @@
                     <div x-data="{ loader: false }" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 
 
-                      <form method="post" action="https://tools.api.ach.dyndns.info/scraping-founds" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                      <form method="post" id="formSave" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
 
                         <h1 class="h3 mb-3 fw-normal text-center">Formulario para el almacenamiento de matriz de prensa </h1>
 
                         <label for="floatingPassword">Token de acceso posiblemente este en tu correo:</label>
-                        <input type="text"  class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" id="dateRestrictNum" name="dateRestrictNum" placeholder="Token">
+                        <input type="text" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" id="dateRestrictNum" name="dateRestrictNum" placeholder="Token">
 
                         <div class="mb-3">
                           <label for="file" class="form-label">Archivo de Matriz de Prensa Scrapined_20...</label>
@@ -457,7 +466,7 @@
                           <div id="emailHelp" class="form-text"></div>
                         </div>
 
-                        <!-- <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar Datos</button> -->
+                        <button class="w-100 btn btn-lg btn-primary" type="button" (click)="alert();">Enviar Datos</button>
                         <x-primary-button class="mt-4" name="generate-matriz-prensa">Enviar Datos</x-primary-button>
                         <!-- <button class="mt-4" name="generate-founts-lite" type="button">Enviar Datos</button> -->
 
@@ -479,7 +488,7 @@
 
                   </div>
                 </div>
-                      </div>
+              </div>
 
             </div>
           </section>

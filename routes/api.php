@@ -82,7 +82,10 @@ Route::prefix('meal')->group(function () {
 
   Route::middleware(['auth:sanctum'])->post('/ern/refresh', [App\Http\Controllers\Erns::class, 'refresh']); //receptor
 
-  Route::middleware(['auth:sanctum'])->get('/erns', [App\Http\Controllers\Erns::class, 'all']); //receptor
+  //firebird
+  Route::middleware(['auth:sanctum'])->get('/erns', [App\Http\Controllers\Erns::class, 'all']); 
+
+  Route::middleware(['auth:sanctum'])->get('/alertasFirebird', [App\Http\Controllers\Alertas::class, 'allFirebird']); 
 
   //monitoreo y evaluacion
 
