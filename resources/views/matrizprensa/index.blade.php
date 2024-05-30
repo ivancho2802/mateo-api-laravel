@@ -1,4 +1,8 @@
 <x-app-layout>
+  <script>
+    document.generate-matriz-prensa
+    
+  </script>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       Matriz de Prensa
@@ -25,7 +29,7 @@
 
             <div class=" ">
               <!-- Filters -->
-              <form class="  lg:block">
+              <div class="  lg:block">
 
                 <div class="relative border-b border-gray-200 py-6" x-init="isOpen=false" x-data="{
                     isOpen: false, 
@@ -343,7 +347,7 @@
                         <x-primary-button class="mt-4" name="generate-founts-lite">Enviar Datos</x-primary-button>
                         <!-- <button class="mt-4" name="generate-founts-lite" type="button">Enviar Datos</button> -->
 
-                        <div x-show="loader" x-on:click.document="if($event.target && $event.target.name == 'generate-founts-lite') {loader = true;console.log('>>>', $event.target && $event.target.name == 'generate-founts-lite');} else {loader = false;console.log($event);}" x-on:load.window="loader = false" x-transition.opacity.duration.1000ms x-transition.opacity.duration.1000ms class="w-screen h-screen absolute left-0 top-0 z-50 bg-gray-500 items-center text-center" ><!-- style="height: 250vh;" -->
+                        <div x-show="loader" x-on:click.document="if($event.target && $event.target.name == 'generate-founts-lite') {loader = true;console.log('>>>', $event.target && $event.target.name == 'generate-founts-lite');} else {loader = false;console.log($event);}" x-on:load.window="loader = false" x-transition.opacity.duration.1000ms x-transition.opacity.duration.1000ms class="w-screen h-screen absolute left-0 top-0 z-50 bg-gray-500 items-center text-center"><!-- style="height: 250vh;" -->
                           <div class="" style="height: 100%;    display: grid;    vertical-align: middle;    align-items: center;">
 
                             <p class="text-white">
@@ -360,7 +364,122 @@
 
                   </div>
                 </div>
-              </form>
+
+
+                <div class="border-b border-gray-200 py-6" x-data="{ isOpenB: false }">
+                  <h3 class="-my-3 flow-root">
+                    <!-- Expand/collapse section button -->
+                    <button @click="isOpenB = !isOpenB" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false">
+                      <span class="font-medium text-gray-900">Scraping: es para extraer contenido web de una serie de urls</span>
+                      <span class="ml-6 flex items-center">
+                        <!-- Expand icon, show/hide based on section open state. -->
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                        </svg>
+                        <!-- Collapse icon, show/hide based on section open state. -->
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                        </svg>
+                      </span>
+                    </button>
+                  </h3>
+                  <!-- Filter section, show/hide based on section state. -->
+                  <div class="pt-6" id="filter-section-1" x-show="isOpenB">
+                    <div x-data="{ loader: false }" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+
+                      <form method="post" action="https://tools.api.ach.dyndns.info/scraping-founds" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+
+                        <h1 class="h3 mb-3 fw-normal text-center">Formulario de generacion de SCRAPING </h1>
+
+                        <div class="mb-3">
+                          <label for="file" class="form-label">Archivo de Matriz lite o con el mismo formato</label>
+                          <input class="form-control" type="file" id="file" name="file">
+                          <div id="emailHelp" class="form-text"></div>
+                        </div>
+
+                        <!-- <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar Datos</button> -->
+                        <x-primary-button class="mt-4" name="generate-founts-lite">Enviar Datos</x-primary-button>
+                        <!-- <button class="mt-4" name="generate-founts-lite" type="button">Enviar Datos</button> -->
+
+                        <div x-show="loader" x-on:click.document="if($event.target && $event.target.name == 'generate-founts-lite') {loader = true;console.log('>>>', $event.target && $event.target.name == 'generate-founts-lite');} else {loader = false;console.log($event);}" x-on:load.window="loader = false" x-transition.opacity.duration.1000ms x-transition.opacity.duration.1000ms class="w-screen h-screen absolute left-0 top-0 z-50 bg-gray-500 items-center text-center">
+                          <!-- style="height: 250vh;" -->
+                          <div class="" style="height: 100%;    display: grid;    vertical-align: middle;    align-items: center;">
+
+                            <p class="text-white">
+                              Cargando ...
+
+                            </p>
+                          </div>
+
+                        </div>
+
+                      </form>
+
+                    </div>
+
+                  </div>
+                </div>
+
+
+                <div class="border-b border-gray-200 py-6" x-data="{ isOpenB: false }">
+                  <h3 class="-my-3 flow-root">
+                    <!-- Expand/collapse section button -->
+                    <button @click="isOpenB = !isOpenB" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false">
+                      <span class="font-medium text-gray-900">Guardar matriz de prensa de forma masiva</span>
+                      <span class="ml-6 flex items-center">
+                        <!-- Expand icon, show/hide based on section open state. -->
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                        </svg>
+                        <!-- Collapse icon, show/hide based on section open state. -->
+                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+                        </svg>
+                      </span>
+                    </button>
+                  </h3>
+                  <!-- Filter section, show/hide based on section state. -->
+                  <div class="pt-6" id="filter-section-1" x-show="isOpenB">
+                    <div x-data="{ loader: false }" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+
+                      <form method="post" action="https://tools.api.ach.dyndns.info/scraping-founds" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+
+                        <h1 class="h3 mb-3 fw-normal text-center">Formulario para el almacenamiento de matriz de prensa </h1>
+
+                        <label for="floatingPassword">Token de acceso posiblemente este en tu correo:</label>
+                        <input type="text"  class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" id="dateRestrictNum" name="dateRestrictNum" placeholder="Token">
+
+                        <div class="mb-3">
+                          <label for="file" class="form-label">Archivo de Matriz de Prensa Scrapined_20...</label>
+                          <input class="form-control" type="file" id="file" name="file">
+                          <div id="emailHelp" class="form-text"></div>
+                        </div>
+
+                        <!-- <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar Datos</button> -->
+                        <x-primary-button class="mt-4" name="generate-matriz-prensa">Enviar Datos</x-primary-button>
+                        <!-- <button class="mt-4" name="generate-founts-lite" type="button">Enviar Datos</button> -->
+
+                        <div x-show="loader" x-on:click.document="if($event.target && $event.target.name == 'generate-founts-lite') {loader = true;console.log('>>>', $event.target && $event.target.name == 'generate-founts-lite');} else {loader = false;console.log($event);}" x-on:load.window="loader = false" x-transition.opacity.duration.1000ms x-transition.opacity.duration.1000ms class="w-screen h-screen absolute left-0 top-0 z-50 bg-gray-500 items-center text-center">
+                          <!-- style="height: 250vh;" -->
+                          <div class="" style="height: 100%;    display: grid;    vertical-align: middle;    align-items: center;">
+
+                            <p class="text-white">
+                              Cargando ...
+
+                            </p>
+                          </div>
+
+                        </div>
+
+                      </form>
+
+                    </div>
+
+                  </div>
+                </div>
+                      </div>
 
             </div>
           </section>
