@@ -523,7 +523,7 @@
                     <div x-data="{ loader: false }" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 
                         <!-- id="formSave" enctype="multipart/form-data"-->
-                      <form method="POST" action="api/matriz"  class="row g-3 needs-validation" novalidate>
+                      <form method="POST" action="/api/matriz"  class="row g-3 needs-validation" novalidate>
                         @csrf
 
                         <h1 class="h3 mb-3 fw-normal text-center">Formulario para el almacenamiento de matriz de prensa </h1>
