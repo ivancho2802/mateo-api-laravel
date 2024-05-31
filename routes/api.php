@@ -484,7 +484,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
 Route::middleware(['auth:sanctum'])->post('/matriz/minas', [App\Http\Controllers\MatrizController::class, 'stored']);
 
-Route::middleware(['auth:sanctum'])->post('/matriz', [App\Http\Controllers\MatrizController::class, 'storedMatriz']);
+Route::post('/matriz', [App\Http\Controllers\MatrizController::class, 'storedMatriz']);
 
 Route::middleware(['auth:sanctum'])->get('/matriz/minas', [App\Http\Controllers\MatrizController::class, 'all']);
 
