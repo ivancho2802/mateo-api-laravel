@@ -10,12 +10,17 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
+        
         <!-- Styles ... -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <!-- jquery -->
+        <!-- <script src="https://code.jquery.com/jquery-1.3.2.js" ></script> -->
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

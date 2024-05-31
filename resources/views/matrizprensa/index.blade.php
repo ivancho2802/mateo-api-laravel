@@ -1,16 +1,84 @@
 <x-app-layout>
   <script>
-    document.querySelector('#formSave').addEventListener('submit', (event) => {
+    /* $(document).ready(function() {
+      //código a ejecutar cuando existe la certeza de que el DOM está listo para recibir acciones
+      document.querySelector('#formSave').addEventListener('submit', (event) => {
 
-      event.preventDefault();
+        event.preventDefault();
 
-      console.log("HAGO UN SUBMIT", event);
-      var url = "https://tools.api.ach.dyndns.info/scraping-founds";
+        console.log("HAGO UN SUBMIT", event);
+        var url = "https://mireview.api.ach.dyndns.info/api/matriz";
 
-      //document.generate - matriz - prensa
+        var formparmas = new FormData();
+        var token = document.getElementById('token').value
 
-    });
+        console.log("fileInput", $('#fileSave')[0].files.length);
 
+        if ($('#fileSave')[0].files > 0) {
+          formparmas.append('file', $('#fileSave')[0].files[0]);
+          //formparmas.append('a', "a");
+        }
+
+        var headersNew = {
+          "Authorization": "Bearer " + token,
+          "Content-Type": "application/json"
+        }
+
+        //document.generate - matriz - prensa
+
+        if (!($('#fileSave')[0].files[0]) && !token) {
+          $("#responseSaved").html("error faltsan datos");
+          return;
+        }
+        var _token = document.getElementsByName('_token')[2].value
+
+        var dataParams = new FormData();
+        jQuery.each(jQuery('#file')[0].files, function(i, file) {
+          dataParams.append('file', file);
+          dataParams.append('_token', _token);
+          
+        });
+
+
+        $.ajax({
+
+          type: "POST",
+          method: 'POST',
+          url: url,
+          
+          cache: false,
+          //contentType: false,
+          dataType: "json",
+          contentType: "application/json",
+          processData: false,
+
+          //data: "file=" + $('#fileSave')[0].files[0] + "&_token=" + _token,//dataParams, //
+          data: {"file": $('#fileSave')[0].files[0], "_token": _token},//"file=" + $('#fileSave')[0].files[0] + "&_token=" + _token,dataParams, //
+          //headers: headersNew,
+
+          success: function(datares) {
+            console.log("datares", datares)
+            $("#responseSaved").html(datares ? JSON.stringify(datares) : datares);
+          },
+
+          complete: function(data) {
+            console.log("data", data)
+            $("#responseSaved").html(JSON.stringify(data));
+
+          },
+
+          statusCode: {
+            404: function(xhr) {
+              console.error('No hay Conexion al servidor');
+            }
+          },
+          // beforeSend: function(xhr) {
+          //  xhr.setRequestHeader("Authorization", "Bearer " + token);
+          //},
+        });
+
+      });
+    }); */
   </script>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -211,6 +279,7 @@
 
 
                       <form method="post" action="https://tools.api.ach.dyndns.info/generate-founts-lite" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                        @csrf
 
                         <h1 class="h3 mb-3 fw-normal text-center">Formulario de generacion de matriz </h1>
 
@@ -398,6 +467,7 @@
 
 
                       <form method="post" action="https://tools.api.ach.dyndns.info/scraping-founds" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                        @csrf
 
                         <h1 class="h3 mb-3 fw-normal text-center">Formulario de generacion de SCRAPING </h1>
 
@@ -452,23 +522,28 @@
                   <div class="pt-6" id="filter-section-1" x-show="isOpenB">
                     <div x-data="{ loader: false }" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 
-
-                      <form method="post" id="formSave" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                        <!-- id="formSave" enctype="multipart/form-data"-->
+                      <form method="POST" action="{{ route('matriz') }}"  class="row g-3 needs-validation" novalidate>
+                        @csrf
 
                         <h1 class="h3 mb-3 fw-normal text-center">Formulario para el almacenamiento de matriz de prensa </h1>
 
                         <label for="floatingPassword">Token de acceso posiblemente este en tu correo:</label>
-                        <input type="text" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" id="dateRestrictNum" name="dateRestrictNum" placeholder="Token">
+                        <input type="text" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" id="token" name="token" placeholder="Token">
 
                         <div class="mb-3">
                           <label for="file" class="form-label">Archivo de Matriz de Prensa Scrapined_20...</label>
-                          <input class="form-control" type="file" id="file" name="file">
+                          <input class="form-control" type="file" id="fileSave" name="fileSave">
                           <div id="emailHelp" class="form-text"></div>
                         </div>
 
-                        <button class="w-100 btn btn-lg btn-primary" type="button" (click)="alert();">Enviar Datos</button>
-                        <x-primary-button class="mt-4" name="generate-matriz-prensa">Enviar Datos</x-primary-button>
-                        <!-- <button class="mt-4" name="generate-founts-lite" type="button">Enviar Datos</button> -->
+                        <x-primary-button class="mt-4" name="generate-matriz-prensa">
+                          Enviar Datos
+                        </x-primary-button>
+
+                        <div id="responseSaved">
+
+                        </div>
 
                         <div x-show="loader" x-on:click.document="if($event.target && $event.target.name == 'generate-founts-lite') {loader = true;console.log('>>>', $event.target && $event.target.name == 'generate-founts-lite');} else {loader = false;console.log($event);}" x-on:load.window="loader = false" x-transition.opacity.duration.1000ms x-transition.opacity.duration.1000ms class="w-screen h-screen absolute left-0 top-0 z-50 bg-gray-500 items-center text-center">
                           <!-- style="height: 250vh;" -->
