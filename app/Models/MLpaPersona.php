@@ -304,8 +304,6 @@ class MLpaPersona extends Model
 
         $discapacidades = collect($this->discapacidades);
 
-        return $discapacidades;
-
         $discapacitado = $discapacidades->filter(function ($value, $key) {
             return $value == 1;
         });
