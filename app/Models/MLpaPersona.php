@@ -58,7 +58,7 @@ class MLpaPersona extends Model
 
     ];
 
-    protected $appends = ['edad', 'disca_ver'];
+    protected $appends = ['edad', 'disca'];
 
     /**
      * calculo de la disca_ver apartie de la fecha de nacimiento
