@@ -58,12 +58,12 @@ class MLpaPersona extends Model
 
     ];
 
-    protected $appends = ['edad', 'disca'];
+    protected $appends = ['edad', 'discapacidades', 'discapacitado'];
 
     /**
-     * calculo de la disca_ver apartie de la fecha de nacimiento
+     * calculo de la discapacidades  
      */
-    public function getDiscaAttribute()
+    public function getDiscapacidadesAttribute()
     {
         $discapa_ver = 0;
         $discapa_oir = 0;
@@ -279,6 +279,36 @@ class MLpaPersona extends Model
         ];
 
         return $discapacidades;
+    }
+
+    
+    /**
+     * calculo de la discapacitado apartie de la fecha de nacimiento
+     */
+    public function getDiscapacitadoAttribute()
+    {
+        $discapacitado = 0;
+
+        $this->append('discapacidades');
+
+        $this->discapacidades;
+
+        /* [
+            "ver" => $discapa_ver,
+            "oir" => $discapa_oir,
+            "caminar" => $discapa_caminar,
+            "recordar" => $discapa_recordar,
+            "cuidado" => $discapa_cuidado,
+            "comunicar" => $discapa_comunicar,
+        ] */
+
+        $discapacidades = collect($this->discapacidades);
+
+        $discapacitado = $discapacidades->filter(function ($value, $key) {
+            return $value == 1;
+        });
+
+        return count($discapacitado) > 0 ? 1 : 0;
     }
 
     public function getEdadAttribute()
