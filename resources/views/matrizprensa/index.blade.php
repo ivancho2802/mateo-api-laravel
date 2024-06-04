@@ -530,14 +530,15 @@
                     <div x-data="{ loader: false }" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 
                       <!-- id="formSave" enctype="multipart/form-data"-->
-                      <form form role="form" method="POST" action="/matriz">
+                      <form role="form" method="POST" action="/matriz">
                         @csrf
 
                         <h1 class="h3 mb-3 fw-normal text-center">Formulario para el almacenamiento de matriz de prensa </h1>
 
+                        <!--
                         <label for="floatingPassword">Token de acceso posiblemente este en tu correo:</label>
                         <input type="text" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" id="token" name="token" placeholder="Token">
-
+                        -->
                         <div class="mb-3">
                           <label for="file" class="form-label">Archivo de Matriz de Prensa Scrapined_20...</label>
                           <input class="form-control" type="file" id="fileSave" name="fileSave">
@@ -547,6 +548,10 @@
                         <x-primary-button class="mt-4" name="generate-matriz-prensa">
                           Enviar Datos
                         </x-primary-button>
+
+                        <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">
+                          Sign in
+                        </button>
 
                         <div id="responseSaved">
 

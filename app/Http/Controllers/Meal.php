@@ -46,7 +46,7 @@ class Meal extends Controller
             $mlpas->load(['emergencia', 'actividad']);
             return $mlpas;
         } else {
-            
+
             $mlpas = MLpa::nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
         }
 
@@ -58,7 +58,7 @@ class Meal extends Controller
         //"Rango BHA"
         //=SI(AM2="";"";SI(AM2<=4;"0 to 4";SI(AM2<=9;"5 to 9";SI(AM2<=14;"10 to 14";SI(AM2<=18;"15 to 18";SI(AM2<=29;"19 to 29";SI(AM2<=59;"30 to 59";SI(AM2>=60;"> 60"))))))))
 
-        $mlpas->load(['emergencia', 'actividad', 'persona']);//, 'actividad.directory'
+        $mlpas->load(['emergencia', 'actividad', 'persona']); //, 'actividad.directory'
 
 
         /* $mlpasFormated = $mlpas->map(function ($lpa) {
@@ -79,21 +79,69 @@ class Meal extends Controller
         ];
     }
 
-    function getLpaPBI(){
-        
+    function getLpaPBI()
+    {
+
         $limit_minutes = 800;
         ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
         ini_set('memory_limit', '2044M');
         set_time_limit($limit_minutes); //0
         ini_set('max_execution_time', '' . $limit_minutes . '');
         ini_set('max_input_time', '' . $limit_minutes . '');
-        
+
 
         /* return [
             "lpas" => $flattenedMlpas,
             "analisis" => Analisis::where(["type" => "LPA"])->get(),
             //"erns" => $erns
         ]; */
+    }
+
+
+    function getLpaPBIDiscapacidades()
+    {
+
+        $limit_minutes = 800;
+        ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
+        ini_set('memory_limit', '2044M');
+        set_time_limit($limit_minutes); //0
+        ini_set('max_execution_time', '' . $limit_minutes . '');
+        ini_set('max_input_time', '' . $limit_minutes . '');
+
+        /* return [
+            "lpas" => $flattenedMlpas,
+            "analisis" => Analisis::where(["type" => "LPA"])->get(),
+            //"erns" => $erns
+        ]; */
+
+        $mlpas = MLpa::nodeleted()->where("FECHA_ATENCION", ">=", "2003-01-01")->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
+
+        //PONER LA PERSONA CON SU EDAD
+        //=SI($O2="";"";SI(SIFECHA($O2;Lista!$V$2;"y")=122;"";SIFECHA($O2;Lista!$V$2;"y")))
+        //PONER QUE SALGA LA FECHA
+        //"Rango ECHO"
+        //=SI(AM2="";"";SI(AM2<=5;"0 to 5";SI(AM2<=17;"6 to 17";SI(AM2<=49;"18 to 49";SI(AM2>=50;"> 50")))))
+        //"Rango BHA"
+        //=SI(AM2="";"";SI(AM2<=4;"0 to 4";SI(AM2<=9;"5 to 9";SI(AM2<=14;"10 to 14";SI(AM2<=18;"15 to 18";SI(AM2<=29;"19 to 29";SI(AM2<=59;"30 to 59";SI(AM2>=60;"> 60"))))))))
+
+        $mlpas->load(['persona']); //, 'actividad.directory'
+
+        /* $mlpasFormated = $mlpas->map(function ($lpa) {
+        //$lpa->load('actividad.directory');
+        //$lpa->append('tipo_lpa');
+        //$lpa->persona->append('edad');
+        $lpaArray = $lpa->toArray();
+        $lpaDoted = Arr::dot($lpaArray);
+        return  $lpaDoted;
+        }); */
+
+        $flattenedMlpas =  ($mlpas);
+
+        return [
+            "lpas" => $flattenedMlpas,
+            //"analisis" => Analisis::where(["type" => "LPA"])->get(),
+            //"erns" => $erns
+        ];
     }
 
     /**
@@ -729,7 +777,7 @@ class Meal extends Controller
                         //$pregunta_respuesta = $pregunta_respuesta->merge(['elementos_hogar_permiten' . $respuestaArray[$i] => 1]);
                     }
                 }
-                
+
                 //
                 $filtered_conoce_personas = $pregunta_respuesta->filter(function ($value,  $key) {
                     return $key == 'group_lf0rj78/_MEA_2_Conoce_personas_de_s';
@@ -754,19 +802,19 @@ class Meal extends Controller
                     else
                         $pregunta_respuesta['MEA 2_ conoce personas'] = "0";
                 }
-                
+
                 //columna sexo
                 $filtered_sexo = $pregunta_respuesta->filter(function ($value,  $key) {
                     return $key == 'group_df15y81/_1e_Sexo';
                 });
-                
+
                 $respuestas_sexo = $filtered_sexo->first();
-                
+
                 if (isset($respuestas_sexo)) {
                     $pregunta_respuesta['SEXO'] = $respuestas_sexo == 'option_1' ? 'Hombre' : 'Mujer';
                 }
 
-               
+
                 return $pregunta_respuesta;
             });
         }

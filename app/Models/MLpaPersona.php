@@ -58,11 +58,24 @@ class MLpaPersona extends Model
 
     ];
 
-    protected $appends = ['edad'];
+    protected $appends = ['edad', 'disca_ver'];
 
     /**
-     * calculo de la edad apartie de la fecha de nacimiento
+     * calculo de la disca_ver apartie de la fecha de nacimiento
      */
+    public function getDiscaVerAttribute()
+    {
+        $fecha_nac = $this->FECHA_NACIMIENTO;
+
+        $discapacidades = [];
+
+        if(isset($fecha_nac)){
+            $howOldAmI = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac)->age;  // 46 1999-08-30
+        }
+
+        return $howOldAmI;
+    }
+    
     public function getEdadAttribute()
     {
         $fecha_nac = $this->FECHA_NACIMIENTO;
