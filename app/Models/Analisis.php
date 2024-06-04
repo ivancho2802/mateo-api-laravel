@@ -11,6 +11,6 @@ class Analisis extends Model
     protected $table = 'analisis';
 
     protected $fillable = [
-        'texto', 'month', 'type'
+        'texto', 'month', 'type','acceso',        'participacion',        'ajustes',        'respuesta_rapida',        'recuperacion_temprana',        'acompanamiento'
     ];
 }
