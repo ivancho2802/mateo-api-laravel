@@ -706,8 +706,12 @@ class Meal extends Controller
         if ($request->pagination) {
             $mmqrs = MMqr::paginate(7);
         } else {
+            //SE AGREGA BUzON DE SUGERENCIAS
+            //select "CHANNEL_IN" from "M_MQR" GROUP BY "CHANNEL_IN"
+            $list_mqrs = MMqr::all();
+
             $mmqrs = [
-                "mqr" => MMqr::all(),
+                "mqr" => $list_mqrs,
                 "analisis" => Analisis::where(["type" => "MQR"])->get()
             ];
         }

@@ -17,6 +17,9 @@ class MMqr extends Model
 
     protected $primaryKey = "ID";
 
+    protected $appends = ['categorias_canales'];
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -43,5 +46,58 @@ class MMqr extends Model
     ];
 
 
-    
+
+    /**
+     * CHANNEL_IN buzon de sugerencias
+     * 
+     * 
+        Categoría global	    Categoría específica
+        Buzón de sugerencias 	Buzón de sugerencias
+                                Buzón digital Kobo
+        Correo electrónico	    Correo electrónico PQR
+        Línea telefónica	    Línea telefónica / WhatsApp PQR
+        Canal no formal	        WhatsApp no PQR
+                                Remisión interna (staff)
+        Remisión externa	    Remisión externa (socios)
+                                Remisión externa (otros)
+        PDM	                    PDM
+        categorias_canales
+     */
+    public function getCategoriasCanalesAttribute()
+    {
+        $channel = $this->CHANNEL_IN;
+
+        $categoria = "Fallo al calcular";
+
+        switch ($channel) {
+            case 'BuzÃ³n de sugerencias':
+            case 'BuzÃ³n digital Kobo':
+                $categoria = 'Buzón de sugerencias';
+                break;
+
+            case 'LÃ­nea telefÃ³nica/ whatsapp PQR':
+                $categoria = 'Línea telefónica';
+                break;
+
+            case 'Whatsapp no PQR':
+            case 'RemisiÃ³n interna staff':
+                $categoria = 'Canal no formal';
+                break;
+
+            case 'RemisiÃ³n externa (socios)':
+            case 'RemisiÃ³n externa (otros)':
+                $categoria = 'Remisión externa';
+                break;
+                
+            case 'PDM':
+                $categoria = 'PDM';
+                break;
+
+            default:
+                $categoria = 'Fallo al calcular';
+                break;
+        }
+
+        return $categoria;
+    }
 }
