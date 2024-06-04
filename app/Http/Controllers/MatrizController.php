@@ -68,6 +68,7 @@ class MatrizController extends Controller
 
   function storedMatriz(Request $request)
   {
+    return redirect('matrizprensa')->with(['success'=>'Datos guardados con exito.']);
 
     ini_set('memory_limit', '2044M');
     set_time_limit(3000000); //0
@@ -98,8 +99,9 @@ class MatrizController extends Controller
 
 
     //terminar devolver tabla
-    //return view('list-activities', $data);, "data" => $data
-    return response()->json(["message" => "operacion hecha con exito"]);
+    return redirect('matrizprensa');
+    //, "data" => $data
+    //return response()->json(["message" => "operacion hecha con exito"]);
   }
 
   /**

@@ -40,4 +40,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+/* Route::post('/matriz', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('matriz'); */
+Route::middleware(['auth:sanctum'])->get('matriz', [App\Http\Controllers\MatrizController::class, 'getMatriz'])->name('matriz');;
+
+Route::middleware(['auth:sanctum'])->post('matriz', [App\Http\Controllers\MatrizController::class, 'storedMatriz']);
+
 require __DIR__.'/auth.php';

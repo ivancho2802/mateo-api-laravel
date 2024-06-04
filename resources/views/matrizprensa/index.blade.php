@@ -80,6 +80,13 @@
       });
     }); */
   </script>
+
+  @if(session()->has('success'))
+  <div x-data="{ show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show" class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
+    <p class="m-0 text-white">{{ session('success')}}</p>
+  </div>
+  @endif
+
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       Matriz de Prensa
@@ -522,8 +529,8 @@
                   <div class="pt-6" id="filter-section-1" x-show="isOpenB">
                     <div x-data="{ loader: false }" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 
-                        <!-- id="formSave" enctype="multipart/form-data"-->
-                      <form method="POST" action="/api/matriz"  class="row g-3 needs-validation" novalidate>
+                      <!-- id="formSave" enctype="multipart/form-data"-->
+                      <form form role="form" method="POST" action="/matriz">
                         @csrf
 
                         <h1 class="h3 mb-3 fw-normal text-center">Formulario para el almacenamiento de matriz de prensa </h1>
