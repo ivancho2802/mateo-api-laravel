@@ -16,12 +16,12 @@ class AlterAnalisisTable extends Migration
         //
         Schema::table('analisis', function (Blueprint $table) {
             //mqr
-            $table->text('acceso')->nullable();
-            $table->text('participacion')->nullable();
-            $table->text('ajustes')->nullable();
-            $table->text('respuesta_rapida')->nullable();
-            $table->text('recuperacion_temprana')->nullable();
-            $table->text('acompanamiento')->nullable();
+            $table->text('acceso')->nullable()->default('No hay datos')->change();
+            $table->text('participacion')->nullable()->default('No hay datos')->change();
+            $table->text('ajustes')->nullable()->default('No hay datos')->change();
+            $table->text('respuesta_rapida')->nullable()->default('No hay datos')->change();
+            $table->text('recuperacion_temprana')->nullable()->default('No hay datos')->change();
+            $table->text('acompanamiento')->nullable()->default('No hay datos')->change();
         });
 
     }

@@ -49,8 +49,6 @@ class MMqr extends Model
 
     /**
      * CHANNEL_IN buzon de sugerencias
-     * 
-     * 
         Categoría global	    Categoría específica
         Buzón de sugerencias 	Buzón de sugerencias
                                 Buzón digital Kobo

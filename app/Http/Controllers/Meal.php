@@ -710,9 +710,11 @@ class Meal extends Controller
             //select "CHANNEL_IN" from "M_MQR" GROUP BY "CHANNEL_IN"
             $list_mqrs = MMqr::all();
 
+            $analisis = Analisis::where(["type" => "MQR"])->get();
+
             $mmqrs = [
                 "mqr" => $list_mqrs,
-                "analisis" => Analisis::where(["type" => "MQR"])->get()
+                "analisis" => $analisis
             ];
         }
 
