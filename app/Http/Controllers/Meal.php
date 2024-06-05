@@ -209,9 +209,16 @@ class Meal extends Controller
 
         $flattenedMlpas =  ($mlpasFormated);
 
+        $analisis = Analisis::where(["type" => "LPA"])->get();
+
+        $analisis = $analisis->map(function ($anali) {
+            $anali->month = isset($anali->month) ?  $anali->month . '-01' : $anali->month;
+            return $anali;
+        });
+
         return [
             "lpas" => $flattenedMlpas,
-            "analisis" => Analisis::where(["type" => "LPA"])->get(),
+            "analisis" => $analisis,
             //"erns" => $erns
         ];
     }
@@ -711,6 +718,11 @@ class Meal extends Controller
             $list_mqrs = MMqr::all();
 
             $analisis = Analisis::where(["type" => "MQR"])->get();
+
+            $analisis = $analisis->map(function ($anali) {
+                $anali->month = isset($anali->month) ?  $anali->month . '-01' : $anali->month;
+                return $anali;
+            });
 
             $mmqrs = [
                 "mqr" => $list_mqrs,
