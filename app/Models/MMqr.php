@@ -70,20 +70,36 @@ class MMqr extends Model
         switch ($channel) {
             case 'BuzÃ³n de sugerencias':
             case 'BuzÃ³n digital Kobo':
+            case 'Buzón de sugerencias':
+            case 'Buzón digital Kobo':
                 $categoria = 'Buzón de sugerencias';
+                break;
+                
+            case 'Correo electrÃ³nico PQR':
+            case 'Correo electrónico PQR':
+                $categoria = 'Correo electrónico';
                 break;
 
             case 'LÃ­nea telefÃ³nica/ whatsapp PQR':
+            case 'Línea telefónica / WhatsApp PQR':
                 $categoria = 'Línea telefónica';
                 break;
 
             case 'Whatsapp no PQR':
             case 'RemisiÃ³n interna staff':
+            case 'Remisión interna staff':
+            case 'Remisión interna (staff)':
                 $categoria = 'Canal no formal';
                 break;
 
             case 'RemisiÃ³n externa (socios)':
             case 'RemisiÃ³n externa (otros)':
+            case 'Remisión externa (socios)':
+            case 'Remisión externa (otros)':
+            case 'Remisión externa socios':
+            case 'Remisión externa otros':
+            case 'RemisiÃ³n externa socios':
+            case 'RemisiÃ³n externa otros':
                 $categoria = 'Remisión externa';
                 break;
                 
