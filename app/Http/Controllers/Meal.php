@@ -73,7 +73,7 @@ class Meal extends Controller
         $flattenedMlpas =  ($mlpas);
 
         return [
-            "lpas" => helper::convert_from_latin1_to_utf8_recursively($flattenedMlpas),
+            "lpas" => ($flattenedMlpas),
             //"analisis" => Analisis::where(["type" => "LPA"])->get(),
             //"erns" => $erns
         ];
