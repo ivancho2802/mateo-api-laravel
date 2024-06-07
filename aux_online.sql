@@ -49,7 +49,7 @@ update analisis set recuperacion_temprana = 'No hay datos' where recuperacion_te
 update analisis set acompanamiento = 'No hay datos' where acompanamiento is null;
 select *  from analisis;
 
-
+select unaccent_string(actividad), actividad  from activities;
 
 
 
