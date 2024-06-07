@@ -77,6 +77,7 @@ class MMqr extends Model
                 
             case $this->eliminar_acentos(strtoupper('Correo electrÃ³nico PQR')):
             case $this->eliminar_acentos(strtoupper('Correo electrónico PQR')):
+            case $this->eliminar_acentos(strtoupper('correo eléctronico staff')):
                 $categoria = 'Correo electrónico';
                 break;
 
