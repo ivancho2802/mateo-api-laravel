@@ -63,44 +63,48 @@ class MMqr extends Model
      */
     public function getCategoriasCanalesAttribute()
     {
-        $channel = strtoupper($this->CHANNEL_IN);
+        $channel = $this->eliminar_acentos(strtoupper($this->CHANNEL_IN));
 
         $categoria = "Fallo al calcular";
 
         switch ($channel) {
-            case strtoupper('BuzÃ³n de sugerencias'):
-            case strtoupper('BuzÃ³n digital Kobo'):
-            case strtoupper('Buzón de sugerencias'):
-            case strtoupper('Buzón digital Kobo'):
+            case $this->eliminar_acentos(strtoupper('BuzÃ³n de sugerencias')):
+            case $this->eliminar_acentos(strtoupper('BuzÃ³n digital Kobo')):
+            case $this->eliminar_acentos(strtoupper('Buzón de sugerencias')):
+            case $this->eliminar_acentos(strtoupper('Buzón digital Kobo')):
                 $categoria = 'Buzón de sugerencias';
                 break;
                 
-            case strtoupper('Correo electrÃ³nico PQR'):
-            case strtoupper('Correo electrónico PQR'):
+            case $this->eliminar_acentos(strtoupper('Correo electrÃ³nico PQR')):
+            case $this->eliminar_acentos(strtoupper('Correo electrónico PQR')):
                 $categoria = 'Correo electrónico';
                 break;
 
-            case strtoupper('LÃ­nea telefÃ³nica/ whatsapp PQR'):
-            case strtoupper('Línea telefónica / WhatsApp PQR'):
-            case strtoupper('Línea telefónica/ whatsapp PQR'):
+            case $this->eliminar_acentos(strtoupper('LÃ­nea telefÃ³nica/ whatsapp PQR')):
+            case $this->eliminar_acentos(strtoupper('Línea telefónica / WhatsApp PQR')):
+            case $this->eliminar_acentos(strtoupper('Línea telefónica/ whatsapp PQR')):
+            case $this->eliminar_acentos(strtoupper('Línea teléfonica/ whatsapp PQR')):
+            case $this->eliminar_acentos(strtoupper('LÃ­nea telefónica PQR')):
+            case $this->eliminar_acentos(strtoupper('Línea teléfonica PQR')):
+                
                 $categoria = 'Línea telefónica';
                 break;
 
-            case strtoupper('Whatsapp no PQR'):
-            case strtoupper('RemisiÃ³n interna staff'):
-            case strtoupper('Remisión interna staff'):
-            case strtoupper('Remisión interna (staff)'):
+            case $this->eliminar_acentos(strtoupper('Whatsapp no PQR')):
+            case $this->eliminar_acentos(strtoupper('RemisiÃ³n interna staff')):
+            case $this->eliminar_acentos(strtoupper('Remisión interna staff')):
+            case $this->eliminar_acentos(strtoupper('Remisión interna (staff)')):
                 $categoria = 'Canal no formal';
                 break;
 
-            case strtoupper('RemisiÃ³n externa (socios)'):
-            case strtoupper('RemisiÃ³n externa (otros)'):
-            case strtoupper('Remisión externa (socios)'):
-            case strtoupper('Remisión externa (otros)'):
-            case strtoupper('Remisión externa socios'):
-            case strtoupper('Remisión externa otros'):
-            case strtoupper('RemisiÃ³n externa socios'):
-            case strtoupper('RemisiÃ³n externa otros'):
+            case $this->eliminar_acentos(strtoupper('RemisiÃ³n externa (socios)')):
+            case $this->eliminar_acentos(strtoupper('RemisiÃ³n externa (otros)')):
+            case $this->eliminar_acentos(strtoupper('Remisión externa (socios)')):
+            case $this->eliminar_acentos(strtoupper('Remisión externa (otros)')):
+            case $this->eliminar_acentos(strtoupper('Remisión externa socios')):
+            case $this->eliminar_acentos(strtoupper('Remisión externa otros')):
+            case $this->eliminar_acentos(strtoupper('RemisiÃ³n externa socios')):
+            case $this->eliminar_acentos(strtoupper('RemisiÃ³n externa otros')):
                 $categoria = 'Remisión externa';
                 break;
                 
