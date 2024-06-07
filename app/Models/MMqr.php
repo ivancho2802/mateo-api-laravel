@@ -63,43 +63,44 @@ class MMqr extends Model
      */
     public function getCategoriasCanalesAttribute()
     {
-        $channel = $this->CHANNEL_IN;
+        $channel = strtoupper($this->CHANNEL_IN);
 
         $categoria = "Fallo al calcular";
 
         switch ($channel) {
-            case 'BuzÃ³n de sugerencias':
-            case 'BuzÃ³n digital Kobo':
-            case 'Buzón de sugerencias':
-            case 'Buzón digital Kobo':
+            case strtoupper('BuzÃ³n de sugerencias'):
+            case strtoupper('BuzÃ³n digital Kobo'):
+            case strtoupper('Buzón de sugerencias'):
+            case strtoupper('Buzón digital Kobo'):
                 $categoria = 'Buzón de sugerencias';
                 break;
                 
-            case 'Correo electrÃ³nico PQR':
-            case 'Correo electrónico PQR':
+            case strtoupper('Correo electrÃ³nico PQR'):
+            case strtoupper('Correo electrónico PQR'):
                 $categoria = 'Correo electrónico';
                 break;
 
-            case 'LÃ­nea telefÃ³nica/ whatsapp PQR':
-            case 'Línea telefónica / WhatsApp PQR':
+            case strtoupper('LÃ­nea telefÃ³nica/ whatsapp PQR'):
+            case strtoupper('Línea telefónica / WhatsApp PQR'):
+            case strtoupper('Línea telefónica/ whatsapp PQR'):
                 $categoria = 'Línea telefónica';
                 break;
 
-            case 'Whatsapp no PQR':
-            case 'RemisiÃ³n interna staff':
-            case 'Remisión interna staff':
-            case 'Remisión interna (staff)':
+            case strtoupper('Whatsapp no PQR'):
+            case strtoupper('RemisiÃ³n interna staff'):
+            case strtoupper('Remisión interna staff'):
+            case strtoupper('Remisión interna (staff)'):
                 $categoria = 'Canal no formal';
                 break;
 
-            case 'RemisiÃ³n externa (socios)':
-            case 'RemisiÃ³n externa (otros)':
-            case 'Remisión externa (socios)':
-            case 'Remisión externa (otros)':
-            case 'Remisión externa socios':
-            case 'Remisión externa otros':
-            case 'RemisiÃ³n externa socios':
-            case 'RemisiÃ³n externa otros':
+            case strtoupper('RemisiÃ³n externa (socios)'):
+            case strtoupper('RemisiÃ³n externa (otros)'):
+            case strtoupper('Remisión externa (socios)'):
+            case strtoupper('Remisión externa (otros)'):
+            case strtoupper('Remisión externa socios'):
+            case strtoupper('Remisión externa otros'):
+            case strtoupper('RemisiÃ³n externa socios'):
+            case strtoupper('RemisiÃ³n externa otros'):
                 $categoria = 'Remisión externa';
                 break;
                 
