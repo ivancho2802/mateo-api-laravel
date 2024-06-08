@@ -99,7 +99,9 @@ class MLpa extends Model
 
     public function actividad()
     {
-        return helper::convert_from_latin1_to_utf8_recursively($this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD'));
+        //dd($this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD'));
+
+        return $this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD');
     }
 
     public function persona()

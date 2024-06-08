@@ -81,7 +81,7 @@ class ActivityClass implements ToCollection
                 $activity = $activity->update([
                     'sector' => $sector,
                     'cod' => $row[0],
-                    'actividad' => $this->eliminar_acentos(helper::convert_from_latin1_to_utf8_recursively($row[1])),
+                    'actividad' => $this->eliminar_acentos(($row[1])),
                     'ID_M_USUARIOS' => $ID_USER
                 ]);
                 
