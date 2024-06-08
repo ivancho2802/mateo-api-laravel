@@ -532,3 +532,6 @@ grep -R default_server /etc/nginx/sites-enabled/
 service nginx restart
 
 ## posibles perdidas de datos el dia 21 05 2024 a las 4:04 pm se cambio el servidor la base de daros se migro a las 2 
+
+## tabla de caracteres 
+https://www.indalcasa.com/programacion/html/tabla-de-codificaciones-de-caracteres-entre-ansi-utf-8-javascript-html/#google_vignette
