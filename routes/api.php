@@ -320,8 +320,18 @@ Route::prefix('mongo')->group(function (){
     /*   try { */
     
         DB::setDefaultConnection('mongodb');
+        
+        $formluario = new MKoboFormularios();
+
+        $formluario->id = "1";
+        $formluario->_ID = "1";
+        $formluario->ID_M_USUARIOS = "1";
+        $formluario->ID_M_FORMULARIOS = "1";
+        $formluario->ESTATUS = "1";
+
+        $formluario->save();
   
-        $resultados = DB::select($request->sql); 
+        $resultados = MKoboFormularios::all(); 
     
         return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados) ]);
       /* } catch (\Throwable $exception) {
