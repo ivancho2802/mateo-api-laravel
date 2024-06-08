@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\MLpaEmergencia;
 use App\Models\Activities;
 use App\Models\MLpaPersona;
+use App\Http\Controllers\helper;
 
 class MLpa extends Model
 {
@@ -98,7 +99,7 @@ class MLpa extends Model
 
     public function actividad()
     {
-        return $this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD');
+        return helper::convert_from_latin1_to_utf8_recursively($this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD'));
     }
 
     public function persona()
