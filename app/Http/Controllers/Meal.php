@@ -88,13 +88,16 @@ class Meal extends Controller
         set_time_limit($limit_minutes); //0
         ini_set('max_execution_time', '' . $limit_minutes . '');
         ini_set('max_input_time', '' . $limit_minutes . '');
+        
+        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
 
         return [
-            "lpas"=> $request->from,
-            "lpas2"=> $request->to
+            "total_atenciones"=> count($mlpas),
+            "from"=> $request->from,
+            "to"=> $request->to,
+            "all_params" => $request->all()
         ];
 
-        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
         $mlpas->load(['emergencia', 'actividad', 'persona']); //, 'actividad.directory'
 
         $flattenedMlpas = $mlpas->flatten();
