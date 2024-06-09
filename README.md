@@ -54,6 +54,8 @@ systemctl restart nginx
  /etc/php/7.3/fpm/php.ini
  /etc/php/7.4/fpm/php.ini
 
+ extension=mongodb.so
+
 post_max_size=100M
 upload_max_filesize = 1G
 
@@ -535,3 +537,13 @@ service nginx restart
 
 ## tabla de caracteres 
 https://www.indalcasa.com/programacion/html/tabla-de-codificaciones-de-caracteres-entre-ansi-utf-8-javascript-html/#google_vignette
+
+## comando instalar ongo
+
+C:\ACH>msiexec.exe /l*v mdbinstall.log  /qb /i mongodb-windows-x86_64-7.0.11-signed.msi
+
+credenciales:
+iodiazbard
+pdKwPoxE5IlhQ0Kb
+
+mongodb+srv://iodiazbard:pdKwPoxE5IlhQ0Kb@cluster0.jozbdib.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

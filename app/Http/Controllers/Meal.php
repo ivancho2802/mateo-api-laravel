@@ -79,7 +79,7 @@ class Meal extends Controller
         ];
     }
 
-    function getLpaPBI()
+    function getLpaPBI(Request $request )
     {
 
         $limit_minutes = 800;
@@ -89,12 +89,21 @@ class Meal extends Controller
         ini_set('max_execution_time', '' . $limit_minutes . '');
         ini_set('max_input_time', '' . $limit_minutes . '');
 
+        return [
+            "lpas"=> $request->from,
+            "lpas2"=> $request->to
+        ];
 
-        /* return [
+        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
+        $mlpas->load(['emergencia', 'actividad', 'persona']); //, 'actividad.directory'
+
+        $flattenedMlpas = $mlpas->flatten();
+
+        return [
             "lpas" => $flattenedMlpas,
             "analisis" => Analisis::where(["type" => "LPA"])->get(),
             //"erns" => $erns
-        ]; */
+        ];
     }
 
 
