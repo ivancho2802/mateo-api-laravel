@@ -91,7 +91,6 @@ class Meal extends Controller
         
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
 
-        
         if(optional($request)->donante){
             $mlpas = $mlpas->where("DONANTE", "=", $request->donante);
         }
@@ -128,10 +127,12 @@ class Meal extends Controller
 
         $donantes = MLpa::get()->groupBy('DONANTE')->keys();
         $activities = Activities::get();
+        $fechas = MLpa::get()->groupBy('FECHA_ATENCION')->keys();
 
         return [
             "filtros.donantes" => $donantes,
             "filtros.activities" => $activities,
+            "filtros.FECHA_ATENCION" => $fechas,
         ];
     }
 
