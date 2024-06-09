@@ -93,11 +93,15 @@ class Meal extends Controller
         $donantes = $mlpas->groupBy('DONANTE')->keys();
 
         return [
-            "donantes" => $donantes,
-            "total_atenciones"=> count($mlpas),
-            "from"=> $request->from,
-            "to"=> $request->to,
-            "all_params" => $request->all()
+            "lpas" => [
+                "total_atenciones"=> count($mlpas),
+            ],
+            "filtros" => [
+                "donantes" => $donantes,
+                "from"=> $request->from,
+                "to"=> $request->to,
+                "all_params" => $request->all()
+            ]
         ];
 
         $mlpas->load(['emergencia', 'actividad', 'persona']); //, 'actividad.directory'
