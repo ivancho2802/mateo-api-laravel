@@ -97,9 +97,13 @@ class Meal extends Controller
         }
         
         if(optional($request)->actividad){
-            $total_atenciones = count($mlpas->get());
+            $total_atenciones = count(
+                $mlpas->where("COD_ACTIVIDAD", "!=", 'NA')
+                ->where("COD_ACTIVIDAD", "!=", '')
+            );
+
             $mlpas = $mlpas->where("COD_ACTIVIDAD", "=", $request->actividad);
-            $percentage = $total_atenciones > 0 && count($mlpas->get()) > 0 ? $total_atenciones / count($mlpas->get()) : 0;
+            $percentage = $total_atenciones > 0 && count($mlpas->get()) > 0 ? count($mlpas->get()) / $total_atenciones : 0;
         }
 
         $mlpas = $mlpas->get();
