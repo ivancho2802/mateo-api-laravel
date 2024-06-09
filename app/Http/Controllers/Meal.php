@@ -90,13 +90,16 @@ class Meal extends Controller
         ini_set('max_input_time', '' . $limit_minutes . '');
         
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
+        $percentage = 0;
 
         if(optional($request)->donante){
             $mlpas = $mlpas->where("DONANTE", "=", $request->donante);
         }
         
         if(optional($request)->actividad){
+            $total_atenciones = count($mlpas->get());
             $mlpas = $mlpas->where("COD_ACTIVIDAD", "=", $request->actividad);
+            $percentage = $total_atenciones > 0 && count($mlpas->get()) > 0 ? $total_atenciones / count($mlpas->get()) : 0;
         }
 
         $mlpas = $mlpas->get();
@@ -104,6 +107,7 @@ class Meal extends Controller
         return [
             "lpas" => [
                 "total_atenciones"=> count($mlpas),
+                "porcentaje_atenciones"=> $percentage,
             ],
             "filtros.all_params" => $request->all(),
             "filtros" => [
