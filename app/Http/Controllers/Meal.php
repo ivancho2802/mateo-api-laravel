@@ -96,11 +96,11 @@ class Meal extends Controller
             "lpas" => [
                 "total_atenciones"=> count($mlpas),
             ],
+            "filtros.donantes" => $donantes,
+            "filtros.all_params" => $request->all(),
             "filtros" => [
-                "donantes" => $donantes,
                 "from"=> $request->from,
                 "to"=> $request->to,
-                "all_params" => $request->all()
             ]
         ];
 
