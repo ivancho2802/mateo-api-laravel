@@ -90,8 +90,10 @@ class Meal extends Controller
         ini_set('max_input_time', '' . $limit_minutes . '');
         
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
+        $donantes = $mlpas->groupBy('DONANTE')->keys();
 
         return [
+            "donantes" => $donantes,
             "total_atenciones"=> count($mlpas),
             "from"=> $request->from,
             "to"=> $request->to,
