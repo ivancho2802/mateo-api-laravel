@@ -139,7 +139,7 @@ class Meal extends Controller
     function getLpaPBIFilters(Request $request ){
 
         $donantes = MLpa::get()->groupBy('DONANTE')->keys();
-        $activities = Activities::get();
+        $activities = Activities::select('cod')->distinct()->select('*')->get();
         $fechas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
         ->nodeleted()
         ->get()
