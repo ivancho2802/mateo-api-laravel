@@ -100,6 +100,7 @@ class Meal extends Controller
             $total_atenciones = count(
                 $mlpas->where("COD_ACTIVIDAD", "!=", 'NA')
                 ->where("COD_ACTIVIDAD", "!=", '')
+                ->get()
             );
 
             $mlpas = $mlpas->where("COD_ACTIVIDAD", "=", $request->actividad);
