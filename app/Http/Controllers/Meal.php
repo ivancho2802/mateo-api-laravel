@@ -106,7 +106,7 @@ class Meal extends Controller
             $mlpas = $mlpas->where("COD_ACTIVIDAD", "=", $request->actividad);
             if($total_atenciones > 0 && count($mlpas->get()) > 0){
                 $percentage = (count($mlpas->get()) / $total_atenciones) * 100;
-
+                $percentage = number_format($percentage, 2);
             }
 
         }
