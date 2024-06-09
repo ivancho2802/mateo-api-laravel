@@ -89,12 +89,13 @@ class Meal extends Controller
         ini_set('max_execution_time', '' . $limit_minutes . '');
         ini_set('max_input_time', '' . $limit_minutes . '');
         
-        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
+        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
 
-        $donantes = $mlpas->groupBy('DONANTE')->keys();
+        $donantes = $mlpas->get()->groupBy('DONANTE')->keys();
         
         if(optional($request)->donante){
-            $mlpas->where("DONANTE", "=", $request->donante);
+            dd(optional($request)->donante);
+            $mlpas = $mlpas->where("DONANTE", "=", $request->donante)->get();
         }
 
         return [
