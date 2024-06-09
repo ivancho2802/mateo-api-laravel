@@ -91,11 +91,13 @@ class Meal extends Controller
         
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
 
-        $donantes = MLpa::get()->groupBy('DONANTE')->keys();
-        $activities = Activities::get();
         
         if(optional($request)->donante){
             $mlpas = $mlpas->where("DONANTE", "=", $request->donante);
+        }
+        
+        if(optional($request)->actividad){
+            $mlpas = $mlpas->where("COD_ACTIVIDAD", "=", $request->actividad);
         }
 
         $mlpas = $mlpas->get();
@@ -104,8 +106,6 @@ class Meal extends Controller
             "lpas" => [
                 "total_atenciones"=> count($mlpas),
             ],
-            "filtros.donantes" => $donantes,
-            "filtros.activities" => $activities,
             "filtros.all_params" => $request->all(),
             "filtros" => [
                 "from"=> $request->from,
@@ -121,6 +121,17 @@ class Meal extends Controller
             "lpas" => $flattenedMlpas,
             "analisis" => Analisis::where(["type" => "LPA"])->get(),
             //"erns" => $erns
+        ];
+    }
+
+    function getLpaPBIFilters(Request $request ){
+
+        $donantes = MLpa::get()->groupBy('DONANTE')->keys();
+        $activities = Activities::get();
+
+        return [
+            "filtros.donantes" => $donantes,
+            "filtros.activities" => $activities,
         ];
     }
 
