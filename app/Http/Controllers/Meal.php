@@ -127,7 +127,11 @@ class Meal extends Controller
 
         $donantes = MLpa::get()->groupBy('DONANTE')->keys();
         $activities = Activities::get();
-        $fechas = MLpa::get()->groupBy('FECHA_ATENCION')->keys();
+        $fechas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
+        ->nodeleted()
+        ->get()
+        ->groupBy('FECHA_ATENCION')
+        ->keys();
 
         return [
             "filtros.donantes" => $donantes,
