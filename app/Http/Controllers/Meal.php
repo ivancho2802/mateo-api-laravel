@@ -94,7 +94,6 @@ class Meal extends Controller
         $donantes = $mlpas->get()->groupBy('DONANTE')->keys();
         
         if(optional($request)->donante){
-            dd(optional($request)->donante);
             $mlpas = $mlpas->where("DONANTE", "=", $request->donante)->get();
         }
 
