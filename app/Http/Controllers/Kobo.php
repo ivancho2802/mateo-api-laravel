@@ -943,7 +943,9 @@ class Kobo extends Controller
             return null;
         }
 
-        $cod_region = $rtrecords_kobo_code[0]['identificacion/Corregimiento_consejo_vereda'];
+        $cod_region_str = $rtrecords_kobo_code[0]['identificacion/Corregimiento_consejo_vereda'];
+
+        $cod_region = explode('_', $cod_region_str)[1];
 
         return $cod_region;
     }
