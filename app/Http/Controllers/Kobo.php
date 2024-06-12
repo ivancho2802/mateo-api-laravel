@@ -861,6 +861,7 @@ class Kobo extends Controller
                 $dataSubdmissions->each(function ($rt_firebird) use ($xcodigo_alerta, $dataSubdmissions, $resultados_mireview){
 
                     //$rt_firebird->XCODIGO_ALERTA RT-NARI-3.1
+                    dd($rt_firebird);
 
                     $xcodigo_alerta_depmun = explode('_', $xcodigo_alerta)[0];
                     $xcodigo_alerta_depmun2 =  explode('-', $rt_firebird->XCODIGO_ALERTA)[1];
