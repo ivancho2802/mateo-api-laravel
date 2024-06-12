@@ -848,7 +848,7 @@ class Kobo extends Controller
             if(strpos($xcodigo_alerta_str, '-')){
                 $xcodigo_alerta = explode('-', $xcodigo_alerta_str)[1];
 
-                dd($xcodigo_alerta);
+                //dd($xcodigo_alerta);"NARI_MAGUI"
 
                 //XCODIGO_ALERTA
             }
