@@ -77,6 +77,8 @@ class MatrizController extends Controller
     ini_set('max_input_time', '60000');
 
     try {
+      
+
       //code...
       //dd("file", $request->file('file'));
       //echo csrf_token(); 
@@ -101,9 +103,19 @@ class MatrizController extends Controller
       Excel::import($import, $file);
 
 
+      
+      if($request->origin == 'api') {
+        return ["msg" => "todo salio bien desde la api gracias por enviarl la informacion"];
+      } 
       //terminar devolver tabla
       return redirect('matrizprensa')->with(['success' => 'Datos guardados con exito.']);
+
+
     } catch (\Throwable $th) {
+      
+      if($request->origin == 'api') {
+        return ["msg" => "error al procesar la informacion:" . $th->getMessage()];
+      } 
 
       if ($th instanceof BroadcastException) {
         //return Limit::perMinute(300)->by($th->getMessage());
@@ -545,6 +557,7 @@ class MatrizController extends Controller
 
     return $matrizMinasMatheched;
   }
+
   function getMatriz(Request $request)
   {
 
@@ -557,7 +570,9 @@ class MatrizController extends Controller
 
     //dd("request", $request->origin);
 
-    $matrizMinas = Matriz::where(['origin' => "matriz_" . $request->origin])->get();
+    $tipo = $request->tipo ?? "matriz_" . $request->origin;
+
+    $matrizMinas = Matriz::where(['origin' => $tipo])->get();
 
     $matrizMinas = $matrizMinas->map(function ($matriz) {
       $matrizCollect = collect($matriz);
@@ -856,7 +871,9 @@ class MatrizController extends Controller
 
     $format = $request->format;
 
-    $matrizMinas = Matriz::where(['origin' => 'Afectacion_MAPAEI'])->get();
+    $tipo = $request->tipo ?? 'Afectacion_MAPAEI';
+
+    $matrizMinas = Matriz::where(['origin' => $tipo])->get();
 
     $matrizMinas = $matrizMinas->map(function ($matriz) {
       $matrizCollect = collect($matriz);

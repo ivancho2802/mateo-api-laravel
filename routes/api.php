@@ -488,6 +488,9 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
   Route::get('{uui}/datawithid/{token}', [App\Http\Controllers\Kobo::class, 'getKoboWidthId']);
 
   Route::post('seach', [App\Http\Controllers\Kobo::class, 'getKoboSaved']);
+
+  Route::put('{uui}/updatekobomireview/{token}', [App\Http\Controllers\Kobo::class, 'puKoboMireView']);
+
   
 });
 
@@ -495,7 +498,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
 Route::middleware(['auth:sanctum'])->post('/matriz/minas', [App\Http\Controllers\MatrizController::class, 'stored']);
 
-Route::middleware(['auth:sanctum'])->post('/matrizz', [App\Http\Controllers\MatrizController::class, 'storedMatriz']);
+Route::middleware(['auth:sanctum'])->post('/matriz/{origin}', [App\Http\Controllers\MatrizController::class, 'storedMatriz']);
 
 Route::middleware(['auth:sanctum'])->get('/matriz/minas', [App\Http\Controllers\MatrizController::class, 'all']);
 
@@ -503,9 +506,13 @@ Route::middleware(['auth:sanctum'])->get('/matriz/MAPAEI', [App\Http\Controllers
 
 Route::middleware(['auth:sanctum'])->get('/matriz', [App\Http\Controllers\MatrizController::class, 'getMatriz']);
 
+Route::middleware(['auth:sanctum'])->get('/matriz/{tipo}', [App\Http\Controllers\MatrizController::class, 'getMatriz']);
+
 Route::middleware(['auth:sanctum'])->get('/matriz/MAPAEICustomDictionary', [App\Http\Controllers\MatrizController::class, 'getMAPAEICustomDictionary']);
 
 Route::middleware(['auth:sanctum'])->get('/matriz/customDictionary', [App\Http\Controllers\MatrizController::class, 'getMAPAEICustomDictionary']);
+
+Route::middleware(['auth:sanctum'])->get('/matriz/customDictionary/{tipo}', [App\Http\Controllers\MatrizController::class, 'getMAPAEICustomDictionary']);
 
 Route::get('/matriz/diccionario/download', [App\Http\Controllers\Media::class, 'downloadMediaMatriz']);
 

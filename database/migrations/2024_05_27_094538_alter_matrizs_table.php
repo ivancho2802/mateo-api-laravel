@@ -16,6 +16,7 @@ class AlterMatrizsTable extends Migration
         //
         Schema::table('matrizs', function (Blueprint $table) {
             $table->text('otros')->nullable()->change();
+            $table->text('type')->nullable()->change();
         });
     }
 
