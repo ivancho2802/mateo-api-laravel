@@ -849,12 +849,6 @@ class Kobo extends Controller
 
         $resultados_mireview = collect($resultados);
 
-        return [
-            "kobo_updated" => $dataSubdmissions,
-            "rt_mireview_firebird" => $resultados_mireview,
-        ];
-
-
         $dataSubdmissions->each(function ($kobo_rt) use ($dataSubdmissions, $resultados_mireview) {
             //dd($xcodigo_alerta);"NARI_MAGUI"
             $xcodigo_alerta_str = $kobo_rt['identificacion/Corregimiento_consejo_vereda'];
