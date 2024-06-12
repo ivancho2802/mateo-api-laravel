@@ -866,7 +866,16 @@ class Kobo extends Controller
                     //$rt_firebird->XCODIGO_ALERTA RT-NARI-3.1
 
                     $xcodigo_alerta_depmun = explode('_', $xcodigo_alerta_kobo)[0];
+
+                    if(count(explode('-', $rt_firebird->XCODIGO_ALERTA)) <= 1){
+                        return true;
+                    }
+                    
                     $xcodigo_alerta_depmun2 =  explode('-', $rt_firebird->XCODIGO_ALERTA)[1];
+
+                    if(count(explode('-', $xcodigo_alerta_kobo)) <= 1){
+                        return true;
+                    }
 
                     $xcodigo_alerta_region = explode('_', $xcodigo_alerta_kobo)[1];
                     $xcodigo_alerta_region2 = $this->getCodeRegionFromRtFirebird($rt_firebird, $dataSubdmissions, $resultados_mireview);
