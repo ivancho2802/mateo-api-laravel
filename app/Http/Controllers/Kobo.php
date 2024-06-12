@@ -853,20 +853,19 @@ class Kobo extends Controller
             //sacar UGI && altaque solo && los que no tengan guion
 
             if(strpos($xcodigo_alerta_str, '-')){
-                $xcodigo_alerta = explode('-', $xcodigo_alerta_str)[1];
+                $xcodigo_alerta_kobo = explode('-', $xcodigo_alerta_str)[1];
 
                 //dd($xcodigo_alerta);"NARI_MAGUI"
 
                 //XCODIGO_ALERTA
-                $dataSubdmissions->each(function ($rt_firebird) use ($xcodigo_alerta, $dataSubdmissions, $resultados_mireview){
+                $resultados_mireview->each(function ($rt_firebird) use ($xcodigo_alerta_kobo, $dataSubdmissions, $resultados_mireview){
 
                     //$rt_firebird->XCODIGO_ALERTA RT-NARI-3.1
-                    dd($rt_firebird);
 
-                    $xcodigo_alerta_depmun = explode('_', $xcodigo_alerta)[0];
+                    $xcodigo_alerta_depmun = explode('_', $xcodigo_alerta_kobo)[0];
                     $xcodigo_alerta_depmun2 =  explode('-', $rt_firebird->XCODIGO_ALERTA)[1];
 
-                    $xcodigo_alerta_region = explode('_', $xcodigo_alerta)[1];
+                    $xcodigo_alerta_region = explode('_', $xcodigo_alerta_kobo)[1];
                     $xcodigo_alerta_region2 = $this->getCodeRegionFromRtFirebird($rt_firebird, $dataSubdmissions, $resultados_mireview);
 
                     dd($xcodigo_alerta_region2);
