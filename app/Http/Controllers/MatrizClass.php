@@ -107,7 +107,7 @@ class MatrizClass  implements ToCollection
             }
             $allRows .= ']';
 
-            array_push($matrizBase, ["description" => $row[$indexheader], "type" => $row[1] . ',' . $row[2], "id" => $row[0], "origin" => 'matriz_' . $row[3], "otros" => $allRows]);
+            array_push($matrizBase, ["description" => $row[$indexheader], "type" => $row[2] . ',' . $row[2], "id" => $row[0], "origin" => 'matriz_' . $row[3], "otros" => $allRows]);
         }
 
         $matrizBaseCollect = collect($matrizBase);
