@@ -881,7 +881,7 @@ class Kobo extends Controller
 
                         //actualizar registro de mir de la respuesta
                         
-                        DB::select("update M_KOBO_RESPUESTAS set XCODIGO_ALERTA = " . $xcodigo_alerta . " WHERE ID_M_KOBO_RESPUESTAS = " . $rt_firebird->ID_M_KOBO_RESPUESTAS);
+                        DB::select("update M_KOBO_FORMULARIOS set XCODIGO_ALERTA = " . $xcodigo_alerta . " WHERE ID_M_KOBO_FORMULARIOS = " . $rt_firebird->ID_M_KOBO_FORMULARIOS);
 
                     }
 
