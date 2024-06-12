@@ -841,10 +841,6 @@ class Kobo extends Controller
 
         $resultados = collect($resultados);
 
-        return [
-            "kobo_updated" => $dataSubdmissions,
-            "rt_mireview_firebird" => $resultados,
-        ];
 
 
         $dataSubdmissions->each(function ($kobo_rt) {
@@ -858,5 +854,11 @@ class Kobo extends Controller
             }
 
         });
+
+        
+        return [
+            "kobo_updated" => $dataSubdmissions,
+            "rt_mireview_firebird" => $resultados,
+        ];
     } 
 }
