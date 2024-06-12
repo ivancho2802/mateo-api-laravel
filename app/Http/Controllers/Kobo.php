@@ -877,6 +877,8 @@ class Kobo extends Controller
                     $xcodigo_alerta_region = explode('_', $xcodigo_alerta_kobo)[1];
                     $xcodigo_alerta_region2 = $this->getCodeRegionFromRtFirebird($rt_firebird, $dataSubdmissions, $resultados_mireview);
 
+                    dd($xcodigo_alerta_depmun, $xcodigo_alerta_depmun2, $xcodigo_alerta_region, $xcodigo_alerta_region2);
+
                     if($xcodigo_alerta_depmun == $xcodigo_alerta_depmun2 && $xcodigo_alerta_region == $xcodigo_alerta_region2){
                         // aplicar el registro a la respuesta
                         $xcodigo_alerta = $xcodigo_alerta_depmun . '_' . $xcodigo_alerta_region;
