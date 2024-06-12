@@ -930,7 +930,7 @@ class Kobo extends Controller
             $r_kobo_str_full = $this->eliminar_acentos(strtoupper($record_kobo['identificacion/Corregimiento_consejo_vereda']));
             $r_cod_region_str = $this->eliminar_acentos(strtoupper($cod_region_str));
 
-            $r_kobo_str = explode($r_kobo_str_full, '-')[0];
+            $r_kobo_str = explode('-', $r_kobo_str_full)[0];
 
             dd($r_kobo_str, $r_cod_region_str);
 
