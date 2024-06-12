@@ -913,8 +913,6 @@ class Kobo extends Controller
             return null;
         }
 
-        dd($formulariokobo_region);
-
         $cod_region_str = $formulariokobo_region[0]->VALOR;
 
         $cod_region = $this->getCodeKoboByRegion($cod_region_str, $rtrecords_kobo);
