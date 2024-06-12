@@ -846,5 +846,15 @@ class Kobo extends Controller
             "rt_mireview_firebird" => $resultados,
         ];
 
+
+        $dataSubdmissions->each(function ($kobo_rt) {
+            $xcodigo_alerta_str = $kobo_rt['identificacion/Corregimiento_consejo_vereda'];
+            if(!strpos($xcodigo_alerta_str, '-')){
+                $xcodigo_alerta = explode('-', $xcodigo_alerta_str)[1];
+
+                dd($xcodigo_alerta);
+            }
+
+        });
     } 
 }
