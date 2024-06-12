@@ -907,7 +907,7 @@ class Kobo extends Controller
             }
         });
 
-        $formulariokobo_region = collect($formulariokobo_region->all());
+        $formulariokobo_region = collect($formulariokobo_region->values());
 
         if(count($formulariokobo_region) <= 0){
             return null;
@@ -939,7 +939,7 @@ class Kobo extends Controller
             }
         });
 
-        $rtrecords_kobo_code = collect($rtrecords_kobo_code->all());
+        $rtrecords_kobo_code = collect($rtrecords_kobo_code->values());
         
         if(count($rtrecords_kobo_code) <= 0){
             return null;
