@@ -852,7 +852,7 @@ class Kobo extends Controller
 
             //sacar UGI && altaque solo && los que no tengan guion
 
-            if(strpos($xcodigo_alerta_str, '---')){
+            if(strpos($xcodigo_alerta_str, '-')){
                 $xcodigo_alerta = explode('-', $xcodigo_alerta_str)[1];
 
                 //dd($xcodigo_alerta);"NARI_MAGUI"
