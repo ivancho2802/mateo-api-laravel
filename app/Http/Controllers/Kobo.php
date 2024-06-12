@@ -888,7 +888,7 @@ class Kobo extends Controller
     }
 
 
-    function getCodeRegionFromRtFirebird($rtrecord_current, $rtrecords, $resultados_mireview){
+    function getCodeRegionFromRtFirebird($rtrecord_current, $rtrecords_kobo, $resultados_mireview){
         $cod_region = '';
 
         //XCODIGO_ALERTA [1]
@@ -896,7 +896,8 @@ class Kobo extends Controller
         
         //"ROTULO": "Corregimiento_consejo_vereda",
         //"ID_M_KOBO_FORMULARIOS": "0014252",
-        $formulariokobo_region = $resultados_mireview->filter(function ($form, $rtrecord_current) {
+        $formulariokobo_region = $resultados_mireview->filter(function ($form) use ($rtrecord_current){
+
             if($form->ID_M_KOBO_FORMULARIOS == $rtrecord_current->ID_M_KOBO_FORMULARIOS && $form->ROTULO  == "Corregimiento_consejo_vereda"){
                 return $form->VALOR;
             }
