@@ -844,11 +844,10 @@ class Kobo extends Controller
         
         $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
 
-        $resultados = collect($resultados);
+        $resultados_mireview = collect($resultados);
 
 
-
-        $dataSubdmissions->each(function ($kobo_rt) use ($dataSubdmissions) {
+        $dataSubdmissions->each(function ($kobo_rt) use ($dataSubdmissions, $resultados_mireview) {
             $xcodigo_alerta_str = $kobo_rt['identificacion/Corregimiento_consejo_vereda'];
 
             //sacar UGI && altaque solo && los que no tengan guion
@@ -859,7 +858,7 @@ class Kobo extends Controller
                 //dd($xcodigo_alerta);"NARI_MAGUI"
 
                 //XCODIGO_ALERTA
-                $dataSubdmissions->each(function ($rt_firebird) use ($xcodigo_alerta, $dataSubdmissions){
+                $dataSubdmissions->each(function ($rt_firebird) use ($xcodigo_alerta, $dataSubdmissions, $resultados_mireview){
 
                     //$rt_firebird->XCODIGO_ALERTA RT-NARI-3.1
 
@@ -867,7 +866,7 @@ class Kobo extends Controller
                     $xcodigo_alerta_depmun2 =  explode('-', $rt_firebird->XCODIGO_ALERTA)[1];
 
                     $xcodigo_alerta_region = explode('_', $xcodigo_alerta)[1];
-                    $xcodigo_alerta_region2 = $this->getCodeRegionFromRtFirebird($rt_firebird, $dataSubdmissions);
+                    $xcodigo_alerta_region2 = $this->getCodeRegionFromRtFirebird($rt_firebird, $dataSubdmissions, $resultados_mireview);
 
                     dd($xcodigo_alerta_region2);
 
@@ -889,17 +888,21 @@ class Kobo extends Controller
     }
 
 
-    function getCodeRegionFromRtFirebird($rtrecord_current, $rtrecords){
+    function getCodeRegionFromRtFirebird($rtrecord_current, $rtrecords, $resultados_mireview){
         $cod_region = '';
 
-        //"ROTULO": "Corregimiento_consejo_vereda",
         //XCODIGO_ALERTA [1]
         //"VALOR": "Altaquer",
         
+        //"ROTULO": "Corregimiento_consejo_vereda",
         //"ID_M_KOBO_FORMULARIOS": "0014252",
-        //"ID_M_FORMULARIOS": "001121",
+        $formulariokobo_region = $resultados_mireview->filter(function ($form, $rtrecord_current) {
+            if($form->ID_M_KOBO_FORMULARIOS == $rtrecord_current->ID_M_KOBO_FORMULARIOS && $form->ROTULO  == "Corregimiento_consejo_vereda"){
+                return $form->VALOR;
+            }
+        });
 
-
+        dd($formulariokobo_region);
 
         return $cod_region;
     }
