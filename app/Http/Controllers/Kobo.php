@@ -877,7 +877,7 @@ class Kobo extends Controller
                         // aplicar el registro a la respuesta
                         $xcodigo_alerta = $xcodigo_alerta_depmun . '_' . $xcodigo_alerta_region;
 
-                        dd($xcodigo_alerta, $rt_firebird->ID_M_KOBO_RESPUESTAS);
+                        //dd($xcodigo_alerta, $rt_firebird->ID_M_KOBO_RESPUESTAS);
 
                         //actualizar registro de mir de la respuesta
                         
