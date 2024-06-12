@@ -932,8 +932,6 @@ class Kobo extends Controller
 
             $r_kobo_str = explode('-', $r_kobo_str_full)[0];
 
-            dd($r_kobo_str, $r_cod_region_str);
-
             if($r_kobo_str == $r_cod_region_str) {
                 return $record_kobo;
             }
