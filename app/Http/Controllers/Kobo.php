@@ -829,11 +829,11 @@ class Kobo extends Controller
             ->json();
 
         $dataSubdmissions = collect($response);//18
-        $dataSubdmissions = $dataSubdmissions->filter(function ($record)  {
+        $dataSubdmissions = collect($dataSubdmissions->filter(function ($record)  {
             if(strpos($record['identificacion/Corregimiento_consejo_vereda'], '-')){
                return  $record;
             }
-        });
+        })->values());
 
         //despues consulta del mire los registros que corresponden de firebbird a los perfiles territoriales para comparar y actualizar
 
