@@ -9,9 +9,12 @@ use Illuminate\Support\Collection;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\MKoboRespuestas;
 use Illuminate\Support\Facades\DB;
+use App\Traits\TraitDepartments;
 
 class Kobo extends Controller
 {
+    use TraitDepartments;
+
     //
     public function getKoboLabels($uui, $token)
     {
@@ -848,6 +851,7 @@ class Kobo extends Controller
 
 
         $dataSubdmissions->each(function ($kobo_rt) use ($dataSubdmissions, $resultados_mireview) {
+            //dd($xcodigo_alerta);"NARI_MAGUI"
             $xcodigo_alerta_str = $kobo_rt['identificacion/Corregimiento_consejo_vereda'];
 
             //sacar UGI && altaque solo && los que no tengan guion
@@ -855,7 +859,7 @@ class Kobo extends Controller
             if(strpos($xcodigo_alerta_str, '-')){
                 $xcodigo_alerta_kobo = explode('-', $xcodigo_alerta_str)[1];
 
-                //dd($xcodigo_alerta);"NARI_MAGUI"
+                //dd($xcodigo_alerta_kobo);"NARI_MAGUI"
 
                 //XCODIGO_ALERTA
                 $resultados_mireview->each(function ($rt_firebird) use ($xcodigo_alerta_kobo, $dataSubdmissions, $resultados_mireview){
@@ -903,7 +907,41 @@ class Kobo extends Controller
             }
         });
 
-        dd($formulariokobo_region);
+        if(count($formulariokobo_region) <= 0){
+            return null;
+        }
+
+        $cod_region_str = $formulariokobo_region[0]->VALOR;
+
+        $cod_region = $this->getCodeKoboByRegion($cod_region_str, $rtrecords_kobo);
+
+        //buscar el codigo segun el formulario de kobo para extraer el kobo codigo
+        // funcion para extraer el codigo por region del formulario de kobo
+
+        return $cod_region;
+    }
+
+    function getCodeKoboByRegion($cod_region_str, $rtrecords_kobo) {
+        $cod_region = '';
+
+        $rtrecords_kobo_code = $rtrecords_kobo->filter(function($record_kobo) use ($cod_region_str){
+            $r_kobo_str_full = $this->eliminar_acentos(strtoupper($record_kobo['identificacion/Corregimiento_consejo_vereda']));
+            $r_cod_region_str = $this->eliminar_acentos(strtoupper($cod_region_str));
+
+            $$r_kobo_str = explode($r_kobo_str_full, '-')[0];
+
+            dd($r_kobo_str, $r_cod_region_str);
+
+            if($r_kobo_str == $r_cod_region_str) {
+                return $record_kobo;
+            }
+        });
+        
+        if(count($rtrecords_kobo_code) <= 0){
+            return null;
+        }
+
+        $cod_region = $rtrecords_kobo_code[0]->VALOR;
 
         return $cod_region;
     }
