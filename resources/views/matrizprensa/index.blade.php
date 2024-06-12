@@ -81,12 +81,6 @@
     }); */
   </script>
 
-  @if(session()->has('success'))
-  <div x-data="{ show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show" class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
-    <p class="m-0 text-white">{{ session('success')}}</p>
-  </div>
-  @endif
-
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       Matriz de Prensa
@@ -101,6 +95,20 @@
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Matriz lite</button>
+
+        <!-- x-init="setTimeout(() => show = false, 4000)" -->
+        
+        @if(session()->has('success'))
+        <div x-data="{ show: true}" x-show="show" class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
+          <p class="m-0 text-dark">Msg: {{ session('success')}}</p>
+        </div>
+        @endif
+
+        @if(session()->has('error'))
+        <div x-data="{ show: true}" x-show="show" class="position-fixed bg-danger rounded top-3 text-sm py-2 px-4">
+          <p class="m-0 text-danger">Msg: {{ session('error')}}</p>
+        </div>
+        @endif
       </li>
     </ul>
 
@@ -530,7 +538,8 @@
                     <div x-data="{ loader: false }" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 
                       <!-- id="formSave" enctype="multipart/form-data"-->
-                      <form role="form" method="POST" action="/matriz">
+                      <form method="POST" action="/matrizprensa" enctype="multipart/form-data">
+                        @method('POST')
                         @csrf
 
                         <h1 class="h3 mb-3 fw-normal text-center">Formulario para el almacenamiento de matriz de prensa </h1>
@@ -540,18 +549,15 @@
                         <input type="text" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" id="token" name="token" placeholder="Token">
                         -->
                         <div class="mb-3">
-                          <label for="file" class="form-label">Archivo de Matriz de Prensa Scrapined_20...</label>
-                          <input class="form-control" type="file" id="fileSave" name="fileSave">
+                          <label for="formFileLg" class="form-label">Archivo de Matriz de Prensa Scrapined_20...</label>
+                          <input class="form-control" type="file" id="formFileLg" name="file" >
                           <div id="emailHelp" class="form-text"></div>
                         </div>
 
                         <x-primary-button class="mt-4" name="generate-matriz-prensa">
                           Enviar Datos
                         </x-primary-button>
-
-                        <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">
-                          Sign in
-                        </button>
+ 
 
                         <div id="responseSaved">
 

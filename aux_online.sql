@@ -24,7 +24,15 @@ select * from migrate_customs where "table" = 'M_LPAS' and file_ref = 'UPLOADED'
 
 select * from migrate_customs where "table" = 'M_LPAS' and table_id like '%migrationsLpa%'  order by updated_at desc limit 20
 
+-- matrices
+
 select * from matrizs where origin = 'matriz_matriz oleoductos';
+
+-- ver la ultima matriz el id
+
+select id from matrizs  order by id desc;
+
+
 
 -- tipos de respuestas para doiscapacidades de persoinas
 
@@ -49,9 +57,37 @@ update analisis set recuperacion_temprana = 'No hay datos' where recuperacion_te
 update analisis set acompanamiento = 'No hay datos' where acompanamiento is null;
 select *  from analisis;
 
-select unaccent_string(actividad), actividad  from activities;
+select  actividad, cod  from activities  where actividad like '%Ã¡%' group by actividad, cod;
 
 
+select count(*) from "activities" where "activities"."cod" like '%NA%' in ('CF1', 'E2', 'E3', 'E5', 'E6', 'E7', 'F3', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'P1', 'P2', 'P7', 'S2', 'S4', 'S5', 'W2', 'W3', 'W4', 'W6', 'W7')
+SHOW server_encoding;
+SET client_encoding = 'latin1'--SQL_ASCII
+SHOW statement_timeout;
+-- ver si es discapacitodo 14
+SELECT count(*) 
+FROM 
+	"M_LPA_PERSONAS" 
+where 
+	"DISCAPACIDAD_COMUNICAR" = 'Si - No puede hacerlo' or
+	"DISCAPACIDAD_VER" = 'Si - No puede hacerlo' or
+	"DISCAPACIDAD_OIR" = 'Si - No puede hacerlo' or
+	"DISCAPACIDAD_CAMINAR" = 'Si - No puede hacerlo' or 
+	"DISCAPACIDAD_RECORDAR" = 'Si - No puede hacerlo' or
+	"DISCAPACIDAD_CUIDADO_PROPIO" = 'Si - No puede hacerlo' or
+	"DISCAPACIDAD_COMUNICAR" = 'Si - No puede hacerlo'
+	
+-- cuantas atenciones a discapacitados
 
-
-
+select count(*) 
+FROM "M_LPAS", "M_LPA_PERSONAS" 
+WHERE "M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND 
+	"M_LPA_PERSONAS"."ID" = "M_LPAS"."FK_LPA_PERSONA" AND
+(
+	"M_LPA_PERSONAS"."DISCAPACIDAD_COMUNICAR" = 'Si - No puede hacerlo' or
+	"M_LPA_PERSONAS"."DISCAPACIDAD_VER" = 'Si - No puede hacerlo' or
+	"M_LPA_PERSONAS"."DISCAPACIDAD_OIR" = 'Si - No puede hacerlo' or
+	"M_LPA_PERSONAS"."DISCAPACIDAD_CAMINAR" = 'Si - No puede hacerlo' or 
+	"M_LPA_PERSONAS"."DISCAPACIDAD_RECORDAR" = 'Si - No puede hacerlo' or
+	"M_LPA_PERSONAS"."DISCAPACIDAD_CUIDADO_PROPIO" = 'Si - No puede hacerlo' or
+	"M_LPA_PERSONAS"."DISCAPACIDAD_COMUNICAR" = 'Si - No puede hacerlo' ) 

@@ -10,6 +10,8 @@ use App\Models\Matriz;
 use Illuminate\Support\Collection;
 use App\Traits\TraitDepartments;
 use Illuminate\Support\Arr;
+use Illuminate\Broadcasting\BroadcastException;
+use Illuminate\Cache\RateLimiting\Limit;
 
 class MatrizController extends Controller
 {
@@ -68,38 +70,51 @@ class MatrizController extends Controller
 
   function storedMatriz(Request $request)
   {
-    return redirect('matrizprensa')->with(['success'=>'Datos guardados con exito.']);
 
     ini_set('memory_limit', '2044M');
     set_time_limit(3000000); //0
     ini_set('max_execution_time', '60000');
     ini_set('max_input_time', '60000');
 
-    //dd("file", $request->file('file'));
-    //echo csrf_token(); 
-    //return response()->json(["request" => $request]);
+    try {
+      //code...
+      //dd("file", $request->file('file'));
+      //echo csrf_token(); 
+      //return response()->json(["request" => $request]);
 
-    // Validate the uploaded file
-    $request->validate([
-      'file' => 'required|mimes:xlsx,xls',
-    ]);
+      // Validate the uploaded file
+      $request->validate([
+        'file' => 'required|mimes:xlsx,xls|file',
+      ]);
 
-    // Get the uploaded file
-    $file = $request->file('file');
+      // Get the uploaded file
+      $file = $request->file('file');
 
-    //get data excel
-    $collection = (new MatrizClass)->toCollection($file);
+      //get data excel
+      $collection = (new MatrizClass)->toCollection($file);
 
-    $import = new ImportMatrizClass();
+      $import = new ImportMatrizClass();
 
-    $import->onlySheets('Hoja1');
+      $import->onlySheets('Matriz');
 
-    // Process the Excel file
-    Excel::import($import, $file);
+      // Process the Excel file
+      Excel::import($import, $file);
 
 
-    //terminar devolver tabla
-    return redirect('matrizprensa');
+      //terminar devolver tabla
+      return redirect('matrizprensa')->with(['success' => 'Datos guardados con exito.']);
+    } catch (\Throwable $th) {
+
+      if ($th instanceof BroadcastException) {
+        //return Limit::perMinute(300)->by($th->getMessage());
+        return redirect('matrizprensa')->with(['error' => 'Error al procesar' . $th->getMessage()]);
+      }else {
+        return redirect('matrizprensa')->with(['error' => 'Error al procesar' . $th->getMessage()]);
+      }
+
+      //return redirect('matrizprensa')->with(['error' => 'Error al procesar' . $error]);
+      //throw $th;
+    }
     //, "data" => $data
     //return response()->json(["message" => "operacion hecha con exito"]);
   }

@@ -12,7 +12,7 @@ class ImportMatrizClass implements WithMultipleSheets
     public function conditionalSheets(): array
     {
         return [
-            'Hoja1' => new MatrizClass,
+            'Matriz' => new MatrizClass,
         ];
     }
 }
