@@ -828,7 +828,12 @@ class Kobo extends Controller
             ->get($jsonurl)
             ->json();
 
-        $dataSubdmissions = collect($response);
+        $dataSubdmissions = collect($response);//18
+        $dataSubdmissions = $dataSubdmissions->filter(function ($record)  {
+            if(strpos($record['identificacion/Corregimiento_consejo_vereda'], '-')){
+               return  $record;
+            }
+        });
 
         //despues consulta del mire los registros que corresponden de firebbird a los perfiles territoriales para comparar y actualizar
 
@@ -843,14 +848,35 @@ class Kobo extends Controller
 
 
 
-        $dataSubdmissions->each(function ($kobo_rt) {
+        $dataSubdmissions->each(function ($kobo_rt) use ($dataSubdmissions) {
             $xcodigo_alerta_str = $kobo_rt['identificacion/Corregimiento_consejo_vereda'];
-            if(strpos($xcodigo_alerta_str, '-')){
+
+            //sacar UGI && altaque solo && los que no tengan guion
+
+            if(strpos($xcodigo_alerta_str, '---')){
                 $xcodigo_alerta = explode('-', $xcodigo_alerta_str)[1];
 
                 //dd($xcodigo_alerta);"NARI_MAGUI"
 
                 //XCODIGO_ALERTA
+                $dataSubdmissions->each(function ($rt_firebird) use ($xcodigo_alerta, $dataSubdmissions){
+
+                    //$rt_firebird->XCODIGO_ALERTA RT-NARI-3.1
+
+                    $xcodigo_alerta_depmun = explode('_', $xcodigo_alerta)[0];
+                    $xcodigo_alerta_depmun2 =  explode('-', $rt_firebird->XCODIGO_ALERTA)[1];
+
+                    $xcodigo_alerta_region = explode('_', $xcodigo_alerta)[1];
+                    $xcodigo_alerta_region2 = $this->getCodeRegionFromRtFirebird($rt_firebird, $dataSubdmissions);
+
+                    dd($xcodigo_alerta_region2);
+
+                    if($xcodigo_alerta_depmun == $xcodigo_alerta_depmun2 && $xcodigo_alerta_region == $xcodigo_alerta_region2){
+                        // aplicar el registro a la respuesta
+
+                    }
+
+                });
             }
 
         });
@@ -860,5 +886,21 @@ class Kobo extends Controller
             "kobo_updated" => $dataSubdmissions,
             "rt_mireview_firebird" => $resultados,
         ];
-    } 
+    }
+
+
+    function getCodeRegionFromRtFirebird($rtrecord_current, $rtrecords){
+        $cod_region = '';
+
+        //"ROTULO": "Corregimiento_consejo_vereda",
+        //XCODIGO_ALERTA [1]
+        //"VALOR": "Altaquer",
+        
+        //"ID_M_KOBO_FORMULARIOS": "0014252",
+        //"ID_M_FORMULARIOS": "001121",
+
+
+
+        return $cod_region;
+    }
 }
