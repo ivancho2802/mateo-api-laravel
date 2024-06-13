@@ -868,6 +868,7 @@ class Kobo extends Controller
                     $xcodigo_alerta_depmun = explode('_', $xcodigo_alerta_kobo)[0];
 
                     if(count(explode('-', $rt_firebird->XCODIGO_ALERTA)) <= 1){
+                        if($xcodigo_alerta_kobo != "NARI_CUMBAS")
                         dd("rt_firebird->XCODIGO_ALERTA", explode('-', $rt_firebird->XCODIGO_ALERTA));
                         return true;
                     }
