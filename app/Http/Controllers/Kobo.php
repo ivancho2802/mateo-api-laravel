@@ -946,8 +946,8 @@ class Kobo extends Controller
         $cod_region = '';
 
         $rtrecords_kobo_code = $rtrecords_kobo->filter(function($record_kobo) use ($cod_region_str){
-            $r_kobo_str_full = $this->eliminar_acentos(strtoupper($record_kobo['identificacion/Corregimiento_consejo_vereda']));
-            $r_cod_region_str = $this->eliminar_acentos(strtoupper($cod_region_str));
+            $r_kobo_str_full = strtoupper($this->eliminar_acentos($record_kobo['identificacion/Corregimiento_consejo_vereda']));
+            $r_cod_region_str = strtoupper($this->eliminar_acentos($cod_region_str));
 
 
 
