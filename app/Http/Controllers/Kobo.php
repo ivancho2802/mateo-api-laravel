@@ -868,12 +868,14 @@ class Kobo extends Controller
                     $xcodigo_alerta_depmun = explode('_', $xcodigo_alerta_kobo)[0];
 
                     if(count(explode('-', $rt_firebird->XCODIGO_ALERTA)) <= 1){
+                        dd(explode('-', $rt_firebird->XCODIGO_ALERTA));
                         return true;
                     }
                     
                     $xcodigo_alerta_depmun2 =  explode('-', $rt_firebird->XCODIGO_ALERTA)[1];
 
                     if(count(explode('-', $xcodigo_alerta_kobo)) <= 1){
+                        dd(explode('-', $xcodigo_alerta_kobo));
                         return true;
                     }
 
