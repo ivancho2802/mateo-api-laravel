@@ -953,7 +953,7 @@ class Kobo extends Controller
 
             $r_kobo_str = explode('-', $r_kobo_str_full)[0];
 
-            if(stripos($r_kobo_str, 'BELLO'))
+            if(stripos($r_kobo_str, 'BELLO') && stripos($r_cod_region_str, 'BELLO'))
                 dd($r_kobo_str, $r_cod_region_str);
 
             if($r_kobo_str == $r_cod_region_str) {
