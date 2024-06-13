@@ -868,14 +868,15 @@ class Kobo extends Controller
                     $xcodigo_alerta_depmun = explode('_', $xcodigo_alerta_kobo)[0];
 
                     if(count(explode('-', $rt_firebird->XCODIGO_ALERTA)) <= 1){
-                        dd(explode('-', $rt_firebird->XCODIGO_ALERTA));
+                        dd("rt_firebird->XCODIGO_ALERTA", explode('-', $rt_firebird->XCODIGO_ALERTA));
                         return true;
                     }
                     
                     $xcodigo_alerta_depmun2 =  explode('-', $rt_firebird->XCODIGO_ALERTA)[1];
 
                     if(count(explode('-', $xcodigo_alerta_kobo)) <= 1){
-                        dd(explode('-', $xcodigo_alerta_kobo));
+                        if($xcodigo_alerta_kobo != "NARI_CUMBAS")
+                            dd("xcodigo_alerta_kobo", explode('-', $xcodigo_alerta_kobo));
                         return true;
                     }
 
@@ -888,7 +889,7 @@ class Kobo extends Controller
                         // aplicar el registro a la respuesta
                         $xcodigo_alerta = $xcodigo_alerta_depmun . '_' . $xcodigo_alerta_region;
 
-                        //dd($xcodigo_alerta, $rt_firebird->ID_M_KOBO_RESPUESTAS);
+                        dd($rt_firebird->XCODIGO_ALERTA, $xcodigo_alerta, $rt_firebird->ID_M_KOBO_RESPUESTAS);
 
                         //actualizar registro de mir de la respuesta
                         
