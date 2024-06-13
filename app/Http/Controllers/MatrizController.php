@@ -849,7 +849,7 @@ class MatrizController extends Controller
     });
 
     $matrizMinasMatheched = $matrizMinasMatheched->map(function ($matriz) {
-      $matriz->forget('name');
+      $matriz->forget('description');
       return $matriz->all();
     });
 
