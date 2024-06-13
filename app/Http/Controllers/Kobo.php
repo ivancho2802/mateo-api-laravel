@@ -951,8 +951,8 @@ class Kobo extends Controller
 
             $r_kobo_str = trim(explode('-', $r_kobo_str_full)[0]);
 
-           /*  if(stripos($r_kobo_str, 'PALMAS') && stripos($r_cod_region_str, 'PALMAS'))
-                dd($r_kobo_str, $r_cod_region_str); */
+            if(stripos($r_kobo_str, 'GARCIA') && stripos($r_cod_region_str, 'GARCIA'))
+                dd($r_kobo_str, $r_cod_region_str);
 
             if($r_kobo_str == $r_cod_region_str) {
                 return $record_kobo;
