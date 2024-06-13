@@ -949,12 +949,10 @@ class Kobo extends Controller
             $r_kobo_str_full = trim(strtoupper($this->eliminar_acentos($record_kobo['identificacion/Corregimiento_consejo_vereda'])));
             $r_cod_region_str = trim(strtoupper($this->eliminar_acentos($cod_region_str)));
 
+            $r_kobo_str = trim(explode('-', $r_kobo_str_full)[0]);
 
-
-            $r_kobo_str = explode('-', $r_kobo_str_full)[0];
-
-            if(stripos($r_kobo_str, 'PALMAS') && stripos($r_cod_region_str, 'PALMAS'))
-                dd($r_kobo_str, $r_cod_region_str);
+           /*  if(stripos($r_kobo_str, 'PALMAS') && stripos($r_cod_region_str, 'PALMAS'))
+                dd($r_kobo_str, $r_cod_region_str); */
 
             if($r_kobo_str == $r_cod_region_str) {
                 return $record_kobo;
