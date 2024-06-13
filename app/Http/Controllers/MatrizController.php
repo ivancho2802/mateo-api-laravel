@@ -77,7 +77,7 @@ class MatrizController extends Controller
     ini_set('max_input_time', '60000');
 
     try {
-      
+
 
       //code...
       //dd("file", $request->file('file'));
@@ -103,24 +103,22 @@ class MatrizController extends Controller
       Excel::import($import, $file);
 
 
-      
-      if($request->origin == 'api') {
+
+      if ($request->origin == 'api') {
         return ["msg" => "todo salio bien desde la api gracias por enviarl la informacion"];
-      } 
+      }
       //terminar devolver tabla
       return redirect('matrizprensa')->with(['success' => 'Datos guardados con exito.']);
-
-
     } catch (\Throwable $th) {
-      
-      if($request->origin == 'api') {
+
+      if ($request->origin == 'api') {
         return ["msg" => "error al procesar la informacion:" . $th->getMessage()];
-      } 
+      }
 
       if ($th instanceof BroadcastException) {
         //return Limit::perMinute(300)->by($th->getMessage());
         return redirect('matrizprensa')->with(['error' => 'Error al procesar' . $th->getMessage()]);
-      }else {
+      } else {
         return redirect('matrizprensa')->with(['error' => 'Error al procesar' . $th->getMessage()]);
       }
 
@@ -848,6 +846,11 @@ class MatrizController extends Controller
       //});
 
       return $matriz;
+    });
+
+    $matrizMinasMatheched = $matrizMinasMatheched->map(function ($matriz) {
+      $matriz->forget('name');
+      return $matriz->all();
     });
 
     return $matrizMinasMatheched;

@@ -23,10 +23,13 @@ select * FROM "M_LPAS" where "FECHA_ATENCION" < '2000-02-01'
 select * from migrate_customs where "table" = 'M_LPAS' and file_ref = 'UPLOADED' limit 10
 
 select * from migrate_customs where "table" = 'M_LPAS' and table_id like '%migrationsLpa%'  order by updated_at desc limit 20
+-- AJUSTES DE LPA	
+select "FASE_ATENCION","FECHA_ATENCION", deleted_at from "M_LPAS" where "FASE_ATENCION" LIKE '%Fase III%' group by "FASE_ATENCION", deleted_at
 
 -- matrices
 
-select * from matrizs where origin = 'matriz_matriz oleoductos';
+select * from matrizs where origin like '%matriz_oleoductos2';
+select * from matrizs order by id desc limit 10 ;
 
 -- ver la ultima matriz el id
 
@@ -91,3 +94,4 @@ WHERE "M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND
 	"M_LPA_PERSONAS"."DISCAPACIDAD_RECORDAR" = 'Si - No puede hacerlo' or
 	"M_LPA_PERSONAS"."DISCAPACIDAD_CUIDADO_PROPIO" = 'Si - No puede hacerlo' or
 	"M_LPA_PERSONAS"."DISCAPACIDAD_COMUNICAR" = 'Si - No puede hacerlo' ) 
+
