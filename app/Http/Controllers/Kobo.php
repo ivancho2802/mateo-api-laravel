@@ -964,7 +964,7 @@ class Kobo extends Controller
 
         $cod_region_str = $rtrecords_kobo_code[0]['identificacion/Corregimiento_consejo_vereda'];
 
-        if(count($cod_region_str) <= 1){
+        if(count(explode('_', $cod_region_str)) <= 1){
             return null;
         }
 
