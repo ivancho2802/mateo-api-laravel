@@ -55,6 +55,7 @@ Route::prefix('meal')->group(function () {
 
   Route::middleware(['auth:sanctum'])->get('/lpa', [App\Http\Controllers\Meal::class, 'getLpa']);
   Route::middleware(['auth:sanctum'])->get('/lpaPbi/{from}/{to}', [App\Http\Controllers\Meal::class, 'getLpaPBI']);
+  Route::middleware(['auth:sanctum'])->get('/lpaPbi', [App\Http\Controllers\Meal::class, 'getLpaPBI']);
   Route::middleware(['auth:sanctum'])->get('/lpaPbi/filters', [App\Http\Controllers\Meal::class, 'getLpaPBIFilters']);
 
   Route::middleware(['auth:sanctum'])->post('/lpaGraficos', [App\Http\Controllers\Meal::class, 'getLpaGraficos']);

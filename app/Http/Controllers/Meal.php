@@ -79,7 +79,7 @@ class Meal extends Controller
         ];
     }
 
-    function getLpaPBI(Request $request )
+    function getLpaPBI(Request $request)
     {
 
         $limit_minutes = 800;
@@ -88,40 +88,55 @@ class Meal extends Controller
         set_time_limit($limit_minutes); //0
         ini_set('max_execution_time', '' . $limit_minutes . '');
         ini_set('max_input_time', '' . $limit_minutes . '');
-        
+
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
+
         $percentage = 0;
 
-        if(optional($request)->donante){
+        if (optional($request)->donante) {
             $mlpas = $mlpas->where("DONANTE", "=", $request->donante);
         }
-        
-        if(optional($request)->actividad){
+
+        if (optional($request)->actividad) {
             $total_atenciones = count(
                 $mlpas->where("COD_ACTIVIDAD", "!=", 'NA')
-                ->where("COD_ACTIVIDAD", "!=", '')
-                ->get()
+                    ->where("COD_ACTIVIDAD", "!=", '')
+                    ->get()
             );
 
             $mlpas = $mlpas->where("COD_ACTIVIDAD", "=", $request->actividad);
-            if($total_atenciones > 0 && count($mlpas->get()) > 0){
+
+
+            if ($total_atenciones > 0 && count($mlpas->get()) > 0) {
                 $percentage = (count($mlpas->get()) / $total_atenciones) * 100;
                 $percentage = number_format($percentage, 1);
             }
-
         }
 
-        $mlpas = $mlpas->get();
+        $mlpas = $mlpas
+            ->get()
+            ->groupBy('FECHA_ATENCION');
+            
+        //dd("mlpas", ($mlpas));
+
+        $mlpasByDate = $mlpas->map(function ($lpa, $key){
+            //return [strtoupper($key) => count($lpa)];
+            return [
+                "fecha" => $key,
+                "cant_atenciones" => count($lpa)
+            ];
+        });
+        //dd("mlpas", count($mlpas), $mlpasByDate->values());
 
         return [
             "lpas" => [
-                "total_atenciones"=> count($mlpas),
-                "porcentaje_atenciones"=> $percentage,
+                "total_atenciones" => $mlpasByDate->values(),
+                //"porcentaje_atenciones" => $percentage,
             ],
             "filtros.all_params" => $request->all(),
             "filtros" => [
-                "from"=> $request->from,
-                "to"=> $request->to,
+                "from" => $request->from,
+                "to" => $request->to,
             ]
         ];
 
@@ -136,15 +151,16 @@ class Meal extends Controller
         ];
     }
 
-    function getLpaPBIFilters(Request $request ){
+    function getLpaPBIFilters(Request $request)
+    {
 
         $donantes = MLpa::get()->groupBy('DONANTE')->keys();
         $activities = Activities::select('cod')->distinct()->select('*')->get();
         $fechas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-        ->nodeleted()
-        ->get()
-        ->groupBy('FECHA_ATENCION')
-        ->keys();
+            ->nodeleted()
+            ->get()
+            ->groupBy('FECHA_ATENCION')
+            ->keys();
 
         return [
             "filtros.donantes" => $donantes,
