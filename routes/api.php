@@ -34,7 +34,9 @@ use App\Http\Controllers\Jobs;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::prefix('finanzas')->group(function () {
 
+});
 
 Route::prefix('meal')->group(function () {
 
@@ -60,6 +62,8 @@ Route::prefix('meal')->group(function () {
   //seguuimiento
   Route::middleware(['auth:sanctum'])->get('/lpaseg', [App\Http\Controllers\Meal::class, 'getLpaSeg']);
 
+  Route::middleware(['auth:sanctum'])->get('/lpadiscapacitados', [App\Http\Controllers\Meal::class, 'getLpaPBIDiscapacidades']);
+  
   //monitorio post distribucion pda
   Route::middleware(['auth:sanctum'])->get('/mpd', [App\Http\Controllers\Meal::class, 'geMpd']);
   //MIGRACIONS DESDE EL KOBO
