@@ -47,7 +47,7 @@ class Meal extends Controller
             return $mlpas;
         } else {
 
-            $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->limit(20000)->
+            $mlpas = MLpa::limit(20000)->where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->
         }
 
         //PONER LA PERSONA CON SU EDAD
@@ -106,7 +106,7 @@ class Meal extends Controller
             $mlpas = $mlpas->where("COD_ACTIVIDAD", "=", $request->actividad);
             if($total_atenciones > 0 && count($mlpas->get()) > 0){
                 $percentage = (count($mlpas->get()) / $total_atenciones) * 100;
-                $percentage = number_format($percentage, 2);
+                $percentage = number_format($percentage, 1);
             }
 
         }
