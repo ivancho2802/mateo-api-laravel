@@ -145,7 +145,7 @@ class Emergencias extends Controller
         ->get();
 
         return [
-            "emergencia" => $emergencia
+            "emergencia" => $emergencia->first()
         ];
     }
     
