@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\helper;
 use Illuminate\Support\Facades\DB;
+use App\Models\MLpaEmergencia;
 
 class Emergencias extends Controller
 {
@@ -137,6 +138,15 @@ class Emergencias extends Controller
 
         return response()->json($resultados);
 
+    }
+
+    function getEmergenciaByCod(Request $request){
+        $emergencia = MLpaEmergencia::where("ID", "=", $request->ID)
+        ->get();
+
+        return [
+            "emergencia" => $emergencia
+        ];
     }
     
 }

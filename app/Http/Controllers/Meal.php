@@ -52,6 +52,12 @@ class Meal extends Controller
         ];
     }
 
+    /**
+        $mlpas->load(['emergencia', 'actividad', 'persona']); //, 'actividad.directory'
+     * 
+     */
+    
+
     function getLpa(Request $request)
     {
 
@@ -325,7 +331,6 @@ class Meal extends Controller
             //"erns" => $erns
         ];
     }
-
 
 
     /**
@@ -739,6 +744,9 @@ class Meal extends Controller
     }
      */
 
+     /**
+      * grficos para el mire
+      */
     function getLpaGraficos(Request $request)
     {
         DB::setDefaultConnection('firebird');
