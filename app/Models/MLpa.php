@@ -17,7 +17,7 @@ class MLpa extends Model
     protected $table = 'M_LPAS';
 
     public $incrementing = false;
-    protected $appends = ['tipo_lpa'];
+    //protected $appends = ['tipo_lpa'];
     /**
      * The attributes that are mass assignable.
      *

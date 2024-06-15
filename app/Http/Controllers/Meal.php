@@ -82,16 +82,16 @@ class Meal extends Controller
         $mlpas->load(['emergencia', 'actividad', 'persona']); //, 'actividad.directory'
 
 
-        /* $mlpasFormated = $mlpas->map(function ($lpa) {
+        $mlpasFormated = $mlpas->map(function ($lpa) {
             //$lpa->load('actividad.directory');
-            //$lpa->append('tipo_lpa');
+            $lpa->append('tipo_lpa');
             //$lpa->persona->append('edad');
             $lpaArray = $lpa->toArray();
             $lpaDoted = Arr::dot($lpaArray);
             return  $lpaDoted;
-        }); */
+        });
 
-        $flattenedMlpas =  ($mlpas);
+        $flattenedMlpas =  ($mlpasFormated);
 
         return [
             "lpas" => ($flattenedMlpas),
