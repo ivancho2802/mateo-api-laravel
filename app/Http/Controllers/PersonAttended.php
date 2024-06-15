@@ -454,4 +454,13 @@ class PersonAttended extends Controller
             //]);
         //}
     }
+
+    function getPersonaByID(Request $request){
+        $persona = MLpaPersona::where("ID", "=", $request->ID);
+
+        return [
+            "persona" => $persona->first()
+        ];
+
+    }
 }
