@@ -69,4 +69,12 @@ class Activity extends Controller
         //return response()->json(["message" => "operacion hecha con exito"]);
         
     }
+
+    function getActividadByCod(Request $request){
+        $activity = Activities::where("cod", "=", $request->cod);
+
+        return [
+            "actividad" => $activity->first()
+        ];
+    }
 }

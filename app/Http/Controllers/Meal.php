@@ -32,6 +32,14 @@ class Meal extends Controller
     }
 
     
+
+    /**
+     * emergencia
+     * 
+        $mlpas->load(['', 'actividad', 'persona']); //, 'actividad.directory'
+     * 
+     */
+    
     function getLpaOnly(Request $request)
     {
 
@@ -51,12 +59,6 @@ class Meal extends Controller
             "lpas" => $mlpas
         ];
     }
-
-    /**
-        $mlpas->load(['emergencia', 'actividad', 'persona']); //, 'actividad.directory'
-     * 
-     */
-    
 
     function getLpa(Request $request)
     {
