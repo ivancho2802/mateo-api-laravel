@@ -48,7 +48,7 @@ class Meal extends Controller
         //->groupBy('FECHA_ATENCION');
 
         return [
-            "lpas" => $mlpas
+            "lpas" => $mlpas->values()
         ];
     }
 
