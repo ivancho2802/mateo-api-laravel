@@ -31,6 +31,24 @@ class Meal extends Controller
         //ref for array_values() fix: https://stackoverflow.com/a/38712699/3553367
     }
 
+    
+    function getLpaOnly(Request $request)
+    {
+
+        $limit_minutes = 8000;
+        ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
+        ini_set('memory_limit', '902044M');
+        set_time_limit($limit_minutes); //0
+        ini_set('max_execution_time', '' . $limit_minutes . '');
+        ini_set('max_input_time', '' . $limit_minutes . '');
+
+        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->
+
+        return [
+            "lpa" => $mlpas
+        ];
+    }
+
     function getLpa(Request $request)
     {
 
@@ -127,6 +145,17 @@ class Meal extends Controller
             ];
         });
         //dd("mlpas", count($mlpas), $mlpasByDate->values());
+
+        $total_atenciones = $mlpasByDate->values();
+
+        if(count($total_atenciones) == 0){
+            $total_atenciones = [
+                [
+                    "fecha" => "",
+                    "cant_atenciones" => 0
+                ]
+            ];
+        }
 
         return [
             "lpas" => [
