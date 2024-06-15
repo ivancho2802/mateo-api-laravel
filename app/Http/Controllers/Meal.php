@@ -35,8 +35,10 @@ class Meal extends Controller
 
     /**
      * emergencia
+     * actividad
+     * persona
      * 
-        $mlpas->load(['', 'actividad', 'persona']); //, 'actividad.directory'
+        $mlpas->load(['', '', '']); //, 'actividad.directory'
      * 
      */
     

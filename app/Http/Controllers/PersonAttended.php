@@ -463,4 +463,14 @@ class PersonAttended extends Controller
         ];
 
     }
+
+    function getTipoLpa(Request $request){
+        
+
+        $mlpa = MLpa::where("ID", "=", $request->ID)->first();
+
+        $tipo_lpa = $mlpa->apend('tipo_lpa');
+
+        return ["tipo_lpa" => $tipo_lpa->tipo_lpa];
+    }
 }
