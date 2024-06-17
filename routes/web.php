@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UrlController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\MatrizController;
+use App\Http\Controllers\Ugic;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,9 @@ Route::resource('urls', UrlController::class)
 ->middleware(['auth']);//, 'verified'
 
 Route::resource('matrizprensa', MatrizController::class)
+->middleware(['auth']);//, 'verified'
+
+Route::resource('koboapdf', Ugic::class)
 ->middleware(['auth']);//, 'verified'
 
 // route for get shortener url

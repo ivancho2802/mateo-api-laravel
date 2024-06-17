@@ -138,6 +138,12 @@ Route::prefix('meal')->group(function () {
   Route::middleware(['auth:sanctum'])->post('/echo/upload', [App\Http\Controllers\echoController::class, 'stored']);
 
   Route::middleware(['auth:sanctum'])->post('/bha/upload', [App\Http\Controllers\BhaController::class, 'stored']);
+
+  //respuesta rapida
+  Route::middleware(['auth:sanctum'])->get('/rr/report', [App\Http\Controllers\Meal::class, 'getRrProdsReport']);
+
+  Route::middleware(['auth:sanctum'])->post('/rr/upload', [App\Http\Controllers\ReportController::class, 'stored']);
+  
 });
 
 Route::prefix('firebird')->group(function (){

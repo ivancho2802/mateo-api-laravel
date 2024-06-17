@@ -15,9 +15,11 @@ class AlterReportsTable extends Migration
     {
         Schema::table('reports', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('ID_M_USUARIOS')->create();
-            $table->foreign('ID_M_USUARIOS')
-                ->references('ID')->on('M_USUARIOS')->create();
+            $table->text('links')->nullable()->change();
+
+            //$table->unsignedBigInteger('ID_M_USUARIOS')->create();
+            //$table->foreign('ID_M_USUARIOS')
+            //    ->references('ID')->on('M_USUARIOS')->create();
                 
         });
     }

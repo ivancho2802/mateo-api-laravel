@@ -11,6 +11,7 @@ use App\Models\MFormulario;
 use App\Models\MKoboRespuestas;
 use App\Models\Activities;
 use App\Models\Analisis;
+use App\Models\Reports;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
@@ -31,17 +32,18 @@ class Meal extends Controller
         //ref for array_values() fix: https://stackoverflow.com/a/38712699/3553367
     }
 
-    
+
 
     /**
      * emergencia
      * actividad
      * persona
+     * tipo_lpa
+     * -actividad.directory
      * 
-        $mlpas->load(['', '', '']); //, 'actividad.directory'
      * 
      */
-    
+
     function getLpaOnly(Request $request)
     {
 
@@ -53,8 +55,8 @@ class Meal extends Controller
         ini_set('max_input_time', '' . $limit_minutes . '');
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-        ->nodeleted()
-        ->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->
+            ->nodeleted()
+            ->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->
         //->groupBy('FECHA_ATENCION');
 
         return [
@@ -147,10 +149,10 @@ class Meal extends Controller
         $mlpas = $mlpas
             ->get()
             ->groupBy('FECHA_ATENCION');
-            
+
         //dd("mlpas", ($mlpas));
 
-        $mlpasByDate = $mlpas->map(function ($lpa, $key){
+        $mlpasByDate = $mlpas->map(function ($lpa, $key) {
             //return [strtoupper($key) => count($lpa)];
             return [
                 "fecha" => $key,
@@ -161,7 +163,7 @@ class Meal extends Controller
 
         $total_atenciones = $mlpasByDate->values();
 
-        if(count($total_atenciones) == 0){
+        if (count($total_atenciones) == 0) {
             $total_atenciones = [
                 [
                     "fecha" => "",
@@ -748,9 +750,9 @@ class Meal extends Controller
     }
      */
 
-     /**
-      * grficos para el mire
-      */
+    /**
+     * grficos para el mire
+     */
     function getLpaGraficos(Request $request)
     {
         DB::setDefaultConnection('firebird');
@@ -976,5 +978,24 @@ class Meal extends Controller
         $activities = Activities::create($data);
 
         return  $activities;
+    }
+
+    /**
+     * respuesta rapida
+     */
+
+    function getRrProdsReport(Request $request){
+
+        
+        ini_set('memory_limit', '2044M');
+        set_time_limit(3000000);//0
+        ini_set('max_execution_time', '60000');
+        ini_set('max_input_time', '60000');
+
+
+        $reposts = Reports::all()->sortBy('fecha_ern');
+
+        return response()->json(['status' => true, 'data' => ($reposts)]);
+
     }
 }
