@@ -995,7 +995,7 @@ class Meal extends Controller
 
         $reposts = Reports::all()->sortBy('fecha_ern');
 
-        return response()->json(['status' => true, 'data' => ($reposts)]);
+        return response()->json(['status' => true, 'data' => ($reposts)->values()]);
 
     }
 }
