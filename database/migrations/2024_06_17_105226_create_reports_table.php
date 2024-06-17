@@ -13,19 +13,7 @@ class CreateReportsTable extends Migration
      */
     public function up()
     {
-        Schema::table('Reports', function (Blueprint $table) {
-            //
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('Reports', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             //
             $table->id();
             $table->timestamps();
@@ -39,5 +27,14 @@ class CreateReportsTable extends Migration
             $table->string('links')->nullable();
 
         });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
     }
 }

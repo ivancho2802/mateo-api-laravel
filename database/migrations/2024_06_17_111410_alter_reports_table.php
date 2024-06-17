@@ -13,8 +13,12 @@ class AlterReportsTable extends Migration
      */
     public function up()
     {
-        Schema::table('Reports', function (Blueprint $table) {
+        Schema::table('reports', function (Blueprint $table) {
             //
+            $table->unsignedBigInteger('ID_M_USUARIOS')->create();
+            $table->foreign('ID_M_USUARIOS')
+                ->references('ID')->on('M_USUARIOS')->create();
+                
         });
     }
 
@@ -25,12 +29,5 @@ class AlterReportsTable extends Migration
      */
     public function down()
     {
-        Schema::table('Reports', function (Blueprint $table) {
-            //
-            $table->unsignedBigInteger('ID_M_USUARIOS')->create();
-            $table->foreign('ID_M_USUARIOS')
-                ->references('ID')->on('M_USUARIOS')->create();
-                
-        });
     }
 }
