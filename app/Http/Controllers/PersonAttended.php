@@ -309,11 +309,11 @@ class PersonAttended extends Controller
                 break;
                 } */
             //\DB::table('readings')->insert($chunk->toArray());
+            $row = collect(collect($row)->toArray())->flatten();
             if (!$row[0]) {
                 $i++;
                 continue;
             }
-            $row = collect(collect($row)->toArray())->flatten();
 
             $mlpa_emergencia = MLpaEmergencia::firstOrCreate(
                 [
