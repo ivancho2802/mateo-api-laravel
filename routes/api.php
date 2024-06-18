@@ -537,6 +537,9 @@ Route::get('/matriz/diccionario/download', [App\Http\Controllers\Media::class, '
 
 // jobs
 Route::middleware(['auth:sanctum'])->post('/job/deploy/{id}/{token}', [App\Http\Controllers\Jobs::class, 'exportByuui']);
+Route::middleware(['auth:sanctum'])->post('/job/deploy/exportkobo', [App\Http\Controllers\Jobs::class, 'exportByuui']);
+Route::middleware(['auth:sanctum'])->get('/job/deploy/exportkobo', [App\Http\Controllers\Jobs::class, 'getProccessExport']);
+
 
 
 /*

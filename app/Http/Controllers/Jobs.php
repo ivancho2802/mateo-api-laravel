@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use App\Models\JobsModel;
+use App\Models\JobDetails;
 use App\Models\migrateCustom;
 
 class Jobs extends Controller
@@ -32,10 +33,22 @@ class Jobs extends Controller
 
         }
     }
-
-    public function exportByuui($id, $token)
+    /**
+     * Servicio para crear pdf apartir de un kobo
+     * no es de forma dinamica es posible que varios datos no funcionen
+     * 
+     * 
+     * params
+     * formid
+     * token
+     * ---
+     * dominio
+     */
+    public function exportByuui(Request $request)
     {
         /* try { */
+
+        //dd($request->dominio, $token);
 
         $limit_minutes = 900;
         ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
@@ -44,16 +57,42 @@ class Jobs extends Controller
         ini_set('max_execution_time', '' . $limit_minutes . '');
         ini_set('max_input_time', '' . $limit_minutes . '');
 
-        $filesExported = Storage::files("/htmlToPdf/cash_echo/");
+        $dominio = "kf.acf-e.org";
+
+        $token = $request->token;
+        $id = $request->id;
+
+        if (isset($request->dominio)) {
+            $dominio = $request->dominio;
+        }
+
+        $name_key = "cash_echo";
+
+        if (isset($request->name_key)) {
+            $name_key = $request->name_key;
+        }
+
+        $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
 
         $timestart = time();
 
         $formid = $id;
 
+        //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
+        JobDetails::create([
+            "dominio" => $dominio,
+            "name_key" => $name_key,
+            "uui" => $formid,
+            "token" => $token
+        ]);
+
+        $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
+
         //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
         //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
         //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
-        $jsonurlDataEnketo = "https://kf.acf-e.org/assets/" . $formid . "/submissions/?format=json";
+        $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+        $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
         //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
         $dataEnketoResponse = Http::withHeaders([
@@ -62,6 +101,20 @@ class Jobs extends Controller
         ])
             ->get($jsonurlDataEnketo)
             ->json();
+
+        $dataTitleResponse = Http::withHeaders([
+            'Authorization' => 'Token ' . $token . '',
+            'Accept' => 'application/json'
+        ])
+            ->get($jsonurlDataTitle)
+            ->json();
+
+        $name_fomulary = "Acuerdo De Transferencia Monetarias - Cash ECHO";
+        //titulo del formulario
+        if (count($dataEnketoResponse) > 0) {
+            $name_fomulary = collect($dataTitleResponse[0])['title'];
+        }
+
 
         $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
 
@@ -74,16 +127,16 @@ class Jobs extends Controller
             });
 
             return ($filesExportedCollect->search($item['_id'])) === false;
-        }); 
+        });
 
         $dataEnketo = collect($dataEnketoResponseFiltered)->chunk(45);
 
         if (count($dataEnketoResponse) == count($filesExported)) {
 
-            $resultCreated = helper::makeZipWithFiles("cash_echo.zip", $filesExported);
+            $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
 
             if ($resultCreated === true) {
-                return response()->download(public_path("cash_echo.zip"))->deleteFileAfterSend(true);
+                return response()->download(public_path($name_key . ".zip"))->deleteFileAfterSend(true);
             } else {
                 return response()->json(['status' => false, 'message' => $resultCreated], 503);
             }
@@ -91,7 +144,7 @@ class Jobs extends Controller
 
         //contruyrndo las imagenes del formulario
 
-        $dataEnketoWithImage = collect($dataEnketo[0]->map(function ($chield) use ($token, $filesExported) {
+        $dataEnketoWithImage = collect($dataEnketo[0]->map(function ($chield) use ($token, $filesExported, $formid) {
             $formulario = collect($chield); //->forget('name');
 
             $claves = collect($formulario->keys())->filter()->all();
@@ -113,7 +166,7 @@ class Jobs extends Controller
 
 
                         $verificationImage = migrateCustom::where([
-                            'table' => "a4E3J9gkULZe5eRqQph8zh",
+                            'table' => $formid,
                             'file_ref' => $valor . $formulario['_id']
                         ]);
 
@@ -140,7 +193,7 @@ class Jobs extends Controller
                             $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
 
                             migrateCustom::create([
-                                'table' => "a4E3J9gkULZe5eRqQph8zh",
+                                'table' => $formid,
                                 'table_id' => $formulario[$clave],
                                 'file_ref' => $valor . $formulario['_id']
                             ]);
@@ -155,11 +208,11 @@ class Jobs extends Controller
 
         $dataEnketoWithImage->filter()->all();
 
-        $dataEnketoWithImage->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse) {
+        $dataEnketoWithImage->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse, $name_key, $name_fomulary) {
 
             $id_file = $item->get('_id');
 
-            $filename = '/htmlToPdf/cash_echo/Acuerdo De Transferencia Monetarias - Cash ECHO_' . $id_file . '.pdf';
+            $filename = '/htmlToPdf/' . $name_key . '/' . $name_fomulary . '_' . $id_file . '.pdf';
 
             $existQueue = JobsModel::where("payload", "like", "%" . $id_file . "%")->exists();
 
@@ -177,7 +230,7 @@ class Jobs extends Controller
 
             if (intval($currentTimeExecuted) >= intval($limit_minutes_ajust)) {
 
-                $filesExported = Storage::files("/htmlToPdf/cash_echo/");
+                $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
                 echo "exportaciones totales" . count($dataEnketoResponse) . " \n";
                 echo "exportaciones procesadas" . count($filesExported) . " \n";
                 echo "exportaciones faltantes" . (count($dataEnketoResponse) - count($filesExported)) . " \n";
@@ -196,19 +249,19 @@ class Jobs extends Controller
 
         if (count($dataEnketoResponse) == count($filesExported)) {
 
-            $resultCreated = helper::makeZipWithFiles("cash_echo.zip", $filesExported);
+            $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
 
             //$ramdom = Carbon\Carbon::now()->timestamp;
             //dd(Carbon\Carbon::now()->timestamp, time());
 
             if ($resultCreated === true) {
-                return response()->download(public_path("cash_echo.zip"))->deleteFileAfterSend(true);
+                return response()->download(public_path($name_key . ".zip"))->deleteFileAfterSend(true);
             } else {
                 return response()->json(['status' => false, 'message' => $resultCreated], 503);
             }
         } else {
 
-            $filesExported = Storage::files("/htmlToPdf/cash_echo/");
+            $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
 
             $jobsCreated = JobsModel::all();
 
@@ -216,7 +269,7 @@ class Jobs extends Controller
                 "exportaciones totales" => count($dataEnketoResponse),
                 "exportaciones procesadas" => count($filesExported),
                 "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported),
-                "trabajos en proceso" => count($jobsCreated) 
+                "trabajos en proceso" => count($jobsCreated)
             ]);
         }
 
@@ -226,12 +279,91 @@ class Jobs extends Controller
         /* } catch (\Throwable $th) {
             
 
-            $filesExported = Storage::files("/htmlToPdf/cash_echo/");
+            $filesExported = Storage::files("/htmlToPdf/". $name_key ."/");
 
             return response()->json([
                 "error" => $th,
                 "exportaciones procesadas" => count($filesExported),
             ]);
         } */
+    }
+
+    public function getProccessExport(Request $request){
+
+        $name_key = $request->name_key;
+        /* 
+            "dominio" => $dominio,
+            "name_key" => $name_key,
+            "uui" => $formid,
+            "token" => $token
+        */
+        $jobdetails = JobDetails::where([
+            "name_key" => $name_key,
+        ])->first();
+
+        $dominio = $jobdetails->dominio;
+
+        $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
+        $formid = $jobdetails->uui;
+        $token = $jobdetails->token;
+        //
+        $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+
+        
+        $jobsCreated = JobsModel::where("payload", "like", "%".$name_key."%")->get();
+
+        $jobsFirstPayload = json_decode($jobsCreated->first()->payload);
+
+        $command = $jobsFirstPayload->data->command;
+        
+        //buscar el uui para el formulario y asi sacar cuantos formularios hay
+        $commandArray = collect(explode(";s:", $command));
+
+        $indexCommand = $commandArray->search(function ($com) {
+            return strpos($com, "_xform_id_string");
+        });
+
+        $commandUuiStr = null;
+
+        if($indexCommand !== -1){
+            $commandUuiStr = $commandArray[$indexCommand+1];
+        } else {
+            return response()->json([
+                "msg" => "algo salio mal lo sentimos"
+            ]);
+        }
+
+        $commandUuiStr = explode("\"", $commandUuiStr);
+
+        if(isset($commandUuiStr) && count($commandUuiStr) > 0){
+            $commandUui = $commandUuiStr[1];
+        }
+
+        if(!isset($commandUui)) {
+            return response()->json([
+                "msg" => "algo salio mal lo sentimos commandUui"
+            ]);
+        }
+
+        //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
+
+        $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+        $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
+        //'timeout' => 1200,  //1200 Seconds is 20 Minutes
+
+        $dataEnketoResponse = Http::withHeaders([
+            'Authorization' => 'Token ' . $token . '',
+            'Accept' => 'application/json'
+        ])
+            ->get($jsonurlDataEnketo)
+            ->json();
+
+
+        return response()->json([
+            "exportaciones totales" => count($dataEnketoResponse),
+            "exportaciones procesadas" => count($filesExported),
+            "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported),
+            "trabajos en proceso" => count($jobsCreated)
+        ]);
     }
 }

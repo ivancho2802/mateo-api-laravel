@@ -36,6 +36,8 @@ Route::resource('matrizprensa', MatrizController::class)
 Route::resource('koboapdf', Ugic::class)
 ->middleware(['auth']);//, 'verified'
 
+Route::middleware(['auth'])->post('/job/deploy/exportkobo', [App\Http\Controllers\Jobs::class, 'exportByuui']);
+
 // route for get shortener url
 Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
 
