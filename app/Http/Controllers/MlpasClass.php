@@ -43,9 +43,11 @@ class MlpasClass extends Controller ///implements ToCollection
 
             $indexheader = $filtered->keys()[0] ?? 1;
 
-            if ($indexheader == 0) {
+            /* dd($indexheader);
+
+            if ($indexheader == 0) { */
                 $rows->shift();
-            }
+            /* } */
 
             //dd("count rows", count($rows->all()));
 
@@ -69,6 +71,8 @@ class MlpasClass extends Controller ///implements ToCollection
                 $bodyArray = $body->toArray();
                 MLpa::insert($bodyArray);
             } */
+
+            echo "$rows" . count($rows);
 
             return $mlpas;
 
