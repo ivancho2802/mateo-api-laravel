@@ -72,7 +72,7 @@ class MlpasClass extends Controller ///implements ToCollection
                 MLpa::insert($bodyArray);
             } */
 
-            echo "$rows" . count($rows);
+            echo "rows" . count($rows);
 
             return $mlpas;
 
