@@ -399,8 +399,14 @@ class PersonAttended extends Controller
         }
 
         //dd("body_lpas", count($body_lpas), $body_lpas);
+        //si es par dividir entre 2 sino entre 3 
+        
+        $divisor = 3;
+        if(count($body_lpas) % 2 == 0 ){
+            $divisor = 2;
+        }
 
-        $body_lpas = ($body_lpas)->chunk(($lotes / 4));
+        $body_lpas = ($body_lpas)->chunk(($lotes / $divisor));
         foreach ($body_lpas as $body) {
             $bodyArray = $body->toArray();
             MLpa::insert($bodyArray);
