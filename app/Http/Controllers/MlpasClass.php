@@ -35,7 +35,6 @@ class MlpasClass extends Controller ///implements ToCollection
 
             $date_begin = "";
             $date_end = "";
-            dd("count rows", count($rows));
             /* 
             $filtered = $rows->filter(function ( $value,  $key) {
                 //echo "value". $value. $key;
@@ -57,6 +56,8 @@ class MlpasClass extends Controller ///implements ToCollection
             foreach ($rowsChuck as $body) {
                 # code...
                 $bodyArray = $body->toArray();
+                dd("count rows", count($bodyArray));
+
                 $mlpas = migrateCustom::create([
                     'table' => 'M_LPAS',
                     'table_id' =>  json_encode($bodyArray),
