@@ -51,7 +51,7 @@ class MlpasActivityClass  implements ToCollection
                 
             ]);
 
-            $id_lpaactivities[] = $lpaactivity->get()->last()->id;
+            $id_lpaactivities[] = $lpaactivity->id;
 
         }
 

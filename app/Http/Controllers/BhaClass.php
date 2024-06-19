@@ -55,7 +55,7 @@ class BhaClass implements ToCollection
                 ]);
     
                 $bhas_actividad[] = $bha_actividad;
-                $id_bhas_actividad[] = $bha_actividad->get()->last()->id;
+                $id_bhas_actividad[] = $bha_actividad->id;
 
             }
         }

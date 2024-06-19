@@ -66,7 +66,7 @@ class MqrClass implements ToCollection
                 
             ]);
 
-            $id_mqr[] = $mrq->get()->last()->ID;
+            $id_mqr[] = $mrq->ID;
 
         }
 

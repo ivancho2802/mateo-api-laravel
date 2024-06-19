@@ -187,16 +187,16 @@ class MlpasClass extends Controller ///implements ToCollection
                     //laura reemplzar por el id desde el token 5 en lcal 1 online
                     "ID_M_USUARIOS" => $ID_USER,
 
-                    "FK_LPA_EMERGENCIA" => $mlpa_emergencia->get()->last()->ID,
-                    "FK_LPA_PERSONA" => $mlpa_persona->get()->last()->ID
+                    "FK_LPA_EMERGENCIA" => $mlpa_emergencia->ID,
+                    "FK_LPA_PERSONA" => $mlpa_persona->ID
 
                 ]);
 
                 if ($i == 1) {
-                    $date_begin = $mlpa_emergencia->get()->last()->created_at->format("Y-m-d") . " 00:00:01";
+                    $date_begin = $mlpa_emergencia->created_at->format("Y-m-d") . " 00:00:01";
                 }
 
-                $date_end = $mlpa_emergencia->get()->last()->created_at->format("Y-m-d H:i:s");
+                $date_end = $mlpa_emergencia->created_at->format("Y-m-d H:i:s");
                 $i++;
             }
             //dd($date_begin, $date_end);

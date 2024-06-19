@@ -55,7 +55,7 @@ class EchoClass implements ToCollection
                 ]);
     
                 $echos_actividad[] = $echo_actividad;
-                $id_echos_actividad[] = $echo_actividad->get()->last()->id;
+                $id_echos_actividad[] = $echo_actividad->id;
 
             }
         }
