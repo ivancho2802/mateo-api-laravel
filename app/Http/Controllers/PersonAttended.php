@@ -318,7 +318,7 @@ class PersonAttended extends Controller
                 $i++;
                 continue;
             }
-            echo (" begin:"  . $row[0] ." -  "  . $i ."  - " . isEmpty($row[0]) . ' - ' . $row[6]);
+            echo (" begin:"  . $row[0] ." -  "  . $i ."  - " . json_encode(isEmpty($row[0])) . ' - ' . $row[6]);
 
             $mlpa_emergencia = MLpaEmergencia::firstOrCreate(
                 [
