@@ -43,11 +43,13 @@ class MlpasClass extends Controller ///implements ToCollection
 
             $indexheader = $filtered->keys()[0] ?? 1;
 
+            dd("count rows", count($rows->all()), $rows[0]);
             /* dd($indexheader);
             
             if ($indexheader == 0) { */
                 $rows->shift();
                 /* } */
+                //333 el cero son las cabeceras
             dd("count rows", count($rows->all()), $rows[0]);
 
 
