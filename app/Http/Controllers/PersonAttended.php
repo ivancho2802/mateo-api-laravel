@@ -310,7 +310,7 @@ class PersonAttended extends Controller
                 } */
             //\DB::table('readings')->insert($chunk->toArray());
             $row = collect(collect($row)->toArray())->flatten();
-            echo ($row[0] . " -  "  . $i ."  - " . isset($row[0]));
+            echo ($row[0] . " -  "  . $i ."  - " . isset($row[0]) . $row[6]);
             if (!isset($row[0])) {
                 $i++;
                 continue;
