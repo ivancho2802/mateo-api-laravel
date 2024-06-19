@@ -433,7 +433,7 @@
       @endif
 
       <div class="flex justify-center pt-8 sm:justify-center sm:pt-0 bg-white ">
-        <img src="https://ugic.ach.dyndns.info/ach/imagenes/inicio/TIRA_MIRE+_SOCIOS_DONANTES_COLOR.png" class="h-16 w-auto text-gray-700 sm:h-20" />
+        <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/TIRA_MIRE+_SOCIOS_DONANTES_COLOR.png" class="h-16 w-auto text-gray-700 sm:h-20" />
 
       </div>
 
@@ -445,8 +445,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2">
           <div class="p-6">
             <div class="flex items-center">
-              <img src="https://ugic.ach.dyndns.info/ach/imagenes/inicio/MIREsys4.jpg" class="w-8 h-8 text-gray-500" />
-              <div class="ml-4 text-lg leading-7 font-semibold"><a href="http://ach.dyndns.info:8888/ach/herramientas/password/password.php?db=ach" class="underline text-gray-900 dark:text-white">
+              <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/MIREsys4.jpg" class="w-8 h-8 text-gray-500" />
+              <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://mireview.ach.dyndns.info/ach/herramientas/password/password.php?db=ach" class="underline text-gray-900 dark:text-white">
                   MIRE + Web
                 </a></div>
             </div>
@@ -460,8 +460,8 @@
 
           <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
             <div class="flex items-center">
-              <img src="https://ugic.ach.dyndns.info/ach/imagenes/inicio/infoMIRE3.jpg" class="w-8 h-8 text-gray-500" />
-              <div class="ml-4 text-lg leading-7 font-semibold"><a href="http://ach.dyndns.info:8888/ach/movil_dashboard/www/index.html" class="underline text-gray-900 dark:text-white">
+              <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/infoMIRE3.jpg" class="w-8 h-8 text-gray-500" />
+              <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://mireview.ach.dyndns.info/ach/movil_dashboard/www/index.html" class="underline text-gray-900 dark:text-white">
                   Mire+ App
                 </a></div>
             </div>

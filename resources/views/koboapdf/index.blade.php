@@ -190,6 +190,9 @@
                         <br>
 
                         <x-primary-button class="mt-4">Enviar Datos</x-primary-button>
+
+                        
+
                       </form>
 
                     </div>

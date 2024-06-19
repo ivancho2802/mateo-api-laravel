@@ -316,7 +316,7 @@ class PersonAttended extends Controller
             $row = collect(collect($row)->toArray())->flatten();
             $row[0] = trim($row[0]);
             
-            echo $row[0] .'-'. strlen($row[0]);
+            //echo $row[0] .'-'. strlen($row[0]);
             
             if (strlen($row[0])<2) {
                 $i++;
