@@ -35,6 +35,7 @@ class MlpasClass extends Controller ///implements ToCollection
 
             $date_begin = "";
             $date_end = "";
+            dd("count rows", count($rows));
             /* 
             $filtered = $rows->filter(function ( $value,  $key) {
                 //echo "value". $value. $key;
@@ -43,7 +44,6 @@ class MlpasClass extends Controller ///implements ToCollection
 
             $indexheader = $filtered->keys()[0] ?? 1;
 
-            //dd("count rows", count($rows->all()), $rows[0]);
             dd($indexheader);
             
             if ($indexheader == 0) { */
@@ -53,8 +53,6 @@ class MlpasClass extends Controller ///implements ToCollection
             //dd("count rows", count($rows->all()), $rows[0]);
 
             $rowsChuck = $rows->chunk(1000);
-
-            //dd(($rowsChuck[1]));
 
             foreach ($rowsChuck as $body) {
                 # code...
