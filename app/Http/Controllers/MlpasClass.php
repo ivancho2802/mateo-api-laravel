@@ -35,7 +35,7 @@ class MlpasClass extends Controller ///implements ToCollection
 
             $date_begin = "";
             $date_end = "";
-
+            /* 
             $filtered = $rows->filter(function ( $value,  $key) {
                 //echo "value". $value. $key;
                 return $key == "Codigo de la emergencia";
@@ -44,7 +44,7 @@ class MlpasClass extends Controller ///implements ToCollection
             $indexheader = $filtered->keys()[0] ?? 1;
 
             //dd("count rows", count($rows->all()), $rows[0]);
-            /* dd($indexheader);
+            dd($indexheader);
             
             if ($indexheader == 0) { */
                 //$rows->shift();
