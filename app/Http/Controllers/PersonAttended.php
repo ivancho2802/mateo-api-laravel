@@ -314,10 +314,9 @@ class PersonAttended extends Controller
             $row = collect(collect($row)->toArray())->flatten();
             $row[0] = trim($row[0]);
             
-            echo $row[0];
-            echo "begin:-" . !strlen($row[0])>2 . ' - ';
+            echo $row[0] .'-'. strlen($row[0]);
             
-            if (!strlen($row[0])>2) {
+            if (strlen($row[0])<2) {
                 $i++;
                 continue;
             }
@@ -405,7 +404,7 @@ class PersonAttended extends Controller
 
         }
 
-        dd("elementsForMigration", count($elementsForMigration), "body_lpas", count($body_lpas));
+        //dd("elementsForMigration", count($elementsForMigration), "body_lpas", count($body_lpas));
         //si es par dividir entre 2 sino entre 3 
         
         $divisor = 3;
