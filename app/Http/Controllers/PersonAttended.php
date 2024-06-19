@@ -398,8 +398,6 @@ class PersonAttended extends Controller
 
         }
 
-
-        dd ("body_lpas", count($body_lpas), count($elementsForMigration));
         //si es par dividir entre 2 sino entre 3 
         
         $divisor = 3;
