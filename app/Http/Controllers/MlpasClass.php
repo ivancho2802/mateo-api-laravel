@@ -43,13 +43,13 @@ class MlpasClass extends Controller ///implements ToCollection
 
             $indexheader = $filtered->keys()[0] ?? 1;
 
+            dd("count rows", count($rows->all()), $rows[0]);
             /* dd($indexheader);
 
             if ($indexheader == 0) { */
                 $rows->shift();
             /* } */
 
-            //dd("count rows", count($rows->all()));
 
             $rowsChuck = $rows->chunk(1000);
 
@@ -72,7 +72,7 @@ class MlpasClass extends Controller ///implements ToCollection
                 MLpa::insert($bodyArray);
             } */
 
-            echo "rows" . count($rows);
+            //echo "rows" . count($rows);
 
             return $mlpas;
 
