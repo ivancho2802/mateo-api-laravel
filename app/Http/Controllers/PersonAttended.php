@@ -314,11 +314,11 @@ class PersonAttended extends Controller
             $row = collect(collect($row)->toArray())->flatten();
             $row[0] = trim($row[0]);
 
+            echo (" begin:"  . $row[0] ." -  "  . $i ."  - " . json_encode(!optional($row[0])) . ' - ' . $row[6]);
             if (!optional($row[0])) {
                 $i++;
                 continue;
             }
-            echo (" begin:"  . $row[0] ." -  "  . $i ."  - " . json_encode(isEmpty($row[0])) . ' - ' . $row[6]);
 
             $mlpa_emergencia = MLpaEmergencia::firstOrCreate(
                 [
