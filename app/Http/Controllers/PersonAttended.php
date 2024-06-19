@@ -314,8 +314,9 @@ class PersonAttended extends Controller
             $row = collect(collect($row)->toArray())->flatten();
             $row[0] = trim($row[0]);
 
-            echo (" begin:-" . strlen($row[0])>2 . ' - ');
-            if (strlen($row[0])>2) {
+            echo (" begin:-" . !strlen($row[0])>2 . ' - ');
+            
+            if (!strlen($row[0])>2) {
                 $i++;
                 continue;
             }
