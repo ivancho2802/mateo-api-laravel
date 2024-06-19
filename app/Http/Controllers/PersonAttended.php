@@ -368,7 +368,7 @@ class PersonAttended extends Controller
                 return ["mlpa_persona" => $mlpa_persona, "mlpa_emergencia" => $mlpa_emergencia];
             }
 
-            dd(collect($row[31])->toArray());
+            dd(collect($row[31])->get("date"));
 
             $FECHA_ATENCION = collect($row[31])->toArray()["date"]; //Date::excelToDateTimeObject($row[31]);
 
