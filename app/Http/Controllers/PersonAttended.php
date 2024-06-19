@@ -310,10 +310,10 @@ class PersonAttended extends Controller
                 } */
             //\DB::table('readings')->insert($chunk->toArray());
             $row = collect(collect($row)->toArray())->flatten();
-            if (!$row[0]) {
+            /* if (!$row[0]) {
                 $i++;
                 continue;
-            }
+            } */
 
             $mlpa_emergencia = MLpaEmergencia::firstOrCreate(
                 [
