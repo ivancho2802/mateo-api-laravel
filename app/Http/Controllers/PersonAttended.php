@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Storage;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Validation\ValidationException;
 
+use function PHPUnit\Framework\isEmpty;
+
 class PersonAttended extends Controller
 {
     //
@@ -311,12 +313,12 @@ class PersonAttended extends Controller
             //\DB::table('readings')->insert($chunk->toArray());
             $row = collect(collect($row)->toArray())->flatten();
             $row[0] = trim($row[0]);
-            
-            echo (" begin:"  . $row[0] ." -  "  . $i ."  - " . optional($row[0]) . ' - ' . $row[6]);
+
             if (!optional($row[0])) {
                 $i++;
                 continue;
             }
+            echo (" begin:"  . $row[0] ." -  "  . $i ."  - " . isEmpty($row[0]) . ' - ' . $row[6]);
 
             $mlpa_emergencia = MLpaEmergencia::firstOrCreate(
                 [
