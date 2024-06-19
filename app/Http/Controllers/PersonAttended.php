@@ -314,7 +314,7 @@ class PersonAttended extends Controller
             $row = collect(collect($row)->toArray())->flatten();
             $row[0] = trim($row[0]);
 
-            echo (" begin:"  . $row[0] ." -  "  . $i ."  - " . (!optional($row[0])) . ' - ' . $row[6]);
+            //echo (" begin:"  . $row[0] ." -  "  . $i ."  - " . (!optional($row[0])) . ' - ' . $row[6]);
             if (!optional($row[0])) {
                 $i++;
                 continue;
@@ -403,7 +403,7 @@ class PersonAttended extends Controller
 
         }
 
-        dd("elementsForMigration", count($elementsForMigration), "body_lpas", count($body_lpas));
+        //dd("elementsForMigration", count($elementsForMigration), "body_lpas", count($body_lpas));
         //si es par dividir entre 2 sino entre 3 
         
         $divisor = 3;
