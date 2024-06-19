@@ -43,7 +43,7 @@ class MlpasClass extends Controller ///implements ToCollection
 
             $indexheader = $filtered->keys()[0] ?? 1;
 
-            dd($indexheader);
+            dd($indexheader);333
             
             if ($indexheader == 0) { */
                 //$rows->shift();
@@ -56,7 +56,7 @@ class MlpasClass extends Controller ///implements ToCollection
             foreach ($rowsChuck as $body) {
                 # code...
                 $bodyArray = $body->toArray();
-                dd("count rows", count($bodyArray));
+                //dd("count rows", count($bodyArray));333
 
                 $mlpas = migrateCustom::create([
                     'table' => 'M_LPAS',
