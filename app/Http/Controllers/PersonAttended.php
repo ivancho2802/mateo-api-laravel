@@ -305,7 +305,7 @@ class PersonAttended extends Controller
 
         //estoy tomando solo la primera 500
 
-        dd(count($elementsForMigrationChunked[0]));
+        //dd(count($elementsForMigrationChunked[0]));
 
         foreach ($elementsForMigrationChunked[0] as $row) {
             $i = 0;
