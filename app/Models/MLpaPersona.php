@@ -314,7 +314,7 @@ class MLpaPersona extends Model
 
     public function getEdadAttribute()
     {
-        $fecha_nac = $this->FECHA_NACIMIENTO;
+        $fecha_nac = $this->FECHA_NACIMIENTO;dd($fecha_nac);
 
         $howOldAmI = 0;
 
