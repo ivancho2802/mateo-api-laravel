@@ -393,6 +393,21 @@ class PersonAttended extends Controller
                 ]
             );
 
+            if (
+                !isset($mlpa_persona) || 
+                (
+                    !optional($mlpa_persona)->ID
+                ) || 
+                (
+                    !isset(optional($mlpa_persona)->ID)
+                )
+            ) {
+                $mlpa_persona = MLpaPersona::where([
+                    ['DOCUMENTO' => $row[6]]
+                ])
+                ->first();
+            }
+
 
             if (
                 !isset($mlpa_persona) || 
