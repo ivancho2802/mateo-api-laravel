@@ -334,6 +334,26 @@ class PersonAttended extends Controller
                 ]
             );
 
+            if (
+                !isset($mlpa_emergencia) || 
+                (
+                    !optional($mlpa_emergencia)->ID
+                ) || 
+                (
+                    !isset(optional($mlpa_emergencia)->ID)
+                )
+            ) {
+                $mlpa_emergencia = MLpaEmergencia::where([
+                    'COD_EMERGENCIAS' => $mlpa_emergencia->COD_EMERGENCIAS,
+                    'TIPO_EVENTO' => $mlpa_emergencia->TIPO_EVENTO,
+                    'SOCIO' => $mlpa_emergencia->SOCIO,
+                    'DEPARTAMENTO' => $mlpa_emergencia->DEPARTAMENTO,
+                    'MUNICIPIO' => $mlpa_emergencia->MUNICIPIO,
+                    'LUGAR_ATENCION' => $mlpa_emergencia->LUGAR_ATENCION
+                ])
+                ->first();
+            }
+
             //dd($mlpa_emergencia->ID);
 
             $dateArray = collect($row[14])->toArray();
