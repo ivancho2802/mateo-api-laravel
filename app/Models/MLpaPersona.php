@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use App\Models\MLpa;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 
 class MLpaPersona extends Model
 {
@@ -104,7 +105,7 @@ class MLpaPersona extends Model
                 break;
         }
 
-        
+
         switch ($this->DISCAPACIDAD_OIR) {
             case 'Si - No puede hacerlo':
                 # code...
@@ -137,7 +138,7 @@ class MLpaPersona extends Model
                 break;
         }
 
-        
+
         switch ($this->DISCAPACIDAD_CAMINAR) {
             case 'Si - No puede hacerlo':
                 # code...
@@ -170,7 +171,7 @@ class MLpaPersona extends Model
                 break;
         }
 
-        
+
         switch ($this->DISCAPACIDAD_RECORDAR) {
             case 'Si - No puede hacerlo':
                 # code...
@@ -203,7 +204,7 @@ class MLpaPersona extends Model
                 break;
         }
 
-        
+
         switch ($this->DISCAPACIDAD_CUIDADO_PROPIO) {
             case 'Si - No puede hacerlo':
                 # code...
@@ -236,7 +237,7 @@ class MLpaPersona extends Model
                 break;
         }
 
-        
+
         switch ($this->DISCAPACIDAD_COMUNICAR) {
             case 'Si - No puede hacerlo':
                 # code...
@@ -281,7 +282,7 @@ class MLpaPersona extends Model
         return $discapacidades;
     }
 
-    
+
     /**
      * calculo de la discapacitado apartie de la fecha de nacimiento
      */
@@ -317,12 +318,14 @@ class MLpaPersona extends Model
 
         $howOldAmI = 0;
 
-        if (isset($fecha_nac)) {
+        $fecha_nac_isvalid = Carbon::createFromFormat('YYYY-MM-DD', $fecha_nac);
+
+        if ($fecha_nac_isvalid!==false && isset($fecha_nac)) {
             $howOldAmI = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac)->age;  // 46 1999-08-30
         }
 
         return $howOldAmI;
-    }
+    } 
 
     public function emergencia()
     {
