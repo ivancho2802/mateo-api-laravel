@@ -314,10 +314,14 @@ class MLpaPersona extends Model
 
     public function getEdadAttribute()
     {
-        $fecha_nac = $this->FECHA_NACIMIENTO;
+        $fecha_nac = $this->FECHA_NACIMIENTO;//"2002-11-21 00:00:00.000000"
+
+        if(strpos($fecha_nac, "00:00:00")){
+            $arrayfecha_nac = explode(" ", $fecha_nac);
+            $fecha_nac = $arrayfecha_nac[0];
+        }
         
         $howOldAmI = 0;
-        dd($fecha_nac);
         $age=Carbon::createFromFormat('d/m/Y', $fecha_nac)->diff(Carbon::now())->y;
         dd($age ,$fecha_nac);
 
