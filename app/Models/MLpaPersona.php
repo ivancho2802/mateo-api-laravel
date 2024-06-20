@@ -322,10 +322,8 @@ class MLpaPersona extends Model
         }
         
         $howOldAmI = 0;
-        $age=Carbon::createFromFormat('d/m/Y', $fecha_nac)->diff(Carbon::now())->y;
-        dd($age ,$fecha_nac);
 
-        $fecha_nac_isvalid = $this->isValidDate($fecha_nac, 'd/m/Y');
+        $fecha_nac_isvalid = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac);
         dd($fecha_nac_isvalid ,$fecha_nac);
 
         if ($fecha_nac_isvalid!==false && isset($fecha_nac)) {
