@@ -403,7 +403,7 @@ class PersonAttended extends Controller
                 )
             ) {
                 $mlpa_persona = MLpaPersona::where([
-                    ['DOCUMENTO' => $row[6]]
+                    'DOCUMENTO' => $mlpa_persona->DOCUMENTO
                 ])
                 ->first();
             }
