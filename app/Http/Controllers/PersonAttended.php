@@ -334,6 +334,8 @@ class PersonAttended extends Controller
                 ]
             );
 
+            dd($mlpa_emergencia);
+
             $dateArray = collect($row[14])->toArray();
 
             $date_birday = (isset($dateArray) && isset($dateArray["date"])) ? $dateArray["date"] : null; //Date::excelToDateTimeObject($row[14]);
