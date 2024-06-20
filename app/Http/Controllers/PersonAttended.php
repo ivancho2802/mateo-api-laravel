@@ -334,7 +334,7 @@ class PersonAttended extends Controller
                 ]
             );
 
-            dd($mlpa_emergencia);
+            dd($mlpa_emergencia->ID);
 
             $dateArray = collect($row[14])->toArray();
 
