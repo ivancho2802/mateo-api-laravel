@@ -317,6 +317,7 @@ class MLpaPersona extends Model
         $fecha_nac = $this->FECHA_NACIMIENTO;
         
         $howOldAmI = 0;
+        dd($fecha_nac);
         $age=Carbon::createFromFormat('d/m/Y', $fecha_nac)->diff(Carbon::now())->y;
         dd($age ,$fecha_nac);
 
