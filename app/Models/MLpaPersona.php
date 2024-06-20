@@ -318,7 +318,7 @@ class MLpaPersona extends Model
         
         $howOldAmI = 0;
         
-        $fecha_nac_isvalid = Carbon::createFromFormat('YYYY-MM-DD', $fecha_nac);
+        $fecha_nac_isvalid = $this->isValidDate($fecha_nac, 'Y-m-d');
         dd($fecha_nac_isvalid ,$fecha_nac);
 
         if ($fecha_nac_isvalid!==false && isset($fecha_nac)) {
@@ -326,7 +326,14 @@ class MLpaPersona extends Model
         }
 
         return $howOldAmI;
-    } 
+    }
+
+    public static function isValidDate(string $dateString, string $format = 'Y-m-d'): bool
+    {
+        $dateTime = Carbon::createFromFormat($format, $dateString);
+
+        return $dateTime && $dateTime->format($format) === $dateString;
+    }
 
     public function emergencia()
     {
