@@ -334,7 +334,7 @@ class PersonAttended extends Controller
                 ]
             );
 
-            dd($mlpa_emergencia->ID);
+            //dd($mlpa_emergencia->ID);
 
             $dateArray = collect($row[14])->toArray();
 
@@ -374,7 +374,18 @@ class PersonAttended extends Controller
             );
 
 
-            if (!isset($mlpa_persona) || !isset($mlpa_emergencia) && (!optional($mlpa_persona)->ID || !optional($mlpa_emergencia)->ID) && (!isset(optional($mlpa_persona)->ID) || !isset(optional($mlpa_emergencia)->ID))) {
+            if (
+                !isset($mlpa_persona) || 
+                !isset($mlpa_emergencia) || 
+                (
+                    !optional($mlpa_persona)->ID ||
+                    !optional($mlpa_emergencia)->ID
+                ) || 
+                (
+                    !isset(optional($mlpa_persona)->ID) || 
+                    !isset(optional($mlpa_emergencia)->ID)
+                )
+            ) {
                 return ["mlpa_persona" => $mlpa_persona, "mlpa_emergencia" => $mlpa_emergencia];
             }
 
