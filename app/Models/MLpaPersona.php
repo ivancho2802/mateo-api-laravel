@@ -316,7 +316,7 @@ class MLpaPersona extends Model
     {
         $fecha_nac = $this->FECHA_NACIMIENTO;//"2002-11-21 00:00:00.000000"
         $howOldAmI = 0;
-        if(isset($fecha_nac)){
+        if(!isset($fecha_nac)){
             return $howOldAmI;
         }
 
