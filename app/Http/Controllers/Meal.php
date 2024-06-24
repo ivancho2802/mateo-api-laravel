@@ -55,7 +55,7 @@ class Meal extends Controller
         ini_set('max_input_time', '' . $limit_minutes . '');
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-            ->where("FK_LPA_PERSONA", ">", "22270")
+            //->where("FK_LPA_PERSONA", ">", "22270")
             ->nodeleted()
             ->get(); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
         //->groupBy('FECHA_ATENCION');
