@@ -191,7 +191,7 @@
 
                         <x-primary-button class="mt-4">Enviar Datos</x-primary-button>
 
-                        
+
 
                       </form>
 
@@ -230,7 +230,7 @@
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                       <h1 class="h3 mb-3 fw-normal text-center">Formulario</h1>
 
-                      <form method="post" action="/job/deploy/exportkobo" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                      <form method="post" action="/job/deploy" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                         @csrf
 
                         <label for="exampleFormControlTextarea1" class="form-label">Buscador: </label>
@@ -242,6 +242,83 @@
 
                         <x-primary-button class="mt-4">Enviar Datos</x-primary-button>
                       </form>
+
+                      @if(!isset($data))
+                      <div x-data="{ show: true}" x-show="show" class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
+                        <p class="m-0 text-dark">Msg: No hay datos de procesos</p>
+                      </div>
+                      @endif
+
+                      <h4>Registros enviados: {{count($data)}}</h4>
+                      @if(isset($data))
+
+                      <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+                        @forelse ($data as $export)
+                        <li>
+                          <div class="flex items-center gap-x-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" style="width: 50px;"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>
+
+                            <div>
+                              <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Export. Totales: {{$export->exportaciones_totales}}</h3>
+                              <p class="text-sm font-semibold leading-6 text-indigo-600">Export. Procesadas: {{$export->exportaciones_procesadas}}</p>
+                              <p class="text-sm font-semibold leading-6 text-indigo-600">Export. Faltantes: {{$export->exportaciones_faltantes}}</p>
+                              <p class="text-sm font-semibold leading-6 text-indigo-600">Export. proceso: {{$export->trabajos_en_proceso}}</p>
+                            </div>
+                          </div>
+                        </li>
+                        @empty
+                        
+                        @endforelse
+                      </ul>
+
+
+                      <table id="list_exposrts" class="table table-responsive table-bordered">
+
+                        <thead class="text-center  bg-info">
+                          <tr>
+                            <td class="grid_encab" id="rm_lpa_0" data-campo="CODIGO" style="width: 80px; min-width: 80px; cursor: pointer;">
+                              <div style=" float: left; text-align:left">
+                                Exportaciones Totales
+                              </div>
+                              <span id="m_lpa_asc_0" class="ascendente" style="display:none"></span>
+                              <span id="m_lpa_des_0" class="descendente" style="display:none"></span>
+                            </td>
+                            <td class="grid_encab" id="rm_lpa_0" data-campo="CODIGO" style="width: 80px; min-width: 80px; cursor: pointer;">
+                              <div style=" float: left; text-align:left">Exportaciones Procesadas</div><span id="m_lpa_asc_0" class="ascendente" style="display:none"></span><span id="m_lpa_des_0" class="descendente" style="display:none"></span>
+                            </td>
+                            <td class="grid_encab" id="rm_lpa_1" data-campo="FECHA_ACTIV" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+                              <div style=" float: center; text-align:center">Exportaciones Faltantes</div><span id="m_lpa_asc_1" class="ascendente" style="display:none"></span><span id="m_lpa_des_1" class="descendente" style="display:none"></span>
+                            </td>
+                            <td class="grid_encab" id="rm_lpa_1" data-campo="FECHA_ACTIV" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+                              <div style=" float: center; text-align:center">Trabajos en proceso</div><span id="m_lpa_asc_1" class="ascendente" style="display:none"></span><span id="m_lpa_des_1" class="descendente" style="display:none"></span>
+                            </td>
+                          </tr>
+                        </thead>
+
+                        <tbody class="text-center">
+                          @forelse ($data as $export)
+                          <tr>
+                            <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+                              {{$export->exportaciones_totales}}
+                            </td>
+                            <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+                              {{$export->exportaciones_procesadas}}
+                            </td>
+                            <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
+                              {{$export->exportaciones_faltantes}}
+                            </td>
+                            <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
+                              {{$export->trabajos_en_proceso}}
+                            </td>
+                          </tr>
+                          @empty
+                          <tr>
+                            <td class="text-center " colspan="9">Lo sentimos pero no hay resultados</td>
+                          </tr>
+                          @endforelse
+                        </tbody>
+                      </table>
+                      @endif
 
                     </div>
                   </div>
