@@ -397,6 +397,12 @@ class Jobs extends Controller
 
     $jobsCreated = JobsModel::where("payload", "like", "%" . $name_key . "%")->get();
 
+    if(!isset($jobsCreated)){
+
+      //MQR devolver tabla con los resultados creados 
+      return view('koboapdf.index', ["data"=>[]]);
+    }
+
     $jobsFirstPayload = json_decode($jobsCreated->first()->payload);
 
     $command = $jobsFirstPayload->data->command;
