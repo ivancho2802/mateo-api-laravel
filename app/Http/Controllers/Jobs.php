@@ -443,20 +443,18 @@ class Jobs extends Controller
       ->get($jsonurlDataEnketo)
       ->json();
 
-    $data = [
-      "data"=>
-        [
-          [
-          "exportaciones_totales" => count($dataEnketoResponse),
-          "exportaciones_procesadas" => count($filesExported),
-          "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
-          "trabajos_en_proceso" => count($jobsCreated)
-        ]
-      ]
-    ];
+    $dataExport = json_decode(collect([
+      "exportaciones_totales" => count($dataEnketoResponse),
+      "exportaciones_procesadas" => count($filesExported),
+      "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
+      "trabajos_en_proceso" => count($jobsCreated)
+    ]));
+
+    $data = [$dataExport];
+
 
     //MQR devolver tabla con los resultados creados 
-    return view('koboapdf.index', $data);
+    return view('koboapdf.index', ["data"=>$data]);
 
     /* return response()->json([
     "exportaciones_totales" => count($dataEnketoResponse),
