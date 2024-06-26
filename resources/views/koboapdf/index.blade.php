@@ -184,7 +184,7 @@
                         <br>
 
                         <label for="exampleFormControlTextarea1" class="form-label">Token de acceso: </label>
-                        <input type="text" placeholder="322f65e3677ee93aa3..." id="id" name="id" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <input type="text" placeholder="322f65e3677ee93aa3..." id="token" name="token" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div>ejemplo: 322f65e3677ee93aa3... se obtiene visitando https://kf.acf-e.org/token/?format=json o el que corresponda a su dominio</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>

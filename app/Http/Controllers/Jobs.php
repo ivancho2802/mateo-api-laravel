@@ -109,6 +109,8 @@ class Jobs extends Controller
       ->get($jsonurlDataTitle)
       ->json();
 
+    //dd($dataTitleResponse);
+
     $name_fomulary = "Acuerdo De Transferencia Monetarias - Cash ECHO";
     //titulo del formulario
     if (count($dataEnketoResponse) > 0) {

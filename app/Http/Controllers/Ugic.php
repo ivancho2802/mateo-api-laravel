@@ -23,7 +23,6 @@ class Ugic extends Controller
     }
 
     $jobdetails->each(function($job) use ($data){
-      $job;
 
       $dominio = $job->dominio;
 
@@ -36,7 +35,11 @@ class Ugic extends Controller
   
   
       $jobsCreated = JobsModel::where("payload", "like", "%" . $name_key . "%")->get();
-  
+      
+      if(!($jobsCreated->first())){
+        return view('koboapdf.index', ["data" => []]);
+      }
+      
       $jobsFirstPayload = json_decode($jobsCreated->first()->payload);
   
       $command = $jobsFirstPayload->data->command;
