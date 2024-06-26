@@ -262,6 +262,7 @@
                               <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Export. Totales: {{$export->exportaciones_totales}}</h3>
                               <p class="text-sm font-semibold leading-6 text-indigo-600">Export. Procesadas: {{$export->exportaciones_procesadas}}</p>
                               <p class="text-sm font-semibold leading-6 text-indigo-600">Export. Faltantes: {{$export->exportaciones_faltantes}}</p>
+                              <p class="text-sm font-semibold leading-6 text-indigo-600">Export. Fallidos: {{$export->exportaciones_fallidos}}</p>
                               <p class="text-sm font-semibold leading-6 text-indigo-600">Export. proceso: {{$export->trabajos_en_proceso}}</p>
                             </div>
                           </div>
@@ -306,6 +307,9 @@
                             </td>
                             <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
                               {{$export->exportaciones_faltantes}}
+                            </td>
+                            <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
+                              {{$export->exportaciones_fallidos}}
                             </td>
                             <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
                               {{$export->trabajos_en_proceso}}
