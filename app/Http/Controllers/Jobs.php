@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use App\Models\JobsModel;
+use App\Models\FailedJobsModel;
 use App\Models\JobDetails;
 use App\Models\migrateCustom;
 
@@ -380,10 +381,10 @@ class Jobs extends Controller
       */
     $jobdetails = JobDetails::where("name_key", "like", "%" . $name_key . "%")->first();
 
-    if(!isset($jobdetails)){
+    if (!isset($jobdetails)) {
 
       //MQR devolver tabla con los resultados creados 
-      return view('koboapdf.index', ["data"=>[]]);
+      return view('koboapdf.index', ["data" => []]);
     }
 
     $dominio = $jobdetails->dominio;
@@ -397,10 +398,39 @@ class Jobs extends Controller
 
     $jobsCreated = JobsModel::where("payload", "like", "%" . $name_key . "%")->get();
 
-    if(!($jobsCreated->first())){
+    //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
+
+    $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+    $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
+    //'timeout' => 1200,  //1200 Seconds is 20 Minutes
+
+    $dataEnketoResponse = Http::withHeaders([
+      'Authorization' => 'Token ' . $token . '',
+      'Accept' => 'application/json'
+    ])
+      ->get($jsonurlDataEnketo)
+      ->json();
+
+    $jobsFailed = FailedJobsModel::where("payload", "like", "%" . $name_key . "%")->get();
+
+    if (!($jobsCreated->first())) {
+
+      //verificar si hay fallidos
+
+
+      $dataExport = json_decode(collect([
+        "exportaciones_totales" => count($dataEnketoResponse),
+        "exportaciones_procesadas" => count($filesExported),
+        "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
+        "exportaciones_fallidos" => count($jobsFailed),
+        "trabajos_en_proceso" => count($jobsCreated)
+      ]));
+
+      $data = [$dataExport];
+
 
       //MQR devolver tabla con los resultados creados 
-      return view('koboapdf.index', ["data"=>[]]);
+      return view('koboapdf.index', ["data" => $data]);
     }
 
     $jobsFirstPayload = json_decode($jobsCreated->first()->payload);
@@ -436,37 +466,18 @@ class Jobs extends Controller
       ]);
     }
 
-    //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
-
-    $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
-    $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
-    //'timeout' => 1200,  //1200 Seconds is 20 Minutes
-
-    $dataEnketoResponse = Http::withHeaders([
-      'Authorization' => 'Token ' . $token . '',
-      'Accept' => 'application/json'
-    ])
-      ->get($jsonurlDataEnketo)
-      ->json();
 
     $dataExport = json_decode(collect([
       "exportaciones_totales" => count($dataEnketoResponse),
       "exportaciones_procesadas" => count($filesExported),
       "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
+      "exportaciones_fallidos" => count($jobsFailed),
       "trabajos_en_proceso" => count($jobsCreated)
     ]));
 
     $data = [$dataExport];
 
-
     //MQR devolver tabla con los resultados creados 
-    return view('koboapdf.index', ["data"=>$data]);
-
-    /* return response()->json([
-    "exportaciones_totales" => count($dataEnketoResponse),
-    "exportaciones_procesadas" => count($filesExported),
-    "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
-    "trabajos_en_proceso" => count($jobsCreated)
-  ]); */
+    return view('koboapdf.index', ["data" => $data]);
   }
 }
