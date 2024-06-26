@@ -262,7 +262,7 @@
                               <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Export. Totales: {{$export->exportaciones_totales}}</h3>
                               <p class="text-sm font-semibold leading-6 text-indigo-600">Export. Procesadas: {{$export->exportaciones_procesadas}}</p>
                               <p class="text-sm font-semibold leading-6 text-indigo-600">Export. Faltantes: {{$export->exportaciones_faltantes}}</p>
-                              <p class="text-sm font-semibold leading-6 text-indigo-600">Export. Fallidos: {{$export->exportaciones_fallidos}}</p>
+                              <p class="text-sm font-semibold leading-6 text-indigo-600">Procesos. Fallidos: {{$export->exportaciones_fallidos}}</p>
                               <p class="text-sm font-semibold leading-6 text-indigo-600">Export. proceso: {{$export->trabajos_en_proceso}}</p>
                             </div>
                           </div>
@@ -289,6 +289,9 @@
                             </td>
                             <td class="grid_encab" id="rm_lpa_1" data-campo="FECHA_ACTIV" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
                               <div style=" float: center; text-align:center">Exportaciones Faltantes</div><span id="m_lpa_asc_1" class="ascendente" style="display:none"></span><span id="m_lpa_des_1" class="descendente" style="display:none"></span>
+                            </td>
+                            <td class="grid_encab" id="rm_lpa_1" data-campo="FECHA_ACTIV" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+                              <div style=" float: center; text-align:center">Proceso Faltantes</div><span id="m_lpa_asc_1" class="ascendente" style="display:none"></span><span id="m_lpa_des_1" class="descendente" style="display:none"></span>
                             </td>
                             <td class="grid_encab" id="rm_lpa_1" data-campo="FECHA_ACTIV" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
                               <div style=" float: center; text-align:center">Trabajos en proceso</div><span id="m_lpa_asc_1" class="ascendente" style="display:none"></span><span id="m_lpa_des_1" class="descendente" style="display:none"></span>
