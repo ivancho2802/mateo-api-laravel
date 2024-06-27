@@ -78,13 +78,13 @@ class MLpa extends Model
                 $fase = $this->actividad->directory->fase;
             }
         }
-        dd("directory", $this->actividad->directory, $fase);
+        //dd("directory", $this->actividad->directory, $fase);
 
         $tipoLpa = 'Respuesta Rapida';
 
         if (
-            strpos(strtoupper($fase), 'FASE 3') || 
-            strpos(strtoupper($fase), 'FASE III-') || 
+            strpos(strtoupper($fase), 'FASE 3')!==false || 
+            strpos(strtoupper($fase), 'FASE III-')!==false || 
             strtoupper($fase) == 'FASE 3') {
             $tipoLpa = 'Recuperacion Temprana';
         }
