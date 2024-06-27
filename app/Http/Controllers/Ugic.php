@@ -75,7 +75,7 @@ class Ugic extends Controller
       $commandArray = collect(explode(";s:", $command));
 
       $indexCommand = $commandArray->search(function ($com) {
-        return strpos($com, "_xform_id_string");
+        return !strpos($com, "_xform_id_string");
       });
 
       $commandUuiStr = null;

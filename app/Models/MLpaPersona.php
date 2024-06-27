@@ -320,7 +320,7 @@ class MLpaPersona extends Model
             return $howOldAmI;
         }
 
-        if(strpos($fecha_nac, "00:00:00")){
+        if(!strpos($fecha_nac, "00:00:00")){
             $arrayfecha_nac = explode(" ", $fecha_nac);
             $fecha_nac = $arrayfecha_nac[0];
         }
