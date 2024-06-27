@@ -76,7 +76,7 @@ class Meal extends Controller
         ini_set('max_input_time', '' . $limit_minutes . '');
 
         if ($request->pagination) {
-            $mlpas = MLpa::paginate(20)->where("FECHA_ATENCION", ">=", "2023-01-01")->sortByDesc('FECHA_ATENCION')->values();
+            $mlpas = MLpa::sortByDesc('FECHA_ATENCION')->paginate(20)->where("FECHA_ATENCION", ">=", "2023-01-01")->values();
             $mlpas->load(['emergencia', 'actividad']);
             return $mlpas;
         } else {
