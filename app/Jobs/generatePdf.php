@@ -45,7 +45,16 @@ class generatePdf implements ShouldQueue
 
         Log::info("trabajo desplegado");
 
-        $pdf = Pdf::loadView('pdf.formulario', ["data" => $this->paramsPdf, "filename" => $this->filename]);
+        //htmlToPdf/' . $name_key . '/' . $name_fomulary . '_' . $id_file . '.pdf'
+        $nameFormulary = "fallonombre";
+
+        if(strpos($this->filename, '.pdf')>=0){
+
+            $arrayFilename = explode("/", $this->filename);
+            $nameFormulary = $arrayFilename[count($arrayFilename)-1];
+        }
+
+        $pdf = Pdf::loadView('pdf.formulario', ["data" => $this->paramsPdf, "filename" => $nameFormulary]);
         $content = $pdf->download()->getOriginalContent();
         Storage::put($this->filename, $content);
     }

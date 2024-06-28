@@ -510,8 +510,12 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
   Route::put('{uui}/updatekobomireview/{token}', [App\Http\Controllers\Kobo::class, 'puKoboMireView']);
 
+  Route::get('{uui}/exportTemplate/{token}', [App\Http\Controllers\Kobo::class, 'exportTemplateByid']);
+
   
 });
+
+
 
 //creacion de matriz de palabras clave
 

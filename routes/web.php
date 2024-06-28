@@ -28,13 +28,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('urls', UrlController::class)
-->middleware(['auth']);//, 'verified'
+    ->middleware(['auth']); //, 'verified'
 
 Route::resource('matrizprensa', MatrizController::class)
-->middleware(['auth']);//, 'verified'
+    ->middleware(['auth']); //, 'verified'
 
 Route::resource('koboapdf', Ugic::class)
-->middleware(['auth']);//, 'verified'
+    ->middleware(['auth']); //, 'verified'
 
 Route::middleware(['auth'])->post('/job/deploy/exportkobo', [App\Http\Controllers\Jobs::class, 'exportByuui']);
 
@@ -56,4 +56,9 @@ Route::middleware(['auth'])->get('matriz', [App\Http\Controllers\MatrizControlle
 
 Route::middleware(['auth'])->post('matrizprensa', [App\Http\Controllers\MatrizController::class, 'storedMatriz']);
 
-require __DIR__.'/auth.php';
+
+Route::prefix('kobo2')->group(function () {
+    Route::get('{uui}/exportTemplate/{token}', [App\Http\Controllers\Kobo::class, 'exportTemplateByid']);
+});
+
+require __DIR__ . '/auth.php';

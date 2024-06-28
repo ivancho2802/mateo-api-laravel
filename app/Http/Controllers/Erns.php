@@ -30,7 +30,7 @@ class Erns extends Controller
         MKoboFormularios::whereIn('ID_M_FORMULARIOS', $m_formulario_ids)->delete();
         $m_formularios->delete();
 
-        if (!$request->kobo_url || !strpos($request->kobo_url, "assets") || !strpos($request->kobo_url, "submissions/?format=json")) {
+        if (!$request->kobo_url || strpos($request->kobo_url, "assets") == false || strpos($request->kobo_url, "submissions/?format=json")== false) {
             return response()->json(['status' => false, 'message' => "formato de kobo_url incorrecto o faltante"], 402);
         }
 

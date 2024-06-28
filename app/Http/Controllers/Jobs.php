@@ -114,7 +114,7 @@ class Jobs extends Controller
 
     $name_fomulary = "Acuerdo De Transferencia Monetarias - Cash ECHO";
     //titulo del formulario
-    if (count($dataEnketoResponse) > 0) {
+    if (count($dataTitleResponse) > 0) {
       $name_fomulary = collect($dataTitleResponse[0])['title'];
     }
 
@@ -322,7 +322,7 @@ class Jobs extends Controller
     $commandArray = collect(explode(";s:", $command));
 
     $indexCommand = $commandArray->search(function ($com) {
-      return strpos($com, "_xform_id_string");
+      return strpos($com, "_xform_id_string")>=0;
     });
 
     $commandUuiStr = null;
@@ -441,7 +441,7 @@ class Jobs extends Controller
     $commandArray = collect(explode(";s:", $command));
 
     $indexCommand = $commandArray->search(function ($com) {
-      return strpos($com, "_xform_id_string");
+      return strpos($com, "_xform_id_string")>=0;
     });
 
     $commandUuiStr = null;
