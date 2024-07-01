@@ -226,7 +226,7 @@
 
             <!--alguna foto-->
             @forelse ($metaFilesForm as $metadata)
-            @if(stripos($metadata->data_file, 'data:image'))
+            @if(stripos($metadata->data_file, 'data:image')!==false)
             <img src="{{$metadata->data_file}}" alt="brand logo">
             @endif
             @empty
