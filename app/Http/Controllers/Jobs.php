@@ -137,7 +137,7 @@ class Jobs extends Controller
       return ($filesExportedCollect->search($item['_id'])) === false;
     });
 
-    $dataEnketo = collect($dataEnketoResponseFiltered)->chunk(45);
+    $dataEnketo = collect($dataEnketoResponseFiltered);//->chunk(45)
 
     if (count($dataEnketoResponse) == count($filesExported)) {
 

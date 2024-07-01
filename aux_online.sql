@@ -96,9 +96,9 @@ WHERE "M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND
 	"M_LPA_PERSONAS"."DISCAPACIDAD_COMUNICAR" = 'Si - No puede hacerlo' ) 
 -- jobs
 
-select * from job_details
-select * from jobs
-select * from failed_jobs
+select count(*) from job_details
+select count(*) from jobs
+select count(*) from failed_jobs
 --
 --delete from job_details
 --delete from jobs
