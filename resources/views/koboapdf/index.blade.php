@@ -257,7 +257,7 @@
                         <li>
                           <div class="flex items-center gap-x-6">
 
-                            @if(is_string($export->download))
+                            @if(!is_empty($export->download))
                             <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
                               <a href="{{$export->download}}" target="_blank">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 50px;fill: red;"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -337,7 +337,7 @@
                             <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
                               {{$export->trabajos_en_proceso}}
                             </td>
-                            @if(is_string($export->download))
+                            @if(!is_empty($export->download))
                             <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
                               <a href="{{$export->download}}" target="_blank">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 25px;fill: red;"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
