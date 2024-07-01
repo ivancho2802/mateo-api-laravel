@@ -151,7 +151,7 @@ class Jobs extends Controller
     }
 
     //contruyrndo las imagenes del formulario
-
+    //[0]
     $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($token, $filesExported, $formid) {
       $formulario = collect($chield); //->forget('name');
 

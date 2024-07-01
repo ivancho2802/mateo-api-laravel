@@ -8,6 +8,7 @@ use App\Models\JobsModel;
 use App\Models\JobDetails;
 use Illuminate\Support\Facades\Http;
 use App\Models\FailedJobsModel;
+use App\Http\Controllers\helper;
 
 class Ugic extends Controller
 {
@@ -49,6 +50,7 @@ class Ugic extends Controller
       $jobsCreated = JobsModel::where("payload", "like", "%" . $name_key . "%")->get();
       $jobsFailed = FailedJobsModel::where("payload", "like", "%" . $name_key . "%")->get();
 
+      //sino hay almenos un primer resutlado
       if (!($jobsCreated->first())) {
         //verificar si hay fallidos
 
@@ -75,7 +77,7 @@ class Ugic extends Controller
       $commandArray = collect(explode(";s:", $command));
 
       $indexCommand = $commandArray->search(function ($com) {
-        return strpos($com, "_xform_id_string")>=0;
+        return strpos($com, "_xform_id_string") >= 0;
       });
 
       $commandUuiStr = null;
@@ -102,15 +104,35 @@ class Ugic extends Controller
 
       //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
 
+      //validar si las descargas estan lsitas y mostrar el enlace de descarga
+      $download = "";
 
+      if (count($dataEnketoResponse) == count($filesExported)) {
+
+        $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
+
+        //$ramdom = Carbon\Carbon::now()->timestamp;
+        //dd(Carbon\Carbon::now()->timestamp, time());
+
+        if ($resultCreated === true) {
+          $download = public_path($name_key . ".zip");
+        } else {
+          $download = "fallo al generar el archivos";
+          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+        }
+      }
 
       $dataExport = json_decode(collect([
         "exportaciones_totales" => count($dataEnketoResponse),
         "exportaciones_procesadas" => count($filesExported),
         "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
         "exportaciones_fallidos" => count($jobsFailed),
-        "trabajos_en_proceso" => count($jobsCreated)
+        "trabajos_en_proceso" => count($jobsCreated),
+        "download" => $download
       ]));
+
+      //validar si las descargas estan lsitas y mostrar el enlace de descarga
+
 
 
       $data->push($dataExport);
