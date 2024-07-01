@@ -123,6 +123,7 @@ class helper extends Controller
                 "http" => [
                     "method" => "GET",
                     "header" => "Authorization: Token " . $token . "\r\n" .
+                        "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7" . "\r\n" .
                         "Cookie: foo=bar\r\n",
                     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
                 ]
@@ -142,7 +143,7 @@ class helper extends Controller
 
             $imageData = base64_encode($contents);
 
-            $mimeType = self::detectMimeType($imageData) ?? "image/jpg"; //mime_content_type($contents)
+            $mimeType = self::detectMimeType($imageData) ?? "image/undefined"; //mime_content_type($contents)
 
             // Format the image SRC: data:{mime};base64,{data}; 
             $src = 'data:' . $mimeType . ';base64,' . $imageData;

@@ -20,17 +20,19 @@ class generatePdf implements ShouldQueue
 
     private $paramsPdf;
     private $filename;
+    private $metaFilesForm;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Collection $paramsPdf, String $filename)
+    public function __construct(Collection $paramsPdf, String $filename, Collection $metaFilesForm)
     {
         //
         $this->paramsPdf = $paramsPdf;
         $this->filename = $filename;
+        $this->metaFilesForm = $metaFilesForm;
     }
 
     /**
@@ -54,7 +56,7 @@ class generatePdf implements ShouldQueue
             $nameFormulary = $arrayFilename[count($arrayFilename)-1];
         }
 
-        $pdf = Pdf::loadView('pdf.formulario', ["data" => $this->paramsPdf, "filename" => $nameFormulary]);
+        $pdf = Pdf::loadView('pdf.formulario', ["data" => $this->paramsPdf, "filename" => $nameFormulary, "metaFilesForm" => $this->metaFilesForm]);
         $content = $pdf->download()->getOriginalContent();
         Storage::put($this->filename, $content);
     }

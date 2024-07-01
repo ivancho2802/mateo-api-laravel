@@ -996,9 +996,9 @@ class Kobo extends Controller
             ->get($jsonurlDataTitle)
             ->json();
 
-        $formdata = json_decode(json_encode(collect($dataTitleResponse)->first()), FALSE);;
+        $formdata = json_decode(json_encode(collect($dataTitleResponse)->first()), FALSE);
 
-        //dd($formdata->title);
+        //dd($formdata->title, $formdata->metadata, $formdata);
 
         /* $name_fomulary = "fallo nombre";
         //titulo del formulario
@@ -1025,15 +1025,24 @@ class Kobo extends Controller
             collect(
                 $itamsWithLabes
             )
-            ->where("_uuid", "3e49d109-a5f2-492c-b104-d94ceb7edfdf")
-            ->first()
-        )->sortKeys();//json_decode(json_encode), FALSE);
+                ->where("_uuid", "3e49d109-a5f2-492c-b104-d94ceb7edfdf")
+                ->first()
+        )->sortKeys(); //json_decode(json_encode), FALSE);
 
         //dd("itemsCollect", $itemsCollect->keys());
         //mostrar los radios
-        
 
+        $dataMetaWithImage = (collect($formdata->metadata)->map(function ($chield) use ($token) {
 
-        return view('pdf.formulario', ["data" => $itemsCollect, "formdata" => $formdata]);
+            $metaF = ($chield); //->forget('name');
+
+            $imageMetaResponse = Helper::getImageWithHeaders($metaF->url, $token);
+
+            $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
+
+            return $metaF;
+        }));
+
+        return view('pdf.formulario', ["data" => $itemsCollect, "filename" => "fillename", "metaFilesForm" => $dataMetaWithImage]);
     }
 }

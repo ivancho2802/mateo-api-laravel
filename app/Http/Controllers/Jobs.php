@@ -113,9 +113,13 @@ class Jobs extends Controller
     //dd($dataTitleResponse);
 
     $name_fomulary = "Acuerdo De Transferencia Monetarias - Cash ECHO";
+    $metaFiles = [];
     //titulo del formulario
     if (count($dataTitleResponse) > 0) {
       $name_fomulary = collect($dataTitleResponse[0])['title'];
+      $formdata = json_decode(json_encode(collect($dataTitleResponse)->first()), FALSE);
+      $metaFiles =  collect($formdata->metadata); //data_file
+      
     }
 
 
@@ -125,7 +129,7 @@ class Jobs extends Controller
 
       $filesExportedCollect = $filesExportedCollect->map(function ($fileExport) {
         $extract_id = explode('_', $fileExport);
-        $extract_id = str_replace(".pdf", "", $extract_id[2]);
+        $extract_id = str_replace(".pdf", "", $extract_id[1]);
         return '' . $extract_id . '';
       });
 
@@ -209,9 +213,21 @@ class Jobs extends Controller
       return $formulario;
     }));
 
+    //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
+    $dataMetaWithImage = ($metaFiles->map(function ($chield) use ($token) {
+
+      $metaF = ($chield); //->forget('name');
+
+      $imageMetaResponse = Helper::getImageWithHeaders($metaF->url, $token);
+
+      $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
+
+      return $metaF;
+    }));
+
     $dataEnketoWithImage->filter()->all();
 
-    $dataEnketoWithImage->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse, $name_key, $name_fomulary) {
+    $dataEnketoWithImage->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse, $name_key, $name_fomulary, $dataMetaWithImage) {
 
       $id_file = $item->get('_id');
 
@@ -221,7 +237,7 @@ class Jobs extends Controller
 
       if (!Storage::disk('local')->exists($filename) && !$existQueue) {
         if (isset($item)   && isset($filename)) {
-          generatePdf::dispatch($item, $filename); //->onConnection('database');
+          generatePdf::dispatch($item, $filename, $dataMetaWithImage); //->onConnection('database');
           //generatePdf::dispatchAfterResponse();
         }
       }
@@ -268,12 +284,26 @@ class Jobs extends Controller
 
       $jobsCreated = JobsModel::all();
 
-      return response()->json([
+      /* return response()->json([
         "exportaciones totales" => count($dataEnketoResponse),
         "exportaciones procesadas" => count($filesExported),
         "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported),
         "trabajos en proceso" => count($jobsCreated)
-      ]);
+      ]); */
+
+      $dataExport = json_decode(collect([
+        "exportaciones_totales" => count($dataEnketoResponse),
+        "exportaciones_procesadas" => count($filesExported),
+        "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
+        "exportaciones_fallidos" => 0,
+        "trabajos_en_proceso" => count($jobsCreated)
+      ]));
+
+      $data = [$dataExport];
+
+      //MQR devolver tabla con los resultados creados 
+      return view('koboapdf.index', ["data" => $data]);
+
     }
 
     /* return response()
@@ -322,7 +352,7 @@ class Jobs extends Controller
     $commandArray = collect(explode(";s:", $command));
 
     $indexCommand = $commandArray->search(function ($com) {
-      return strpos($com, "_xform_id_string")>=0;
+      return strpos($com, "_xform_id_string") >= 0;
     });
 
     $commandUuiStr = null;
@@ -441,7 +471,7 @@ class Jobs extends Controller
     $commandArray = collect(explode(";s:", $command));
 
     $indexCommand = $commandArray->search(function ($com) {
-      return strpos($com, "_xform_id_string")>=0;
+      return strpos($com, "_xform_id_string") >= 0;
     });
 
     $commandUuiStr = null;

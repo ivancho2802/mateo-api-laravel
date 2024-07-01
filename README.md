@@ -549,3 +549,6 @@ pdKwPoxE5IlhQ0Kb
 mongodb+srv://iodiazbard:pdKwPoxE5IlhQ0Kb@cluster0.jozbdib.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 ## jobs en laravel se hace con el dispache este crea el job y en job_failed se ven los que fallan
+
+ php artisan queue:listen
+
