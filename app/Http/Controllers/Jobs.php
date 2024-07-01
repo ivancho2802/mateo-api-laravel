@@ -12,6 +12,7 @@ use App\Models\JobsModel;
 use App\Models\FailedJobsModel;
 use App\Models\JobDetails;
 use App\Models\migrateCustom;
+use App\Http\Controllers\helper;
 
 class Jobs extends Controller
 {
