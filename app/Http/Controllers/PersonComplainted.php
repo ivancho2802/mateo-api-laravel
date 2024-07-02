@@ -29,7 +29,6 @@ class PersonComplainted extends Controller
 
                     "recuperacion_temprana" => $request->recuperacion_temprana,
 
-                    
                     "acceso_rt" => $request->acceso_rt,
                     "participacion_rt" => $request->participacion_rt,
                     "ajustes_rt" => $request->ajustes_rt,
