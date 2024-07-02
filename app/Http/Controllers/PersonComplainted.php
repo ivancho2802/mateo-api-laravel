@@ -20,13 +20,20 @@ class PersonComplainted extends Controller
 
             if ($request->analisis && $request->month) {
                 $resulAlaisis = Analisis::updateOrCreate([
+                    "respuesta_rapida" => $request->respuesta_rapida,
 
                     "acceso" => $request->acceso,
                     "participacion" => $request->participacion,
                     "ajustes" => $request->ajustes,
-                    "respuesta_rapida" => $request->respuesta_rapida,
-                    "recuperacion_temprana" => $request->recuperacion_temprana,
                     "acompanamiento" => $request->acompanamiento,
+
+                    "recuperacion_temprana" => $request->recuperacion_temprana,
+
+                    
+                    "acceso_rt" => $request->acceso_rt,
+                    "participacion_rt" => $request->participacion_rt,
+                    "ajustes_rt" => $request->ajustes_rt,
+                    "acompanamiento_rt" => $request->acompanamiento_rt,
 
                     "texto" => $request->analisis,
                     "month" => $request->month,
