@@ -56,6 +56,7 @@ class MMqr extends Model
         Línea telefónica	    Línea telefónica / WhatsApp PQR
         Canal no formal	        WhatsApp no PQR
                                 Remisión interna (staff)
+                                Correo electrónico no PQR
         Remisión externa	    Remisión externa (socios)
                                 Remisión externa (otros)
         PDM	                    PDM
@@ -74,7 +75,7 @@ class MMqr extends Model
             case $this->eliminar_acentos(strtoupper('Buzón digital Kobo')):
                 $categoria = 'Buzón de sugerencias';
                 break;
-                
+
             case $this->eliminar_acentos(strtoupper('Correo electrÃ³nico PQR')):
             case $this->eliminar_acentos(strtoupper('Correo electrónico PQR')):
             case $this->eliminar_acentos(strtoupper('correo eléctronico staff')):
@@ -87,7 +88,7 @@ class MMqr extends Model
             case $this->eliminar_acentos(strtoupper('Línea teléfonica/ whatsapp PQR')):
             case $this->eliminar_acentos(strtoupper('LÃ­nea telefónica PQR')):
             case $this->eliminar_acentos(strtoupper('Línea teléfonica PQR')):
-                
+
                 $categoria = 'Línea telefónica';
                 break;
 
@@ -95,6 +96,8 @@ class MMqr extends Model
             case $this->eliminar_acentos(strtoupper('RemisiÃ³n interna staff')):
             case $this->eliminar_acentos(strtoupper('Remisión interna staff')):
             case $this->eliminar_acentos(strtoupper('Remisión interna (staff)')):
+            case $this->eliminar_acentos(strtoupper('Correo electrónico no PQR')):
+
                 $categoria = 'Canal no formal';
                 break;
 
@@ -108,7 +111,7 @@ class MMqr extends Model
             case $this->eliminar_acentos(strtoupper('RemisiÃ³n externa otros')):
                 $categoria = 'Remisión externa';
                 break;
-                
+
             case 'PDM':
                 $categoria = 'PDM';
                 break;
