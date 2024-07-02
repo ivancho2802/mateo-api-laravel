@@ -12,7 +12,21 @@ class Analisis extends Model
     protected $table = 'analisis';
 
     protected $fillable = [
-        'texto', 'month', 'type','acceso',        'participacion',        'ajustes',        'respuesta_rapida',        'recuperacion_temprana',        'acompanamiento'
+        'texto',
+        'month',
+        'type',
+        'respuesta_rapida',
+        //////////////////////////////
+        'acceso',
+        'participacion',
+        'ajustes',
+        'acompanamiento',
+        //////////////////////////////
+        'recuperacion_temprana',
+        'acompanamiento_rt',
+        'acceso_rt',
+        'participacion_rt',
+        'ajustes_rt',
     ];
 
     /* public function getMonthAttribute()
