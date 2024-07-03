@@ -35,6 +35,7 @@ class CreateMasterMqrTable extends Migration
             $table->string('VALID')->nullable()->change();
             $table->string('SUB_CATEGORY')->nullable()->change();
 
+            $table->string('TIPO_INTERVE')->nullable()->create();
             $table->string('COD_EMERGENCIA')->nullable()->create();
             $table->string('NACIONALIDAD')->nullable()->create();
             $table->string('EDO')->nullable()->create();
