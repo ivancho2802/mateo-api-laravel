@@ -23,16 +23,22 @@ class CreateMasterMqrTable extends Migration
             $table->string('DATE_IN');
             $table->string('CHANNEL_IN');
             $table->string('CATEGORY');
-            $table->string('SUB_CATEGORY');
             $table->string('THEME')->nullable();
             $table->string('ETNIA');
             $table->string('SEXO');
-            $table->string('RANGE_EDAD');
             $table->string('DEPARTMENT');
             $table->string('MUNICICIO');
-            $table->string('ADDRESS');
-            $table->string('VALID');
-            $table->string('RECIVE');
+
+            $table->text('RECIVE')->nullable()->change();
+            $table->string('RANGE_EDAD')->nullable()->change();
+            $table->string('ADDRESS')->nullable()->change();
+            $table->string('VALID')->nullable()->change();
+            $table->string('SUB_CATEGORY')->nullable()->change();
+
+            $table->string('COD_EMERGENCIA')->nullable()->create();
+            $table->string('NACIONALIDAD')->nullable()->create();
+            $table->string('EDO')->nullable()->create();
+            $table->string('REVI_INTER')->nullable()->create();
 
         });
     }
