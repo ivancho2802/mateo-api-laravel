@@ -22,19 +22,26 @@ class MqrClass implements ToCollection
         $id_mqr = [];
 
         $filtered = $rows->filter(function (object $value, int $key) {
-            return $value[0] == "Organización que reporta";
+            return $value[1] == "Organización que reporta";
         });
 
         $indexheader = $filtered->keys()[0] ?? 1;
 
+        //dd("indexheader", $indexheader, $rows[$indexheader+1]);
+
         foreach ($rows as $row) {
 
-            $countElement = count($row->filter()->all());//|| !$row[0] || !$row[1] || $countElement < 15 || $countElement > 16
+            //$countElement = count($row->filter()->all());//|| !$row[0] || !$row[1] || $countElement < 15 || $countElement > 16
 
             if ($i <=  $indexheader ) {
                 $i++;
                 continue;
             }
+
+            $row->shift();
+            //unset($row[0]);
+ 
+            //dd($row);
 
             if(!is_numeric($row[3])){
                 $i++;
@@ -50,19 +57,28 @@ class MqrClass implements ToCollection
                 'ORG_REPORT' => $row[0],
                 'CONSECUTIVOS_CASES' => $row[1],
                 'MONTH_REPORT' => $row[2],
-                'DATE_IN' => $DATE_IN,
-                'CHANNEL_IN' => $row[4],
-                'CATEGORY' => $row[5],
-                'SUB_CATEGORY' => $row[6],
-                'THEME' => $row[7],
-                'ETNIA' => $row[8],
-                'SEXO' => $row[9],
-                'RANGE_EDAD' => $row[10],
-                'DEPARTMENT' => $row[11],
-                'MUNICICIO' => $row[12],
-                'ADDRESS' => $row[13],
-                'VALID' => $row[14],
-                'RECIVE' => $row[15]
+                'DATE_IN' => $DATE_IN,//3
+                //NEW
+                'TIPO_INTERVE' => $row[4],
+                //NEW
+                'COD_EMERGENCIA' => $row[5],
+                'CHANNEL_IN' => $row[6],
+                'CATEGORY' => $row[7],
+                'SUB_CATEGORY' => $row[8],
+                'THEME' => $row[9],
+                'ETNIA' => $row[10],
+                //NEW
+                'NACIONALIDAD' => $row[11],
+                'SEXO' => $row[12],
+                'RANGE_EDAD' => $row[13],
+                'DEPARTMENT' => $row[14],
+                'MUNICICIO' => $row[15],
+                'ADDRESS' => $row[16],
+                //NEW
+                'EDO' => $row[17],
+                'VALID' => $row[18],
+                //NEW
+                'REVI_INTER' => $row[19],
                 
             ]);
 

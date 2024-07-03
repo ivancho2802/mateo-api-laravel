@@ -42,7 +42,14 @@ class MMqr extends Model
         'MUNICICIO',
         'ADDRESS',
         'VALID',
-        'RECIVE'
+        'RECIVE',
+
+        'TIPO_INTERVE',
+        'COD_EMERGENCIA',
+        'NACIONALIDAD',
+        'EDO',
+        'REVI_INTER',
+
     ];
 
 

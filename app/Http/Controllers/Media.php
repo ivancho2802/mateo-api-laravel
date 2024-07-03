@@ -39,7 +39,7 @@ class Media extends Controller
             'Content-Type: application/vnd.ms-excel',
         );
         
-        $filename = "Consolidado_PQR_MIRE+.xlsx";
+        $filename = "Formato_PQR_2024_MIREVIEW.xlsx";
         $path = (public_path() . '/download/' . $filename);
 
         // Download file with custom headers
@@ -56,7 +56,7 @@ class Media extends Controller
             'Content-Type: application/vnd.ms-excel',
         );
 
-        $filename = "Consolidado_PQR_MIRE+.xlsx";
+        $filename = "Formato_PQR_2024.xlsx";
 
         return Storage::download($filepath, $filename, $headers);
         
