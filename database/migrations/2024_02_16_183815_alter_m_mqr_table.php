@@ -14,12 +14,12 @@ class AlterMMqrTable extends Migration
     public function up()
     {
         //
-        Schema::table('M_MQR', function (Blueprint $table) {
+        Schema::table('"M_MQR"', function (Blueprint $table) {
             $table->text('RECIVE')->nullable()->change();
             $table->string('RANGE_EDAD')->nullable()->change();
             $table->string('ADDRESS')->nullable()->change();
             $table->string('VALID')->nullable()->change();
-            $table->string('SUB_CATEGORY')->nullable();
+            $table->string('SUB_CATEGORY')->nullable()->change();
 
             
             $table->string('TIPO_INTERVE')->nullable()->create();
