@@ -48,7 +48,7 @@ class MMqr extends Model
         'COD_EMERGENCIA',
         'NACIONALIDAD',
         'EDO',
-        'REVI_INTER',
+        'DERI_INTER',
 
     ];
 

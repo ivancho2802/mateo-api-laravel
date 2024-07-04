@@ -25,7 +25,7 @@ class AlterMMqrTable extends Migration
             $table->string('COD_EMERGENCIA')->nullable()->create();
             $table->string('NACIONALIDAD')->nullable()->create();
             $table->string('EDO')->nullable()->create();
-            $table->string('REVI_INTER')->nullable()->create();
+            $table->string('DERI_INTER')->nullable()->create();
             
         });
     }

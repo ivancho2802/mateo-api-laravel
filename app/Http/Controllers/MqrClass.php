@@ -40,8 +40,9 @@ class MqrClass implements ToCollection
 
             $row->shift();
             //unset($row[0]);
+
+            $row = $row->all();
  
-            //dd($row);
 
             if(!is_numeric($row[3])){
                 $i++;
@@ -78,9 +79,13 @@ class MqrClass implements ToCollection
                 'EDO' => $row[17],
                 'VALID' => $row[18],
                 //NEW
-                'REVI_INTER' => $row[19],
+                'DEVI_INTER' => $row[19],
                 
             ]);
+
+            $mrq = MMqr::where([
+                'CONSECUTIVOS_CASES' => $row[1],
+            ])->first();
 
             $id_mqr[] = $mrq->ID;
 
