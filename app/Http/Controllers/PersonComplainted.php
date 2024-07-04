@@ -19,25 +19,48 @@ class PersonComplainted extends Controller
         try {
 
             if ($request->analisis && $request->month) {
+
+                //si algun campo no viene no lo actualizo
+
+                $dataMqrCreateUpdate = [
+                    "month" => $request->month,
+                    "type" => "MQR",
+                ];
+                
+                if(isset($request->analisis)){
+                    array_push($dataMqrCreateUpdate, $request->analisis);
+                }
+                
+                if(isset($request->acompanamiento)){
+                    array_push($dataMqrCreateUpdate, $request->acompanamiento);
+                }
+                
+                if(isset($request->acceso)){
+                    array_push($dataMqrCreateUpdate, $request->acceso);
+                }
+                if(isset($request->participacion)){
+                    array_push($dataMqrCreateUpdate, $request->participacion);
+                }
+                if(isset($request->ajustes)){
+                    array_push($dataMqrCreateUpdate, $request->ajustes);
+                }
+                
+                if(isset($request->acceso_rt)){
+                    array_push($dataMqrCreateUpdate, $request->acceso_rt);
+                }
+                if(isset($request->participacion_rt)){
+                    array_push($dataMqrCreateUpdate, $request->participacion_rt);
+                }
+                if(isset($request->ajustes_rt)){
+                    array_push($dataMqrCreateUpdate, $request->ajustes_rt);
+                }
+
                 $resulAlaisis = Analisis::updateOrCreate([
-                    "respuesta_rapida" => $request->respuesta_rapida,
-
-                    "acceso" => $request->acceso,
-                    "participacion" => $request->participacion,
-                    "ajustes" => $request->ajustes,
-                    "acompanamiento" => $request->acompanamiento,
-
-                    "recuperacion_temprana" => $request->recuperacion_temprana,
-
-                    "acceso_rt" => $request->acceso_rt,
-                    "participacion_rt" => $request->participacion_rt,
-                    "ajustes_rt" => $request->ajustes_rt,
-                    "acompanamiento_rt" => $request->acompanamiento_rt,
-
-                    "texto" => $request->analisis,
                     "month" => $request->month,
                     "type" => "MQR"
-                ]);
+                ],
+                $dataMqrCreateUpdate
+                );
                 //return $resulAlaisis;
                 if (!$request->file) {
                     $query_mmqrs = MMqr::orderBy('created_at', 'desc');
