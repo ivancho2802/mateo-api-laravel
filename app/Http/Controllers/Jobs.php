@@ -310,7 +310,7 @@ class Jobs extends Controller
       }
 
       $dataExport = json_decode(collect([
-        "name_key" => count($name_key),
+        "name_key" => ($name_key),
         "exportaciones_totales" => count($dataEnketoResponse),
         "exportaciones_procesadas" => count($filesExported),
         "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
@@ -484,7 +484,7 @@ class Jobs extends Controller
 
 
       $dataExport = json_decode(collect([
-        "name_key" => count($name_key),
+        "name_key" => ($name_key),
         "exportaciones_totales" => count($dataEnketoResponse),
         "exportaciones_procesadas" => count($filesExported),
         "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
@@ -553,7 +553,7 @@ class Jobs extends Controller
 
 
     $dataExport = json_decode(collect([
-      "name_key" => count($name_key),
+      "name_key" => ($name_key),
       "exportaciones_totales" => count($dataEnketoResponse),
       "exportaciones_procesadas" => count($filesExported),
       "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
