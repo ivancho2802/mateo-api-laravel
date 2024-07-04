@@ -120,7 +120,7 @@ class Jobs extends Controller
       $name_fomulary = collect($dataTitleResponse[0])['title'];
       $formdata = json_decode(json_encode(collect($dataTitleResponse)->first()), FALSE);
       $metaFiles =  collect($formdata->metadata); //data_file
-      
+
     }
 
 
@@ -137,7 +137,7 @@ class Jobs extends Controller
       return ($filesExportedCollect->search($item['_id'])) === false;
     });
 
-    $dataEnketo = collect($dataEnketoResponseFiltered);//->chunk(45)
+    $dataEnketo = collect($dataEnketoResponseFiltered); //->chunk(45)
 
     if (count($dataEnketoResponse) == count($filesExported)) {
 
@@ -292,19 +292,36 @@ class Jobs extends Controller
         "trabajos en proceso" => count($jobsCreated)
       ]); */
 
+      $download = "";
+
+      if (count($dataEnketoResponse) == count($filesExported)) {
+
+        $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
+
+        //$ramdom = Carbon\Carbon::now()->timestamp;
+        //dd(Carbon\Carbon::now()->timestamp, time());
+
+        if ($resultCreated === true) {
+          $download = public_path($name_key . ".zip");
+        } else {
+          $download = "fallo al generar el archivos";
+          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+        }
+      }
+
       $dataExport = json_decode(collect([
         "exportaciones_totales" => count($dataEnketoResponse),
         "exportaciones_procesadas" => count($filesExported),
         "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
         "exportaciones_fallidos" => 0,
-        "trabajos_en_proceso" => count($jobsCreated)
+        "trabajos_en_proceso" => count($jobsCreated),
+        "download" => $download
       ]));
 
       $data = [$dataExport];
 
       //MQR devolver tabla con los resultados creados 
       return view('koboapdf.index', ["data" => $data]);
-
     }
 
     /* return response()
@@ -446,6 +463,22 @@ class Jobs extends Controller
 
     if (!($jobsCreated->first())) {
 
+      $download = "";
+
+      if (count($dataEnketoResponse) == count($filesExported)) {
+
+        $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
+
+        //$ramdom = Carbon\Carbon::now()->timestamp;
+        //dd(Carbon\Carbon::now()->timestamp, time());
+
+        if ($resultCreated === true) {
+          $download = public_path($name_key . ".zip");
+        } else {
+          $download = "fallo al generar el archivos";
+          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+        }
+      }
       //verificar si hay fallidos
 
 
@@ -454,7 +487,8 @@ class Jobs extends Controller
         "exportaciones_procesadas" => count($filesExported),
         "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
         "exportaciones_fallidos" => count($jobsFailed),
-        "trabajos_en_proceso" => count($jobsCreated)
+        "trabajos_en_proceso" => count($jobsCreated),
+        "download" => $download
       ]));
 
       $data = [$dataExport];
@@ -497,13 +531,32 @@ class Jobs extends Controller
       ]);
     }
 
+    $download = "";
+
+    if (count($dataEnketoResponse) == count($filesExported)) {
+
+      $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
+
+      //$ramdom = Carbon\Carbon::now()->timestamp;
+      //dd(Carbon\Carbon::now()->timestamp, time());
+
+      if ($resultCreated === true) {
+        $download = public_path($name_key . ".zip");
+      } else {
+        $download = "fallo al generar el archivos";
+        //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+      }
+    }
+
+
 
     $dataExport = json_decode(collect([
       "exportaciones_totales" => count($dataEnketoResponse),
       "exportaciones_procesadas" => count($filesExported),
       "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
       "exportaciones_fallidos" => count($jobsFailed),
-      "trabajos_en_proceso" => count($jobsCreated)
+      "trabajos_en_proceso" => count($jobsCreated),
+      "download" => $download
     ]));
 
     $data = [$dataExport];
