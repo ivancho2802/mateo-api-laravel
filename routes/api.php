@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use SebastianBergmann\Diff\Chunk;
 use App\Http\Controllers\Jobs;
+use App\Models\Reports;
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -34,8 +35,8 @@ use App\Http\Controllers\Jobs;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::prefix('finanzas')->group(function () {
 
+Route::prefix('finanzas')->group(function () {
 });
 
 Route::prefix('meal')->group(function () {
@@ -69,10 +70,10 @@ Route::prefix('meal')->group(function () {
   Route::middleware(['auth:sanctum'])->get('/lpa/actividad', [App\Http\Controllers\Activity::class, 'getActividadByCod']);
   Route::middleware(['auth:sanctum'])->get('/lpa/persona', [App\Http\Controllers\PersonAttended::class, 'getPersonaByID']);
   Route::middleware(['auth:sanctum'])->get('/lpa/tipo', [App\Http\Controllers\PersonAttended::class, 'getTipoLpa']);
-  
+
 
   Route::middleware(['auth:sanctum'])->get('/lpadiscapacitados', [App\Http\Controllers\Meal::class, 'getLpaPBIDiscapacidades']);
-  
+
   //monitorio post distribucion pda
   Route::middleware(['auth:sanctum'])->get('/mpd', [App\Http\Controllers\Meal::class, 'geMpd']);
   //MIGRACIONS DESDE EL KOBO
@@ -97,9 +98,9 @@ Route::prefix('meal')->group(function () {
   Route::middleware(['auth:sanctum'])->post('/ern/refresh', [App\Http\Controllers\Erns::class, 'refresh']); //receptor
 
   //firebird
-  Route::middleware(['auth:sanctum'])->get('/erns', [App\Http\Controllers\Erns::class, 'all']); 
+  Route::middleware(['auth:sanctum'])->get('/erns', [App\Http\Controllers\Erns::class, 'all']);
 
-  
+
   //seguimiento de emergencias
   Route::middleware(['auth:sanctum'])->get('/alertasFirebird', [App\Http\Controllers\Alertas::class, 'allFirebird']);
 
@@ -108,13 +109,13 @@ Route::prefix('meal')->group(function () {
   Route::middleware(['auth:sanctum'])->get('/ruralurbano', [App\Http\Controllers\Emergencias::class, 'ruralurbano']);
 
   Route::middleware(['auth:sanctum'])->get('/crucesector', [App\Http\Controllers\Emergencias::class, 'crucesector']);
-  
+
   Route::middleware(['auth:sanctum'])->get('/fce', [App\Http\Controllers\Emergencias::class, 'fce']);
 
   //monitoreo y evaluacion
 
   Route::middleware(['auth:sanctum'])->get('/moni_eva/report', [App\Http\Controllers\Monitoreo::class, 'reports']);
-  
+
   Route::get('/moni_eva/report/download/{path}', [App\Http\Controllers\Monitoreo::class, 'reportDownload']);
 
   //FIN MIGRACIONS DESDE EL KOBO
@@ -122,7 +123,7 @@ Route::prefix('meal')->group(function () {
   //quejas y reclamos
   Route::get('/mqr/download', [App\Http\Controllers\Media::class, 'downloadMediaPqr']);
 
-  Route::post('/mqr/download/path', [App\Http\Controllers\Media::class, 'downloadMediaPqrPath']);  
+  Route::post('/mqr/download/path', [App\Http\Controllers\Media::class, 'downloadMediaPqrPath']);
 
   Route::post('/mqr/upload', [App\Http\Controllers\PersonComplainted::class, 'stored']);
 
@@ -142,19 +143,32 @@ Route::prefix('meal')->group(function () {
   //respuesta rapida
   Route::middleware(['auth:sanctum'])->get('/rr/report', [App\Http\Controllers\Meal::class, 'getRrProdsReport']);
 
+  Route::get('/rr/report/departamentos', function (Request $request) {
+
+    $departamentos = Reports::all()->groupBy('departamento')->keys();
+    
+    return response()->json($departamentos);
+  });
+
+  Route::get('/rr/report/municipios', function (Request $request) {
+
+    $municipios = Reports::all()->groupBy('municipio')->keys();
+
+    return response()->json($municipios);
+  });
+
   Route::middleware(['auth:sanctum'])->post('/rr/upload', [App\Http\Controllers\ReportController::class, 'stored']);
-  
 });
 
-Route::prefix('firebird')->group(function (){
+Route::prefix('firebird')->group(function () {
 
   Route::middleware(['auth:sanctum'])->get('/formularios_master', function (Request $request) {
 
     DB::setDefaultConnection('firebird');
-  
+
     $body = [
       "NOMBRES",
-  
+
       'ID_M_FORMULARIOS',
       //'email',
       //'password',
@@ -184,10 +198,10 @@ Route::prefix('firebird')->group(function (){
       "ID_M_USUARIOS",
       "ID_M_AREAS",
     ];
-  
+
     try {
       $results = [];
-  
+
       $results = MFormularios::select($body)
         /*
           ->where(['ID_M_FORMULARIOS'=> '0012'])
@@ -195,24 +209,24 @@ Route::prefix('firebird')->group(function (){
   
           }) */
         ->get();
-  
+
       //$results = helper::convert_from_latin1_to_utf8_recursively($results);
       return response()->json(["formularios_master" => json_decode($results)]);
-  
+
       //return $results[0];//mb_convert_encoding($results[0]['NOMBRES'], 'UTF-8', 'UTF-8');
       //return response(["message" => "Model status successfully updated!", "data" =>  json_encode($results->toArray())], 200);
     } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     }
   });
-  
+
   Route::middleware(['auth:sanctum'])->get('/formularios_kobo_master', function (Request $request) {
-  
+
     //DB::setDefaultConnection('odbc');
     DB::setDefaultConnection('firebird');
-  
+
     return MKoboFormularios::get();
-  
+
     /* $formulario = MKoboFormularios::with(
           ['localidad', 'usuario', 'area', 'master_f']
       );
@@ -220,15 +234,15 @@ Route::prefix('firebird')->group(function (){
       //return utf8_encode($formulario->get());
       return response()->json(["formularios_kobo_master" => json_decode($formulario->get())]); */
   });
-  
+
   Route::middleware(['auth:sanctum'])->post('/mireusers', function (Request $request) {
-  
+
     try {
-  
+
       DB::setDefaultConnection('firebird');
-  
+
       $body = $request->body ?? [
-  
+
         //"NOMBRES",
         //"APELLIDOS",
         //"NOMBRE_COMPLETO",
@@ -241,7 +255,7 @@ Route::prefix('firebird')->group(function (){
         "UNICO",
         "ID",
         "ID_EMPRESA",
-  
+
         "HUELLA",
         "SESSION_ID",
         "ESTATUS",
@@ -257,7 +271,7 @@ Route::prefix('firebird')->group(function (){
         "CODIGO1",
         "CODIGO2",
         "CODIGO3",
-  
+
         "FRASE",
         "FORMULA",
         "FECHA_NAC",
@@ -265,7 +279,7 @@ Route::prefix('firebird')->group(function (){
         "AGENTE_ESTATUS",
         "LLAVE",
         "NAVEGADOR",
-  
+
         //relacionales
         "ID_M_NIVELES",
         "ID_M_VENDEDORES",
@@ -274,104 +288,104 @@ Route::prefix('firebird')->group(function (){
         "ID_M_USUARIOS",
         "ID_M_AREAS",
         //relacionales
-  
+
         //NO EXISTE
         "ID_M_GRUPOS"
       ];
-  
+
       $m_usuarios = MUsuarios::select($body)->get(); //where("CORREO" , "!=", "testroles@gmail.com")->
-  
+
       return response()->json(["users" => helper::convert_from_latin1_to_utf8_recursively($m_usuarios)]);
     } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     }
   });
-  
+
   Route::middleware(['auth:sanctum'])->post('/grupos', function (Request $request) {
-  
+
     try {
-  
+
       DB::setDefaultConnection('firebird');
-  
-      $m_grupos = MGrupos::get(); 
-  
+
+      $m_grupos = MGrupos::get();
+
       return response()->json(["grupos" => helper::convert_from_latin1_to_utf8_recursively($m_grupos)]);
     } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     }
   });
 
-  
+
   Route::middleware(['auth:sanctum'])->post('/lpamigracion', function (Request $request) {
-  
+
     try {
-  
+
       DB::setDefaultConnection('firebird');
-  
-      $m_grupos = MGrupos::get(); 
-  
+
+      $m_grupos = MGrupos::get();
+
       return response()->json(["grupos" => helper::convert_from_latin1_to_utf8_recursively($m_grupos)]);
     } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     }
   });
 
-  
-  
-  Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {
-  
-  /*   try { */
-  
-      DB::setDefaultConnection('firebird');
 
-      $resultados = DB::select($request->sql); 
-  
-      return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados) ]);
+
+  Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {
+
+    /*   try { */
+
+    DB::setDefaultConnection('firebird');
+
+    $resultados = DB::select($request->sql);
+
+    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
     /* } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     } */
   });
 });
 
-Route::prefix('mongo')->group(function (){
-  
+Route::prefix('mongo')->group(function () {
+
   Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {
-  
+
     /*   try { */
-    
-        DB::setDefaultConnection('mongodb');
-        
-        $formluario = new MKoboFormularios();
 
-        $formluario->id = "1";
-        $formluario->_ID = "1";
-        $formluario->ID_M_USUARIOS = "1";
-        $formluario->ID_M_FORMULARIOS = "1";
-        $formluario->ESTATUS = "1";
+    DB::setDefaultConnection('mongodb');
 
-        $formluario->save();
-  
-        $resultados = MKoboFormularios::all(); 
-    
-        return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados) ]);
-      /* } catch (\Throwable $exception) {
+    $formluario = new MKoboFormularios();
+
+    $formluario->id = "1";
+    $formluario->_ID = "1";
+    $formluario->ID_M_USUARIOS = "1";
+    $formluario->ID_M_FORMULARIOS = "1";
+    $formluario->ESTATUS = "1";
+
+    $formluario->save();
+
+    $resultados = MKoboFormularios::all();
+
+    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+    /* } catch (\Throwable $exception) {
         return response()->json(['Error' => $exception->getMessage()]);
       } */
-    });
+  });
 });
 
-Route::middleware((['auth:sanctum']))->prefix('pgsql')->group(function (){
+Route::middleware((['auth:sanctum']))->prefix('pgsql')->group(function () {
 
   Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {
-  
+
     /*   try { */
-        $resultados = DB::select($request->sql); 
-    
-        return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados) ]);
-      /* } catch (\Throwable $exception) {
+    $resultados = DB::select($request->sql);
+
+    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+    /* } catch (\Throwable $exception) {
         return response()->json(['Error' => $exception->getMessage()]);
       } */
-    });
+  });
 });
 
 
@@ -511,8 +525,6 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
   Route::put('{uui}/updatekobomireview/{token}', [App\Http\Controllers\Kobo::class, 'puKoboMireView']);
 
   Route::get('{uui}/exportTemplate/{token}', [App\Http\Controllers\Kobo::class, 'exportTemplateByid']);
-
-  
 });
 
 
@@ -556,6 +568,7 @@ Route::middleware(['auth:sanctum'])->get('/job/deploy/exportkobo', [App\Http\Con
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::post('login', [Auth::class, 'login'])->name('api/login');
 
 //Route::post('register', [Auth::class, 'register']);
