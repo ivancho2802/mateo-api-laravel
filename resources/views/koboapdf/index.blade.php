@@ -230,7 +230,7 @@
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                       <h1 class="h3 mb-3 fw-normal text-center">Formulario</h1>
 
-                      <form method="post" action="/job/deploy" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                      <form method="post" action="/koboapdf" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                         @csrf
 
                         <label for="exampleFormControlTextarea1" class="form-label">Buscador: </label>

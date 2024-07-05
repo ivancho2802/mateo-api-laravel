@@ -38,7 +38,7 @@ Route::resource('koboapdf', Ugic::class)
 
 Route::middleware(['auth'])->post('/job/deploy/exportkobo', [App\Http\Controllers\Jobs::class, 'exportByuui']);
 
-Route::middleware(['auth'])->post('/job/deploy', [App\Http\Controllers\Jobs::class, 'getProccessExportView']);
+Route::middleware(['auth'])->post('/koboapdf', [App\Http\Controllers\Jobs::class, 'getProccessExportView']);
 
 // route for get shortener url
 Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
