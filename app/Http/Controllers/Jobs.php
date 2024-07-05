@@ -234,9 +234,9 @@ class Jobs extends Controller
 
       $filename = '/htmlToPdf/' . $name_key . '/' . $name_fomulary . '_' . $id_file . '.pdf';
 
-      $existQueue = JobsModel::where("payload", "like", "%" . $id_file . "%")->exists();
+      //$existQueue = JobsModel::where("payload", "like", "%" . $id_file . "%")->exists(); && !$existQueue
 
-      if (!Storage::disk('local')->exists($filename) && !$existQueue) {
+      if (!Storage::disk('local')->exists($filename)) {
         if (isset($item)   && isset($filename)) {
           generatePdf::dispatch($item, $filename, $dataMetaWithImage); //->onConnection('database');
           //generatePdf::dispatchAfterResponse();
