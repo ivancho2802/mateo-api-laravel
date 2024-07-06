@@ -267,7 +267,7 @@ class Jobs extends Controller
             ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200);
             dd("esta en 45 no se proceso por time out ver como estan los estilos con uno revisar des pues de _318932"); */
 
-    if (count($dataEnketoResponse) == count($filesExported)) {
+    /* if (count($dataEnketoResponse) == count($filesExported)) {
 
       $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
 
@@ -279,7 +279,7 @@ class Jobs extends Controller
       } else {
         return response()->json(['status' => false, 'message' => $resultCreated], 503);
       }
-    } else {
+    } else { */
 
       $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
 
@@ -323,7 +323,7 @@ class Jobs extends Controller
 
       //MQR devolver tabla con los resultados creados 
       return view('koboapdf.index', ["data" => $data]);
-    }
+    //}
 
     /* return response()
             ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
