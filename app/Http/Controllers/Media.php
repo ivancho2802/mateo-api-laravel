@@ -47,7 +47,8 @@ class Media extends Controller
     }
 
     function downloadMediaPqrPath(Request $request)
-    {//migrationsMqr/nLOPShZMEMu1AjqYuNWsP7miBWl32gTyO72Lu2ex.xlsx
+    {
+        //migrationsMqr/nLOPShZMEMu1AjqYuNWsP7miBWl32gTyO72Lu2ex.xlsx
         $filepath = $request->url;
 
         //$file = Storage::path($filepath);
@@ -79,6 +80,15 @@ class Media extends Controller
 
         // Download file with custom headers
         return response()->download($path, $filename, $headers);
+    }
+
+    function downloadMediaCustom($filename)
+    {
+
+        $path = (public_path() . $filename);
+
+        // Download file with custom headers
+        return response()->download($path, $filename);
     }
 
     

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Jobs\generatePdf;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use App\Models\JobsModel;
@@ -295,17 +296,25 @@ class Jobs extends Controller
       $download = "";
 
       if (count($dataEnketoResponse) == count($filesExported)) {
+        $zipFileName = $name_key . ".zip";
+        
+        if (!File::exists(public_path($zipFileName))) {
 
-        $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
+          $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
+  
+          //$ramdom = Carbon\Carbon::now()->timestamp;
+          //dd(Carbon\Carbon::now()->timestamp, time());
+  
+          if ($resultCreated === true) {
+            $download = public_path($name_key . ".zip");
+          } else {
+            $download = "fallo al generar el archivos";
+            //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+          }
 
-        //$ramdom = Carbon\Carbon::now()->timestamp;
-        //dd(Carbon\Carbon::now()->timestamp, time());
+        }else {
+          $download = public_path($zipFileName);
 
-        if ($resultCreated === true) {
-          $download = public_path($name_key . ".zip");
-        } else {
-          $download = "fallo al generar el archivos";
-          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
         }
       }
 

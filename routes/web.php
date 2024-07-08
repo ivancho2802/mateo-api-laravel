@@ -45,6 +45,10 @@ Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name(
 
 Route::get('/qr', [QrCodeController::class, 'show']);
 
+//download files public
+
+Route::middleware(['auth'])->post('/public/{filename}', [App\Http\Controllers\Media::class, 'downloadMediaCustom']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
