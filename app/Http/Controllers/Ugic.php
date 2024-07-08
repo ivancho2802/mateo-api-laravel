@@ -9,6 +9,7 @@ use App\Models\JobDetails;
 use Illuminate\Support\Facades\Http;
 use App\Models\FailedJobsModel;
 use App\Http\Controllers\helper;
+use Illuminate\Support\Facades\File;
 
 class Ugic extends Controller
 {
@@ -107,18 +108,27 @@ class Ugic extends Controller
       //validar si las descargas estan lsitas y mostrar el enlace de descarga
       $download = "";
 
+
       if (count($dataEnketoResponse) == count($filesExported)) {
-
-        $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
-
-        //$ramdom = Carbon\Carbon::now()->timestamp;
-        //dd(Carbon\Carbon::now()->timestamp, time());
-
-        if ($resultCreated === true) {
-          $download = public_path($name_key . ".zip");
+        $zipFileName = $name_key . ".zip";
+  
+        if (!File::exists(public_path($zipFileName))) {
+  
+          $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
+  
+          //$ramdom = Carbon\Carbon::now()->timestamp;
+          //dd(Carbon\Carbon::now()->timestamp, time());
+  
+          if ($resultCreated === true) {
+            //$download = public_path($zipFileName);
+            $download = "/public/" . ($zipFileName);
+          } else {
+            $download = "fallo al generar el archivos";
+            //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+          }
         } else {
-          $download = "fallo al generar el archivos";
-          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+          //$download = public_path($zipFileName);
+          $download = "/public/" . public_path($zipFileName);
         }
       }
 

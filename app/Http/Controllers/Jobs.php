@@ -476,17 +476,25 @@ class Jobs extends Controller
       $download = "";
 
       if (count($dataEnketoResponse) == count($filesExported)) {
-
-        $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
-
-        //$ramdom = Carbon\Carbon::now()->timestamp;
-        //dd(Carbon\Carbon::now()->timestamp, time());
-
-        if ($resultCreated === true) {
-          $download = public_path($name_key . ".zip");
+        $zipFileName = $name_key . ".zip";
+  
+        if (!File::exists(public_path($zipFileName))) {
+  
+          $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
+  
+          //$ramdom = Carbon\Carbon::now()->timestamp;
+          //dd(Carbon\Carbon::now()->timestamp, time());
+  
+          if ($resultCreated === true) {
+            //$download = public_path($zipFileName);
+            $download = "/public/" . ($zipFileName);
+          } else {
+            $download = "fallo al generar el archivos";
+            //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+          }
         } else {
-          $download = "fallo al generar el archivos";
-          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+          //$download = public_path($zipFileName);
+          $download = "/public/" . public_path($zipFileName);
         }
       }
       //verificar si hay fallidos
@@ -545,21 +553,27 @@ class Jobs extends Controller
     $download = "";
 
     if (count($dataEnketoResponse) == count($filesExported)) {
+      $zipFileName = $name_key . ".zip";
 
-      $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
+      if (!File::exists(public_path($zipFileName))) {
 
-      //$ramdom = Carbon\Carbon::now()->timestamp;
-      //dd(Carbon\Carbon::now()->timestamp, time());
+        $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
 
-      if ($resultCreated === true) {
-        $download = public_path($name_key . ".zip");
+        //$ramdom = Carbon\Carbon::now()->timestamp;
+        //dd(Carbon\Carbon::now()->timestamp, time());
+
+        if ($resultCreated === true) {
+          //$download = public_path($zipFileName);
+          $download = "/public/" . ($zipFileName);
+        } else {
+          $download = "fallo al generar el archivos";
+          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+        }
       } else {
-        $download = "fallo al generar el archivos";
-        //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+        //$download = public_path($zipFileName);
+        $download = "/public/" . public_path($zipFileName);
       }
     }
-
-
 
     $dataExport = json_decode(collect([
       "name_key" => ($name_key),
