@@ -48,6 +48,7 @@ Route::get('/qr', [QrCodeController::class, 'show']);
 //download files public
 
 Route::middleware(['auth'])->post('/public/{filename}', [App\Http\Controllers\Media::class, 'downloadMediaCustom']);
+Route::middleware(['auth'])->get('/public/{filename}', [App\Http\Controllers\Media::class, 'downloadMediaCustom']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
