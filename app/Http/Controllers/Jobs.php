@@ -314,7 +314,7 @@ class Jobs extends Controller
         }
       } else {
         //$download = public_path($zipFileName);
-        $download = "/public/" . public_path($zipFileName);
+        $download = "/public/" . ($zipFileName);
       }
     }
 
@@ -494,7 +494,7 @@ class Jobs extends Controller
           }
         } else {
           //$download = public_path($zipFileName);
-          $download = "/public/" . public_path($zipFileName);
+          $download = "/public/" . ($zipFileName);
         }
       }
       //verificar si hay fallidos
@@ -571,7 +571,7 @@ class Jobs extends Controller
         }
       } else {
         //$download = public_path($zipFileName);
-        $download = "/public/" . public_path($zipFileName);
+        $download = "/public/" . ($zipFileName);
       }
     }
 

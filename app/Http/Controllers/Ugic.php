@@ -128,7 +128,7 @@ class Ugic extends Controller
           }
         } else {
           //$download = public_path($zipFileName);
-          $download = "/public/" . public_path($zipFileName);
+          $download = "/public/" . ($zipFileName);
         }
       }
 
