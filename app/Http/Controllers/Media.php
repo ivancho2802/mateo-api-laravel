@@ -85,7 +85,7 @@ class Media extends Controller
     function downloadMediaCustom($filename)
     {
 
-        $path = (public_path() . $filename);
+        $path = public_path($filename );
 
         // Download file with custom headers
         return response()->download($path, $filename);

@@ -282,56 +282,56 @@ class Jobs extends Controller
       }
     } else { */
 
-      $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+    $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
 
-      $jobsCreated = JobsModel::all();
+    $jobsCreated = JobsModel::all();
 
-      /* return response()->json([
+    /* return response()->json([
         "exportaciones totales" => count($dataEnketoResponse),
         "exportaciones procesadas" => count($filesExported),
         "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported),
         "trabajos en proceso" => count($jobsCreated)
       ]); */
 
-      $download = "";
+    $download = "";
 
-      if (count($dataEnketoResponse) == count($filesExported)) {
-        $zipFileName = $name_key . ".zip";
-        
-        if (!File::exists(public_path($zipFileName))) {
+    if (count($dataEnketoResponse) == count($filesExported)) {
+      $zipFileName = $name_key . ".zip";
 
-          $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
-  
-          //$ramdom = Carbon\Carbon::now()->timestamp;
-          //dd(Carbon\Carbon::now()->timestamp, time());
-  
-          if ($resultCreated === true) {
-            $download = public_path($name_key . ".zip");
-          } else {
-            $download = "fallo al generar el archivos";
-            //return response()->json(['status' => false, 'message' => $resultCreated], 503);
-          }
+      if (!File::exists(public_path($zipFileName))) {
 
-        }else {
-          $download = public_path($zipFileName);
+        $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
 
+        //$ramdom = Carbon\Carbon::now()->timestamp;
+        //dd(Carbon\Carbon::now()->timestamp, time());
+
+        if ($resultCreated === true) {
+          //$download = public_path($zipFileName);
+          $download = "/public/" . ($zipFileName);
+        } else {
+          $download = "fallo al generar el archivos";
+          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
         }
+      } else {
+        //$download = public_path($zipFileName);
+        $download = "/public/" . public_path($zipFileName);
       }
+    }
 
-      $dataExport = json_decode(collect([
-        "name_key" => ($name_key),
-        "exportaciones_totales" => count($dataEnketoResponse),
-        "exportaciones_procesadas" => count($filesExported),
-        "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
-        "exportaciones_fallidos" => 0,
-        "trabajos_en_proceso" => count($jobsCreated),
-        "download" => $download
-      ]));
+    $dataExport = json_decode(collect([
+      "name_key" => ($name_key),
+      "exportaciones_totales" => count($dataEnketoResponse),
+      "exportaciones_procesadas" => count($filesExported),
+      "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
+      "exportaciones_fallidos" => 0,
+      "trabajos_en_proceso" => count($jobsCreated),
+      "download" => $download
+    ]));
 
-      $data = [$dataExport];
+    $data = [$dataExport];
 
-      //MQR devolver tabla con los resultados creados 
-      return view('koboapdf.index', ["data" => $data]);
+    //MQR devolver tabla con los resultados creados 
+    return view('koboapdf.index', ["data" => $data]);
     //}
 
     /* return response()
