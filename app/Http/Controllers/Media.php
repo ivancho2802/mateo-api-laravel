@@ -75,7 +75,7 @@ class Media extends Controller
             'Content-Type: application/vnd.ms-excel',
         );
         
-        $filename = "diccionario_de_datos_lite.csv";
+        $filename = "Matriz lite paso 1.csv";
         $path = (public_path() . '/download/' . $filename);
 
         // Download file with custom headers
