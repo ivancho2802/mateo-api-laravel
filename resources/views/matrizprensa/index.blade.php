@@ -399,7 +399,7 @@
 
                           <div class="col">
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                               <label for="exampleFormControlTextarea1" class="form-label">Scraping</label>
 
                               <div class="form-check">
@@ -414,7 +414,7 @@
                                   No
                                 </label>
                               </div>
-                            </div>
+                            </div> -->
 
                           </div>
                         </div>
