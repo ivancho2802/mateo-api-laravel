@@ -37,6 +37,10 @@ use App\Models\Reports;
 */
 
 Route::prefix('finanzas')->group(function () {
+  //SERVICIO PARA CONSULTAR PARAMETROS DEL POWER BI ADN y1 y2
+  Route::get('/adn/fase2', [App\Http\Controllers\Finanzas::class, 'all']);
+  Route::post('/adn/fase2', [App\Http\Controllers\Finanzas::class, 'set']);
+
 });
 
 Route::prefix('meal')->group(function () {

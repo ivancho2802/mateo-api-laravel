@@ -94,7 +94,7 @@
         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Matriz con diccionario de datos</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Matriz lite</button>
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">1. Matriz lite</button>
 
         <!-- x-init="setTimeout(() => show = false, 4000)" -->
         
@@ -275,7 +275,7 @@
                   <h3 class="-my-3 flow-root">
                     <!-- Expand/collapse section button -->
                     <button @click="isOpenB = !isOpenB" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false">
-                      <span class="font-medium text-gray-900">Matriz lite</span>
+                      <span class="font-medium text-gray-900">1. Matriz lite</span>
                       <span class="ml-6 flex items-center">
                         <!-- Expand icon, show/hide based on section open state. -->
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -463,7 +463,7 @@
                   <h3 class="-my-3 flow-root">
                     <!-- Expand/collapse section button -->
                     <button @click="isOpenB = !isOpenB" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false">
-                      <span class="font-medium text-gray-900">Scraping: es para extraer contenido web de una serie de urls</span>
+                      <span class="font-medium text-gray-900">2. Scraping: es para extraer contenido web de una serie de urls</span>
                       <span class="ml-6 flex items-center">
                         <!-- Expand icon, show/hide based on section open state. -->
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -520,7 +520,7 @@
                   <h3 class="-my-3 flow-root">
                     <!-- Expand/collapse section button -->
                     <button @click="isOpenB = !isOpenB" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false">
-                      <span class="font-medium text-gray-900">Guardar matriz de prensa de forma masiva</span>
+                      <span class="font-medium text-gray-900">3. Guardar matriz de prensa de forma masiva</span>
                       <span class="ml-6 flex items-center">
                         <!-- Expand icon, show/hide based on section open state. -->
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

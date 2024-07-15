@@ -66,4 +66,11 @@ Route::prefix('kobo2')->group(function () {
     Route::get('{uui}/exportTemplate/{token}', [App\Http\Controllers\Kobo::class, 'exportTemplateByid']);
 });
 
+Route::prefix('finanzas')->group(function () {
+    Route::get('adn', [App\Http\Controllers\Finanzas::class, 'index']);
+    Route::post('adn', [App\Http\Controllers\Finanzas::class, 'set']);
+    Route::get('adn/json', [App\Http\Controllers\Finanzas::class, 'all']);
+});
+
+
 require __DIR__ . '/auth.php';
