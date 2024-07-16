@@ -122,6 +122,9 @@ Route::prefix('meal')->group(function () {
 
   Route::get('/moni_eva/report/download/{path}', [App\Http\Controllers\Monitoreo::class, 'reportDownload']);
 
+  //https://mireview.api.ach.dyndns.info/api/meal/analisis_departamenta/download/02_Situación Humanitaria por conflicto armado.pdf
+  Route::get('/analisis_departamenta/download/{path}', [App\Http\Controllers\Monitoreo::class, 'reportDownload']);
+
   //FIN MIGRACIONS DESDE EL KOBO
 
   //quejas y reclamos

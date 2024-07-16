@@ -58,4 +58,12 @@ class Monitoreo extends Controller
 
 
     }
+
+    
+    function reportDownloadAnalisis(Request $request){
+
+        return response()->download(storage_path('app/analisisDepartamental/' . $request->path));//->deleteFileAfterSend(true);
+
+
+    }
 }
