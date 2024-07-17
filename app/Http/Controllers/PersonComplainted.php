@@ -10,6 +10,8 @@ use App\Models\MMqr;
 use App\Http\Controllers\helper;
 use App\Models\Analisis;
 
+use function PHPUnit\Framework\isNull;
+
 class PersonComplainted extends Controller
 {
 
@@ -28,25 +30,26 @@ class PersonComplainted extends Controller
                     isset($request->acceso_rt) ||
                     isset($request->participacion_rt) ||
                     isset($request->ajustes_rt) 
-                ) && $request->month) {
+                ) && isset($request->month)) {
 
                 //si algun campo no viene no lo actualizo
 
-
                 $request['type'] = "MQR";
                 $request['texto'] = $request->analisis;
+
+                $request = json_decode(json_encode(collect($request->toArray())->filter()->all() ), FALSE);
 
                 $resulAlaisis = Analisis::updateOrCreate(
                     [
                         "month" => $request->month,
                         "type" => "MQR"
                     ],
-                    $request->all()
+                    collect($request)->toArray()
                 );
 
                 //dd("resulAlaisis", $resulAlaisis);
                 //return $resulAlaisis;
-                if (!$request->file) {
+                if (!optional($request)->file) {
                     $query_mmqrs = MMqr::orderBy('created_at', 'desc');
                     $mmqrs = $query_mmqrs->paginate(10);
 
