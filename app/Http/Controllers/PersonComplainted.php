@@ -33,8 +33,8 @@ class PersonComplainted extends Controller
                 //si algun campo no viene no lo actualizo
 
 
-                $request['month'] = $request->month;
                 $request['type'] = "MQR";
+                $request['texto'] = $request->analisis;
 
                 $resulAlaisis = Analisis::updateOrCreate(
                     [
