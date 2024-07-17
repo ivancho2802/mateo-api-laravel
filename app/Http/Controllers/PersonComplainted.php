@@ -20,57 +20,28 @@ class PersonComplainted extends Controller
 
             if (
                 (
-                    $request->analisis ||
-                    $request->acompanamiento ||
-                    $request->acceso ||
-                    $request->participacion ||
-                    $request->ajustes ||
-                    $request->acceso_rt ||
-                    $request->participacion_rt ||
-                    $request->ajustes_rt 
+                    isset($request->analisis) ||
+                    isset($request->acompanamiento) ||
+                    isset($request->acceso) ||
+                    isset($request->participacion) ||
+                    isset($request->ajustes) ||
+                    isset($request->acceso_rt) ||
+                    isset($request->participacion_rt) ||
+                    isset($request->ajustes_rt) 
                 ) && $request->month) {
 
                 //si algun campo no viene no lo actualizo
 
-                $dataMqrCreateUpdate = [
-                    "month" => $request->month,
-                    "type" => "MQR",
-                ];
 
-                if (isset($request->analisis)) {
-                    array_push($dataMqrCreateUpdate, $request->analisis);
-                }
-
-                if (isset($request->acompanamiento)) {
-                    array_push($dataMqrCreateUpdate, $request->acompanamiento);
-                }
-
-                if (isset($request->acceso)) {
-                    array_push($dataMqrCreateUpdate, $request->acceso);
-                }
-                if (isset($request->participacion)) {
-                    array_push($dataMqrCreateUpdate, $request->participacion);
-                }
-                if (isset($request->ajustes)) {
-                    array_push($dataMqrCreateUpdate, $request->ajustes);
-                }
-
-                if (isset($request->acceso_rt)) {
-                    array_push($dataMqrCreateUpdate, $request->acceso_rt);
-                }
-                if (isset($request->participacion_rt)) {
-                    array_push($dataMqrCreateUpdate, $request->participacion_rt);
-                }
-                if (isset($request->ajustes_rt)) {
-                    array_push($dataMqrCreateUpdate, $request->ajustes_rt);
-                }
+                $request['month'] = $request->month;
+                $request['type'] = "MQR";
 
                 $resulAlaisis = Analisis::updateOrCreate(
                     [
                         "month" => $request->month,
                         "type" => "MQR"
                     ],
-                    $dataMqrCreateUpdate
+                    $request->all()
                 );
 
                 //dd("resulAlaisis", $resulAlaisis);
