@@ -119,7 +119,7 @@ class PersonComplainted extends Controller
 
             $import = new MqrImportClass();
 
-            $import->onlySheets('Consolidado');
+            $import->onlySheets('Formato en limpio');
 
             // Process the Excel file
             Excel::import($import, $file);

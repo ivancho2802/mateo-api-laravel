@@ -12,7 +12,7 @@ class MqrImportClass implements WithMultipleSheets
     public function conditionalSheets(): array
     {
         return [
-            'Consolidado' => new MqrClass,
+            'Formato en limpio' => new MqrClass,
         ];
     }
 }
