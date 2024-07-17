@@ -73,7 +73,7 @@ class PersonComplainted extends Controller
                     $dataMqrCreateUpdate
                 );
 
-                dd("resulAlaisis", $resulAlaisis);
+                //dd("resulAlaisis", $resulAlaisis);
                 //return $resulAlaisis;
                 if (!$request->file) {
                     $query_mmqrs = MMqr::orderBy('created_at', 'desc');
