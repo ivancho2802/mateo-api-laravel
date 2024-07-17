@@ -21,11 +21,15 @@ class AlterMMqrTable extends Migration
             $table->string('VALID')->nullable()->change();
             $table->string('SUB_CATEGORY')->nullable()->change();
 
-            $table->string('TIPO_INTERVE')->nullable()->create();
-            $table->string('COD_EMERGENCIA')->nullable()->create();
-            $table->string('NACIONALIDAD')->nullable()->create();
-            $table->string('EDO')->nullable()->create();
-            $table->string('DERI_INTER')->nullable()->create();
+            $table->string('TIPO_INTERVE')->nullable()->change();
+            $table->string('COD_EMERGENCIA')->nullable()->change();
+            $table->string('NACIONALIDAD')->nullable()->change();
+            $table->string('EDO')->nullable()->change();
+            $table->string('DERI_INTER')->nullable()->change();
+
+            $table->string('DEPARTMENT')->nullable()->change();
+            $table->string('MUNICICIO')->nullable()->change();
+
             
         });
     }
