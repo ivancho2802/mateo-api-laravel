@@ -25,10 +25,13 @@ class AlterAnalisisTable extends Migration
             
             $table->text('recuperacion_temprana')->nullable()->default('No hay datos')->change();
             
-            $table->text('acompanamiento_rt')->nullable()->default('No hay datos')->create();
-            $table->text('acceso_rt')->nullable()->default('No hay datos')->create();
-            $table->text('participacion_rt')->nullable()->default('No hay datos')->create();
-            $table->text('ajustes_rt')->nullable()->default('No hay datos')->create();
+            $table->text('acompanamiento_rt')->nullable()->default('No hay datos')->change();
+            $table->text('acceso_rt')->nullable()->default('No hay datos')->change();
+            $table->text('participacion_rt')->nullable()->default('No hay datos')->change();
+            $table->text('ajustes_rt')->nullable()->default('No hay datos')->change();
+
+            $table->text('texto')->nullable()->default('No hay datos')->change();
+
         });
 
     }

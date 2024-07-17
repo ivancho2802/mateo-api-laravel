@@ -103,4 +103,22 @@ select count(*) from failed_jobs
 --delete from job_details
 --delete from jobs
 --delete from failed_jobs
+select 
+	*  
+from 
+	"M_LPAS" 
+order by 
+	"M_LPAS"."ID" desc limit 329
+	
+SELECT COUNT(*) FROM "M_LPAS"
+--insert into "M_LPAS" values(391420, NULL, NULL, 1223, 36537, 1, 'COSUDE', 'H9', '2024-06-25', '', '', '', '', '', '', 'Otro', 'Fase III-RecuperaciÃ³n temprana', NULL)
+
+delete from "M_LPAS" WHERE "ID" IN (select "ID"  from "M_LPAS" where "FASE_ATENCION" in ('Fase I- Respuesta RÃ¡pida ', 'Fase I- Respuesta RÃ¡pida', 'Fase II- Respuesta RÃ¡pida', 'Fase II- Respuesta RÃ¡pida ', '') )
+--719 + 82675 + 328 = 83722
+
+select "FECHA_ATENCION", "FASE_ATENCION"  from "M_LPAS" WHERE "FASE_ATENCION" LIKE '%III%' order by "FECHA_ATENCION" desc limit 10
+--05-16-2024
+
+-- tendria que ajustar para que no tome espacios de adelante y de atras
+
 

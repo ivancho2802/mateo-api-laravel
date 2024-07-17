@@ -18,7 +18,17 @@ class PersonComplainted extends Controller
 
         try {
 
-            if ($request->analisis && $request->month) {
+            if (
+                (
+                    $request->analisis ||
+                    $request->acompanamiento ||
+                    $request->acceso ||
+                    $request->participacion ||
+                    $request->ajustes ||
+                    $request->acceso_rt ||
+                    $request->participacion_rt ||
+                    $request->ajustes_rt 
+                ) && $request->month) {
 
                 //si algun campo no viene no lo actualizo
 
@@ -26,41 +36,44 @@ class PersonComplainted extends Controller
                     "month" => $request->month,
                     "type" => "MQR",
                 ];
-                
-                if(isset($request->analisis)){
+
+                if (isset($request->analisis)) {
                     array_push($dataMqrCreateUpdate, $request->analisis);
                 }
-                
-                if(isset($request->acompanamiento)){
+
+                if (isset($request->acompanamiento)) {
                     array_push($dataMqrCreateUpdate, $request->acompanamiento);
                 }
-                
-                if(isset($request->acceso)){
+
+                if (isset($request->acceso)) {
                     array_push($dataMqrCreateUpdate, $request->acceso);
                 }
-                if(isset($request->participacion)){
+                if (isset($request->participacion)) {
                     array_push($dataMqrCreateUpdate, $request->participacion);
                 }
-                if(isset($request->ajustes)){
+                if (isset($request->ajustes)) {
                     array_push($dataMqrCreateUpdate, $request->ajustes);
                 }
-                
-                if(isset($request->acceso_rt)){
+
+                if (isset($request->acceso_rt)) {
                     array_push($dataMqrCreateUpdate, $request->acceso_rt);
                 }
-                if(isset($request->participacion_rt)){
+                if (isset($request->participacion_rt)) {
                     array_push($dataMqrCreateUpdate, $request->participacion_rt);
                 }
-                if(isset($request->ajustes_rt)){
+                if (isset($request->ajustes_rt)) {
                     array_push($dataMqrCreateUpdate, $request->ajustes_rt);
                 }
 
-                $resulAlaisis = Analisis::updateOrCreate([
-                    "month" => $request->month,
-                    "type" => "MQR"
-                ],
-                $dataMqrCreateUpdate
+                $resulAlaisis = Analisis::updateOrCreate(
+                    [
+                        "month" => $request->month,
+                        "type" => "MQR"
+                    ],
+                    $dataMqrCreateUpdate
                 );
+
+                dd("resulAlaisis", $resulAlaisis);
                 //return $resulAlaisis;
                 if (!$request->file) {
                     $query_mmqrs = MMqr::orderBy('created_at', 'desc');
@@ -91,7 +104,7 @@ class PersonComplainted extends Controller
             // Get the uploaded file
             $file = $request->file('file');
             $path = $file->store('migrationsMqr');
-            
+
             migrateCustom::create([
                 'table' => 'M_MQR',
                 'table_id' =>  $path,
