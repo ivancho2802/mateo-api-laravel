@@ -532,9 +532,26 @@ Route::prefix('firebirdcopy')->group(function () {
 
     DB::setDefaultConnection('firebirdcopy');
 
-    $resultados = DB::select($request->sql);
+    $resultados = collect(DB::select($request->sql));
 
+    DB::setDefaultConnection('firebird');
+    $resultados_danados = collect(DB::select($request->sql));
+
+
+    $resultados->each(function ( $m_formulario, int $key) use ($resultados_danados){
+        // ...
+        $resultados_danados->each(function ( $m_formulario_danados, int $key_danado) use($m_formulario){
+            // ...
+            if($m_formulario_danados->ID_M_FORMULARIOS == $m_formulario->ID_M_FORMULARIOS ){
+              DB::setDefaultConnection('firebird');
+
+              DB::select("UPDATE M_FORMULARIOS SET UID='".$m_formulario->UID."', URL_DATA='".$m_formulario->URL_DATA."', URL_CAMPOS='".$m_formulario->URL_CAMPOS."' WHERE ID_M_FORMULARIOS = '".$m_formulario->ID_M_FORMULARIOS."' ");
+
+            }
     
+        });
+
+    });
 
     return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
     /* } catch (\Throwable $exception) {
