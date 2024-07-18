@@ -10,7 +10,7 @@ file_ref = 'PENDING' and table_id not like '{%' order by updated_at desc limit 7
 select * from users where email like '%nrc%' limit 1
 select * from "M_USUARIOS" where "LOGIN" = 'LSAENZ' limit 1
 
-select COUNT( "FK_LPA_PERSONA") from "M_LPAS"    
+select COUNT(*) from "M_LPAS"    
 --REPARAR CONSULTA PARA QUE NO DIGA LPA
 SELECT "FK_LPA_PERSONA" FROM "M_LPAS" GROUP BY "FK_LPA_PERSONA"
 select COUNT(DISTINCT "DOCUMENTO") from "M_LPA_PERSONAS" 
@@ -110,7 +110,7 @@ from
 order by 
 	"M_LPAS"."ID" desc limit 329
 	
-SELECT COUNT(*) FROM "M_LPAS"
+SELECT * FROM "M_LPAS"  order by "ID" desc limit 10 
 --insert into "M_LPAS" values(391420, NULL, NULL, 1223, 36537, 1, 'COSUDE', 'H9', '2024-06-25', '', '', '', '', '', '', 'Otro', 'Fase III-RecuperaciÃ³n temprana', NULL)
 
 delete from "M_LPAS" WHERE "ID" IN (select "ID"  from "M_LPAS" where "FASE_ATENCION" in ('Fase I- Respuesta RÃ¡pida ', 'Fase I- Respuesta RÃ¡pida', 'Fase II- Respuesta RÃ¡pida', 'Fase II- Respuesta RÃ¡pida ', '') )
@@ -121,4 +121,5 @@ select "FECHA_ATENCION", "FASE_ATENCION"  from "M_LPAS" WHERE "FASE_ATENCION" LI
 
 -- tendria que ajustar para que no tome espacios de adelante y de atras
 
-
+select count(*) from "M_MQR"
+select * from analisis

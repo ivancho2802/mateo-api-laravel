@@ -354,6 +354,195 @@ Route::prefix('firebird')->group(function () {
   });
 });
 
+Route::prefix('firebirdcopy')->group(function () {
+
+  Route::middleware(['auth:sanctum'])->get('/formularios_master', function (Request $request) {
+
+    DB::setDefaultConnection('firebirdcopy');
+
+    $body = [
+      "NOMBRES",
+
+      'ID_M_FORMULARIOS',
+      //'email',
+      //'password',
+      "FECHA",
+      "FECHA_REGISTRO",
+      "ACCION",
+      "UNICO",
+      "BARCODE",
+      "ID_EMPRESA",
+      "CAMPO1",
+      "CAMPO2",
+      "CAMPO3",
+      "CAMPO4",
+      "CAMPO5",
+      "ESTATUS",
+      "VIA",
+      "TIPO",
+      "UID",
+      "URL_DATA",
+      "URL_CAMPOS",
+      /* 
+          */
+      "COMENTARIOS",
+      "GRUPO",
+      //relacionales
+      "ID_M_CLIENTES",
+      "ID_M_USUARIOS",
+      "ID_M_AREAS",
+    ];
+
+    try {
+      $results = [];
+
+      $results = MFormularios::select($body)
+        /*
+          ->where(['ID_M_FORMULARIOS'=> '0012'])
+           ->foreach($form=>{
+  
+          }) */
+        ->get();
+
+      //$results = helper::convert_from_latin1_to_utf8_recursively($results);
+      return response()->json(["formularios_master" => json_decode($results)]);
+
+      //return $results[0];//mb_convert_encoding($results[0]['NOMBRES'], 'UTF-8', 'UTF-8');
+      //return response(["message" => "Model status successfully updated!", "data" =>  json_encode($results->toArray())], 200);
+    } catch (\Throwable $exception) {
+      return response()->json(['Error' => $exception->getMessage()]);
+    }
+  });
+
+  Route::middleware(['auth:sanctum'])->get('/formularios_kobo_master', function (Request $request) {
+
+    //DB::setDefaultConnection('odbc');
+    DB::setDefaultConnection('firebirdcopy');
+
+    return MKoboFormularios::get();
+
+    /* $formulario = MKoboFormularios::with(
+          ['localidad', 'usuario', 'area', 'master_f']
+      );
+  
+      //return utf8_encode($formulario->get());
+      return response()->json(["formularios_kobo_master" => json_decode($formulario->get())]); */
+  });
+
+  Route::middleware(['auth:sanctum'])->post('/mireusers', function (Request $request) {
+
+    try {
+
+      DB::setDefaultConnection('firebirdcopy');
+
+      $body = $request->body ?? [
+
+        //"NOMBRES",
+        //"APELLIDOS",
+        //"NOMBRE_COMPLETO",
+        "CORREO",
+        "ID_M_USUARIO",
+        "LOGIN",
+        "CLAVE",
+        "FECHA",
+        "ACCION",
+        "UNICO",
+        "ID",
+        "ID_EMPRESA",
+
+        "HUELLA",
+        "SESSION_ID",
+        "ESTATUS",
+        "IP",
+        "CAMPO1",
+        "CAMPO2",
+        "CAMPO3",
+        "CAMPO4",
+        "CAMPO5",
+        "NIVEL",
+        "ROTULO",
+        "FECHA_REGISTRO",
+        "CODIGO1",
+        "CODIGO2",
+        "CODIGO3",
+
+        "FRASE",
+        "FORMULA",
+        "FECHA_NAC",
+        "CONDICION_SESION",
+        "AGENTE_ESTATUS",
+        "LLAVE",
+        "NAVEGADOR",
+
+        //relacionales
+        "ID_M_NIVELES",
+        "ID_M_VENDEDORES",
+        "ID_M_CLIENTES",
+        "ID_M_DEPARTAMENTOS",
+        "ID_M_USUARIOS",
+        "ID_M_AREAS",
+        //relacionales
+
+        //NO EXISTE
+        "ID_M_GRUPOS"
+      ];
+
+      $m_usuarios = MUsuarios::select($body)->get(); //where("CORREO" , "!=", "testroles@gmail.com")->
+
+      return response()->json(["users" => helper::convert_from_latin1_to_utf8_recursively($m_usuarios)]);
+    } catch (\Throwable $exception) {
+      return response()->json(['Error' => $exception->getMessage()]);
+    }
+  });
+
+  Route::middleware(['auth:sanctum'])->post('/grupos', function (Request $request) {
+
+    try {
+
+      DB::setDefaultConnection('firebirdcopy');
+
+      $m_grupos = MGrupos::get();
+
+      return response()->json(["grupos" => helper::convert_from_latin1_to_utf8_recursively($m_grupos)]);
+    } catch (\Throwable $exception) {
+      return response()->json(['Error' => $exception->getMessage()]);
+    }
+  });
+
+
+  Route::middleware(['auth:sanctum'])->post('/lpamigracion', function (Request $request) {
+
+    try {
+
+      DB::setDefaultConnection('firebird');
+
+      $m_grupos = MGrupos::get();
+
+      return response()->json(["grupos" => helper::convert_from_latin1_to_utf8_recursively($m_grupos)]);
+    } catch (\Throwable $exception) {
+      return response()->json(['Error' => $exception->getMessage()]);
+    }
+  });
+
+
+
+  Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {
+
+    /*   try { */
+
+    DB::setDefaultConnection('firebirdcopy');
+
+    $resultados = DB::select($request->sql);
+
+    
+
+    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+    /* } catch (\Throwable $exception) {
+      return response()->json(['Error' => $exception->getMessage()]);
+    } */
+  });
+});
+
 Route::prefix('mongo')->group(function () {
 
   Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {
