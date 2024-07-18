@@ -537,10 +537,10 @@ Route::prefix('firebirdcopy')->group(function () {
     DB::setDefaultConnection('firebird');
     $resultados_danados = collect(DB::select($request->sql));
 
-    return response()->json([
+    /* return response()->json([
       "resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados),
       "resultados_danados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados_danados),
-    ]);
+    ]); */
 
     $resultados->each(function ( $m_formulario, int $key) use ($resultados_danados){
         // ...
