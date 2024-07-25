@@ -23,10 +23,10 @@ class Ugic extends Controller
     $form = $params['form'] ?? [];
     $dataFormulario = $params['dataFormulario'] ?? [];
     
-    return view('koboapdf.index', $params);
     if (count($jobdetails) <= 0) {
 
-      return view('koboapdf.index', ["form" => $form , "data" => [], "dataFormulario" => $dataFormulario]);
+      return view('koboapdf.index', $params);
+      //return view('koboapdf.index', ["form" => $form , "data" => [], "dataFormulario" => $dataFormulario]);
     }
 
     $jobdetails->each(function ($job) use ($data, $form, $dataFormulario ) {
@@ -70,8 +70,10 @@ class Ugic extends Controller
 
         $data = [$dataExport];
 
-        //MQR devolver tabla con los resultados creados 
-        return view('koboapdf.index', ["form" => $form,  "data" => $data, "dataFormulario" => $dataFormulario]);
+        //MQR devolver tabla con los resultados creados
+        $params["data"] = $data;
+        return view('koboapdf.index', $params);
+        //return view('koboapdf.index', ["form" => $form,  "data" => $data, "dataFormulario" => $dataFormulario]);
       }
 
       $jobsFirstPayload = json_decode($jobsCreated->first()->payload);
@@ -154,7 +156,8 @@ class Ugic extends Controller
     });
 
     //dd($data->toArray()[0]->exportaciones_totales);
-
-    return view('koboapdf.index', ["form" => $form , "data" => $data->all(), "dataFormulario" => $dataFormulario]);
+    $params["data"] = $data->all();
+    return view('koboapdf.index', $params);
+    //return view('koboapdf.index', ["form" => $form , "data" => $data->all(), "dataFormulario" => $dataFormulario]);
   }
 }
