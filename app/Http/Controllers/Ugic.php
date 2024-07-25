@@ -20,8 +20,6 @@ class Ugic extends Controller
     $jobdetails = JobDetails::all();
     $data = collect();
     $params = $request;
-    $form = $params['form'] ?? [];
-    $dataFormulario = $params['dataFormulario'] ?? [];
     
     if (count($jobdetails) <= 0) {
 
@@ -29,7 +27,7 @@ class Ugic extends Controller
       //return view('koboapdf.index', ["form" => $form , "data" => [], "dataFormulario" => $dataFormulario]);
     }
 
-    $jobdetails->each(function ($job) use ($data, $form, $dataFormulario ) {
+    $jobdetails->each(function ($job) use ($data, $params ) {
 
       $dominio = $job->dominio;
 
