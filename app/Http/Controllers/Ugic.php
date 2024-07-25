@@ -27,7 +27,7 @@ class Ugic extends Controller
     $params['filtrar'] = isset($requestAll['filtrar']) ? unserialize($requestAll['filtrar'])??[] : [];
     $params['dataFormulario'] = isset($requestAll['dataFormulario']) ? unserialize($requestAll['dataFormulario'])??[] : [];
 
-    dd($params, $request, $request->all());
+    //dd($params, $request, $request->all());
     
     if (count($jobdetails) <= 0) {
 
