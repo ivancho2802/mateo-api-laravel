@@ -22,21 +22,21 @@ class Ugic extends Controller
 
     //ajuste de parametros
     $requestAll = $request->all();
-    //dd(isset($requestAll['form']) ? unserialize($requestAll['form'])??[] : []);
-    if(isset($requestAll['name_key'])){
+    //dd(isset($requestAll['form']) ? ($requestAll['form'])??[] : []);
+    if(isset($requestAll['uui'])){
       $form = JobDetails::where('uui', $requestAll['uui'])->first();
       $params['form'] = [
         "dominio" => $form->dominio, 
         "name_key" => $form->name_key,
         "id" => $form->uui,
         "token" => $form->token,
-        "filtrar" => isset($requestAll['filtrar']) ? unserialize($requestAll['filtrar'])??[] : [],
+        "filtrar" => isset($requestAll['filtrar']) ? ($requestAll['filtrar'])??[] : [],
       ];
       $params['dataFormulario'] = json_decode($form->otro);
     }
 
     $params['data'] = isset($requestAll['data']) ? unserialize($requestAll['data'])??[] : [];
-    $params['filtrar'] = isset($requestAll['filtrar']) ? unserialize($requestAll['filtrar'])??[] : [];
+    $params['filtrar'] = isset($requestAll['filtrar']) ? ($requestAll['filtrar'])??[] : [];
 
     //dd($params, $request, $request->all());
     

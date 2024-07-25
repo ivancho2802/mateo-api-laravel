@@ -109,12 +109,12 @@ class Jobs extends Controller
       if(optional($dataTitleResponse)->detail == 'Not found.'){
 
         //return redirect('/koboapdf')->with('error', 'Not found.');
-        return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => serialize($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
+        return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => ($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
 
       }
 
       if (!is_array($dataTitleResponse)) {
-        return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => serialize($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
+        return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => ($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
       }
 
       if (count($dataTitleResponse) > 0) {
@@ -131,11 +131,11 @@ class Jobs extends Controller
         "otro" => $dataFormulario
       ]);
 
-      return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => serialize($request->filtrar)])->with('success', 'Parametros del formulario cargados, falta un paso mas!');
+      return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => ($request->filtrar)])->with('success', 'Parametros del formulario cargados, falta un paso mas!');
     }
 
     if (!isset($request->dominio) || !isset($request->id) || !isset($request->token) || !isset($request->name_key)) {
-      return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => serialize($request->filtrar)])->with('error', 'Error! faltan parametros');
+      return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => ($request->filtrar)])->with('error', 'Error! faltan parametros');
     }
 
     //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
