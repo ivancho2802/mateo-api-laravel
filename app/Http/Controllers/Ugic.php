@@ -19,10 +19,11 @@ class Ugic extends Controller
     //$urls = Url::with('user')->latest()->get();
     $jobdetails = JobDetails::all();
     $data = collect();
-    $params = $request->all();
+    $params = $request;
     $form = $params['form'] ?? [];
     $dataFormulario = $params['dataFormulario'] ?? [];
     
+    return view('koboapdf.index', $params);
     if (count($jobdetails) <= 0) {
 
       return view('koboapdf.index', ["form" => $form , "data" => [], "dataFormulario" => $dataFormulario]);
