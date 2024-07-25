@@ -19,10 +19,13 @@ class Ugic extends Controller
     //$urls = Url::with('user')->latest()->get();
     $jobdetails = JobDetails::all();
     $data = collect();
-    $params = $request->all();
 
-    dd($params);
-
+    //ajuste de parametros
+    $params['form'] = json_decode($request->all()['form'])??[];
+    $params['data'] = json_decode($request->all()['data'])??[];
+    $params['filtrar'] = json_decode($request->all()['filtrar'])??[];
+    $params['dataFormulario'] = json_decode($request->all()['dataFormulario'])??[];
+    
     if (count($jobdetails) <= 0) {
 
       return view('koboapdf.index', $params);
