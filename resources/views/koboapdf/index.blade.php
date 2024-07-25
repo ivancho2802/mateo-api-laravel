@@ -165,27 +165,27 @@
                       <form method="post" action="/job/deploy/exportkobo" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                         @csrf
 
-                        <label for="exampleFormControlTextarea1" class="form-label">Dominio Kobo: {{optional($form)['dominio']}} {{optional($form)->dominio}}</label>
-                        <input type="text" placeholder="kf.acf-e.org" id="dominio" name="dominio" value="{{old('dominio') ?? optional($form)['dominio']}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <label for="exampleFormControlTextarea1" class="form-label">Dominio Kobo:  {{optional($form)->dominio ?? 'no funciona'}} {{optional($form)['dominio'] ?? 'otro no'}}</label>
+                        <input type="text" placeholder="kf.acf-e.org" id="dominio" name="dominio" value="{{optional($form)['dominio'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div>ejemplo de https://kf.acf-e.org/ seria: kf.acf-e.org y para https://collect.nrc.no/ seria collect.nrc.no</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
 
                         <br>
 
                         <label for="exampleFormControlTextarea1" class="form-label">Nombre clave de la solicitud: </label>
-                        <input type="text" placeholder="solicitud_insumos" id="name_key" name="name_key" value="{{old('name_key') ?? optional($form)['name_key']}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <input type="text" placeholder="solicitud_insumos" id="name_key" name="name_key" value="{{optional($form)['name_key'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div>formato: solicitud_insumos no usar espacios y todo en minusculas</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>
 
                         <label for="exampleFormControlTextarea1" class="form-label">uui del formulario: </label>
-                        <input type="text" placeholder="a4E3J9gkULZe5eRqQph8zh" id="id" name="id" value="{{old('id') ?? optional($form)['id']}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <input type="text" placeholder="a4E3J9gkULZe5eRqQph8zh" id="id" name="id" value="{{optional($form)['id'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div> ejemplo seria el que esta despues de forms -> https://kf.acf-e.org/#/forms/a4E3J9gkULZe5eRqQph8zh/data/table de este seria aU9qeP6mihopvkYSu7HhKp</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>
 
                         <label for="exampleFormControlTextarea1" class="form-label">Token de acceso: </label>
-                        <input type="text" placeholder="322f65e3677ee93aa3..." id="token" name="token" value="{{old('token') ?? optional($form)['token']}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <input type="text" placeholder="322f65e3677ee93aa3..." id="token" name="token" value="{{optional($form)['token'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div>ejemplo: 322f65e3677ee93aa3... se obtiene visitando https://kf.acf-e.org/token/?format=json o el que corresponda a su dominio</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>
