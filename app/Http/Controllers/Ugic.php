@@ -21,10 +21,11 @@ class Ugic extends Controller
     $data = collect();
 
     //ajuste de parametros
-    $params['form'] = json_decode($request->all()['form'])??[];
-    $params['data'] = json_decode($request->all()['data'])??[];
-    $params['filtrar'] = json_decode($request->all()['filtrar'])??[];
-    $params['dataFormulario'] = json_decode($request->all()['dataFormulario'])??[];
+    $requestAll = $request->all();
+    $params['form'] = json_decode($requestAll['form'])??[];
+    $params['data'] = json_decode($requestAll['data'])??[];
+    $params['filtrar'] = json_decode($requestAll['filtrar'])??[];
+    $params['dataFormulario'] = json_decode($requestAll['dataFormulario'])??[];
     
     if (count($jobdetails) <= 0) {
 
