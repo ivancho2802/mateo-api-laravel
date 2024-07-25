@@ -552,3 +552,8 @@ mongodb+srv://iodiazbard:pdKwPoxE5IlhQ0Kb@cluster0.jozbdib.mongodb.net/?retryWri
 
  php artisan queue:listen
 
+## para los estilos se usa por defecto
+
+tailwindcss
+
+en app.css

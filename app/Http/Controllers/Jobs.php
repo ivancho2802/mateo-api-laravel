@@ -14,6 +14,7 @@ use App\Models\FailedJobsModel;
 use App\Models\JobDetails;
 use App\Models\migrateCustom;
 use App\Http\Controllers\helper;
+use PhpOffice\PhpSpreadsheet\Calculation\TextData\Search;
 
 class Jobs extends Controller
 {
@@ -61,6 +62,7 @@ class Jobs extends Controller
     ini_set('max_input_time', '' . $limit_minutes . '');
 
     $dominio = "kf.acf-e.org";
+    $form = $request->all();
 
     $token = $request->token;
     $id = $request->id;
@@ -81,6 +83,47 @@ class Jobs extends Controller
 
     $formid = $id;
 
+    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
+
+    if (isset($dominioTitle) && isset($formid) && isset($token) && collect(optional($request)->filtrar)->search('filter') !== false) {
+
+      $dataFormulario = [];
+
+      $jsonurlDataTitle = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+
+      $dataTitleResponse = Http::withHeaders([
+        'Authorization' => 'Token ' . $token . '',
+        'Accept' => 'application/json'
+      ])
+        ->get($jsonurlDataTitle)
+        ->json();
+
+      if(optional($dataTitleResponse)->detail == 'Not found.'){
+
+        //return redirect('/koboapdf')->with('error', 'Not found.');
+        return redirect()->route('koboapdf', ["data" => [], "form" => $form, "filtrar" => $request->filtrar])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
+
+      }
+
+      if (count($dataTitleResponse) > 0) {
+
+        $dataFormulario = collect(collect($dataTitleResponse)->first())->keys()->all();
+
+        //$dataFormulario = json_decode(json_encode(collect($dataFormulario)), FALSE);
+
+      }
+
+      array_push($form['filtrar'], 'filtered');
+
+      return redirect()->route('koboapdf', ["data" => [], "form" => $form, "filtrar" => $request->filtrar, "dataFormulario" => $dataFormulario])->with('success', 'Parametros del formulario cargados, falta un paso mas!');
+      //return redirect()->back()->withInput(["dataFormulario" => $dataFormulario]);
+      //return view('koboapdf.index', ["data" => [], "form" => $form, "filtrar" => $request->filtrar, "dataFormulario" => $dataFormulario]);
+    }
+
+    if (!isset($request->dominio) || !isset($request->id) || !isset($request->token) || !isset($request->name_key)) {
+      return redirect()->route('koboapdf', ["data" => [], "form" => $form, "filtrar" => $request->filtrar])->with('error', 'Error! faltan parametros');
+    }
+
     //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
     JobDetails::create([
       "dominio" => $dominio,
@@ -89,7 +132,6 @@ class Jobs extends Controller
       "token" => $token
     ]);
 
-    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
 
     //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
@@ -112,9 +154,8 @@ class Jobs extends Controller
       ->get($jsonurlDataTitle)
       ->json();
 
-    //dd($dataTitleResponse);
 
-    $name_fomulary = "Acuerdo De Transferencia Monetarias - Cash ECHO";
+    $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
     $metaFiles = [];
     //titulo del formulario
     if (count($dataTitleResponse) > 0) {
@@ -124,7 +165,7 @@ class Jobs extends Controller
 
     }
 
-
+    //filtrando los formularios que ya han sido exportados con filesexported con los formularios consultados dataenketoresponse
     $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
 
       $filesExportedCollect = collect($filesExported);
@@ -140,6 +181,7 @@ class Jobs extends Controller
 
     $dataEnketo = collect($dataEnketoResponseFiltered); //->chunk(45)
 
+    //verifico si la descarga ya esta lsita
     if (count($dataEnketoResponse) == count($filesExported)) {
 
       $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
@@ -159,6 +201,7 @@ class Jobs extends Controller
       $claves = collect($formulario->keys())->filter()->all();
       $valores =  array_values($formulario->toArray());
 
+      //recorreindo las preguntas keys
       for ($i = 0; $i < count($claves); $i++) {
         # code...
         $clave = ($claves[$i]);
@@ -215,6 +258,21 @@ class Jobs extends Controller
       return $formulario;
     }));
 
+    $paramsForm = $request->paramForm;
+    //recorro los formularios con map y recorro las preguntas con map sino estan las sacco
+    $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
+      $formulario = collect($chield); //->forget('name');
+      $keysCurrent = $formulario->keys();
+      
+      $diff = $keysCurrent->diff($paramsForm);
+      
+      $deleteDiff = $diff->first();
+      
+      $filtered = $formulario->except($deleteDiff);
+
+      return $filtered;
+    }));
+
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
     $dataMetaWithImage = ($metaFiles->map(function ($chield) use ($token) {
 
@@ -229,6 +287,7 @@ class Jobs extends Controller
 
     $dataEnketoWithImage->filter()->all();
 
+    //aqui creo los jobs que no han sido procesados
     $dataEnketoWithImage->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse, $name_key, $name_fomulary, $dataMetaWithImage) {
 
       $id_file = $item->get('_id');
@@ -295,6 +354,7 @@ class Jobs extends Controller
 
     $download = "";
 
+    //compruebo sy todo se completo para ofrecer la descarga zip
     if (count($dataEnketoResponse) == count($filesExported)) {
       $zipFileName = $name_key . ".zip";
 
@@ -331,7 +391,7 @@ class Jobs extends Controller
     $data = [$dataExport];
 
     //MQR devolver tabla con los resultados creados 
-    return view('koboapdf.index', ["data" => $data]);
+    return view('koboapdf.index', ["form" => [], "data" => $data]);
     //}
 
     /* return response()
@@ -427,8 +487,59 @@ class Jobs extends Controller
     ]);
   }
 
+  public function addFilterProcessExportView(Request $request)
+  {
+
+    $dominioTitle = "kf.acf-e.org";
+
+    if (isset($request->dominio)) {
+      $dominioTitle = $request->dominio;
+    }
+
+    $id = $request->id;
+    $formid = $id;
+
+    $token = $request->token;
+
+    if (isset($dominioTitle) && isset($formid) && isset($token) && optional($request)->filtrar . contains('filtrar')) {
+
+      $dataFormulario = [];
+
+      $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
+
+      $dataTitleResponse = Http::withHeaders([
+        'Authorization' => 'Token ' . $token . '',
+        'Accept' => 'application/json'
+      ])
+        ->get($jsonurlDataTitle)
+        ->json();
+
+
+      if (count($dataTitleResponse) > 0) {
+
+        $dataFormulario = $dataTitleResponse->map(function ($form) {
+          return ($form->title);
+        });
+
+        $dataFormulario = json_decode(json_encode(collect($dataFormulario)), FALSE);
+
+        dd("dataFormulario", $dataFormulario);
+      }
+
+
+      return view('koboapdf.index', ["form" => [], "data" => [], "filtrar" => $request->filtrar, "dataFormulario" => $dataFormulario]);
+    } else {
+      return redirect('/koboapdf')->with('error', 'Error! faltan parametros');
+    }
+  }
+
   public function getProccessExportView(Request $request)
   {
+
+    if (!isset($request->name_key)) {
+      return redirect('/koboapdf');
+    }
+
 
     $name_key = $request->name_key;
     /* 
@@ -442,7 +553,7 @@ class Jobs extends Controller
     if (!isset($jobdetails)) {
 
       //MQR devolver tabla con los resultados creados 
-      return view('koboapdf.index', ["data" => []]);
+      return view('koboapdf.index', ["form" => [], "data" => []]);
     }
 
     $dominio = $jobdetails->dominio;
@@ -477,14 +588,14 @@ class Jobs extends Controller
 
       if (count($dataEnketoResponse) == count($filesExported)) {
         $zipFileName = $name_key . ".zip";
-  
+
         if (!File::exists(public_path($zipFileName))) {
-  
+
           $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
-  
+
           //$ramdom = Carbon\Carbon::now()->timestamp;
           //dd(Carbon\Carbon::now()->timestamp, time());
-  
+
           if ($resultCreated === true) {
             //$download = public_path($zipFileName);
             $download = "/public/" . ($zipFileName);
@@ -514,7 +625,7 @@ class Jobs extends Controller
 
 
       //MQR devolver tabla con los resultados creados 
-      return view('koboapdf.index', ["data" => $data]);
+      return view('koboapdf.index', ["form" => [], "data" => $data]);
     }
 
     $jobsFirstPayload = json_decode($jobsCreated->first()->payload);
@@ -588,6 +699,6 @@ class Jobs extends Controller
     $data = [$dataExport];
 
     //MQR devolver tabla con los resultados creados 
-    return view('koboapdf.index', ["data" => $data]);
+    return view('koboapdf.index', ["form" => [], "data" => $data]);
   }
 }

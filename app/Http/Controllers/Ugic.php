@@ -13,19 +13,23 @@ use Illuminate\Support\Facades\File;
 
 class Ugic extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
     //
     //$urls = Url::with('user')->latest()->get();
     $jobdetails = JobDetails::all();
     $data = collect();
+    $params = $request->all();
+    $form = $params['form'] ?? [];
+    $dataFormulario = $params['dataFormulario'] ?? [];
+    
 
     if (count($jobdetails) <= 0) {
 
-      return view('koboapdf.index', ["data" => []]);
+      return view('koboapdf.index', ["form" => $form , "data" => [], "dataFormulario" => $dataFormulario]);
     }
 
-    $jobdetails->each(function ($job) use ($data) {
+    $jobdetails->each(function ($job) use ($data, $form, $dataFormulario ) {
 
       $dominio = $job->dominio;
 
@@ -67,7 +71,7 @@ class Ugic extends Controller
         $data = [$dataExport];
 
         //MQR devolver tabla con los resultados creados 
-        return view('koboapdf.index', ["data" => $data]);
+        return view('koboapdf.index', ["form" => $form,  "data" => $data, "dataFormulario" => $dataFormulario]);
       }
 
       $jobsFirstPayload = json_decode($jobsCreated->first()->payload);
@@ -151,6 +155,6 @@ class Ugic extends Controller
 
     //dd($data->toArray()[0]->exportaciones_totales);
 
-    return view('koboapdf.index', ["data" => $data->all()]);
+    return view('koboapdf.index', ["form" => $form , "data" => $data->all(), "dataFormulario" => $dataFormulario]);
   }
 }

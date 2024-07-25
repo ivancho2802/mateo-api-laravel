@@ -113,7 +113,7 @@ order by
 SELECT * FROM "M_LPAS"  order by "ID" desc limit 10 
 --insert into "M_LPAS" values(391420, NULL, NULL, 1223, 36537, 1, 'COSUDE', 'H9', '2024-06-25', '', '', '', '', '', '', 'Otro', 'Fase III-RecuperaciÃ³n temprana', NULL)
 
-delete from "M_LPAS" WHERE "ID" IN (select "ID"  from "M_LPAS" where "FASE_ATENCION" in ('Fase I- Respuesta RÃ¡pida ', 'Fase I- Respuesta RÃ¡pida', 'Fase II- Respuesta RÃ¡pida', 'Fase II- Respuesta RÃ¡pida ', '') )
+  from "M_LPAS" WHERE "ID" IN (select "ID"  from "M_LPAS" where "FASE_ATENCION" in ('Fase I- Respuesta RÃ¡pida ', 'Fase I- Respuesta RÃ¡pida', 'Fase II- Respuesta RÃ¡pida', 'Fase II- Respuesta RÃ¡pida ', '') )
 --719 + 82675 + 328 = 83722
 
 select "FECHA_ATENCION", "FASE_ATENCION"  from "M_LPAS" WHERE "FASE_ATENCION" LIKE '%III%' order by "FECHA_ATENCION" desc limit 10
@@ -123,3 +123,7 @@ select "FECHA_ATENCION", "FASE_ATENCION"  from "M_LPAS" WHERE "FASE_ATENCION" LI
 
 select count(*) from "M_MQR"
 select * from analisis
+select COUNT(*) from "M_LPAS"  where "COD_ACTIVIDAD" = 'H2' AND "FECHA_ATENCION" <='2024-03-31'
+select * from activities where actividad like '%onsultas%'
+
+

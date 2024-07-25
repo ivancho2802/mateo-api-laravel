@@ -92,21 +92,22 @@
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-          Formulario de dedscarga masiva de PDF
+          Formulario de dedscarga masiva de PDF:
         </button>
 
         @if(session()->has('success'))
-        <div x-data="{ show: true}" x-show="show" class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
-          <p class="m-0 text-dark">Msg: {{ session('success')}}</p>
+        <div x-data="{ show: true}" x-show="show" class="position-fixed bg-green-500 rounded top-3 text-sm text-white py-2 px-4">
+          <p class="m-0 text-white">Msg: {{ session('success')}}</p>
         </div>
         @endif
 
         @if(session()->has('error'))
-        <div x-data="{ show: true}" x-show="show" class="position-fixed bg-danger rounded top-3 text-sm py-2 px-4">
-          <p class="m-0 text-danger">Msg: {{ session('error')}}</p>
+        <div x-data="{ show: true}" x-show="show" class="position-fixed bg-red-500 rounded top-3 text-sm text-white py-2 px-4">
+          <p class="m-0 text-white">Msg: {{ session('error')}}</p>
         </div>
         @endif
       </li>
+      >
 
     </ul>
 
@@ -165,35 +166,77 @@
                         @csrf
 
                         <label for="exampleFormControlTextarea1" class="form-label">Dominio Kobo: </label>
-                        <input type="text" placeholder="kf.acf-e.org" id="dominio" name="dominio" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <input type="text" placeholder="kf.acf-e.org" id="dominio" name="dominio" value="{{old('dominio') ?? optional($form)['dominio']}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div>ejemplo de https://kf.acf-e.org/ seria: kf.acf-e.org y para https://collect.nrc.no/ seria collect.nrc.no</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
 
                         <br>
 
                         <label for="exampleFormControlTextarea1" class="form-label">Nombre clave de la solicitud: </label>
-                        <input type="text" placeholder="solicitud_insumos" id="name_key" name="name_key" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <input type="text" placeholder="solicitud_insumos" id="name_key" name="name_key" value="{{old('name_key') ?? optional($form)['name_key']}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div>formato: solicitud_insumos no usar espacios y todo en minusculas</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>
 
-                        <label for="exampleFormControlTextarea1" class="form-label">uui del formulario:</label>
-                        <input type="text" placeholder="a4E3J9gkULZe5eRqQph8zh" id="id" name="id" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <label for="exampleFormControlTextarea1" class="form-label">uui del formulario: </label>
+                        <input type="text" placeholder="a4E3J9gkULZe5eRqQph8zh" id="id" name="id" value="{{old('id') ?? optional($form)['id']}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div> ejemplo seria el que esta despues de forms -> https://kf.acf-e.org/#/forms/a4E3J9gkULZe5eRqQph8zh/data/table de este seria aU9qeP6mihopvkYSu7HhKp</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>
 
                         <label for="exampleFormControlTextarea1" class="form-label">Token de acceso: </label>
-                        <input type="text" placeholder="322f65e3677ee93aa3..." id="token" name="token" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <input type="text" placeholder="322f65e3677ee93aa3..." id="token" name="token" value="{{old('token') ?? optional($form)['token']}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div>ejemplo: 322f65e3677ee93aa3... se obtiene visitando https://kf.acf-e.org/token/?format=json o el que corresponda a su dominio</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>
 
-                        <x-primary-button class="mt-4">Enviar Datos</x-primary-button>
+                        @if(isset($dataFormulario))
+
+                        <label for="exampleFormControlTextarea1" class="form-label">Parametros o variables del formulario: </label>
+
+                        <div class="pt-6" id="filter-section-mobile-0">
+                          <div class="space-y-6">
+                            @forelse ($dataFormulario as $dataf)
+                            <div class="flex items-center">
+                              <input id="paramForm" name="paramForm[]" value="{{$dataf}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" checked>
+                              <label for="paramForm" class="ml-3 min-w-0 flex-1 text-gray-500">{{$dataf}}</label>
+                            </div>
+                            @empty
+                            {{'no cargo'}}
+                            @endforelse
+                          </div>
+                        </div>
+                        @else
+                        {{'no cargo'}}
+                        @endif
+
+                        @if(session()->has('errorMessageDuration'))
+                        <div class="alert alert-red-500">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                          {{ session('errorMessageDuration') }}
+                        </div>
+                        @endif
+
+                        @if(isset($form['filtrar'])  && $form['filtrar'][0] == 'filtered')
+
+                        @elseif(!isset($form['filtrar']) )
+                        <input id="filtrar" name="filtrar[]" value="filter" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4 bg-blue">
+                          Filtrar por campos del formulario
+                        </button>
+                        @endif
 
 
-
+                        <x-primary-button class="mt-4 ">Enviar Datos</x-primary-button>
                       </form>
+
+                      <!-- <form method="put" action="/koboapdf" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                        @csrf
+                        <label>
+                          <input id="filtrar" name="filtrar[]" value="filter" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                          <x-primary-button class="mt-4">Filtrar por campos del formulario</x-primary-button>
+                        </label>
+                      </form> -->
 
                     </div>
                   </div>
@@ -240,11 +283,11 @@
 
                         <br>
 
-                        <x-primary-button class="mt-4">Enviar Datos</x-primary-button>
+                        <x-primary-button class="mt-4">Enviar Consulta</x-primary-button>
                       </form>
 
                       @if(!isset($data))
-                      <div x-data="{ show: true}" x-show="show" class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
+                      <div x-data="{ show: true}" x-show="show" class="position-fixed bg-green-500 rounded top-3 text-sm py-2 px-4">
                         <p class="m-0 text-dark">Msg: No hay datos de procesos</p>
                       </div>
                       @endif
@@ -266,7 +309,9 @@
                               </a>
                             </td>
                             @else
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 50px; "><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 50px; "><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                              <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
+                            </svg>
                             @endif
 
                             <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" style="width: 50px;">
@@ -350,7 +395,9 @@
                             </td>
                             @else
                             <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 25px; "><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/></svg>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 25px; "><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                <path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" />
+                              </svg>
                             </td>
                             @endif
                           </tr>

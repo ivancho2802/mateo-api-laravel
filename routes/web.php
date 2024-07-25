@@ -33,12 +33,14 @@ Route::resource('urls', UrlController::class)
 Route::resource('matrizprensa', MatrizController::class)
     ->middleware(['auth']); //, 'verified'
 
-Route::resource('koboapdf', Ugic::class)
-    ->middleware(['auth']); //, 'verified'
+Route::get('/koboapdf', [Ugic::class, 'index'])
+    ->middleware(['auth'])->name('koboapdf');
 
 Route::middleware(['auth'])->post('/job/deploy/exportkobo', [App\Http\Controllers\Jobs::class, 'exportByuui']);
 
 Route::middleware(['auth'])->post('/koboapdf', [App\Http\Controllers\Jobs::class, 'getProccessExportView']);
+
+Route::middleware(['auth'])->put('/koboapdf', [App\Http\Controllers\Jobs::class, 'addFilterProcessExportView']);
 
 // route for get shortener url
 Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
