@@ -217,7 +217,7 @@
                         </div>
                         @endif
 
-                        @if(is_array($form['filtrar'])  && array_search('filtered', $form['filtrar']) >=0 )
+                        @if(isset($form) && is_array($form['filtrar'])  && array_search('filtered', $form['filtrar']) >=0 )
 
                         @elseif(!isset($form['filtrar']) )
                         <input id="filtrar" name="filtrar[]" value="filter" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
