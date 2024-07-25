@@ -13,7 +13,7 @@ class AlterJobDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::table('reports', function (Blueprint $table) {
+        Schema::table('job_details', function (Blueprint $table) {
             $table->text('otro')->nullable()->change();
         });
 
