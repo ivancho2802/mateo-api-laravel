@@ -1007,7 +1007,7 @@ class Kobo extends Controller
         } */
 
         //sacar data en tablas
-        $jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formdata->formid;
+        /* $jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formdata->formid;
         //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
         $items = Http::withHeaders([
@@ -1015,7 +1015,7 @@ class Kobo extends Controller
             'Accept' => 'application/json'
         ])
             ->get($jsonurlDataEnketo)
-            ->json();
+            ->json(); */
 
         $itamsWithLabes =  $this->getKoboLabels($formid, $token);
 
@@ -1025,14 +1025,15 @@ class Kobo extends Controller
             collect(
                 $itamsWithLabes
             )
-                ->where("_uuid", "3e49d109-a5f2-492c-b104-d94ceb7edfdf")
+                //->where("_uuid", "349b79d4-6c2a-4917-9aaf-d8cb1b32c2b8")//3e49d109-a5f2-492c-b104-d94ceb7edfdf
                 ->first()
         )->sortKeys(); //json_decode(json_encode), FALSE);
 
         //dd("itemsCollect", $itemsCollect->keys());
         //mostrar los radios
 
-        $dataMetaWithImage = (collect($formdata->metadata)->map(function ($chield) use ($token) {
+        $dataMetaWithImage = [];
+        /* (collect($formdata->metadata)->map(function ($chield) use ($token) {
 
             $metaF = ($chield); //->forget('name');
 
@@ -1041,7 +1042,7 @@ class Kobo extends Controller
             $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
 
             return $metaF;
-        }));
+        })); */
 
         return view('pdf.formulario', ["data" => $itemsCollect, "filename" => "fillename", "metaFilesForm" => $dataMetaWithImage]);
     }

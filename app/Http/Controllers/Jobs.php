@@ -259,6 +259,7 @@ class Jobs extends Controller
     }));
 
     $paramsForm = $request->paramForm;
+    //filtro segun lo especificado
     //recorro los formularios con map y recorro las preguntas con map sino estan las sacco
     $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
       $formulario = collect($chield); //->forget('name');

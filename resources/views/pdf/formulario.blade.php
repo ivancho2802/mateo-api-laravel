@@ -258,13 +258,29 @@
             <label class="question non-select ">
               <span lang="" class="question-label active">{{isset($data->keys()[$i]) ? is_string($data->keys()[$i]) ? $data->keys()[$i] : implode($data->keys()[$i]): 'N/A'}}:</span>
               <span class="required">*</span>
-              <div class="widget date">
+              <div class="question date">
                 @if((stripos(isset($data->keys()[$i]) ? is_string($data->keys()[$i]) ? $data->keys()[$i] : implode($data->keys()[$i]): 'N/A', 'data:image') !== false))
                 <div class="file-preview">
                   <img src="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}" />
                 </div>
-                @else
+                @elseif(is_string($data->values()[$i])) 
                 <input class="ignore input-small" type="text" value="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}">
+                @elseif(is_array($data->values()[$i]))
+                  @foreach ($data->values()[$i] as $dataf)
+                    @for ($j = 0; $j < count(collect($dataf)->keys()); $j++)
+                      <label class="question non-select ">
+                        <span lang="" class="question-label active">{{isset(collect($dataf)->keys()[$j]) ? is_string(collect($dataf)->keys()[$j]) ? collect($dataf)->keys()[$j] : implode(collect($dataf)->keys()[$j]): 'N/A'}}:</span>
+                        <span class="required">*</span>
+                        <div class="widget date">
+                          <input class="ignore input-small" type="text" value="{{isset(collect($dataf)->values()[$j]) ? is_string(collect($dataf)->values()[$j]) ? collect($dataf)->values()[$j] : json_encode(collect($dataf)->values()[$j]): 'N/A'}}">
+                        </div>
+                      </label>
+                      <br>
+                    @endfor
+                      <br>
+                  @endforeach
+                @else
+                  <input class="ignore input-small" type="text" value="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}">
                 @endif
 
               </div>
