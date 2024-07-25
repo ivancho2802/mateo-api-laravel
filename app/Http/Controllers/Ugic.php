@@ -20,6 +20,8 @@ class Ugic extends Controller
     $jobdetails = JobDetails::all();
     $data = collect();
     $params = $request;
+
+    dd($params);
     
     if (count($jobdetails) <= 0) {
 
