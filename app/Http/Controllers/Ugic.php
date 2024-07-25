@@ -21,9 +21,7 @@ class Ugic extends Controller
     $data = collect();
     $params = $request->all();
 
-    if(!isset($params["form"])){
-      dd($params);
-    }
+    dd($params);
 
     if (count($jobdetails) <= 0) {
 
