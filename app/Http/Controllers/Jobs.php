@@ -115,7 +115,7 @@ class Jobs extends Controller
 
       array_push($form['filtrar'], 'filtered');
 
-      return redirect()->route('koboapdf', ["data" => [], "form" => $form, "filtrar" => $request->filtrar, "dataFormulario" => $dataFormulario])->with('success', 'Parametros del formulario cargados, falta un paso mas!');
+      return redirect()->route('koboapdf', ["data" => [], "form" => $form, "filtrar" => $request->filtrar, "dataFormulario" => $dataFormulario]);//->with('success', 'Parametros del formulario cargados, falta un paso mas!');
       //return redirect()->back()->withInput(["dataFormulario" => $dataFormulario]);
       //return view('koboapdf.index', ["data" => [], "form" => $form, "filtrar" => $request->filtrar, "dataFormulario" => $dataFormulario]);
     }
