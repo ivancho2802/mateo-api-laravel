@@ -85,8 +85,9 @@ class Jobs extends Controller
 
     $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
 
+    //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
     if (isset($dominioTitle) && isset($formid) && isset($token) && isset($request->filtrar) && collect($request->filtrar)->search('filter') >=0 ) {
-
+      
       $dataFormulario = [];
 
       $jsonurlDataTitle = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
@@ -101,31 +102,37 @@ class Jobs extends Controller
       if(optional($dataTitleResponse)->detail == 'Not found.'){
 
         //return redirect('/koboapdf')->with('error', 'Not found.');
-        return redirect()->route('koboapdf', ["data" => [], "form" => serialize($form), "filtrar" => serialize($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
+        return redirect()->route('koboapdf', ["data" => [], "name_key" => ($$name_key), "filtrar" => serialize($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
 
       }
 
       if (!is_array($dataTitleResponse)) {
-        return redirect()->route('koboapdf', ["data" => [], "form" => serialize($form), "filtrar" => serialize($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
+        return redirect()->route('koboapdf', ["data" => [], "name_key" => ($name_key), "filtrar" => serialize($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
       }
 
       if (count($dataTitleResponse) > 0) {
 
         $dataFormulario = collect(collect($dataTitleResponse)->first())->keys()->all();
 
-        //$dataFormulario = json_decode(json_encode(collect($dataFormulario)), FALSE);
-
       }
 
       array_push($form['filtrar'], 'filtered');
 
-      return redirect()->route('koboapdf', ["data" => [], "form" => serialize($form), "filtrar" => serialize($request->filtrar), "dataFormulario" => serialize($dataFormulario)])->with('success', 'Parametros del formulario cargados, falta un paso mas!');
-      //return redirect()->back()->withInput(["dataFormulario" => $dataFormulario]);
-      //return view('koboapdf.index', ["data" => [], "form" => $form, "filtrar" => $request->filtrar, "dataFormulario" => $dataFormulario]);
+      $dataFormulario = json_encode($dataFormulario);
+
+      JobDetails::create([
+        "dominio" => $dominio,
+        "name_key" => $name_key,
+        "uui" => $formid,
+        "token" => $token,
+        "otro" => $dataFormulario
+      ]);
+
+      return redirect()->route('koboapdf', ["data" => [], "name_key" => ($name_key), "filtrar" => serialize($request->filtrar)])->with('success', 'Parametros del formulario cargados, falta un paso mas!');
     }
 
     if (!isset($request->dominio) || !isset($request->id) || !isset($request->token) || !isset($request->name_key)) {
-      return redirect()->route('koboapdf', ["data" => [], "form" => serialize($form), "filtrar" => serialize($request->filtrar)])->with('error', 'Error! faltan parametros');
+      return redirect()->route('koboapdf', ["data" => [], "name_key" => ($name_key), "filtrar" => serialize($request->filtrar)])->with('error', 'Error! faltan parametros');
     }
 
     //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
@@ -396,8 +403,8 @@ class Jobs extends Controller
     $data = [$dataExport];
 
     //MQR devolver tabla con los resultados creados 
-      return redirect()->route('koboapdf', ["form" => [], "data" => serialize($data)]);
-      //return view('koboapdf.index', ["form" => [], "data" => serialize($data)]);
+      return redirect()->route('koboapdf', ["name_key" => "", "data" => serialize($data)]);
+      //return view('koboapdf.index', ["name_key" => "", "data" => serialize($data)]);
     //}
 
     /* return response()
@@ -533,7 +540,7 @@ class Jobs extends Controller
       }
 
 
-      return view('koboapdf.index', ["form" => [], "data" => [], "filtrar" => $request->filtrar, "dataFormulario" => $dataFormulario]);
+      return view('koboapdf.index', ["name_key" => "name_key", "data" => [], "filtrar" => $request->filtrar, "dataFormulario" => $dataFormulario]);
     } else {
       return redirect('/koboapdf')->with('error', 'Error! faltan parametros');
     }
@@ -559,7 +566,7 @@ class Jobs extends Controller
     if (!isset($jobdetails)) {
 
       //MQR devolver tabla con los resultados creados 
-      return view('koboapdf.index', ["form" => [], "data" => []]);
+      return view('koboapdf.index', ["name_key" => "", "data" => []]);
     }
 
     $dominio = $jobdetails->dominio;
@@ -631,7 +638,7 @@ class Jobs extends Controller
 
 
       //MQR devolver tabla con los resultados creados 
-      return view('koboapdf.index', ["form" => [], "data" => $data]);
+      return view('koboapdf.index', ["name_key" => "name_key", "data" => $data]);
     }
 
     $jobsFirstPayload = json_decode($jobsCreated->first()->payload);
@@ -705,6 +712,6 @@ class Jobs extends Controller
     $data = [$dataExport];
 
     //MQR devolver tabla con los resultados creados 
-    return view('koboapdf.index', ["form" => [], "data" => $data]);
+    return view('koboapdf.index', ["name_key" => "", "data" => $data]);
   }
 }
