@@ -22,7 +22,7 @@ class Ugic extends Controller
 
     //ajuste de parametros
     $requestAll = $request->all();
-    $params['form'] = json_decode($requestAll['form'])??[];
+    $params['form'] = isset($requestAll['form']) ? json_decode($requestAll['form'])??[] : [];
     $params['data'] = json_decode($requestAll['data'])??[];
     $params['filtrar'] = json_decode($requestAll['filtrar'])??[];
     $params['dataFormulario'] = json_decode($requestAll['dataFormulario'])??[];
