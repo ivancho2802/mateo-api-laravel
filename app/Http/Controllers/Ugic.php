@@ -22,12 +22,12 @@ class Ugic extends Controller
 
     //ajuste de parametros
     $requestAll = $request->all();
-    $params['form'] = isset($requestAll['form']) ? ($requestAll['form'])??[] : [];
-    $params['data'] = isset($requestAll['data']) ? ($requestAll['data'])??[] : [];
-    $params['filtrar'] = isset($requestAll['filtrar']) ? ($requestAll['filtrar'])??[] : [];
-    $params['dataFormulario'] = isset($requestAll['dataFormulario']) ? ($requestAll['dataFormulario'])??[] : [];
+    $params['form'] = isset($requestAll['form']) ? unserialize($requestAll['form'])??[] : [];
+    $params['data'] = isset($requestAll['data']) ? unserialize($requestAll['data'])??[] : [];
+    $params['filtrar'] = isset($requestAll['filtrar']) ? unserialize($requestAll['filtrar'])??[] : [];
+    $params['dataFormulario'] = isset($requestAll['dataFormulario']) ? unserialize($requestAll['dataFormulario'])??[] : [];
 
-    dd($params, $request, $request->all());
+    //dd($params, $request, $request->all());
     
     if (count($jobdetails) <= 0) {
 
