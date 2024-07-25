@@ -89,6 +89,13 @@ class Jobs extends Controller
     if (isset($dominioTitle) && isset($formid) && isset($token) && isset($request->filtrar) && collect($request->filtrar)->search('filter') >=0 ) {
       
       $dataFormulario = [];
+      
+      $jobDetails = JobDetails::firstOrCreate([
+        "dominio" => $dominio,
+        "name_key" => $name_key,
+        "uui" => $formid,
+        "token" => $token,
+      ]);
 
       $jsonurlDataTitle = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
 
@@ -102,12 +109,12 @@ class Jobs extends Controller
       if(optional($dataTitleResponse)->detail == 'Not found.'){
 
         //return redirect('/koboapdf')->with('error', 'Not found.');
-        return redirect()->route('koboapdf', ["data" => [], "name_key" => ($$name_key), "filtrar" => serialize($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
+        return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => serialize($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
 
       }
 
       if (!is_array($dataTitleResponse)) {
-        return redirect()->route('koboapdf', ["data" => [], "name_key" => ($name_key), "filtrar" => serialize($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
+        return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => serialize($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
       }
 
       if (count($dataTitleResponse) > 0) {
@@ -120,23 +127,19 @@ class Jobs extends Controller
 
       $dataFormulario = json_encode($dataFormulario);
 
-      JobDetails::create([
-        "dominio" => $dominio,
-        "name_key" => $name_key,
-        "uui" => $formid,
-        "token" => $token,
+      JobDetails::where("uui", $jobDetails->uui)->update([
         "otro" => $dataFormulario
       ]);
 
-      return redirect()->route('koboapdf', ["data" => [], "name_key" => ($name_key), "filtrar" => serialize($request->filtrar)])->with('success', 'Parametros del formulario cargados, falta un paso mas!');
+      return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => serialize($request->filtrar)])->with('success', 'Parametros del formulario cargados, falta un paso mas!');
     }
 
     if (!isset($request->dominio) || !isset($request->id) || !isset($request->token) || !isset($request->name_key)) {
-      return redirect()->route('koboapdf', ["data" => [], "name_key" => ($name_key), "filtrar" => serialize($request->filtrar)])->with('error', 'Error! faltan parametros');
+      return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => serialize($request->filtrar)])->with('error', 'Error! faltan parametros');
     }
 
     //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
-    JobDetails::create([
+    JobDetails::updateOrCreate([
       "dominio" => $dominio,
       "name_key" => $name_key,
       "uui" => $formid,
