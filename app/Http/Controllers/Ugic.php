@@ -24,7 +24,7 @@ class Ugic extends Controller
     $requestAll = $request->all();
     //dd(isset($requestAll['form']) ? unserialize($requestAll['form'])??[] : []);
     if(isset($requestAll['name_key'])){
-      $form = JobDetails::where('name_key', '=', $requestAll['name_key'])->first();
+      $form = JobDetails::where('name_key', $requestAll['name_key'])->first();
       $params['form'] = [
         "dominio" => $form->dominio, 
         "name_key" => $form->name_key,
