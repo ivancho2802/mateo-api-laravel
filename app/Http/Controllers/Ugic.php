@@ -23,7 +23,6 @@ class Ugic extends Controller
     $form = $params['form'] ?? [];
     $dataFormulario = $params['dataFormulario'] ?? [];
     
-    dd($params);
     if (count($jobdetails) <= 0) {
 
       return view('koboapdf.index', ["form" => $form , "data" => [], "dataFormulario" => $dataFormulario]);
