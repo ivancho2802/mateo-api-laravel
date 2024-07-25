@@ -85,7 +85,7 @@ class Jobs extends Controller
 
     $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
 
-    if (isset($dominioTitle) && isset($formid) && isset($token) && collect(optional($request)->filtrar)->search('filter') !== false) {
+    if (isset($dominioTitle) && isset($formid) && isset($token) && isset($request->filtrar) && collect($request->filtrar)->search('filter') >=0 ) {
 
       $dataFormulario = [];
 
@@ -103,6 +103,10 @@ class Jobs extends Controller
         //return redirect('/koboapdf')->with('error', 'Not found.');
         return redirect()->route('koboapdf', ["data" => [], "form" => $form, "filtrar" => $request->filtrar])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
 
+      }
+
+      if (!is_array($dataTitleResponse)) {
+        return redirect()->route('koboapdf', ["data" => [], "form" => $form, "filtrar" => $request->filtrar])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
       }
 
       if (count($dataTitleResponse) > 0) {
