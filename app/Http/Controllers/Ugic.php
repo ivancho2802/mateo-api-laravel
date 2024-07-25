@@ -19,7 +19,7 @@ class Ugic extends Controller
     //$urls = Url::with('user')->latest()->get();
     $jobdetails = JobDetails::all();
     $data = collect();
-    $params = $request;
+    $params = $request->all();
 
     dd($params);
     
