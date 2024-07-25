@@ -21,8 +21,6 @@ class Ugic extends Controller
     $data = collect();
     $params = $request->all();
 
-    dd($params);
-    
     if (count($jobdetails) <= 0) {
 
       return view('koboapdf.index', $params);
