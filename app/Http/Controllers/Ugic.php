@@ -22,6 +22,7 @@ class Ugic extends Controller
 
     //ajuste de parametros
     $requestAll = $request->all();
+    dd(isset($requestAll['form']) ? unserialize($requestAll['form'])??[] : []);
     $params['form'] = isset($requestAll['form']) ? unserialize($requestAll['form'])??[] : [];
     $params['data'] = isset($requestAll['data']) ? unserialize($requestAll['data'])??[] : [];
     $params['filtrar'] = isset($requestAll['filtrar']) ? unserialize($requestAll['filtrar'])??[] : [];
