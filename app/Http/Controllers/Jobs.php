@@ -286,7 +286,8 @@ class Jobs extends Controller
       $filtered = $formulario->except($deleteDiff);
 
       //se ordena por las keys
-      ksort($filtered->toArray());
+      $filtered = $filtered->all();
+      ksort($filtered);
 
       return $filtered;
     }));
