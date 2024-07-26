@@ -33,6 +33,17 @@
           <td class="grid_encab" id="rm_lpa_1" data-campo="FECHA_ACTIV" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
             <div style=" float: center; text-align:center">Otro dato</div><span id="m_lpa_asc_1" class="ascendente" style="display:none"></span><span id="m_lpa_des_1" class="descendente" style="display:none"></span>
           </td>
+
+          <td class="grid_encab" id="rm_lpa_0" data-campo="CODIGO" style="width: 80px; min-width: 80px; cursor: pointer;">
+            <div style=" float: left; text-align:left">Dinero ahorrado por persona</div><span id="m_lpa_asc_0" class="ascendente" style="display:none"></span><span id="m_lpa_des_0" class="descendente" style="display:none"></span>
+          </td>
+          <td class="grid_encab" id="rm_lpa_0" data-campo="CODIGO" style="width: 80px; min-width: 80px; cursor: pointer;">
+            <div style=" float: left; text-align:left">Grupo Ahorro</div><span id="m_lpa_asc_0" class="ascendente" style="display:none"></span><span id="m_lpa_des_0" class="descendente" style="display:none"></span>
+          </td>
+
+          <td class="grid_encab" id="rm_lpa_1" data-campo="FECHA_ACTIV" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+            <div style=" float: center; text-align:center">Personas Bancarizadas</div><span id="m_lpa_asc_1" class="ascendente" style="display:none"></span><span id="m_lpa_des_1" class="descendente" style="display:none"></span>
+          </td>
         </tr>
       </thead>
 
@@ -47,6 +58,15 @@
           </td>
           <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
             {{$adn->otro}}
+          </td>
+          <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+            {{$adn->dinero_ahorrado_x_persona}}
+          </td>
+          <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+            {{$adn->grupo_ahorro}}
+          </td>
+          <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+            {{$adn->personas_bancarizadas}}
           </td>
         </tr>
         @empty
@@ -70,6 +90,18 @@
       
       <label for="exampleFormControlTextarea1" class="form-label">Otro dato: </label>
       <input type="text" placeholder="" id="otro" name="otro" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+
+      <label for="exampleFormControlTextarea1" class="form-label">Dinero ahorrado por persona: </label>
+      <input type="text" placeholder="" id="dinero_ahorrado_x_persona" name="dinero_ahorrado_x_persona" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+
+      
+      <label for="exampleFormControlTextarea1" class="form-label">Grupo Ahorro: </label>
+      <input type="text" placeholder="" id="grupo_ahorro" name="grupo_ahorro" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+
+      
+      <label for="exampleFormControlTextarea1" class="form-label">Personas Bancarizadas: </label>
+      <input type="text" placeholder="" id="personas_bancarizadas" name="personas_bancarizadas" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+
 
       <br>
 

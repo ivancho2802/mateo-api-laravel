@@ -317,6 +317,7 @@ class Jobs extends Controller
 
       if (!Storage::disk('local')->exists($filename)) {
         if (isset($item)   && isset($filename)) {
+          dd($item);
           generatePdf::dispatch($item, $filename, $dataMetaWithImage); //->onConnection('database');
           //generatePdf::dispatchAfterResponse();
         }
