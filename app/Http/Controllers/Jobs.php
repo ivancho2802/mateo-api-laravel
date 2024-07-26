@@ -288,6 +288,9 @@ class Jobs extends Controller
       return $filtered;
     }));
 
+    //se ordena por las keys
+    ksort($dataEnketoWithImage->all());
+
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
     $dataMetaWithImage = ($metaFiles->map(function ($chield) use ($token) {
 
