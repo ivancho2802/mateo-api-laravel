@@ -13,6 +13,10 @@ class Adn extends Model
         'presupuesto_ach', 
         'presupuesto_total', 
         'otro', 
+        
+        "dinero_ahorrado_x_persona",
+        "grupo_ahorro",
+        "personas_bancarizadas"
     ];
 
     
