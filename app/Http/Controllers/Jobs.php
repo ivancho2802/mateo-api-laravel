@@ -86,10 +86,10 @@ class Jobs extends Controller
     $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
 
     //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
-    if (isset($dominioTitle) && isset($formid) && isset($token) && isset($request->filtrar) && collect($request->filtrar)->search('filter') >=0 ) {
-      
+    if (isset($dominioTitle) && isset($formid) && isset($token) && isset($request->filtrar) && collect($request->filtrar)->search('filter') >= 0) {
+
       $dataFormulario = [];
-      
+
       $jobDetails = JobDetails::firstOrCreate([
         "dominio" => $dominio,
         "name_key" => $name_key,
@@ -106,11 +106,10 @@ class Jobs extends Controller
         ->get($jsonurlDataTitle)
         ->json();
 
-      if(optional($dataTitleResponse)->detail == 'Not found.'){
+      if (optional($dataTitleResponse)->detail == 'Not found.') {
 
         //return redirect('/koboapdf')->with('error', 'Not found.');
         return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => ($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
-
       }
 
       if (!is_array($dataTitleResponse)) {
@@ -120,7 +119,6 @@ class Jobs extends Controller
       if (count($dataTitleResponse) > 0) {
 
         $dataFormulario = collect(collect($dataTitleResponse)->first())->keys()->all();
-
       }
 
       array_push($form['filtrar'], 'filtered');
@@ -275,21 +273,23 @@ class Jobs extends Controller
     $paramsForm = $request->paramForm;
     //filtro segun lo especificado
     //recorro los formularios con map y recorro las preguntas con map sino estan las sacco
-    $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
-      $formulario = collect($chield); //->forget('name');
-      $keysCurrent = $formulario->keys();
-      
-      $diff = $keysCurrent->diff($paramsForm);
-      
-      $deleteDiff = $diff->first();
-      
-      $filtered = $formulario->except($deleteDiff);
+    if (count(collect(collect($dataEnketoWithImage)->first())->keys()) !== count($paramsForm)) {
+      $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
+        $formulario = collect($chield); //->forget('name');
+        $keysCurrent = $formulario->keys();
 
-      //se ordena por las keys
-      $filtered = collect($filtered)->sortKeys();
+        $diff = $keysCurrent->diff($paramsForm);
 
-      return $filtered;
-    }));
+        $deleteDiff = $diff->first();
+
+        $filtered = $formulario->except($deleteDiff);
+
+        //se ordena por las keys
+        $filtered = collect($filtered)->sortKeys();
+
+        return $filtered;
+      }));
+    }
 
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
@@ -317,7 +317,7 @@ class Jobs extends Controller
 
       if (!Storage::disk('local')->exists($filename)) {
         if (isset($item)   && isset($filename)) {
-          dd($item);
+          //dd($item);
           generatePdf::dispatch($item, $filename, $dataMetaWithImage); //->onConnection('database');
           //generatePdf::dispatchAfterResponse();
         }
@@ -411,8 +411,8 @@ class Jobs extends Controller
     $data = [$dataExport];
 
     //MQR devolver tabla con los resultados creados 
-      return redirect()->route('koboapdf', ["name_key" => "", "data" => serialize($data)]);
-      //return view('koboapdf.index', ["name_key" => "", "data" => serialize($data)]);
+    return redirect()->route('koboapdf', ["name_key" => "", "data" => serialize($data)]);
+    //return view('koboapdf.index', ["name_key" => "", "data" => serialize($data)]);
     //}
 
     /* return response()
