@@ -11,9 +11,9 @@
   <!-- <script src="https://ee.acf-e.org/js/build/ie11-polyfill.min.js" nomodule=""></script>
   <script src="https://ee.acf-e.org/js/build/obscure-ie11-polyfills.js" nomodule=""></script> -->
   <!-- preload for performance-->
-  <link rel="preload" as="font" href="https://ugic.api.ach.dyndns.info/public/download/OpenSans-Bold-webfont.woff" type="font/woff" crossorigin="">
-  <link rel="preload" as="font" href="https://ugic.api.ach.dyndns.info/public/download/OpenSans-Regular-webfont.woff" type="font/woff" crossorigin="">
-  <link rel="preload" as="font" href="https://ugic.api.ach.dyndns.info/public/download/fontawesome-webfont.woff?v=4.6.2" type="font/woff" crossorigin="">
+  <link rel="preload" as="font" href="/public/download/OpenSans-Bold-webfont.woff" type="font/woff" crossorigin="">
+  <link rel="preload" as="font" href="/public/download/OpenSans-Regular-webfont.woff" type="font/woff" crossorigin="">
+  <link rel="preload" as="font" href="/public/download/fontawesome-webfont.woff?v=4.6.2" type="font/woff" crossorigin="">
   <!-- critical styles inline for performance-->
   <style>
     @keyframes pulsate {
@@ -109,9 +109,9 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="https://ugic.api.ach.dyndns.info/public/download/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-  <link rel="stylesheet" media="all" type="text/css" href="https://ugic.api.ach.dyndns.info/public/download/theme-grid.print.css">
-  <link rel="stylesheet" media="all" type="text/css" href="https://ugic.api.ach.dyndns.info/public/download/theme-grid.css">
+  <link rel="stylesheet" type="text/css" href="/public/download/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/download/theme-grid.print.css">
+  <link rel="stylesheet" type="text/css" href="/public/download/theme-grid.css">
 
   <style>
     input[type=radio]:checked {
