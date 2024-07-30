@@ -202,12 +202,12 @@
                               <label for="paramForm" class="ml-3 min-w-0 flex-1 text-gray-500">{{$dataf}}</label>
                             </div>
                             @empty
-                            {{'no cargo'}}
+                            {{'>'}}
                             @endforelse
                           </div>
                         </div>
                         @else
-                        {{'no cargo'}}
+                        {{'>'}}
                         @endif
 
                         @if(session()->has('errorMessageDuration'))

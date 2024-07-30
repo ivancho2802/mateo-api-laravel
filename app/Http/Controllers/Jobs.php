@@ -359,30 +359,20 @@ class Jobs extends Controller
         return response()->json(['status' => false, 'message' => $resultCreated], 503);
       }
     } else { */
-
+    /* 
     $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
 
     $jobsCreated = JobsModel::all();
 
-    /* return response()->json([
-        "exportaciones totales" => count($dataEnketoResponse),
-        "exportaciones procesadas" => count($filesExported),
-        "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported),
-        "trabajos en proceso" => count($jobsCreated)
-      ]); */
-
-    $download = "";
+    $download = ""; */
 
     //compruebo sy todo se completo para ofrecer la descarga zip
-    if (count($dataEnketoResponse) == count($filesExported)) {
+    /* if (count($dataEnketoResponse) == count($filesExported)) {
       $zipFileName = $name_key . ".zip";
 
       if (!File::exists(public_path($zipFileName))) {
 
         $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
-
-        //$ramdom = Carbon\Carbon::now()->timestamp;
-        //dd(Carbon\Carbon::now()->timestamp, time());
 
         if ($resultCreated === true) {
           //$download = public_path($zipFileName);
@@ -395,9 +385,9 @@ class Jobs extends Controller
         //$download = public_path($zipFileName);
         $download = "/public/" . ($zipFileName);
       }
-    }
+    } */
 
-    $dataExport = json_decode(collect([
+    /* $dataExport = json_decode(collect([
       "name_key" => ($name_key),
       "exportaciones_totales" => count($dataEnketoResponse),
       "exportaciones_procesadas" => count($filesExported),
@@ -407,7 +397,7 @@ class Jobs extends Controller
       "download" => $download
     ]));
 
-    $data = [$dataExport];
+    $data = [$dataExport]; */
 
     //MQR devolver tabla con los resultados creados 
     return redirect()->route('koboapdf', ["name_key" => ""])->with('success', 'Formulario solicitado con exito!');;
