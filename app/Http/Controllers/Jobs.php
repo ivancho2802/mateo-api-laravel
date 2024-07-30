@@ -52,7 +52,7 @@ class Jobs extends Controller
   {
     /* try { */
 
-    //dd($request->dominio, $token);
+    dd($request->dominio, $token);
 
     $limit_minutes = 900;
     ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
@@ -293,7 +293,8 @@ class Jobs extends Controller
 
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
-    $dataMetaWithImage = $metaFiles;/* ($metaFiles->map(function ($chield) use ($token) {
+    $dataMetaWithImage = $metaFiles;
+    /* ($metaFiles->map(function ($chield) use ($token) {
 
       $metaF = ($chield); //->forget('name');
 
