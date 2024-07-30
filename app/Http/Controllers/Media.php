@@ -87,9 +87,9 @@ class Media extends Controller
 
         $path = public_path($filename);
         
-        $headers = array(
-            'Content-Type: text/css',
-        );
+        $headers = $headers = [
+            'Content-Type' => 'text/css',
+        ];
 
         // Download file with custom headers
         return response()->download($path, $filename, $headers);
