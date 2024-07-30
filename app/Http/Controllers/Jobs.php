@@ -293,7 +293,7 @@ class Jobs extends Controller
 
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
-    $dataMetaWithImage = ($metaFiles->map(function ($chield) use ($token) {
+    $dataMetaWithImage = $metaFiles;/* ($metaFiles->map(function ($chield) use ($token) {
 
       $metaF = ($chield); //->forget('name');
 
@@ -302,7 +302,7 @@ class Jobs extends Controller
       $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
 
       return $metaF;
-    }));
+    })); */
 
     $dataEnketoWithImage->filter()->all();
 

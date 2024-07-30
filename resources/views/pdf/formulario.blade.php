@@ -5,15 +5,15 @@
   <meta charset="utf-8">
   <meta name="author" content="Martijn van de Rijdt (Enketo LLC)">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="https://ugic.api.ach.dyndns.info/public/download/favicon.ico">
-  <link rel="icon" type="image/png" sizes="180x180" href="https://ugic.api.ach.dyndns.info/public/download/logo_ach_only_icon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="https://ugic.api.ach.dyndns.info/public/download/logo_ach_only_icon.png">
+  <link rel="shortcut icon" href="https://ee.acf-e.org/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="180x180" href="https://ee.acf-e.org/images/icon_180x180.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://ee.acf-e.org/images/icon_180x180.png">
   <!-- <script src="https://ee.acf-e.org/js/build/ie11-polyfill.min.js" nomodule=""></script>
   <script src="https://ee.acf-e.org/js/build/obscure-ie11-polyfills.js" nomodule=""></script> -->
   <!-- preload for performance-->
-  <link rel="preload" as="font" href="/public/download/OpenSans-Bold-webfont.woff" type="font/woff" crossorigin="">
-  <link rel="preload" as="font" href="/public/download/OpenSans-Regular-webfont.woff" type="font/woff" crossorigin="">
-  <link rel="preload" as="font" href="/public/download/fontawesome-webfont.woff?v=4.6.2" type="font/woff" crossorigin="">
+  <link rel="preload" as="font" href="https://ee.acf-e.org/fonts/OpenSans-Bold-webfont.woff" type="font/woff" crossorigin="">
+  <link rel="preload" as="font" href="https://ee.acf-e.org/fonts/OpenSans-Regular-webfont.woff" type="font/woff" crossorigin="">
+  <link rel="preload" as="font" href="https://ee.acf-e.org/fonts/fontawesome-webfont.woff?v=4.6.2" type="font/woff" crossorigin="">
   <!-- critical styles inline for performance-->
   <style>
     @keyframes pulsate {
@@ -109,9 +109,9 @@
       }
     }
   </style>
-  <link rel="stylesheet" type="text/css" href="/public/download/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/public/download/theme-grid.print.css">
-  <link rel="stylesheet" type="text/css" href="/public/download/theme-grid.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" media="all" type="text/css" href="https://ee.acf-e.org/css/theme-grid.print.css">
+  <link rel="stylesheet" media="all" type="text/css" href="https://ee.acf-e.org/css/theme-grid.css">
 
   <style>
     input[type=radio]:checked {
