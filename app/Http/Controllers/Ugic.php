@@ -35,8 +35,6 @@ class Ugic extends Controller
       $params['dataFormulario'] = json_decode($form->otro);
     }
 
-    dd(isset($requestAll['data']), ($requestAll['data']));
-
     $params['data'] = isset($requestAll['data']) ? unserialize($requestAll['data'])??[] : [];
     $params['filtrar'] = isset($requestAll['filtrar']) ? ($requestAll['filtrar'])??[] : [];
 
