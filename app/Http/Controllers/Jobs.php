@@ -52,8 +52,6 @@ class Jobs extends Controller
   {
     /* try { */
 
-    dd($request->dominio, $token);
-
     $limit_minutes = 900;
     ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
     ini_set('memory_limit', '2044M');
@@ -412,7 +410,7 @@ class Jobs extends Controller
     $data = [$dataExport];
 
     //MQR devolver tabla con los resultados creados 
-    return redirect()->route('koboapdf', ["name_key" => "", "data" => serialize($data)]);
+    return redirect()->route('koboapdf', ["name_key" => ""])->with('success', 'Formulario solicitado con exito!');;
     //return view('koboapdf.index', ["name_key" => "", "data" => serialize($data)]);
     //}
 
