@@ -998,7 +998,10 @@ class Meal extends Controller
         ini_set('max_input_time', '60000');
 
 
-        $reposts = Reports::all()->sortBy('fecha_ern');
+        $reposts = Reports::all()
+        ->orderBy('year', 'desc')
+        ->orderBy('fecha_ern', 'desc');
+        //->sortBy('fecha_ern');
 
         return response()->json(['status' => true, 'data' => ($reposts)->values()]);
 
