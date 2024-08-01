@@ -85,10 +85,9 @@ class Meal extends Controller
             $mlpas->load(['emergencia', 'actividad']);
             return [
                 "lpas" => $mlpas,
-                "total" => count($mlpasBase->all())
+                "total" => count($mlpasBase->get())
             ];
         } else {
-
             $mlpas = MLpa::limit(20000)->where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->
         }
 
