@@ -998,7 +998,7 @@ class Meal extends Controller
         ini_set('max_input_time', '60000');
 
 
-        $reposts = Reports::all()
+        $reposts = Reports::get()
         ->orderBy('year', 'desc')
         ->orderBy('fecha_ern', 'desc');
         //->sortBy('fecha_ern');
