@@ -285,6 +285,8 @@ class MLpaPersona extends Model
 
     /**
      * calculo de la discapacitado apartie de la fecha de nacimiento
+     * cambio desspues de juLio es con la logica que tengo ahora
+     * Y ANTES DE JULIO CON UNA TABLA
      */
     public function getDiscapacitadoAttribute()
     {

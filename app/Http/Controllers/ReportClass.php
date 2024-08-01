@@ -35,8 +35,8 @@ class ReportClass implements ToCollection
                 continue;
             }
 
-            $link1 = $row[15];
-            $link2 = $row[16];
+            $link1 = $row[11];
+            $link2 = $row[12];
 
             //foreach ($row as $col) {
 

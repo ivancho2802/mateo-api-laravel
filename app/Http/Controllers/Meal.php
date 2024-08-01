@@ -65,6 +65,10 @@ class Meal extends Controller
         ];
     }
 
+    /**
+     * este nos e usa para lpa dashboard OJOOO
+     */
+
     function getLpa(Request $request)
     {
 
