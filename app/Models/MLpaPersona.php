@@ -311,6 +311,13 @@ class MLpaPersona extends Model
             return $value == 1;
         });
 
+        dd($this);
+
+        if(isset($this->tipo_lpa) && $this->tipo_lpa!=='Respuesta Rapida' )
+        {
+            return 0;
+        }
+
         return count($discapacitado) > 0 ? 1 : 0;
     }
 
