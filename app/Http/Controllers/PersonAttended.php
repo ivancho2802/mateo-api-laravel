@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Excel;
 use App\Http\Controllers\PaImportClass;
+use App\Http\Controllers\LpaFixImportClass;
 use App\Models\migrateCustom;
 use App\Models\MLpa;
 use App\Models\MLpaEmergencia;
 use App\Models\MLpaPersona;
 use App\Models\ActivitiesDirectories;
+use App\Models\MLpasFix;
+
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Analisis;
@@ -84,6 +87,88 @@ class PersonAttended extends Controller
         //terminar devolver tabla
         return view('list-lpas', $data);
     }
+
+    
+    function fixDiscapacitados(Request $request)
+    {
+
+        try {
+
+            //validacion para que no se cargue el mismo archivo en el mismo mes
+            //lo que hre es validar si ya hay una migracion en el mes que se enviaron los datos y guardar o actualizar 
+            //parece que debo pedir mes de la migracion
+            //dd("file", $request->file('file'));
+
+            //para el analisis recibir un string como analisis y que se edite en otro lado
+
+            // Validate the uploaded file
+            $request->validate([
+                'file' => 'required|mimes:xlsx,xls',
+            ]);
+
+            //guardo el archiv
+
+            // Get the uploaded file
+            $file = $request->file('file');
+            $path = $file->store('migrationsLpa');
+
+            migrateCustom::create([
+                'table' => 'M_LPAS_FIX',
+                'table_id' =>  $path,
+                'file_ref' => 'UPLOADED',
+            ]);
+
+            // Get the uploaded file
+            $file = $request->file('file');
+
+            // Process the Excel file Consolidado
+            //Excel::import(new MqrImportClass, $file, 'Consolidado');
+
+            $import = new LpaFixImportClass();
+
+            $import->onlySheets('discapacitados');
+
+            // Process the Excel file
+            Excel::import($import, $file);
+
+            //$collection = (new LpaFixClass)->toCollection($file);
+
+            $count_record_excel = 0;//helper::countValidValues($collection[0]);
+
+            $migrate_custom = migrateCustom::where([
+                'table' => "M_LPAS_FIX"
+            ])->get()->last();
+
+            $excel = file_get_contents($file);
+            $base64 = base64_encode($excel);
+
+            $migrate_custom->file = $base64;
+
+            $migrate_custom->save();
+
+            $id_mqrs = explode(", ", $migrate_custom->table_id);
+
+            $query_mmqrs = MLpasFix::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
+
+            $count_mmqrs = count($query_mmqrs->get());
+
+            $mmqrs = $query_mmqrs->paginate(10);
+
+            $data['mmqrs'] = $mmqrs;
+
+
+            $data['record_excel'] = $count_record_excel - 1;
+            $data['record_saved'] = $count_mmqrs + 1;
+
+            //MQR devolver tabla con los resultados creados 
+            return view('list-mqrs', $data);
+            //return response()->json(["message" => "operacion hecha con exito"]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
 
     function storedActivities(Request $request)
     {
