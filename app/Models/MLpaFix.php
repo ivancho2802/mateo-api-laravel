@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MLpasFix extends Model
+class MLpaFix  extends Model
 {
     use HasFactory;
     
@@ -20,3 +20,4 @@ class MLpasFix extends Model
         "discapacidad",
     ];
 }
+

@@ -11,7 +11,7 @@ use App\Models\MLpa;
 use App\Models\MLpaEmergencia;
 use App\Models\MLpaPersona;
 use App\Models\ActivitiesDirectories;
-use App\Models\MLpasFix;
+use App\Models\MLpaFix;
 
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Illuminate\Support\Facades\Auth;
@@ -148,7 +148,7 @@ class PersonAttended extends Controller
 
             $id_mqrs = explode(", ", $migrate_custom->table_id);
 
-            $query_mmqrs = MLpasFix::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
+            $query_mmqrs = MLpaFix::whereIn('id', $id_mqrs)->orderBy('created_at', 'desc');
 
             $count_mmqrs = count($query_mmqrs->get());
 

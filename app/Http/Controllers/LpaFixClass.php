@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use App\Models\MLpasFix;
+use App\Models\MLpaFix;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use App\Models\migrateCustom;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -41,18 +41,18 @@ class LpaFixClass implements ToCollection
 
             $row = $row->all();
             
-            $lpasfix = MLpasFix::create([
+            $lpasfix = MLpaFix::create([
                 'documento' => $row[0],
                 'sexo' => $row[1],
                 'discapacidad' => $row[2],
                 
             ]);
 
-            $lpasfix = MLpasFix::where([
+            $lpasfix = MLpaFix::where([
                 'documento' => $row[0],
             ])->first();
 
-            $id_mqr[] = $lpasfix->ID;
+            $id_mqr[] = $lpasfix->id;
 
         }
 
