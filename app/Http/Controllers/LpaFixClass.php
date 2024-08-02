@@ -39,9 +39,6 @@ class LpaFixClass implements ToCollection
                 continue;
             }
 
-            $row->shift();
-            //unset($row[0]);
-
             $row = $row->all();
             
             $lpasfix = MLpasFix::create([
