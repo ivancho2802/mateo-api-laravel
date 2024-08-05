@@ -195,7 +195,7 @@ class PersonAttended extends Controller
 
         $mlpasFormated = $mlpasFormated->filter(function ($lpa) {
             return $lpa->persona->discapacitado == 1;
-        });
+        })->all();
 
         
         return count($mlpasFormated);
