@@ -182,7 +182,7 @@ class PersonAttended extends Controller
             $lpa->append('tipo_lpa');
             
             //dd($lpa->tipo_lpa);
-            if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa!=='Respuesta Rapida' ){
+            if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa=='Respuesta Rapida' ){
 
                 $discapacitado = MLpaFix::where('documento', 'like', '%' . $lpa->persona->DOCUMENTO . '%')
                 //->where('sexo', $lpa->persona->GENERO)
