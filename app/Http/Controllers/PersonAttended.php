@@ -188,8 +188,8 @@ class PersonAttended extends Controller
                 //->where('sexo', $lpa->persona->GENERO)
                 ->exists();
 
-                if($discapacitado) 
-                    dd($discapacitado, $lpa->persona->GENERO, $lpa->persona->DOCUMENTO);
+                //if($discapacitado) 
+                //    dd($discapacitado, $lpa->persona->GENERO, $lpa->persona->DOCUMENTO);
                 
                 $lpa->persona->discapacitado = $discapacitado == true ? 1 : 0;
             }
