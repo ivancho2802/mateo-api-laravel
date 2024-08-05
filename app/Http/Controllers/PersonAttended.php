@@ -89,7 +89,7 @@ class PersonAttended extends Controller
     }
 
     
-    function fixDiscapacitados(Request $request)
+    function storeFixDiscapacitados(Request $request)
     {
 
         try {
@@ -167,6 +167,39 @@ class PersonAttended extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    function fixDiscapacitados(){
+        
+        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
+        ->nodeleted()
+        ->limit(10)
+        ->get();
+        $mlpas->load(['persona']);
+        
+        $mlpasFormated = $mlpas->map(function ($lpa) {
+            //$lpa->load('actividad.directory');
+            $lpa->append('tipo_lpa');
+            
+            //dd($lpa->tipo_lpa);
+            if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa!=='Respuesta Rapida' ){
+
+                $discapacitado = MLpaFix::where('documento', 'like', '%' . $lpa->persona->DOCUMENTO . '%')
+                //->where('sexo', $lpa->persona->GENERO)
+                ->exists();
+
+                if($discapacitado) 
+                    dd($discapacitado, $lpa->persona->GENERO, $lpa->persona->DOCUMENTO);
+                
+                $lpa->persona->discapacitado = $discapacitado == true ? 1 : 0;
+            }
+            
+            return $lpa;
+        });
+
+
+        
+        return $mlpasFormated;
     }
 
 

@@ -21,7 +21,7 @@ class MLpaPersona extends Model
      * @var array
      */
     protected $hidden = [
-        'DOCUMENTO', 'NOMBRE_PRIMERO', 'NOMBRE_OTROS', 'APELLIDO_PRIMERO', 'APELLIDO_OTRO', 'TELEFONO'
+        'DOCUMENTO', 'NOMBRE_PRIMERO', 'NOMBRE_OTROS', 'APELLIDO_PRIMERO', 'APELLIDO_OTRO', 'TELEFONO', 'GENERO'
     ];
 
     public $incrementing = false;
@@ -311,12 +311,12 @@ class MLpaPersona extends Model
             return $value == 1;
         });
 
-        dd($this);
+        //dd($this, $this->tipo_lpa);
 
-        if(isset($this->tipo_lpa) && $this->tipo_lpa!=='Respuesta Rapida' )
+        /* if(isset($this->tipo_lpa) && $this->tipo_lpa!=='Respuesta Rapida' )
         {
             return 0;
-        }
+        } */
 
         return count($discapacitado) > 0 ? 1 : 0;
     }

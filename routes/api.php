@@ -52,7 +52,9 @@ Route::prefix('meal')->group(function () {
   Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
 
   //carga de discapacitados
-  Route::post('/lpa/discapacitadosFix', [App\Http\Controllers\PersonAttended::class, 'fixDiscapacitados']);
+  Route::post('/lpa/discapacitadosFix', [App\Http\Controllers\PersonAttended::class, 'storeFixDiscapacitados']);
+
+  Route::middleware(['auth:sanctum'])->get('/lpa/discapacitadosFix', [App\Http\Controllers\PersonAttended::class, 'fixDiscapacitados']);
 
   Route::post('/lpaActivities/upload', [App\Http\Controllers\PersonAttended::class, 'storedActivities']);
 
