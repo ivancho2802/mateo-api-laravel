@@ -85,6 +85,7 @@ class MLpa extends Model
         if (
             strpos(strtoupper($fase), 'FASE 3')!==false || 
             strpos(strtoupper($fase), 'FASE III-')!==false || 
+            strpos(strtoupper($fase), 'FASE III')!==false || 
             strtoupper($fase) == 'FASE 3') {
             $tipoLpa = 'Recuperacion Temprana';
         }

@@ -19,6 +19,8 @@ use Illuminate\Support\Arr;
 use App\Models\mGraficos;
 use Illuminate\Support\Facades\Config;
 use App\Traits\TraitDepartments;
+use App\Models\MLpaFix;
+
 
 class Meal extends Controller
 {
@@ -251,16 +253,29 @@ class Meal extends Controller
 
         $mlpas->load(['persona']); //, 'actividad.directory'
 
-        /* $mlpasFormated = $mlpas->map(function ($lpa) {
-        //$lpa->load('actividad.directory');
-        //$lpa->append('tipo_lpa');
-        //$lpa->persona->append('edad');
-        $lpaArray = $lpa->toArray();
-        $lpaDoted = Arr::dot($lpaArray);
-        return  $lpaDoted;
-        }); */
+        $mlpasFormated = $mlpas->map(function ($lpa) {
+            //$lpa->load('actividad.directory');
+            //$lpa->append('tipo_lpa');
+            //$lpa->persona->append('edad');
+            $lpaArray = $lpa->toArray();
+            $lpaDoted = Arr::dot($lpaArray);
+            return  $lpaDoted;
+            
+        
+            //dd($lpa->tipo_lpa);
+            if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa=='Respuesta Rapida' && $lpa->FECHA_ATENCION <= '2024-07-01'){
 
-        $flattenedMlpas =  ($mlpas);
+                $discapacitado = MLpaFix::where('documento', $lpa->persona->DOCUMENTO )
+                //->where('sexo', $lpa->persona->GENERO)
+                ->exists();
+                
+                $lpa->persona->discapacitado = $discapacitado == true ? 1 : 0;
+            }
+
+        });
+            
+
+        $flattenedMlpas =  ($mlpasFormated);
 
         return [
             "lpas" => $flattenedMlpas,
