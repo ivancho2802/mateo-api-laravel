@@ -173,7 +173,6 @@ class PersonAttended extends Controller
         
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
         ->nodeleted()
-        ->limit(10)
         ->get();
         $mlpas->load(['persona']);
         
@@ -184,12 +183,12 @@ class PersonAttended extends Controller
             //dd($lpa->tipo_lpa);
             if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa=='Respuesta Rapida' ){
 
-                $discapacitado = MLpaFix::where('documento', 'like', '%' . $lpa->persona->DOCUMENTO . '%')
+                $discapacitado = MLpaFix::where('documento', $lpa->persona->DOCUMENTO )
                 //->where('sexo', $lpa->persona->GENERO)
                 ->exists();
 
-                //if($discapacitado) 
-                //    dd($discapacitado, $lpa->persona->GENERO, $lpa->persona->DOCUMENTO);
+                if($discapacitado) 
+                    dd($discapacitado, $lpa->persona->GENERO, $lpa->persona->DOCUMENTO);
                 
                 $lpa->persona->discapacitado = $discapacitado == true ? 1 : 0;
             }
