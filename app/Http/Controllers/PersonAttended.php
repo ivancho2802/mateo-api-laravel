@@ -171,13 +171,13 @@ class PersonAttended extends Controller
 
     function fixDiscapacitados(){
         
-        $personas = MLpaPersona::get()->map(function ($persona) {
+        /* $personas = MLpaPersona::get()->map(function ($persona) {
             return $persona->DOCUMENTO;
         });
         
         $discapacitado = MLpaFix::whereIn('documento', $personas );
 
-        dd(count($discapacitado->get()), $personas);
+        dd(count($discapacitado->get()), $personas); */
         
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
         ->nodeleted()
@@ -191,9 +191,10 @@ class PersonAttended extends Controller
             //dd($lpa->tipo_lpa);
             if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa=='Respuesta Rapida' && $lpa->FECHA_ATENCION <= '2024-07-01'){
 
-                $discapacitado = MLpaFix::where('documento', $lpa->persona->DOCUMENTO )
+                $discapacitado = MLpaFix::where('documento', '=',$lpa->persona->DOCUMENTO )
                 //->where('sexo', $lpa->persona->GENERO)
                 ->exists();
+                //dd($discapacitado, $lpa->persona->DOCUMENTO);
                 
                 $lpa->persona->discapacitado = $discapacitado == true ? 1 : 0;
             }
@@ -201,12 +202,12 @@ class PersonAttended extends Controller
             return $lpa;
         });
 
-        $mlpasFormated = $mlpasFormated->filter(function ($lpa) {
+        $mlpasFormatedFiltered = $mlpasFormated->filter(function ($lpa) {
             return $lpa->persona->discapacitado == 1;
         })->all();
 
         
-        return ($mlpasFormated);
+        return ($mlpasFormatedFiltered);
     }
 
 
