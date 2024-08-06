@@ -192,7 +192,7 @@ class PersonAttended extends Controller
             $lpa->append('tipo_lpa');
             
             //dd($lpa->tipo_lpa);
-            if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa=='Respuesta Rapida' && $lpa->FECHA_ATENCION <= '2024-07-01'){
+            if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa!=='Respuesta Rapida' && $lpa->FECHA_ATENCION <= '2024-07-01'){
 
                 //dd("DOCUMENTO", $lpa->persona->DOCUMENTO);
 
