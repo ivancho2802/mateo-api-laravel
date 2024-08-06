@@ -187,7 +187,7 @@ class PersonAttended extends Controller
 
         $i = 0;
 
-        $mlpas->each(function ($lpa, int $key) use ($i){
+        $i = $mlpas->each(function ($lpa, int $key) use ($i){
             //$lpa->load('actividad.directory');
             $lpa->append('tipo_lpa');
             
@@ -213,6 +213,7 @@ class PersonAttended extends Controller
             
             return $i;
         });
+
         dd($i);
         
         $mlpasFormated = $mlpas->map(function ($lpa, int $key) {
