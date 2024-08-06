@@ -184,8 +184,10 @@ class PersonAttended extends Controller
         ->nodeleted()
         ->get();
         $mlpas->load(['persona']);
+
+        $i = 0;
         
-        $mlpasFormated = $mlpas->map(function ($lpa) {
+        $mlpasFormated = $mlpas->map(function ($lpa) use ($i){
             //$lpa->load('actividad.directory');
             $lpa->append('tipo_lpa');
             
@@ -200,6 +202,10 @@ class PersonAttended extends Controller
                 ->exists();
                 //->where('sexo', $lpa->persona->GENERO)
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
+
+                if($discapacitado == true){
+                    $i++;
+                }
                 
                 $lpa->persona->discapacitado = $discapacitado == true ? 1 : 0;
             }
@@ -207,7 +213,7 @@ class PersonAttended extends Controller
             return $lpa;
         });
 
-        //dd(collect($mlpasFormated)->all());
+        dd($i);
 
         $mlpasFormatedFiltered = collect($mlpasFormated)->filter(function ($lpa) {
             return $lpa->persona->discapacitado == 1;
