@@ -213,6 +213,7 @@ class PersonAttended extends Controller
             
             return $i;
         });
+        dd($i);
         
         $mlpasFormated = $mlpas->map(function ($lpa, int $key) {
             //$lpa->load('actividad.directory');
