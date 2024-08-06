@@ -171,6 +171,14 @@ class PersonAttended extends Controller
 
     function fixDiscapacitados(){
         
+        $personas = MLpaPersona::get()->map(function ($persona) {
+            return $persona->DOCUMENTO;
+        });
+        
+        $discapacitado = MLpaFix::whereIn('documento', $personas );
+
+        dd($discapacitado, $personas);
+        
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
         ->nodeleted()
         ->get();
@@ -198,7 +206,7 @@ class PersonAttended extends Controller
         })->all();
 
         
-        return count($mlpasFormated);
+        return ($mlpasFormated);
     }
 
 
