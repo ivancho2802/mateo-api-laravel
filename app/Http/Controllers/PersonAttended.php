@@ -205,16 +205,16 @@ class PersonAttended extends Controller
                 $lpa->persona->discapacitado = isset($discapacitado) ? 1 : 0;
             }
             
-            return $lpa;
+            return collect($lpa)->toArray();
         });
 
-        dd($mlpasFormated[0]->tipo_lpa, $mlpasFormated[0]->persona, $mlpasFormated[0]->persona->discapacitado);
+        dd($mlpasFormated[0]->tipo_lpa, $mlpasFormated[0]->persona->discapacitado, $mlpasFormated[0]->persona, $mlpasFormated[0]);
 
-        $mlpasFormatedFiltered = collect($mlpas)->filter(function ($lpa) {
+        $mlpasFormatedFiltered2 = collect($mlpasFormated)->filter(function ($lpa) {
             return $lpa->persona->discapacitado == 1;
         })->all();
 
-        $mlpasFormatedFiltered2 = collect($mlpasFormated)->filter(function ($lpa) {
+        $mlpasFormatedFiltered = collect($mlpas)->filter(function ($lpa) {
             return $lpa->persona->discapacitado == 1;
         })->all();
         
