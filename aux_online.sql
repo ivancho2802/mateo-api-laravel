@@ -96,9 +96,9 @@ WHERE "M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND
 	"M_LPA_PERSONAS"."DISCAPACIDAD_COMUNICAR" = 'Si - No puede hacerlo' ) 
 -- jobs
 
-select count(*) from job_details
-select count(*) from jobs
-select count(*) from failed_jobs
+select * from job_details
+select * from jobs
+select * from failed_jobs
 --
 --delete from job_details
 --delete from jobs
@@ -127,3 +127,36 @@ select COUNT(*) from "M_LPAS"  where "COD_ACTIVIDAD" = 'H2' AND "FECHA_ATENCION"
 select * from activities where actividad like '%onsultas%'
 
 
+-- reportes fichas de cierre y ern
+
+select * from reports where codigo_emergencia = 'BOMO 1007'
+
+select COUNT(*)
+FROM "M_LPAS", "M_LPA_PERSONAS" 
+WHERE "M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND 
+	"M_LPA_PERSONAS"."ID" = "M_LPAS"."FK_LPA_PERSONA" AND
+(
+	"M_LPA_PERSONAS"."DISCAPACIDAD_COMUNICAR" = 'Si - No puede hacerlo' or --Si - No puede hacerlo
+	"M_LPA_PERSONAS"."DISCAPACIDAD_VER" = 'Si - No puede hacerlo' or--Si - No puede hacerlo
+	"M_LPA_PERSONAS"."DISCAPACIDAD_OIR" = 'Si - No puede hacerlo' or--Si - No puede hacerlo
+	"M_LPA_PERSONAS"."DISCAPACIDAD_CAMINAR" = 'Si - No puede hacerlo' or --Si - No puede hacerlo
+	"M_LPA_PERSONAS"."DISCAPACIDAD_RECORDAR" = 'Si - No puede hacerlo' or--Si - No puede hacerlo
+	"M_LPA_PERSONAS"."DISCAPACIDAD_CUIDADO_PROPIO" = 'Si - No puede hacerlo')--Si - No puede hacerlo
+
+SELECT "DISCAPACIDAD_CUIDADO_PROPIO" FROM "M_LPA_PERSONAS" GROUP BY "DISCAPACIDAD_CUIDADO_PROPIO"
+
+
+--para ver los discapactados reparados 
+select * from "M_LPA_PERSONAS" limit 10  where "DOCUMENTO" = '21447907'
+--445
+select 
+	count("M_LPA_PERSONAS"."DOCUMENTO") 
+from 
+	m_lpa_fixes, 
+	"M_LPA_PERSONAS", 
+	"M_LPAS" 
+where 
+	m_lpa_fixes.documento = "M_LPA_PERSONAS"."DOCUMENTO" and 
+	"M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND
+	"M_LPA_PERSONAS"."ID" = "M_LPAS"."FK_LPA_PERSONA" 
+GROUP BY "M_LPA_PERSONAS"."DOCUMENTO"

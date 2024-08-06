@@ -74,6 +74,7 @@ Route::prefix('meal')->group(function () {
   //seguuimiento
   Route::middleware(['auth:sanctum'])->get('/lpaseg', [App\Http\Controllers\Meal::class, 'getLpaSeg']);
 
+  //usada en el power bi
   Route::middleware(['auth:sanctum'])->get('/lpasegOnly', [App\Http\Controllers\Meal::class, 'getLpaOnly']);
 
   Route::middleware(['auth:sanctum'])->get('/lpa/emergencia', [App\Http\Controllers\Emergencias::class, 'getEmergenciaByCod']);
