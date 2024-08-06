@@ -205,6 +205,7 @@ class PersonAttended extends Controller
 
                 if($discapacitado == true){
                     $i++;
+                    dd($i);
                 }
                 
                 $lpa->persona->discapacitado = $discapacitado == true ? 1 : 0;
