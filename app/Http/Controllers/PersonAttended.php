@@ -235,14 +235,17 @@ class PersonAttended extends Controller
             return $lpa;
         });
 
-        dd($i, count($mlpasFormated), $mlpasFormated);
+        //dd($i, count($mlpasFormated), $mlpasFormated);
 
         $mlpasFormatedFiltered = collect($mlpas)->filter(function ($lpa) {
             return $lpa->persona->discapacitado == 1;
         })->all();
 
+        $mlpasFormatedFiltered2 = collect($mlpasFormated)->filter(function ($lpa) {
+            return $lpa->persona->discapacitado == 1;
+        })->all();
         
-        return count(collect($mlpasFormatedFiltered)->toArray());
+        return [count(collect($mlpasFormatedFiltered)->toArray()), count(collect($mlpasFormatedFiltered2)->toArray())];
     }
 
 
