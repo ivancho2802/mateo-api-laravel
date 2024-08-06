@@ -177,7 +177,7 @@ class PersonAttended extends Controller
         
         $discapacitado = MLpaFix::whereIn('documento', $personas );
 
-        dd($discapacitado, $personas);
+        dd(count($discapacitado->get()), $personas);
         
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
         ->nodeleted()
