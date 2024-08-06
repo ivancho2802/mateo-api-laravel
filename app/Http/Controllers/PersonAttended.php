@@ -186,35 +186,6 @@ class PersonAttended extends Controller
         $mlpas->load(['persona']);
 
         $i = 0;
-
-        $i = $mlpas->each(function ($lpa, int $key) use ($i){
-            //$lpa->load('actividad.directory');
-            $lpa->append('tipo_lpa');
-            
-            //dd($lpa->tipo_lpa);
-            if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa=='Respuesta Rapida' && $lpa->FECHA_ATENCION <= '2024-07-01'){
-
-                //dd("DOCUMENTO", $lpa->persona->DOCUMENTO);
-
-                $discapacitado = MLpaFix::where([
-                    'documento' => $lpa->persona->DOCUMENTO
-                ])
-                ->exists();
-                //->where('sexo', $lpa->persona->GENERO)
-                //dd($discapacitado, $lpa->persona->DOCUMENTO);
-
-                if($discapacitado == true){
-                    $i++;
-                    //dd($i);
-                }
-                
-                $lpa->persona->discapacitado = $discapacitado == true ? 1 : 0;
-            }
-            
-            return $i;
-        });
-
-        dd($i);
         
         $mlpasFormated = $mlpas->map(function ($lpa, int $key) {
             //$lpa->load('actividad.directory');
@@ -231,7 +202,7 @@ class PersonAttended extends Controller
                 ->exists();
                 //->where('sexo', $lpa->persona->GENERO)
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
-                $lpa->persona->discapacitado = $discapacitado == true ? 1 : 0;
+                $lpa->persona->discapacitado = isset($discapacitado) ? 1 : 0;
             }
             
             return $lpa;
