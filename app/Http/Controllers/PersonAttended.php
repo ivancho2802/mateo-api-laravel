@@ -208,7 +208,7 @@ class PersonAttended extends Controller
             return collect($lpa)->toArray();
         });
 
-        dd($mlpasFormated[0]);
+        dd($mlpasFormated->all()[0]);
 
         $mlpasFormatedFiltered2 = collect($mlpasFormated)->filter(function ($lpa) {
             return $lpa->persona->discapacitado == 1;
