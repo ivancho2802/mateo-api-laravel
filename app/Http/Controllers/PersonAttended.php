@@ -19,6 +19,7 @@ use App\Models\Analisis;
 use Illuminate\Support\Facades\Storage;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Concerns\ToArray;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -202,14 +203,14 @@ class PersonAttended extends Controller
             return $lpa;
         });
 
-        dd(collect($mlpasFormated)->first());
+        //dd(collect($mlpasFormated)->all());
 
-        $mlpasFormatedFiltered = $mlpasFormated->filter(function ($lpa) {
+        $mlpasFormatedFiltered = collect($mlpasFormated)->filter(function ($lpa) {
             return $lpa->persona->discapacitado == 1;
         })->all();
 
         
-        return ($mlpasFormatedFiltered);
+        return count(collect($mlpasFormatedFiltered)->toArray());
     }
 
 
