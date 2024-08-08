@@ -217,7 +217,7 @@ class PersonAttended extends Controller
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
                 $lpa['persona']['discapacitado'] = isset($discapacitado) && $discapacitado == true ? 1 : 0;
             }
-            dd("DOCUMENTO", $lpa['persona']['DOCUMENTO_TEMP']);
+            //dd("DOCUMENTO", $lpa['persona']['DOCUMENTO_TEMP']);
 
             unset($lpa['persona']['DOCUMENTO_TEMP']);
 
