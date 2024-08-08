@@ -198,6 +198,7 @@ class PersonAttended extends Controller
             $lpa->persona->append('DOCUMENTO');
             
             //dd($lpa->persona);
+            $lpa->persona->DOCUMENTO_TEMP = $lpa->persona->DOCUMENTO;
             
             return collect($lpa)->toArray();
         });
