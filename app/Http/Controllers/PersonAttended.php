@@ -186,36 +186,42 @@ class PersonAttended extends Controller
         $mlpas->load(['persona']);
 
         $i = 0;
+
+
         
         $mlpasFormated = $mlpas->map(function ($lpa, int $key) {
             //$lpa->load('actividad.directory');
             $lpa->append('tipo_lpa');
             
             //dd($lpa->tipo_lpa);
-            if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa!=='Respuesta Rapida' && $lpa->FECHA_ATENCION <= '2024-07-01'){
-
-                //dd("DOCUMENTO", $lpa->persona->DOCUMENTO);
-
-                $discapacitado = MLpaFix::where([
-                    'documento' => $lpa->persona->DOCUMENTO
-                ])
-                ->exists();
-                //->where('sexo', $lpa->persona->GENERO)
-                //dd($discapacitado, $lpa->persona->DOCUMENTO);
-                $lpa->persona->discapacitado = isset($discapacitado) ? 1 : 0;
-            }
             
             return collect($lpa)->toArray();
         });
 
         $mlpasFormatedArray = $mlpasFormated->all();
 
-        $mlpasFormatedFiltered = collect($mlpasFormatedArray)->filter(function ($lpa) {
+        $mlpasFormatedArrayFilteredFix = $mlpasFormatedArray->map(function ($lpa, int $key) {
+        
+            if(isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] !== 'Respuesta Rapida' && $lpa['FECHA_ATENCION'] <= '2024-07-01'){
+    
+                //dd("DOCUMENTO", $lpa->persona->DOCUMENTO);
+    
+                $discapacitado = MLpaFix::where([
+                    'documento' => $lpa['persona']['DOCUMENTO']
+                ])
+                ->exists();
+                //->where('sexo', $lpa->persona->GENERO)
+                //dd($discapacitado, $lpa->persona->DOCUMENTO);
+                $lpa['persona']['discapacitado'] = isset($discapacitado) && $discapacitado == true ? 1 : 0;
+            }
+
+        });
+
+        $mlpasFormatedArrayFilteredFixFiltered = collect($mlpasFormatedArrayFilteredFix)->filter(function ($lpa) {
             return $lpa['persona']['discapacitado'] == 1;
         })->all();
 
-
-        return count(collect($mlpasFormatedFiltered));
+        return count(collect($mlpasFormatedArrayFilteredFixFiltered));
     }
 
 
