@@ -216,10 +216,10 @@ class PersonAttended extends Controller
                 //->where('sexo', $lpa->persona->GENERO)
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
                 $lpa['persona']['discapacitado'] = isset($discapacitado) && $discapacitado == true ? 1 : 0;
+                dd("discapacitado", $lpa['persona']['discapacitado']);
             }
-            //dd("DOCUMENTO", $lpa['persona']['DOCUMENTO_TEMP']);
 
-            unset($lpa['persona']['DOCUMENTO_TEMP']);
+            //unset($lpa['persona']['DOCUMENTO_TEMP']);
 
             return $lpa;
 
