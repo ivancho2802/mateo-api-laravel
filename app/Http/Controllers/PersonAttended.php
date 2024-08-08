@@ -213,11 +213,11 @@ class PersonAttended extends Controller
                 $discapacitado = MLpaFix::where([
                     'documento' => $lpa['persona']['DOCUMENTO_TEMP']
                 ])
-                    ->exists();
+                    ->first();
                 //->where('sexo', $lpa->persona->GENERO)
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
-                $lpa['persona']['discapacitado'] = isset($discapacitado) && $discapacitado == true ? 1 : 0;
-                if ($discapacitado == true)
+                $lpa['persona']['discapacitado'] = isset($discapacitado) ? 1 : 0;
+                if (isset($discapacitado))
                     dd("___discapacitado", $lpa['persona']['discapacitado']);
             }
 
