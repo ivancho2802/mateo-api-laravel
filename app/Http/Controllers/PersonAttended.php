@@ -206,9 +206,8 @@ class PersonAttended extends Controller
 
         $mlpasFormatedArrayFilteredFix = $mlpasFormatedArray->map(function ($lpa, int $key) {
         
-            if(isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] !== 'Respuesta Rapida' && $lpa['FECHA_ATENCION'] <= '2024-07-01'){
+            if(isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] !== 'Respuesta Rapida' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO'])){
     
-                dd("DOCUMENTO", $lpa['persona']);
                 //dd("DOCUMENTO", $lpa['persona']->DOCUMENTO);
     
                 $discapacitado = MLpaFix::where([
@@ -225,6 +224,7 @@ class PersonAttended extends Controller
             return $lpa;
 
         });
+        dd("DOCUMENTO", $mlpasFormatedArrayFilteredFix[0]);
 
         $mlpasFormatedArrayFilteredFixFiltered = collect($mlpasFormatedArrayFilteredFix)->filter(function ($lpa) {
             return $lpa['persona']['discapacitado'] == 1;
