@@ -193,7 +193,9 @@ class PersonAttended extends Controller
             //$lpa->load('actividad.directory');
             $lpa->append('tipo_lpa');
 
-            $lpa->persona->select('DOCUMENTO');
+            //$lpa->persona->getDOCUMENTOAttribute;
+            //$lpa->persona->getOriginal('DOCUMENTO');
+            $lpa->persona->append('DOCUMENTO');
             
             //dd($lpa->tipo_lpa);
             
@@ -217,6 +219,10 @@ class PersonAttended extends Controller
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
                 $lpa['persona']['discapacitado'] = isset($discapacitado) && $discapacitado == true ? 1 : 0;
             }
+
+            unset($lpa['persona']['DOCUMENTO']);
+
+            return $lpa;
 
         });
 
