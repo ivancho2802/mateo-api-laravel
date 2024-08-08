@@ -77,7 +77,7 @@ Route::prefix('finanzas')->group(function () {
 
 //links para externaliza
 
-Route::prefix('desnutricion-infantil-en-la-guajira')->get(function () {
+Route::get('desnutricion-infantil-en-la-guajira', function () {
     return redirect()->away("https://arcg.is/1WPX9q");
 });
 
