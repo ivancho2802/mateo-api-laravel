@@ -75,5 +75,14 @@ Route::prefix('finanzas')->group(function () {
     Route::get('adn/json', [App\Http\Controllers\Finanzas::class, 'all']);
 });
 
+//links para externaliza
+
+Route::prefix('desnutricion-infantil-en-la-guajira')->get(function () {
+    return redirect()->away("https://arcg.is/1WPX9q");
+});
+
+
+
+
 
 require __DIR__ . '/auth.php';
