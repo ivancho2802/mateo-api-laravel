@@ -197,7 +197,7 @@ class PersonAttended extends Controller
             //$lpa->persona->getOriginal('DOCUMENTO');
             $lpa->persona->append('DOCUMENTO');
             
-            //dd($lpa->tipo_lpa);
+            dd($lpa->persona);
             
             return collect($lpa)->toArray();
         });
