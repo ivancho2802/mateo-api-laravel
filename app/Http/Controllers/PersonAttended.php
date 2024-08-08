@@ -89,7 +89,7 @@ class PersonAttended extends Controller
         return view('list-lpas', $data);
     }
 
-    
+
     function storeFixDiscapacitados(Request $request)
     {
 
@@ -134,7 +134,7 @@ class PersonAttended extends Controller
 
             //$collection = (new LpaFixClass)->toCollection($file);
 
-            $count_record_excel = 0;//helper::countValidValues($collection[0]);
+            $count_record_excel = 0; //helper::countValidValues($collection[0]);
 
             $migrate_custom = migrateCustom::where([
                 'table' => "M_LPAS_FIX"
@@ -170,8 +170,9 @@ class PersonAttended extends Controller
         }
     }
 
-    function fixDiscapacitados(){
-        
+    function fixDiscapacitados()
+    {
+
         /* $personas = MLpaPersona::get()->map(function ($persona) {
             return $persona->DOCUMENTO;
         });
@@ -179,16 +180,16 @@ class PersonAttended extends Controller
         $discapacitado = MLpaFix::whereIn('documento', $personas );
 
         dd(count($discapacitado->get()), $personas); */
-        
+
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-        ->nodeleted()
-        ->get();
+            ->nodeleted()
+            ->get();
         $mlpas->load(['persona']);
 
         $i = 0;
 
 
-        
+
         $mlpasFormated = $mlpas->map(function ($lpa, int $key) {
             //$lpa->load('actividad.directory');
             $lpa->append('tipo_lpa');
@@ -196,33 +197,33 @@ class PersonAttended extends Controller
             //$lpa->persona->getDOCUMENTOAttribute;
             //$lpa->persona->getOriginal('DOCUMENTO');
             $lpa->persona->append('DOCUMENTO');
-            
+
             //dd($lpa->persona);
             $lpa->persona->DOCUMENTO_TEMP = $lpa->persona->DOCUMENTO;
-            
+
             return collect($lpa)->toArray();
         });
 
         $mlpasFormatedArray = collect($mlpasFormated->all());
 
         $mlpasFormatedArrayFilteredFix = $mlpasFormatedArray->map(function ($lpa, int $key) {
-        
-            if(isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] !== 'Respuesta Rapida' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO_TEMP'])){
-    
+
+            if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] !== 'Respuesta Rapida' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO_TEMP'])) {
+
                 $discapacitado = MLpaFix::where([
                     'documento' => $lpa['persona']['DOCUMENTO_TEMP']
                 ])
-                ->exists();
+                    ->exists();
                 //->where('sexo', $lpa->persona->GENERO)
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
                 $lpa['persona']['discapacitado'] = isset($discapacitado) && $discapacitado == true ? 1 : 0;
-                dd("discapacitado", $lpa['persona']['discapacitado']);
+                if (isset($discapacitado) && $discapacitado == true)
+                    dd("___discapacitado", $lpa['persona']['discapacitado']);
             }
 
             //unset($lpa['persona']['DOCUMENTO_TEMP']);
 
             return $lpa;
-
         });
 
         $mlpasFormatedArrayFilteredFixFiltered = collect($mlpasFormatedArrayFilteredFix)->filter(function ($lpa) {
@@ -463,10 +464,10 @@ class PersonAttended extends Controller
             //\DB::table('readings')->insert($chunk->toArray());
             $row = collect(collect($row)->toArray())->flatten();
             $row[0] = trim($row[0]);
-            
+
             //echo $row[0] .'-'. strlen($row[0]);
-            
-            if (strlen($row[0])<2) {
+
+            if (strlen($row[0]) < 2) {
                 $i++;
                 continue;
             }
@@ -483,10 +484,10 @@ class PersonAttended extends Controller
             );
 
             if (
-                !isset($mlpa_emergencia) || 
+                !isset($mlpa_emergencia) ||
                 (
                     !optional($mlpa_emergencia)->ID
-                ) || 
+                ) ||
                 (
                     !isset(optional($mlpa_emergencia)->ID)
                 )
@@ -499,7 +500,7 @@ class PersonAttended extends Controller
                     'MUNICIPIO' => $mlpa_emergencia->MUNICIPIO,
                     'LUGAR_ATENCION' => $mlpa_emergencia->LUGAR_ATENCION
                 ])
-                ->first();
+                    ->first();
             }
 
             //dd($mlpa_emergencia->ID);
@@ -542,10 +543,10 @@ class PersonAttended extends Controller
             );
 
             if (
-                !isset($mlpa_persona) || 
+                !isset($mlpa_persona) ||
                 (
                     !optional($mlpa_persona)->ID
-                ) || 
+                ) ||
                 (
                     !isset(optional($mlpa_persona)->ID)
                 )
@@ -553,19 +554,19 @@ class PersonAttended extends Controller
                 $mlpa_persona = MLpaPersona::where([
                     'DOCUMENTO' => $mlpa_persona->DOCUMENTO
                 ])
-                ->first();
+                    ->first();
             }
 
 
             if (
-                !isset($mlpa_persona) || 
-                !isset($mlpa_emergencia) || 
+                !isset($mlpa_persona) ||
+                !isset($mlpa_emergencia) ||
                 (
                     !optional($mlpa_persona)->ID ||
                     !optional($mlpa_emergencia)->ID
-                ) || 
+                ) ||
                 (
-                    !isset(optional($mlpa_persona)->ID) || 
+                    !isset(optional($mlpa_persona)->ID) ||
                     !isset(optional($mlpa_emergencia)->ID)
                 )
             ) {
@@ -604,9 +605,9 @@ class PersonAttended extends Controller
 
         //dd("elementsForMigration", count($elementsForMigration), "body_lpas", count($body_lpas));
         //si es par dividir entre 2 sino entre 3 
-        
+
         $divisor = 3;
-        if(count($body_lpas) % 2 == 0 ){
+        if (count($body_lpas) % 2 == 0) {
             $divisor = 2;
         }
 
