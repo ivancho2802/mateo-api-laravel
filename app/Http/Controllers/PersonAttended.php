@@ -198,7 +198,7 @@ class PersonAttended extends Controller
             return collect($lpa)->toArray();
         });
 
-        $mlpasFormatedArray = $mlpasFormated->all();
+        $mlpasFormatedArray = collect($mlpasFormated->all());
 
         $mlpasFormatedArrayFilteredFix = $mlpasFormatedArray->map(function ($lpa, int $key) {
         
