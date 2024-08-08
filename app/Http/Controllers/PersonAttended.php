@@ -214,6 +214,8 @@ class PersonAttended extends Controller
                     'documento' => $lpa['persona']['DOCUMENTO_TEMP']
                 ])
                     ->first();
+
+                    dd($discapacitado->toSql());
                 //->where('sexo', $lpa->persona->GENERO)
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
                 $lpa['persona']['discapacitado'] = isset($discapacitado) ? 1 : 0;
