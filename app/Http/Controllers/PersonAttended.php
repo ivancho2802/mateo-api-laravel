@@ -192,6 +192,8 @@ class PersonAttended extends Controller
         $mlpasFormated = $mlpas->map(function ($lpa, int $key) {
             //$lpa->load('actividad.directory');
             $lpa->append('tipo_lpa');
+
+            $lpa->persona->select('DOCUMENTO');
             
             //dd($lpa->tipo_lpa);
             
