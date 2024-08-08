@@ -218,13 +218,13 @@ class PersonAttended extends Controller
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
                 $lpa['persona']['discapacitado'] = isset($discapacitado) && $discapacitado == true ? 1 : 0;
             }
+            dd("DOCUMENTO", $lpa);
 
             unset($lpa['persona']['DOCUMENTO']);
 
             return $lpa;
 
         });
-        dd("DOCUMENTO", $mlpasFormatedArrayFilteredFix[0]);
 
         $mlpasFormatedArrayFilteredFixFiltered = collect($mlpasFormatedArrayFilteredFix)->filter(function ($lpa) {
             return $lpa['persona']['discapacitado'] == 1;
