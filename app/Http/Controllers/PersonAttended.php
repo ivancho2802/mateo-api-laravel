@@ -197,7 +197,7 @@ class PersonAttended extends Controller
             //$lpa->persona->getOriginal('DOCUMENTO');
             $lpa->persona->append('DOCUMENTO');
             
-            dd($lpa->persona);
+            //dd($lpa->persona);
             
             return collect($lpa)->toArray();
         });
@@ -218,7 +218,7 @@ class PersonAttended extends Controller
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
                 $lpa['persona']['discapacitado'] = isset($discapacitado) && $discapacitado == true ? 1 : 0;
             }
-            dd("DOCUMENTO", $lpa);
+            dd("DOCUMENTO", $lpa['persona']['DOCUMENTO']);
 
             unset($lpa['persona']['DOCUMENTO']);
 
