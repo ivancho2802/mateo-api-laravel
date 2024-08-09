@@ -670,10 +670,38 @@ class PersonAttended extends Controller
 
     function getPersonaByID(Request $request)
     {
-        $persona = MLpaPersona::where("ID", "=", $request->ID);
+        $persona = MLpaPersona::where("ID", "=", $request->ID)->first();
+
+        if(isset($request->IDMLPA)){
+
+            $lpa = MLpa::where([
+                "ID" => $request->IDMLPA
+            ])->first();
+
+            $lpa->append('tipo_lpa');
+            $lpa->persona->append('DOCUMENTO');
+    
+            //
+            if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] !== 'Respuesta Rapida' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO_TEMP'])) {
+
+                $discapacitado = MLpaFix::where([
+                    'documento' => $lpa['persona']['DOCUMENTO_TEMP']
+                ])
+                    ->exists();
+
+                echo "discapacitado:" . $discapacitado . '-' . $lpa['persona']['DOCUMENTO_TEMP'] . MLpaFix::where([
+                    'documento' => $lpa['persona']['DOCUMENTO_TEMP']
+                ])->exists() . $lpa['tipo_lpa'];
+
+                //->where('sexo', $lpa->persona->GENERO)
+
+                $persona->discapacitado = $discapacitado ? 1 : 0;
+            }
+
+        }
 
         return [
-            "persona" => $persona->first()
+            "persona" => $persona
         ];
     }
 
