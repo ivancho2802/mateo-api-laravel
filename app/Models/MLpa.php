@@ -71,13 +71,13 @@ class MLpa extends Model
 
         if(isset($this->FASE_ATENCION)){
             $fase = $this->FASE_ATENCION;
-        }/* else {
+        }else {
             if(!isset(optional($this->actividad->directory)->fase)){
                 return 'Indefinido';
             }else{
                 $fase = $this->actividad->directory->fase;
             }
-        } */
+        }
         //dd("directory", $this->actividad->directory, $fase);
 
         $tipoLpa = 'Respuesta Rapida';
@@ -86,6 +86,7 @@ class MLpa extends Model
             strpos(strtoupper($fase), 'FASE 3')!==false || 
             strpos(strtoupper($fase), 'FASE III-')!==false || 
             strpos(strtoupper($fase), 'FASE III')!==false || 
+            strpos($fase, "Fase III")!==false ||
             strtoupper($fase) == 'FASE 3') {
             $tipoLpa = 'Recuperacion Temprana';
         }
