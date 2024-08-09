@@ -213,9 +213,11 @@ class PersonAttended extends Controller
                 $discapacitado = MLpaFix::where([
                     'documento' => $lpa['persona']['DOCUMENTO_TEMP']
                 ])
-                    ->exists();
+                    ->first();
 
-                echo "discapacitado: " . $discapacitado .' - ' . $lpa['persona']['DOCUMENTO_TEMP'] ;
+                echo "discapacitado: " . $discapacitado .' - ' . $lpa['persona']['DOCUMENTO_TEMP'] . MLpaFix::where([
+                    'documento' => $lpa['persona']['DOCUMENTO_TEMP']
+                ])->toSql() ;
                 //->where('sexo', $lpa->persona->GENERO)
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
                 if ($discapacitado)
