@@ -184,6 +184,7 @@ class PersonAttended extends Controller
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->nodeleted()
             ->get();
+            
         $mlpas->load(['persona']);
 
         $i = 0;
