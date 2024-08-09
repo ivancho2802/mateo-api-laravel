@@ -215,10 +215,10 @@ class PersonAttended extends Controller
                 ])
                     ->exists();
 
-                echo "discapacitado: " . $discapacitado . $lpa['persona']['DOCUMENTO_TEMP'] ;
+                echo "discapacitado: " . $discapacitado .' - ' . $lpa['persona']['DOCUMENTO_TEMP'] ;
                 //->where('sexo', $lpa->persona->GENERO)
                 //dd($discapacitado, $lpa->persona->DOCUMENTO);
-                if ($discapacitado !== false)
+                if ($discapacitado)
                     dd("___discapacitado", $lpa['persona']['discapacitado']);
 
                 $lpa['persona']['discapacitado'] = isset($discapacitado) ? 1 : 0;
