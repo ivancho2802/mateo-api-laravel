@@ -220,8 +220,8 @@ class PersonAttended extends Controller
                 ])->exists() . $lpa['tipo_lpa'];
 
                 //->where('sexo', $lpa->persona->GENERO)
-
-                $lpa['persona']['discapacitado'] = $discapacitado ? 1 : 0;
+                if($discapacitado)
+                    $lpa['persona']['discapacitado'] = 1;
             }
 
             //unset($lpa['persona']['DOCUMENTO_TEMP']);
@@ -231,9 +231,13 @@ class PersonAttended extends Controller
 
         $mlpasFormatedArrayFilteredFixFiltered = collect($mlpasFormatedArrayFilteredFix)->filter(function ($lpa) {
             return $lpa['persona']['discapacitado'] == 1;
-        })->all();
+        });
 
-        return count(collect($mlpasFormatedArrayFilteredFixFiltered));
+        //todo da 799
+
+        $mlpasFormatedArrayFilteredFixFilteredGroupBy = $mlpasFormatedArrayFilteredFixFiltered->groupBy('persona')->all();
+
+        return count(collect($mlpasFormatedArrayFilteredFixFilteredGroupBy));
     }
 
 
