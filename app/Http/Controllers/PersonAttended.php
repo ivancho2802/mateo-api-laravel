@@ -213,11 +213,9 @@ class PersonAttended extends Controller
                 $discapacitado = MLpaFix::where([
                     'documento' => $lpa['persona']['DOCUMENTO_TEMP']
                 ])
-                    ->exists();
+                    ->first();
 
-                echo "discapacitado:" . $discapacitado . '-' . $lpa['persona']['DOCUMENTO_TEMP'] . MLpaFix::where([
-                    'documento' => $lpa['persona']['DOCUMENTO_TEMP']
-                ])->exists() . $lpa['tipo_lpa'];
+                echo "discapacitado:" . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
 
                 //->where('sexo', $lpa->persona->GENERO)
                 if($discapacitado)
@@ -232,7 +230,7 @@ class PersonAttended extends Controller
         $mlpasFormatedArrayFilteredFixFiltered = collect($mlpasFormatedArrayFilteredFix)->filter(function ($lpa) {
             return $lpa['persona']['discapacitado'] == 1;
         });
-        
+
         echo "cantidad lpa filtradas:" . count($mlpasFormatedArrayFilteredFixFiltered);
 
         //todo da 799
