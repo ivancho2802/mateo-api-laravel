@@ -235,9 +235,9 @@ class PersonAttended extends Controller
 
         //todo da 799
 
-        $mlpasFormatedArrayFilteredFixFilteredGroupBy = $mlpasFormatedArrayFilteredFixFiltered->groupBy('persona')->all();
+        $mlpasFormatedArrayFilteredFixFilteredGroupBy = $mlpasFormatedArrayFilteredFixFiltered->groupBy('FK_LPA_PERSONA')->all();
 
-        return count(collect($mlpasFormatedArrayFilteredFixFilteredGroupBy));
+        return count(($mlpasFormatedArrayFilteredFixFilteredGroupBy));
     }
 
 
