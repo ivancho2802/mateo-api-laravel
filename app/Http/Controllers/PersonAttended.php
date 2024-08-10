@@ -232,6 +232,8 @@ class PersonAttended extends Controller
         $mlpasFormatedArrayFilteredFixFiltered = collect($mlpasFormatedArrayFilteredFix)->filter(function ($lpa) {
             return $lpa['persona']['discapacitado'] == 1;
         });
+        
+        echo "cantidad lpa filtradas:" . count($mlpasFormatedArrayFilteredFixFiltered);
 
         //todo da 799
 
