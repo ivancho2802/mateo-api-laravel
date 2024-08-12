@@ -21,7 +21,7 @@ class MLpaPersona extends Model
      * @var array
      */
     protected $hidden = [
-        'DOCUMENTO', 'NOMBRE_PRIMERO', 'NOMBRE_OTROS', 'APELLIDO_PRIMERO', 'APELLIDO_OTRO', 'TELEFONO', 'GENERO'
+        'ID','DOCUMENTO', 'NOMBRE_PRIMERO', 'NOMBRE_OTROS', 'APELLIDO_PRIMERO', 'APELLIDO_OTRO', 'TELEFONO', 'GENERO'
     ];
 
     public $incrementing = false;

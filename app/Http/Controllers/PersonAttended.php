@@ -180,6 +180,19 @@ class PersonAttended extends Controller
         $discapacitado = MLpaFix::whereIn('documento', $personas );
 
         dd(count($discapacitado->get()), $personas); */
+        $discapacitadosFix = MLpaFix::get();
+
+        $discapacitadosFixDocs = $discapacitadosFix->map(function ($disc, int $key) {
+            return $disc->documento;
+        });
+
+        $discapacitadosMlpaPersonas = MLpaPersona::whereIn('DOCUMENTO', $discapacitadosFixDocs)->get();
+
+        $discapacitadosMlpaPersonasIds = $discapacitadosMlpaPersonas->map(function ($disc, int $key) {
+            return $disc->ID;
+        });
+
+        dd($discapacitadosMlpaPersonasIds);
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->nodeleted()
@@ -205,7 +218,8 @@ class PersonAttended extends Controller
 
         $mlpasFormatedArray = collect($mlpasFormated->all());
 
-        $discapacitadosFix = MLpaFix::get();
+
+        
 
         $mlpasFormatedArrayFilteredFix = $mlpasFormatedArray->map(function ($lpa, int $key) use ($discapacitadosFix) {
 
