@@ -194,7 +194,7 @@ class PersonAttended extends Controller
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->whereIn('FK_LPA_PERSONA', $discapacitadosMlpaPersonasIds->all())
-            ->append('tipo_lpa')
+            ->width('tipo_lpa')
             ->nodeleted()
             ->get();
 
