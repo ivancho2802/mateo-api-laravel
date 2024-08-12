@@ -193,7 +193,7 @@ class PersonAttended extends Controller
         });
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-            ->whereIn('FK_LPA_PERSONA', $discapacitadosMlpaPersonasIds->all())
+            //->whereIn('FK_LPA_PERSONA', $discapacitadosMlpaPersonasIds->all())
             ->nodeleted()
             ->get();
 
@@ -217,7 +217,7 @@ class PersonAttended extends Controller
 
         $mlpasFormatedArray = collect($mlpasFormated->all());
 
-        $mlpasFormatedArrayFilteredFix = $mlpasFormatedArray->map(function ($lpa, int $key) use ($discapacitadosFix) {
+        $mlpasFormatedArrayFilteredFix = $mlpasFormatedArray->map(function ($lpa, int $key) use ($discapacitadosMlpaPersonasIds) {
 
             //
             if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] == 'Recuperacion Temprana' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO_TEMP'])) {
@@ -227,11 +227,11 @@ class PersonAttended extends Controller
                 ])
                     ->first(); */
 
-                $documento_temp = $lpa['persona']['DOCUMENTO_TEMP'];
+                $documento_temp = $lpa['persona']['FK_LPA_PERSONA'];
 
-                $discapacitado = $discapacitadosFix->search(function ($item, int $key) use ($documento_temp) {
-                    echo '___'. $item->documento .'___'. $documento_temp .'___';
-                    return $item->documento == $documento_temp;
+                $discapacitado = $discapacitadosMlpaPersonasIds->search(function ($item, int $key) use ($documento_temp) {
+                    echo '___'. $item .'___'. $documento_temp .'___';
+                    return $item == $documento_temp;
                 });
 
                 echo "discapacitado:" . $lpa['persona']['DOCUMENTO_TEMP'] . '_' . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
