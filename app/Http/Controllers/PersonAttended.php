@@ -229,7 +229,10 @@ class PersonAttended extends Controller
 
                 $documento_temp = $lpa['FK_LPA_PERSONA'];
 
-                $discapacitado = $discapacitadosMlpaPersonasIds->search($documento_temp, $strict = true);
+                $discapacitado = $discapacitadosMlpaPersonasIds->search( function ($item) use ($documento_temp){
+                    echo '___'. $item .'___'. $documento_temp .'___';
+                    return strpos(strtoupper($item), strtoupper($documento_temp))>=0;
+                });
 
                 echo "discapacitado:" . $lpa['FK_LPA_PERSONA'] . '_' . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
 
