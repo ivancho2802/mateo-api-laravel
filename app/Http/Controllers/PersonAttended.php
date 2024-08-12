@@ -195,9 +195,7 @@ class PersonAttended extends Controller
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->whereIn('FK_LPA_PERSONA', $discapacitadosMlpaPersonasIds->all())
             ->nodeleted()
-            ->get()->load('tipo_lpa');
-
-        dd($mlpas[0]->tipo_lpa);
+            ->get();
 
         $mlpas->load(['persona']);
 
@@ -222,7 +220,7 @@ class PersonAttended extends Controller
         $mlpasFormatedArrayFilteredFix = $mlpasFormatedArray->map(function ($lpa, int $key) use ($discapacitadosFix) {
 
             //
-            if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] !== 'Respuesta Rapida' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO_TEMP'])) {
+            if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] == 'Recuperacion Temprana' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO_TEMP'])) {
 
                 /* $discapacitado = MLpaFix::where([
                     'documento' => $lpa['persona']['DOCUMENTO_TEMP']
@@ -239,8 +237,10 @@ class PersonAttended extends Controller
                 echo "discapacitado:" . $lpa['persona']['DOCUMENTO_TEMP'] . '_' . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
 
                 //->where('sexo', $lpa->persona->GENERO)
-                if ($discapacitado > 0)
+                if ($discapacitado > 0){
                     $lpa['persona']['discapacitado'] = 1;
+                    dd("Si encontro uno");
+                }
             }
 
             //unset($lpa['persona']['DOCUMENTO_TEMP']);
