@@ -220,7 +220,7 @@ class PersonAttended extends Controller
                 $documento_temp = $lpa['persona']['DOCUMENTO_TEMP'];
 
                 $discapacitado = $discapacitadosFix->search(function ($item, int $key) use ($documento_temp) {
-                    dd('___'. $item->documento .'___'. $documento_temp .'___');
+                    echo '___'. $item->documento .'___'. $documento_temp .'___';
                     return $item->documento == $documento_temp;
                 });
 
