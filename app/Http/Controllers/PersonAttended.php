@@ -227,14 +227,11 @@ class PersonAttended extends Controller
                 ])
                     ->first(); */
 
-                $documento_temp = $lpa['persona']['FK_LPA_PERSONA'];
+                $documento_temp = $lpa['FK_LPA_PERSONA'];
 
-                $discapacitado = $discapacitadosMlpaPersonasIds->search(function ($item, int $key) use ($documento_temp) {
-                    echo '___'. $item .'___'. $documento_temp .'___';
-                    return $item == $documento_temp;
-                });
+                $discapacitado = $discapacitadosMlpaPersonasIds->search($documento_temp, $strict = true);
 
-                echo "discapacitado:" . $lpa['persona']['DOCUMENTO_TEMP'] . '_' . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
+                echo "discapacitado:" . $lpa['persona']['FK_LPA_PERSONA'] . '_' . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
 
                 //->where('sexo', $lpa->persona->GENERO)
                 if ($discapacitado > 0){
