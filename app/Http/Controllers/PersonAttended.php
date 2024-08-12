@@ -237,9 +237,9 @@ class PersonAttended extends Controller
                 echo "discapacitado:" . $lpa['FK_LPA_PERSONA'] . '_' . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
 
                 //->where('sexo', $lpa->persona->GENERO)
-                if ($discapacitado > 0){
+                if ($discapacitado >= 0){
                     $lpa['persona']['discapacitado'] = 1;
-                    dd("Si encontro uno");
+                    //dd("Si encontro uno");
                 }
             }
 
