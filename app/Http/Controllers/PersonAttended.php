@@ -231,7 +231,7 @@ class PersonAttended extends Controller
 
                 $discapacitado = $discapacitadosMlpaPersonasIds->search($documento_temp, $strict = true);
 
-                echo "discapacitado:" . $lpa['persona']['FK_LPA_PERSONA'] . '_' . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
+                echo "discapacitado:" . $lpa['FK_LPA_PERSONA'] . '_' . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
 
                 //->where('sexo', $lpa->persona->GENERO)
                 if ($discapacitado > 0){
