@@ -115,6 +115,8 @@ Route::prefix('meal')->group(function () {
   //seguimiento de emergencias
   Route::middleware(['auth:sanctum'])->get('/alertasFirebird', [App\Http\Controllers\Alertas::class, 'allFirebird']);
 
+  Route::middleware(['auth:sanctum'])->get('/alertasFirebirdNumFamiHogares', [App\Http\Controllers\Alertas::class, 'allFirebirdNumFamiHogares']);
+
   Route::middleware(['auth:sanctum'])->get('/fuente', [App\Http\Controllers\Emergencias::class, 'fuente']);
 
   Route::middleware(['auth:sanctum'])->get('/ruralurbano', [App\Http\Controllers\Emergencias::class, 'ruralurbano']);
