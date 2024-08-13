@@ -8,7 +8,7 @@ php artisan make:job NewJob
 
 php artisan queue:listen
 
-## para produccion toma el por defecto los procesa o finaliza
+## para produccion toma el por defecto los procesados o finaliza
 
 php artisan queue:work 
 

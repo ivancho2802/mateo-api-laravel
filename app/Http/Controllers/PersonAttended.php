@@ -182,6 +182,10 @@ class PersonAttended extends Controller
         dd(count($discapacitado->get()), $personas); */
         $discapacitadosFix = MLpaFix::get();
 
+        $documento = $discapacitadosFix->pluck('documento');
+
+        dd($documento);
+
         $discapacitadosFixDocs = $discapacitadosFix->map(function ($disc, int $key) {
             return $disc->documento;
         });
@@ -706,21 +710,29 @@ class PersonAttended extends Controller
             $lpa->append('tipo_lpa');
             $lpa->persona->append('DOCUMENTO');
 
-            //
-            if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] !== 'Respuesta Rapida' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO_TEMP'])) {
+            //dd($lpa['tipo_lpa']);
 
+            //
+            if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] == 'Recuperacion Temprana' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO'])) {
+
+                //dd($lpa['persona']['DOCUMENTO']);
                 $discapacitado = MLpaFix::where([
-                    'documento' => $lpa['persona']['DOCUMENTO_TEMP']
+                    'documento' => $lpa['persona']['DOCUMENTO']
                 ])
                     ->exists();
 
-                echo "discapacitado:" . $discapacitado . '-' . $lpa['persona']['DOCUMENTO_TEMP'] . MLpaFix::where([
-                    'documento' => $lpa['persona']['DOCUMENTO_TEMP']
-                ])->exists() . $lpa['tipo_lpa'];
+               /*  echo "discapacitado:". json_encode($discapacitado) . '-' . $discapacitado . '-' . $lpa['persona']['DOCUMENTO'] . MLpaFix::where([
+                    'documento' => $lpa['persona']['DOCUMENTO']
+                ])->exists() . $lpa['tipo_lpa']; */
 
                 //->where('sexo', $lpa->persona->GENERO)
+                if (json_encode($discapacitado) == 'true'){
+                    $persona = collect($persona)->forget('discapacitado');
+                    $persona['discapacitado'] = 1;
+                }
+                
+                unset($lpa['persona']['DOCUMENTO']);
 
-                $persona->discapacitado = $discapacitado ? 1 : 0;
             }
         }
 
