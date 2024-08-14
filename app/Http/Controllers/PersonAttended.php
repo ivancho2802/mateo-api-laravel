@@ -743,77 +743,79 @@ class PersonAttended extends Controller
 
     function getRangeBha(Request $request)
     {
-
-        $howOldAmI = $request->edad;
         $range = '';
+        if (isset($request->edad)) {
+            $howOldAmI = $request->edad;
 
-        switch (true) {
+            switch (true) {
 
-            case ($howOldAmI >= 0 && $howOldAmI <= 5):
-                $range = '0 to 5';
-                break;
+                case ($howOldAmI >= 0 && $howOldAmI <= 5):
+                    $range = '0 to 5';
+                    break;
 
-            case ($howOldAmI >= 6 && $howOldAmI <= 17):
-                $range = '6 to 17';
-                break;
+                case ($howOldAmI >= 6 && $howOldAmI <= 17):
+                    $range = '6 to 17';
+                    break;
 
-            case ($howOldAmI >= 18 && $howOldAmI <= 49):
-                $range = '18 to 49';
-                break;
+                case ($howOldAmI >= 18 && $howOldAmI <= 49):
+                    $range = '18 to 49';
+                    break;
 
-            case $howOldAmI >= 50:
-                $range = '> 50';
-                break;
+                case $howOldAmI >= 50:
+                    $range = '> 50';
+                    break;
 
-            default:
-                # code...
-                $range = '';
-                break;
+                default:
+                    # code...
+                    $range = '';
+                    break;
+            }
         }
-
         return  $range;
     }
 
     function getRangeEcho(Request $request)
     {
-
-        $howOldAmI = $request->edad;
         $range = '';
-        switch (true) {
+        if (isset($request->edad)) {
+            $howOldAmI = $request->edad;
+            switch (true) {
 
-            case ($howOldAmI >= 0 && $howOldAmI <= 4):
-                $range = '0 to 4';
-                break;
+                case ($howOldAmI >= 0 && $howOldAmI <= 4):
+                    $range = '0 to 4';
+                    break;
 
-            case ($howOldAmI >= 5 && $howOldAmI <= 9):
-                $range = '5 to 9';
-                break;
+                case ($howOldAmI >= 5 && $howOldAmI <= 9):
+                    $range = '5 to 9';
+                    break;
 
-            case ($howOldAmI >= 10 && $howOldAmI <= 14):
-                $range = '10 to 14';
-                break;
+                case ($howOldAmI >= 10 && $howOldAmI <= 14):
+                    $range = '10 to 14';
+                    break;
 
-            case ($howOldAmI >= 15 && $howOldAmI <= 18):
-                $range = '15 to 18';
-                break;
+                case ($howOldAmI >= 15 && $howOldAmI <= 18):
+                    $range = '15 to 18';
+                    break;
 
-            case ($howOldAmI >= 19 && $howOldAmI <= 29):
-                $range = '19 to 29';
-                break;
-                
-            case ($howOldAmI >= 30 && $howOldAmI <= 59):
-                $range = '30 to 59';
-                break;
+                case ($howOldAmI >= 19 && $howOldAmI <= 29):
+                    $range = '19 to 29';
+                    break;
 
-            case $howOldAmI >= 60:
-                $range = '> 60';
-                break;
+                case ($howOldAmI >= 30 && $howOldAmI <= 59):
+                    $range = '30 to 59';
+                    break;
 
-            default:
-                # code...
-                $range = '';
-                break;
+                case $howOldAmI >= 60:
+                    $range = '> 60';
+                    break;
+
+                default:
+                    # code...
+                    $range = '';
+                    break;
+            }
         }
+
         return  $range;
     }
 
