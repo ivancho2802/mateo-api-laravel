@@ -705,33 +705,35 @@ class PersonAttended extends Controller
 
             $lpa = MLpa::where("ID", "=", $request->IDMLPA)->first();
 
-            dd($lpa, $request->IDMLPA);
+            if($lpa){
 
-            $lpa->append('tipo_lpa');
-            $lpa->persona->append('DOCUMENTO');
-
-            //dd($lpa['tipo_lpa']);
-
-            //
-            if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] == 'Recuperacion Temprana' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO'])) {
-
-                //dd($lpa['persona']['DOCUMENTO']);
-                $discapacitado = MLpaFix::where([
-                    'documento' => $lpa['persona']['DOCUMENTO']
-                ])
-                    ->exists();
-
-               /*  echo "discapacitado:". json_encode($discapacitado) . '-' . $discapacitado . '-' . $lpa['persona']['DOCUMENTO'] . MLpaFix::where([
-                    'documento' => $lpa['persona']['DOCUMENTO']
-                ])->exists() . $lpa['tipo_lpa']; */
-
-                //->where('sexo', $lpa->persona->GENERO)
-                if (json_encode($discapacitado) == 'true'){
-                    $persona = collect($persona)->forget('discapacitado');
-                    $persona['discapacitado'] = 1;
+                $lpa->append('tipo_lpa');
+                $lpa->persona->append('DOCUMENTO');
+    
+                //dd($lpa['tipo_lpa']);
+    
+                //
+                if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] == 'Recuperacion Temprana' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO'])) {
+    
+                    //dd($lpa['persona']['DOCUMENTO']);
+                    $discapacitado = MLpaFix::where([
+                        'documento' => $lpa['persona']['DOCUMENTO']
+                    ])
+                        ->exists();
+    
+                   /*  echo "discapacitado:". json_encode($discapacitado) . '-' . $discapacitado . '-' . $lpa['persona']['DOCUMENTO'] . MLpaFix::where([
+                        'documento' => $lpa['persona']['DOCUMENTO']
+                    ])->exists() . $lpa['tipo_lpa']; */
+    
+                    //->where('sexo', $lpa->persona->GENERO)
+                    if (json_encode($discapacitado) == 'true'){
+                        $persona = collect($persona)->forget('discapacitado');
+                        $persona['discapacitado'] = 1;
+                    }
+                    
+                    unset($lpa['persona']['DOCUMENTO']);
+    
                 }
-                
-                unset($lpa['persona']['DOCUMENTO']);
 
             }
         }
