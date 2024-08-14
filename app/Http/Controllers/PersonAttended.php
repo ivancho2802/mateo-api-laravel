@@ -707,6 +707,8 @@ class PersonAttended extends Controller
                 "ID" => $request->IDMLPA
             ])->first();
 
+            dd($lpa);
+
             $lpa->append('tipo_lpa');
             $lpa->persona->append('DOCUMENTO');
 
@@ -739,6 +741,14 @@ class PersonAttended extends Controller
         return [
             "persona" => $persona
         ];
+    }
+
+    function getRangeBha(){
+
+    }
+
+    function getRangeEcho(){
+        
     }
 
     function getTipoLpa(Request $request)
