@@ -66,7 +66,14 @@ class Jobs extends Controller
     $id = $request->id;
 
     if (isset($request->dominio)) {
-      $dominio = $request->dominio;
+      //parche para el dominio cuando este trae https
+      if (strpos($request->dominio, 'https')!== false )
+        $dominio = str_replace('https://', '', $request->dominio);
+      else if (strpos($request->dominio, 'http')!==false) {
+        $dominio = str_replace('http://', '', $request->dominio);
+      }else{
+        $dominio = $request->dominio;
+      }
     }
 
     $name_key = "cash_echo";
