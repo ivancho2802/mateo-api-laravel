@@ -823,7 +823,7 @@ class PersonAttended extends Controller
             }
         }
 
-        return  ["range" => $range];
+        return  [$range];
     }
 
     function getTipoLpa(Request $request)
