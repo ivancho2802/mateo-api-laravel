@@ -780,7 +780,9 @@ class PersonAttended extends Controller
         }
         
         return [
-            "range" => $range
+            "range" => [
+                "bha" => $range
+            ]
         ];
     }
 
@@ -828,7 +830,9 @@ class PersonAttended extends Controller
 
         
         return [
-            "range" => $range
+            "range" => [
+                $range
+            ]
         ];
     }
 
