@@ -703,9 +703,7 @@ class PersonAttended extends Controller
 
         if (isset($request->IDMLPA)) {
 
-            $lpa = MLpa::where([
-                "ID" => $request->IDMLPA
-            ])->first();
+            $lpa = MLpa::where("ID", $request->IDMLPA)->first();
 
             dd($lpa, $request->IDMLPA);
 
