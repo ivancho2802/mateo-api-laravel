@@ -348,6 +348,13 @@ class PersonAttended extends Controller
             'file_ref' => 'UPLOADED',
         ])->first();
 
+        if(!isset($migration)){
+            return response()->json([
+                "msg" => "Lo sentimos por el momento no hay procesos de migracion en proceso",
+                "message" => "Lo sentimos por el momento no hay procesos de migracion en proceso",
+              ]); 
+        }
+
         $file = Storage::path($migration->table_id);
 
         $headers = array(
@@ -771,7 +778,7 @@ class PersonAttended extends Controller
                     break;
             }
         }
-        return  $range;
+        return  ["range" => $range];
     }
 
     function getRangeEcho(Request $request)
@@ -816,7 +823,7 @@ class PersonAttended extends Controller
             }
         }
 
-        return  $range;
+        return  ["range" => $range];
     }
 
     function getTipoLpa(Request $request)
