@@ -778,7 +778,10 @@ class PersonAttended extends Controller
                     break;
             }
         }
-        return  ["range" => $range];
+        
+        return [
+            "range" => $range
+        ];
     }
 
     function getRangeEcho(Request $request)
@@ -823,7 +826,10 @@ class PersonAttended extends Controller
             }
         }
 
-        return  [$range];
+        
+        return [
+            "range" => $range
+        ];
     }
 
     function getTipoLpa(Request $request)
