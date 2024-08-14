@@ -703,7 +703,7 @@ class PersonAttended extends Controller
 
         if (isset($request->IDMLPA)) {
 
-            $lpa = MLpa::where("ID", $request->IDMLPA)->toSql();
+            $lpa = MLpa::where("ID", $request->IDMLPA)->get();
 
             dd($lpa, $request->IDMLPA);
 
