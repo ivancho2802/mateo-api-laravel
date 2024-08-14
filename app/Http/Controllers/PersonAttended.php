@@ -233,15 +233,15 @@ class PersonAttended extends Controller
 
                 $documento_temp = $lpa['FK_LPA_PERSONA'];
 
-                $discapacitado = $discapacitadosMlpaPersonasIds->search( function ($item) use ($documento_temp){
-                    echo '___'. $item .'___'. $documento_temp .'___';
-                    return strpos(strtoupper($item), strtoupper($documento_temp))>=0;
+                $discapacitado = $discapacitadosMlpaPersonasIds->search(function ($item) use ($documento_temp) {
+                    echo '___' . $item . '___' . $documento_temp . '___';
+                    return strpos(strtoupper($item), strtoupper($documento_temp)) >= 0;
                 });
 
                 echo "discapacitado:" . $lpa['FK_LPA_PERSONA'] . '_' . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
 
                 //->where('sexo', $lpa->persona->GENERO)
-                if ($discapacitado >= 0){
+                if ($discapacitado >= 0) {
                     $lpa['persona']['discapacitado'] = 1;
                     //dd("Si encontro uno");
                 }
@@ -705,36 +705,34 @@ class PersonAttended extends Controller
 
             $lpa = MLpa::where("ID", "=", $request->IDMLPA)->first();
 
-            if($lpa){
+            if ($lpa) {
 
                 $lpa->append('tipo_lpa');
                 $lpa->persona->append('DOCUMENTO');
-    
+
                 //dd($lpa['tipo_lpa']);
-    
+
                 //
                 if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] == 'Recuperacion Temprana' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO'])) {
-    
+
                     //dd($lpa['persona']['DOCUMENTO']);
                     $discapacitado = MLpaFix::where([
                         'documento' => $lpa['persona']['DOCUMENTO']
                     ])
                         ->exists();
-    
-                   /*  echo "discapacitado:". json_encode($discapacitado) . '-' . $discapacitado . '-' . $lpa['persona']['DOCUMENTO'] . MLpaFix::where([
+
+                    /*  echo "discapacitado:". json_encode($discapacitado) . '-' . $discapacitado . '-' . $lpa['persona']['DOCUMENTO'] . MLpaFix::where([
                         'documento' => $lpa['persona']['DOCUMENTO']
                     ])->exists() . $lpa['tipo_lpa']; */
-    
+
                     //->where('sexo', $lpa->persona->GENERO)
-                    if (json_encode($discapacitado) == 'true'){
+                    if (json_encode($discapacitado) == 'true') {
                         $persona = collect($persona)->forget('discapacitado');
                         $persona['discapacitado'] = 1;
                     }
-                    
-                    unset($lpa['persona']['DOCUMENTO']);
-    
-                }
 
+                    unset($lpa['persona']['DOCUMENTO']);
+                }
             }
         }
 
@@ -743,12 +741,80 @@ class PersonAttended extends Controller
         ];
     }
 
-    function getRangeBha(){
+    function getRangeBha(Request $request)
+    {
 
+        $howOldAmI = $request->edad;
+        $range = '';
+
+        switch (true) {
+
+            case ($howOldAmI >= 0 && $howOldAmI <= 5):
+                $range = '0 to 5';
+                break;
+
+            case ($howOldAmI >= 6 && $howOldAmI <= 17):
+                $range = '6 to 17';
+                break;
+
+            case ($howOldAmI >= 18 && $howOldAmI <= 49):
+                $range = '18 to 49';
+                break;
+
+            case $howOldAmI >= 50:
+                $range = '> 50';
+                break;
+
+            default:
+                # code...
+                $range = '';
+                break;
+        }
+
+        return  $range;
     }
 
-    function getRangeEcho(){
-        
+    function getRangeEcho(Request $request)
+    {
+
+        $howOldAmI = $request->edad;
+        $range = '';
+        switch (true) {
+
+            case ($howOldAmI >= 0 && $howOldAmI <= 4):
+                $range = '0 to 4';
+                break;
+
+            case ($howOldAmI >= 5 && $howOldAmI <= 9):
+                $range = '5 to 9';
+                break;
+
+            case ($howOldAmI >= 10 && $howOldAmI <= 14):
+                $range = '10 to 14';
+                break;
+
+            case ($howOldAmI >= 15 && $howOldAmI <= 18):
+                $range = '15 to 18';
+                break;
+
+            case ($howOldAmI >= 19 && $howOldAmI <= 29):
+                $range = '19 to 29';
+                break;
+                
+            case ($howOldAmI >= 30 && $howOldAmI <= 59):
+                $range = '30 to 59';
+                break;
+
+            case $howOldAmI >= 60:
+                $range = '> 60';
+                break;
+
+            default:
+                # code...
+                $range = '';
+                break;
+        }
+        return  $range;
     }
 
     function getTipoLpa(Request $request)

@@ -344,6 +344,73 @@ class MLpaPersona extends Model
         return $howOldAmI;
     }
 
+    public function getEdadRangoBhaAttribute()
+    {
+        $fecha_nac = $this->FECHA_NACIMIENTO;//"2002-11-21 00:00:00.000000"
+        $howOldAmI = 0;
+        if(!isset($fecha_nac)){
+            return $howOldAmI;
+        }
+
+        if(strpos($fecha_nac, "00:00:00")>=0){
+            $arrayfecha_nac = explode(" ", $fecha_nac);
+            $fecha_nac = $arrayfecha_nac[0];
+        }
+        
+
+        $fecha_nac_isvalid = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac);
+
+        if ($fecha_nac_isvalid!==false && isset($fecha_nac)) {
+            $howOldAmI = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac)->age;  // 46 1999-08-30
+        }
+
+        switch ($howOldAmI) {
+            case 'value':
+                # code...
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+        return $howOldAmI;
+    }
+
+    
+    public function getEdadRangoEchoAttribute()
+    {
+        $fecha_nac = $this->FECHA_NACIMIENTO;//"2002-11-21 00:00:00.000000"
+        $howOldAmI = 0;
+        if(!isset($fecha_nac)){
+            return $howOldAmI;
+        }
+
+        if(strpos($fecha_nac, "00:00:00")>=0){
+            $arrayfecha_nac = explode(" ", $fecha_nac);
+            $fecha_nac = $arrayfecha_nac[0];
+        }
+        
+
+        $fecha_nac_isvalid = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac);
+
+        if ($fecha_nac_isvalid!==false && isset($fecha_nac)) {
+            $howOldAmI = Carbon::createFromIsoFormat("YYYY-MM-DD", $fecha_nac)->age;  // 46 1999-08-30
+        }
+
+        switch ($howOldAmI) {
+            case 'value':
+                # code...
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+        return $howOldAmI;
+    }
+
     public static function isValidDate(string $dateString, string $format = 'Y-m-d'): bool
     {
         $dateTime = Carbon::createFromFormat($format, $dateString);
