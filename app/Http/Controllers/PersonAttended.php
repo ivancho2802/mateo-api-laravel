@@ -707,7 +707,7 @@ class PersonAttended extends Controller
                 "ID" => $request->IDMLPA
             ])->first();
 
-            dd($lpa);
+            dd($lpa, $request->IDMLPA);
 
             $lpa->append('tipo_lpa');
             $lpa->persona->append('DOCUMENTO');
