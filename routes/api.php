@@ -175,6 +175,21 @@ Route::prefix('meal')->group(function () {
     return response()->json($municipios);
   });
 
+  Route::get('/rr/report/municipios/{departamento}', function (Request $request) {
+
+    if(isset($request->departamento)){
+      $departamento_finded = Reports::where('departamento', $request->departamento);
+      //dd($departamento_finded->get());
+
+      $municipios =  $departamento_finded->get()->groupBy('municipio')->keys();
+    }else{
+      $municipios = Reports::all()->groupBy('municipio')->keys();
+
+    }
+
+    return response()->json($municipios);
+  });
+
   Route::middleware(['auth:sanctum'])->post('/rr/upload', [App\Http\Controllers\ReportController::class, 'stored']);
 });
 
