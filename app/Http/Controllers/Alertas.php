@@ -453,6 +453,67 @@ class Alertas extends Controller
         return response()->json($resultados);
 
     }
+    /**
+     * 
+     *
+     * 
+    SELECT 
+    IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip,TIPO_EMERG, NUM_PERSONAS, NUM_FAMILIAS   , GRUPO_ETNICO        
+    FROM(
+        
+        SELECT codigo, TIPO_EMERG, NUM_PERSONAS, M_KOBO_RESPUESTAS.XVALOR GRUPO_ETNICO, IDFORM   , NUM_FAMILIAS             
+        FROM ( 
+                
+            SELECT codigo, TIPO_EMERG, NUM_PERSONAS, M_KOBO_RESPUESTAS.XVALOR NUM_FAMILIAS, IDFORM                
+            FROM (                          
+                SELECT TIPO_EMERG,codigo, M_KOBO_RESPUESTAS.XVALOR NUM_PERSONAS,IDFORM                          
+                from (                                    
+                    SELECT M_KOBO_RESPUESTAS.XVALOR TIPO_EMERG,m_kobo_formularios.xCODIGO_ALERTA codigo, M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS IDFORM                                    
+                    FROM 
+                        M_KOBO_RESPUESTAS                                     
+                    INNER JOIN 
+                        M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS                                    
+                    WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' AND M_KOBO_FORMULARIOS.ESTATUS<>'ANULADO'                               
+                )                          
+                INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                          
+                WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012683'            
+                )                
+            INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                
+            WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012682'           
+        )               
+        INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                
+        WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001682'           
+    )           
+    INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM           
+    INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS           
+    WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012683'
+    
+    UNION                
+    
+    SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG,  M_KOBO_RESPUESTAS.XVALOR NUM_PERSONAS, NUM_FAMILIAS  , GRUPO_ETNICO         
+    FROM(       
+                        
+        SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG, NUM_FAMILIAS, M_KOBO_RESPUESTAS.XVALOR  GRUPO_ETNICO             
+        FROM(           
+            SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG,  M_KOBO_RESPUESTAS.XVALOR NUM_FAMILIAS                
+            FROM(                                                    
+                    SELECT M_KOBO_RESPUESTAS.XVALOR TIPO_EMERG,m_kobo_formularios.xCODIGO_ALERTA codigo, M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS IDFORM                                                   
+                    FROM M_KOBO_RESPUESTAS                                                    
+                    INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS                                                   
+                    WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' AND M_KOBO_FORMULARIOS.ESTATUS<>'ANULADO'                
+                )                
+            INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                
+            INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                
+            WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001484'  
+        )                
+        INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                
+        INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                
+        WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001682'
+    )           
+    INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM           
+    INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS           
+    WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001485'
+     */
 
     function allFirebirdNumFamiHogares(Request $request){
         ini_set('memory_limit', '2044M');
@@ -462,7 +523,7 @@ class Alertas extends Controller
 
         DB::setDefaultConnection('firebird'); 
 
-        $resultados = DB::select("     SELECT      IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, NUM_FAMILIAS, NUM_PERSONAS, TIPO_EMERG   , GRUPO_ETNICO             FROM(                  SELECT codigo, TIPO_EMERG, NUM_PERSONAS, M_KOBO_RESPUESTAS.XVALOR GRUPO_ETNICO, IDFORM   , NUM_FAMILIAS                      FROM (                               SELECT codigo, TIPO_EMERG, NUM_PERSONAS, M_KOBO_RESPUESTAS.XVALOR NUM_FAMILIAS, IDFORM                             FROM (                                           SELECT TIPO_EMERG,codigo, M_KOBO_RESPUESTAS.XVALOR NUM_PERSONAS,IDFORM                                           from (                                                         SELECT M_KOBO_RESPUESTAS.XVALOR TIPO_EMERG,m_kobo_formularios.xCODIGO_ALERTA codigo, M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS IDFORM                                                         FROM                          M_KOBO_RESPUESTAS                                                          INNER JOIN                          M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS                                                         WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' AND M_KOBO_FORMULARIOS.ESTATUS<>'ANULADO'                                                )                                           INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                                           WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012683'                             )                             INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                             WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012682'                    )                        INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                         WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001682'                )                INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012683'          UNION                    SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG,  M_KOBO_RESPUESTAS.XVALOR NUM_PERSONAS, NUM_FAMILIAS  , GRUPO_ETNICO              FROM(                                         SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG, NUM_FAMILIAS, M_KOBO_RESPUESTAS.XVALOR  GRUPO_ETNICO                      FROM(                        SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG,  M_KOBO_RESPUESTAS.XVALOR NUM_FAMILIAS                             FROM(                                                                         SELECT M_KOBO_RESPUESTAS.XVALOR TIPO_EMERG,m_kobo_formularios.xCODIGO_ALERTA codigo, M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS IDFORM                                                                        FROM M_KOBO_RESPUESTAS                                                                         INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS                                                                        WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' AND M_KOBO_FORMULARIOS.ESTATUS<>'ANULADO'                                 )                             INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                             INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                             WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001484'           )                         INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                         INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                         WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001682'     )                INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001485'             ");
+        $resultados = DB::select(" SELECT      IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip,TIPO_EMERG, NUM_PERSONAS, NUM_FAMILIAS   , GRUPO_ETNICO             FROM(                  SELECT codigo, TIPO_EMERG, NUM_PERSONAS, M_KOBO_RESPUESTAS.XVALOR GRUPO_ETNICO, IDFORM   , NUM_FAMILIAS                      FROM (                               SELECT codigo, TIPO_EMERG, NUM_PERSONAS, M_KOBO_RESPUESTAS.XVALOR NUM_FAMILIAS, IDFORM                             FROM (                                           SELECT TIPO_EMERG,codigo, M_KOBO_RESPUESTAS.XVALOR NUM_PERSONAS,IDFORM                                           from (                                                         SELECT M_KOBO_RESPUESTAS.XVALOR TIPO_EMERG,m_kobo_formularios.xCODIGO_ALERTA codigo, M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS IDFORM                                                         FROM                          M_KOBO_RESPUESTAS                                                          INNER JOIN                          M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS                                                         WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' AND M_KOBO_FORMULARIOS.ESTATUS<>'ANULADO'                                                )                                           INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                                           WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012683'                             )                             INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                             WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012682'                    )                        INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                         WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001682'                )                INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012683'          UNION                          SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG,  M_KOBO_RESPUESTAS.XVALOR NUM_PERSONAS, NUM_FAMILIAS  , GRUPO_ETNICO              FROM(                                         SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG, NUM_FAMILIAS, M_KOBO_RESPUESTAS.XVALOR  GRUPO_ETNICO                      FROM(                        SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG,  M_KOBO_RESPUESTAS.XVALOR NUM_FAMILIAS                             FROM(                                                                         SELECT M_KOBO_RESPUESTAS.XVALOR TIPO_EMERG,m_kobo_formularios.xCODIGO_ALERTA codigo, M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS IDFORM                                                                        FROM M_KOBO_RESPUESTAS                                                                         INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS                                                                        WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' AND M_KOBO_FORMULARIOS.ESTATUS<>'ANULADO'                                 )                             INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                             INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                             WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001484'           )                         INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                         INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                         WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001682'     )                INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001485' ");
         
         $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
 
