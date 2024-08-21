@@ -570,7 +570,9 @@
                 </svg>
               </i>
               <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">
-                Servicio para crear qr con la marca de ach
+                <a href="/qr" class="underline text-gray-900 dark:text-white">
+                  Servicio para crear qr con la marca de ach
+                </a>
               </div>
             </div>
 
