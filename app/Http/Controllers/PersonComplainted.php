@@ -18,6 +18,8 @@ class PersonComplainted extends Controller
     function stored(Request $request)
     {
 
+        $requestOriginal = $request;
+
         try {
 
             if (
@@ -69,14 +71,14 @@ class PersonComplainted extends Controller
             //para el analisis recibir un string como analisis y que se edite en otro lado
 
             // Validate the uploaded file
-            $request->validate([
+            $requestOriginal->validate([
                 'file' => 'required|mimes:xlsx,xls',
             ]);
 
             //guardo el archiv
 
             // Get the uploaded file
-            $file = $request->file('file');
+            $file = $requestOriginal->file('file');
             $path = $file->store('migrationsMqr');
 
             migrateCustom::create([
@@ -86,7 +88,7 @@ class PersonComplainted extends Controller
             ]);
 
             // Get the uploaded file
-            $file = $request->file('file');
+            $file = $requestOriginal->file('file');
 
             // Process the Excel file Consolidado
             //Excel::import(new MqrImportClass, $file, 'Consolidado');
