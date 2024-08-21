@@ -11,7 +11,8 @@ class QrCodeController extends Controller
     function show(Request $request){
 
         if(!isset($request->url)){
-            dd($request->url);
+
+            return view('qr.index', []);
         }
         
         $data = QrCode::size(512)
