@@ -9,6 +9,10 @@ class QrCodeController extends Controller
 {
     //
     function show(Request $request){
+
+        if(!isset($request->url)){
+            dd($request->url);
+        }
         
         $data = QrCode::size(512)
             ->style('dot')
