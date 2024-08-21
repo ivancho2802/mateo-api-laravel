@@ -41,7 +41,7 @@ Route::prefix('finanzas')->group(function () {
   Route::get('/adn/fase2', [App\Http\Controllers\Finanzas::class, 'all']);
   Route::post('/adn/fase2', [App\Http\Controllers\Finanzas::class, 'set']);
   Route::get('/adn/loaextra', [App\Http\Controllers\Finanzas::class, 'getLoaExtra']);
-  Route::get('/adn/indivhogares', [App\Http\Controllers\Finanzas::class, 'getCuaIndHog'])
+  Route::get('/adn/indivhogares', [App\Http\Controllers\Finanzas::class, 'getCuaIndHog']);
 
 });
 
