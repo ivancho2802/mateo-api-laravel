@@ -42,6 +42,8 @@ Route::middleware(['auth'])->post('/koboapdf', [App\Http\Controllers\Jobs::class
 
 Route::middleware(['auth'])->put('/koboapdf', [App\Http\Controllers\Jobs::class, 'addFilterProcessExportView']);
 
+Route::middleware(['auth'])->get('/koboapdfrepair', [\App\Http\Controllers\Jobs::class, 'repair']);
+
 // route for get shortener url
 Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
 

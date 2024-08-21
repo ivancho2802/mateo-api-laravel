@@ -59,4 +59,9 @@ class Finanzas extends Controller
 
         return response()->json(['status' => true, 'data' => $adn], 200);
     }
+
+    function getCuaIndHog() {
+
+        
+    }
 }

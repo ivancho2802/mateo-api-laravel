@@ -15,6 +15,9 @@ use App\Models\JobDetails;
 use App\Models\migrateCustom;
 use App\Http\Controllers\helper;
 use PhpOffice\PhpSpreadsheet\Calculation\TextData\Search;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades;
+use Illuminate\Support\Facades\Artisan;
 
 class Jobs extends Controller
 {
@@ -67,11 +70,11 @@ class Jobs extends Controller
 
     if (isset($request->dominio)) {
       //parche para el dominio cuando este trae https
-      if (strpos($request->dominio, 'https')!== false )
+      if (strpos($request->dominio, 'https') !== false)
         $dominio = str_replace('https://', '', $request->dominio);
-      else if (strpos($request->dominio, 'http')!==false) {
+      else if (strpos($request->dominio, 'http') !== false) {
         $dominio = str_replace('http://', '', $request->dominio);
-      }else{
+      } else {
         $dominio = $request->dominio;
       }
     }
@@ -717,5 +720,23 @@ class Jobs extends Controller
 
     //MQR devolver tabla con los resultados creados 
     return view('koboapdf.index', ["name_key" => "", "data" => $data]);
+  }
+
+  public function repair()
+  {
+    try {
+      //code...
+
+      $exitCode = Artisan::call('queue:retry all', []);
+
+      $data = [
+        "exitCode" => $exitCode
+      ];
+
+      return redirect('/koboapdf')->with(['success' => 'Datos reparados con exito.']);
+    } catch (\Throwable $th) {
+      //throw $th;
+      return redirect('/koboapdf')->with(['error' => 'Error! al procezar los datos']);
+    }
   }
 }
