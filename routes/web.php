@@ -47,7 +47,7 @@ Route::middleware(['auth'])->get('/koboapdfrepair', [\App\Http\Controllers\Jobs:
 // route for get shortener url
 Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');
 
-Route::get('/qr', [QrCodeController::class, 'show']);
+Route::get('/qr', [QrCodeController::class, 'show'])->name('qr');
 
 //download files public
 
