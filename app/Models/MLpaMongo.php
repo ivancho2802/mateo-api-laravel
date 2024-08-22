@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 //use Illuminate\Database\Eloquent\Model;
+//use MongoDB\Laravel\Eloquent\Model;
+
+
+use Illuminate\Database\Eloquent\Model;
 use MongoDB\Laravel\Eloquent\DocumentModel;
-use MongoDB\Laravel\Relations\EmbedsMany;
-use MongoDB\Laravel\Eloquent\Model;
 
 class MLpaMongo extends Model
 {
-    use HasFactory;
+    use DocumentModel;
 
-    
     protected $fillable = [
 
         "ID_M_KOBO_FORMULARIOS",
