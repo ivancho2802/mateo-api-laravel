@@ -22,6 +22,8 @@ use Illuminate\Validation\ValidationException;
 use SebastianBergmann\Diff\Chunk;
 use App\Http\Controllers\Jobs;
 use App\Models\Reports;
+use App\Models\MLpaMongo;
+
 
 //ini_set('internal_encoding', 'utf-8');
 
@@ -609,7 +611,7 @@ Route::prefix('mongo')->group(function () {
 
     $formluario->save();
 
-    $resultados = MKoboFormularios::all();
+    $resultados = MLpaMongo::all();
 
     return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
     /* } catch (\Throwable $exception) {
