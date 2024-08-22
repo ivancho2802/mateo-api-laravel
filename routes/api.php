@@ -601,7 +601,7 @@ Route::prefix('mongo')->group(function () {
 
     DB::setDefaultConnection('mongodb');
 
-    $formluario = new MKoboFormularios();
+    $formluario = new MLpaMongo();
 
     $formluario->id = "1";
     $formluario->_ID = "1";
