@@ -16,6 +16,7 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "jenssegers/mongodb": "^3.8",
         "kkszymanowski/laravel-6-firebird": "^6.0",
         "laravel/framework": "^8.0",
         "laravel/sanctum": "^2.15",
