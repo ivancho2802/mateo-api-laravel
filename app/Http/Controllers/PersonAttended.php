@@ -22,6 +22,8 @@ use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Concerns\ToArray;
 
 use function PHPUnit\Framework\isEmpty;
+use App\Jobs\LpaJobProcess;
+use App\Jobs\LpaJobRefreshMigrations;
 
 class PersonAttended extends Controller
 {
@@ -84,6 +86,9 @@ class PersonAttended extends Controller
         $data['record_excel'] = 1;
 
         $data['record_saved'] = 0;
+
+        //crear job para ejecutar la funcion de process
+        LpaJobProcess::dispatch(); //->onConnection('database');
 
         //terminar devolver tabla
         return view('list-lpas', $data);
@@ -366,7 +371,7 @@ class PersonAttended extends Controller
         return Storage::download($migration->table_id, 'filename.xlsx', $headers);
     }
 
-    function process(Request $request)
+    public function process(?Request $request)
     {
 
         ini_set('memory_limit', '2044M');
@@ -432,6 +437,9 @@ class PersonAttended extends Controller
 
         $data['record_saved'] = $count_mlpas;
 
+        //se procesa el refresh
+        LpaJobRefreshMigrations::dispatch(); //->onConnection('database');
+        
         //terminar devolver tabla
         return view('list-lpas', $data);
         //return response()->json(["message" => "operacion hecha con exito"]);
