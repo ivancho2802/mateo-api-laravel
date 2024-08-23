@@ -385,6 +385,12 @@ https://www.mongodb.com/docs/mongodb-shell/
 sudo rm -r /var/log/mongodb
 sudo rm -r /var/lib/mongodb
 
+## check status and reset sefvices
+
+systemctl status mongod
+systemctl restart mongod
+
+
 
 ## para php fpm errores
 

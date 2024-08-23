@@ -1,5 +1,7 @@
 <?php
 
+use Jenssegers\Mongodb\MongodbServiceProvider;
+
 return [
 
     /*
@@ -206,7 +208,9 @@ return [
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
-        //MongoDB\Laravel\MongoDBServiceProvider::class,
+
+        MongodbServiceProvider::class,
+
     ],
 
     /*
