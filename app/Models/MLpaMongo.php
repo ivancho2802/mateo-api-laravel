@@ -5,14 +5,13 @@ namespace App\Models;
 //use Illuminate\Database\Eloquent\Model;
 //use MongoDB\Laravel\Eloquent\Model;
 
-
-use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\Model;
 use MongoDB\Laravel\Eloquent\DocumentModel;
+
+use Jenssegers\Mongodb\Eloquent\Model;
 
 class MLpaMongo extends Model
 {
-    use DocumentModel;
-
     protected $fillable = [
 
         "ID_M_KOBO_FORMULARIOS",
