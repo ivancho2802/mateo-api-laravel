@@ -613,7 +613,19 @@ Route::prefix('mongo')->group(function () {
 
     $resultados = MLpaMongo::all();
 
-    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+    //
+
+    dd(DB::connection('mongodb')->db);
+
+    $queryRandom = DB::connection('mongodb')->db
+    ->collection($request->collection)//'movies'
+    ->where($request->where, $request->wherevalue)//'imdb.rating' 9.3 
+    ->get();
+
+    return response()->json([
+      "res" => $queryRandom,
+      "resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)
+    ]);
     /* } catch (\Throwable $exception) {
         return response()->json(['Error' => $exception->getMessage()]);
       } */
