@@ -9,6 +9,10 @@ namespace App\Models;
 use MongoDB\Laravel\Eloquent\DocumentModel;
 
 use Jenssegers\Mongodb\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\ActivitiesMongo;
+use App\Models\MLpaPersonaMongo;
+
 
 class MLpaMongo extends Model
 {
@@ -110,7 +114,7 @@ class MLpaMongo extends Model
 
     public function emergencia()
     {
-        return $this->hasOne(MLpaEmergencia::class, 'ID', 'FK_LPA_EMERGENCIA');
+        return $this->hasOne(MLpaEmergenciaMongo::class, 'ID', 'FK_LPA_EMERGENCIA');
     }
 
 
@@ -118,11 +122,11 @@ class MLpaMongo extends Model
     {
         //dd($this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD'));
 
-        return $this->hasOne(Activities::class, 'cod', 'COD_ACTIVIDAD');
+        return $this->hasOne(ActivitiesMongo::class, 'cod', 'COD_ACTIVIDAD');
     }
 
     public function persona()
     {
-        return $this->hasOne(MLpaPersona::class, 'ID', 'FK_LPA_PERSONA');
+        return $this->hasOne(MLpaPersonaMongo::class, 'ID', 'FK_LPA_PERSONA');
     }
 }
