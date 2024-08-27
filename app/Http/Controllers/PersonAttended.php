@@ -854,4 +854,20 @@ class PersonAttended extends Controller
 
         return ["tipo_lpa" => $tipo_lpa->tipo_lpa];
     }
+
+    function getDonante(Request $request)
+    {
+
+        $mlpa = MLpa::where("ID", "=", $request->ID)->first();
+
+        $donante = $mlpa->DONANTE;
+
+        $tipo_lpa = $request->tipo_lpa;
+
+        if($donante == 'BHA'){
+            $donante = ' ' . $tipo_lpa;
+        }
+
+        return ["donante_ajustado" => $donante];
+    }
 }
