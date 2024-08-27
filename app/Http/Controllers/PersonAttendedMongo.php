@@ -435,6 +435,7 @@ class PersonAttendedMongo extends Controller
     function checked(Request $request)
     {
 
+        DB::setDefaultConnection('mongodb');
         $migration = migrateCustomMongo::where([
             'table' => 'M_LPAS',
             'file_ref' => 'UPLOADED',
