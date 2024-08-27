@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\migrateCustomMongo;
+use Illuminate\Support\Facades\DB;
 
 class MlpasMongoClass extends Controller
 {
@@ -44,6 +45,7 @@ class MlpasMongoClass extends Controller
                 /* } */
                 //333 el cero son las cabeceras
             //dd("count rows", count($rows->all()), $rows[0]);
+            DB::setDefaultConnection('mongodb');
 
             $rowsChuck = $rows->chunk(1000);
 

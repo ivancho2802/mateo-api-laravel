@@ -21,6 +21,7 @@ class PersonAttendedMongo extends Controller
     //
     function stored(Request $request)
     {
+        DB::setDefaultConnection('mongodb');
 
         if ($request->analisis && $request->month) {
             $resulAlaisis = AnalisisMongo::updateOrCreate([
@@ -87,6 +88,7 @@ class PersonAttendedMongo extends Controller
 
     public function process(?Request $request)
     {
+        DB::setDefaultConnection('mongodb');
 
         ini_set('memory_limit', '2044M');
         set_time_limit(3000000); //0
@@ -176,6 +178,7 @@ class PersonAttendedMongo extends Controller
         $lotes = 500;
 
         $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
+        DB::setDefaultConnection('mongodb');
 
         if (!$ID_USER) {
             return "error";
