@@ -621,6 +621,9 @@ Route::prefix('mongo')->group(function () {
 
   Route::post('/lpa/upload', [App\Http\Controllers\PersonAttendedMongo::class, 'stored']);
 
+  Route::middleware(['auth:sanctum'])->post('/lpa/checked', [App\Http\Controllers\PersonAttended::class, 'checked']);
+  
+
 });
 
 Route::middleware((['auth:sanctum']))->prefix('pgsql')->group(function () {

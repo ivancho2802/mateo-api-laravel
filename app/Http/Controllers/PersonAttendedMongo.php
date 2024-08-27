@@ -429,4 +429,32 @@ class PersonAttendedMongo extends Controller
         //]);
         //}
     }
+
+    
+
+    function checked(Request $request)
+    {
+
+        $migration = migrateCustomMongo::where([
+            'table' => 'M_LPAS',
+            'file_ref' => 'UPLOADED',
+        ])->first();
+
+        if(!isset($migration)){
+            return response()->json([
+                "msg" => "Lo sentimos por el momento no hay procesos de migracion en proceso",
+                "message" => "Lo sentimos por el momento no hay procesos de migracion en proceso",
+              ]); 
+        }
+
+        $file = Storage::path($migration->table_id);
+
+        $headers = array(
+            'Content-Type: application/vnd.ms-excel',
+        );
+        //return Storage::download("migrationsLpa/P1NbVt8r2vVH76QKOkJigTOOMJi1UggewaFJ50gy.xlsx", 'filename.xlsx', $headers);
+        //return Storage::download("migrationsLpa/h0R5RfbLVuBjetZLTRG9c5xHVABG054Qm0GPIG7S.xlsx", 'filename.xlsx', $headers);
+
+        return Storage::download($migration->table_id, 'filename.xlsx', $headers);
+    }
 }
