@@ -619,7 +619,7 @@ Route::prefix('mongo')->group(function () {
       } */
   });
 
-  Route::post('/lpaActivities/upload', [App\Http\Controllers\PersonAttendedMongo::class, 'storedActivities']);
+  Route::post('/lpa/upload', [App\Http\Controllers\PersonAttendedMongo::class, 'stored']);
 
 });
 
