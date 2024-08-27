@@ -23,6 +23,8 @@ use SebastianBergmann\Diff\Chunk;
 use App\Http\Controllers\Jobs;
 use App\Models\Reports;
 use App\Models\MLpaMongo;
+use Jenssegers\Mongodb\MongodbServiceProvider;
+//use Jenssegers\Mongodb\MongodbServiceProvider::class,
 
 
 //ini_set('internal_encoding', 'utf-8');
@@ -614,16 +616,14 @@ Route::prefix('mongo')->group(function () {
     $resultados = MLpaMongo::all();
 
     //
-
-    dd(DB::connection('mongodb')->db);
-
-    $queryRandom = DB::connection('mongodb')->db
-    ->collection($request->collection)//'movies'
+    $cliente = MongodbServiceProvider::class;
+    
+    /* $queryRandom = DB::setDefaultConnection('mongodb')->collection($request->collection)//'movies'
     ->where($request->where, $request->wherevalue)//'imdb.rating' 9.3 
-    ->get();
+    ->get(); */
 
     return response()->json([
-      "res" => $queryRandom,
+      //"res" => $queryRandom,
       "resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)
     ]);
     /* } catch (\Throwable $exception) {
@@ -635,6 +635,7 @@ Route::prefix('mongo')->group(function () {
 
   Route::middleware(['auth:sanctum'])->post('/lpa/checked', [App\Http\Controllers\PersonAttendedMongo::class, 'checked']);
   
+  Route::middleware(['auth:sanctum'])->post('/lpa/process', [App\Http\Controllers\PersonAttendedMongo::class, 'process']);
 
 });
 
