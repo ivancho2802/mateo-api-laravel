@@ -618,6 +618,9 @@ Route::prefix('mongo')->group(function () {
         return response()->json(['Error' => $exception->getMessage()]);
       } */
   });
+
+  Route::post('/lpaActivities/upload', [App\Http\Controllers\PersonAttendedMongo::class, 'storedActivities']);
+
 });
 
 Route::middleware((['auth:sanctum']))->prefix('pgsql')->group(function () {
