@@ -269,7 +269,7 @@
                   @foreach ($data->values()[$i] as $dataf)
                     @for ($j = 0; $j < count(collect($dataf)->keys()); $j++)
                       <label class="question non-select ">
-                        <span lang="" class="question-label active">{{isset(collect($dataf)->keys()[$j]) ? is_string(collect($dataf)->keys()[$j]) ? collect($dataf)->keys()[$j] : implode(collect($dataf)->keys()[$j]): 'N/A'}}:</span>
+                        <span lang="" class="question-label active">{{isset(collect($dataf)->keys()[$j]) ? is_string(collect($dataf)->keys()[$j]) ? collect($dataf)->keys()[$j] : json_encode(collect($dataf)->keys()[$j]): 'N/A'}}:</span>
                         <span class="required">*</span>
                         <div class="widget date">
                           <input class="ignore input-small" type="text" value="{{isset(collect($dataf)->values()[$j]) ? is_string(collect($dataf)->values()[$j]) ? collect($dataf)->values()[$j] : json_encode(collect($dataf)->values()[$j]): 'N/A'}}">
