@@ -70,10 +70,13 @@ class Jobs extends Controller
 
     if (isset($request->dominio)) {
       //parche para el dominio cuando este trae https
-      if (strpos($request->dominio, 'https') !== false)
+      if (strpos($request->dominio, 'https') !== false){
         $dominio = str_replace('https://', '', $request->dominio);
+        $dominio = str_replace('/', '', $request->dominio);
+      }
       else if (strpos($request->dominio, 'http') !== false) {
         $dominio = str_replace('http://', '', $request->dominio);
+        $dominio = str_replace('/', '', $request->dominio);
       } else {
         $dominio = $request->dominio;
       }
