@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Jobs\LpaJobMongoRefreshMigrations;
 use App\Models\MLpaEmergenciaMongo;
 use App\Models\MLpaPersonaMongo;
+use App\Models\migrateCustom;
 
 use Illuminate\Support\Facades\DB;
 
@@ -178,16 +179,15 @@ class PersonAttendedMongo extends Controller
         $lotes = 500;
 
         $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
-        DB::setDefaultConnection('mongodb');
 
         if (!$ID_USER) {
             return "error";
         }
 
-        $migrationPendings = migrateCustomMongo::where([
+        $migrationPendings = migrateCustom::where([
             ['table', 'M_LPAS'],
             ['table_id', '!=', '[]'],
-            ['file_ref', 'PENDING']
+            ['file_ref', 'PENDINGMONGO']
         ])->first();
 
         $idTable = optional($migrationPendings)->table_id;
@@ -220,6 +220,7 @@ class PersonAttendedMongo extends Controller
         //estoy tomando solo la primera 500
 
         //dd(count($elementsForMigrationChunked[0]));
+        DB::setDefaultConnection('mongodb');
 
         foreach ($elementsForMigrationChunked[0] as $row) {
             $i = 0;
@@ -396,12 +397,15 @@ class PersonAttendedMongo extends Controller
         $id_lpas = $queryLpa->pluck('ID')->all();
 
         if (count($mlpas) > 0) {
-            migrateCustomMongo::create([
-                'table' => 'M_LPAS',
+            DB::setDefaultConnection('pgsql');
+
+            migrateCustom::create([
+                'table' => 'M_LPAS_MONGO',
                 'table_id' => implode(", ", $id_lpas),
                 'file_ref' => '-',
             ]);
         } else {
+            DB::setDefaultConnection('mongodb');
 
             /* throw ValidationException::withMessages([
                 'msg' => ['No se guardaron los registros.'],
@@ -411,9 +415,10 @@ class PersonAttendedMongo extends Controller
 
         //array_push($id_emergenciasz, $mlpa_emergencia)
         //dd($mlpas->pluck('ID'),$id_lpas);
+        DB::setDefaultConnection('pgsql');
 
-        $restanteTot = migrateCustomMongo::where([
-            ['table', 'M_LPAS'],
+        $restanteTot = migrateCustom::where([
+            ['table', 'M_LPAS_MONGO'],
             ['table_id', '!=', '[]'],
             ['file_ref', 'PENDING']
         ])->get();

@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\Models\migrateCustomMongo;
+use App\Models\migrateCustom;
 use Illuminate\Support\Facades\DB;
 
 class MlpasMongoClass extends Controller
@@ -45,7 +46,6 @@ class MlpasMongoClass extends Controller
                 /* } */
                 //333 el cero son las cabeceras
             //dd("count rows", count($rows->all()), $rows[0]);
-            DB::setDefaultConnection('mongodb');
 
             $rowsChuck = $rows->chunk(1000);
 
@@ -54,10 +54,10 @@ class MlpasMongoClass extends Controller
                 $bodyArray = $body->toArray();
                 //dd("count rows", count($bodyArray));333
 
-                $mlpas = migrateCustomMongo::create([
+                $mlpas = migrateCustom::create([
                     'table' => 'M_LPAS',
                     'table_id' =>  json_encode($bodyArray),
-                    'file_ref' => 'PENDING',
+                    'file_ref' => 'PENDINGMONGO',
                 ]);
             }
 
