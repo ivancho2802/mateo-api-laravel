@@ -177,6 +177,7 @@ class Jobs extends Controller
 
     $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
     $metaFiles = [];
+    dd($dataTitleResponse);
     //titulo del formulario
     if (count($dataTitleResponse) > 0) {
       $name_fomulary = collect($dataTitleResponse[0])['title'];
