@@ -386,7 +386,8 @@ class PersonAttendedMongo extends Controller
         $body_lpas = ($body_lpas)->chunk(($lotes / $divisor));
         foreach ($body_lpas as $body) {
             $bodyArray = $body->toArray();
-            MLpaMongo::insert($bodyArray);
+
+            MLpaMongo::insertMany($bodyArray);
         }
 
         //eliminar los 350 primeros registros de $elementsForMigration
