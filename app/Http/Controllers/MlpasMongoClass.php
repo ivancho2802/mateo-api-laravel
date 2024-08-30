@@ -50,12 +50,16 @@ class MlpasMongoClass extends Controller
 
             
             $rowsChuck = $rows->chunk(1000);
-            dd("class", json_encode($rowsChuck[0]->toArray()));
+            //dd("class", json_encode($rowsChuck[0]->toArray()));
             
             foreach ($rowsChuck as $body) {
                 # code...
                 $bodyArray = $body->toArray();
                 //dd("count rows", count($bodyArray));333
+
+                if(!isset($bodyArray)){
+                    dd($bodyArray);
+                }
 
                 $mlpas = migrateCustom::create([
                     'table' => 'M_LPAS',
