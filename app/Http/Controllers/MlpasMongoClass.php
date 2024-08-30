@@ -47,6 +47,8 @@ class MlpasMongoClass extends Controller
                 //333 el cero son las cabeceras
             //dd("count rows", count($rows->all()), $rows[0]);
 
+            dd("class", $rows);
+
             $rowsChuck = $rows->chunk(1000);
 
             foreach ($rowsChuck as $body) {
