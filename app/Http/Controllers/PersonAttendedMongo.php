@@ -129,6 +129,8 @@ class PersonAttendedMongo extends Controller
 
         $count_record_excel = 0; //helper::countValidValues($collectExcel)
 
+        DB::setDefaultConnection('mongodb');
+
         $migrate_custom = migrateCustomMongo::where([
             'table' => "M_LPAS"
         ])->get()->last();
@@ -169,6 +171,8 @@ class PersonAttendedMongo extends Controller
     
     function refreshMigrations(Request $request)
     {
+        //DB::setDefaultConnection('mongodb');
+        DB::setDefaultConnection('pgsql');
 
         ini_set('memory_limit', '2044M');
         set_time_limit(3000000); //0
