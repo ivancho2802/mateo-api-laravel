@@ -191,7 +191,7 @@ class PersonAttendedMongo extends Controller
         }
 
         $migrationPendings = migrateCustom::where([
-            ['table', 'M_LPAS'],
+            ['table', 'M_LPAS_MONGO'],
             ['table_id', '!=', '[]'],
             ['file_ref', 'PENDINGMONGO']
         ])->first();
@@ -430,7 +430,7 @@ class PersonAttendedMongo extends Controller
         $restanteTot = migrateCustom::where([
             ['table', 'M_LPAS_MONGO'],
             ['table_id', '!=', '[]'],
-            ['file_ref', 'PENDING']
+            ['file_ref', 'PENDINGMONGO']
         ])->get();
 
         return ['restanteParte' => count($elementsForMigration), 'restanteTotal' => count($restanteTot)];
