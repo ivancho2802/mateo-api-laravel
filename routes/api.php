@@ -638,6 +638,8 @@ Route::prefix('mongo')->group(function () {
   
   Route::middleware(['auth:sanctum'])->post('/lpa/process', [App\Http\Controllers\PersonAttendedMongo::class, 'process']);
 
+  Route::middleware(['auth:sanctum'])->post('/lpa/refreshMigrations', [App\Http\Controllers\PersonAttendedMongo::class, 'refreshMigrations']);
+
 });
 
 Route::middleware((['auth:sanctum']))->prefix('pgsql')->group(function () {
