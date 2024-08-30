@@ -17,6 +17,7 @@ class MlpasMongoClass extends Controller
     public function collection(Collection $rows)
     {
         try {
+            DB::setDefaultConnection('pgsql');
             //code...
             $i = 0;
 
@@ -49,7 +50,7 @@ class MlpasMongoClass extends Controller
 
             
             $rowsChuck = $rows->chunk(1000);
-            dd("class", $rowsChuck[0]->toArray());
+            dd("class", json_encode($rowsChuck[0]->toArray()));
             
             foreach ($rowsChuck as $body) {
                 # code...
