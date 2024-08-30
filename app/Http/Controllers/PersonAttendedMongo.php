@@ -386,6 +386,8 @@ class PersonAttendedMongo extends Controller
         $body_lpas = ($body_lpas)->chunk(($lotes / $divisor));
         foreach ($body_lpas as $body) {
             $bodyArray = $body->toArray();
+
+            dd($bodyArray, $body, collect($bodyArray), collect($body));
             
             MLpaMongo::insert(collect($bodyArray));
         }
