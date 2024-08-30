@@ -160,7 +160,7 @@ class PersonAttendedMongo extends Controller
 
         //se procesa el refresh
         LpaJobMongoRefreshMigrations::dispatch(); //->onConnection('database');
-        
+
         //terminar devolver tabla
         return view('list-lpas', $data);
         //return response()->json(["message" => "operacion hecha con exito"]);
@@ -168,7 +168,7 @@ class PersonAttendedMongo extends Controller
         return $migration; //table_id
     }
 
-    
+
     function refreshMigrations(Request $request)
     {
         //DB::setDefaultConnection('mongodb');
@@ -387,9 +387,10 @@ class PersonAttendedMongo extends Controller
         foreach ($body_lpas as $body) {
             $bodyArray = $body->toArray();
 
-            dd($bodyArray, $body, collect($bodyArray), collect($body));
-            
-            MLpaMongo::insert(collect($bodyArray));
+            //dd($bodyArray, $body, collect($bodyArray), collect($body));
+            foreach ($bodyArray as $bodyArrayres) {
+                MLpaMongo::insert(($bodyArrayres));
+            }
         }
 
         //eliminar los 350 primeros registros de $elementsForMigration
@@ -444,7 +445,7 @@ class PersonAttendedMongo extends Controller
         //}
     }
 
-    
+
 
     function checked(Request $request)
     {
@@ -455,11 +456,11 @@ class PersonAttendedMongo extends Controller
             'file_ref' => 'UPLOADED',
         ])->first();
 
-        if(!isset($migration)){
+        if (!isset($migration)) {
             return response()->json([
                 "msg" => "Lo sentimos por el momento no hay procesos de migracion en proceso",
                 "message" => "Lo sentimos por el momento no hay procesos de migracion en proceso",
-              ]); 
+            ]);
         }
 
         $file = Storage::path($migration->table_id);
