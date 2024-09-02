@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MLpaMongo;
+use Illuminate\Support\Facades\DB;
 
 class MealMongo extends Controller
 {
@@ -23,6 +24,7 @@ class MealMongo extends Controller
      function getLpaOnly(Request $request)
      {
  
+        DB::setDefaultConnection('mongodb');
          $limit_minutes = 8000;
          ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
          ini_set('memory_limit', '902044M');

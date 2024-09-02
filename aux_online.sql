@@ -1,11 +1,13 @@
 .
-SELECT *
+SELECT count(*)
 FROM 
 public.migrate_customs 
 where 
-table_id != '[]' AND
+--table_id != '[]' AND
 "table" = 'M_LPAS'  AND 
-file_ref = 'PENDING' and table_id not like '{%' order by updated_at desc limit 7 ;
+file_ref = 'PENDING' and 
+table_id not like '{%' 
+order by updated_at desc limit 7 ;
 
 select * from users where email like '%nrc%' limit 1
 select * from "M_USUARIOS" where "LOGIN" = 'LSAENZ' limit 1
@@ -20,7 +22,7 @@ select "ID_M_USUARIOS" from "M_LPAS" LIMIT 10
 select "DOCUMENTO", "TIPO_DOCUMENTO"  from "M_LPA_PERSONAS" order by "DOCUMENTO"
 
 select * FROM "M_LPAS" where "FECHA_ATENCION" < '2000-02-01'
-select * from migrate_customs where "table" = 'M_LPAS' and file_ref = 'UPLOADED' limit 10
+select file_ref from migrate_customs where "table" = 'M_LPAS' and file_ref = 'UPLOADED' limit 10
 
 select * from migrate_customs where "table" = 'M_LPAS' and table_id like '%migrationsLpa%'  order by updated_at desc limit 20
 -- AJUSTES DE LPA	
@@ -161,9 +163,4 @@ where
 	"M_LPA_PERSONAS"."ID" = "M_LPAS"."FK_LPA_PERSONA" 
 GROUP BY "M_LPA_PERSONAS"."DOCUMENTO"
 
-
-update migrate_customs set "table" = 'M_LPAS_MONGO' where id in (select id from migrate_customs where file_ref = 'PENDINGMONGO' and "table" = 'M_LPAS')
-
-select "table" from migrate_customs where file_ref = 'PENDINGMONGO' and "table" = 'M_LPAS_MONGO'
-
-
+select count(*) from "M_LPAS" where "FECHA_ATENCION" >= '2023-01-01'
