@@ -482,7 +482,7 @@ class PersonAttendedMongo extends Controller
             return ["no borro nada"];
         }
 
-        $response = MLpaMongo::deleteManyModel();
+        $response = MLpaMongo::DeleteManyModel();
 
         return [$response];
 
