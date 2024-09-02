@@ -332,6 +332,13 @@
                               </form>
 
                               @endif
+
+                              @if($export->exportaciones_nuevas )
+                              <form method="get" action="/koboapdfactualizar" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                                @csrf
+                                <x-primary-button class="mt-4">Actualizar</x-primary-button>
+                              </form>
+                              @endif
                               </p>
                               <p class="text-sm font-semibold leading-6 text-indigo-600">Export. proceso: {{$export->trabajos_en_proceso}}</p>
                             </div>
@@ -390,13 +397,21 @@
                             </td>
                             <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
                               {{$export->exportaciones_fallidos}}
+                            
                               @if($export->exportaciones_fallidos > 0)
                               <form method="get" action="/koboapdfrepair" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                 @csrf
                                 <x-primary-button class="mt-4">Reparar</x-primary-button>
                               </form>
-
                               @endif
+                              
+                              @if($export->exportaciones_nuevas )
+                              <form method="get" action="/koboapdfactualizar" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                                @csrf
+                                <x-primary-button class="mt-4">Actualizar</x-primary-button>
+                              </form>
+                              @endif
+
                             </td>
                             <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
                               {{$export->trabajos_en_proceso}}

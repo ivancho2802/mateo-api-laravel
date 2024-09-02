@@ -160,3 +160,10 @@ where
 	"M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND
 	"M_LPA_PERSONAS"."ID" = "M_LPAS"."FK_LPA_PERSONA" 
 GROUP BY "M_LPA_PERSONAS"."DOCUMENTO"
+
+
+update migrate_customs set "table" = 'M_LPAS_MONGO' where id in (select id from migrate_customs where file_ref = 'PENDINGMONGO' and "table" = 'M_LPAS')
+
+select "table" from migrate_customs where file_ref = 'PENDINGMONGO' and "table" = 'M_LPAS_MONGO'
+
+

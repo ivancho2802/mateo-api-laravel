@@ -70,11 +70,10 @@ class Jobs extends Controller
 
     if (isset($request->dominio)) {
       //parche para el dominio cuando este trae https
-      if (strpos($request->dominio, 'https') !== false){
+      if (strpos($request->dominio, 'https') !== false) {
         $dominio = str_replace('https://', '', $request->dominio);
         $dominio = str_replace('/', '', $request->dominio);
-      }
-      else if (strpos($request->dominio, 'http') !== false) {
+      } else if (strpos($request->dominio, 'http') !== false) {
         $dominio = str_replace('http://', '', $request->dominio);
         $dominio = str_replace('/', '', $request->dominio);
       } else {
@@ -564,6 +563,8 @@ class Jobs extends Controller
       return redirect('/koboapdf');
     }
 
+    $exportaciones_nuevas = false;
+
 
     $name_key = $request->name_key;
     /* 
@@ -634,14 +635,23 @@ class Jobs extends Controller
       }
       //verificar si hay fallidos
 
+      $faltantes = count($dataEnketoResponse) - count($filesExported);
+
+      //$exportaciones_nuevas
+      //verificar sii hay faltantes de la migracion
+      //exportaciones_nuevas
+      if ($faltantes > 0 && count($jobsCreated) == 0) {
+        $exportaciones_nuevas = true;
+      }
 
       $dataExport = json_decode(collect([
         "name_key" => ($name_key),
         "exportaciones_totales" => count($dataEnketoResponse),
         "exportaciones_procesadas" => count($filesExported),
-        "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
+        "exportaciones_faltantes" => $faltantes,
         "exportaciones_fallidos" => count($jobsFailed),
         "trabajos_en_proceso" => count($jobsCreated),
+        "exportaciones_nuevas" => $exportaciones_nuevas,
         "download" => $download
       ]));
 
@@ -717,6 +727,7 @@ class Jobs extends Controller
       "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
       "exportaciones_fallidos" => count($jobsFailed),
       "trabajos_en_proceso" => count($jobsCreated),
+      "exportaciones_nuevas" => $exportaciones_nuevas,
       "download" => $download
     ]));
 

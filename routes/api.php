@@ -640,6 +640,9 @@ Route::prefix('mongo')->group(function () {
 
   Route::middleware(['auth:sanctum'])->post('/lpa/refreshMigrations', [App\Http\Controllers\PersonAttendedMongo::class, 'refreshMigrations']);
 
+  Route::middleware(['auth:sanctum'])->get('/lpasegOnly', [App\Http\Controllers\MealMongo::class, 'getLpaOnly']);
+
+
 });
 
 Route::middleware((['auth:sanctum']))->prefix('pgsql')->group(function () {
