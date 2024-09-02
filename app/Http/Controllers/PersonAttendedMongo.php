@@ -483,7 +483,14 @@ class PersonAttendedMongo extends Controller
         }
 
         $foo = MLpaMongo::get();
-        $response = $foo->delete();
+        $count = 0;
+        foreach ($foo as $model) {
+            if ($model->detroy()) {
+                $count++;
+            }
+        }
+
+        $response = $count;
 
         return [$response];
 
