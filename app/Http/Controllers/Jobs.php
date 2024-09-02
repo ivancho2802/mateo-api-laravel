@@ -607,6 +607,15 @@ class Jobs extends Controller
 
     $jobsFailed = FailedJobsModel::where("payload", "like", "%" . $name_key . "%")->get();
 
+    $faltantes = count($dataEnketoResponse) - count($filesExported);
+
+    //$exportaciones_nuevas
+    //verificar sii hay faltantes de la migracion
+    //exportaciones_nuevas
+    if ($faltantes > 0 && count($jobsCreated) == 0) {
+      $exportaciones_nuevas = true;
+    }
+
     if (!($jobsCreated->first())) {
 
       $download = "";
@@ -634,15 +643,6 @@ class Jobs extends Controller
         }
       }
       //verificar si hay fallidos
-
-      $faltantes = count($dataEnketoResponse) - count($filesExported);
-
-      //$exportaciones_nuevas
-      //verificar sii hay faltantes de la migracion
-      //exportaciones_nuevas
-      if ($faltantes > 0 && count($jobsCreated) == 0) {
-        $exportaciones_nuevas = true;
-      }
 
       $dataExport = json_decode(collect([
         "name_key" => ($name_key),
