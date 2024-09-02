@@ -91,6 +91,10 @@ class Media extends Controller
             'Content-Type' => 'text/css',
         ];
 
+        if(strpos($filename, '.zip') !== false){
+            return response()->download($path, $filename, $headers)->deleteFileAfterSend(true);
+        }
+
         // Download file with custom headers
         return response()->download($path, $filename, $headers);
     }
