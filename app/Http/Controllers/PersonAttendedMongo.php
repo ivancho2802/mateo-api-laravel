@@ -482,17 +482,13 @@ class PersonAttendedMongo extends Controller
             return ["no borro nada"];
         }
 
-        $foo = MLpaMongo::get();
-        $count = 0;
-        foreach ($foo as $model) {
-            if ($model->detroy()) {
-                $count++;
-            }
-        }
+        $collection = MLpaMongo::get()->only(['product_id', 'name']);;
 
-        $response = $count;
+        $ids = $collection->pluck('ID');
 
-        return [$response];
+        $foo = MLpaMongo::destroy($ids);
+
+        return [$foo];
 
     }
 }
