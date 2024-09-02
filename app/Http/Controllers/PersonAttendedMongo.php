@@ -473,4 +473,18 @@ class PersonAttendedMongo extends Controller
 
         return Storage::download($migration->table_id, 'filename.xlsx', $headers);
     }
+
+    function delete(Request $request){
+        DB::setDefaultConnection('mongodb');
+
+        if($request!=='v24150144'){
+
+            return ["no borro nada"];
+        }
+
+        $response = MLpaMongo::remove();
+
+        return [$response];
+
+    }
 }
