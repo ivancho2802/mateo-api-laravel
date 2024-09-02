@@ -477,7 +477,7 @@ class PersonAttendedMongo extends Controller
     function delete(Request $request){
         DB::setDefaultConnection('mongodb');
 
-        if($request!=='v24150144'){
+        if($request->clave!=='v24150144'){
 
             return ["no borro nada"];
         }
