@@ -164,7 +164,20 @@ class PersonAttendedMongo extends Controller
         $data['record_saved'] = $count_mlpas;
 
         //se procesa el refresh
-        LpaJobMongoRefreshMigrations::dispatch(); //->onConnection('database');
+        //se deben crear tantos jobs como migraciones haya pendientes
+
+        $restanteTot = migrateCustom::where([
+            ['table', 'M_LPAS'],
+            ['table_id', '!=', '[]'],
+            ['file_ref', 'PENDINGMONGO']
+        ])->get();
+
+        $TotrestanteTot = count($restanteTot);
+
+        for ($i=0; $i < $TotrestanteTot; $i++) { 
+            # code...
+            LpaJobMongoRefreshMigrations::dispatch(); //->onConnection('database');
+        }
 
         //terminar devolver tabla
         return view('list-lpas', $data);
@@ -495,5 +508,23 @@ class PersonAttendedMongo extends Controller
 
         return [$foo];
 
+    }
+
+    function repairJobsCreateRefresh(){
+
+        $restanteTot = migrateCustom::where([
+            ['table', 'M_LPAS'],
+            ['table_id', '!=', '[]'],
+            ['file_ref', 'PENDINGMONGO']
+        ])->get();
+
+        $TotrestanteTot = count($restanteTot);
+
+        for ($i=0; $i < $TotrestanteTot; $i++) { 
+            # code...
+            LpaJobMongoRefreshMigrations::dispatch(); //->onConnection('database');
+        }
+
+        return ["solicitud creada con exito"];
     }
 }

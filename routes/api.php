@@ -644,6 +644,10 @@ Route::prefix('mongo')->group(function () {
 
   Route::middleware(['auth:sanctum'])->delete('/lpa', [App\Http\Controllers\PersonAttendedMongo::class, 'delete']); //receptor
 
+  // este solicitud crea tantos trabajos para hacer solicitudes a la funcion que hace refresh tantas veces como sea neceasatio de forma asyncrona o en paralelo a las respuestas
+  Route::middleware(['auth:sanctum'])->get('/lpa/repairJobsCreateRefresh', [App\Http\Controllers\PersonAttendedMongo::class, 'repairJobsCreateRefresh']);
+
+
 });
 
 Route::middleware((['auth:sanctum']))->prefix('pgsql')->group(function () {
