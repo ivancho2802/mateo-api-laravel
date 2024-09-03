@@ -30,7 +30,7 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function  handle()
     {
         //
         $request = new Request([]);
@@ -38,6 +38,8 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         $person_attended = new PersonAttendedMongo();
 
         $response = $person_attended->refreshMigrations($request);
+
+        echo json_decode($response);
 
         return $response;
     }
