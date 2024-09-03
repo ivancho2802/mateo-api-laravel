@@ -47,7 +47,7 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
             $this->release(10); // Esperar 10 segundos antes de reintentar
         } else {
             // Procesar los datos obtenidos
-            Log::info('Datos obtenidos:', $response);
+            Log::info('Datos obtenidos:' . json_decode($response));
             // Guardar los datos en la base de datos o procesarlos
         }
 
