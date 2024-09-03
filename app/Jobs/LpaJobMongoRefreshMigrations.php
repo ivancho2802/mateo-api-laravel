@@ -63,6 +63,8 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         echo $response->body();
         echo $response->successful();
         echo $response->json();
+        echo $token;
+        //Bearer 90|ntdy46DZlQkxiEUgvco2iDfARHSzUZYbsV4F9hUy
 
         // Verificar el estado de la respuesta
         if (strpos($response->body(), '"restanteParte"') !== false) {
