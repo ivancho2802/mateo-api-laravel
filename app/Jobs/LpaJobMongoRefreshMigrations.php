@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\PersonAttendedMongo;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\ValidationException;
 
 class LpaJobMongoRefreshMigrations implements ShouldQueue
 {
@@ -51,13 +52,31 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
             Log::info('Datos obtenidos:' . json_decode($response));
             // Guardar los datos en la base de datos o procesarlos
         } */
+        $token = $request->bearerToken();
 
-        $response = Http::post('http://localhost/api/mongo/lpa/refreshMigrations');
+        $response = Http::post('');
+
+        $response = Http::withHeaders([
+            'Authorization' => $token, // Reemplaza con tu token real
+            'Content-Type' => 'application/json', // Ejemplo de un encabezado adicional, puedes agregar los que necesites
+        ])->post('http://localhost/api/mongo/lpa/refreshMigrations', []);
+
+        // Verificar el estado de la respuesta
+        if ($response->successful()) {
+            // La solicitud fue exitosa
+            $data = $response->json();
+            // Procesa los datos como sea necesario
+            return $data;
+        } else {
+            // La solicitud falló
+            // Puedes manejar el error aquí
+            $error = $response->body();
+
+            throw ValidationException::withMessages(['your error message' . json_encode($error)]);
+        }
 
         echo "Response received!";
         echo $response->body();
-        Log::info('Datos obtenidos:' . json_decode($response->body()));
-
-        return $response;
+        Log::info('Datos obtenidos:' . json_encode($response->body()));
     }
 }
