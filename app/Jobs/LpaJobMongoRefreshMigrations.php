@@ -52,7 +52,7 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
             Log::info('Datos obtenidos:' . json_decode($response));
             // Guardar los datos en la base de datos o procesarlos
         } */
-        $token = $request->bearerToken();
+        $token = $request->bearerToken() ?? "Bearer 90|ntdy46DZlQkxiEUgvco2iDfARHSzUZYbsV4F9hUy";
 
         $response = Http::withHeaders([
             'Authorization' => $token, // Reemplaza con tu token real
