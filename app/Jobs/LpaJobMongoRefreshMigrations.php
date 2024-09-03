@@ -10,6 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PersonAttendedMongo;
+use Illuminate\Support\Facades\Log;
 
 class LpaJobMongoRefreshMigrations implements ShouldQueue
 {
@@ -40,6 +41,16 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         $response = $person_attended->refreshMigrations($request);
 
         echo json_decode($response);
+
+        if (is_null($response)) {
+            // Si los datos no se obtienen, volver a poner el trabajo en la cola
+            $this->release(10); // Esperar 10 segundos antes de reintentar
+        } else {
+            // Procesar los datos obtenidos
+            Log::info('Datos obtenidos:', $response);
+            // Guardar los datos en la base de datos o procesarlos
+        }
+
 
         return $response;
     }
