@@ -60,7 +60,7 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         ])->post('http://localhost/api/mongo/lpa/refreshMigrations', []);
 
         echo "Response received!";
-        echo substr($response->body(), 10);
+        //echo substr($response->body(), 10);
         echo $response->successful();
         //echo $response->json();
         echo $token;
@@ -79,6 +79,6 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
 
             throw ValidationException::withMessages(['your error message' . json_encode($error)]);
         }
-        Log::info('Datos obtenidos:' . json_encode($response->body()));
+        //Log::info('Datos obtenidos:' . json_encode($response->body()));
     }
 }
