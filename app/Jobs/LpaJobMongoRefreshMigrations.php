@@ -62,7 +62,7 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         echo "Response received!";
         echo substr($response->body(), 10);
         echo $response->successful();
-        echo $response->json();
+        //echo $response->json();
         echo $token;
         //Bearer 90|ntdy46DZlQkxiEUgvco2iDfARHSzUZYbsV4F9hUy
 
