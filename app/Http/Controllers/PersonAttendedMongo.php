@@ -101,6 +101,10 @@ class PersonAttendedMongo extends Controller
             'file_ref' => 'UPLOADED',
         ])->first();
 
+        if(!$migration){
+            return "no hay upload pending";
+        }
+
         //dd($migration);
 
         $file = Storage::path($migration->table_id);
@@ -192,7 +196,7 @@ class PersonAttendedMongo extends Controller
         }
 
         $migrationPendings = migrateCustom::where([
-            ['table', 'M_LPAS_MONGO'],
+            ['table', 'M_LPAS'],
             ['table_id', '!=', '[]'],
             ['file_ref', 'PENDINGMONGO']
         ])->first();
@@ -429,7 +433,7 @@ class PersonAttendedMongo extends Controller
         DB::setDefaultConnection('pgsql');
 
         $restanteTot = migrateCustom::where([
-            ['table', 'M_LPAS_MONGO'],
+            ['table', 'M_LPAS'],
             ['table_id', '!=', '[]'],
             ['file_ref', 'PENDINGMONGO']
         ])->get();
