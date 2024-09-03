@@ -59,6 +59,9 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
             'Content-Type' => 'application/json', // Ejemplo de un encabezado adicional, puedes agregar los que necesites
         ])->post('http://localhost/api/mongo/lpa/refreshMigrations', []);
 
+        echo "Response received!";
+        echo $response->body();
+
         // Verificar el estado de la respuesta
         if ($response->successful()) {
             // La solicitud fue exitosa
@@ -72,9 +75,6 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
 
             throw ValidationException::withMessages(['your error message' . json_encode($error)]);
         }
-
-        echo "Response received!";
-        echo $response->body();
         Log::info('Datos obtenidos:' . json_encode($response->body()));
     }
 }
