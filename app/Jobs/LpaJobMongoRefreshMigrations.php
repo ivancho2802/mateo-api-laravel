@@ -54,8 +54,6 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         } */
         $token = $request->bearerToken();
 
-        $response = Http::post('');
-
         $response = Http::withHeaders([
             'Authorization' => $token, // Reemplaza con tu token real
             'Content-Type' => 'application/json', // Ejemplo de un encabezado adicional, puedes agregar los que necesites
