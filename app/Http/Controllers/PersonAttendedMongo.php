@@ -89,7 +89,7 @@ class PersonAttendedMongo extends Controller
 
     public function process(?Request $request)
     {
-        DB::setDefaultConnection('mongodb');
+        DB::setDefaultConnection('pgsql');
 
         ini_set('memory_limit', '2044M');
         set_time_limit(3000000); //0
@@ -129,7 +129,7 @@ class PersonAttendedMongo extends Controller
 
         $count_record_excel = 0; //helper::countValidValues($collectExcel)
 
-        DB::setDefaultConnection('mongodb');
+        DB::setDefaultConnection('pgsql');
 
         $migrate_custom = migrateCustomMongo::where([
             'table' => "M_LPAS"
@@ -146,6 +146,7 @@ class PersonAttendedMongo extends Controller
 
         //$query_mlpas = MLpa::whereIn('ID', $id_lpas);//;
         $count_mlpas = 0; //count($query_mlpas->get());
+        DB::setDefaultConnection('mongodb');
 
         $mlpas = MLpaMongo::orderBy('created_at', 'desc')
             ->paginate(10);
