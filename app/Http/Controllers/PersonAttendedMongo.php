@@ -96,7 +96,7 @@ class PersonAttendedMongo extends Controller
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
-        $migration = migrateCustomMongo::where([
+        $migration = migrateCustom::where([
             'table' => 'M_LPAS',
             'file_ref' => 'UPLOADED',
         ])->first();
@@ -131,7 +131,7 @@ class PersonAttendedMongo extends Controller
 
         DB::setDefaultConnection('pgsql');
 
-        $migrate_custom = migrateCustomMongo::where([
+        $migrate_custom = migrateCustom::where([
             'table' => "M_LPAS"
         ])->get()->last();
 
