@@ -520,7 +520,7 @@ class PersonAttendedMongo extends Controller
 
         $TotrestanteTot = count($restanteTot);
 
-        for ($i=0; $i < $TotrestanteTot; $i++) { 
+        for ($i=0; $i < $TotrestanteTot * 2; $i++) { 
             # code...
             LpaJobMongoRefreshMigrations::dispatch(); //->onConnection('database');
         }
