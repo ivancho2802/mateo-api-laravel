@@ -60,7 +60,7 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         ])->post('http://localhost/api/mongo/lpa/refreshMigrations', []);
 
         echo "Response received!";
-        echo $response->body();
+        echo substr($response->body(), 10);
         echo $response->successful();
         echo $response->json();
         echo $token;
