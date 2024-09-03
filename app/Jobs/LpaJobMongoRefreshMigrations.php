@@ -65,6 +65,9 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         //echo $response->json();
         echo $token;
         //Bearer 90|ntdy46DZlQkxiEUgvco2iDfARHSzUZYbsV4F9hUy
+        Log::info('$token' . $token);
+        Log::info('successfu' . $response->successful());
+        //Log::info('Datos obtenidos:' . json_encode($response->body()));
 
         // Verificar el estado de la respuesta
         if (strpos($response->body(), '"restanteParte"') !== false) {
@@ -79,6 +82,5 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
 
             throw ValidationException::withMessages(['your error message' . json_encode($error)]);
         }
-        //Log::info('Datos obtenidos:' . json_encode($response->body()));
     }
 }
