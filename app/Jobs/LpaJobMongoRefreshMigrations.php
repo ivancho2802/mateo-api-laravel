@@ -61,9 +61,11 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
 
         echo "Response received!";
         echo $response->body();
+        echo $response->successful();
+        echo $response->json();
 
         // Verificar el estado de la respuesta
-        if ($response->successful()) {
+        if (strpos($response->body(), '"restanteParte"') !== false) {
             // La solicitud fue exitosa
             $data = $response->json();
             // Procesa los datos como sea necesario
