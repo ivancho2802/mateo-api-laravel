@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PersonAttendedMongo;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class LpaJobMongoRefreshMigrations implements ShouldQueue
 {
@@ -36,7 +37,7 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         //
         $request = new Request([]);
 
-        $person_attended = new PersonAttendedMongo();
+        /* $person_attended = new PersonAttendedMongo();
 
         $response = $person_attended->refreshMigrations($request);
 
@@ -49,8 +50,13 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
             // Procesar los datos obtenidos
             Log::info('Datos obtenidos:' . json_decode($response));
             // Guardar los datos en la base de datos o procesarlos
-        }
+        } */
 
+        $response = Http::post('http://localhost/api/mongo/lpa/refreshMigrations');
+
+        echo "Response received!";
+        echo $response->body();
+        Log::info('Datos obtenidos:' . json_decode($response->body()));
 
         return $response;
     }
