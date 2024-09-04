@@ -544,7 +544,7 @@ class PersonAttendedMongo extends Controller
 
                 $lpa->append('tipo_lpa');
 
-                dd($lpa->persona['DOCUMENTO']);
+                dd($lpa->persona);
 
                 $lpa->persona->append('DOCUMENTO');
 
