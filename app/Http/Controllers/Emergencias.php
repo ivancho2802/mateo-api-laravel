@@ -142,10 +142,10 @@ class Emergencias extends Controller
 
     function getEmergenciaByCod(Request $request){
         $emergencia = MLpaEmergencia::where("ID", "=", $request->ID)
-        ->get();
+        ->first();
 
         return [
-            "emergencia" => $emergencia->first()
+            "emergencia" => $emergencia
         ];
     }
     
