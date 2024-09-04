@@ -543,6 +543,7 @@ class PersonAttendedMongo extends Controller
             if ($lpa) {
 
                 $lpa->append('tipo_lpa');
+                $lpa->load(['persona']);
 
                 dd($lpa->persona);
 

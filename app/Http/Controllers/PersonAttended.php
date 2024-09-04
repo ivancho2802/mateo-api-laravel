@@ -737,6 +737,9 @@ class PersonAttended extends Controller
             if ($lpa) {
 
                 $lpa->append('tipo_lpa');
+
+                $lpa->load(['persona']);
+
                 $lpa->persona->append('DOCUMENTO');
 
                 //dd($lpa['tipo_lpa']);
