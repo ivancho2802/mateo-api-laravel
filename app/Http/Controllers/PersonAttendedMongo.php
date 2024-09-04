@@ -14,7 +14,7 @@ use App\Jobs\LpaJobMongoRefreshMigrations;
 use App\Models\MLpaEmergenciaMongo;
 use App\Models\MLpaPersonaMongo;
 use App\Models\migrateCustom;
-
+use App\Models\MLpaFix;
 use Illuminate\Support\Facades\DB;
 
 class PersonAttendedMongo extends Controller
@@ -101,7 +101,7 @@ class PersonAttendedMongo extends Controller
             'file_ref' => 'UPLOADED',
         ])->first();
 
-        if(!$migration){
+        if (!$migration) {
             return "no hay upload pending";
         }
 
@@ -174,7 +174,7 @@ class PersonAttendedMongo extends Controller
 
         $TotrestanteTot = count($restanteTot);
 
-        for ($i=0; $i < $TotrestanteTot * 2; $i++) { 
+        for ($i = 0; $i < $TotrestanteTot * 2; $i++) {
             # code...
             LpaJobMongoRefreshMigrations::dispatch(); //->onConnection('database');
         }
@@ -492,10 +492,11 @@ class PersonAttendedMongo extends Controller
         return Storage::download($migration->table_id, 'filename.xlsx', $headers);
     }
 
-    function delete(Request $request){
+    function delete(Request $request)
+    {
         DB::setDefaultConnection('mongodb');
 
-        if($request->clave!=='v24150144'){
+        if ($request->clave !== 'v24150144') {
 
             return ["no borro nada"];
         }
@@ -507,10 +508,10 @@ class PersonAttendedMongo extends Controller
         $foo = MLpaMongo::destroy($ids);
 
         return [$foo];
-
     }
 
-    function repairJobsCreateRefresh(){
+    function repairJobsCreateRefresh()
+    {
 
         $restanteTot = migrateCustom::where([
             ['table', 'M_LPAS'],
@@ -520,11 +521,89 @@ class PersonAttendedMongo extends Controller
 
         $TotrestanteTot = count($restanteTot);
 
-        for ($i=0; $i < $TotrestanteTot * 2; $i++) { 
+        for ($i = 0; $i < $TotrestanteTot * 2; $i++) {
             # code...
             LpaJobMongoRefreshMigrations::dispatch(); //->onConnection('database');
         }
 
         return ["solicitud creada con exito"];
+    }
+
+
+    function getPersonaByID(Request $request)
+    {
+        DB::setDefaultConnection('mongodb');
+
+        $persona = MLpaPersonaMongo::where("ID", "=", $request->ID)->first();
+
+        if (isset($request->IDMLPA)) {
+
+            $lpa = MLpaMongo::where("ID", "=", $request->IDMLPA)->first();
+
+            if ($lpa) {
+
+                $lpa->append('tipo_lpa');
+                $lpa->persona->append('DOCUMENTO');
+
+                //dd($lpa['tipo_lpa']);
+
+                //
+                if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] == 'Recuperacion Temprana' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO'])) {
+
+                    DB::setDefaultConnection('pgsql');
+                    //dd($lpa['persona']['DOCUMENTO']);
+                    $discapacitado = MLpaFix::where([
+                        'documento' => $lpa['persona']['DOCUMENTO']
+                    ])
+                        ->exists();
+                    DB::setDefaultConnection('mongodb');
+
+                    /*  echo "discapacitado:". json_encode($discapacitado) . '-' . $discapacitado . '-' . $lpa['persona']['DOCUMENTO'] . MLpaFix::where([
+                        'documento' => $lpa['persona']['DOCUMENTO']
+                    ])->exists() . $lpa['tipo_lpa']; */
+
+                    //->where('sexo', $lpa->persona->GENERO)
+                    if (json_encode($discapacitado) == 'true') {
+                        $persona = collect($persona)->forget('discapacitado');
+                        $persona['discapacitado'] = 1;
+                    }
+
+                    unset($lpa['persona']['DOCUMENTO']);
+                }
+            }
+        }
+
+        return [
+            "persona" => $persona
+        ];
+    }
+
+    
+    function getTipoLpa(Request $request)
+    {
+        DB::setDefaultConnection('mongodb');
+
+        $mlpa = MLpaMongo::where("ID", "=", $request->ID)->first();
+
+        $tipo_lpa = $mlpa->append('tipo_lpa');
+
+        return ["tipo_lpa" => $tipo_lpa->tipo_lpa];
+    }
+
+    function getDonante(Request $request)
+    {
+        DB::setDefaultConnection('mongodb');
+
+        $mlpa = MLpaMongo::where("ID", "=", $request->ID)->first();
+
+        $donante = $mlpa->DONANTE;
+
+        $tipo_lpa = $request->tipo_lpa;
+
+        if ($donante == 'BHA') {
+            $donante += ' ' . $tipo_lpa;
+        }
+
+        return ["donante_ajustado" => $donante];
     }
 }

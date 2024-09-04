@@ -647,6 +647,15 @@ Route::prefix('mongo')->group(function () {
   // este solicitud crea tantos trabajos para hacer solicitudes a la funcion que hace refresh tantas veces como sea neceasatio de forma asyncrona o en paralelo a las respuestas
   Route::middleware(['auth:sanctum'])->get('/lpa/repairJobsCreateRefresh', [App\Http\Controllers\PersonAttendedMongo::class, 'repairJobsCreateRefresh']);
 
+  Route::middleware(['auth:sanctum'])->get('/lpa/emergencia', [App\Http\Controllers\EmergenciasMongo::class, 'getEmergenciaByCod']);
+  Route::middleware(['auth:sanctum'])->get('/lpa/actividad', [App\Http\Controllers\ActivityMongo::class, 'getActividadByCod']);
+  Route::middleware(['auth:sanctum'])->get('/lpa/persona', [App\Http\Controllers\PersonAttendedMongo::class, 'getPersonaByID']);
+
+  Route::middleware(['auth:sanctum'])->get('/lpa/rangoetareobha', [App\Http\Controllers\PersonAttended::class, 'getRangeBha']);
+  Route::middleware(['auth:sanctum'])->get('/lpa/rangoetareoecho', [App\Http\Controllers\PersonAttended::class, 'getRangeEcho']);
+  Route::middleware(['auth:sanctum'])->get('/lpa/tipo', [App\Http\Controllers\PersonAttendedMongo::class, 'getTipoLpa']);
+  Route::middleware(['auth:sanctum'])->get('/lpa/donante', [App\Http\Controllers\PersonAttendedMongo::class, 'getDonante']);
+
 
 });
 
