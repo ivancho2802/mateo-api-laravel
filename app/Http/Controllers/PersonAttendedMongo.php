@@ -534,11 +534,11 @@ class PersonAttendedMongo extends Controller
     {
         DB::setDefaultConnection('mongodb');
 
-        $persona = MLpaPersonaMongo::where("ID", "=", $request->ID)->first();
+        $persona = MLpaPersonaMongo::find($request->ID)->first();
 
         if (isset($request->IDMLPA)) {
 
-            $lpa = MLpaMongo::where("ID", "=", $request->IDMLPA)->first();
+            $lpa = MLpaMongo::find($request->IDMLPA)->first();
 
             if ($lpa) {
 

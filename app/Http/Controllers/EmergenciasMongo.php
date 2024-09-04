@@ -12,8 +12,7 @@ class EmergenciasMongo extends Controller
 
     function getEmergenciaByCod(Request $request){
         DB::setDefaultConnection('mongodb');
-        $emergencia = MLpaEmergenciaMongo::find(($request->ID))
-        ->first();
+        $emergencia = MLpaEmergenciaMongo::find(($request->ID))->first();
 
         return [
             "emergencia" => $emergencia
