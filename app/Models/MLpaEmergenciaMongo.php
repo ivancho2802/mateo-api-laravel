@@ -12,6 +12,7 @@ class MLpaEmergenciaMongo extends Model
      * @var array
      */
     protected $fillable = [
+        "ID",
         "COD_EMERGENCIAS",
         "TIPO_EVENTO",
         "SOCIO",
