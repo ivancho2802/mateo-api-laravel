@@ -60,7 +60,7 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         ])->post('http://localhost/api/mongo/lpa/refreshMigrations', []);
 
         echo "Response received!";
-        //echo substr($response->body(), 10);
+        echo substr($response->body(), 10);
         echo $response->successful();
         //echo $response->json();
         echo $token;
@@ -70,7 +70,7 @@ class LpaJobMongoRefreshMigrations implements ShouldQueue
         //Log::info('Datos obtenidos:' . json_encode($response->body()));
 
         // Verificar el estado de la respuesta
-        if (strpos($response->body(), '"restanteParte"') !== false) {
+        if (strpos($response->body(), '"restanteParte"') !== false || strpos($response->body(), 'restante') !== false ) {
             // La solicitud fue exitosa
             $data = $response->json();
             // Procesa los datos como sea necesario

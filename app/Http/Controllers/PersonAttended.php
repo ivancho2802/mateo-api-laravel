@@ -353,11 +353,11 @@ class PersonAttended extends Controller
             'file_ref' => 'UPLOADED',
         ])->first();
 
-        if(!isset($migration)){
+        if (!isset($migration)) {
             return response()->json([
                 "msg" => "Lo sentimos por el momento no hay procesos de migracion en proceso",
                 "message" => "Lo sentimos por el momento no hay procesos de migracion en proceso",
-              ]); 
+            ]);
         }
 
         $file = Storage::path($migration->table_id);
@@ -437,9 +437,23 @@ class PersonAttended extends Controller
 
         $data['record_saved'] = $count_mlpas;
 
+
+        $restanteTot = migrateCustom::where([
+            ['table', 'M_LPAS'],
+            ['table_id', '!=', '[]'],
+            ['file_ref', 'PENDING']
+        ])->get();
+
         //se procesa el refresh
-        LpaJobRefreshMigrations::dispatch(); //->onConnection('database');
-        
+        //se deben crear tantos jobs como migraciones haya pendientes
+
+        $TotrestanteTot = count($restanteTot);
+
+        for ($i = 0; $i < $TotrestanteTot * 2; $i++) {
+            # code...
+            LpaJobRefreshMigrations::dispatch(); //->onConnection('database');
+        }
+
         //terminar devolver tabla
         return view('list-lpas', $data);
         //return response()->json(["message" => "operacion hecha con exito"]);
@@ -786,7 +800,7 @@ class PersonAttended extends Controller
                     break;
             }
         }
-        
+
         return [
             "range" => [
                 "bha" => $range
@@ -836,7 +850,7 @@ class PersonAttended extends Controller
             }
         }
 
-        
+
         return [
             "range" => [
                 $range
@@ -864,10 +878,28 @@ class PersonAttended extends Controller
 
         $tipo_lpa = $request->tipo_lpa;
 
-        if($donante == 'BHA'){
+        if ($donante == 'BHA') {
             $donante += ' ' . $tipo_lpa;
         }
 
         return ["donante_ajustado" => $donante];
+    }
+
+    function repairJobsCreateRefresh(){
+
+        $restanteTot = migrateCustom::where([
+            ['table', 'M_LPAS'],
+            ['table_id', '!=', '[]'],
+            ['file_ref', 'PENDING']
+        ])->get();
+
+        $TotrestanteTot = count($restanteTot);
+
+        for ($i=0; $i < $TotrestanteTot * 2; $i++) { 
+            # code...
+            LpaJobRefreshMigrations::dispatch(); //->onConnection('database');
+        }
+
+        return ["solicitud creada con exito"];
     }
 }
