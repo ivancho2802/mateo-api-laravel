@@ -540,9 +540,8 @@ class PersonAttendedMongo extends Controller
         if (isset($request->IDMLPA)) {
 
             $lpa = MLpaMongo::find($request->IDMLPA)->first();
-            dd($lpa);
 
-            if ($lpa) {
+            if (isset($lpa)) {
 
                 $lpa->append('tipo_lpa');
                 $lpa->load(['persona']);
