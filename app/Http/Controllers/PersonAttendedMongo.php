@@ -540,6 +540,7 @@ class PersonAttendedMongo extends Controller
         if (isset($request->IDMLPA)) {
 
             $lpa = MLpaMongo::find($request->IDMLPA)->first();
+            dd($lpa);
 
             if ($lpa) {
 
@@ -562,7 +563,6 @@ class PersonAttendedMongo extends Controller
                     ])
                         ->exists();
 
-                    dd($discapacitado);
 
                     DB::setDefaultConnection('mongodb');
 
