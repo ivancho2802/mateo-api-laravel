@@ -537,13 +537,13 @@ class PersonAttendedMongo extends Controller
 
         $persona = MLpaPersonaMongo::find($request->ID)->first();
 
-        if (isset($request->IDMLPA)) {
+        if ( isset($request->tipo_lpa) && isset($request->FECHA_ATENCION) ) {
 
-            $lpa = MLpaMongo::find($request->IDMLPA)->first();
+            //$lpa = MLpaMongo::find($request->IDMLPA)->first();
 
-            if (isset($lpa)) {
+            //if (isset($lpa)) {
 
-                $lpa->append('tipo_lpa');
+                //$lpa->append('tipo_lpa');
                 //$lpa->load(['persona']);
 
                 //dd($lpa, $lpa->persona, $lpa['tipo_lpa'], $lpa->tipo_lpa);
@@ -553,7 +553,7 @@ class PersonAttendedMongo extends Controller
                 //dd($lpa['tipo_lpa']);
 
                 //
-                if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] == 'Recuperacion Temprana' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($persona->DOCUMENTO)) {
+                if ($request->tipo_lpa == 'Recuperacion Temprana' && $request->FECHA_ATENCION <= '2024-07-01' && isset($persona->DOCUMENTO)) {
 
                     DB::setDefaultConnection('pgsql');
                     //dd($lpa['persona']['DOCUMENTO']);
@@ -574,7 +574,7 @@ class PersonAttendedMongo extends Controller
 
                     unset($persona->DOCUMENTO);
                 }
-            }
+            //}
         }
 
         return [
