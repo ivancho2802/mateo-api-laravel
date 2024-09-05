@@ -165,6 +165,7 @@ class PersonAttendedMongo extends Controller
 
         //se procesa el refresh
         //se deben crear tantos jobs como migraciones haya pendientes
+        DB::setDefaultConnection('pgsql');
 
         $restanteTot = migrateCustom::where([
             ['table', 'M_LPAS'],
@@ -560,6 +561,9 @@ class PersonAttendedMongo extends Controller
                         'documento' => $lpa['persona']['DOCUMENTO']
                     ])
                         ->exists();
+
+                    dd($discapacitado);
+
                     DB::setDefaultConnection('mongodb');
 
                     /*  echo "discapacitado:". json_encode($discapacitado) . '-' . $discapacitado . '-' . $lpa['persona']['DOCUMENTO'] . MLpaFix::where([
