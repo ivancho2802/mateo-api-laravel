@@ -127,6 +127,6 @@ class MLpaMongo extends Model
 
     public function persona()
     {
-        return $this->hasOne(MLpaPersonaMongo::class, 'ID', 'FK_LPA_PERSONA');
+        return $this->hasOne(MLpaPersonaMongo::class, '_id', 'FK_LPA_PERSONA');
     }
 }
