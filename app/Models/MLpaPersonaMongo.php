@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class MLpaPersonaMongo extends Model
 {
