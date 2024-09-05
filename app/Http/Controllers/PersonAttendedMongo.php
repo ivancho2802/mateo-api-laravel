@@ -587,7 +587,7 @@ class PersonAttendedMongo extends Controller
     {
         DB::setDefaultConnection('mongodb');
 
-        $mlpa = MLpaMongo::where("ID", "=", $request->ID)->first();
+        $mlpa = MLpaMongo::find($request->ID)->first();
 
         $tipo_lpa = $mlpa->append('tipo_lpa');
 
