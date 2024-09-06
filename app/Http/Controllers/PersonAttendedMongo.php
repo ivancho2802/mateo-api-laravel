@@ -596,11 +596,12 @@ class PersonAttendedMongo extends Controller
 
     function getDonante(Request $request)
     {
-        DB::setDefaultConnection('mongodb');
+        //DB::setDefaultConnection('mongodb');
 
-        $mlpa = MLpaMongo::where("ID", "=", $request->ID)->first();
+        //$mlpa = MLpaMongo::where("ID", "=", $request->ID)->first();
 
-        $donante = $mlpa->DONANTE;
+        //$donante = $mlpa->DONANTE;
+        $donante = $request->DONANTE;
 
         $tipo_lpa = $request->tipo_lpa;
 
