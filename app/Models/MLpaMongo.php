@@ -57,6 +57,7 @@ class MLpaMongo extends Model
         //RELACIONALES
 
     ];
+    public $timestamps = true;
 
     /**
      * SCOPES

@@ -874,15 +874,17 @@ class PersonAttended extends Controller
 
     function getDonante(Request $request)
     {
+        //DB::setDefaultConnection('mongodb');
 
-        $mlpa = MLpa::where("ID", "=", $request->ID)->first();
+        //$mlpa = MLpaMongo::where("ID", "=", $request->ID)->first();
 
-        $donante = $mlpa->DONANTE;
+        //$donante = $mlpa->DONANTE;
+        $donante = $request->DONANTE ?? '';
 
         $tipo_lpa = $request->tipo_lpa;
 
         if ($donante == 'BHA') {
-            $donante += ' ' . $tipo_lpa;
+            $donante .= ' ' . $tipo_lpa;
         }
 
         return ["donante_ajustado" => $donante];
