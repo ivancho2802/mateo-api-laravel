@@ -16,6 +16,8 @@ use App\Models\MLpaPersonaMongo;
 
 class MLpaMongo extends Model
 {
+    public $timestamps = true;
+    
     protected $fillable = [
 
         "ID_M_KOBO_FORMULARIOS",
@@ -54,10 +56,10 @@ class MLpaMongo extends Model
         "ID_M_USUARIOS",
         "ID_M_AREAS",
         "ID_M_FORMULARIOS",
-        //RELACIONALES
+        //RELACIONALES.
+        "created_at"
 
     ];
-    public $timestamps = true;
 
     /**
      * SCOPES

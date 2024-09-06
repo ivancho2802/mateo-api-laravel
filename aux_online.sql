@@ -19,14 +19,24 @@ file_ref = 'UPLOADED'
 --and table_id not like '{%' 
 order by updated_at desc limit 7 ;
 
-SELECT *
+SELECT file_ref, *
 FROM 
 public.migrate_customs 
 where 
 --table_id != '[]' AND
-"table" = 'M_LPAS'  AND 
-file_ref = 'PROCECED' 
+"table" = 'M_LPAS'
+--  AND file_ref = 'PROCECED' 
 --and table_id not like '{%' 
+order by updated_at desc limit 7 ;
+
+SELECT *
+FROM 
+public.migrate_customs 
+where 
+table_id != '[]' AND
+"table" = 'M_LPAS'  AND 
+file_ref = 'PENDINGMONGO' 
+and table_id not like '{%' 
 order by updated_at desc limit 7 ;
 
 
@@ -120,8 +130,10 @@ WHERE "M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND
 -- jobs
 
 select * from job_details
-select * from jobs
+select count(*) from jobs
+delete from jobs
 select * from failed_jobs
+delete from failed_jobs
 --
 --delete from job_details
 --delete from jobs

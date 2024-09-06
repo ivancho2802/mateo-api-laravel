@@ -16,6 +16,8 @@ class MLpa extends Model
 
     protected $table = 'M_LPAS';
 
+    public $timestamps = true;
+
     public $incrementing = false;
     //protected $appends = ['tipo_lpa'];
     /**
