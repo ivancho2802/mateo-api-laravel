@@ -601,7 +601,7 @@ class PersonAttendedMongo extends Controller
         //$mlpa = MLpaMongo::where("ID", "=", $request->ID)->first();
 
         //$donante = $mlpa->DONANTE;
-        $donante = $request->DONANTE;
+        $donante = $request->DONANTE ?? '';
 
         $tipo_lpa = $request->tipo_lpa;
 
