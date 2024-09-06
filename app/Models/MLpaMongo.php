@@ -16,7 +16,7 @@ use App\Models\MLpaPersonaMongo;
 
 class MLpaMongo extends Model
 {
-    public $timestamps = false;
+    public $timestamps = true;
     
     protected $fillable = [
 
