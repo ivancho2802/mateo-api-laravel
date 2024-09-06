@@ -606,7 +606,7 @@ class PersonAttendedMongo extends Controller
         $tipo_lpa = $request->tipo_lpa;
 
         if ($donante == 'BHA') {
-            $donante += ' ' . $tipo_lpa;
+            $donante .= ' ' . $tipo_lpa;
         }
 
         return ["donante_ajustado" => $donante];
