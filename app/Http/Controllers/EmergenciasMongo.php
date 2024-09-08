@@ -18,4 +18,14 @@ class EmergenciasMongo extends Controller
             "emergencia" => $emergencia
         ];
     }
+
+    function getEmergenciaS(){
+        DB::setDefaultConnection('mongodb');
+        $emergencia = MLpaEmergenciaMongo::get();
+
+        return [
+            "emergencia" => $emergencia
+        ];
+
+    }
 }
