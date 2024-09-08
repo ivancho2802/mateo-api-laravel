@@ -535,7 +535,7 @@ class PersonAttendedMongo extends Controller
     {
         DB::setDefaultConnection('mongodb');
 
-        $persona = MLpaPersonaMongo::find($request->ID)->first();
+        $persona = MLpaPersonaMongo::find($request->ID);
 
         if ( isset($request->tipo_lpa) && isset($request->FECHA_ATENCION) ) {
 
@@ -587,7 +587,7 @@ class PersonAttendedMongo extends Controller
     {
         DB::setDefaultConnection('mongodb');
 
-        $mlpa = MLpaMongo::find($request->ID)->first();
+        $mlpa = MLpaMongo::find($request->ID);
 
         $tipo_lpa = $mlpa->append('tipo_lpa');
 
