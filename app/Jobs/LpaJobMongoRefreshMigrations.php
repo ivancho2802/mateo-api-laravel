@@ -17,6 +17,7 @@ use Illuminate\Validation\ValidationException;
 class LpaJobMongoRefreshMigrations implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    public $tries = 2;
 
     /**
      * Create a new job instance.

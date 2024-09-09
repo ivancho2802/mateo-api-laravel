@@ -34,7 +34,7 @@ class MealMongo extends Controller
  
          $mlpas = MLpaMongo::where("FECHA_ATENCION", ">=", "2023-01-01")
              //->where("FK_LPA_PERSONA", ">", "22270")
-             ->nodeleted()
+             //->nodeleted()
              ->get(); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
          //->groupBy('FECHA_ATENCION');
  

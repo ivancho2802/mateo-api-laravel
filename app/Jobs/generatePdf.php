@@ -21,6 +21,7 @@ class generatePdf implements ShouldQueue
     private $paramsPdf;
     private $filename;
     private $metaFilesForm;
+    public $tries = 2;
 
     /**
      * Create a new job instance.

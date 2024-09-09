@@ -18,6 +18,7 @@ class LpaJobRefreshMigrations implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $tries = 2;
     /**
      * Create a new job instance.
      *

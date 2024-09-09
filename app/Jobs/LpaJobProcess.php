@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 class LpaJobProcess implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    public $tries = 2;
 
     /**
      * Create a new job instance.
