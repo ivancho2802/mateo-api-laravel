@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Constant Companion</title>
-    <link rel="stylesheet" href="{{ asset('images/constant_companion.png') }}">
+    <base href="/">
+        <link rel="icon" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+    </base>
     <style>
         .container {
             position: relative;
@@ -30,7 +32,7 @@
 
 <body>
     <div class="container">
-        <iframe class="responsive-iframe" src="https://drive.google.com/file/d/1kTY58M7bw1O8HyjFNiSz2TmeJiVG-AP1/view?usp=sharing"></iframe>
+        <iframe class="responsive-iframe" src="https://drive.google.com/file/d/1kTY58M7bw1O8HyjFNiSz2TmeJiVG-AP1/preview"></iframe>
     </div>
 </body>
 
