@@ -84,7 +84,8 @@ Route::get('desnutricion-infantil-en-la-guajira', function () {
 });
 
 
-
-
+Route::get('constant_companion', function () {
+    return view('constant_companion');
+});
 
 require __DIR__ . '/auth.php';
