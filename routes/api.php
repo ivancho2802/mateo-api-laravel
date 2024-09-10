@@ -54,7 +54,8 @@ Route::prefix('meal')->group(function () {
   //lista de personas atendidas
   Route::get('/lpa/download', [App\Http\Controllers\Media::class, 'downloadMedia']);
 
-  Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
+  //Route::post('/lpa/upload', [App\Http\Controllers\PersonAttended::class, 'stored']);
+  Route::post('/lpa/upload', [App\Http\Controllers\PersonAttendedMongo::class, 'stored']);
 
   //carga de discapacitados
   Route::post('/lpa/discapacitadosFix', [App\Http\Controllers\PersonAttended::class, 'storeFixDiscapacitados']);
