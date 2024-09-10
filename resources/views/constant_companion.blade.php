@@ -10,7 +10,7 @@
     </base>
     <style>
         .container {
-            position: relative;
+            /* position: relative; */
             overflow: hidden;
             width: 100%;
             padding-top: 56.25%;
