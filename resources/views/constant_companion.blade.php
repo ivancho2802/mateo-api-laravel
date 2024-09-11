@@ -7,6 +7,19 @@
     <title>Constant Companion</title>
     <base href="/">
         <link rel="icon" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+
+        <link rel="shortcut icon" type="image/x-icon" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+        <link rel="icon" sizes="16x16" type="image/png" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+        <link rel="apple-touch-icon" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+        <link rel="apple-touch-icon-precomposed" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+        <link rel="apple-touch-icon-120x120" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+        <link rel="apple-touch-icon-120x120-precomposed" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+        <link rel="apple-touch-icon-152x152" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+        <link rel="apple-touch-icon-152x152-precomposed" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+        <link rel="shortcut icon" sizes="192x192" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+        <link rel="shortcut icon" sizes="512x512" href="https://ugic.api.ach.dyndns.info/images/constant_companion.png">
+
     </base>
     <style>
         .container {
