@@ -15,11 +15,11 @@ class AlterAdnsTable extends Migration
     {
         //
         Schema::table('adns', function (Blueprint $table) {
-            $table->string('dinero_ahorrado_x_persona')->nullable()->change();
+            $table->string('dinero_ahorrado_x_persona')->nullable()->create();
             $table->string('grupo_ahorro')->nullable()->change();
             $table->string('personas_bancarizadas')->nullable()->change();
             $table->string('tasa_cambio')->nullable()->create();
-            
+
         });
     }
 

@@ -8,7 +8,7 @@
 # migrar archiv especifico
 php artisan migrate --path=/database/migrations/test/
 php artisan migrate:refresh --path=/database/migrations/2024_03_13_170435_alter_lpa_table.php
-php artisan migrate:refresh --path=/database/migrations/2024_05_27_094538_alter_matrizs_table.php
+php artisan migrate:refresh --path=/database/migrations/2024_07_26_083931_alter_adns_table.php
 
 
 # crar un modelo con su controlador
