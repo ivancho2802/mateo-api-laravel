@@ -60,10 +60,7 @@
                 <tr>
                     <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
                         {{$mlpa->COD_ACTIVIDAD}}
-                    </td>
-                    <!-- <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
-                        {{$mlpa->emergencia->COD_EMERGENCIAS}}
-                    </td> -->
+                    </td> 
                     <td class="grid_celda grid_row_activo" id="FECHA_ACTIV" data-nombre_celda="m_kobo_formularios_FECHA_ACTIV" style="width: 80px; min-width: 80px; cursor: pointer;">
                         {{$mlpa->FECHA_ATENCION}}
                     </td>
