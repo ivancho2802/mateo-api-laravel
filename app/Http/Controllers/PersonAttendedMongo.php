@@ -16,16 +16,17 @@ use App\Models\MLpaPersonaMongo;
 use App\Models\migrateCustom;
 use App\Models\MLpaFix;
 use Illuminate\Support\Facades\DB;
+use App\Models\Analisis;
 
 class PersonAttendedMongo extends Controller
 {
     //
     function stored(Request $request)
     {
-        DB::setDefaultConnection('mongodb');
+        DB::setDefaultConnection('pgsql');
 
         if ($request->analisis && $request->month) {
-            $resulAlaisis = AnalisisMongo::updateOrCreate([
+            $resulAlaisis = Analisis::updateOrCreate([
                 "texto" => $request->analisis,
                 "month" => $request->month,
                 "type" => "LPA"
@@ -62,11 +63,12 @@ class PersonAttendedMongo extends Controller
         $file = $request->file('file');
         $path = $file->store('migrationsLpa');
 
-        migrateCustomMongo::create([
+        migrateCustom::create([
             'table' => 'M_LPAS',
             'table_id' =>  $path,
             'file_ref' => 'UPLOADED',
         ]);
+        DB::setDefaultConnection('mongodb');
 
         $mlpas = MLpaMongo::orderBy('created_at', 'desc')
             ->paginate(10);
