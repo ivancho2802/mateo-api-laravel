@@ -35,7 +35,7 @@ class Finanzas extends Controller
         $request->all();
         $data = $request->except(['_token']);
 
-        $adnCreate = Adn::first()->updateOrCreate($data);
+        $adnCreate = Adn::first()->update($data);
         $adn = [
             "adns" => Adn::get() ?? []
         ];
