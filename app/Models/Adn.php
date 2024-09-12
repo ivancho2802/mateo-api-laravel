@@ -16,7 +16,9 @@ class Adn extends Model
         
         "dinero_ahorrado_x_persona",
         "grupo_ahorro",
-        "personas_bancarizadas"
+        "personas_bancarizadas",
+
+        "tasa_cambio"
     ];
 
     
