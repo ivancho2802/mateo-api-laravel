@@ -51,7 +51,7 @@ class Finanzas extends Controller
 
     function getLoaExtra(){
 
-        $adn = Adn::get();
+        $adn = Adn::first();
 
         return response()->json(['status' => true, 'data' => $adn], 200);
     }
