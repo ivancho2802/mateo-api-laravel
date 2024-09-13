@@ -51,11 +51,7 @@ class Finanzas extends Controller
 
     function getLoaExtra(){
 
-        $adn = [
-            "dinero_ahorrado_x_persona" => "30",
-            "grupo_ahorro" => "67",
-            "personas_bancarizadas" => "235"
-        ];
+        $adn = Adn::get();
 
         return response()->json(['status' => true, 'data' => $adn], 200);
     }
