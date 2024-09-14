@@ -49,7 +49,16 @@
             <div style=" float: center; text-align:center">Tasa Cambio</div><span id="m_lpa_asc_1" class="ascendente" style="display:none"></span><span id="m_lpa_des_1" class="descendente" style="display:none"></span>
           </td>
 
-          
+
+          <td class="grid_encab" id="rm_lpa_1" data-campo="FECHA_ACTIV" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+            <div style=" float: center; text-align:center">Feria emprendimiento</div><span id="m_lpa_asc_1" class="ascendente" style="display:none"></span><span id="m_lpa_des_1" class="descendente" style="display:none"></span>
+          </td>
+
+          <td class="grid_encab" id="rm_lpa_1" data-campo="FECHA_ACTIV" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+            <div style=" float: center; text-align:center">Feria empleabilidad</div><span id="m_lpa_asc_1" class="ascendente" style="display:none"></span><span id="m_lpa_des_1" class="descendente" style="display:none"></span>
+          </td>
+
+
         </tr>
       </thead>
 
@@ -77,6 +86,12 @@
           <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
             {{$adn->tasa_cambio}}
           </td>
+          <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+            {{$adn->feria_apoyo_emprendimiento2}}
+          </td>
+          <td class="grid_celda grid_celda_resaltada" align="center" id="m_kobo_formularios_c_0" data-nombre_celda="m_kobo_formularios_FECHA_FORMULARIO" style="max-width: 80px; width: 80px; min-width: 80px; cursor: pointer;">
+            {{$adn->feria_apoyo_empleabilidad2}}
+          </td>
         </tr>
         @empty
         <tr>
@@ -92,28 +107,34 @@
       <label for="exampleFormControlTextarea1" class="form-label">Presupuesto ACH: </label>
       <input type="text" placeholder="" id="presupuesto_ach" name="presupuesto_ach" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
-      
+
       <label for="exampleFormControlTextarea1" class="form-label">Presupuesto total: </label>
       <input type="text" placeholder="" id="presupuesto_total" name="presupuesto_total" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
-      
+
       <label for="exampleFormControlTextarea1" class="form-label">Otro dato: </label>
       <input type="text" placeholder="" id="otro" name="otro" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
       <label for="exampleFormControlTextarea1" class="form-label">Dinero ahorrado por persona: </label>
       <input type="text" placeholder="" id="dinero_ahorrado_x_persona" name="dinero_ahorrado_x_persona" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
-      
+
       <label for="exampleFormControlTextarea1" class="form-label">Grupo Ahorro: </label>
       <input type="text" placeholder="" id="grupo_ahorro" name="grupo_ahorro" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
-      
+
       <label for="exampleFormControlTextarea1" class="form-label">Personas Bancarizadas: </label>
       <input type="text" placeholder="" id="personas_bancarizadas" name="personas_bancarizadas" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
 
       <label for="exampleFormControlTextarea1" class="form-label">Tasa Cambio: </label>
       <input type="text" placeholder="" id="tasa_cambio" name="personas_bancarizadas" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+
+      <label for="exampleFormControlTextarea1" class="form-label">Feria emprendimiento: </label>
+      <input type="text" placeholder="" id="feria_apoyo_emprendimiento2" name="personas_bancarizadas" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+
+      <label for="exampleFormControlTextarea1" class="form-label">Feria empleabilidad: </label>
+      <input type="text" placeholder="" id="feria_apoyo_empleabilidad2" name="personas_bancarizadas" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
       <br>
 

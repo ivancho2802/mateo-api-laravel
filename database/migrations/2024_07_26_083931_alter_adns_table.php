@@ -20,8 +20,8 @@ class AlterAdnsTable extends Migration
             $table->string('personas_bancarizadas')->nullable()->change();
             $table->string('tasa_cambio')->nullable()->change();
 
-            $table->string('feria_apoyo_emprendimiento2')->nullable()->create();
-            $table->string('feria_apoyo_empleabilidad2')->nullable()->create();
+            $table->string('feria_apoyo_emprendimiento2')->nullable()->change();
+            $table->string('feria_apoyo_empleabilidad2')->nullable()->change();
             
 
         });

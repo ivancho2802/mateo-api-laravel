@@ -51,7 +51,7 @@ class Finanzas extends Controller
 
     function getLoaExtra(){
 
-        $adn = Adn::first();//feria_apoyo_emprendimiento2 1000
+        $adn = Adn::first();//feria_apoyo_emprendimiento2 1000 feria_apoyo_empleabilidad2 1000
 
         return response()->json(['status' => true, 'data' => $adn], 200);
     }

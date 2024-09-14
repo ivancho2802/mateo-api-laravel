@@ -10,18 +10,16 @@ class Adn extends Model
     use HasFactory;
 
     protected $fillable = [
-        'presupuesto_ach', 
-        'presupuesto_total', 
-        'otro', 
-        
+        'presupuesto_ach',
+        'presupuesto_total',
+        'otro',
+
         "dinero_ahorrado_x_persona",
         "grupo_ahorro",
         "personas_bancarizadas",
 
-        "tasa_cambio"
+        "tasa_cambio",
+        "feria_apoyo_emprendimiento2",
+        "feria_apoyo_empleabilidad2"
     ];
-
-    
-
-
 }
