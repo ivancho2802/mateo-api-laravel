@@ -540,7 +540,7 @@ class PersonAttendedMongo extends Controller
         //$persona = MLpaPersonaMongo::find($request->ID);
         $persona = MLpaPersonaMongo::where(["DOCUMENTO" => $request->ID]);
 
-        dd($persona);
+        dd($persona->get());
 
         /* $discapacitado = MLpaFix::where([
             'documento' => $persona->DOCUMENTO
