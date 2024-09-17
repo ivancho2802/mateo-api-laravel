@@ -538,7 +538,7 @@ class PersonAttendedMongo extends Controller
         DB::setDefaultConnection('mongodb');
 
         //$persona = MLpaPersonaMongo::find($request->ID);
-        $persona = MLpaPersonaMongo::where(["DOCUMENTO" => '22744']);
+        $persona = MLpaPersonaMongo::where(["DOCUMENTO" => 22744]);
         $persona2 = count( MLpaPersonaMongo::get()
         ->groupBy('DOCUMENTO'));
 
