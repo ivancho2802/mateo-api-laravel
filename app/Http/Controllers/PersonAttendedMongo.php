@@ -537,7 +537,17 @@ class PersonAttendedMongo extends Controller
     {
         DB::setDefaultConnection('mongodb');
 
-        $persona = MLpaPersonaMongo::find($request->ID);
+        //$persona = MLpaPersonaMongo::find($request->ID);
+        $persona = MLpaPersonaMongo::where(["DOCUMENTO" => $request->ID]);
+
+        $discapacitado = MLpaFix::where([
+            'documento' => $persona->DOCUMENTO
+        ])
+            ->exists();
+
+
+        dd($persona->DOCUMENTO, $discapacitado);
+        //1824493
 
         if ( isset($request->tipo_lpa) && isset($request->FECHA_ATENCION) ) {
 
