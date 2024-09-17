@@ -546,7 +546,7 @@ class PersonAttendedMongo extends Controller
             ->exists();
 
 
-        dd($persona->DOCUMENTO, $discapacitado);
+        dd($persona, $discapacitado);
         //1824493
 
         if ( isset($request->tipo_lpa) && isset($request->FECHA_ATENCION) ) {
