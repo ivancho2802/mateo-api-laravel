@@ -538,9 +538,12 @@ class PersonAttendedMongo extends Controller
         DB::setDefaultConnection('mongodb');
 
         //$persona = MLpaPersonaMongo::find($request->ID);
-        $persona = MLpaPersonaMongo::where(["DOCUMENTO" => $request->ID]);
+        $persona = MLpaPersonaMongo::where(["DOCUMENTO" => '22744']);
+        $persona2 = MLpaPersonaMongo::where("DOCUMENTO", "=", "22744");
 
-        dd($persona->get());
+        
+
+        dd($persona->get(), $persona2->get());
 
         /* $discapacitado = MLpaFix::where([
             'documento' => $persona->DOCUMENTO
