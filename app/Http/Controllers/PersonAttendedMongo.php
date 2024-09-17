@@ -539,11 +539,10 @@ class PersonAttendedMongo extends Controller
 
         //$persona = MLpaPersonaMongo::find($request->ID);
         $persona = MLpaPersonaMongo::where(["DOCUMENTO" => '22744']);
-        $persona2 = MLpaPersonaMongo::where("DOCUMENTO", "=", "22744");
+        $persona2 = count( MLpaPersonaMongo::get()
+        ->groupBy('request'));
 
-        
-
-        dd($persona->get(), $persona2->get());
+        dd($persona->get(), $persona2);
 
         /* $discapacitado = MLpaFix::where([
             'documento' => $persona->DOCUMENTO
