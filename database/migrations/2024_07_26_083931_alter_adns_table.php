@@ -22,7 +22,10 @@ class AlterAdnsTable extends Migration
 
             $table->string('feria_apoyo_emprendimiento2')->nullable()->change();
             $table->string('feria_apoyo_empleabilidad2')->nullable()->change();
-            
+
+            $table->string('total_ufa')->nullable()->create();
+            $table->string('total_nines')->nullable()->create();
+
 
         });
     }

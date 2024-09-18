@@ -128,13 +128,16 @@
 
 
       <label for="exampleFormControlTextarea1" class="form-label">Tasa Cambio: </label>
-      <input type="text" placeholder="" id="tasa_cambio" name="personas_bancarizadas" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+      <input type="text" placeholder="" id="tasa_cambio" name="tasa_cambio" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
       <label for="exampleFormControlTextarea1" class="form-label">Feria emprendimiento: </label>
-      <input type="text" placeholder="" id="feria_apoyo_emprendimiento2" name="personas_bancarizadas" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+      <input type="text" placeholder="" id="feria_apoyo_emprendimiento2" name="feria_apoyo_emprendimiento2" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
-      <label for="exampleFormControlTextarea1" class="form-label">Feria empleabilidad: </label>
-      <input type="text" placeholder="" id="feria_apoyo_empleabilidad2" name="personas_bancarizadas" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+      <label for="exampleFormControlTextarea1" class="form-label">Total Ufa: </label>
+      <input type="text" placeholder="" id="total_ufa" name="total_ufa" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+
+      <label for="exampleFormControlTextarea1" class="form-label">Total niños: </label>
+      <input type="text" placeholder="" id="total_nines" name="total_nines" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
       <br>
 

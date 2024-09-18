@@ -20,6 +20,13 @@ class Adn extends Model
 
         "tasa_cambio",
         "feria_apoyo_emprendimiento2",
-        "feria_apoyo_empleabilidad2"
+        "feria_apoyo_empleabilidad2",
+
+        "feria_apoyo_emprendimiento2",
+        "feria_apoyo_empleabilidad2",
+
+        
+        "total_ufa",// = 143520
+        "total_nines"// = 12180
     ];
 }
