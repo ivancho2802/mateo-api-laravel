@@ -538,28 +538,20 @@ class PersonAttendedMongo extends Controller
         DB::setDefaultConnection('mongodb');
 
         //$persona = MLpaPersonaMongo::find($request->ID);
-        $persona1 = MLpaPersonaMongo::first();
+        //$persona1 = MLpaPersonaMongo::first();
 
         $persona = MLpaPersonaMongo::where(["DOCUMENTO" => 1824493]);
 
-
         $persona3 = MLpaPersonaMongo::where(["DOCUMENTO" => 1824493]);//v
-        $persona4 = MLpaPersonaMongo::where(["DOCUMENTO" => "1824493"]);//x
 
+        dd($persona->get(), $persona3->first() );
         
-
-        $persona2 = count( MLpaPersonaMongo::get()
-        ->groupBy('DOCUMENTO'));
-
-        dd($persona->get(), $persona2, $persona1, $persona3->get(), $persona4->get());
-
-        /* $discapacitado = MLpaFix::where([
-            'documento' => $persona->DOCUMENTO
+        $discapacitado = MLpaFix::where([
+            'documento' => $persona->first()->DOCUMENTO
         ])
             ->exists();
 
-
-        dd($persona, $discapacitado); */
+        dd($persona, $discapacitado);
         //1824493
 
         if ( isset($request->tipo_lpa) && isset($request->FECHA_ATENCION) ) {
