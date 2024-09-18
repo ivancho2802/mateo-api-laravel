@@ -540,11 +540,11 @@ class PersonAttendedMongo extends Controller
         //$persona = MLpaPersonaMongo::find($request->ID);
         $persona1 = MLpaPersonaMongo::first();
 
-        $persona = MLpaPersonaMongo::where(["DOCUMENTO" => 22744]);
+        $persona = MLpaPersonaMongo::where(["DOCUMENTO" => 1824493]);
 
 
-        $persona3 = MLpaPersonaMongo::where(["DOCUMENTO" => 1087829172]);
-        $persona4 = MLpaPersonaMongo::where(["DOCUMENTO" => "1087829172"]);
+        $persona3 = MLpaPersonaMongo::where(["DOCUMENTO" => 1824493]);//v
+        $persona4 = MLpaPersonaMongo::where(["DOCUMENTO" => "1824493"]);//x
 
         
 
