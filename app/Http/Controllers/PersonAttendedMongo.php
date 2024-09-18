@@ -541,10 +541,17 @@ class PersonAttendedMongo extends Controller
         $persona1 = MLpaPersonaMongo::first();
 
         $persona = MLpaPersonaMongo::where(["DOCUMENTO" => 22744]);
+
+
+        $persona3 = MLpaPersonaMongo::where(["DOCUMENTO" => 1087829172]);
+        $persona4 = MLpaPersonaMongo::where(["DOCUMENTO" => "1087829172"]);
+
+        
+
         $persona2 = count( MLpaPersonaMongo::get()
         ->groupBy('DOCUMENTO'));
 
-        dd($persona->get(), $persona2, $persona1);
+        dd($persona->get(), $persona2, $persona1, $persona3->get(), $persona4->get());
 
         /* $discapacitado = MLpaFix::where([
             'documento' => $persona->DOCUMENTO
