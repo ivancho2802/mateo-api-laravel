@@ -540,9 +540,9 @@ class PersonAttendedMongo extends Controller
         //$persona = MLpaPersonaMongo::find($request->ID);
         //$persona1 = MLpaPersonaMongo::first();
 
-        $persona = MLpaPersonaMongo::where(["DOCUMENTO" => 1824493])->get();
+        $persona = collect(MLpaPersonaMongo::where(["DOCUMENTO" => 1824493])->get())->first();
 
-        $docu = $persona[0]->DOCUMENTO; 
+        $docu = $persona->DOCUMENTO; 
         //1824493
 
         if ( isset($request->tipo_lpa) && isset($request->FECHA_ATENCION) ) {
@@ -569,6 +569,7 @@ class PersonAttendedMongo extends Controller
                         'documento' => $docu
                     ])
                         ->exists();
+                        dd($docu, $discapacitado, $request->tipo_lpa == 'Recuperacion Temprana', $request->FECHA_ATENCION <= '2024-07-01');
 
                     /*  echo "discapacitado:". json_encode($discapacitado) . '-' . $discapacitado . '-' . $lpa['persona']['DOCUMENTO'] . MLpaFix::where([
                         'documento' => $lpa['persona']['DOCUMENTO']
