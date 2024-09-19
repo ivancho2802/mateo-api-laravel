@@ -544,16 +544,7 @@ class PersonAttendedMongo extends Controller
 
         $persona3 = MLpaPersonaMongo::where(["DOCUMENTO" => 1824493]);//v
 
-        $docu = $persona3->first()->DOCUMENTO;
-
-        DB::setDefaultConnection('pgsql');
-        
-        $discapacitado = MLpaFix::where([
-            'documento' => $docu
-        ])
-            ->exists();
-
-        dd($discapacitado==true);
+        $docu = $persona3->first()->DOCUMENTO; 
         //1824493
 
         if ( isset($request->tipo_lpa) && isset($request->FECHA_ATENCION) ) {
@@ -572,12 +563,12 @@ class PersonAttendedMongo extends Controller
                 //dd($lpa['tipo_lpa']);
 
                 //
-                if ($request->tipo_lpa == 'Recuperacion Temprana' && $request->FECHA_ATENCION <= '2024-07-01' && isset($persona->DOCUMENTO)) {
+                if ($request->tipo_lpa == 'Recuperacion Temprana' && $request->FECHA_ATENCION <= '2024-07-01' && isset($docu)) {
 
                     DB::setDefaultConnection('pgsql');
                     //dd($lpa['persona']['DOCUMENTO']);
                     $discapacitado = MLpaFix::where([
-                        'documento' => $persona->DOCUMENTO
+                        'documento' => $docu
                     ])
                         ->exists();
 
@@ -586,7 +577,7 @@ class PersonAttendedMongo extends Controller
                     ])->exists() . $lpa['tipo_lpa']; */
 
                     //->where('sexo', $lpa->persona->GENERO)
-                    if (json_encode($discapacitado) == 'true') {
+                    if (($discapacitado) == true) {
                         $persona = collect($persona)->forget('discapacitado');
                         $persona['discapacitado'] = 1;
                     }
