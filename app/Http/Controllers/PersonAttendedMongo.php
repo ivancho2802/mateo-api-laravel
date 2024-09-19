@@ -544,13 +544,16 @@ class PersonAttendedMongo extends Controller
 
         $persona3 = MLpaPersonaMongo::where(["DOCUMENTO" => 1824493]);//v
 
+        $docu = $persona3->first()->DOCUMENTO;
+        dd($docu);
+
         DB::setDefaultConnection('pgsql');
         $discapacitado = MLpaFix::where([
-            'documento' => $persona->first()->DOCUMENTO
+            'documento' => $docu
         ])
             ->first();
 
-        dd($discapacitado, $persona->get(), $persona3->first()->DOCUMENTO );
+        dd($discapacitado);
         
         $discapacitado = MLpaFix::where([
             'documento' => $persona->first()->DOCUMENTO
