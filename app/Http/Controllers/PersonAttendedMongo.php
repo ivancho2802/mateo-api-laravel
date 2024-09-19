@@ -569,7 +569,6 @@ class PersonAttendedMongo extends Controller
                         'documento' => $docu
                     ])
                         ->exists();
-                        dd($docu, $discapacitado, $request->tipo_lpa == 'Recuperacion Temprana', $request->FECHA_ATENCION <= '2024-07-01');
 
                     /*  echo "discapacitado:". json_encode($discapacitado) . '-' . $discapacitado . '-' . $lpa['persona']['DOCUMENTO'] . MLpaFix::where([
                         'documento' => $lpa['persona']['DOCUMENTO']
