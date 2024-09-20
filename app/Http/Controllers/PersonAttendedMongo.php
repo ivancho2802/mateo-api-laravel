@@ -537,13 +537,12 @@ class PersonAttendedMongo extends Controller
     {
         DB::setDefaultConnection('mongodb');
 
-        //$persona = MLpaPersonaMongo::find($request->ID);
+        $persona = MLpaPersonaMongo::find($request->ID);
         //$persona1 = MLpaPersonaMongo::first();
 
-        $persona = collect(MLpaPersonaMongo::where(["DOCUMENTO" => 1824493])->get())->first();
+        //$persona = collect(MLpaPersonaMongo::where(["DOCUMENTO" => 1824493])->get())->first();
 
         $docu = $persona->DOCUMENTO;
-        dd($persona->ID);
         //1824493
 
         if ( isset($request->tipo_lpa) && isset($request->FECHA_ATENCION) ) {
