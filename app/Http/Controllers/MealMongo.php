@@ -46,7 +46,7 @@ class MealMongo extends Controller
 
         dd($migration);
 
-         $mlpas[count($mlpas)-1]->create_at = $migration->create_at;
+         $mlpas[count($mlpas)-1]->created_at = $migration->created_at;
  
          return [
              "lpas" => $mlpas
