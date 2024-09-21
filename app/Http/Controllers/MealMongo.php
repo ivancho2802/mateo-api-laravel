@@ -44,8 +44,6 @@ class MealMongo extends Controller
             'table' => 'M_LPAS_MONGO'
         ])->orderBy('created_at', 'desc')->first();
 
-        dd($migration);
-
          $mlpas[count($mlpas)-1]->created_at = $migration->created_at;
  
          return [
