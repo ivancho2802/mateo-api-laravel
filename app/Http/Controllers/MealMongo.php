@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MLpaMongo;
 use Illuminate\Support\Facades\DB;
+use App\Models\migrateCustom;
 
 class MealMongo extends Controller
 {
@@ -37,6 +38,15 @@ class MealMongo extends Controller
              //->nodeleted()
              ->get(); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
          //->groupBy('FECHA_ATENCION');
+        DB::setDefaultConnection('pgsql');
+
+        $migration = migrateCustom::where([
+            'table' => 'M_LPAS_MONGO'
+        ])->first();
+
+        dd($migration);
+
+         $mlpas[count($mlpas)-1]->create_at = $migration->create_at;
  
          return [
              "lpas" => $mlpas
