@@ -42,7 +42,7 @@ class MealMongo extends Controller
 
         $migration = migrateCustom::where([
             'table' => 'M_LPAS_MONGO'
-        ])->first();
+        ])->orderBy('created_at', 'desc')->first();
 
         dd($migration);
 
