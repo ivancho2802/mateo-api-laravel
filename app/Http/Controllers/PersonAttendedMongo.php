@@ -598,6 +598,8 @@ class PersonAttendedMongo extends Controller
         //$mlpa = MLpaMongo::find($request->ID);
         $mlpa = MLpaMongo::where("ID", "=", $request->ID)->first();
 
+        dd(MLpaMongo::where("ID", "=", $request->ID)->get(),  MLpaMongo::find($request->ID));
+
         $tipo_lpa = $mlpa->append('tipo_lpa');
 
         return ["tipo_lpa" => $tipo_lpa->tipo_lpa];
