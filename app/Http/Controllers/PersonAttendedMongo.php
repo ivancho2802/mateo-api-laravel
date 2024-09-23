@@ -604,7 +604,12 @@ class PersonAttendedMongo extends Controller
 
     function getDonante(Request $request)
     {
-        //DB::setDefaultConnection('mongodb');
+        DB::setDefaultConnection('mongodb');
+
+        $mlpa = MLpaMongo::where("FASE_ATENCION", "=", "Fase III-Recuperación temprana")->first();
+
+        dd($mlpa);
+
 
         //$mlpa = MLpaMongo::where("ID", "=", $request->ID)->first();
 
