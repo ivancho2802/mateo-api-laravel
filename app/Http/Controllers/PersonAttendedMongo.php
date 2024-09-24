@@ -542,10 +542,11 @@ class PersonAttendedMongo extends Controller
         $discapacitados = MLpaFix::get();
 
         $discapacitados_documentos = $discapacitados->pluck('documento');
-        //dd("discapacitados_documentos", $discapacitados_documentos->all());
+        dd("discapacitados_documentos", $discapacitados_documentos->all());
 
         DB::setDefaultConnection('mongodb');
         $MLpaPersonaMongo = MLpaPersonaMongo::whereIn("DOCUMENTO", $discapacitados_documentos->all())->get();
+        dd("MLpaPersonaMongo", $MLpaPersonaMongoId);
 
         $MLpaPersonaMongoId =  $MLpaPersonaMongo->pluck('_id');
         dd("MLpaPersonaMongo", $MLpaPersonaMongoId);
