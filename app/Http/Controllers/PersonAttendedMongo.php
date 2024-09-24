@@ -545,8 +545,10 @@ class PersonAttendedMongo extends Controller
         //dd("discapacitados_documentos", $discapacitados_documentos->all());
 
         DB::setDefaultConnection('mongodb');
-        $MLpaPersonaMongo = MLpaPersonaMongo::whereIn("DOCUMENTO", $discapacitados_documentos->all());
-        dd("MLpaPersonaMongo", collect($MLpaPersonaMongo->get()))->pluck('_id');
+        $MLpaPersonaMongo = MLpaPersonaMongo::whereIn("DOCUMENTO", $discapacitados_documentos->all())->get();
+
+        $MLpaPersonaMongoId =  $MLpaPersonaMongo->pluck('_id');
+        dd("MLpaPersonaMongo", $MLpaPersonaMongoId);
 
         //
 
