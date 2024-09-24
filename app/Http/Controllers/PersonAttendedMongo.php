@@ -12,6 +12,7 @@ use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Support\Facades\Auth;
 use App\Jobs\LpaJobMongoRefreshMigrations;
 use App\Models\MLpaEmergenciaMongo;
+use App\Models\MLpaPersona;
 use App\Models\MLpaPersonaMongo;
 use App\Models\migrateCustom;
 use App\Models\MLpaFix;
@@ -549,6 +550,14 @@ class PersonAttendedMongo extends Controller
         });
 
         $discapacitados_documentos_upper_all = $discapacitados_documentos_upper->all();
+
+        $MLpaPersonaMongo = MLpaPersona::whereIn("DOCUMENTO", $discapacitados_documentos_upper_all)->get();
+        //dd("MLpaPersonaMongo", $MLpaPersonaMongo);
+
+        $MLpaPersonaMongoId =  $MLpaPersonaMongo->pluck('_id');
+        dd("MLpaPersonaMongo", $MLpaPersonaMongoId);
+
+
 
         DB::setDefaultConnection('mongodb');
         $MLpaPersonaMongo = MLpaPersonaMongo::whereIn("DOCUMENTO", $discapacitados_documentos_upper_all)->get();
