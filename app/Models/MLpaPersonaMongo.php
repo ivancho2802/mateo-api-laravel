@@ -9,11 +9,11 @@ class MLpaPersonaMongo extends Model
 {
     /**
      * The attributes that should be hidden for arrays.
-     *
+     *'DOCUMENTO',
      * @var array
      */
     protected $hidden = [
-        'ID','DOCUMENTO', 'NOMBRE_PRIMERO', 'NOMBRE_OTROS', 'APELLIDO_PRIMERO', 'APELLIDO_OTRO', 'TELEFONO', 'GENERO'
+        'ID', 'NOMBRE_PRIMERO', 'NOMBRE_OTROS', 'APELLIDO_PRIMERO', 'APELLIDO_OTRO', 'TELEFONO', 'GENERO'
     ];
     /**
      * The attributes that are mass assignable.

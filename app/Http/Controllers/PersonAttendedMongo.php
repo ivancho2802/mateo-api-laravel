@@ -539,7 +539,7 @@ class PersonAttendedMongo extends Controller
         DB::setDefaultConnection('mongodb');
 
         //
-        DB::setDefaultConnection('pgsql');
+        /* DB::setDefaultConnection('pgsql');
         $discapacitados = MLpaFix::get();
 
         $discapacitados_documentos = $discapacitados->pluck('documento');
@@ -551,20 +551,18 @@ class PersonAttendedMongo extends Controller
 
         $discapacitados_documentos_upper_all = $discapacitados_documentos_upper->all();
 
-        $MLpaPersonaMongo = MLpaPersona::whereIn("DOCUMENTO", $discapacitados_documentos_upper_all)->get();
+        / $MLpaPersonaMongo = MLpaPersona::whereIn("DOCUMENTO", $discapacitados_documentos_upper_all)->get();
         //dd("MLpaPersonaMongo", $MLpaPersonaMongo);
 
         $MLpaPersonaMongoId =  $MLpaPersonaMongo->pluck('_id');
-        dd("MLpaPersonaMongo", $MLpaPersonaMongoId);
-
-
+        dd("MLpaPersonaMongo", $MLpaPersonaMongoId); /
 
         DB::setDefaultConnection('mongodb');
         $MLpaPersonaMongo = MLpaPersonaMongo::whereIn("DOCUMENTO", $discapacitados_documentos_upper_all)->get();
         //dd("MLpaPersonaMongo", $MLpaPersonaMongo);
 
         $MLpaPersonaMongoId =  $MLpaPersonaMongo->pluck('_id');
-        dd("MLpaPersonaMongo", $MLpaPersonaMongoId);
+        dd("MLpaPersonaMongo", $MLpaPersonaMongoId); */
 
         //
 
@@ -611,7 +609,7 @@ class PersonAttendedMongo extends Controller
                         $persona['discapacitado'] = 1;
                     }
 
-                    unset($persona->DOCUMENTO);
+                    //unset($persona->DOCUMENTO);
                 }
             //}
         }
