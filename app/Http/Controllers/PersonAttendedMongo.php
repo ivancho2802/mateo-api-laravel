@@ -537,6 +537,18 @@ class PersonAttendedMongo extends Controller
     {
         DB::setDefaultConnection('mongodb');
 
+        //
+        DB::setDefaultConnection('pgsql');
+        $discapacitados = MLpaFix::get();
+
+        $discapacitados_documentos = $discapacitados->pluck('documento');
+
+        DB::setDefaultConnection('mongodb');
+        $MLpaPersonaMongo = MLpaPersonaMongo::whereInwhereIn("DOCUMENTO", $discapacitados_documentos->all());
+        dd("MLpaPersonaMongo", collect($MLpaPersonaMongo->get()))->pluck('_id');
+
+        //
+
         $persona = MLpaPersonaMongo::find($request->ID);
         //$persona1 = MLpaPersonaMongo::first();
 
@@ -606,12 +618,12 @@ class PersonAttendedMongo extends Controller
     {
         DB::setDefaultConnection('mongodb');
 
-        $mlpa = MLpaMongo::where("FASE_ATENCION", "=", "Fase III-Recuperación temprana")->first();
+        /* $mlpa = MLpaMongo::where("FASE_ATENCION", "=", "Fase III-Recuperación temprana")->first();
 
-        dd($mlpa);
+        dd($mlpa); */
 
 
-        //$mlpa = MLpaMongo::where("ID", "=", $request->ID)->first();
+        //$mlpa = MLpaMongo::find($request->ID);
 
         //$donante = $mlpa->DONANTE;
         $donante = $request->DONANTE ?? '';
