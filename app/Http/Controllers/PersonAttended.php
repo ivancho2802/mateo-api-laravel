@@ -763,7 +763,7 @@ class PersonAttended extends Controller
                         $persona['discapacitado'] = 1;
                     }
 
-                    unset($lpa['persona']['DOCUMENTO']);
+                    //unset($lpa['persona']['DOCUMENTO']);
                 }
             }
         }
