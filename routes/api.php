@@ -347,7 +347,7 @@ Route::prefix('firebird')->group(function () {
 
       DB::setDefaultConnection('firebird');
 
-      $resultados = DB::select("SELECT * FROM V_D_CONTACTOS");
+      $resultados = DB::select("SELECT * FROM V_D_CONTACTOS_2");
   
       return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
     } catch (\Throwable $exception) {
