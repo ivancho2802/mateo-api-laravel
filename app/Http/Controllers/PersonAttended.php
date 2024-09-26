@@ -730,41 +730,22 @@ class PersonAttended extends Controller
     {
         $persona = MLpaPersona::where("ID", "=", $request->ID)->first();
 
-        if (isset($request->IDMLPA)) {
+        if (isset($request->tipo_lpa)) {
+ 
+            if (isset($request->tipo_lpa) && $request->tipo_lpa == 'Recuperacion Temprana' && $request->FECHA_ATENCION <= '2024-07-01' && isset($persona->DOCUMENTO)) {
 
-            $lpa = MLpa::where("ID", "=", $request->IDMLPA)->first();
+                $discapacitado = MLpaFix::where([
+                    'documento' => $persona->DOCUMENTO
+                ])
+                    ->exists();
 
-            if ($lpa) {
-
-                $lpa->append('tipo_lpa');
-
-                $lpa->load(['persona']);
-
-                $lpa->persona->append('DOCUMENTO');
-
-                //dd($lpa['tipo_lpa']);
-
-                //
-                if (isset($lpa['tipo_lpa']) && $lpa['tipo_lpa'] == 'Recuperacion Temprana' && $lpa['FECHA_ATENCION'] <= '2024-07-01' && isset($lpa['persona']['DOCUMENTO'])) {
-
-                    //dd($lpa['persona']['DOCUMENTO']);
-                    $discapacitado = MLpaFix::where([
-                        'documento' => $lpa['persona']['DOCUMENTO']
-                    ])
-                        ->exists();
-
-                    /*  echo "discapacitado:". json_encode($discapacitado) . '-' . $discapacitado . '-' . $lpa['persona']['DOCUMENTO'] . MLpaFix::where([
-                        'documento' => $lpa['persona']['DOCUMENTO']
-                    ])->exists() . $lpa['tipo_lpa']; */
-
-                    //->where('sexo', $lpa->persona->GENERO)
-                    if (json_encode($discapacitado) == 'true') {
-                        $persona = collect($persona)->forget('discapacitado');
-                        $persona['discapacitado'] = 1;
-                    }
-
-                    //unset($lpa['persona']['DOCUMENTO']);
+                //->where('sexo', $lpa->persona->GENERO)
+                if ( ($discapacitado) ==  true ) {
+                    $persona = collect($persona)->forget('discapacitado');
+                    $persona['discapacitado'] = 1;
                 }
+
+                //unset($lpa['persona']['DOCUMENTO']);
             }
         }
 
@@ -890,7 +871,8 @@ class PersonAttended extends Controller
         return ["donante_ajustado" => $donante];
     }
 
-    function repairJobsCreateRefresh(){
+    function repairJobsCreateRefresh()
+    {
 
         $restanteTot = migrateCustom::where([
             ['table', 'M_LPAS'],
@@ -900,7 +882,7 @@ class PersonAttended extends Controller
 
         $TotrestanteTot = count($restanteTot);
 
-        for ($i=0; $i < $TotrestanteTot * 2; $i++) { 
+        for ($i = 0; $i < $TotrestanteTot * 2; $i++) {
             # code...
             LpaJobRefreshMigrations::dispatch(); //->onConnection('database');
         }

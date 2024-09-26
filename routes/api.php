@@ -341,6 +341,20 @@ Route::prefix('firebird')->group(function () {
     }
   });
 
+  Route::middleware(['auth:sanctum'])->get('/contactos', function (Request $request) {
+
+    try {
+
+      DB::setDefaultConnection('firebird');
+
+      $resultados = DB::select("SELECT * FROM V_D_CONTACTOS");
+  
+      return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+    } catch (\Throwable $exception) {
+      return response()->json(['Error' => $exception->getMessage()]);
+    }
+  });
+
   Route::middleware(['auth:sanctum'])->post('/grupos', function (Request $request) {
 
     try {
