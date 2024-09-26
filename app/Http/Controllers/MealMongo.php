@@ -38,6 +38,8 @@ class MealMongo extends Controller
              //->nodeleted()
              ->get(); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
          //->groupBy('FECHA_ATENCION');
+        $mlpas->load([ 'persona']); //,'emergencia', 'actividad', 'actividad.directory'
+
         DB::setDefaultConnection('pgsql');
 
         $migration = migrateCustom::where([
@@ -45,8 +47,6 @@ class MealMongo extends Controller
         ])->orderBy('created_at', 'desc')->first();
 
          $mlpas[count($mlpas)-1]->created_at = $migration->created_at;
-
-        $mlpas->load([ 'persona']); //,'emergencia', 'actividad', 'actividad.directory'
  
          return [
              "lpas" => $mlpas
