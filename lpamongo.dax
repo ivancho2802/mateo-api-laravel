@@ -1,0 +1,25 @@
+let
+    Origen = Json.Document(Web.Contents("http://ach.dyndns.info:6280/api/mongo/lpasegOnly", [Timeout=#duration(0, 0, 3600, 0), Headers=[Authorization="Bearer 90|ntdy46DZlQkxiEUgvco2iDfARHSzUZYbsV4F9hUy"]])),
+    lpas = Origen[lpas],
+    #"Convertida en tabla" = Table.FromList(lpas, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+    #"Se expandió Column1" = Table.ExpandRecordColumn(#"Convertida en tabla", "Column1", {"_id", "DONANTE", "COD_ACTIVIDAD", "FECHA_ATENCION", "REPRESENTANTE", "DOC_REPRESENTANTE", "TIPO_TRANFERENCIA", "MODO_ENTREGA", "PROVEEDOR_FINANCIERO", "MONTO_MENSUAL", "FASE_ATENCION", "STATUS", "ID_M_USUARIOS", "FK_LPA_EMERGENCIA", "FK_LPA_PERSONA", "persona", "created_at"}, {"_id", "DONANTE", "COD_ACTIVIDAD", "FECHA_ATENCION", "REPRESENTANTE", "DOC_REPRESENTANTE", "TIPO_TRANFERENCIA", "MODO_ENTREGA", "PROVEEDOR_FINANCIERO", "MONTO_MENSUAL", "FASE_ATENCION", "STATUS", "ID_M_USUARIOS", "FK_LPA_EMERGENCIA", "FK_LPA_PERSONA", "persona", "created_at"}),
+    #"Se expandió persona" = Table.ExpandRecordColumn(#"Se expandió Column1", "persona", {"_id", "DOCUMENTO", "TIPO_DOCUMENTO", "IDENTIDAD_GENERO", "FECHA_NACIMIENTO", "NACIONALIDAD", "PERFIL_MIGRATORIO", "SITUACION", "ETNIA", "PERFIL", "NIVEL_ESCOLARIDAD", "CARACTERISTICAS_MADRE", "DISCAPACIDAD_VER", "DISCAPACIDAD_OIR", "DISCAPACIDAD_CAMINAR", "DISCAPACIDAD_RECORDAR", "DISCAPACIDAD_CUIDADO_PROPIO", "DISCAPACIDAD_COMUNICAR", "updated_at", "created_at", "edad", "discapacidades", "discapacitado"}, {"persona._id", "persona.DOCUMENTO", "persona.TIPO_DOCUMENTO", "persona.IDENTIDAD_GENERO", "persona.FECHA_NACIMIENTO", "persona.NACIONALIDAD", "persona.PERFIL_MIGRATORIO", "persona.SITUACION", "persona.ETNIA", "persona.PERFIL", "persona.NIVEL_ESCOLARIDAD", "persona.CARACTERISTICAS_MADRE", "persona.DISCAPACIDAD_VER", "persona.DISCAPACIDAD_OIR", "persona.DISCAPACIDAD_CAMINAR", "persona.DISCAPACIDAD_RECORDAR", "persona.DISCAPACIDAD_CUIDADO_PROPIO", "persona.DISCAPACIDAD_COMUNICAR", "persona.updated_at", "persona.created_at", "persona.edad", "persona.discapacidades", "persona.discapacitado"}),
+    #"Se expandió persona.discapacidades1" = Table.ExpandRecordColumn(#"Se expandió persona", "persona.discapacidades", {"ver", "oir", "caminar", "recordar", "cuidado", "comunicar"}, {"persona.discapacidades.ver", "persona.discapacidades.oir", "persona.discapacidades.caminar", "persona.discapacidades.recordar", "persona.discapacidades.cuidado", "persona.discapacidades.comunicar"}),
+    #"Tipo cambiado3" = Table.TransformColumnTypes(#"Se expandió persona.discapacidades1",{{"_id", type text}}),
+    #"Función personalizada invocada" = Table.AddColumn(#"Tipo cambiado3", "getTipoLpa", each getTipoLpa([_id])),
+    #"Función personalizada invocada2" = Table.AddColumn(#"Función personalizada invocada", "emergencia", each getEmergencia([FK_LPA_EMERGENCIA])),
+    #"Se expandió emergencia" = Table.ExpandRecordColumn(#"Función personalizada invocada2", "emergencia", {"_id", "COD_EMERGENCIAS", "TIPO_EVENTO", "SOCIO", "DEPARTAMENTO", "MUNICIPIO", "LUGAR_ATENCION", "updated_at", "created_at"}, {"emergencia._id", "emergencia.COD_EMERGENCIAS", "emergencia.TIPO_EVENTO", "emergencia.SOCIO", "emergencia.DEPARTAMENTO", "emergencia.MUNICIPIO", "emergencia.LUGAR_ATENCION", "emergencia.updated_at", "emergencia.created_at"}),
+    #"Función personalizada invocada3" = Table.AddColumn(#"Se expandió emergencia", "actividad", each getActividad([COD_ACTIVIDAD])),
+    #"Se expandió actividad" = Table.ExpandRecordColumn(#"Función personalizada invocada3", "actividad", {"id", "created_at", "updated_at", "sector", "cod", "actividad", "ID_M_USUARIOS"}, {"actividad.id", "actividad.created_at", "actividad.updated_at", "actividad.sector", "actividad.cod", "actividad.actividad", "actividad.ID_M_USUARIOS"}),
+    #"Función personalizada invocada4" = Table.AddColumn(#"Se expandió actividad", "getDonante", each getDonante([getTipoLpa], [DONANTE])),
+    #"Tipo cambiado" = Table.TransformColumnTypes(#"Función personalizada invocada4",{{"FECHA_ATENCION", type datetime}, {"created_at", type datetime}}),
+    #"Errores reemplazados" = Table.ReplaceErrorValues(#"Tipo cambiado", {{"FECHA_ATENCION", null}}),
+    #"Tipo cambiado1" = Table.TransformColumnTypes(#"Errores reemplazados",{{"persona.edad", Int64.Type}}),
+    #"Columna duplicada1" = Table.DuplicateColumn(#"Tipo cambiado1", "persona.edad", "persona.edad - Copia"),
+    #"Tipo cambiado2" = Table.TransformColumnTypes(#"Columna duplicada1",{{"persona.edad - Copia", type text}}),
+    #"Función personalizada invocada5" = Table.AddColumn(#"Tipo cambiado2", "getRangoBha", each getRangoBha([#"persona.edad - Copia"])),
+    #"Se expandió getRangoBha" = Table.ExpandRecordColumn(#"Función personalizada invocada5", "getRangoBha", {"bha"}, {"getRangoBha.bha"}),
+    #"Función personalizada invocada6" = Table.AddColumn(#"Se expandió getRangoBha", "getRangoEcho", each getRangoEcho([#"persona.edad - Copia"])),
+    #"Se expandió getRangoEcho" = Table.ExpandListColumn(#"Función personalizada invocada6", "getRangoEcho")
+in
+    #"Se expandió getRangoEcho"

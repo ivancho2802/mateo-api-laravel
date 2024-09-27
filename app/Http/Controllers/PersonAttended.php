@@ -729,8 +729,9 @@ class PersonAttended extends Controller
     function getPersonaByID(Request $request)
     {
         $persona = MLpaPersona::where("ID", "=", $request->ID)->first();
+        $discapacitado = $persona->discapacitado;
 
-        if (isset($request->tipo_lpa)) {
+        if (isset($request->tipo_lpa) && $discapacitado == 0) {
  
             if (isset($request->tipo_lpa) && $request->tipo_lpa == 'Recuperacion Temprana' && $request->FECHA_ATENCION <= '2024-07-01' && isset($persona->DOCUMENTO)) {
 

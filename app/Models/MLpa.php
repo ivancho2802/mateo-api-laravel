@@ -40,7 +40,8 @@ class MLpa extends Model
         "MONTO_MENSUAL",
         "ID_M_USUARIOS",
         "STATUS",
-        "FASE_ATENCION"
+        "FASE_ATENCION",
+        "created_at"
     ];
 
     /**
