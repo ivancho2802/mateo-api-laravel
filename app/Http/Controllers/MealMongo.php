@@ -43,7 +43,7 @@ class MealMongo extends Controller
         DB::setDefaultConnection('pgsql');
 
         $migration = migrateCustom::where([
-            'table' => 'M_LPAS_MONGO'
+            'table' => 'M_LPAS'
         ])->orderBy('created_at', 'desc')->first();
 
          $mlpas[count($mlpas)-1]->created_at = $migration->created_at;
