@@ -333,7 +333,7 @@
 
                               @endif
 
-                              @if($export->exportaciones_nuevas )
+                              @if(optional($export)->exportaciones_nuevas )
                               <form method="get" action="/koboapdfactualizar" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                 @csrf
                                 <x-primary-button class="mt-4">Actualizar</x-primary-button>
@@ -405,7 +405,7 @@
                               </form>
                               @endif
                               
-                              @if($export->exportaciones_nuevas )
+                              @if(optional($export)->exportaciones_nuevas )
                               <form method="get" action="/koboapdfactualizar" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                 @csrf
                                 <x-primary-button class="mt-4">Actualizar</x-primary-button>
