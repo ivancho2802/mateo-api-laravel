@@ -93,7 +93,7 @@ class Jobs extends Controller
 
     $formid = $id;
 
-    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
+    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc.kobotoolbox.org' :  $dominio);
 
     //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
     if (isset($dominioTitle) && isset($formid) && isset($token) && isset($request->filtrar) && collect($request->filtrar)->search('filter') >= 0) {
@@ -446,7 +446,7 @@ class Jobs extends Controller
 
     $dominio = $jobdetails->dominio;
 
-    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
+    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc.kobotoolbox.org' :  $dominio);
     $formid = $jobdetails->uui;
     $token = $jobdetails->token;
     //
@@ -583,7 +583,7 @@ class Jobs extends Controller
 
     $dominio = $jobdetails->dominio;
 
-    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ('eu.kobotoolbox.org' ? 'kc.kobotoolbox.org' :  $dominio);
+    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc.kobotoolbox.org' :  $dominio);
     $formid = $jobdetails->uui;
     $token = $jobdetails->token;
     //

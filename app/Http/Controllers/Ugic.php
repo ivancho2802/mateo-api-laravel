@@ -50,7 +50,7 @@ class Ugic extends Controller
 
       $dominio = $job->dominio;
 
-      $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
+      $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc.kobotoolbox.org' :  $dominio);
       $formid = $job->uui;
       $token = $job->token;
       $name_key = $job->name_key;
