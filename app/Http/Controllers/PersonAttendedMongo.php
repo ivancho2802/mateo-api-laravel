@@ -473,7 +473,7 @@ class PersonAttendedMongo extends Controller
     {
 
         DB::setDefaultConnection('pgsql');
-        $migration = migrateCustomMongo::where([
+        $migration = migrateCustom::where([
             'table' => 'M_LPAS',
             'file_ref' => 'UPLOADED',
         ])->first();

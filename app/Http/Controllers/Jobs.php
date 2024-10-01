@@ -583,7 +583,7 @@ class Jobs extends Controller
 
     $dominio = $jobdetails->dominio;
 
-    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : $dominio;
+    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ('eu.kobotoolbox.org' ? 'kc.kobotoolbox.org' :  $dominio);
     $formid = $jobdetails->uui;
     $token = $jobdetails->token;
     //
