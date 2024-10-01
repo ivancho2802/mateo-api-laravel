@@ -873,7 +873,7 @@ Route::middleware(['auth:sanctum'])->get('/job/deploy/exportkobo', [App\Http\Con
 
 Route::post('login', [Auth::class, 'login'])->name('api/login');
 
-//Route::post('register', [Auth::class, 'register']);
+Route::post('register', [Auth::class, 'register']);
 
 Route::post('logout', [Auth::class, 'logout']);
 
