@@ -78,6 +78,24 @@ class helper extends Controller
         //dd("collection", $collection,   "collectionsecc2", collect($collection[7]['children']) );
         
         $filtered = $collection->filter(function (  $value ) use ($level_keys, $key) {
+            $children_dynamic = $value["name"];
+
+            if(count($level_keys) > 0){
+
+                $key_search = $level_keys[0];
+
+                $valid = $children_dynamic == $key_search;
+                    
+            }else{
+                $valid = $children_dynamic == $key ;
+            }
+
+            return $valid;
+        });
+
+        dd($filtered->all());
+
+        $mapped = $filtered->map(function (  $value ) use ($level_keys, $key) {
 
             //dd("value", $value, "name", $value["name"]);
 
@@ -126,8 +144,6 @@ class helper extends Controller
 
             return $valid;
         });
-
-        dd($filtered->all());
          
         $valueDetected = $filtered->all();
 
