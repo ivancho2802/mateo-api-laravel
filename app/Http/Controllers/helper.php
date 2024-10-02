@@ -87,10 +87,9 @@ class helper extends Controller
                     }
 
                     $valid = collect($children_dynamic)->search($key_search);
-
-                    dd("valid", $valid, "key_search", $key_search, "key", $key, "value", $value);
-
+                    
                     if($valid!==false){
+                        dd("valid", $valid, "key_search", $key_search, "key", $key, "value", $value);
                         $new_key .=  $children_dynamic[$valid]['name'] . '/';
 
                         if(count($level_keys)-1 == $i ){
