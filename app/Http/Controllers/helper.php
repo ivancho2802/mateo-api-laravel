@@ -73,79 +73,89 @@ class helper extends Controller
         /**
          * collection
          * 
+         [
+            "name" => "Permiso_de_uso_de_da_y_de_uso_de_im_genes"
+            "label" => "Permiso de uso de datos personales y de uso de imágenes"
+            "type" => "group"
+            "bind" => array:2 [▶]
+            "children" => array:4 [▶]
+        ]
          */
 
         //dd("collection", $collection,   "collectionsecc2", collect($collection[7]['children']) );
-        
-        $filtered = $collection->filter(function (  $value ) use ($level_keys, $key) {
+
+        $filtered = $collection->filter(function ($value) use ($level_keys, $key) {
             $children_dynamic = $value["name"];
 
-            if(count($level_keys) > 0){
+            if (count($level_keys) > 0) {
 
                 $key_search = $level_keys[0];
 
                 $valid = $children_dynamic == $key_search;
-                    
-            }else{
-                $valid = $children_dynamic == $key ;
+            } else {
+                $valid = $children_dynamic == $key;
             }
 
             return $valid;
         });
 
-        dd($filtered->all());
+        //dd($filtered->first());
 
-        $mapped = $filtered->map(function (  $value ) use ($level_keys, $key) {
+        if (count($level_keys) == 1) {
+            $valueDetected = $filtered->first()["label"];
+            return $valueDetected;
+        }
+
+        $mapped = $filtered->first()->map(function ($value2) use ($level_keys, $key) {
 
             //dd("value", $value, "name", $value["name"]);
+            $new_key = '';
 
             $valid = false;
-            
-            if(count($level_keys) > 0){
-                $new_key = '';
 
-                for ($i=0; $i < count($level_keys); $i++) {
-                    $key_search = $level_keys[$i];
-                    echo  $value["name"] ." - ". $key_search;
+            for ($i = 0; $i < count($level_keys); $i++) {
+                $key_search = $level_keys[$i];
 
-                    if($i == 0){
-                        $children_dynamic = $value["name"];
-                    }
+                if ($i == 0) {
+                    echo  $value2["name"] . " - " . $key_search;
+                    $children_dynamic = $value2["label"];
+                    $new_key .= $children_dynamic;
 
-                    /* if($children_dynamic == ""){
+                    $children_dynamic = $children_dynamic['children'] . '/';
+
+                    continue;
+                }
+
+                /* if($children_dynamic == ""){
                         return false;
                     } */
 
-                    $valid = $children_dynamic == $key_search;
-                    
-                    //dd("valid", $valid, "children_dynamic", collect($children_dynamic), "key_search", $key_search , "valid_ex", $value);
-                    
-                    if($valid!==false){
-                        dd("valid", $valid, "key_search", $key_search, "key", $key, "value", $value);
-                        $new_key .=  $children_dynamic[$valid]['name'] . '/';
+                echo  $children_dynamic["name"] . " - " . $key_search;
+                $valid = $children_dynamic["name"] == $key_search;
 
-                        if(count($level_keys)-1 == $i ){
-                            $children_dynamic = $children_dynamic['children'];
-                        }
+                //dd("valid", $valid, "children_dynamic", collect($children_dynamic), "key_search", $key_search , "valid_ex", $value);
 
-                    }
-
+                if ($valid !== false) {
+                    //dd("valid", $valid, "key_search", $key_search, "key", $key );
+                    $new_key .=  $children_dynamic['label'] . '/';
                 }
 
-                if($valid!==false){
-                    dd("new_key", $new_key);
+                if (count($level_keys) - 1 !== $i) {
+                    $children_dynamic = $children_dynamic['children'];
                 }
-
-                $valid = collect(collect($value)->keys()->all())->search($key);
-
-            }else{
-                $valid = collect(collect($value)->values()->all())->search($key) !== false;
             }
 
-            return $valid;
+            /* if($valid!==false){
+                    dd("new_key", $new_key);
+                } */
+
+            //$valid = collect(collect($value)->keys()->all())->search($key);
+            return $new_key;
         });
-         
-        $valueDetected = $filtered->all();
+
+        dd($mapped);
+
+        $valueDetected = $mapped->all();
 
         return $valueDetected;
     }
@@ -266,12 +276,13 @@ class helper extends Controller
         }
     }
 
-    public static function makeZipWithFiles(string $zipPathAndName, array $filesAndPaths) {
+    public static function makeZipWithFiles(string $zipPathAndName, array $filesAndPaths)
+    {
         $zip = new ZipArchive;
         $zipFileName = $zipPathAndName;
 
-        $filesToZip = collect($filesAndPaths)->map(function ($item) { 
-            return storage_path("/app/" . $item); 
+        $filesToZip = collect($filesAndPaths)->map(function ($item) {
+            return storage_path("/app/" . $item);
         });
 
         if ($zip->open(public_path($zipFileName), ZipArchive::CREATE) === TRUE) {
@@ -281,7 +292,7 @@ class helper extends Controller
                 public_path('file2.txt'),
             ]; */
 
-            $filesToZip->each(function ($file) use ($zip){
+            $filesToZip->each(function ($file) use ($zip) {
                 $zip->addFile($file, basename($file));
             });
 
@@ -293,6 +304,5 @@ class helper extends Controller
         } else {
             return "Failed to create the zip file.";
         }
-        
     }
 }
