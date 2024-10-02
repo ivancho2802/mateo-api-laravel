@@ -87,7 +87,9 @@ class helper extends Controller
                     }
 
                     $valid = collect($children_dynamic)->search($key_search);
-                    dd("valid", $valid, "children_dynamic", collect($children_dynamic), "key_search", $key_search , "valid_ex",  collect($children_dynamic)->search("start"));
+                    if($i == 7){
+                        dd("valid", $valid, "children_dynamic", collect($children_dynamic), "key_search", $key_search , "valid_ex",  collect($children_dynamic)->search("start"));
+                    }
                     
                     if($valid!==false){
                         dd("valid", $valid, "key_search", $key_search, "key", $key, "value", $value);
