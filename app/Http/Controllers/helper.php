@@ -104,12 +104,12 @@ class helper extends Controller
         //dd($filtered->first());
 
         if (count($level_keys) == 1) {
-            $valueDetected = $filtered->first()["label"];
+            $valueDetected = $filtered["label"];
             return $valueDetected;
         }
         dd($filtered["label"]);
 
-        $mapped = collect($filtered->first())->map(function ($value2) use ($level_keys, $key) {
+        $mapped = collect($filtered)->map(function ($value2) use ($level_keys, $key) {
 
             dd("value", $value2, "name" );
             $new_key = '';
