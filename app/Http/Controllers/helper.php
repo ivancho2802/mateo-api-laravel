@@ -122,10 +122,9 @@ class helper extends Controller
                 if ($i == 0) {
                     echo  $value2["name"] . " - " . $key_search;
                     //dd($value2,$key_search);
-                    $children_dynamic = $value2["label"];
-                    $new_key .= $children_dynamic;
+                    $new_key .= $value2["label"];
 
-                    $children_dynamic = $children_dynamic['children'] . '/';
+                    $children_dynamic = $value2['children'] . '/';
 
                     continue;
                 }
