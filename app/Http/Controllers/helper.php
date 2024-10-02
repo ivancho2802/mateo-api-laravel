@@ -134,11 +134,11 @@ class helper extends Controller
                     return $valid;
                 });
 
-                dd("children_dynamic", collect($children_dynamic)->first()['label']);
+                //dd("children_dynamic", collect($children_dynamic)->first()['label']);
 
-                echo  $children_dynamic["label"] . " - " . $key_search;
+                echo  collect($children_dynamic)->first()['label'] . " - " . $key_search;
 
-                $new_key .=  $children_dynamic['label'] . '/';
+                $new_key .=  collect($children_dynamic)->first()['label'] . '/';
 
                 if (count($level_keys) - 1 !== $i) {
                     $children_dynamic = $children_dynamic['children'];
