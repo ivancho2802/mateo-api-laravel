@@ -70,7 +70,7 @@ class helper extends Controller
 
         $collection = collect($children);
 
-        dd("collection", $collection, "collectionsecc", collect($collection)->search(function ($valuex ){return collect(collect($valuex)->values()->all())->search("Permiso_de_uso_de_da_y_de_uso_de_im_genes") ;}), "collectionsecc2", collect($collection[7]['children']) );
+        //dd("collection", $collection,   "collectionsecc2", collect($collection[7]['children']) );
         
         $filtered = $collection->filter(function (  $value ) use ($level_keys, $key) {
             dd("level_keys", $level_keys, "key", $key, "value", $value);
@@ -80,16 +80,28 @@ class helper extends Controller
             if(count($level_keys) > 0){
                 $new_key = '';
 
-                for ($i=0; $i < count($level_keys); $i++) { 
+                for ($i=0; $i < count($level_keys); $i++) {
                     # code...
+                    if($i == 0){
+                        $children_dynamic = collect($value)->values()->all();
+                    }
+
                     $key_search = $level_keys[$i];
 
-                    $valid = collect(collect($value)->values()->all())->search($key_search);
+                    $valid = collect($children_dynamic)->search($key_search);
 
-                    if($valid){
-                        $new_key .= "";
+                    if($valid!==false){
+                        $new_key .=  $children_dynamic[$valid]['name'] . '/';
+
+                        if(count($level_keys)-1 == $i ){
+                            $children_dynamic = $children_dynamic['children'];
+                        }
+
                     }
+
                 }
+
+                dd("new_key", $new_key);
 
                 $valid = collect(collect($value)->keys()->all())->search($key);
 
