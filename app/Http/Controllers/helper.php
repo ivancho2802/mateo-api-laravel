@@ -64,14 +64,21 @@ class helper extends Controller
      * funcion para obtener los label desde el array children de v1 de kobo
      */
 
-    public static function getValueLabels($array, $key)
+    public static function getValueLabels($children, $key)
     {
-        $collection = collect($array);
+        $level_keys = explode("/", $key);
 
-        $filtered = $collection->filter(function (  $value, int $key) {
-            dd("value", $value);
-            return $value > 2;
-        });
+        $collection = collect($children);
+
+        dd($collection, $key);
+
+        $new_key = '';
+        
+            $filtered = $collection->filter(function (  $value, int $key) {
+                dd("value", $value);
+                return $value > 2;
+            });
+
          
         $valueDetected = $filtered->all();
 

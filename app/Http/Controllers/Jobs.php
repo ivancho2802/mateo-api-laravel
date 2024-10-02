@@ -320,11 +320,13 @@ class Jobs extends Controller
         //se aplica los label correctos al registro actual
 
         $filtered = collect($filtered->mapWithKeys(function ($questionansdware, $key) use ($children) {
+          //Permiso_de_uso_de_da_y_de_uso_de_im_genes/autorizacion
+          helper::getValueLabels($children,$key);
+
           dd($questionansdware, $key, $children);
 
           return [strtoupper($key) => strtoupper($word)];
           
-          helper::getValueLabels($children,$questionansdware);
           
           return [$questionansdware['email'] => $questionansdware['name']];
         }));
