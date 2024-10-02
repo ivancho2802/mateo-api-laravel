@@ -107,11 +107,11 @@ class helper extends Controller
             $valueDetected = collect($filtered)->first()["label"];
             return $valueDetected;
         }
-        //dd($filtered["label"]);
+        echo collect($filtered)->first()["label"];
 
         $mapped = collect($filtered)->map(function ($value2) use ($level_keys, $key) {
 
-            dd("value", $value2, "name", $value2["name"] );
+            //dd("value", $value2, "name", $value2["name"] );
             $new_key = '';
 
             $valid = false;
@@ -121,7 +121,7 @@ class helper extends Controller
 
                 if ($i == 0) {
                     echo  $value2["name"] . " - " . $key_search;
-                    dd($value2,$key_search);
+                    //dd($value2,$key_search);
                     $children_dynamic = $value2["label"];
                     $new_key .= $children_dynamic;
 
