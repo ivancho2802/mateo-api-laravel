@@ -88,14 +88,15 @@ class helper extends Controller
 
                 for ($i=0; $i < count($level_keys); $i++) {
                     $key_search = $level_keys[$i];
+                    echo  $value["name"] ." - ". $key_search;
 
                     if($i == 0){
                         $children_dynamic = $value["name"];
                     }
 
-                    if($children_dynamic == ""){
+                    /* if($children_dynamic == ""){
                         return false;
-                    }
+                    } */
 
                     $valid = $children_dynamic == $key_search;
                     
