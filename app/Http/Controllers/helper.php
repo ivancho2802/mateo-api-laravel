@@ -70,9 +70,7 @@ class helper extends Controller
 
         $collection = collect($children);
 
-        $new_key = '';
-
-        dd("collection", $collection);
+        dd("collection", $collection, "collectionsecc", collect($collection)->search(function ($valuex ){return collect(collect($valuex)->values()->all())->search("Permiso_de_uso_de_da_y_de_uso_de_im_genes") ;}), "collectionsecc2", collect($collection[7]['children']) );
         
         $filtered = $collection->filter(function (  $value ) use ($level_keys, $key) {
             dd("level_keys", $level_keys, "key", $key, "value", $value);
@@ -80,10 +78,23 @@ class helper extends Controller
             $valid = false;
             
             if(count($level_keys) > 0){
+                $new_key = '';
+
+                for ($i=0; $i < count($level_keys); $i++) { 
+                    # code...
+                    $key_search = $level_keys[$i];
+
+                    $valid = collect(collect($value)->values()->all())->search($key_search);
+
+                    if($valid){
+                        $new_key .= "";
+                    }
+                }
+
                 $valid = collect(collect($value)->keys()->all())->search($key);
 
             }else{
-                $valid = collect(collect($value)->keys()->all())->search($key);
+                $valid = collect(collect($value)->values()->all())->search($key) !== false;
             }
 
             return $valid;
