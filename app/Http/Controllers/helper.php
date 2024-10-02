@@ -79,7 +79,7 @@ class helper extends Controller
         
         $filtered = $collection->filter(function (  $value ) use ($level_keys, $key) {
 
-            dd("value", $value, "name", $value["name"]);
+            //dd("value", $value, "name", $value["name"]);
 
             $valid = false;
             
@@ -90,12 +90,16 @@ class helper extends Controller
                     $key_search = $level_keys[$i];
 
                     if($i == 0){
-                        $children_dynamic = collect($value);
+                        $children_dynamic = $value["name"];
                     }
 
-                    $valid = collect($children_dynamic)->search($key_search);
+                    if($children_dynamic == ""){
+                        return false;
+                    }
+
+                    $valid = $children_dynamic == $key_search;
                     
-                    dd("valid", $valid, "children_dynamic", collect($children_dynamic), "key_search", $key_search , "valid_ex", $value);
+                    //dd("valid", $valid, "children_dynamic", collect($children_dynamic), "key_search", $key_search , "valid_ex", $value);
                     
                     if($valid!==false){
                         dd("valid", $valid, "key_search", $key_search, "key", $key, "value", $value);
