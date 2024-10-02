@@ -318,13 +318,12 @@ class Jobs extends Controller
         $filtered = collect($filtered)->sortKeys();
 
         //se aplica los label correctos al registro actual
-        dd($filtered);
 
-        $filtered = collect($filtered->mapWithKeys(function (array $questionansdware, $key) use ($children) {
+        $filtered = collect($filtered->mapWithKeys(function ( $questionansdware, $key) use ($children) {
           
           dd($questionansdware);
           helper::getValueLabels($children,$questionansdware);
-          
+
           return [$questionansdware['email'] => $questionansdware['name']];
         }));
 
