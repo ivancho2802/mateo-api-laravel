@@ -323,7 +323,7 @@ class Jobs extends Controller
           //Permiso_de_uso_de_da_y_de_uso_de_im_genes/autorizacion
           $customKey = helper::getValueLabels($children,$key);
 
-          dd($customKey, $questionansdware);
+          //dd($customKey, $questionansdware);
 
           return [$customKey => $questionansdware];
         }));
