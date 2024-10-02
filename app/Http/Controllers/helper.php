@@ -108,7 +108,7 @@ class helper extends Controller
 
         $mapped = collect($filtered->first())->map(function ($value2) use ($level_keys, $key) {
 
-            dd("value", $value2, "name", $value2["name"]);
+            dd("value", $value2, "name" );
             $new_key = '';
 
             $valid = false;
