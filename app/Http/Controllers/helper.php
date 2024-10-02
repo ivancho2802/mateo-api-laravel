@@ -99,12 +99,12 @@ class helper extends Controller
             return $valid;
         });
 
-        $filtered = $filtered->first();
+        $filtered = $filtered->all();
 
         //dd($filtered->first());
 
         if (count($level_keys) == 1) {
-            $valueDetected = $filtered["label"];
+            $valueDetected = collect($filtered)->first()["label"];
             return $valueDetected;
         }
         //dd($filtered["label"]);
