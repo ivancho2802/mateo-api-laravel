@@ -106,7 +106,7 @@ class helper extends Controller
             return $valueDetected;
         }
 
-        $mapped = $filtered->first()->map(function ($value2) use ($level_keys, $key) {
+        $mapped = collect($filtered->first())->map(function ($value2) use ($level_keys, $key) {
 
             //dd("value", $value, "name", $value["name"]);
             $new_key = '';
