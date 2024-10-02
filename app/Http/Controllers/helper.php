@@ -153,9 +153,9 @@ class helper extends Controller
             return $new_key;
         });
 
-        dd($mapped);
+        //dd($mapped);
 
-        $valueDetected = $mapped->all();
+        $valueDetected = $mapped->first();
 
         return $valueDetected;
     }
