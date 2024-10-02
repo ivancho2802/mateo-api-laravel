@@ -302,6 +302,22 @@ class Jobs extends Controller
       }));
     }
 
+    //ajusto las preguntas para que salgan bonitas con los labesl y no con los nombres
+    $formid = collect($dataTitleResponse[0])->get('formid');
+
+    //https://kc.acf-e.org/api/v1/forms/2433/form.json
+    $jsonurlDataLabels = "https://kc.acf-e.org/api/v1/forms/" . $formid . "/form.json";
+
+    $dataDataLabelsResponse = Http::withHeaders([
+        'Authorization' => 'Token ' . $token . '',
+        'Accept' => 'application/json'
+    ])
+        ->get($jsonurlDataLabels)
+        ->json();
+
+    $dataLabels = collect($dataDataLabelsResponse);
+
+    dd($dataLabels->values());
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
     $dataMetaWithImage = $metaFiles;
