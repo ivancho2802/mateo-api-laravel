@@ -107,7 +107,7 @@ class helper extends Controller
             $valueDetected = $filtered["label"];
             return $valueDetected;
         }
-        dd($filtered["label"]);
+        //dd($filtered["label"]);
 
         $mapped = collect($filtered)->map(function ($value2) use ($level_keys, $key) {
 
