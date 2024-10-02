@@ -70,7 +70,12 @@ class helper extends Controller
 
         $collection = collect($children);
 
-        //dd("collection", $collection,   "collectionsecc2", collect($collection[7]['children']) );
+        /**
+         * collection
+         * 
+         */
+
+        dd("collection", $collection,   "collectionsecc2", collect($collection[7]['children']) );
         
         $filtered = $collection->filter(function (  $value ) use ($level_keys, $key) {
 
@@ -83,7 +88,7 @@ class helper extends Controller
                     $key_search = $level_keys[$i];
 
                     if($i == 0){
-                        $children_dynamic = collect($value)->values()->all();
+                        $children_dynamic = collect($value);
                     }
 
                     $valid = collect($children_dynamic)->search($key_search);
