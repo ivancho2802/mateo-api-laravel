@@ -319,11 +319,11 @@ class Jobs extends Controller
 
         //se aplica los label correctos al registro actual
 
-        $filtered = collect($filtered->mapWithKeys(function ( $questionansdware, $key) use ($children) {
+        $filtered = collect($filtered->map(function (array $questionansdware, $key) use ($children) {
           
           dd($questionansdware);
           helper::getValueLabels($children,$questionansdware);
-
+          
           return [$questionansdware['email'] => $questionansdware['name']];
         }));
 
