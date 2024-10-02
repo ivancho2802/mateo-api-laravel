@@ -282,10 +282,29 @@ class Jobs extends Controller
     }));
 
     $paramsForm = $request->paramForm;
+
+    //ajusto las preguntas para que salgan bonitas con los labesl y no con los nombres
+    $formidnumber = collect($dataTitleResponse[0])->get('formid');
+
+    //https://kc.acf-e.org/api/v1/forms/2433/form.json
+    $jsonurlDataLabels = "https://" . $dominioTitle . "/api/v1/forms/" . $formidnumber . "/form.json";
+
+    $dataDataLabelsResponse = Http::withHeaders([
+      'Authorization' => 'Token ' . $token . '',
+      'Accept' => 'application/json'
+    ])
+      ->get($jsonurlDataLabels)
+      ->json();
+
+    $dataLabels = collect($dataDataLabelsResponse);
+
+    $children = $dataLabels['children'];
+
     //filtro segun lo especificado
     //recorro los formularios con map y recorro las preguntas con map sino estan las sacco
+    //tambien para poner la label que le corresponde
     if (count(collect(collect($dataEnketoWithImage)->first())->keys()) !== count($paramsForm)) {
-      $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
+      $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm, $children) {
         $formulario = collect($chield); //->forget('name');
         $keysCurrent = $formulario->keys();
 
@@ -298,26 +317,22 @@ class Jobs extends Controller
         //se ordena por las keys
         $filtered = collect($filtered)->sortKeys();
 
+        //se aplica los label correctos al registro actual
+        dd($filtered);
+
+        $filtered = collect($filtered->mapWithKeys(function (array $questionansdware, $key) use ($children) {
+          
+          dd($questionansdware);
+          helper::getValueLabels($children,$questionansdware);
+          
+          return [$questionansdware['email'] => $questionansdware['name']];
+        }));
+
         return $filtered;
       }));
     }
 
-    //ajusto las preguntas para que salgan bonitas con los labesl y no con los nombres
-    $formidnumber = collect($dataTitleResponse[0])->get('formid');
-
-    //https://kc.acf-e.org/api/v1/forms/2433/form.json
-    $jsonurlDataLabels = "https://" . $dominioTitle . "/api/v1/forms/" . $formidnumber . "/form.json";
-
-    $dataDataLabelsResponse = Http::withHeaders([
-        'Authorization' => 'Token ' . $token . '',
-        'Accept' => 'application/json'
-    ])
-        ->get($jsonurlDataLabels)
-        ->json();
-
-    $dataLabels = collect($dataDataLabelsResponse);
-
-    dd($dataLabels['children'], collect($dataLabels['children'])->values());
+    $dataEnketoWithImage->filter()->all();
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
     $dataMetaWithImage = $metaFiles;
@@ -332,7 +347,6 @@ class Jobs extends Controller
       return $metaF;
     })); */
 
-    $dataEnketoWithImage->filter()->all();
 
     //aqui creo los jobs que no han sido procesados
     $dataEnketoWithImage->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse, $name_key, $name_fomulary, $dataMetaWithImage) {

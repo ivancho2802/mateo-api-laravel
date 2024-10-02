@@ -60,6 +60,24 @@ class helper extends Controller
         return $valueDetected;
     }
 
+    /**
+     * funcion para obtener los label desde el array children de v1 de kobo
+     */
+
+    public static function getValueLabels($array, $key)
+    {
+        $collection = collect($array);
+
+        $filtered = $collection->filter(function (  $value, int $key) {
+            dd("value", $value);
+            return $value > 2;
+        });
+         
+        $valueDetected = $filtered->all();
+
+        return $valueDetected;
+    }
+
 
     /**
      * el objetivo es sacar del elemento del json de kobo sus preguntas y respuestas con funcion keys y values
