@@ -124,25 +124,19 @@ class helper extends Controller
                     //dd($value2,$key_search);
                     $new_key .= $value2["label"] . '/';
 
-                    $children_dynamic = $value2['children'];
+                    $children_dynamic = collect($value2['children']);
 
                     continue;
                 }
 
-                /* if($children_dynamic == ""){
-                        return false;
-                    } */
-                dd("children_dynamic", $children_dynamic);
+                $children_dynamic = $children_dynamic->filter(function ($value3) use ($key_search) { 
+                    $valid = $value3["name"] == $key_search;
+                    return $valid;
+                });
 
-                echo  $children_dynamic["name"] . " - " . $key_search;
-                $valid = $children_dynamic["name"] == $key_search;
+                echo  $children_dynamic["label"] . " - " . $key_search;
 
-                //dd("valid", $valid, "children_dynamic", collect($children_dynamic), "key_search", $key_search , "valid_ex", $value);
-
-                if ($valid !== false) {
-                    //dd("valid", $valid, "key_search", $key_search, "key", $key );
-                    $new_key .=  $children_dynamic['label'] . '/';
-                }
+                $new_key .=  $children_dynamic['label'] . '/';
 
                 if (count($level_keys) - 1 !== $i) {
                     $children_dynamic = $children_dynamic['children'];
