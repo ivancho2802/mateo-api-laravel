@@ -120,7 +120,7 @@ class helper extends Controller
                 $key_search = $level_keys[$i];
 
                 if ($i == 0) {
-                    echo  $value2["name"] . " - " . $key_search;
+                    //echo  $value2["name"] . " - " . $key_search;
                     //dd($value2,$key_search);
                     $new_key .= $value2["label"] . '/';
 
@@ -136,7 +136,7 @@ class helper extends Controller
 
                 //dd("children_dynamic", collect($children_dynamic)->first()['label']);
 
-                echo  collect($children_dynamic)->first()['label'] . " - " . $key_search;
+                //echo  collect($children_dynamic)->first()['label'] . " - " . $key_search;
 
                 $new_key .=  collect($children_dynamic)->first()['label'] . '/';
 
