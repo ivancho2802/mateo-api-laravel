@@ -111,7 +111,7 @@ class helper extends Controller
 
         $mapped = collect($filtered)->map(function ($value2) use ($level_keys, $key) {
 
-            dd("value", $value2, "name" );
+            dd("value", $value2, "name", $value2["name"] );
             $new_key = '';
 
             $valid = false;
@@ -120,8 +120,8 @@ class helper extends Controller
                 $key_search = $level_keys[$i];
 
                 if ($i == 0) {
-                    dd($value2,$key_search);
                     echo  $value2["name"] . " - " . $key_search;
+                    dd($value2,$key_search);
                     $children_dynamic = $value2["label"];
                     $new_key .= $children_dynamic;
 
