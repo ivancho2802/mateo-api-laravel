@@ -70,14 +70,21 @@ class helper extends Controller
 
         $collection = collect($children);
 
-        dd($collection, $key);
 
         $new_key = '';
         
-            $filtered = $collection->filter(function (  $value, int $key) {
-                dd("value", $value);
-                return $value > 2;
-            });
+        $filtered = $collection->filter(function (  $value, int $key) use ($level_keys) {
+            dd("level_keys", $level_keys, "key", $key);
+            
+            if(count($level_keys) > 0){
+
+            }else{
+
+            }
+
+            dd("value", $value);
+            return $value > 2;
+        });
 
          
         $valueDetected = $filtered->all();
