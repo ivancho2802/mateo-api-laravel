@@ -134,7 +134,7 @@ class helper extends Controller
                     return $valid;
                 });
 
-                dd("children_dynamic", $children_dynamic);
+                dd("children_dynamic", collect($children_dynamic)->first()['label']);
 
                 echo  $children_dynamic["label"] . " - " . $key_search;
 
