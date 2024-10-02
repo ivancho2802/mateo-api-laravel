@@ -317,7 +317,7 @@ class Jobs extends Controller
 
     $dataLabels = collect($dataDataLabelsResponse);
 
-    dd($dataLabels, $dataLabels->values());
+    dd($dataLabels['children'], $dataLabels['children']->values());
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
     $dataMetaWithImage = $metaFiles;
