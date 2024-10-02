@@ -114,7 +114,9 @@ class helper extends Controller
 
                 }
 
-                dd("new_key", $new_key);
+                if($valid!==false){
+                    dd("new_key", $new_key);
+                }
 
                 $valid = collect(collect($value)->keys()->all())->search($key);
 
@@ -125,6 +127,7 @@ class helper extends Controller
             return $valid;
         });
 
+        dd($filtered->all());
          
         $valueDetected = $filtered->all();
 
