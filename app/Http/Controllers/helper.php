@@ -117,6 +117,7 @@ class helper extends Controller
                 $key_search = $level_keys[$i];
 
                 if ($i == 0) {
+                    dd($value2["name"],$key_search);
                     echo  $value2["name"] . " - " . $key_search;
                     $children_dynamic = $value2["label"];
                     $new_key .= $children_dynamic;
