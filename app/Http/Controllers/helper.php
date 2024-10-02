@@ -99,12 +99,15 @@ class helper extends Controller
             return $valid;
         });
 
-        dd($filtered->first());
+        $filtered->first();
+
+        //dd($filtered->first());
 
         if (count($level_keys) == 1) {
             $valueDetected = $filtered->first()["label"];
             return $valueDetected;
         }
+        dd($filtered);
 
         $mapped = collect($filtered->first())->map(function ($value2) use ($level_keys, $key) {
 
