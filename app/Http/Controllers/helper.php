@@ -99,7 +99,7 @@ class helper extends Controller
             return $valid;
         });
 
-        $filtered->first();
+        $filtered = $filtered->first();
 
         //dd($filtered->first());
 
@@ -107,7 +107,7 @@ class helper extends Controller
             $valueDetected = $filtered->first()["label"];
             return $valueDetected;
         }
-        dd($filtered);
+        dd($filtered["label"]);
 
         $mapped = collect($filtered->first())->map(function ($value2) use ($level_keys, $key) {
 
