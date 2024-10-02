@@ -132,6 +132,7 @@ class helper extends Controller
                 /* if($children_dynamic == ""){
                         return false;
                     } */
+                dd("children_dynamic", $children_dynamic);
 
                 echo  $children_dynamic["name"] . " - " . $key_search;
                 $valid = $children_dynamic["name"] == $key_search;
