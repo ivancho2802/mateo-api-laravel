@@ -99,7 +99,7 @@ class helper extends Controller
             return $valid;
         });
 
-        //dd($filtered->first());
+        dd($filtered->first());
 
         if (count($level_keys) == 1) {
             $valueDetected = $filtered->first()["label"];
