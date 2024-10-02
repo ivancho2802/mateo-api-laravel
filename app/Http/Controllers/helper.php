@@ -75,9 +75,11 @@ class helper extends Controller
          * 
          */
 
-        dd("collection", $collection,   "collectionsecc2", collect($collection[7]['children']) );
+        //dd("collection", $collection,   "collectionsecc2", collect($collection[7]['children']) );
         
         $filtered = $collection->filter(function (  $value ) use ($level_keys, $key) {
+
+            dd("value", $value, "name", $value["name"]);
 
             $valid = false;
             
