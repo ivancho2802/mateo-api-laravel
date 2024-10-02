@@ -70,11 +70,10 @@ class helper extends Controller
 
         $collection = collect($children);
 
-
         $new_key = '';
         
-        $filtered = $collection->filter(function (  $value, int $key) use ($level_keys) {
-            dd("level_keys", $level_keys, "key", $key);
+        $filtered = $collection->filter(function (  $value ) use ($level_keys, $key) {
+            dd("level_keys", $level_keys, "key", $key, "value", $value);
             
             if(count($level_keys) > 0){
 
@@ -82,7 +81,6 @@ class helper extends Controller
 
             }
 
-            dd("value", $value);
             return $value > 2;
         });
 
