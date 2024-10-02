@@ -321,14 +321,11 @@ class Jobs extends Controller
 
         $filtered = collect($filtered->mapWithKeys(function ($questionansdware, $key) use ($children) {
           //Permiso_de_uso_de_da_y_de_uso_de_im_genes/autorizacion
-          helper::getValueLabels($children,$key);
+          $customKey = helper::getValueLabels($children,$key);
 
-          dd($questionansdware, $key, $children);
+          dd($customKey, $questionansdware);
 
-          return [strtoupper($key) => strtoupper($word)];
-          
-          
-          return [$questionansdware['email'] => $questionansdware['name']];
+          return [$customKey => $questionansdware];
         }));
 
         return $filtered;

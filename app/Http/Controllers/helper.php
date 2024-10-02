@@ -155,7 +155,7 @@ class helper extends Controller
 
         
         $valueDetected = $mapped->first();
-        dd($valueDetected);
+        //dd($valueDetected);
 
         return $valueDetected;
     }
