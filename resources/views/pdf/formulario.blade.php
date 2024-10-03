@@ -259,8 +259,9 @@
               <span lang="" class="question-label active">{{isset($data->keys()[$i]) ? is_string($data->keys()[$i]) ? $data->keys()[$i] : implode($data->keys()[$i]): 'N/A'}}:</span>
               <span class="required">*</span>
               <div class="question date">
-                @if((stripos(isset($data->keys()[$i]) ? is_string($data->keys()[$i]) ? $data->keys()[$i] : implode($data->keys()[$i]): 'N/A', 'data:image') !== false))
+                @if((stripos(isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : implode($data->values()[$i]): 'N/A', 'data:image') !== false))
                 <div class="file-preview">
+                  IMAGEN
                   <img src="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}" />
                 </div>
                 @elseif(is_string($data->values()[$i])) 
