@@ -143,7 +143,7 @@ class helper extends Controller
                 $new_key .=  collect($children_dynamic)->first()['label'] . '/';
 
                 if (count($level_keys) - 1 !== $i) {
-                    $children_dynamic = $children_dynamic['children'];
+                    $children_dynamic = collect($children_dynamic)->first()['children'];
                 }
             }
 
