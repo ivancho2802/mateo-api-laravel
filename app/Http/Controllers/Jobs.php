@@ -342,10 +342,10 @@ class Jobs extends Controller
 
       return $mapped_customKey;
     }));
-    
+
     $dataEnketoWithImage->all();
 
-    dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel);
+    //dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel);
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
     $dataMetaWithImage = $metaFiles;
