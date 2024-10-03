@@ -316,23 +316,32 @@ class Jobs extends Controller
 
         //se ordena por las keys
         $filtered = collect($filtered)->sortKeys();
-
-        //se aplica los label correctos al registro actual
-
-        $filtered = collect($filtered->mapWithKeys(function ($questionansdware, $key) use ($children) {
-          //Permiso_de_uso_de_da_y_de_uso_de_im_genes/autorizacion
-          $customKey = helper::getValueLabels($children,$key);
-
-          //dd($customKey, $questionansdware);
-
-          return [$customKey => $questionansdware];
-        }));
-
         return $filtered;
       }));
     }
 
     $dataEnketoWithImage->filter()->all();
+
+    //AQUI VALIDO PARA QUE SE ACTUALICEN LOS NOMBRES DE LOS FORUMUALRIOS
+    $dataEnketoWithImage = collect($dataEnketoWithImage->map(function ($chield) use ($paramsForm, $children) {
+      $formulario = collect($chield); //->forget('name'); 
+      //se ordena por las keys
+      $filtered = collect($formulario)->sortKeys();
+
+      //se aplica los label correctos al registro actual
+
+      $filtered = collect($filtered->mapWithKeys(function ($questionansdware, $key) use ($children) {
+        //Permiso_de_uso_de_da_y_de_uso_de_im_genes/autorizacion
+        $customKey = helper::getValueLabels($children,$key);
+
+        //dd($customKey, $questionansdware);
+
+        return [$customKey => $questionansdware];
+      }));
+
+      return $filtered;
+    }));
+
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
     $dataMetaWithImage = $metaFiles;
