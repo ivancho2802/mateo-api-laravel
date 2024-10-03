@@ -142,7 +142,9 @@ class helper extends Controller
 
                 //echo  collect($children_dynamic)->first()['label'] . " - " . $key_search;
 
-                $new_key .=  collect($children_dynamic)->first()['label'] . '/';
+                $str_new_key = collect($children_dynamic)->first()['label'] ?? '';
+
+                $new_key .=  $str_new_key . '/';
 
                 if (count($level_keys) - 1 !== $i) {
                     $children_dynamic = collect(collect($children_dynamic)->first()['children']);
