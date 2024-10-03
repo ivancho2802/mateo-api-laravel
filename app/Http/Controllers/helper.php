@@ -103,7 +103,7 @@ class helper extends Controller
 
         //dd($filtered->first());
 
-        if (count($level_keys) == 0) {
+        if (count($level_keys) == 1) {
             //dd(collect($filtered)->first());
 
             $valueDetected = optional(collect($filtered)->first())["label"];
