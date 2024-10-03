@@ -981,7 +981,8 @@ class Kobo extends Controller
     {
 
         $items = [];
-        $dominioTitle = $request->dominio;
+        $dominioTitle =  $request->dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($request->dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' :  $request->dominio);
+
         $formid = $request->uui;
         $token = $request->token;
 

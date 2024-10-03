@@ -103,7 +103,7 @@ class helper extends Controller
 
         //dd($filtered->first());
 
-        if (count($level_keys) == 1) {
+        if (count($level_keys) == 0) {
             //dd(collect($filtered)->first());
 
             $valueDetected = optional(collect($filtered)->first())["label"];
@@ -126,7 +126,7 @@ class helper extends Controller
                     //echo  $value2["name"] . " - " . $key_search;
                     $str_label = $value2["label"] ?? '';
                     //dd(json_encode($value2["label"]),$key_search, $value2["label"]);
-                    $new_key .= $str_label . '/';
+                    $new_key .= "";//$str_label . '/';
 
                     $children_dynamic = collect($value2['children']);
 

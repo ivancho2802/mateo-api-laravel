@@ -302,7 +302,6 @@ class Jobs extends Controller
 
     //filtro segun lo especificado
     //recorro los formularios con map y recorro las preguntas con map sino estan las sacco
-    //tambien para poner la label que le corresponde
     if (count(collect(collect($dataEnketoWithImage)->first())->keys()) !== count($paramsForm)) {
       $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
         $formulario = collect($chield); //->forget('name');
