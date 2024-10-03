@@ -336,7 +336,7 @@ class Jobs extends Controller
 
         //dd($customKey, $questionansdware);
 
-        return [$customKey => $questionansdware];
+        return [$customKey ?? $key => $questionansdware];
       }));
       //dd("mapped_customKey", $mapped_customKey);
 
@@ -345,7 +345,7 @@ class Jobs extends Controller
 
     $dataEnketoWithImage->all();
 
-    //dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel);
+    dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel);
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
     $dataMetaWithImage = $metaFiles;
