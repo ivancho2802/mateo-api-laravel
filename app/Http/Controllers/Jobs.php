@@ -338,10 +338,12 @@ class Jobs extends Controller
 
         return [$customKey => $questionansdware];
       }));
-      dd("mapped_customKey", $mapped_customKey);
+      //dd("mapped_customKey", $mapped_customKey);
 
       return $mapped_customKey;
     }));
+    
+    $dataEnketoWithImage->all();
 
     dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel);
 
