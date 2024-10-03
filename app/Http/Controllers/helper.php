@@ -124,7 +124,7 @@ class helper extends Controller
 
                 if ($i == 0) {
                     //echo  $value2["name"] . " - " . $key_search;
-                    $str_label = $value2["label"];
+                    $str_label = $value2["label"] ?? '';
                     //dd(json_encode($value2["label"]),$key_search, $value2["label"]);
                     $new_key .= $str_label . '/';
 
