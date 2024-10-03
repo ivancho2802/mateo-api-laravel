@@ -96,7 +96,7 @@ class Media extends Controller
         }
 
         // Download file with custom headers
-        return response()->download($path, $filename, $headers);
+        return response()->download(urlencode($path), $filename, $headers);
     }
 
     
