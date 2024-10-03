@@ -123,8 +123,8 @@ class helper extends Controller
 
                 if ($i == 0) {
                     //echo  $value2["name"] . " - " . $key_search;
-                    dd($value2,$key_search);
-                    $new_key .= optional($value2["label"]) . '/';
+                    dd(json_encode($value2["label"]),$key_search, $value2["label"]);
+                    $new_key .= ($value2["label"]) . '/';
 
                     $children_dynamic = collect($value2['children']);
 
