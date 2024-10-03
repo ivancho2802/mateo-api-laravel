@@ -304,7 +304,7 @@ class Jobs extends Controller
     //recorro los formularios con map y recorro las preguntas con map sino estan las sacco
     //tambien para poner la label que le corresponde
     if (count(collect(collect($dataEnketoWithImage)->first())->keys()) !== count($paramsForm)) {
-      $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm, $children) {
+      $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
         $formulario = collect($chield); //->forget('name');
         $keysCurrent = $formulario->keys();
 
@@ -323,14 +323,14 @@ class Jobs extends Controller
     $dataEnketoWithImage->filter()->all();
 
     //AQUI VALIDO PARA QUE SE ACTUALICEN LOS NOMBRES DE LOS FORUMUALRIOS
-    $dataEnketoWithImage = collect($dataEnketoWithImage->map(function ($chield) use ($paramsForm, $children) {
-      $formulario = collect($chield); //->forget('name'); 
+    $dataEnketoWithImageLabel = collect($dataEnketoWithImage->map(function ($item) use ($children) {
+      $formulario = collect($item); //->forget('name'); 
       //se ordena por las keys
-      $filtered = collect($formulario)->sortKeys();
+      $mapped = collect($formulario)->sortKeys();
 
       //se aplica los label correctos al registro actual
 
-      $filtered = collect($filtered->mapWithKeys(function ($questionansdware, $key) use ($children) {
+      $mapped_customKey = collect($mapped->mapWithKeys(function ($questionansdware, $key) use ($children) {
         //Permiso_de_uso_de_da_y_de_uso_de_im_genes/autorizacion
         $customKey = helper::getValueLabels($children,$key);
 
@@ -338,10 +338,12 @@ class Jobs extends Controller
 
         return [$customKey => $questionansdware];
       }));
+      dd("mapped_customKey", $mapped_customKey);
 
-      return $filtered;
+      return $mapped_customKey;
     }));
 
+    dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel);
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
     $dataMetaWithImage = $metaFiles;
@@ -358,7 +360,7 @@ class Jobs extends Controller
 
 
     //aqui creo los jobs que no han sido procesados
-    $dataEnketoWithImage->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse, $name_key, $name_fomulary, $dataMetaWithImage) {
+    $dataEnketoWithImageLabel->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse, $name_key, $name_fomulary, $dataMetaWithImage) {
 
       $id_file = $item->get('_id');
 
