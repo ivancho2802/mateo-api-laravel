@@ -16,12 +16,14 @@ class Kobo extends Controller
     use TraitDepartments;
 
     //
-    public function getKoboLabels($uui, $token)
+    public function getKoboLabels($uui, $token, $dominioTi)
     {
 
         //dd($uui, $token);
+        $dominioTitle =  $dominioTi == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominioTi == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' :  $dominioTi);
+        $dominio = $dominioTi;
 
-        $jsonurl = "https://kf.acf-e.org/assets/" . $uui . "/submissions/?format=json";
+        $jsonurl = "https://" .$dominio. "/assets/" . $uui . "/submissions/?format=json";
 
         /* $response = Http::accept('application/json')
                 ->withBasicAuth('ugi', 'ugiach')//ugi@co.acfspain.org | ugi
@@ -39,7 +41,7 @@ class Kobo extends Controller
         //obtener los labes
 
         //https://kc.acf-e.org/api/v1/forms?id_string=a4E3J9gkULZe5eRqQph8zh
-        $jsonurlform = "https://kc.acf-e.org/api/v1/forms?id_string=" . $uui;
+        $jsonurlform = "https://".$dominioTi."/api/v1/forms?id_string=" . $uui;
 
         $dataForm = Http::withHeaders([
             'Authorization' => 'Token ' . $token . '',
@@ -51,7 +53,7 @@ class Kobo extends Controller
         $formid = collect($dataForm[0])->get('formid');
 
         //https://kc.acf-e.org/api/v1/forms/2433/form.json
-        $jsonurlDataLabels = "https://kc.acf-e.org/api/v1/forms/" . $formid . "/form.json";
+        $jsonurlDataLabels = "https://".$dominioTi."/api/v1/forms/" . $formid . "/form.json";
 
         $dataDataLabelsResponse = Http::withHeaders([
             'Authorization' => 'Token ' . $token . '',
@@ -1018,7 +1020,7 @@ class Kobo extends Controller
             ->get($jsonurlDataEnketo)
             ->json(); */
 
-        $itamsWithLabes =  $this->getKoboLabels($formid, $token);
+        $itamsWithLabes =  $this->getKoboLabels($formid, $token, $dominioTitle);
 
         //dd("itamsWithLabes", $itamsWithLabes->first());
 
