@@ -117,14 +117,16 @@ class helper extends Controller
             $new_key = '';
 
             $valid = false;
+            $children_dynamic = collect();
 
             for ($i = 0; $i < count($level_keys); $i++) {
                 $key_search = $level_keys[$i];
 
                 if ($i == 0) {
                     //echo  $value2["name"] . " - " . $key_search;
-                    dd(json_encode($value2["label"]),$key_search, $value2["label"]);
-                    $new_key .= ($value2["label"]) . '/';
+                    $str_label = $value2["label"];
+                    //dd(json_encode($value2["label"]),$key_search, $value2["label"]);
+                    $new_key .= $str_label . '/';
 
                     $children_dynamic = collect($value2['children']);
 
