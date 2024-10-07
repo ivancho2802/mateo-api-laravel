@@ -309,6 +309,8 @@ class Jobs extends Controller
         $formulario = collect($chield); //->forget('name');
         $keysCurrent = $formulario->keys();
 
+        $paramsForm = $paramsForm->search("_id") ? collect($paramsForm)->push('_id') : collect($paramsForm);
+
         $diff = $keysCurrent->diff($paramsForm);
 
         $deleteDiff = $diff->first();

@@ -198,7 +198,11 @@
                           <div class="space-y-6">
                             @forelse ($dataFormulario as $dataf)
                             <div class="flex items-center">
+                              @if ($dataf == '_id')
+                              <input id="paramForm" name="paramForm[]" value="{{$dataf}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" checked disabled>
+                              @else
                               <input id="paramForm" name="paramForm[]" value="{{$dataf}}" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" checked>
+                              @endif
                               <label for="paramForm" class="ml-3 min-w-0 flex-1 text-gray-500">{{$dataf}}</label>
                             </div>
                             @empty
