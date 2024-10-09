@@ -8,96 +8,101 @@ use Illuminate\Http\Response;
 
 class Media extends Controller
 {
-    //
+  //
 
-    function downloadMedia()
-    {
+  function downloadMedia()
+  {
 
-        $headers = array(
-            'Content-Type: application/vnd.ms-excel',
-        );
-        /* $file = public_path() . "/download/LPA_MIRE+_V1.xlsx";
+    $headers = array(
+      'Content-Type: application/vnd.ms-excel',
+    );
+    /* $file = public_path() . "/download/LPA_MIRE+_V1.xlsx";
 
         if ($nameFile == "lpa") {
             $file = "LPA_MIRE+_V1.xlsx";
         }
 
         return Storage::download($file, 'LPA_MIRE+_V1.xlsx', $headers); */
-        $filename = "LPA_MIRE+_V3.xlsx";
-        // Get path from storage directory storage_path no funcionó
-        // Get path from storage directory public_path si funcionó
-        $path = (public_path() . '/download/' . $filename);
+    $filename = "LPA_MIRE+_V3.xlsx";
+    // Get path from storage directory storage_path no funcionó
+    // Get path from storage directory public_path si funcionó
+    $path = (public_path() . '/download/' . $filename);
 
-        // Download file with custom headers
-        return response()->download($path, $filename, $headers);
-    }
+    // Download file with custom headers
+    return response()->download($path, $filename, $headers);
+  }
 
-    function downloadMediaPqr()
-    {
+  function downloadMediaPqr()
+  {
 
-        $headers = array(
-            'Content-Type: application/vnd.ms-excel',
-        );
-        
-        $filename = "Formato_PQR_2024_MIREVIEW.xlsx";
-        $path = (public_path() . '/download/' . $filename);
+    $headers = array(
+      'Content-Type: application/vnd.ms-excel',
+    );
 
-        // Download file with custom headers
-        return response()->download($path, $filename, $headers);
-    }
+    $filename = "Formato_PQR_2024_MIREVIEW.xlsx";
+    $path = (public_path() . '/download/' . $filename);
 
-    function downloadMediaPqrPath(Request $request)
-    {
-        //migrationsMqr/nLOPShZMEMu1AjqYuNWsP7miBWl32gTyO72Lu2ex.xlsx
-        $filepath = $request->url;
+    // Download file with custom headers
+    return response()->download($path, $filename, $headers);
+  }
 
-        //$file = Storage::path($filepath);
+  function downloadMediaPqrPath(Request $request)
+  {
+    //migrationsMqr/nLOPShZMEMu1AjqYuNWsP7miBWl32gTyO72Lu2ex.xlsx
+    $filepath = $request->url;
 
-        $headers = array(
-            'Content-Type: application/vnd.ms-excel',
-        );
+    //$file = Storage::path($filepath);
 
-        $filename = "Formato_PQR_2024.xlsx";
+    $headers = array(
+      'Content-Type: application/vnd.ms-excel',
+    );
 
-        return Storage::download($filepath, $filename, $headers);
-        
-        /* $path = (public_path() . '/download/' . $filename);
+    $filename = "Formato_PQR_2024.xlsx";
+
+    return Storage::download($filepath, $filename, $headers);
+
+    /* $path = (public_path() . '/download/' . $filename);
 
         // Download file with custom headers
         return response()->download($path, $filename, $headers); */
+  }
+
+
+  function downloadMediaMatriz()
+  {
+
+    $headers = array(
+      'Content-Type: application/vnd.ms-excel',
+    );
+
+    $filename = "1. Matriz lite  - paso 1.csv";
+    $path = (public_path() . '/download/' . $filename);
+
+    // Download file with custom headers
+    return response()->download($path, $filename, $headers);
+  }
+
+  function downloadMediaCustom($folder, $filename)
+  {
+
+    $path = public_path($filename);
+
+    $headers = $headers = [
+      'Content-Type' => 'text/css',
+    ];
+
+    if (strpos($filename, '.zip') !== false) {
+      if (isset($folder))
+        return response()->download($folder . '/' . $path, $filename, $headers)->deleteFileAfterSend(true);
+      else
+        return response()->download($path, $filename, $headers)->deleteFileAfterSend(true);
     }
 
-
-    function downloadMediaMatriz()
-    {
-
-        $headers = array(
-            'Content-Type: application/vnd.ms-excel',
-        );
-        
-        $filename = "1. Matriz lite  - paso 1.csv";
-        $path = (public_path() . '/download/' . $filename);
-
-        // Download file with custom headers
-        return response()->download($path, $filename, $headers);
-    }
-
-    function downloadMediaCustom($filename)
-    {
-
-        $path = public_path($filename);
-        
-        $headers = $headers = [
-            'Content-Type' => 'text/css',
-        ];
-
-        if(strpos($filename, '.zip') !== false){
-            return response()->download($path, $filename, $headers)->deleteFileAfterSend(true);
-        }
-
-        // Download file with custom headers
-        return response()->download(urlencode($path), $filename, $headers);
-    }
-
+    // Download file with custom headers
     
+    if (isset($folder))
+      return response()->download($folder . '/' . urlencode($path), $filename, $headers)->deleteFileAfterSend(true);
+    else
+      return response()->download(urlencode($path), $filename, $headers);
+  }
 }

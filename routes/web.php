@@ -89,4 +89,6 @@ Route::get('constant_companion', function () {
     return view('constant_companion');
 });
 
+Route::get('/public/download/{folder}/{filename}', [App\Http\Controllers\Media::class, 'downloadMediaCustom']);
+
 require __DIR__ . '/auth.php';
