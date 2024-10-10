@@ -388,7 +388,7 @@ class PersonAttended extends Controller
 
         $sheets = (new FastExcel)->withSheetsNames()->importSheets($file);
 
-        $result = (new MlpasClass)->collection(collect($sheets['BD']));
+        $result = (new MlpasClass)->collection(collect($sheets['Hoja1']));
 
         //dd($result);
 
