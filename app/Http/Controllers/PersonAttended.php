@@ -847,9 +847,11 @@ class PersonAttended extends Controller
     {
 
 
-        $mlpa = MLpa::where("ID", "=", $request->ID)->first();
+        $mlpa = MLpa::where("ID", "=", $request->ID);
 
-        $tipo_lpa = $mlpa->append('tipo_lpa');
+        $mlpa->append('tipo_lpa');
+
+        $tipo_lpa = $mlpa->first();
 
         return ["tipo_lpa" => $tipo_lpa->tipo_lpa];
     }
