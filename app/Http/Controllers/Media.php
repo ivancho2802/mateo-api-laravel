@@ -82,7 +82,25 @@ class Media extends Controller
     return response()->download($path, $filename, $headers);
   }
 
-  function downloadMediaCustom($folder, $filename)
+  function downloadMediaCustom($filename)
+  {
+
+    $path = public_path($filename);
+
+    $headers = $headers = [
+      'Content-Type' => 'text/css',
+    ];
+
+    if (strpos($filename, '.zip') !== false) {
+      return response()->download($path, $filename, $headers)->deleteFileAfterSend(true);
+    }
+
+    // Download file with custom headers
+
+    return response()->download(urlencode($path), $filename, $headers);
+  }
+
+  function downloadMediaCustomFolder($folder, $filename)
   {
 
     $path = public_path($filename);
@@ -99,7 +117,7 @@ class Media extends Controller
     }
 
     // Download file with custom headers
-    
+
     if (isset($folder))
       return response()->download($folder . '/' . urlencode($path), $filename, $headers)->deleteFileAfterSend(true);
     else
