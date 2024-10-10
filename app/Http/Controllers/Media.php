@@ -103,7 +103,7 @@ class Media extends Controller
   function downloadMediaCustomFolder($folder, $filename)
   {
 
-    $path = public_path($filename);
+    $path = public_path($folder . '/' .$filename);
 
     $headers = $headers = [
       'Content-Type' => 'text/css',
@@ -111,7 +111,7 @@ class Media extends Controller
 
     if (strpos($filename, '.zip') !== false) {
       if (isset($folder))
-        return response()->download($folder . '/' . $path, $filename, $headers)->deleteFileAfterSend(true);
+        return response()->download( $path, $filename, $headers)->deleteFileAfterSend(true);
       else
         return response()->download($path, $filename, $headers)->deleteFileAfterSend(true);
     }
