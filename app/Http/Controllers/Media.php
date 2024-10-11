@@ -104,27 +104,7 @@ class Media extends Controller
   {
     $filename = ucfirst($filename);
 
-    $path = public_path($folder . '/' .$filename);
-
-    $headers = $headers = [
-      'Content-Type' => 'text/css',
-    ];
-
-    if (strpos($filename, '.zip') !== false) {
-      if (isset($folder)){
-        return response()->download( $path, $filename, $headers)->deleteFileAfterSend(true);
-      }
-      else
-        return response()->download($path, $filename, $headers)->deleteFileAfterSend(true);
-    }
-
-    // Download file with custom headers
-
-    if (isset($folder)){
-
-      return response()->download($path, $filename, $headers)->deleteFileAfterSend(true);
-    }
-    else
-      return response()->download(urlencode($path), $filename, $headers);
+    return response()->download(storage_path('app/'.$folder.'/' . $filename));//->deleteFileAfterSend(true);
+ 
   }
 }
