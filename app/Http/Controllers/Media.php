@@ -86,8 +86,6 @@ class Media extends Controller
   {
 
     $path = public_path($filename);
-    dd($path);
-
 
     $headers = $headers = [
       'Content-Type' => 'text/css',
@@ -107,8 +105,6 @@ class Media extends Controller
     $filename = ucfirst($filename);
 
     $path = public_path($folder . '/' .$filename);
-
-    dd($path);
 
     $headers = $headers = [
       'Content-Type' => 'text/css',
