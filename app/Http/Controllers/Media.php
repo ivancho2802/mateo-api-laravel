@@ -106,6 +106,8 @@ class Media extends Controller
 
     $path = public_path($folder . '/' .$filename);
 
+    dd($path);
+
     $headers = $headers = [
       'Content-Type' => 'text/css',
     ];
