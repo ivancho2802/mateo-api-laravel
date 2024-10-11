@@ -102,7 +102,7 @@ class Media extends Controller
 
   function downloadMediaCustomFolder($folder, $filename)
   {
-    $filenameUpper = ucfirst($filename);
+    $filenameUpper = ucfirst(strtolower($filename));
 
     dd($filenameUpper);
 
