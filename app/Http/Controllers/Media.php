@@ -104,8 +104,6 @@ class Media extends Controller
   {
     $filenameUpper = ucfirst(strtolower($filename));
 
-    dd($filenameUpper);
-
     return response()->download(storage_path('app/'.$folder.'/' . $filenameUpper));//->deleteFileAfterSend(true);
  
   }
