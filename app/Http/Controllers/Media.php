@@ -102,6 +102,7 @@ class Media extends Controller
 
   function downloadMediaCustomFolder($folder, $filename)
   {
+    $filename = ucfirst($filename);
 
     $path = public_path($folder . '/' .$filename);
 
@@ -111,7 +112,6 @@ class Media extends Controller
 
     if (strpos($filename, '.zip') !== false) {
       if (isset($folder)){
-        $filename = ucfirst($filename);
         return response()->download( $path, $filename, $headers)->deleteFileAfterSend(true);
       }
       else
@@ -121,7 +121,6 @@ class Media extends Controller
     // Download file with custom headers
 
     if (isset($folder)){
-      $filename = ucfirst($filename);
 
       return response()->download($path, $filename, $headers)->deleteFileAfterSend(true);
     }
