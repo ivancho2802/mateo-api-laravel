@@ -110,16 +110,21 @@ class Media extends Controller
     ];
 
     if (strpos($filename, '.zip') !== false) {
-      if (isset($folder))
+      if (isset($folder)){
+        $filename = ucfirst($filename);
         return response()->download( $path, $filename, $headers)->deleteFileAfterSend(true);
+      }
       else
         return response()->download($path, $filename, $headers)->deleteFileAfterSend(true);
     }
 
     // Download file with custom headers
 
-    if (isset($folder))
+    if (isset($folder)){
+      $filename = ucfirst($filename);
+
       return response()->download($folder . '/' . urlencode($path), $filename, $headers)->deleteFileAfterSend(true);
+    }
     else
       return response()->download(urlencode($path), $filename, $headers);
   }
