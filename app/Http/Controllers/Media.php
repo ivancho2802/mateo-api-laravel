@@ -102,11 +102,11 @@ class Media extends Controller
 
   function downloadMediaCustomFolder($folder, $filename)
   {
-    $filename = ucfirst($filename);
+    $filenameUpper = ucfirst($filename);
 
-    //dd($filename);
+    dd($filenameUpper);
 
-    return response()->download(storage_path('app/'.$folder.'/' . $filename));//->deleteFileAfterSend(true);
+    return response()->download(storage_path('app/'.$folder.'/' . $filenameUpper));//->deleteFileAfterSend(true);
  
   }
 }
