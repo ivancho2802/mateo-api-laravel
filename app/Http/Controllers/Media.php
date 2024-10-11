@@ -123,7 +123,7 @@ class Media extends Controller
     if (isset($folder)){
       $filename = ucfirst($filename);
 
-      return response()->download($folder . '/' . urlencode($path), $filename, $headers)->deleteFileAfterSend(true);
+      return response()->download($path, $filename, $headers)->deleteFileAfterSend(true);
     }
     else
       return response()->download(urlencode($path), $filename, $headers);
