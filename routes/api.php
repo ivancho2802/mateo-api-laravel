@@ -103,6 +103,9 @@ Route::prefix('meal')->group(function () {
 
   Route::middleware(['auth:sanctum'])->post('/mpd/refresh', [App\Http\Controllers\MonitorPostDist::class, 'refresh']); //receptor
 
+  //MIGRACION DE IVON MEAL REGIONAL
+  Route::middleware(['auth:sanctum'])->post('/mpd/update', [App\Http\Controllers\MonitorPostDist::class, 'stored']);
+
   //ALERTAS
 
   Route::middleware(['auth:sanctum'])->post('/alerta/update', [App\Http\Controllers\Alertas::class, 'stored']);
