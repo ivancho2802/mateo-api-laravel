@@ -68,6 +68,23 @@ class Meal extends Controller
     }
 
     /**
+     * 
+     */
+    function lpasegOnlyCount(Request $request){
+
+        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
+            //->where("FK_LPA_PERSONA", ">", "22270")
+            ->nodeleted()
+            ->get(); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
+        //->groupBy('FECHA_ATENCION');
+
+        return [
+            "lpas" => count($mlpas)
+        ];
+
+    }
+
+    /**
      * este nos e usa para lpa dashboard OJOOO
      */
 

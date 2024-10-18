@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AnalisisMongo;
 use App\Models\migrateCustomMongo;
+use App\Models\MLpa;
 use App\Models\MLpaMongo;
 use App\Jobs\LpaJobMongoProcess;
 use Illuminate\Support\Facades\Storage;
@@ -69,9 +70,12 @@ class PersonAttendedMongo extends Controller
             'table_id' =>  $path,
             'file_ref' => 'UPLOADED',
         ]);
-        DB::setDefaultConnection('mongodb');
+        //crear job para ejecutar la funcion de process
+        LpaJobMongoProcess::dispatch(); //->onConnection('database');
 
-        $mlpas = MLpaMongo::orderBy('created_at', 'desc')
+        //DB::setDefaultConnection('mongodb');
+
+        $mlpas = MLpa::orderBy('created_at', 'desc')
             ->paginate(10);
 
         $mlpas->load('emergencia');
@@ -82,8 +86,6 @@ class PersonAttendedMongo extends Controller
 
         $data['record_saved'] = 0;
 
-        //crear job para ejecutar la funcion de process
-        LpaJobMongoProcess::dispatch(); //->onConnection('database');
 
         //terminar devolver tabla
         return view('list-lpas', $data);
