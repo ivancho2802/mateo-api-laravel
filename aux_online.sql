@@ -15,7 +15,7 @@ public.migrate_customs
 where 
 --table_id != '[]' AND
 "table" = 'M_LPAS'  AND 
-file_ref = 'UPLOADED' 
+file_ref like '%UPLOADED%' 
 --and table_id not like '{%' 
 order by updated_at desc limit 7 ;
 
@@ -200,5 +200,24 @@ GROUP BY "M_LPA_PERSONAS"."DOCUMENTO"
 --update migrate_customs set "table" = 'M_LPAS_MONGO' where id in (select id from migrate_customs where file_ref = 'PENDINGMONGO' and "table" = 'M_LPAS')
 
 select "table" from migrate_customs where file_ref = 'PENDINGMONGO' and "table" = 'M_LPAS_MONGO'
+select count(*) from "M_LPAS" where 
+--QUERY PARA BORRAR LPA POR RR
+sekect 
+	
+from 
+	"M_LPAS" 
+WHERE
+	"FASE_ATENCION"='Fase I- Respuesta RÃ¡pida' OR 
+	"FASE_ATENCION"='Fase I- Respuesta RÃ¡pida ' OR
+	"FASE_ATENCION"='Fase II- Respuesta RÃ¡pida' OR
+	"FASE_ATENCION"='Fase II- Respuesta RÃ¡pida ' AND 
+"FECHA_ATENCION" >= '2023-01-01'
 
+SELECT fecha_ern, created_at FROM public.reports ORDER BY created_at desc 
 
+select *
+from 
+	"M_MQR" order by "DATE_IN" desc limit 1 
+
+SELECT created_at, month, * FROM public.analisis
+ORDER BY month desc 

@@ -201,3 +201,9 @@ ASIENTO_ACTIVO_FIJO                    ASIENTO_AJUSTE_INVENTARIO
        ZZZ_CXC                                ZZZ_M_CLIENTES
        ZZZ_M_PRODUCTOS                        ZZZ_TRIGGERS_DELETE
        ZZZ_USUARIOS
+
+
+
+ver detalles de tablas con firebird
+
+SELECT RDB$FIELD_NAME FROM RDB$RELATION_FIELDS WHERE RDB$RELATION_NAME='D_FALLAS';
