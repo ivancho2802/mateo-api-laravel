@@ -25,7 +25,7 @@ public.migrate_customs
 where 
 --table_id != '[]' AND
 "table" = 'M_LPAS'
---  AND file_ref = 'PROCECED' 
+  AND file_ref = 'PROCECED' 
 --and table_id not like '{%' 
 order by updated_at desc limit 7 ;
 
@@ -79,8 +79,22 @@ select "DISCAPACIDAD_VER", "ID" from "M_LPA_PERSONAS" where "DISCAPACIDAD_VER" =
 select *  from analisis
 
 select "CHANNEL_IN" from "M_MQR" GROUP BY "CHANNEL_IN"
-
+-- emergencias codigos
 select "TIPO_EVENTO" FROM "M_LPA_EMERGENCIAS" GROUP BY "TIPO_EVENTO"
+select * FROM "M_LPA_EMERGENCIAS" WHERE "ID" = 1643
+
+
+select 
+	*
+FROM 
+	"M_LPAS", "M_LPA_EMERGENCIAS" 
+WHERE 
+	"M_LPAS"."FK_LPA_EMERGENCIA" = "M_LPA_EMERGENCIAS"."ID" AND 
+	"M_LPA_EMERGENCIAS"."ID" = "M_LPAS"."FK_LPA_EMERGENCIA" AND
+	"M_LPAS"."FASE_ATENCION" = 'Fase III-RecuperaciÃ³n temprana' AND
+	"M_LPA_EMERGENCIAS"."COD_EMERGENCIAS" LIKE '%PAPAYAL2%'
+	
+-- emergencias codigo
 
 select "ORG_REPORT" from "M_MQR" GROUP BY "ORG_REPORT"
 
@@ -166,6 +180,20 @@ select * from activities where actividad like '%onsultas%'
 
 select * from reports where codigo_emergencia = 'BOMO 1007'
 
+select * from "M_LPA_PERSONAS" where "DOCUMENTO" = '1193041959'
+
+select 
+	"M_LPA_PERSONAS"."DOCUMENTO",
+	"M_LPA_PERSONAS"."GENERO"
+FROM 
+	"M_LPAS", "M_LPA_PERSONAS" 
+WHERE 
+	"M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND 
+	"M_LPA_PERSONAS"."ID" = "M_LPAS"."FK_LPA_PERSONA" AND
+	"M_LPAS"."FASE_ATENCION" = 'Fase III-RecuperaciÃ³n temprana'
+	
+SELECT "M_LPAS"."FASE_ATENCION" FROM  "M_LPAS" GROUP BY "M_LPAS"."FASE_ATENCION"	
+
 select COUNT(*)
 FROM "M_LPAS", "M_LPA_PERSONAS" 
 WHERE "M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND 
@@ -202,8 +230,8 @@ GROUP BY "M_LPA_PERSONAS"."DOCUMENTO"
 select "table" from migrate_customs where file_ref = 'PENDINGMONGO' and "table" = 'M_LPAS_MONGO'
 select count(*) from "M_LPAS" where 
 --QUERY PARA BORRAR LPA POR RR
-sekect 
-	
+select 
+	count(*)
 from 
 	"M_LPAS" 
 WHERE

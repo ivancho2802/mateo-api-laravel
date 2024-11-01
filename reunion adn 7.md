@@ -13,3 +13,5 @@ Les comparto los compromisos que salieron de nuestra reunión.
 
 Revisaremos estos puntos en nuestra reunión el miércoles 16 de octubre 3 pm.
 
+errores encontrados
+    

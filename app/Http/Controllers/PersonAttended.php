@@ -797,7 +797,7 @@ class PersonAttended extends Controller
 
         
 
-        $persona->with('atenciones');
+        //$persona->with('atenciones');
 
         /* $filtrados = $lpas_discapacitado->search(function ( $item, int $key) {
             return $item > 5;
