@@ -574,6 +574,48 @@ class PersonAttended extends Controller
 
             //REPARO DE CONSULTA Y CREACION DE PERSONA POR TIMEOUT?
 
+            //VALIDACION SI YA SE DECLARO DISCAPACITADO DEJARLO DISCAPACITADO
+            //Si - No puede hacerlo
+
+            $mlpa_persona_DISCAPACIDAD_VER = MLpaPersona::where([
+                'DOCUMENTO' => $row[6],
+                'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
+            ])->exists();
+
+            
+            $mlpa_persona_DISCAPACIDAD_OIR = MLpaPersona::where([
+                'DOCUMENTO' => $row[6],
+                'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
+            ])->exists();
+
+            
+            $mlpa_persona_DISCAPACIDAD_CAMINAR = MLpaPersona::where([
+                'DOCUMENTO' => $row[6],
+                'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
+            ])->exists();
+
+            
+            
+            $mlpa_persona_DISCAPACIDAD_RECORDAR = MLpaPersona::where([
+                'DOCUMENTO' => $row[6],
+                'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
+            ])->exists();
+
+            
+            
+            $mlpa_persona_DISCAPACIDAD_CUIDADO_PROPIO = MLpaPersona::where([
+                'DOCUMENTO' => $row[6],
+                'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
+            ])->exists();
+
+            
+            
+            $mlpa_persona_DISCAPACIDAD_COMUNICAR = MLpaPersona::where([
+                'DOCUMENTO' => $row[6],
+                'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
+            ])->exists();
+
+
             $mlpa_persona = MLpaPersona::firstOrCreate(
                 ['DOCUMENTO' => $row[6]],
                 [
@@ -593,12 +635,12 @@ class PersonAttended extends Controller
                     'PERFIL' => $row[19],
                     'NIVEL_ESCOLARIDAD' => $row[20],
                     'CARACTERISTICAS_MADRE' => $row[21],
-                    'DISCAPACIDAD_VER' => $row[22],
-                    'DISCAPACIDAD_OIR' => $row[23],
-                    'DISCAPACIDAD_CAMINAR' => $row[24],
-                    'DISCAPACIDAD_RECORDAR' => $row[25],
-                    'DISCAPACIDAD_CUIDADO_PROPIO' => $row[26],
-                    'DISCAPACIDAD_COMUNICAR' => $row[27],
+                    'DISCAPACIDAD_VER' => !$mlpa_persona_DISCAPACIDAD_VER ? $row[22] : 'Si - No puede hacerlo',
+                    'DISCAPACIDAD_OIR' => !$mlpa_persona_DISCAPACIDAD_OIR ? $row[23] : 'Si - No puede hacerlo',
+                    'DISCAPACIDAD_CAMINAR' => !$mlpa_persona_DISCAPACIDAD_CAMINAR ? $row[24] : 'Si - No puede hacerlo',
+                    'DISCAPACIDAD_RECORDAR' => !$mlpa_persona_DISCAPACIDAD_RECORDAR ? $row[25] : 'Si - No puede hacerlo',
+                    'DISCAPACIDAD_CUIDADO_PROPIO' => !$mlpa_persona_DISCAPACIDAD_CUIDADO_PROPIO ? $row[26] : 'Si - No puede hacerlo',
+                    'DISCAPACIDAD_COMUNICAR' =>  !$mlpa_persona_DISCAPACIDAD_COMUNICAR ? $row[27] : 'Si - No puede hacerlo',
                     'TELEFONO' => $row[28]
                 ]
             );
@@ -726,6 +768,9 @@ class PersonAttended extends Controller
         //}
     }
 
+    /**
+     * esto esta mla pór que no se puede obtener los discapacidades y discapacitado apartir solo del id de la persona 
+     */
     function getPersonaByID(Request $request)
     {
         $persona = MLpaPersona::where("ID", "=", $request->ID)->first();
@@ -750,11 +795,14 @@ class PersonAttended extends Controller
             }
         }
 
+        
+
         $persona->with('atenciones');
 
         /* $filtrados = $lpas_discapacitado->search(function ( $item, int $key) {
             return $item > 5;
         }); */
+
 
         return [
             "persona" => $persona
