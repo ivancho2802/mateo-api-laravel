@@ -60,7 +60,12 @@ resumen clase 6
         docgpt que es una extencio que ayuda a realizar cosas como funcion dentro de las celdas
             https://www.freecodecamp.org/espanol/news/como-integrar-chatgpt-con-google-sheets-usando-google-apps-script/
             https://workspace.google.com/marketplace/app/docgpt_ai_writer_for_docs/466607203252?hl=es
-
+    *   como generar contenido para una presentacion
+    *   con la suite de google por wordspace cobra por la integracion de gestion de informacion por ejemplo con el chat gpt docgpt
+    *   comandos en excel con chatgpt para generar cosas con promps 
+    *   conectarse a un python con api y paquetes de open ia para hacer operaciones de froma programatica
+    *   gestionar consulta de una tabla de excel cargada a amano como consultas
+    *
 
 
 HACER CHAT PARA QEU CONSULTAR
@@ -74,3 +79,5 @@ HACER CHAT PARA QEU CONSULTAR
 
     
 
+resumen clase 7
+    
