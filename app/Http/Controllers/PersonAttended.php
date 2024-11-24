@@ -368,7 +368,7 @@ class PersonAttended extends Controller
         //return Storage::download("migrationsLpa/P1NbVt8r2vVH76QKOkJigTOOMJi1UggewaFJ50gy.xlsx", 'filename.xlsx', $headers);
         //return Storage::download("migrationsLpa/h0R5RfbLVuBjetZLTRG9c5xHVABG054Qm0GPIG7S.xlsx", 'filename.xlsx', $headers);
 
-        return Storage::download($migration->table_id, 'filename.xlsx', $headers);
+        return Storage::download($migration->table_id, $migration->table_id . '_filename.xlsx', $headers);
     }
 
     public function process(?Request $request)
