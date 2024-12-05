@@ -96,7 +96,7 @@ Route::prefix('meal')->group(function () {
   Route::middleware(['auth:sanctum'])->get('/lpa/consorcio', [App\Http\Controllers\PersonAttended::class, 'dataLpaConsorcio']);
 
 
-  Route::middleware(['auth:sanctum'])->get('/lpadiscapacitados', [App\Http\Controllers\Meal::class, 'getLpaPBIDiscapacidades']);
+  Route::get('/lpadiscapacitados', [App\Http\Controllers\Meal::class, 'getLpaPBIDiscapacidades']);
 
   //monitorio post distribucion pda
   Route::middleware(['auth:sanctum'])->get('/mpd', [App\Http\Controllers\Meal::class, 'geMpd']);
