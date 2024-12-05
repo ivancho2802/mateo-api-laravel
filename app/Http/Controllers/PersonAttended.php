@@ -947,4 +947,12 @@ class PersonAttended extends Controller
 
         return ["solicitud creada con exito"];
     }
+
+    function dataLpaConsorcio(Request $request){
+
+        return [
+            "beneficiarios_unicos" => 1000
+        ];
+        
+    }
 }
