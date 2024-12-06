@@ -963,7 +963,7 @@ class PersonAttended extends Controller
 
         //numero de emergencias
         $emergencias = $mlpas->groupBy('FK_LPA_EMERGENCIA');
-        $count_emergencias = $emergencias->all();
+        $count_emergencias = count($emergencias->all());
 
         //total de departamentos
         $departamentos = $mlpas->groupBy('emergencia.DEPARTAMENTO');
