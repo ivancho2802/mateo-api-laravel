@@ -24,6 +24,7 @@ use Maatwebsite\Excel\Concerns\ToArray;
 use function PHPUnit\Framework\isEmpty;
 use App\Jobs\LpaJobProcess;
 use App\Jobs\LpaJobRefreshMigrations;
+use Illuminate\Support\Facades\DB;
 
 class PersonAttended extends Controller
 {
@@ -953,7 +954,12 @@ class PersonAttended extends Controller
 
         $personas = count(MLpaPersona::has('atenciones')->get());
 
-        $emergencias = count(MLpaEmergencia::has('atenciones')->get());
+        $emergencias = count(
+            DB::table('M_LPA_EMERGENCIAS')
+            ->select('COD_EMERGENCIAS')
+            ->groupBy('COD_EMERGENCIAS')
+            ->get()
+        );
 
         return [
             "beneficiarios_unicos" => $personas,
