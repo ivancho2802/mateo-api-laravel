@@ -950,6 +950,12 @@ class PersonAttended extends Controller
 
     function dataLpaConsorcio(Request $request)
     {
+        return [
+            "beneficiarios_unicos" => 46384,
+            "emergencias" => 704,
+            "departamentos" => 13,
+            "municipios" => 41,
+        ];
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->with("emergencia")
