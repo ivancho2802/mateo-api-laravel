@@ -582,34 +582,34 @@ class PersonAttended extends Controller
                 'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
             ])->exists();
 
-            
+
             $mlpa_persona_DISCAPACIDAD_OIR = MLpaPersona::where([
                 'DOCUMENTO' => $row[6],
                 'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
             ])->exists();
 
-            
+
             $mlpa_persona_DISCAPACIDAD_CAMINAR = MLpaPersona::where([
                 'DOCUMENTO' => $row[6],
                 'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
             ])->exists();
 
-            
-            
+
+
             $mlpa_persona_DISCAPACIDAD_RECORDAR = MLpaPersona::where([
                 'DOCUMENTO' => $row[6],
                 'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
             ])->exists();
 
-            
-            
+
+
             $mlpa_persona_DISCAPACIDAD_CUIDADO_PROPIO = MLpaPersona::where([
                 'DOCUMENTO' => $row[6],
                 'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
             ])->exists();
 
-            
-            
+
+
             $mlpa_persona_DISCAPACIDAD_COMUNICAR = MLpaPersona::where([
                 'DOCUMENTO' => $row[6],
                 'DISCAPACIDAD_VER' => 'Si - No puede hacerlo'
@@ -777,7 +777,7 @@ class PersonAttended extends Controller
         $discapacitado = $persona->discapacitado;
 
         if (isset($request->tipo_lpa) && $discapacitado == 0) {
- 
+
             if (isset($request->tipo_lpa) && $request->tipo_lpa == 'Recuperacion Temprana' && $request->FECHA_ATENCION <= '2024-07-01' && isset($persona->DOCUMENTO)) {
 
                 $discapacitado = MLpaFix::where([
@@ -786,7 +786,7 @@ class PersonAttended extends Controller
                     ->exists();
 
                 //->where('sexo', $lpa->persona->GENERO)
-                if ( ($discapacitado) ==  true ) {
+                if (($discapacitado) ==  true) {
                     $persona = collect($persona)->forget('discapacitado');
                     $persona['discapacitado'] = 1;
                 }
@@ -795,7 +795,7 @@ class PersonAttended extends Controller
             }
         }
 
-        
+
 
         //$persona->with('atenciones');
 
@@ -903,7 +903,7 @@ class PersonAttended extends Controller
 
         $mlpa = MLpa::where("ID", "=", $request->ID)->first();
 
-        if(!isset($mlpa))
+        if (!isset($mlpa))
             return ["tipo_lpa" => "ERROR"];
 
         $tipo_lpa = $mlpa->append('tipo_lpa');
@@ -948,11 +948,39 @@ class PersonAttended extends Controller
         return ["solicitud creada con exito"];
     }
 
-    function dataLpaConsorcio(Request $request){
+    function dataLpaConsorcio(Request $request)
+    {
+
+        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
+            ->width("emergencia")
+            ->nodeleted();
+            //->get(); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
+        //->groupBy('FECHA_ATENCION');
+
+        //total de personas
+        $personas = $mlpas->groupBy('FK_LPA_PERSONA');
+        $count_personas = $personas->all();
+
+        //numero de emergencias
+        $emergencias = $mlpas->groupBy('FK_LPA_EMERGENCIA');
+        $count_emergencias = $emergencias->all();
+
+        //total de departamentos
+        $departamentos = $mlpas->groupBy('emergencia.DEPARTAMENTO');
+        $count_departamentos = $departamentos->all();
+
+        dd("count_departamentos", $count_departamentos);
+
+        //total de municipios
+        $municipios = $mlpas->groupBy('emergencias.MUNICIPIO');
+        $count_municipios = $municipios->all();
 
         return [
-            "beneficiarios_unicos" => 1000
+            "beneficiarios_unicos" => $count_personas,
+            "emergencias" => $count_emergencias,
+            "departamentos" => $count_departamentos,
+            "municipios" => $count_municipios,
+            
         ];
-        
     }
 }
