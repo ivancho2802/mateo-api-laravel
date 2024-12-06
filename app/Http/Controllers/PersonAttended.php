@@ -959,19 +959,19 @@ class PersonAttended extends Controller
 
         //total de personas
         $personas = $mlpas->groupBy('FK_LPA_PERSONA');
-        $count_personas = count($personas->all());
+        $count_personas = count($personas->keys());
 
         //numero de emergencias
         $emergencias = $mlpas->groupBy('FK_LPA_EMERGENCIA');
-        $count_emergencias = count($emergencias->all());
+        $count_emergencias = count($emergencias->keys());
 
         //total de departamentos
         $departamentos = $mlpas->groupBy('emergencia.DEPARTAMENTO');
-        $count_departamentos = count($departamentos->all());
+        $count_departamentos = count($departamentos->keys());
 
         //total de municipios
-        $municipios = $mlpas->groupBy('emergencias.MUNICIPIO');
-        $count_municipios = count($municipios->all());
+        $municipios = $mlpas->groupBy('emergencia.MUNICIPIO');
+        $count_municipios = count($municipios->keys());
 
         return [
             "beneficiarios_unicos" => $count_personas,
@@ -979,8 +979,6 @@ class PersonAttended extends Controller
             "departamentos" => $count_departamentos,
             "municipios" => $count_municipios,
             
-            "municipios_" => $municipios->keys(),
-            "departamentos_" => $departamentos->keys(),
             "emergencias_" => $emergencias->keys(),
             
         ];
