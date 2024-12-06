@@ -956,16 +956,33 @@ class PersonAttended extends Controller
 
         $emergencias = count(
             DB::table('M_LPA_EMERGENCIAS')
+            ->join('M_LPA', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPA.FK_LPA_EMERGENCIA')
             ->select('COD_EMERGENCIAS')
             ->groupBy('COD_EMERGENCIAS')
+            ->get()
+        );
+        
+        $departamentos = count(
+            DB::table('M_LPA_EMERGENCIAS')
+            ->join('M_LPA', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPA.FK_LPA_EMERGENCIA')
+            ->select('DEPARTAMENTO')
+            ->groupBy('DEPARTAMENTO')
+            ->get()
+        );
+        
+        $municipios = count(
+            DB::table('M_LPA_EMERGENCIAS')
+            ->join('M_LPA', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPA.FK_LPA_EMERGENCIA')
+            ->select('MUNICIPIO')
+            ->groupBy('MUNICIPIO')
             ->get()
         );
 
         return [
             "beneficiarios_unicos" => $personas,
             "emergencias" => $emergencias,
-            "departamentos" => 13,
-            "municipios" => 41,
+            "departamentos" => $departamentos,
+            "municipios" => $municipios,
         ];
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
