@@ -978,9 +978,6 @@ class PersonAttended extends Controller
             "emergencias" => $count_emergencias,
             "departamentos" => $count_departamentos,
             "municipios" => $count_municipios,
-            
-            "emergencias_" => $emergencias->keys(),
-            
         ];
     }
 }
