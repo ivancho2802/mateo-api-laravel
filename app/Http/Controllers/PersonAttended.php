@@ -953,9 +953,11 @@ class PersonAttended extends Controller
 
         $personas = count(MLpaPersona::has('atenciones')->get());
 
+        $emergencias = count(MLpaEmergencia::has('atenciones')->get());
+
         return [
             "beneficiarios_unicos" => $personas,
-            "emergencias" => 704,
+            "emergencias" => $emergencias,
             "departamentos" => 13,
             "municipios" => 41,
         ];

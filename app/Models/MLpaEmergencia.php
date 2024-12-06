@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\MLpa;
 
 class MLpaEmergencia extends Model
 {
@@ -26,4 +27,10 @@ class MLpaEmergencia extends Model
         "MUNICIPIO",
         "LUGAR_ATENCION"
     ];
+
+    
+    public function atenciones()
+    {
+        return $this->hasMany(MLpa::class, 'FK_LPA_EMERGENCIA', 'ID');
+    }
 }
