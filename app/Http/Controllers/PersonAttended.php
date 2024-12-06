@@ -956,7 +956,7 @@ class PersonAttended extends Controller
 
         $emergencias = count(
             DB::table('M_LPA_EMERGENCIAS')
-            ->join('M_LPA', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPA.FK_LPA_EMERGENCIA')
+            ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
             ->select('COD_EMERGENCIAS')
             ->groupBy('COD_EMERGENCIAS')
             ->get()
@@ -964,7 +964,7 @@ class PersonAttended extends Controller
         
         $departamentos = count(
             DB::table('M_LPA_EMERGENCIAS')
-            ->join('M_LPA', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPA.FK_LPA_EMERGENCIA')
+            ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
             ->select('DEPARTAMENTO')
             ->groupBy('DEPARTAMENTO')
             ->get()
@@ -972,7 +972,7 @@ class PersonAttended extends Controller
         
         $municipios = count(
             DB::table('M_LPA_EMERGENCIAS')
-            ->join('M_LPA', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPA.FK_LPA_EMERGENCIA')
+            ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
             ->select('MUNICIPIO')
             ->groupBy('MUNICIPIO')
             ->get()
