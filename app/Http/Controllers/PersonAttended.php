@@ -950,8 +950,11 @@ class PersonAttended extends Controller
 
     function dataLpaConsorcio(Request $request)
     {
+
+        $personas = count(MLpaPersona::has('atenciones')->get());
+
         return [
-            "beneficiarios_unicos" => 46384,
+            "beneficiarios_unicos" => $personas,
             "emergencias" => 704,
             "departamentos" => 13,
             "municipios" => 41,
