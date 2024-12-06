@@ -952,7 +952,7 @@ class PersonAttended extends Controller
     {
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-            ->width("emergencia")
+            ->with("emergencia")
             ->nodeleted();
             //->get(); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
         //->groupBy('FECHA_ATENCION');
