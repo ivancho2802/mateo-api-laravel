@@ -978,40 +978,26 @@ class PersonAttended extends Controller
             ->get()
         );
 
+        $actividades = count(
+            DB::table('activities')
+            ->join('M_LPAS', 'activities.cod', '=', 'M_LPAS.COD_ACTIVIDAD')
+            ->select('cod')
+            ->groupBy('cod')
+            ->get()
+        );
+
+        $filesExported = Storage::files("/monitoreoEvaluacion");
+
+        $comunidades_rt = count(collect($filesExported));
+
         return [
             "beneficiarios_unicos" => $personas,
             "emergencias" => $emergencias,
             "departamentos" => $departamentos,
             "municipios" => $municipios,
+            "actividades" => $actividades,
+            "comunidades_rt" => $comunidades_rt,
         ];
 
-        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-            ->with("emergencia")
-            ->nodeleted()
-            ->get(); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
-        //->groupBy('FECHA_ATENCION');
-
-        //total de personas
-        $personas = $mlpas->groupBy('FK_LPA_PERSONA');
-        $count_personas = count($personas->keys());
-
-        //numero de emergencias
-        $emergencias = $mlpas->groupBy('FK_LPA_EMERGENCIA');
-        $count_emergencias = count($emergencias->keys());
-
-        //total de departamentos
-        $departamentos = $mlpas->groupBy('emergencia.DEPARTAMENTO');
-        $count_departamentos = count($departamentos->keys());
-
-        //total de municipios
-        $municipios = $mlpas->groupBy('emergencia.MUNICIPIO');
-        $count_municipios = count($municipios->keys());
-
-        return [
-            "beneficiarios_unicos" => $count_personas,
-            "emergencias" => $count_emergencias,
-            "departamentos" => $count_departamentos,
-            "municipios" => $count_municipios,
-        ];
     }
 }
