@@ -990,7 +990,13 @@ class PersonAttended extends Controller
 
         $comunidades_rt = count(collect($filesExported));
 
+        $atenciones = count(MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
+        //->where("FK_LPA_PERSONA", ">", "22270")
+        ->nodeleted()
+        ->get());
+
         return [
+            "atenciones" => $atenciones,
             "beneficiarios_unicos" => $personas,
             "emergencias" => $emergencias,
             "departamentos" => $departamentos,
