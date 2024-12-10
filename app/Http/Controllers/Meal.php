@@ -1067,8 +1067,8 @@ class Meal extends Controller
         // Process the Excel file
         Excel::import($import, $file);
 
-        dd($import->getCells());
+        //dd($import->getCells());
 
-        return response()->json(["message" => "operacion hecha con exito", "data" => []]);
+        return response()->json(["message" => "operacion hecha con exito", "data" => $import->getCells()]);
     }
 }
