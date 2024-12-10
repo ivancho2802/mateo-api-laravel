@@ -206,6 +206,10 @@ Route::prefix('meal')->group(function () {
   });
 
   Route::middleware(['auth:sanctum'])->post('/rr/upload', [App\Http\Controllers\ReportController::class, 'stored']);
+
+  
+  Route::middleware(['auth:sanctum'])->get('/rr/prod_info/upload', [App\Http\Controllers\Meal::class, 'uploadProdinfo']);
+
 });
 
 Route::prefix('firebird')->group(function () {

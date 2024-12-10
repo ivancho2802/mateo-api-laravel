@@ -20,7 +20,7 @@ use App\Models\mGraficos;
 use Illuminate\Support\Facades\Config;
 use App\Traits\TraitDepartments;
 use App\Models\MLpaFix;
-
+use App\Http\Controllers\ImportReportRRProdinfoClass;
 
 class Meal extends Controller
 {
@@ -1041,5 +1041,30 @@ class Meal extends Controller
 
         return response()->json(['status' => true, 'data' => ($reposts)->values()]);
 
+    }
+
+    /**
+     * servicio para la migfracion de datos de productos de informacion
+     */
+
+    function uploadProdinfo(Request $request){
+
+        
+        // Validate the uploaded file
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        // Get the uploaded file
+        $file = $request->file('file');
+        
+        $import = new ImportReportRRProdinfoClass();
+
+        $import->onlySheets('Productos de Información');
+
+        // Process the Excel file
+        Excel::import($import, $file);
+
+        return response()->json(["message" => "operacion hecha con exito", "data" => []]);
     }
 }
