@@ -23,7 +23,7 @@ class ReportRRProdinfoClass implements OnEachRow, SkipsEmptyRows
 
     public function model(array $row)
     {
-        dd("collection", $row[7]->getHyperlink()->getUrl());
+        //dd("collection", $row[7]->getHyperlink()->getUrl());
 
         return [
             'name' => $row[0],
