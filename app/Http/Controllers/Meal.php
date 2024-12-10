@@ -1062,7 +1062,7 @@ class Meal extends Controller
         
         $import = new ReportRRProdinfoClass();
 
-        $import->onlySheets('Productos de Información');
+        //$import->onlySheets('Productos de Información');
 
         // Process the Excel file
         Excel::import($import, $file);
