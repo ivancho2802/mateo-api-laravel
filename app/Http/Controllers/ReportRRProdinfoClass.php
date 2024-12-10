@@ -35,9 +35,6 @@ class ReportRRProdinfoClass implements ToCollection
                 continue;
             }
 
-            $link1 = $row[11];
-            $link2 = $row[12];
-
             dd("row", $row);
 
             //foreach ($row as $col) {
