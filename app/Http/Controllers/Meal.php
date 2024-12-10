@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Config;
 use App\Traits\TraitDepartments;
 use App\Models\MLpaFix;
 use App\Http\Controllers\ImportReportRRProdinfoClass;
+use Excel;
 
 class Meal extends Controller
 {
