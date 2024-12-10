@@ -7,17 +7,27 @@ use App\Models\Reports;
 use App\Models\migrateCustom;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\Importable;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Cell;
 
-class ReportRRProdinfoClass implements ToCollection
+class ReportRRProdinfoClass implements ToModel
 {
     //
     use Importable;
 
-    public function collection(Collection $rows)
+    public function model(array $row)
+    {
+        dd("collection", $row);
+        
+        return [
+            'name' => $row[0],
+        ];
+    }
+
+    public function collection(array $rows)
     {
         $i = 0;
 
