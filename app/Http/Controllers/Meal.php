@@ -870,7 +870,7 @@ class Meal extends Controller
     {
 
         if ($request->pagination) {
-            $mmqrs = MMqr::paginate(7);
+            $mmqrs = MMqr::paginate(5);
         } else {
             //SE AGREGA BUzON DE SUGERENCIAS
             //select "CHANNEL_IN" from "M_MQR" GROUP BY "CHANNEL_IN"
