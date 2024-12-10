@@ -16,7 +16,7 @@ use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Row;
 
-class ReportRRProdinfoClass implements  OnEachRow, SkipsEmptyRows
+class ReportRRProdinfoClass implements OnEachRow, SkipsEmptyRows
 {
     //
     protected $cells = [];
@@ -42,9 +42,9 @@ class ReportRRProdinfoClass implements  OnEachRow, SkipsEmptyRows
             $cellObj = new Cell($cell);
             $cellPHPOffice = $cellObj->getDelegate();
 
-            dd("cellPHPOffice", $cellPHPOffice);
 
             if ($cellPHPOffice->hasHyperlink()) {
+                dd("cellPHPOffice", $cellPHPOffice->getHyperlink()->getUrl());
                 $cells[] = $cellPHPOffice->getHyperlink()->getUrl();
             } else {
                 $cells[] = $cellPHPOffice->getValue();
@@ -76,7 +76,7 @@ class ReportRRProdinfoClass implements  OnEachRow, SkipsEmptyRows
             }
 
             dd([
-                "row" => $row, 
+                "row" => $row,
                 "6" => $row[6]->getCellIterator(),
                 "7" => $row[7]->getCellIterator()
             ]);
