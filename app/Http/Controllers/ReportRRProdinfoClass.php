@@ -42,6 +42,8 @@ class ReportRRProdinfoClass implements  OnEachRow, SkipsEmptyRows
             $cellObj = new Cell($cell);
             $cellPHPOffice = $cellObj->getDelegate();
 
+            dd("cellPHPOffice", $cellPHPOffice);
+
             if ($cellPHPOffice->hasHyperlink()) {
                 $cells[] = $cellPHPOffice->getHyperlink()->getUrl();
             } else {
