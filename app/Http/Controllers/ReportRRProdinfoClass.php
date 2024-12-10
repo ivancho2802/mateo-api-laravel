@@ -28,6 +28,8 @@ class ReportRRProdinfoClass implements ToCollection
 
         $id_reports = [];
 
+        dd("collection", $rows);
+
         foreach ($rows as $row) {
 
             if ($i == 0 || !$row[0]) {
