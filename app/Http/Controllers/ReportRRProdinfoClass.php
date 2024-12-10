@@ -12,11 +12,14 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Cell;
+use Maatwebsite\Excel\Concerns\OnEachRow;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Row;
 
-class ReportRRProdinfoClass implements ToModel
+class ReportRRProdinfoClass implements  OnEachRow, SkipsEmptyRows
 {
     //
-    use Importable;
+    protected $cells = [];
 
     public function model(array $row)
     {
@@ -26,6 +29,29 @@ class ReportRRProdinfoClass implements ToModel
             'name' => $row[0],
         ];
     }
+    public function getCells(): array
+    {
+        return $this->cells;
+    }
+
+    public function onRow(Row $row)
+    {
+        $cells = [];
+
+        foreach ($row->getDelegate()->getCellIterator() as $cell) {
+            $cellObj = new Cell($cell);
+            $cellPHPOffice = $cellObj->getDelegate();
+
+            if ($cellPHPOffice->hasHyperlink()) {
+                $cells[] = $cellPHPOffice->getHyperlink()->getUrl();
+            } else {
+                $cells[] = $cellPHPOffice->getValue();
+            }
+        }
+
+        $this->cells[] = $cells;
+    }
+
 
     public function collection(array $rows)
     {
