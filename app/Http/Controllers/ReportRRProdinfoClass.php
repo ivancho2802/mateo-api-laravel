@@ -21,7 +21,8 @@ class ReportRRProdinfoClass implements ToModel
     public function model(array $row)
     {
         dd("collection", $row);
-        
+        dd("collection", $row[7]->getHyperlink()->getUrl());
+
         return [
             'name' => $row[0],
         ];
