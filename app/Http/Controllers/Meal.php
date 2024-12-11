@@ -1073,8 +1073,8 @@ class Meal extends Controller
         foreach ($prod_infos as $row) {
 
             if ($i == 0) {
-                continue;
                 $i++;
+                continue;
             }
 
             dd($row);
