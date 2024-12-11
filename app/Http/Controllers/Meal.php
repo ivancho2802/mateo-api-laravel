@@ -1107,7 +1107,6 @@ class Meal extends Controller
             $i++;
         };
 
-
-        return response()->json(["message" => "operacion hecha con exito", "data" => $import->getCells()]);
+        return response()->json(["message" => "operacion hecha con exito", "data" => []]);
     }
 }
