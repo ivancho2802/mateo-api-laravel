@@ -1077,8 +1077,6 @@ class Meal extends Controller
                 continue;
             }
 
-            dd($row);
-
             $links = $row[6] . ',' . $row[7];
 
             Reports::updateOrCreate(
