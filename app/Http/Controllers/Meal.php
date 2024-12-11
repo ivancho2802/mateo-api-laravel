@@ -1074,6 +1074,7 @@ class Meal extends Controller
             
             if ($i == 0) {
                 continue;
+                $i++;
             }
 
             dd($row);
