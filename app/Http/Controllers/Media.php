@@ -107,4 +107,27 @@ class Media extends Controller
     return response()->download(storage_path('app/'.$folder.'/' . $filenameUpper));//->deleteFileAfterSend(true);
  
   }
+
+  
+  function downloadMediaProdinfo()
+  {
+
+    $headers = array(
+      'Content-Type: application/vnd.ms-excel',
+    );
+    /* $file = public_path() . "/download/LPA_MIRE+_V1.xlsx";
+
+        if ($nameFile == "lpa") {
+            $file = "LPA_MIRE+_V1.xlsx";
+        }
+
+        return Storage::download($file, 'LPA_MIRE+_V1.xlsx', $headers); */
+    $filename = "RR_Actualización_productos_de_información.xlsx";
+    // Get path from storage directory storage_path no funcionó
+    // Get path from storage directory public_path si funcionó
+    $path = (public_path() . '/download/' . $filename);
+
+    // Download file with custom headers
+    return response()->download($path, $filename, $headers);
+  }
 }

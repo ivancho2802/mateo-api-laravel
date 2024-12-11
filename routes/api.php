@@ -210,6 +210,9 @@ Route::prefix('meal')->group(function () {
   
   Route::middleware(['auth:sanctum'])->post('/rr/prod_info/upload', [App\Http\Controllers\Meal::class, 'uploadProdinfo']);
 
+  Route::get('/rr/prod_info/download', [App\Http\Controllers\Media::class, 'downloadMediaProdinfo']);
+
+
 });
 
 Route::prefix('firebird')->group(function () {
