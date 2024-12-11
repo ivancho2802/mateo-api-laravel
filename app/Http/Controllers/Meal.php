@@ -1069,16 +1069,15 @@ class Meal extends Controller
 
         $prod_infos = collect($import->getCells());
         $i = 0;
-        dd($prod_infos);
 
         foreach ($prod_infos as $row) {
+
+            dd($row);
             
             if ($i == 0) {
                 continue;
                 $i++;
             }
-
-            dd($row);
 
             $links = $row[6] . ',' . $row[7];
 
