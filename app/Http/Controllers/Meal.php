@@ -1068,10 +1068,17 @@ class Meal extends Controller
         Excel::import($import, $file);
 
         $prod_infos = collect($import->getCells());
+        $i = 0;
 
         foreach ($prod_infos as $row) {
+            
+            if ($i == 0 || !$row[0]) {
+                continue;
+            }
 
             dd($row);
+
+            $links = $row[6] . ',' . $row[7];
 
             Reports::updateOrCreate(
                 /* 'year',
@@ -1083,25 +1090,20 @@ class Meal extends Controller
                 'links',
                 'ID_M_USUARIOS' */
 
-                ['codigo_emergencia' => $row->_xform_id_string],
+                ['codigo_emergencia' => $row[0]],
                 [
-                    'ACCION' => "ALERTA",
-                    'ID_M_FORMULARIOS' => $json_response[0]->_xform_id_string,
-                    "ASSET_UID" => $json_response[0]->_xform_id_string,
-                    "UID" => $json_response[0]->_uuid,
-                    "URL_DATA" => $url,
-                    "URL_CAMPOS" =>  $url,
-                    "ESTATUS" => $json_response[0]->_status,
-                    "FECHA" => $json_response[0]->_submission_time,
-                    "FECHA_REGISTRO" => $json_response[0]->start,
+                    "year" => $row[5],
+                    "departamento" => $row[1],
+                    "municipio" => $row[2],
+                    "tipo_emergencia" => $row[4],
+                    "fecha_ern" => $row[3],
+                    "links" => $links,
+                    "ID_M_USUARIOS" => 1
 
-                    //"formhub\/uuid": "5ac352c78ba544559fed4783264c14df",
-                    //"meta\/instanceID": "uuid:f58da61d-dffd-4dc6-b770-3670807f7c6b",
-
-                    "ID_M_USUARIOS" => $ID_USER
                 ]
             );
 
+            $i++;
         };
 
 
