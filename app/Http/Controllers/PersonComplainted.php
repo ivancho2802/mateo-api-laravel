@@ -120,7 +120,12 @@ class PersonComplainted extends Controller
 
             $query_mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
 
-            $count_mmqrs = count($query_mmqrs->get());
+            $mqrs = $query_mmqrs->get();
+            $count_mmqrs = 0;
+
+            if(isset($mqrs)){
+                $count_mmqrs = count($mqrs);
+            }
 
             $mmqrs = $query_mmqrs->paginate(10);
 
