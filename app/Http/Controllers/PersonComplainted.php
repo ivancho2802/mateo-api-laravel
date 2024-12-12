@@ -116,22 +116,23 @@ class PersonComplainted extends Controller
 
             $migrate_custom->save();
 
-            $id_mqrs = [];
+            $mmqrs = [];
 
             if(isset($migrate_custom->table_id)){
                 $id_mqrs = explode(", ", $migrate_custom->table_id);
+                $query_mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
+    
+                $mqrs = $query_mmqrs->get();
+                
+                $count_mmqrs = 0;
+    
+                if(isset($mqrs)){
+                    $count_mmqrs = count($mqrs);
+                }
+    
+                $mmqrs = $query_mmqrs->paginate(10);
             }
 
-            $query_mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
-
-            $mqrs = $query_mmqrs->get();
-            $count_mmqrs = 0;
-
-            if(isset($mqrs)){
-                $count_mmqrs = count($mqrs);
-            }
-
-            $mmqrs = $query_mmqrs->paginate(10);
 
             $data['mmqrs'] = $mmqrs;
 
