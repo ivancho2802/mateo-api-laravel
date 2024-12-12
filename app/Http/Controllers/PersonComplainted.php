@@ -118,7 +118,9 @@ class PersonComplainted extends Controller
 
             $mmqrs = [];
 
-            if(isset($migrate_custom->table_id)){
+            dd("migrate_custom", $migrate_custom->table_id);
+
+            if(isset($migrate_custom->table_id) && !count($migrate_custom->table_id)){
                 $id_mqrs = explode(", ", $migrate_custom->table_id);
                 $query_mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
     
