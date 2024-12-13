@@ -31,15 +31,16 @@ class PersonComplainted extends Controller
                     isset($request->ajustes) ||
                     isset($request->acceso_rt) ||
                     isset($request->participacion_rt) ||
-                    isset($request->ajustes_rt) 
-                ) && isset($request->month)) {
+                    isset($request->ajustes_rt)
+                ) && isset($request->month)
+            ) {
 
                 //si algun campo no viene no lo actualizo
 
                 $request['type'] = "MQR";
                 $request['texto'] = $request->analisis;
 
-                $request = json_decode(json_encode(collect($request->toArray())->filter()->all() ), FALSE);
+                $request = json_decode(json_encode(collect($request->toArray())->filter()->all()), FALSE);
 
                 $resulAlaisis = Analisis::updateOrCreate(
                     [
@@ -120,19 +121,22 @@ class PersonComplainted extends Controller
 
             dd("migrate_custom", $migrate_custom->table_id);
 
-            if(isset($migrate_custom->table_id) && !count($migrate_custom->table_id)){
+            if (isset($migrate_custom->table_id) && !count($migrate_custom->table_id)) {
                 $id_mqrs = explode(", ", $migrate_custom->table_id);
-                $query_mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
-    
-                $mqrs = $query_mmqrs->get();
-                
-                $count_mmqrs = 0;
-    
-                if(isset($mqrs)){
-                    $count_mmqrs = count($mqrs);
+                if (is_numeric(($id_mqrs[0]))) {
+
+                    $query_mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
+
+                    $mqrs = $query_mmqrs->get();
+
+                    $count_mmqrs = 0;
+
+                    if (isset($mqrs)) {
+                        $count_mmqrs = count($mqrs);
+                    }
+
+                    $mmqrs = $query_mmqrs->paginate(10);
                 }
-    
-                $mmqrs = $query_mmqrs->paginate(10);
             }
 
 
