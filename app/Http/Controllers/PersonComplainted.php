@@ -118,6 +118,7 @@ class PersonComplainted extends Controller
             $migrate_custom->save();
 
             $mmqrs = [];
+            $count_mmqrs = 0;
 
             if (isset($migrate_custom->table_id) ) {
                 $id_mqrs = explode(", ", $migrate_custom->table_id);
@@ -127,7 +128,6 @@ class PersonComplainted extends Controller
 
                     $mqrs = $query_mmqrs->get();
 
-                    $count_mmqrs = 0;
 
                     if (isset($mqrs)) {
                         $count_mmqrs = count($mqrs);
