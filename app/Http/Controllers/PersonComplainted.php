@@ -117,7 +117,7 @@ class PersonComplainted extends Controller
 
             $migrate_custom->save();
 
-            $mmqrs = [];
+            $mmqrs = MMqr::all()->limit(10);
             $count_mmqrs = 0;
 
             if (isset($migrate_custom->table_id) ) {
