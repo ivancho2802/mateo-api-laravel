@@ -38,8 +38,6 @@ class MqrCaminoMireClass implements ToCollection
                 continue;
             }
 
-            dd(">>>>>", $row[0], $indexheader, $i);
-            
             $date_in = Date::excelToDateTimeObject($row[0]);
 
             $DATE_IN = $date_in; //date('d-m-Y', strtotime($date_birday));
