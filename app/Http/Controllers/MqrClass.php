@@ -33,7 +33,7 @@ class MqrClass implements ToCollection
 
             //$countElement = count($row->filter()->all());//|| !$row[0] || !$row[1] || $countElement < 15 || $countElement > 16
 
-            if ($i <=  $indexheader ) {
+            if ($i <  $indexheader ) {
                 $i++;
                 continue;
             }
