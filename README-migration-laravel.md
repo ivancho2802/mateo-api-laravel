@@ -2,7 +2,7 @@
 
 # crear migracion 
 
-    php artisan make:migration add_updatecreare_to_dcontact_table --table=D_CONTACTS
+    php artisan make:migration add_updatecreate_to_dcontact_table --table=D_CONTACTS
     php artisan make:migration create_job_details_table
 
 # migrar archiv especifico

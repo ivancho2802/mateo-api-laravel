@@ -9,6 +9,7 @@ file_ref = 'PENDING'
 and table_id not like '{%' 
 order by updated_at desc limit 7 ;
 
+
 SELECT *
 FROM 
 public.migrate_customs 
@@ -19,7 +20,7 @@ file_ref like '%UPLOADED%'
 --and table_id not like '{%' 
 order by updated_at desc limit 7 ;
 
-SELECT file_ref, *
+SELECT *
 FROM 
 public.migrate_customs 
 where 
@@ -27,7 +28,8 @@ where
 "table" = 'M_LPAS'
   AND file_ref = 'PROCECED' 
 --and table_id not like '{%' 
-order by updated_at desc limit 7 ;
+order by updated_at desc limit 7 ; 
+SELECT * FROM "M_LPAS" LIMIT 1
 
 SELECT *
 FROM 
@@ -107,7 +109,7 @@ update analisis set recuperacion_temprana = 'No hay datos' where recuperacion_te
 update analisis set acompanamiento = 'No hay datos' where acompanamiento is null;
 select *  from analisis;
 
-select  actividad, cod  from activities  where actividad like '%Ã¡%' group by actividad, cod;
+select  actividad, cod  from activities order by cod  where actividad like '%Ã¡%' group by actividad, cod;
 
 
 select count(*) from "activities" where "activities"."cod" like '%NA%' in ('CF1', 'E2', 'E3', 'E5', 'E6', 'E7', 'F3', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'P1', 'P2', 'P7', 'S2', 'S4', 'S5', 'W2', 'W3', 'W4', 'W6', 'W7')
@@ -143,11 +145,26 @@ WHERE "M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND
 	"M_LPA_PERSONAS"."DISCAPACIDAD_COMUNICAR" = 'Si - No puede hacerlo' ) 
 -- jobs
 
+select count(*)
+from "M_LPAS" --, "M_LPA_PERSONAS"
+---select DISTINCT "M_LPAS"."FK_LPA_PERSONA" FROM "M_LPAS", "M_LPA_PERSONAS" 
+WHERE 
+	--"M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND 
+	--"M_LPA_PERSONAS"."ID" = "M_LPAS"."FK_LPA_PERSONA" and
+	"M_LPAS"."FASE_ATENCION" = 'Fase III-RecuperaciÃ³n temprana' and 
+	--"M_LPAS"."DONANTE" = 'COSUDE' and 
+	"M_LPAS"."FECHA_ATENCION" >= '2024-11-01'
+ GROUP BY "M_LPAS"."DONANTE"
+
+select * from "M_LPAS" limit 10
+
+select "M_LPAS"."FASE_ATENCION" from "M_LPAS" group by "M_LPAS"."FASE_ATENCION"
+select "M_LPAS"."DONANTE" from "M_LPAS" group by "M_LPAS"."DONANTE"
 select * from job_details
 select count(*) from jobs
-delete from jobs
+--delete from jobs
 select * from failed_jobs
-delete from failed_jobs
+--delete from failed_jobs
 --
 --delete from job_details
 --delete from jobs
@@ -240,6 +257,7 @@ WHERE
 	"FASE_ATENCION"='Fase II- Respuesta RÃ¡pida' OR
 	"FASE_ATENCION"='Fase II- Respuesta RÃ¡pida ' AND 
 "FECHA_ATENCION" >= '2023-01-01'
+ 
 
 SELECT fecha_ern, created_at FROM public.reports ORDER BY created_at desc 
 
@@ -249,3 +267,13 @@ from
 
 SELECT created_at, month, * FROM public.analisis
 ORDER BY month desc 
+
+-- emergencias
+select * from "M_LPA_EMERGENCIAS", "M_LPAS" WHERE "DEPARTAMENTO" = '' AND "M_LPAS"."FK_LPA_EMERGENCIA" = "M_LPA_EMERGENCIAS"."ID" 
+
+select * from reports
+
+
+select * from "M_MQR" WHERE "DATE_IN" > '2024-03-01' LIMIT 10 
+
+select * from migrate_customs where "table"='M_MQR'  order by created_at desc limit 10
