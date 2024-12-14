@@ -37,13 +37,6 @@ class MqrSpaceCollectClass implements ToCollection
                 $i++;
                 continue;
             }
-
-            //$row->shift();
-            //unset($row[0]);
-
-            $row = $row->all();
-
-            dd("row", $row);
             
             $date_in = Date::excelToDateTimeObject($row[0]);
 

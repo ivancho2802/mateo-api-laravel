@@ -38,6 +38,7 @@ class MqrClass implements ToCollection
                 continue;
             }
 
+            // esta linea es por que la genio de liliana puso una fila por delante vacia pero solo debe pasar una vez COLUMNA
             $row->shift();
             //unset($row[0]);
 
