@@ -94,8 +94,7 @@ class PersonComplainted extends Controller
             // Process the Excel file Consolidado
             //Excel::import(new MqrImportClass, $file, 'Consolidado');
 
-            //$import = new MqrImportClass();
-            $import = new MqrSpaceCollectiveImportClass();
+            $import = new MqrImportClass();
 
             $import->onlySheets('Formato en limpio');
 
@@ -105,6 +104,13 @@ class PersonComplainted extends Controller
             $collection = (new MqrClass)->toCollection($file);
 
             $count_record_excel = helper::countValidValues($collection[0]);
+
+            $import = new MqrSpaceCollectiveImportClass();
+
+            $import->onlySheets('Espacios colectivos');
+
+            // Process the Excel file
+            Excel::import($import, $file);
 
             $migrate_custom = migrateCustom::where([
                 'table' => "M_MQR"
