@@ -94,7 +94,7 @@ class PersonComplainted extends Controller
             // Process the Excel file Consolidado
             //Excel::import(new MqrImportClass, $file, 'Consolidado');
 
-            $import = new MqrImportClass();
+            //$import = new MqrImportClass();
             $import = new MqrSpaceCollectiveImportClass();
 
             $import->onlySheets('Formato en limpio');

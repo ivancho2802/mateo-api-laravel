@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use App\Models\MMqr;
+use App\Models\MqrSpaces;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use App\Models\migrateCustom;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -49,46 +49,24 @@ class MqrSpaceCollectClass implements ToCollection
 
             $DATE_IN = $date_in; //date('d-m-Y', strtotime($date_birday));
             
-            $mrq = MMqr::create([
-
-                'ORG_REPORT' => $row[0],
-                'CONSECUTIVOS_CASES' => $row[1],
-                'MONTH_REPORT' => $row[2],
-                'DATE_IN' => $DATE_IN,//3
-                //NEW
-                'TIPO_INTERVE' => $row[4],
-                //NEW
-                'COD_EMERGENCIA' => $row[5],
-                'CHANNEL_IN' => $row[6],
-                'CATEGORY' => $row[7],
-                'SUB_CATEGORY' => $row[8],
-                'THEME' => $row[9],
-                'ETNIA' => $row[10],
-                //NEW
-                'NACIONALIDAD' => $row[11],
-                'SEXO' => $row[12],
-                'RANGE_EDAD' => $row[13],
-                'DEPARTMENT' => $row[14],
-                'MUNICICIO' => $row[15],
-                'ADDRESS' => $row[16],
-                //NEW
-                'EDO' => $row[17],
-                'VALID' => $row[18],
-                //NEW
-                'DEVI_INTER' => $row[19],
-                
+            $mrq = MqrSpaces::create([
+                'date_entry' => $DATE_IN,
+                'org_report' => $row[1],
+                'type_act' => $row[2],
+                'departamento' => $row[3],
+                'municipio' => $row[4],
+                'women' => $row[5],
+                'men' => $row[6],
             ]);
 
-            $mrq = MMqr::where([
-                'CONSECUTIVOS_CASES' => $row[1],
-            ])->first();
+            $mrq = MqrSpaces::get()->last();
 
             $id_mqr[] = $mrq->ID;
 
         }
 
         migrateCustom::create([
-            'table' => 'M_MQR',
+            'table' => 'mqr_spaces',
             'table_id' => implode(", ", $id_mqr),
             'file_ref' => '-',
         ]);

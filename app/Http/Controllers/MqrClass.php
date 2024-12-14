@@ -39,7 +39,6 @@ class MqrClass implements ToCollection
             }
 
             $row->shift();
-            dd($row);
             //unset($row[0]);
 
             $row = $row->all();
