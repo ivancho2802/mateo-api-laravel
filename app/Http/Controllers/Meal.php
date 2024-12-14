@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MLpaEmergencia;
 use App\Models\MLpa;
-use App\Models\MLpaPersona;
+use App\Models\MqrCaminos;
 use App\Models\MMqr;
 use App\Models\MqrSpaces;
 use App\Models\MKoboRespuestas;
@@ -911,6 +911,27 @@ class Meal extends Controller
 
         return $mmqrs;
     }
+
+    
+    function getMqrCaminos(Request $request)
+    {
+        
+        if ($request->pagination) {
+            $mmqrs = MqrCaminos::paginate(5);
+        } else {
+            //SE AGREGA BUzON DE SUGERENCIAS
+            //select "CHANNEL_IN" from "M_MQR" GROUP BY "CHANNEL_IN"
+            $list_mqrs = MqrCaminos::all();
+
+            $mmqrs = [
+                "mqr_caminos" => $list_mqrs
+            ];
+        }
+
+        return $mmqrs;
+    }
+
+    
 
     /**
      * pda
