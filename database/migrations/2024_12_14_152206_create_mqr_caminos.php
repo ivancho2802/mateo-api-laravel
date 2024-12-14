@@ -17,7 +17,6 @@ class CreateMqrCaminos extends Migration
             //
             $table->id();
             $table->timestamps();
-            $table->string('date_entry')->nullable();
             $table->string('fecha')->nullable();
             $table->string('mes')->nullable();
             $table->string('organizacion')->nullable();
