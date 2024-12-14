@@ -7,7 +7,7 @@ use App\Models\MLpaEmergencia;
 use App\Models\MLpa;
 use App\Models\MLpaPersona;
 use App\Models\MMqr;
-use App\Models\MFormulario;
+use App\Models\MqrSpaces;
 use App\Models\MKoboRespuestas;
 use App\Models\Activities;
 use App\Models\Analisis;
@@ -888,6 +888,24 @@ class Meal extends Controller
             $mmqrs = [
                 "mqr" => $list_mqrs,
                 "analisis" => $analisis
+            ];
+        }
+
+        return $mmqrs;
+    }
+
+    function getMqrSpaces(Request $request)
+    {
+        
+        if ($request->pagination) {
+            $mmqrs = MqrSpaces::paginate(5);
+        } else {
+            //SE AGREGA BUzON DE SUGERENCIAS
+            //select "CHANNEL_IN" from "M_MQR" GROUP BY "CHANNEL_IN"
+            $list_mqrs = MqrSpaces::all();
+
+            $mmqrs = [
+                "mqr_spaces" => $list_mqrs
             ];
         }
 

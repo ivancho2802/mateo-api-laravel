@@ -95,11 +95,11 @@ class PersonComplainted extends Controller
             //Excel::import(new MqrImportClass, $file, 'Consolidado');
 
             // Process MQR
-            $import = new MqrImportClass();
+            /* $import = new MqrImportClass();
 
             $import->onlySheets('Formato en limpio');
 
-            Excel::import($import, $file);
+            Excel::import($import, $file); */
 
             // Process MQR spaces
             /* $import = new MqrSpaceCollectiveImportClass();
@@ -107,6 +107,12 @@ class PersonComplainted extends Controller
             $import->onlySheets('Espacios colectivos');
 
             Excel::import($import, $file); */
+            //
+            $import = new MqrCaminoMireImportClass();
+
+            $import->onlySheets('Camino MIRE+');
+
+            Excel::import($import, $file);
 
             // ver counts
             $collection = (new MqrClass)->toCollection($file);
