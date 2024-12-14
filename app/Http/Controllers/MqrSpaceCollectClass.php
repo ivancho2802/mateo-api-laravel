@@ -38,7 +38,7 @@ class MqrSpaceCollectClass implements ToCollection
                 continue;
             }
 
-            $row->shift();
+            //$row->shift();
             //unset($row[0]);
 
             $row = $row->all();
