@@ -69,6 +69,38 @@ class Meal extends Controller
         ];
     }
 
+    
+    /**
+     * ?page=1
+     * ?page=2
+     * ?page=3
+     */
+    function getLpaOnlyPage(Request $request)
+    {
+
+        $limit_minutes = 8000;
+        ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
+        ini_set('memory_limit', '902044M');
+        set_time_limit($limit_minutes); //0
+        ini_set('max_execution_time', '' . $limit_minutes . '');
+        ini_set('max_input_time', '' . $limit_minutes . '');
+
+        $mlpas_origin = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
+            //->where("FK_LPA_PERSONA", ">", "22270")
+            ->nodeleted();
+
+        $num_pages = round(count($mlpas_origin->get()) / 3); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
+
+        $mlpas = $mlpas_origin->paginate($num_pages); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
+        //->groupBy('FECHA_ATENCION');
+
+        return [
+            "lpas" => $mlpas
+        ];
+    }
+
+    
+
     /**
      * 
      */
