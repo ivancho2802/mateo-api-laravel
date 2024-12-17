@@ -144,7 +144,7 @@ WHERE "M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND
 	"M_LPA_PERSONAS"."DISCAPACIDAD_CUIDADO_PROPIO" = 'Si - No puede hacerlo' or
 	"M_LPA_PERSONAS"."DISCAPACIDAD_COMUNICAR" = 'Si - No puede hacerlo' ) 
 -- jobs
-
+--ver rt
 select count(*)
 from "M_LPAS" --, "M_LPA_PERSONAS"
 ---select DISTINCT "M_LPAS"."FK_LPA_PERSONA" FROM "M_LPAS", "M_LPA_PERSONAS" 
@@ -155,10 +155,22 @@ WHERE
 	--"M_LPAS"."DONANTE" = 'COSUDE' and 
 	"M_LPAS"."FECHA_ATENCION" >= '2024-11-01'
  GROUP BY "M_LPAS"."DONANTE"
+-- ver rr
+select count(*)
+from "M_LPAS" --, "M_LPA_PERSONAS"
+---select DISTINCT "M_LPAS"."FK_LPA_PERSONA" FROM "M_LPAS", "M_LPA_PERSONAS" 
+WHERE 
+	--"M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND 
+	--"M_LPA_PERSONAS"."ID" = "M_LPAS"."FK_LPA_PERSONA" and
+	"M_LPAS"."FASE_ATENCION" = 'Fase II-RecuperaciÃ³n temprana' and 
+	"M_LPAS"."FASE_ATENCION" = 'Fase I-RecuperaciÃ³n temprana' and 
+	--"M_LPAS"."DONANTE" = 'COSUDE' and 
+	"M_LPAS"."FECHA_ATENCION" >= '2024-11-01'
+ GROUP BY "M_LPAS"."DONANTE"
 
-select * from "M_LPAS" limit 10
-
+-- ver fases de atencion si es rr o rt
 select "M_LPAS"."FASE_ATENCION" from "M_LPAS" group by "M_LPAS"."FASE_ATENCION"
+
 select "M_LPAS"."DONANTE" from "M_LPAS" group by "M_LPAS"."DONANTE"
 select * from job_details
 select count(*) from jobs
