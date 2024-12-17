@@ -1008,16 +1008,57 @@ class PersonAttended extends Controller
     }
 
     function getPersonas(Request $request){
+
+        //protected $appends = ['edad', 'discapacidades', 'discapacitado'];
         
-        $select = '*';
+        /* $select = '*';
         if(isset($request->select)){
             $select = explode(",", $request->select);
         }
 
         $personas = DB::table('M_LPA_PERSONAS')
         ->select($select)
-        ->get();
+        ->get(); 
         
+        return [
+            "personas" => $personas
+        ];
+        
+        */
+        $personas = MLpaPersona::get();
+
+        $personas->map(function ($persona) {
+
+            $discapacitado = $persona->discapacitado;
+
+            if (isset($request->tipo_lpa) && $discapacitado == 0) {
+
+                if (isset($request->tipo_lpa) && $request->tipo_lpa == 'Recuperacion Temprana' && $request->FECHA_ATENCION <= '2024-07-01' && isset($persona->DOCUMENTO)) {
+
+                    $discapacitado = MLpaFix::where([
+                        'documento' => $persona->DOCUMENTO
+                    ])
+                        ->exists();
+
+                    //->where('sexo', $lpa->persona->GENERO)
+                    if (($discapacitado) ==  true) {
+                        $persona = collect($persona)->forget('discapacitado');
+                        $persona['discapacitado'] = 1;
+                    }
+
+                    //unset($lpa['persona']['DOCUMENTO']);
+                }
+            }
+
+        });
+
+        //$persona->with('atenciones');
+
+        /* $filtrados = $lpas_discapacitado->search(function ( $item, int $key) {
+            return $item > 5;
+        }); */
+
+
         return [
             "personas" => $personas
         ];
