@@ -59,8 +59,8 @@ class Meal extends Controller
         ini_set('max_input_time', '' . $limit_minutes . '');
 
         $select = '*';
-        if(!isset($request->select)){
-            $select = '$request->select';
+        if(isset($request->select)){
+            $select = $request->select;
         }
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
