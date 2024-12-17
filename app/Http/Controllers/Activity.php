@@ -86,7 +86,7 @@ class Activity extends Controller
             $select = explode(",", $request->select);
         }
 
-        $activities = DB::table('M_LPA_EMERGENCIAS')
+        $activities = DB::table('activities')
         ->select($select)
         ->get();
         
