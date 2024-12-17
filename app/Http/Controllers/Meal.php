@@ -67,7 +67,6 @@ class Meal extends Controller
         ->selectRaw($select)
         ->where("FECHA_ATENCION", ">=", "2023-01-01")
         ->whereNull("deleted_at")
-        ->nodeleted()
         ->get();
         
        /*  MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
