@@ -84,6 +84,13 @@ Route::prefix('meal')->group(function () {
   Route::middleware(['auth:sanctum'])->get('/lpasegOnly', [App\Http\Controllers\Meal::class, 'getLpaOnly']);
   Route::middleware(['auth:sanctum'])->get('/lpasegOnlyCount', [App\Http\Controllers\Meal::class, 'lpasegOnlyCount']);
 
+  //lpa para emergencias
+  Route::middleware(['auth:sanctum'])->get('/lpa/lpasegOnlyEmergencias', [App\Http\Controllers\Emergencias::class, 'getEmergencias']);
+  //lpa para emergencias
+  Route::middleware(['auth:sanctum'])->get('/lpa/lpasegOnlyActividad', [App\Http\Controllers\Activity::class, 'getActividades']);
+  //lpa para personas
+  Route::middleware(['auth:sanctum'])->get('/lpa/lpasegOnlypersonas', [App\Http\Controllers\PersonAttended::class, 'getPersonas']);
+
   Route::middleware(['auth:sanctum'])->get('/lpasegOnlyPage', [App\Http\Controllers\Meal::class, 'getLpaOnlyPage']);
 
   Route::middleware(['auth:sanctum'])->get('/lpa/emergencia', [App\Http\Controllers\Emergencias::class, 'getEmergenciaByCod']);

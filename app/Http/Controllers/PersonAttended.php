@@ -1006,4 +1006,21 @@ class PersonAttended extends Controller
         ];
 
     }
+
+    function getPersonas(Request $request){
+        
+        $select = '*';
+        if(isset($request->select)){
+            $select = explode(",", $request->select);
+        }
+
+        $personas = DB::table('M_LPA_PERSONAS')
+        ->select($select)
+        ->whereNull("deleted_at")
+        ->get();
+        
+        return [
+            "personas" => $personas
+        ];
+    }
 }

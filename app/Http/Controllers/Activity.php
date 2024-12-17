@@ -7,6 +7,7 @@ use App\Models\migrateCustom;
 use App\Models\Activities;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Activity extends Controller
 {
@@ -75,6 +76,23 @@ class Activity extends Controller
 
         return [
             "actividad" => $activity->first()
+        ];
+    }
+    
+    function getActividades(Request $request){
+
+        $select = '*';
+        if(isset($request->select)){
+            $select = explode(",", $request->select);
+        }
+
+        $activities = DB::table('M_LPA_EMERGENCIAS')
+        ->select($select)
+        ->whereNull("deleted_at")
+        ->get();
+        
+        return [
+            "actividades" => $activities
         ];
     }
 }

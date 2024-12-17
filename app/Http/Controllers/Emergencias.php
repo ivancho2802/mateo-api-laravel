@@ -148,5 +148,23 @@ class Emergencias extends Controller
             "emergencia" => $emergencia
         ];
     }
+
+    function getEmergencias(Request $request){
+
+        $select = '*';
+        if(isset($request->select)){
+            $select = explode(",", $request->select);
+        }
+
+        $emergencas = DB::table('M_LPA_EMERGENCIAS')
+        ->select($select)
+        ->whereNull("deleted_at")
+        ->get();
+        
+        return [
+            "emergencas" => $emergencas
+        ];
+        
+    }
     
 }
