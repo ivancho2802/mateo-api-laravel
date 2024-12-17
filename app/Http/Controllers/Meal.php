@@ -63,12 +63,16 @@ class Meal extends Controller
             $select = $request->select;
         }
 
-        $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
+        $mlpas = DB::table('M_LPAS')
+        ->selectRaw($select)
+        ->where("FECHA_ATENCION", ">=", "2023-01-01")
+        ->nodeleted()
+        ->get();
+        
+       /*  MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->selectRaw($select)
-            //->where("FK_LPA_PERSONA", ">", "22270")
             ->nodeleted()
-            ->get(); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
-        //->groupBy('FECHA_ATENCION');
+            ->get();  */
 
         return [
             "lpas" => $mlpas
