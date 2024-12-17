@@ -158,7 +158,6 @@ class Emergencias extends Controller
 
         $emergencas = DB::table('M_LPA_EMERGENCIAS')
         ->select($select)
-        ->whereNull("deleted_at")
         ->get();
         
         return [

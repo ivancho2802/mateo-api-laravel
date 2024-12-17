@@ -1016,7 +1016,6 @@ class PersonAttended extends Controller
 
         $personas = DB::table('M_LPA_PERSONAS')
         ->select($select)
-        ->whereNull("deleted_at")
         ->get();
         
         return [
