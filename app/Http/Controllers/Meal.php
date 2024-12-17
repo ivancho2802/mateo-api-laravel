@@ -66,6 +66,7 @@ class Meal extends Controller
         $mlpas = DB::table('M_LPAS')
         ->selectRaw($select)
         ->where("FECHA_ATENCION", ">=", "2023-01-01")
+        ->whereNull("deleted_at")
         ->nodeleted()
         ->get();
         
