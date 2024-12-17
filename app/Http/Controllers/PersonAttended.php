@@ -1050,6 +1050,8 @@ class PersonAttended extends Controller
                 }
             }
 
+            return $persona;
+
         });
 
         //$persona->with('atenciones');
