@@ -64,7 +64,7 @@ class Meal extends Controller
         }
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-            ->select($select)
+            ->select(DB::raw($select))
             //->where("FK_LPA_PERSONA", ">", "22270")
             ->nodeleted()
             ->get(); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
