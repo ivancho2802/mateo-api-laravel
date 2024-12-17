@@ -60,7 +60,7 @@ class Meal extends Controller
 
         $select = '*';
         if(isset($request->select)){
-            $select = $request->select;
+            $select = explode(",", $request->select);
         }
 
         $mlpas = DB::table('M_LPAS')
