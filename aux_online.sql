@@ -156,17 +156,30 @@ WHERE
 	"M_LPAS"."FECHA_ATENCION" >= '2024-11-01'
  GROUP BY "M_LPAS"."DONANTE"
 -- ver rr
-select count(*)
+update "M_LPAS" set "FASE_ATENCION" = 'Fase I- Respuesta RÃ¡pida' where "FASE_ATENCION" = 'Fase I- Respuesta RÃ¡pida '
+
+SELECT * FROM "M_LPA_PERSONAS" WHERE "DOCUMENTO" = '17675796'
+
+select "M_LPAS"."ID" from 
+	"M_LPAS", "M_LPA_EMERGENCIAS" 
+where 
+	"M_LPAS"."FK_LPA_EMERGENCIA" = "M_LPA_EMERGENCIAS"."ID" AND
+	"M_LPA_EMERGENCIAS"."COD_EMERGENCIAS" = 'PULE-1047.1' AND
+	"M_LPAS"."DONANTE" = 'AECID' AND 
+	"M_LPAS"."COD_ACTIVIDAD" = 'W3' AND
+	"M_LPAS"."FECHA_ATENCION" = '2024-11-10' AND 
+	"M_LPAS"."FK_LPA_PERSONA" = 41928
+	
+select  COUNT(*) --"M_LPAS"."FASE_ATENCION"
 from "M_LPAS" --, "M_LPA_PERSONAS"
----select DISTINCT "M_LPAS"."FK_LPA_PERSONA" FROM "M_LPAS", "M_LPA_PERSONAS" 
 WHERE 
-	--"M_LPAS"."FK_LPA_PERSONA" = "M_LPA_PERSONAS"."ID" AND 
-	--"M_LPA_PERSONAS"."ID" = "M_LPAS"."FK_LPA_PERSONA" and
-	"M_LPAS"."FASE_ATENCION" = 'Fase II-RecuperaciÃ³n temprana' and 
-	"M_LPAS"."FASE_ATENCION" = 'Fase I-RecuperaciÃ³n temprana' and 
-	--"M_LPAS"."DONANTE" = 'COSUDE' and 
-	"M_LPAS"."FECHA_ATENCION" >= '2024-11-01'
- GROUP BY "M_LPAS"."DONANTE"
+	("M_LPAS"."FASE_ATENCION" = 'Fase I- Respuesta RÃ¡pida' OR
+	"M_LPAS"."FASE_ATENCION" = 'Fase II- Respuesta RÃ¡pida') and 
+	--"M_LPAS"."FECHA_ATENCION" >= '2024-10-26' and
+	--"M_LPAS".created_at >= '2024-12-15' AND
+	"M_LPAS"."ID" >= 802892
+	
+ GROUP BY "M_LPAS"."FASE_ATENCION"
 
 -- ver fases de atencion si es rr o rt
 select "M_LPAS"."FASE_ATENCION" from "M_LPAS" group by "M_LPAS"."FASE_ATENCION"
@@ -175,7 +188,7 @@ select "M_LPAS"."DONANTE" from "M_LPAS" group by "M_LPAS"."DONANTE"
 select * from job_details
 select count(*) from jobs
 --delete from jobs
-select * from failed_jobs
+select COUNT(*) from failed_jobs
 --delete from failed_jobs
 --
 --delete from job_details
@@ -289,3 +302,7 @@ select * from reports
 select * from "M_MQR" WHERE "DATE_IN" > '2024-03-01' LIMIT 10 
 
 select * from migrate_customs where "table"='M_MQR'  order by created_at desc limit 10
+
+-- mqr caminos
+
+select * from mqr_caminos

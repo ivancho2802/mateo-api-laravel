@@ -59,7 +59,7 @@ class MLpaPersona extends Model
 
     ];
 
-    protected $appends = ['edad', 'discapacidades', 'discapacitado'];
+    protected $appends = ['edad','discapacitado']; //'discapacidades', 
 
     /**
      * calculo de la discapacidades  

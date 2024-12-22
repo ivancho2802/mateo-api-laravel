@@ -90,12 +90,13 @@ Route::prefix('meal')->group(function () {
   Route::middleware(['auth:sanctum'])->get('/lpa/onlyActividad', [App\Http\Controllers\Activity::class, 'getActividades']);
   //lpa para personas
   Route::middleware(['auth:sanctum'])->get('/lpa/onlypersonas', [App\Http\Controllers\PersonAttended::class, 'getPersonas']);
+  Route::middleware(['auth:sanctum'])->get('/lpa/persona/discapacitadoRt', [App\Http\Controllers\PersonAttended::class, 'getPersonaValidDiscapacidad']);
+  Route::middleware(['auth:sanctum'])->get('/lpa/persona', [App\Http\Controllers\PersonAttended::class, 'getPersonaByID']);
 
   Route::middleware(['auth:sanctum'])->get('/lpasegOnlyPage', [App\Http\Controllers\Meal::class, 'getLpaOnlyPage']);
 
   Route::middleware(['auth:sanctum'])->get('/lpa/emergencia', [App\Http\Controllers\Emergencias::class, 'getEmergenciaByCod']);
   Route::middleware(['auth:sanctum'])->get('/lpa/actividad', [App\Http\Controllers\Activity::class, 'getActividadByCod']);
-  Route::middleware(['auth:sanctum'])->get('/lpa/persona', [App\Http\Controllers\PersonAttended::class, 'getPersonaByID']);
   Route::middleware(['auth:sanctum'])->get('/lpa/rangoetareobha', [App\Http\Controllers\PersonAttended::class, 'getRangeBha']);
   Route::middleware(['auth:sanctum'])->get('/lpa/rangoetareoecho', [App\Http\Controllers\PersonAttended::class, 'getRangeEcho']);
   Route::middleware(['auth:sanctum'])->get('/lpa/tipo', [App\Http\Controllers\PersonAttended::class, 'getTipoLpa']);

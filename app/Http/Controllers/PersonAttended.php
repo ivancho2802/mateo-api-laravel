@@ -1027,7 +1027,7 @@ class PersonAttended extends Controller
         */
         $personas = MLpaPersona::get();
 
-        $personas->map(function ($persona) {
+        /* $personas->map(function ($persona) {
 
             $discapacitado = $persona->discapacitado;
 
@@ -1052,7 +1052,7 @@ class PersonAttended extends Controller
 
             return $persona;
 
-        });
+        }); */
 
         //$persona->with('atenciones');
 
@@ -1064,5 +1064,35 @@ class PersonAttended extends Controller
         return [
             "personas" => $personas
         ];
+    }
+
+    
+    function getPersonaValidDiscapacidad(Request $request){
+
+        $discapacitadoRes = $request->discapacitado;
+        
+        if($request->discapacitado == 1){
+            return $discapacitadoRes;//1
+        }
+
+        $discapacitado = $request->discapacitado;
+
+        if (isset($request->tipo_lpa)) {
+
+            if (isset($request->tipo_lpa) && $request->tipo_lpa == 'Recuperacion Temprana' && $request->FECHA_ATENCION <= '2024-07-01' && isset($request->DOCUMENTO)) {
+
+                $discapacitado = MLpaFix::where([
+                    'documento' => $request->DOCUMENTO
+                ])
+                    ->exists();
+
+                if (($discapacitado) ==  true) {
+                    $discapacitadoRes = 1;
+                }
+            }
+        }
+
+        return $discapacitadoRes;
+
     }
 }
