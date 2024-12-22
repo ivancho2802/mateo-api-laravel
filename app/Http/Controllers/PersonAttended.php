@@ -956,34 +956,34 @@ class PersonAttended extends Controller
 
         $emergencias = count(
             DB::table('M_LPA_EMERGENCIAS')
-            ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
-            ->select('COD_EMERGENCIAS')
-            ->groupBy('COD_EMERGENCIAS')
-            ->get()
+                ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
+                ->select('COD_EMERGENCIAS')
+                ->groupBy('COD_EMERGENCIAS')
+                ->get()
         );
-        
+
         $departamentos = count(
             DB::table('M_LPA_EMERGENCIAS')
-            ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
-            ->select('DEPARTAMENTO')
-            ->groupBy('DEPARTAMENTO')
-            ->get()
+                ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
+                ->select('DEPARTAMENTO')
+                ->groupBy('DEPARTAMENTO')
+                ->get()
         );
-        
+
         $municipios = count(
             DB::table('M_LPA_EMERGENCIAS')
-            ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
-            ->select('MUNICIPIO')
-            ->groupBy('MUNICIPIO')
-            ->get()
+                ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
+                ->select('MUNICIPIO')
+                ->groupBy('MUNICIPIO')
+                ->get()
         );
 
         $actividades = count(
             DB::table('activities')
-            ->join('M_LPAS', 'activities.cod', '=', 'M_LPAS.COD_ACTIVIDAD')
-            ->select('cod')
-            ->groupBy('cod')
-            ->get()
+                ->join('M_LPAS', 'activities.cod', '=', 'M_LPAS.COD_ACTIVIDAD')
+                ->select('cod')
+                ->groupBy('cod')
+                ->get()
         );
 
         $filesExported = Storage::files("/monitoreoEvaluacion");
@@ -991,9 +991,9 @@ class PersonAttended extends Controller
         $comunidades_rt = count(collect($filesExported));
 
         $atenciones = count(MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-        //->where("FK_LPA_PERSONA", ">", "22270")
-        ->nodeleted()
-        ->get());
+            //->where("FK_LPA_PERSONA", ">", "22270")
+            ->nodeleted()
+            ->get());
 
         return [
             "atenciones" => $atenciones,
@@ -1004,13 +1004,13 @@ class PersonAttended extends Controller
             "actividades" => $actividades,
             "comunidades_rt" => $comunidades_rt,
         ];
-
     }
 
-    function getPersonas(Request $request){
+    function getPersonas(Request $request)
+    {
 
         //protected $appends = ['edad', 'discapacidades', 'discapacitado'];
-        
+
         /* $select = '*';
         if(isset($request->select)){
             $select = explode(",", $request->select);
@@ -1066,13 +1066,14 @@ class PersonAttended extends Controller
         ];
     }
 
-    
-    function getPersonaValidDiscapacidad(Request $request){
+
+    function getPersonaValidDiscapacidad(Request $request)
+    {
 
         $discapacitadoRes = $request->discapacitado;
-        
-        if($request->discapacitado == 1){
-            return $discapacitadoRes;//1
+
+        if ($request->discapacitado == 1) {
+            return ["discapacitadoRes" => $discapacitadoRes];
         }
 
         $discapacitado = $request->discapacitado;
@@ -1093,6 +1094,5 @@ class PersonAttended extends Controller
         }
 
         return ["discapacitadoRes" => $discapacitadoRes];
-
     }
 }
