@@ -1025,7 +1025,15 @@ class PersonAttended extends Controller
         ];
         
         */
-        $personas = MLpaPersona::get();
+        $select = '*';
+        if(isset($request->select)){
+            $select = explode(",", $request->select);
+        }
+
+        //$personas = MLpaPersona::get();
+        $personas = DB::table('M_LPA_PERSONAS')
+        ->select($select)
+        ->get();
 
         /* $personas->map(function ($persona) {
 
