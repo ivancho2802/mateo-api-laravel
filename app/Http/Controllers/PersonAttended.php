@@ -1092,7 +1092,7 @@ class PersonAttended extends Controller
             }
         }
 
-        return $discapacitadoRes;
+        return ["discapacitadoRes" => $discapacitadoRes];
 
     }
 }
