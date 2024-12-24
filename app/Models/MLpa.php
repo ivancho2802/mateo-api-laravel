@@ -19,7 +19,7 @@ class MLpa extends Model
     public $timestamps = true;
 
     public $incrementing = false;
-    //protected $appends = ['tipo_lpa'];
+    protected $appends = ['tipo_lpa'];
     /**
      * The attributes that are mass assignable.
      *
@@ -69,7 +69,7 @@ class MLpa extends Model
         //respuesta rapida fase 1, fase 2
         //recuperacion temprana fase 3, 4, 5
         $fase = '';
-        $this->load(['actividad.directory']);
+        /* $this->load(['actividad.directory']);
         //dd("actividad", $this->actividad->directory->fase);
 
         if(isset($this->FASE_ATENCION)){
@@ -80,7 +80,7 @@ class MLpa extends Model
             }else{
                 $fase = $this->actividad->directory->fase;
             }
-        }
+        } */
         //dd("directory", $this->actividad->directory, $fase);
 
         $tipoLpa = 'Respuesta Rapida';
