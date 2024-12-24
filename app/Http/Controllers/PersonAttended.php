@@ -1030,10 +1030,10 @@ class PersonAttended extends Controller
             $select = explode(",", $request->select);
         }
 
-        //$personas = MLpaPersona::get();
-        $personas = DB::table('M_LPA_PERSONAS')
+        $personas = MLpaPersona::get();
+        /* $personas = DB::table('M_LPA_PERSONAS')
         ->select($select)
-        ->get();
+        ->get(); */
 
         /* $personas->map(function ($persona) {
 
