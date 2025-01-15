@@ -69,11 +69,11 @@ class MLpa extends Model
         //respuesta rapida fase 1, fase 2
         //recuperacion temprana fase 3, 4, 5
         $fase = '';
+        $fase = $this->FASE_ATENCION;
         /* $this->load(['actividad.directory']);
         //dd("actividad", $this->actividad->directory->fase);
 
         if(isset($this->FASE_ATENCION)){
-            $fase = $this->FASE_ATENCION;
         }else {
             if(!isset(optional($this->actividad->directory)->fase)){
                 return 'Indefinido';
