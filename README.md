@@ -316,18 +316,6 @@ https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-pos
 https://www.hostinger.co/tutoriales/instalar-postgresql-ubuntu
 
 
-## agregando credenciales ssh a linux y github
-
-crear keys
-    ssh-keygen -t ed25519  -C "iodiaz@co.acfspain.org" iodiaznameforkeys
-
-agregar key a linux la privada con la credencial creada v24150144
-    ssh-add ~/.ssh/ach-iodiazacf
-    ssh-add ../iodiazachapi
-    ssh-add ../iodiazapiach2023
-
-para el servidor 162 
-    ssh-add ~/.ssh/id_ed25519
 
 
 
@@ -496,14 +484,6 @@ tar -xf debian-11-turnkey-moodle_17.1-1_amd64.tar.gz -C /var/lib/vz/template/cac
 https://mirror.umd.edu/turnkeylinux/images/proxmox/
 
 
-## credenciales 162 api mire
-
-mysql
-adminer
-ach2024*
-
-servicio hub disable
-
 
 ## como configurar site
 
@@ -547,12 +527,6 @@ https://www.indalcasa.com/programacion/html/tabla-de-codificaciones-de-caractere
 ## comando instalar ongo
 
 C:\ACH>msiexec.exe /l*v mdbinstall.log  /qb /i mongodb-windows-x86_64-7.0.11-signed.msi
-
-credenciales:
-iodiazbard
-pdKwPoxE5IlhQ0Kb
-
-mongodb+srv://iodiazbard:pdKwPoxE5IlhQ0Kb@cluster0.jozbdib.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 ## jobs en laravel se hace con el dispache este crea el job y en job_failed se ven los que fallan
 

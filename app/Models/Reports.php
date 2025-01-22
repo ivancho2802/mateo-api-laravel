@@ -17,7 +17,11 @@ class Reports extends Model
         'tipo_emergencia',
         'fecha_ern',
         'links',
-        'ID_M_USUARIOS'
+        'ID_M_USUARIOS',
+
+        'tipo_respuesta',
+        'tipo_producto',
+
     ];
     
 
