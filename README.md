@@ -280,6 +280,16 @@ sudo systemctl start postgresql.service
 
 # ACCEDER CON EL USUARIO SYSDBA
 
+https://wiki.debian.org/PostgreSql
+https://www.commandprompt.com/education/how-to-create-a-read-only-user-in-postgresql/
+https://www.todopostgresql.com/crear-usuarios-en-postgresql/
+https://www.postgresql.org/docs/current/sql-grant.html
+
+
+su -c /usr/bin/psql postgres
+
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO harold;
+
 sudo -i -u SYSDBA
 
 psql -h localhost -U SYSDBA -d ach
