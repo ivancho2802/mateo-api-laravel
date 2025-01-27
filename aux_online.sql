@@ -1,4 +1,6 @@
 .
+--CREATE USER harold WITH PASSWORD 'y@Z819_=9ra?'
+
 SELECT *
 FROM 
 public.migrate_customs 
@@ -220,7 +222,8 @@ select * from activities where actividad like '%onsultas%'
 
 -- reportes fichas de cierre y ern
 
-select * from reports where codigo_emergencia = 'BOMO 1007'
+select * from reports where codigo_emergencia = 'NAPO-1023.1'
+update  reports set tipo_respuesta = 'Respuesta Rapida' -- 'Recuperacion Temprana'
 
 select * from "M_LPA_PERSONAS" where "DOCUMENTO" = '1193041959'
 

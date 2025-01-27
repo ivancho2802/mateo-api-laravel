@@ -19,6 +19,12 @@ class AlterAnalisisTable extends Migration
             $table->text('acceso')->nullable()->default('No hay datos')->change();
             $table->text('participacion')->nullable()->default('No hay datos')->change();
             $table->text('ajustes')->nullable()->default('No hay datos')->change();
+
+            $table->text('peticiones')->nullable()->default('No hay datos')->change();
+            $table->text('quejas')->nullable()->default('No hay datos')->change();
+            $table->text('retroalimentaciones')->nullable()->default('No hay datos')->change();
+            $table->text('alertas')->nullable()->default('No hay datos')->change();
+
             $table->text('respuesta_rapida')->nullable()->default('No hay datos')->change();
             $table->text('acompanamiento')->nullable()->default('No hay datos')->change();
 

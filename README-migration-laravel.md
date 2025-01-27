@@ -10,6 +10,7 @@ php artisan migrate --path=/database/migrations/test/
 php artisan migrate:refresh --path=/database/migrations/2024_03_13_170435_alter_lpa_table.php
 php artisan migrate:refresh --path=/database/migrations/2024_07_26_083931_alter_adns_table.php
 
+php artisan migrate:refresh --path=/database/migrations/2024_06_04_150639_alter_analisis_table.php
 
 # crar un modelo con su controlador
 

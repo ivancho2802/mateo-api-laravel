@@ -15,6 +15,12 @@ class Analisis extends Model
         'texto',
         'month',
         'type',
+
+        'peticiones',
+        'quejas',
+        'retroalimentaciones',
+        'alertas',
+
         'respuesta_rapida',
         //////////////////////////////
         'acceso',
