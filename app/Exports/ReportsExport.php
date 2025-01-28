@@ -27,7 +27,7 @@ class ReportsExport implements FromCollection
     
     $reportsCollectRevert = $reportsCollect->reverse();
     
-    //dd("reportsCollectAll", $reportsCollectAll);
+    dd("reportsCollectAll", $reportsCollectRevert->all());
 
     return $reportsCollectRevert->all();
   }
