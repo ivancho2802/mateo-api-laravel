@@ -12,7 +12,6 @@ class ReportsExport implements FromCollection
    */
   public function collection()
   {
-    //dd("ReportsExport", Reports::all());
 
     $reports = Reports::all();
 
@@ -25,6 +24,7 @@ class ReportsExport implements FromCollection
     $reportsCollect = collect($reports);
     
     $reportsCollect->push($reports_keys_new);
+    dd("ReportsExport", $reportsCollect);
 
     $reportsCollectRevert = $reportsCollect->reverse();
 
