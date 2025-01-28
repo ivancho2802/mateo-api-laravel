@@ -29,7 +29,7 @@ class ReportsExport implements FromCollection
     )
     ->orderBy('Fecha_de_Elaboracion', 'desc');
 
-    $reports = $repostsOrderd->all();
+    $reports = $repostsOrderd->get();
 
     /* $reports_keys = collect($reports->first());
 
