@@ -13,7 +13,7 @@ class ReportsExport implements FromCollection
   public function collection()
   {
 
-    $reports = Reports::all();
+    $reports = Reports::get();
 
     $reports_keys = collect($reports->first());
 
@@ -21,11 +21,9 @@ class ReportsExport implements FromCollection
       return [$key => $key];
     });
 
-    $reportsCollect = collect($reports);
+    $reports->push(collect($reports_keys_new));
     
-    $reportsCollect->push(collect($reports_keys_new));
-    
-    $reportsCollectRevert = $reportsCollect->reverse();
+    $reportsCollectRevert = $reports->reverse();
     
     //dd("reportsCollectAll", $reportsCollectAll);
 
