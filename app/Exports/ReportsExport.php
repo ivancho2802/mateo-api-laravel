@@ -23,8 +23,8 @@ class ReportsExport implements FromCollection
 
     $reportsCollect = collect($reports);
     
-    $reportsCollect->push(collect($reports_keys_new));
-    dd("ReportsExport", $reportsCollect);
+    $reportsCollect->push(($reports_keys_new));
+    dd("ReportsExport", $reportsCollect[count($reportsCollect) -1 ]);
 
     $reportsCollectRevert = $reportsCollect->reverse();
 
