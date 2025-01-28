@@ -24,9 +24,9 @@ class ReportsExport implements FromCollection
 
     $reportsCollect = collect($reports)->push($reports_keys_new);
 
-    $reportsCollect->reverse();
+    $reportsCollectRevert = $reportsCollect->reverse();
 
-    $reportsCollectAll = $reportsCollect->all();
+    $reportsCollectAll = $reportsCollectRevert->all();
 
     return $reportsCollectAll;
   }
