@@ -22,24 +22,12 @@ class ReportsExport implements FromCollection
       return [$key => $key];
     });
 
-    dd("excel report", $reports_keys, $reports_keys_new);
+    $reportsCollect = collect($reports)->push($reports_keys_new);
 
-    $reports->push([
-      "id" => 35,
-      "created_at" => "2024-06-17 13:41:55",
-      "updated_at" => "2024-06-17 13:41:55",
-      "year" => "2024",
-      "codigo_emergencia" => "BONO-981.1",
-      "departamento" => "Bolívar",
-      "municipio" => "Norosí",
-      "tipo_emergencia" => "Desplazamiento masivo",
-      "fecha_ern" => "2024-02-15 00:00:00",
-      "links" => "https://reliefweb.int/report/colombia/evaluacion-rapida-de-necesidades-ern-norosi-bolivar-15022024,https://reliefweb.int/report/colombia/colombia-ficha-de-cierre-de-emergencias-fce-norosi-bolivar-05032024",
-      "ID_M_USUARIOS" => 1,
-      "tipo_respuesta" => "Respuesta Rapida",
-      "tipo_producto" => "ERN,FCE",
-    ]);
+    $reportsCollect->reverse();
 
-    return $reports;
+    $reportsCollectAll = $reportsCollect->all();
+
+    return $reportsCollectAll;
   }
 }
