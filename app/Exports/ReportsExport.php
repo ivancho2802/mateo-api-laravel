@@ -22,7 +22,9 @@ class ReportsExport implements FromCollection
       return [$key => $key];
     });
 
-    $reportsCollect = collect($reports)->push($reports_keys_new);
+    $reportsCollect = collect($reports);
+    
+    $reportsCollect->push($reports_keys_new);
 
     $reportsCollectRevert = $reportsCollect->reverse();
 
