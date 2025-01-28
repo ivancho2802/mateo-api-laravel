@@ -225,7 +225,7 @@ Route::prefix('meal')->group(function () {
 
   Route::get('/rr/prod_info/download', [App\Http\Controllers\Media::class, 'downloadMediaProdinfo']);
 
-  Route::get('/rr/prod_info/exportdownload', [App\Http\Controllers\Meal::class, 'exportReportsProdInfo']);
+  Route::get('/prod_info/exportdownload', [App\Http\Controllers\Meal::class, 'exportReportsProdInfo']);
 
 
 });
