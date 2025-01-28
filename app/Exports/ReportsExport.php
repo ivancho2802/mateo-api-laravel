@@ -12,6 +12,8 @@ class ReportsExport implements FromCollection
     */
     public function collection()
     {
+        dd("ReportsExport", Reports::all());
+
         return Reports::all();
     }
 }
