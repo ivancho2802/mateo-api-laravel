@@ -1199,7 +1199,6 @@ class Meal extends Controller
      */
     public function exportReportsProdInfo() 
     {
-        dd("ReportsExport", new ReportsExport);
         return Excel::download(new ReportsExport, 'productos_informacion.xlsx');
     }
 }
