@@ -24,11 +24,11 @@ class ReportsExport implements FromCollection
     $reportsCollect = collect($reports);
     
     $reportsCollect->push(($reports_keys_new));
-    dd("ReportsExport", $reportsCollect[count($reportsCollect) -1 ]);
-
+    
     $reportsCollectRevert = $reportsCollect->reverse();
-
+    
     $reportsCollectAll = $reportsCollectRevert->all();
+    dd("reportsCollectAll", $reportsCollectAll);
 
     return $reportsCollectAll;
   }
