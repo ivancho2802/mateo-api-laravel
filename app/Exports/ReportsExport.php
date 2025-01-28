@@ -31,7 +31,7 @@ class ReportsExport implements FromCollection
 
     $reports = $repostsOrderd->all();
 
-    $reports_keys = collect($reports->first());
+    /* $reports_keys = collect($reports->first());
 
     $reports_keys_new = $reports_keys->mapWithKeys(function ($report, $key) {
       return [$key => $key];
@@ -41,7 +41,7 @@ class ReportsExport implements FromCollection
 
     $reportsCollect->push(collect($reports_keys_new)->all());
     
-    $reportsCollectRevert = $reportsCollect->reverse();
+    $reportsCollectRevert = $reportsCollect->reverse(); */
     
     //dd("reportsCollectAll", $reportsCollectRevert->all());
 
