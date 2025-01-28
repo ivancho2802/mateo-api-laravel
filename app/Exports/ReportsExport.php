@@ -18,10 +18,8 @@ class ReportsExport implements FromCollection
 
     $reports_keys = collect($reports->first());
 
-    $reports_keys_new = $reports_keys->map(function ($report, $key) {
-      dd($report, $key);
-      $report[$key] = $key;
-      return $report;
+    $reports_keys_new = $reports_keys->mapWithKeys(function ($report, $key) {
+      return [$key => $key];
     });
 
     dd("excel report", $reports_keys, $reports_keys_new);
