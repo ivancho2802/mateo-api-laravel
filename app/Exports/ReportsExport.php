@@ -16,7 +16,7 @@ class ReportsExport implements FromCollection
 
     $reports = Reports::all();
 
-    $reports_keys = $reports->first();
+    $reports_keys = collect($reports->first());
 
     $reports_keys_new = $reports_keys->map(function ($report, $key) {
       $report[$key] = $key;
