@@ -24,6 +24,11 @@ class PersonComplainted extends Controller
 
             if (
                 (
+                    isset($request->peticiones) ||
+                    isset($request->quejas) ||
+                    isset($request->retroalimentaciones) ||
+                    isset($request->alertas) ||
+                    
                     isset($request->analisis) ||
                     isset($request->acompanamiento) ||
                     isset($request->acceso) ||

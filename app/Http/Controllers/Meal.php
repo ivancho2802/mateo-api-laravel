@@ -23,6 +23,7 @@ use App\Models\MLpaFix;
 use App\Http\Controllers\ImportReportRRProdinfoClass;
 use App\Http\Controllers\ReportRRProdinfoClass;
 use Excel;
+use App\Exports\ReportsExport;
 
 class Meal extends Controller
 {
@@ -1191,5 +1192,13 @@ class Meal extends Controller
         };
 
         return response()->json(["message" => "operacion hecha con exito", "data" => []]);
+    }
+
+    /**
+     * funcion para exportar excel con ,los reportes de producotosa de infromacion
+     */
+    public function exportReportsProdInfo() 
+    {
+        return Excel::download(new ReportsExport, 'productos_informacion.xlsx');
     }
 }
