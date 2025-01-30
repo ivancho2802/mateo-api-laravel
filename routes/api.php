@@ -220,8 +220,8 @@ Route::prefix('meal')->group(function () {
 
   Route::middleware(['auth:sanctum'])->post('/rr/upload', [App\Http\Controllers\ReportController::class, 'stored']);
 
-  
-  Route::middleware(['auth:sanctum'])->post('/rr/prod_info/upload', [App\Http\Controllers\Meal::class, 'uploadProdinfo']);
+  //middleware(['auth:sanctum'])->
+  Route::post('/rr/prod_info/upload', [App\Http\Controllers\Meal::class, 'uploadProdinfo']);
 
   Route::get('/rr/prod_info/download', [App\Http\Controllers\Media::class, 'downloadMediaProdinfo']);
 
