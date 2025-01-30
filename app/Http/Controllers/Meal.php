@@ -1164,7 +1164,7 @@ class Meal extends Controller
             }
 
             $links = $row[7] . ',' . $row[8];
-            dd($links);
+            //dd($links);
 
             Reports::updateOrCreate(
 
