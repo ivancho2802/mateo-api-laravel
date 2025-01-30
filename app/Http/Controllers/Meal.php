@@ -24,6 +24,7 @@ use App\Http\Controllers\ImportReportRRProdinfoClass;
 use App\Http\Controllers\ReportRRProdinfoClass;
 use Excel;
 use App\Exports\ReportsExport;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class Meal extends Controller
 {
@@ -1165,6 +1166,11 @@ class Meal extends Controller
 
             $links = $row[7] . ',' . $row[8];
             //dd($links);
+            
+            if (isset($row[5]) && gettype($row[5]) == 'integer')
+                $fecha_ern = Date::excelToDateTimeObject($row[5]);
+            else
+                $fecha_ern = "";
 
             Reports::updateOrCreate(
 
@@ -1174,7 +1180,7 @@ class Meal extends Controller
                     "departamento" => $row[3],
                     "municipio" => $row[4],
                     "tipo_emergencia" => $row[9],
-                    "fecha_ern" => $row[5],
+                    "fecha_ern" => $fecha_ern,
                     "links" => $links,
                     "ID_M_USUARIOS" => 1,
                     'tipo_respuesta' => $row[0],
