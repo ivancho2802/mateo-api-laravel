@@ -1155,7 +1155,6 @@ class Meal extends Controller
 
         $prod_infos = collect($import->getCells());
         $i = 0;
-        return response()->json(["message" => "operacion hecha con exito", "data" => $prod_infos]);
 
         foreach ($prod_infos as $row) {
 
@@ -1164,28 +1163,22 @@ class Meal extends Controller
                 continue;
             }
 
-            $links = $row[6] . ',' . $row[7];
+            $links = $row[7] . ',' . $row[8];
+            dd($links);
 
             Reports::updateOrCreate(
-                /* 'year',
-                'codigo_emergencia',
-                'departamento',
-                'municipio',
-                'tipo_emergencia',
-                'fecha_ern',
-                'links',
-                'ID_M_USUARIOS' */
 
-                ['codigo_emergencia' => $row[0]],
+                ['codigo_emergencia' => $row[2]],
                 [
-                    "year" => $row[5],
-                    "departamento" => $row[1],
-                    "municipio" => $row[2],
-                    "tipo_emergencia" => $row[4],
-                    "fecha_ern" => $row[3],
+                    "year" => $row[6],
+                    "departamento" => $row[3],
+                    "municipio" => $row[4],
+                    "tipo_emergencia" => $row[9],
+                    "fecha_ern" => $row[5],
                     "links" => $links,
-                    "ID_M_USUARIOS" => 1
-
+                    "ID_M_USUARIOS" => 1,
+                    'tipo_respuesta' => $row[0],
+                    'tipo_producto' => $row[1],
                 ]
             );
 
