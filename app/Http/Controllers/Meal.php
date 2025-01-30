@@ -1149,6 +1149,7 @@ class Meal extends Controller
         $import = new ReportRRProdinfoClass();
 
         //$import->onlySheets('Productos de Información');
+        return response()->json(["message" => "operacion hecha con exito", "data" => []]);
 
         // Process the Excel file
         Excel::import($import, $file);
