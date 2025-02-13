@@ -33,7 +33,7 @@ class MqrClass implements ToCollection
 
             //$countElement = count($row->filter()->all());//|| !$row[0] || !$row[1] || $countElement < 15 || $countElement > 16
 
-            if ($i <  $indexheader ) {
+            if ($i <  $indexheader) {
                 $i++;
                 continue;
             }
@@ -43,53 +43,58 @@ class MqrClass implements ToCollection
             //unset($row[0]);
 
             $row = $row->all();
- 
 
-            if(!is_numeric($row[3])){
+
+            if (!is_numeric($row[3])) {
                 $i++;
                 continue;
             }
-            
+
             $date_in = Date::excelToDateTimeObject($row[3]);
 
             $DATE_IN = $date_in; //date('d-m-Y', strtotime($date_birday));
-            
-            $mrq = MMqr::create([
 
+            $exist = MMqr::where([
                 'ORG_REPORT' => $row[0],
-                'CONSECUTIVOS_CASES' => $row[1],
-                'MONTH_REPORT' => $row[2],
-                'DATE_IN' => $DATE_IN,//3
-                //NEW
-                'TIPO_INTERVE' => $row[4],
-                //NEW
-                'COD_EMERGENCIA' => $row[5],
-                'CHANNEL_IN' => $row[6],
-                'CATEGORY' => $row[7],
-                'SUB_CATEGORY' => $row[8],
-                'THEME' => $row[9],
-                'ETNIA' => $row[10],
-                //NEW
-                'NACIONALIDAD' => $row[11],
-                'SEXO' => $row[12],
-                'RANGE_EDAD' => $row[13],
-                'DEPARTMENT' => $row[14],
-                'MUNICICIO' => $row[15],
-                'ADDRESS' => $row[16],
-                //NEW
-                'EDO' => $row[17],
-                'VALID' => $row[18],
-                //NEW
-                'DEVI_INTER' => $row[19],
-                
-            ]);
+                'CONSECUTIVOS_CASES' =>  $row[1]
+            ])->exists();
+
+            if ($exist)
+                $mrq = MMqr::create([
+
+                    'ORG_REPORT' => $row[0],
+                    'CONSECUTIVOS_CASES' => $row[1],
+                    'MONTH_REPORT' => $row[2],
+                    'DATE_IN' => $DATE_IN, //3
+                    //NEW
+                    'TIPO_INTERVE' => $row[4],
+                    //NEW
+                    'COD_EMERGENCIA' => $row[5],
+                    'CHANNEL_IN' => $row[6],
+                    'CATEGORY' => $row[7],
+                    'SUB_CATEGORY' => $row[8],
+                    'THEME' => $row[9],
+                    'ETNIA' => $row[10],
+                    //NEW
+                    'NACIONALIDAD' => $row[11],
+                    'SEXO' => $row[12],
+                    'RANGE_EDAD' => $row[13],
+                    'DEPARTMENT' => $row[14],
+                    'MUNICICIO' => $row[15],
+                    'ADDRESS' => $row[16],
+                    //NEW
+                    'EDO' => $row[17],
+                    'VALID' => $row[18],
+                    //NEW
+                    'DEVI_INTER' => $row[19],
+
+                ]);
 
             $mrq = MMqr::where([
                 'CONSECUTIVOS_CASES' => $row[1],
             ])->first();
 
             $id_mqr[] = $mrq->ID;
-
         }
 
         migrateCustom::create([
@@ -105,5 +110,4 @@ class MqrClass implements ToCollection
     {
         return $rows;
     }
-    
 }

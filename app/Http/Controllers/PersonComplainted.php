@@ -102,7 +102,7 @@ class PersonComplainted extends Controller
             // Process MQR
             $import = new MqrImportClass();
 
-            $import->onlySheets('Formato en limpio');
+            $import->onlySheets('1. REPORTE CUANTITATIVO');
 
             Excel::import($import, $file);
 
