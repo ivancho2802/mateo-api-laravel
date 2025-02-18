@@ -91,8 +91,15 @@ class MqrClass implements ToCollection
                 ]);
 
             $mrq = MMqr::where([
-                'CONSECUTIVOS_CASES' => $row[1],
+                'ORG_REPORT' => $row[0],
+                'CONSECUTIVOS_CASES' =>  $row[1]
             ])->first();
+
+            if(optional($mrq)->ID) {
+                dd("mrq->ID", optional($mrq)->ID, $row[0], $row[1]);
+            }else{
+                dd("mrq->ID", optional($mrq)->ID, $row[0], $row[1]);
+            }
 
             $id_mqr[] = $mrq->ID;
         }
