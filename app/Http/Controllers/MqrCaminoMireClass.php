@@ -67,7 +67,7 @@ class MqrCaminoMireClass implements ToCollection
                 'presentacion_MIRE' => $row[21],
                 'enojo' => $row[22],
                 'NS_NR' => $row[23],
-                'alegría' => $row[24],
+                'alegria' => $row[24],
                 'aburrimiento' => $row[25],
                 'presentacion_MIRE_tristeza' => $row[26],
                 'presentacion_MIRE_enojo' => $row[27],
