@@ -29,7 +29,7 @@ class AlterMMqrTable extends Migration
 
             $table->string('DEPARTMENT')->nullable()->change();
             $table->string('MUNICICIO')->nullable()->change();
-
+            $table->string('CONSECUTIVOS_CASES')->nullable()->change();
             
         });
     }
