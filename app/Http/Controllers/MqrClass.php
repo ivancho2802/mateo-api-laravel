@@ -37,7 +37,6 @@ class MqrClass implements ToCollection
                 $i++;
                 continue;
             }
-            dd("row", $row);
 
             // esta linea es por que la genio de liliana puso una fila por delante vacia pero solo debe pasar una vez COLUMNA
             $row->shift();
@@ -50,6 +49,7 @@ class MqrClass implements ToCollection
                 $i++;
                 continue;
             }
+            dd("row", $row);
 
             $date_in = Date::excelToDateTimeObject($row[3]);
 
