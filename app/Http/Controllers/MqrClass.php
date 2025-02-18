@@ -49,7 +49,6 @@ class MqrClass implements ToCollection
                 $i++;
                 continue;
             }
-            dd("row", $row);
 
             $date_in = Date::excelToDateTimeObject($row[3]);
 
