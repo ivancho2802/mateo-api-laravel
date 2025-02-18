@@ -59,7 +59,7 @@ class MqrClass implements ToCollection
                 'CONSECUTIVOS_CASES' =>  $row[1]
             ])->exists();
 
-            if ($exist)
+            if (!$exist)
                 $mrq = MMqr::create([
 
                     'ORG_REPORT' => $row[0],
@@ -95,11 +95,11 @@ class MqrClass implements ToCollection
                 'CONSECUTIVOS_CASES' =>  $row[1]
             ])->first();
 
-            if(optional($mrq)->ID) {
+            /* if(optional($mrq)->ID) {
                 dd("mrq->ID", optional($mrq)->ID, $row[0], $row[1]);
             }else{
                 dd("mrq->ID", optional($mrq)->ID, $row[0], $row[1]);
-            }
+            } */
 
             $id_mqr[] = $mrq->ID;
         }
