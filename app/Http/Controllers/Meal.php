@@ -104,10 +104,10 @@ class Meal extends Controller
 
         $mlpas_origin->load(['emergencia', 'actividad']);
            
-        $mlpas_origin = $mlpas_origin->where([
+        /* $mlpas_origin = $mlpas_origin->where([
             ["emergencia.SOCIO", "!=", "MDM"],
             ["actividad.cod", "!=", "H2"]
-        ]);
+        ]); */
 
         $num_pages = round(count($mlpas_origin->get()) / 10); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
 
