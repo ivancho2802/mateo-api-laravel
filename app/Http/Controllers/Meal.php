@@ -100,21 +100,7 @@ class Meal extends Controller
         $mlpas_origin = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->whereNull("deleted_at")
             //->where("FK_LPA_PERSONA", ">", "22270")
-            ->nodeleted()
-            /* ->with([
-                'emergencia',
-                function ($q) {
-                    $q->where('SOCIO', "!=", "MDM");
-                }
-            ]) ->get()*/
-            ;
-
-       /*  $mlpas_origin->load(['emergencia', 'actividad']);
-           
-        $mlpas_origin = $mlpas_origin->where([
-            ["emergencia.SOCIO", "!=", "MDM"],
-            ["actividad.cod", "!=", "H2"]
-        ]); */
+            ->nodeleted();
 
         $num_pages = round(count($mlpas_origin->get()) / 10); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
 
@@ -448,7 +434,7 @@ class Meal extends Controller
     /**
      * funcion para generar graficos en mire sys
      * params inicio
-     * params inicio https://mireview.ach.dyndns.info/ach/herramientas/genera_json/genera_json.php?tabla=V_M_GRAFICOS&campos=*&busca=CLASE&xbusca=LPA&filtro=REGISTROS&xfiltro=0&xoperadores=>&limite=1000&orden=ORDEN
+        //params inicio https://mireview.ach.dyndns.info/ach/herramientas/genera_json/genera_json.php?tabla=V_M_GRAFICOS&campos=*&busca=CLASE&xbusca=LPA&filtro=REGISTROS&xfiltro=0&xoperadores=>&limite=1000&orden=ORDEN
      * 
      * resuktado
     {
