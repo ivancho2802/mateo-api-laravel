@@ -61,17 +61,17 @@ class Meal extends Controller
         ini_set('max_input_time', '' . $limit_minutes . '');
 
         $select = '*';
-        if(isset($request->select)){
+        if (isset($request->select)) {
             $select = explode(",", $request->select);
         }
 
         $mlpas = DB::table('M_LPAS')
-        ->select($select)
-        ->where("FECHA_ATENCION", ">=", "2023-01-01")
-        ->whereNull("deleted_at")
-        ->get();
-        
-       /*  MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
+            ->select($select)
+            ->where("FECHA_ATENCION", ">=", "2023-01-01")
+            ->whereNull("deleted_at")
+            ->get();
+
+        /*  MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->selectRaw($select)
             ->nodeleted()
             ->get();  */
@@ -81,7 +81,7 @@ class Meal extends Controller
         ];
     }
 
-    
+
     /**
      * ?page=1
      * ?page=2
@@ -98,15 +98,17 @@ class Meal extends Controller
         ini_set('max_input_time', '' . $limit_minutes . '');
 
         $mlpas_origin = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-        ->whereNull("deleted_at")
-        //->where("FK_LPA_PERSONA", ">", "22270")
-        ->nodeleted();
-        /* ->whereHas('emergencia', function($q)
-        {
-            $q->where('slug', '=', Input::get('category_slug'));
-        }); */
+            ->whereNull("deleted_at")
+            //->where("FK_LPA_PERSONA", ">", "22270")
+            ->nodeleted()
+            /* ->with([
+                'emergencia',
+                function ($q) {
+                    $q->where('SOCIO', "!=", "MDM");
+                }
+            ]) */;
         $mlpas_origin->load(['emergencia', 'actividad']);
-        $mlpas_origin->where([
+        $mlpas_origin = $mlpas_origin->where([
             ["emergencia.SOCIO", "!=", "MDM"],
             ["actividad.cod", "!=", "H2"]
         ]);
@@ -121,12 +123,13 @@ class Meal extends Controller
         ];
     }
 
-    
+
 
     /**
      * 
      */
-    function lpasegOnlyCount(Request $request){
+    function lpasegOnlyCount(Request $request)
+    {
 
         $mlpas = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             //->where("FK_LPA_PERSONA", ">", "22270")
@@ -137,7 +140,6 @@ class Meal extends Controller
         return [
             "lpas" => count($mlpas)
         ];
-
     }
 
     /**
@@ -333,20 +335,19 @@ class Meal extends Controller
             $lpaArray = $lpa->toArray();
             $lpaDoted = Arr::dot($lpaArray);
             return  $lpaDoted;
-            
-        
-            //dd($lpa->tipo_lpa);
-            if(isset($lpa->tipo_lpa) && $lpa->tipo_lpa=='Respuesta Rapida' && $lpa->FECHA_ATENCION <= '2024-07-01'){
 
-                $discapacitado = MLpaFix::where('documento', $lpa->persona->DOCUMENTO )
-                //->where('sexo', $lpa->persona->GENERO)
-                ->exists();
-                
+
+            //dd($lpa->tipo_lpa);
+            if (isset($lpa->tipo_lpa) && $lpa->tipo_lpa == 'Respuesta Rapida' && $lpa->FECHA_ATENCION <= '2024-07-01') {
+
+                $discapacitado = MLpaFix::where('documento', $lpa->persona->DOCUMENTO)
+                    //->where('sexo', $lpa->persona->GENERO)
+                    ->exists();
+
                 $lpa->persona->discapacitado = $discapacitado == true ? 1 : 0;
             }
-
         });
-            
+
 
         $flattenedMlpas =  ($mlpasFormated);
 
@@ -444,7 +445,7 @@ class Meal extends Controller
     /**
      * funcion para generar graficos en mire sys
      * params inicio
-        //params inicio https://mireview.ach.dyndns.info/ach/herramientas/genera_json/genera_json.php?tabla=V_M_GRAFICOS&campos=*&busca=CLASE&xbusca=LPA&filtro=REGISTROS&xfiltro=0&xoperadores=>&limite=1000&orden=ORDEN
+     * params inicio https://mireview.ach.dyndns.info/ach/herramientas/genera_json/genera_json.php?tabla=V_M_GRAFICOS&campos=*&busca=CLASE&xbusca=LPA&filtro=REGISTROS&xfiltro=0&xoperadores=>&limite=1000&orden=ORDEN
      * 
      * resuktado
     {
@@ -954,7 +955,7 @@ class Meal extends Controller
 
     function getMqrSpaces(Request $request)
     {
-        
+
         if ($request->pagination) {
             $mmqrs = MqrSpaces::paginate(5);
         } else {
@@ -970,10 +971,10 @@ class Meal extends Controller
         return $mmqrs;
     }
 
-    
+
     function getMqrCaminos(Request $request)
     {
-        
+
         if ($request->pagination) {
             $mmqrs = MqrCaminos::paginate(5);
         } else {
@@ -989,7 +990,7 @@ class Meal extends Controller
         return $mmqrs;
     }
 
-    
+
 
     /**
      * pda
@@ -1125,30 +1126,31 @@ class Meal extends Controller
      * respuesta rapida
      */
 
-    function getRrProdsReport(Request $request){
+    function getRrProdsReport(Request $request)
+    {
 
-        
+
         ini_set('memory_limit', '2044M');
-        set_time_limit(3000000);//0
+        set_time_limit(3000000); //0
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
 
         $reposts = Reports::orderBy('year', 'desc')
-        ->orderBy('fecha_ern', 'desc')->get();
+            ->orderBy('fecha_ern', 'desc')->get();
         //->sortBy('fecha_ern');
 
         return response()->json(['status' => true, 'data' => ($reposts)->values()]);
-
     }
 
     /**
      * servicio para la migfracion de datos de productos de informacion
      */
 
-    function uploadProdinfo(Request $request){
+    function uploadProdinfo(Request $request)
+    {
 
-        
+
         // Validate the uploaded file
         $request->validate([
             'file' => 'required|mimes:xlsx,xls',
@@ -1156,7 +1158,7 @@ class Meal extends Controller
 
         // Get the uploaded file
         $file = $request->file('file');
-        
+
         $import = new ReportRRProdinfoClass();
 
         //$import->onlySheets('Productos de Información');
@@ -1176,7 +1178,7 @@ class Meal extends Controller
 
             $links = $row[7] . ',' . $row[8];
             //dd($links);
-            
+
             if (isset($row[5]) && gettype($row[5]) == 'integer')
                 $fecha_ern = Date::excelToDateTimeObject($row[5]);
             else
@@ -1207,7 +1209,7 @@ class Meal extends Controller
     /**
      * funcion para exportar excel con ,los reportes de producotosa de infromacion
      */
-    public function exportReportsProdInfo() 
+    public function exportReportsProdInfo()
     {
         return Excel::download(new ReportsExport, 'productos_informacion.xlsx');
     }
