@@ -102,9 +102,9 @@ class Meal extends Controller
             //->where("FK_LPA_PERSONA", ">", "22270")
             ->nodeleted();
 
-        $mlpas_origin->load(['emergencia', 'actividad']);
+       /* $mlpas_origin->load(['emergencia', 'actividad']);
            
-        /* $mlpas_origin = $mlpas_origin->where([
+         $mlpas_origin = $mlpas_origin->where([
             ["emergencia.SOCIO", "!=", "MDM"],
             ["actividad.cod", "!=", "H2"]
         ]); */
