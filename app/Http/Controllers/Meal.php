@@ -103,7 +103,6 @@ class Meal extends Controller
             ->nodeleted();
 
         $num_pages = round(count($mlpas_origin->get()) / 10); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
-        dd("num_pages", $num_pages);
 
         $mlpas = $mlpas_origin->paginate($num_pages); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
         //->groupBy('FECHA_ATENCION');
