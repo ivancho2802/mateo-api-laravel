@@ -100,7 +100,8 @@ class Meal extends Controller
         $mlpas_origin = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->whereNull("deleted_at")
             //->where("FK_LPA_PERSONA", ">", "22270")
-            ->nodeleted();
+            ->nodeleted()
+            ->get();
 
         $mlpas_origin->load(['emergencia', 'actividad']);
 
