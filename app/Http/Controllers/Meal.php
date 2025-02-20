@@ -104,6 +104,8 @@ class Meal extends Controller
 
         $mlpas_origin->load(['emergencia', 'actividad']);
 
+        dd($mlpas_origin->first());
+
         $mlpas_origin = $mlpas_origin->where([
             ["emergencia.SOCIO", "!=", "MDM"],
             ["actividad.cod", "!=", "H2"]
