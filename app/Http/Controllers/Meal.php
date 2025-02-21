@@ -104,9 +104,7 @@ class Meal extends Controller
             ->with([
                 'emergencia' => function ($emergencia) {
                     return $emergencia->where('SOCIO',  "!=", "MDM");
-                }
-            ])
-            ->with([
+                },
                 'actividad' => function ($actividad) {
                     return $actividad->where('cod',  "!=", "H2");
                 }
