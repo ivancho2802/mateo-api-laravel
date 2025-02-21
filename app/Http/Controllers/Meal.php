@@ -104,7 +104,7 @@ class Meal extends Controller
             ->with(['emergencia', 'actividad'])
             ->whereHas('emergencia', function ($query) {
                 $query->where('SOCIO', '!=', 'MDM')
-                ->where('COD_ACTIVIDAD', '!=', "H2");
+                ->orWhere('COD_ACTIVIDAD', '!=', "H2");
             })
             //->where('emergencia.SOCIO', '!=', "MDM")
             /*
@@ -134,7 +134,6 @@ class Meal extends Controller
                     return $actividad->where('cod',  "!=", "H2");
                 }
             ]); */
-            dd($mlpas_origin->toSql());
 
         $num_pages = round(count($mlpas_origin->get()) / 10); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
 
