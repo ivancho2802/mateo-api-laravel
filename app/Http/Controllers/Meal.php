@@ -101,8 +101,12 @@ class Meal extends Controller
             ->whereNull("deleted_at")
             //->where("FK_LPA_PERSONA", ">", "22270")
             ->nodeleted()
-            ->with(['emergencia', 'actividad'])
-            ->whereHas([
+            ->join('emergencia', 'emergencia.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
+            ->join('actividad', 'actividad.cod', '=', 'M_LPAS.COD_ACTIVIDAD')
+            ->where('emergencia.SOCIO', '=', "MDM")
+            ->where('actividad.cod', '=', "H2")
+            /*->with(['emergencia', 'actividad'])
+             ->whereHas([
                 'emergencia',
                 function ($query) {
                     $query->where('SOCIO', '!=', 'MDM');
@@ -111,7 +115,7 @@ class Meal extends Controller
                 function ($query) {
                     $query->where('cod', '!=', 'H2');
                 }
-            ])
+            ]) */
             /* ->where("emergencia.SOCIO", '!=', 'MDM')
             ->where("actividad.cod", '!=', 'H2') */
             /* ->whereHas('emergencia', function ($query) {
