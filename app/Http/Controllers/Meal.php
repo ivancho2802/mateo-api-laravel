@@ -101,15 +101,16 @@ class Meal extends Controller
             ->whereNull("deleted_at")
             //->where("FK_LPA_PERSONA", ">", "22270")
             ->nodeleted()
-            ->get();
-
-        $mlpas_origin->load(['emergencia', 'actividad']);
-
-        //dd($mlpas_origin->first());
-
-        $mlpas_origin = collect($mlpas_origin
-        ->where("emergencia.SOCIO", "!=", "MDM")
-        ->where("actividad.cod", "!=", "H2"));
+            ->with([
+                'emergencia' => function ($emergencia) {
+                    return $emergencia->where('SOCIO',  "!=", "MDM");
+                }
+            ])
+            ->with([
+                'actividad' => function ($actividad) {
+                    return $actividad->where('cod',  "!=", "H2");
+                }
+            ]);
 
         $num_pages = round(count($mlpas_origin->get()) / 10); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
 
