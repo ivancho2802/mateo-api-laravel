@@ -102,10 +102,11 @@ class Meal extends Controller
             //->where("FK_LPA_PERSONA", ">", "22270")
             ->nodeleted()
             ->with(['emergencia', 'actividad'])
-            ->join('emergencia', 'emergencia.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
-            ->join('actividad', 'actividad.cod', '=', 'M_LPAS.COD_ACTIVIDAD')
-            ->where('emergencia.SOCIO', '!=', "MDM")
-            ->where('actividad.cod', '!=', "H2")
+            ->whereHas('emergencia', function ($query) {
+                $query->where('SOCIO', '!=', 'MDM')
+                ->where('COD_ACTIVIDAD', '!=', "H2");
+            })
+            //->where('emergencia.SOCIO', '!=', "MDM")
             /*
              ->whereHas([
                 'emergencia',
