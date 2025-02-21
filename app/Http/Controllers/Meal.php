@@ -134,6 +134,7 @@ class Meal extends Controller
                     return $actividad->where('cod',  "!=", "H2");
                 }
             ]); */
+            dd($mlpas_origin->sql());
 
         $num_pages = round(count($mlpas_origin->get()) / 10); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
 
