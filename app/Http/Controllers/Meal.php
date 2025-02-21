@@ -101,6 +101,7 @@ class Meal extends Controller
             ->whereNull("deleted_at")
             //->where("FK_LPA_PERSONA", ">", "22270")
             ->nodeleted()
+            ->with(['emergencia'])
             ->whereHas('emergencia', function ($query) {
                 $query->where('SOCIO', '!=', 'MDM')
                 ->orWhere('COD_ACTIVIDAD', '!=', "H2");
