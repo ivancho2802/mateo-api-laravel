@@ -100,11 +100,10 @@ class Meal extends Controller
         $mlpas_origin = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->whereNull("deleted_at")
             ->nodeleted()
-            ->with(['emergencia'])
             ->whereHas('emergencia', function ($query) {
                 $query->where('SOCIO', '!=', 'MDM')
                 ->orWhere('COD_ACTIVIDAD', '!=', "H2")
-                ->andWhere('FECHA_ATENCION', '<', "2024-12-31");
+                ->andWhere('FECHA_ATENCION', '<=', "2024-12-31");
             });
 
         $num_pages = round(count($mlpas_origin->get()) / 10); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
