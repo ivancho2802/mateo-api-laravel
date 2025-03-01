@@ -98,7 +98,6 @@ class Meal extends Controller
         ini_set('max_input_time', '' . $limit_minutes . '');
 
         $mlpas_origin = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
-            ->whereNull("deleted_at")
             ->nodeleted()
             ->whereHas('emergencia', function ($query) {
                 $query->where('SOCIO', '!=', 'MDM')
