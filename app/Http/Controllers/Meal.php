@@ -1207,4 +1207,22 @@ class Meal extends Controller
     {
         return Excel::download(new ReportsExport, 'productos_informacion.xlsx');
     }
+
+    /**
+     * servicio para guardar solicitudesd dehacceso al mireiew
+     */
+
+    public function requestRegister(Request $request) 
+    {
+        $request->post_id;
+        $request->form_id;
+        $request->referer_title;
+        //$request->form_fields[name]: ivan diaz;
+        //$request->form_fields[field_f02be14]: acf;
+        //$request->form_fields[field_f02be14]: acf;
+        //$request->form_fields[email]: ings.ivandiaz@gmail.com
+        dd($request);
+        
+        
+    }
 }

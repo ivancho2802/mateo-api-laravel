@@ -227,7 +227,9 @@ Route::prefix('meal')->group(function () {
 
   Route::get('/prod_info/exportdownload', [App\Http\Controllers\Meal::class, 'exportReportsProdInfo']);
 
-
+  //servicio para la recepcion de solicitudes de accso a la plataforma del mireview
+  Route::post('/request_register', [App\Http\Controllers\Meal::class, 'requestRegister']);
+  
 });
 
 Route::prefix('firebird')->group(function () {
