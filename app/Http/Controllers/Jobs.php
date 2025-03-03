@@ -304,13 +304,13 @@ class Jobs extends Controller
     //recorro los formularios con map y recorro las preguntas con map sino estan las sacco
     $length_current_keys = count(collect(collect($dataEnketoWithImage)->first())->keys()) ?? count($paramsForm);
 
-    if (isset($paramsForm) && $length_current_keys !== count($paramsForm)) {
+    if (isset($paramsForm) && ($length_current_keys !== count($paramsForm))) {
       
       $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
         $formulario = collect($chield); //->forget('name');
         $keysCurrent = $formulario->keys();
 
-        $paramsForm = $paramsForm->get("_id") ? collect($paramsForm)->push('_id') : collect($paramsForm);
+        $paramsForm = collect($paramsForm)->search("_id") ? collect($paramsForm)->push('_id') : collect($paramsForm);
 
         $diff = $keysCurrent->diff($paramsForm);
 
