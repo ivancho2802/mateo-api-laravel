@@ -23,30 +23,30 @@ class Ugic extends Controller
     //ajuste de parametros
     $requestAll = $request->all();
     //dd(isset($requestAll['form']) ? ($requestAll['form'])??[] : []);
-    if(isset($requestAll['uui'])){
+    if (isset($requestAll['uui'])) {
       $form = JobDetails::where('uui', $requestAll['uui'])->first();
       $params['form'] = [
-        "dominio" => $form->dominio, 
+        "dominio" => $form->dominio,
         "name_key" => $form->name_key,
         "id" => $form->uui,
         "token" => $form->token,
-        "filtrar" => isset($requestAll['filtrar']) ? ($requestAll['filtrar'])??[] : [],
+        "filtrar" => isset($requestAll['filtrar']) ? ($requestAll['filtrar']) ?? [] : [],
       ];
       $params['dataFormulario'] = json_decode($form->otro);
     }
 
-    $params['data'] = isset($requestAll['data']) ? unserialize($requestAll['data'])??[] : [];
-    $params['filtrar'] = isset($requestAll['filtrar']) ? ($requestAll['filtrar'])??[] : [];
+    $params['data'] = isset($requestAll['data']) ? unserialize($requestAll['data']) ?? [] : [];
+    $params['filtrar'] = isset($requestAll['filtrar']) ? ($requestAll['filtrar']) ?? [] : [];
 
     //dd($params, $request, $request->all());
-    
+
     if (count($jobdetails) <= 0) {
 
       return view('koboapdf.index', $params);
       //return view('koboapdf.index', ["form" => $form , "data" => [], "dataFormulario" => $dataFormulario]);
     }
 
-    $jobdetails->each(function ($job) use ($data, $params ) {
+    $jobdetails->each(function ($job) use ($data, $params) {
 
       $dominio = $job->dominio;
 
@@ -60,12 +60,17 @@ class Ugic extends Controller
       $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
       //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
-      $dataEnketoResponse = Http::withHeaders([
-        'Authorization' => 'Token ' . $token . '',
-        'Accept' => 'application/json'
-      ])
-        ->get($jsonurlDataEnketo)
-        ->json();
+      $dataEnketoResponse = [];
+
+      // este se hace para el caso de que se le de al botion de ver encve el id del formulario y veridicaque si es igual se hara lo mismo peros se consultara el toal
+      if (isset($params["formid"]) && $params["formid"] == $formid) {
+        $dataEnketoResponse = Http::withHeaders([
+          'Authorization' => 'Token ' . $token . '',
+          'Accept' => 'application/json'
+        ])
+          ->get($jsonurlDataEnketo)
+          ->json();
+      }
 
       $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
 
@@ -82,7 +87,8 @@ class Ugic extends Controller
           "exportaciones_procesadas" => count($filesExported),
           "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
           "exportaciones_fallidos" => count($jobsFailed),
-          "trabajos_en_proceso" => count($jobsCreated)
+          "trabajos_en_proceso" => count($jobsCreated),
+          "formid" => $formid
         ]));
 
         $data = [$dataExport];
@@ -134,14 +140,14 @@ class Ugic extends Controller
 
       if (count($dataEnketoResponse) == count($filesExported)) {
         $zipFileName = $name_key . ".zip";
-  
+
         if (!File::exists(public_path($zipFileName))) {
-  
+
           $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
-  
+
           //$ramdom = Carbon\Carbon::now()->timestamp;
           //dd(Carbon\Carbon::now()->timestamp, time());
-  
+
           if ($resultCreated === true) {
             //$download = public_path($zipFileName);
             $download = "/public/" . ($zipFileName);

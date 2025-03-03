@@ -324,9 +324,31 @@
 
                             <div>
                               <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Nombre Clave: {{$export->name_key}}</h3>
-                              <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Export. Totales: {{$export->exportaciones_totales}}</h3>
+                              <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">
+                                Export. Totales:
+                                @if(optional($export)->exportaciones_totales !== 0 )
+                                {{$export->exportaciones_totales}}
+                                @else
+                                <form method="get" action="/koboapdf" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                                  @csrf
+                                  <input type="hidden" placeholder="solicitud_insumos" id="formid" name="formid" value="{{$formid}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                  <x-primary-button class="mt-4">Ver</x-primary-button>
+                                </form>
+                                @endif
+                              </h3>
                               <p class="text-sm font-semibold leading-6 text-indigo-600">Export. Procesadas: {{$export->exportaciones_procesadas}}</p>
-                              <p class="text-sm font-semibold leading-6 text-indigo-600">Export. Faltantes: {{$export->exportaciones_faltantes}}</p>
+                              <p class="text-sm font-semibold leading-6 text-indigo-600">
+                                Export. Faltantes:
+                                @if(optional($export)->exportaciones_faltantes <= 0 )
+                                {{$export->exportaciones_faltantes}}
+                                @else
+                              <form method="get" action="/koboapdf" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                                @csrf
+                                <input type="hidden" placeholder="solicitud_insumos" id="formid" name="formid" value="{{$formid}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                <x-primary-button class="mt-4">Ver</x-primary-button>
+                              </form>
+                              @endif
+                              </p>
                               <p class="text-sm font-semibold leading-6 text-indigo-600">
                                 Procesos. Fallidos: {{$export->exportaciones_fallidos}}
                                 @if($export->exportaciones_fallidos > 0)
@@ -352,7 +374,7 @@
 
                         @endforelse
                       </ul>
- 
+
                       @endif
 
                     </div>
