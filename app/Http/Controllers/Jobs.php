@@ -305,12 +305,16 @@ class Jobs extends Controller
     $length_current_keys = count(collect(collect($dataEnketoWithImage)->first())->keys()) ?? count($paramsForm);
 
     if (isset($paramsForm) && ($length_current_keys !== count($paramsForm))) {
-      
+
       $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
         $formulario = collect($chield); //->forget('name');
         $keysCurrent = $formulario->keys();
 
-        $paramsForm = !collect($paramsForm)->get("_id") ? collect($paramsForm)->push('_id') : collect($paramsForm);
+        if (!collect($paramsForm)->get("_id")) {
+          collect($paramsForm)->push('_id');
+        }
+        
+        $paramsForm = collect($paramsForm);
 
         $diff = $keysCurrent->diff($paramsForm);
 
@@ -336,7 +340,7 @@ class Jobs extends Controller
 
       $mapped_customKey = collect($mapped->mapWithKeys(function ($questionansdware, $key) use ($children) {
         //Permiso_de_uso_de_da_y_de_uso_de_im_genes/autorizacion
-        $customKey = helper::getValueLabels($children,$key);
+        $customKey = helper::getValueLabels($children, $key);
 
         //dd($customKey, $questionansdware);
 
