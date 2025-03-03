@@ -305,13 +305,12 @@ class Jobs extends Controller
     $length_current_keys = count(collect(collect($dataEnketoWithImage)->first())->keys()) ?? count($paramsForm);
 
     if (isset($paramsForm) && $length_current_keys !== count($paramsForm)) {
-      dd($paramsForm);
       
       $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
         $formulario = collect($chield); //->forget('name');
         $keysCurrent = $formulario->keys();
 
-        $paramsForm = $paramsForm->search("_id") ? collect($paramsForm)->push('_id') : collect($paramsForm);
+        $paramsForm = $paramsForm->get("_id") ? collect($paramsForm)->push('_id') : collect($paramsForm);
 
         $diff = $keysCurrent->diff($paramsForm);
 
