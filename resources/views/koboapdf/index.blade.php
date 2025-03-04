@@ -331,7 +331,7 @@
                                 @else
                                 <form method="get" action="/koboapdf" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                   @csrf
-                                  <input type="hidden" placeholder="solicitud_insumos" id="formid" name="formid" value="{{$formid}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                  <input type="hidden" placeholder="solicitud_insumos" id="formid" name="formid" value="{{$formid ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                   <x-primary-button class="mt-4">Ver</x-primary-button>
                                 </form>
                                 @endif
@@ -344,7 +344,7 @@
                                 @else
                               <form method="get" action="/koboapdf" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                 @csrf
-                                <input type="hidden" placeholder="solicitud_insumos" id="formid" name="formid" value="{{$formid}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                <input type="hidden" placeholder="solicitud_insumos" id="formid" name="formid" value="{{$formid ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                 <x-primary-button class="mt-4">Ver</x-primary-button>
                               </form>
                               @endif
