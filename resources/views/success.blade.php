@@ -58,7 +58,7 @@
     <div class="celebration">
         <h1>Excelente!</h1>
         <p>¡Operacion hecha con exito!</p>
-        <p>{{mensage}}.</p>
+        <p>{{mensage ?? ''}}.</p>
     </div>
 
     <div class="confetti-container"></div>
