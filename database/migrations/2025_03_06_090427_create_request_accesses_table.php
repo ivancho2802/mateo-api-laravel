@@ -13,7 +13,7 @@ class CreateRequestAccessTable extends Migration
      */
     public function up()
     {
-        Schema::create('request_access', function (Blueprint $table) {
+        Schema::create('request_accesses', function (Blueprint $table) {
             //
             $table->id();
             $table->timestamps();
@@ -30,7 +30,7 @@ class CreateRequestAccessTable extends Migration
      */
     public function down()
     {
-        Schema::table('request_access', function (Blueprint $table) {
+        Schema::table('request_accesses', function (Blueprint $table) {
             //
         });
     }
