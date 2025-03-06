@@ -12,6 +12,7 @@ use App\Models\MKoboRespuestas;
 use App\Models\Activities;
 use App\Models\Analisis;
 use App\Models\Reports;
+use App\Models\RequestAccess;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
@@ -1217,10 +1218,22 @@ class Meal extends Controller
         $request->post_id;
         $request->form_id;
         $request->referer_title;
-        //$request->form_fields[name]: ivan diaz;
-        //$request->form_fields[field_f02be14]: acf;//oganizacion
-        //$request->form_fields[email]: ings.ivandiaz@gmail.com
-        dd($request->all());
+        $request->form_fields["name"];// ivan diaz;
+        $request->form_fields["field_f02be14"];// acf;//oganizacion
+        $request->form_fields["email"];// ings.ivandiaz@gmail.com
+
+        //$data = $request->all();
+        $data['name'] = $request->form_fields["name"] ?? "None";
+        $data['organization'] = $request->form_fields["field_f02be14"] ?? "None";
+        $data['email'] = $request->form_fields["email"] ?? "None";
+
+        $solicitudes = RequestAccess::create($data);
+
+        //return Redirect::to($url);
+
+        //return $solicitudes;
+        return view('success', ["mensage" => "Seras redireccionado"]);
+        //return view('success', ["error" => "name_key"]);
         
         
     }
