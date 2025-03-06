@@ -1221,7 +1221,7 @@ class Meal extends Controller
         //$request->form_fields[field_f02be14]: acf;
         //$request->form_fields[field_f02be14]: acf;
         //$request->form_fields[email]: ings.ivandiaz@gmail.com
-        dd($request);
+        dd($request->all());
         
         
     }

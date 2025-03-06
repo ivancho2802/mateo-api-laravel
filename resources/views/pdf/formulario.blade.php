@@ -265,7 +265,7 @@
                   <img src="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}" />
                 </div>
                 @elseif(is_string($data->values()[$i])) 
-                <input class="ignore ignore widget autocomplete" type="text" value="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}">
+                <input class="ignore widget autocomplete" type="text" value="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}">
                 @elseif(is_array($data->values()[$i]))
                   @foreach ($data->values()[$i] as $dataf)
                     @for ($j = 0; $j < count(collect($dataf)->keys()); $j++)
@@ -273,7 +273,7 @@
                         <span lang="" class="question-label active">{{isset(collect($dataf)->keys()[$j]) ? is_string(collect($dataf)->keys()[$j]) ? collect($dataf)->keys()[$j] : json_encode(collect($dataf)->keys()[$j]): 'N/A'}}:</span>
                         <span class="required">*</span>
                         <div class="widget date">
-                          <input class="ignore ignore widget autocomplete" type="text" value="{{isset(collect($dataf)->values()[$j]) ? is_string(collect($dataf)->values()[$j]) ? collect($dataf)->values()[$j] : json_encode(collect($dataf)->values()[$j]): 'N/A'}}">
+                          <input class="ignore widget autocomplete" type="text" value="{{isset(collect($dataf)->values()[$j]) ? is_string(collect($dataf)->values()[$j]) ? collect($dataf)->values()[$j] : json_encode(collect($dataf)->values()[$j]): 'N/A'}}">
                         </div>
                       </label>
                       <br>
@@ -281,7 +281,7 @@
                       <br>
                   @endforeach
                 @else
-                  <input class="ignore ignore widget autocomplete" type="text" value="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}">
+                  <input class="ignore widget autocomplete" type="text" value="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}">
                 @endif
 
               </div>
