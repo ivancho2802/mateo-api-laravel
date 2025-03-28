@@ -13,7 +13,9 @@ class AlterMigrateCustomsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('mqr_caminos', function (Blueprint $table) {
+            $table->string('id_user_mireview')->nullable()->create();
+        });
     }
 
     /**
