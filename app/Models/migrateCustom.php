@@ -19,6 +19,7 @@ class migrateCustom extends Model
         'table',
         'table_id',
         'file_ref',
-        'file'
+        'file',
+        'ID_D_CLIENTES'
     ];
 }
