@@ -87,7 +87,7 @@
 
         setTimeout(() => {
             location.href ="https://consorciomiremas.org/";
-        }, 5000);
+        }, 3000);
     </script>
 </body>
 </html>

@@ -104,8 +104,8 @@ class Meal extends Controller
             ->where('FECHA_ATENCION', '<=', "2024-12-31"); */
             ->whereHas('emergencia', function ($query) {
                 $query->where('SOCIO', '!=', 'MDM')
-                ->orWhere('COD_ACTIVIDAD', '!=', "H2")
-                ->where('FECHA_ATENCION', '<=', "2024-12-31");
+                    ->orWhere('COD_ACTIVIDAD', '!=', "H2")
+                    ->where('FECHA_ATENCION', '<=', "2024-12-31");
             });
 
         $num_pages = round(count($mlpas_origin->get()) / 10); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
@@ -1213,14 +1213,14 @@ class Meal extends Controller
      * servicio para guardar solicitudesd dehacceso al mireiew
      */
 
-    public function requestRegister(Request $request) 
+    public function requestRegister(Request $request)
     {
         $request->post_id;
         $request->form_id;
         $request->referer_title;
-        $request->form_fields["name"];// ivan diaz;
-        $request->form_fields["field_f02be14"];// acf;//oganizacion
-        $request->form_fields["email"];// ings.ivandiaz@gmail.com
+        $request->form_fields["name"]; // ivan diaz;
+        $request->form_fields["field_f02be14"]; // acf;//oganizacion
+        $request->form_fields["email"]; // ings.ivandiaz@gmail.com
 
         //$data = $request->all();
         $data['name'] = $request->form_fields["name"] ?? "None";
@@ -1234,7 +1234,201 @@ class Meal extends Controller
         //return $solicitudes;
         return view('success', ["mensage" => "Seras redireccionado"]);
         //return view('success', ["error" => "name_key"]);
-        
-        
+
+
+    }
+
+
+    /**
+     * servidio de migracion de activity info
+     * 1 obtener la lista de formularios de un usuario de kobo
+     * 2 paso obtener el formulario de kobo 
+     * 3 con los datos obtenidos crear el formulario en activity info
+     * 4 guardar los id del formulario creado relacionado por el id y la pregunta se me ocurre una sensilla donde guarde la pregunta y el id debe estar relaionado con el nombre del formulario para evitar preguntas duplicadas que sean iguales
+     * 5 despues de guardar esto se usa para poder apuntar a los datos de preguntas con el id para poder crear los registros
+     * 6 para crear los registros se debe hacer post con el update para crearlo obteniando las preguntas con su id y el nombre del formulario
+     * 7 despues ya esta listo
+     */
+    public function migracionKoboActivityinfo(Request $request)
+    {
+
+
+        // Crear la cadena de autorización en formato Basic
+        $token = Config::get('app.tokenactovityinfo');
+        $tokenkobo = Config::get('app.tokenactovityinfo');
+
+        // * 1 obtener la lista de formularios de un usuario de kobo
+        $auth_header = 'Authorization:' . $tokenkobo; //base64_encode($username . ':' . $password)
+
+        $url = 'https://kobo2.actioncontrelafaim.org/api/v2/assets.json';
+
+        // Crear opciones de contexto de flujo
+        $context = stream_context_create([
+            'http' => [
+                'header' => $auth_header
+            ]
+        ]);
+
+        // Enviar la solicitud GET aQxrcJYzPy4nzzVRXZVSBC
+        $response = file_get_contents($url, false, $context);
+
+        // Verificar si la solicitud fue exitosa
+        if ($response == false) {
+            // Manejar el error de la solicitud
+            $msg = 'Error al realizar la solicitud GET: ' . error_get_last()['message'];
+            return response()->json(['status' => false, 'message' => $msg], 503);
+        }
+
+        // Procesar la respuesta obtenida
+        $json_response = json_decode($response);
+
+        //cantidad de registros kobo 1124
+        dd(count($json_response->results));
+
+        $m_formulario_id = null;
+
+        $m_formulario = MFormulario::updateOrCreate(
+            ['ID_M_FORMULARIOS' => $json_response[0]->_xform_id_string],
+            [
+                'ACCION' => "ALERTA",
+                'ID_M_FORMULARIOS' => $json_response[0]->_xform_id_string,
+                "ASSET_UID" => $json_response[0]->_xform_id_string,
+                "UID" => $json_response[0]->_uuid,
+                "URL_DATA" => $url,
+                "URL_CAMPOS" =>  $url,
+                "ESTATUS" => $json_response[0]->_status,
+                "FECHA" => $json_response[0]->_submission_time,
+                "FECHA_REGISTRO" => $json_response[0]->start,
+
+                //"formhub\/uuid": "5ac352c78ba544559fed4783264c14df",
+                //"meta\/instanceID": "uuid:f58da61d-dffd-4dc6-b770-3670807f7c6b",
+
+                "ID_M_USUARIOS" => $ID_USER
+            ]
+        );
+
+
+        $m_formulario = MFormulario::where(["ID_M_FORMULARIOS" => $json_response[0]->_xform_id_string])->first();
+
+        $m_formulario_id = $m_formulario->ID_M_FORMULARIOS;
+
+        if (!isset($m_formulario_id)) {
+            return response()->json(['status' => false, 'message' => "error en la creacion del formulario maestro", "data" => $m_formulario], 503);
+        }
+        //llamo todas las preguntas de este formulario las desactivo
+
+        $creation_failed = [];
+        $count = 0;
+
+        for ($i = 0; $i < count($json_response); $i++) {
+            //ojo esto actualiza o crea una
+            $object = (object)helper::formatObject($json_response[$i], "");
+
+            //crear preguntas
+
+            $id_kobo_respuesta = $json_response[$i]->_id;
+
+            //$object->preguntas 34
+            //dd(count($object->preguntas));
+
+            $body_m_kobo_preguntas = [];
+            $body_respuestas = [];
+
+            for ($j = 0; $j < count($object->preguntas); $j++) {
+
+                $pregunta = $object->preguntas[$j];
+
+                array_push(
+                    $body_m_kobo_preguntas,
+                    [
+                        "ID_M_KOBO_FORMULARIOS" => "nextId",
+                        "_ID" => $id_kobo_respuesta,
+                        "CAMPO1" => $pregunta,
+                        "ID_M_FORMULARIOS" => $m_formulario_id,
+                        "ESTATUS" => 1,
+                        "ID_M_USUARIOS" => $ID_USER,
+                    ]
+                );
+            }
+
+            //dd("body_m_kobo_preguntas", $body_m_kobo_preguntas);
+
+            $m_kobo_preguntas = MKoboFormularios::insert(
+                //The method's first argument consists of the values to insert or update
+                $body_m_kobo_preguntas,
+                // second argument lists the column(s) that uniquely identify records within the associated table.
+                //El segundo argumento enumera las columnas que identifican de forma única los registros dentro de la tabla asociada.
+                //['CAMPO1'], //, '_ID' error reaprar
+                //The method's third and final argument is an array of the columns that should be updated if a matching record already exists in the database.
+                //El tercer y último argumento del método es una matriz de columnas que deben actualizarse si ya existe un registro coincidente en la base de datos.
+                //['ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
+            );
+
+            if (!$m_kobo_preguntas) { //!== count($body_m_kobo_preguntas)
+                array_push(
+                    $creation_failed,
+                    ["preguntas" => $body_m_kobo_preguntas]
+                );
+            }
+
+
+            //crear respuesta
+            $preguntas_created = collect(MKoboFormularios::where(["_ID" => $id_kobo_respuesta])->get());
+            $ids_kobo_respuesta = [];
+
+            for ($k = 0; $k < count($object->respuestas); $k++) {
+
+                $count++;
+
+                $respuesta = $object->respuestas[$k];
+                $pregunta = $object->preguntas[$k];
+
+                $desired_object = $preguntas_created->filter(function ($item) use ($pregunta) {
+                    return $item->CAMPO1 == $pregunta;
+                })->first();
+
+                if (optional($desired_object)->id) {
+                    array_push($body_respuestas, [
+                        "FECHA" => $json_response[$i]->_submission_time,
+                        "FECHA_REGISTRO" => $json_response[$i]->start,
+                        "_ID" => $id_kobo_respuesta,
+                        "VALOR" => json_encode($respuesta),
+                        "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
+                        "ID_M_FORMULARIOS" => $m_formulario_id,
+                        "ID_M_USUARIOS" => $ID_USER
+                    ]);
+                    $ids_kobo_respuesta[] = $id_kobo_respuesta;
+                }
+            }
+
+            //dd($body_respuestas);
+
+            //crean respuestas
+            $m_respuestas = MKoboRespuestas::insert($body_respuestas);
+            //dd($body_respuestas);
+
+            if (!$m_respuestas) {
+                array_push(
+                    $creation_failed,
+                    ["respuestas" => $body_respuestas] //$body_respuestas
+                );
+            }
+
+            migrateCustom::create([
+                'table' => 'M_KOBO_RESPUESTAS',
+                'table_id' => implode(", ", $ids_kobo_respuesta),
+                'file_ref' => '-',
+            ]);
+        }
+
+        if (count($creation_failed) > 0) {
+            return response()->json([
+                'status' => false,
+                'message' => "no se terminaron de cargar los registros ponte en contacto con soporte",
+                'data' => $creation_failed
+            ], 503);
+        }
+
+        return response()->json(['status' => true, 'data' => [count($json_response), $count]], 200);
     }
 }

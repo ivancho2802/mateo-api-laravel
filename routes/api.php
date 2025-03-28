@@ -229,6 +229,10 @@ Route::prefix('meal')->group(function () {
 
   //servicio para la recepcion de solicitudes de accso a la plataforma del mireview
   Route::post('/request_register', [App\Http\Controllers\Meal::class, 'requestRegister']);
+
+  //migracion activity info
+  Route::post('/migration_kobo_activityinfo', [App\Http\Controllers\Meal::class, 'migracionKoboActivityinfo']);
+
   
 });
 

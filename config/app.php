@@ -131,6 +131,7 @@ return [
     'tokenkobo' =>  env('ACH_TOKENKOBO', '0a4363a291013a98e3e574a1713f9f9702c1d739'),
     'tokenkobonrc' =>  env('ACH_TOKENKOBONRC', '0a4363a291013a98e3e574a1713f9f9702c1d739'),
     'tokenkobowendy' =>  env('ACH_TOKENKOBONRC', '322f65e3677ee93aa36d34c9a89e70e66fa9bdd4'),
+    'tokenactovityinfo' => env('TOKEN_ACTIVITYINFO', "4f477f867dfb56c4ff7065225d2a45b6"),
 
     //tres para metros {CONDICION1}, {FECHA_DESDE}" '01/01/2021' AND "{FECHA_HASTA}" '12/31/2024'
     'matrizSqlGraficos' => [

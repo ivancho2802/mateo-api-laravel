@@ -18,9 +18,9 @@ public.migrate_customs
 where 
 --table_id != '[]' AND
 "table" = 'M_LPAS'  AND 
-file_ref like '%UPLOADED%' 
+file_ref like '%UPLOADED%' --13748 + 123268 = 137016
 --and table_id not like '{%' 
-order by updated_at desc limit 7 ;
+order by updated_at desc limit 7 ;--select count(*) from "M_LPAS"
 
 SELECT *
 FROM 
