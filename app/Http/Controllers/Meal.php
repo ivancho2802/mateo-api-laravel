@@ -1283,7 +1283,10 @@ class Meal extends Controller
         $json_response = json_decode($response);
 
         //cantidad de registros kobo 1124
-        dd(count($json_response->results));
+        //dd(count($json_response->results));
+        /**
+         * 
+         */
 
         $m_formulario_id = null;
 

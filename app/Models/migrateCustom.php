@@ -20,6 +20,6 @@ class migrateCustom extends Model
         'table_id',
         'file_ref',
         'file',
-        'ID_D_CLIENTES'
+        'id_user_mireview'
     ];
 }

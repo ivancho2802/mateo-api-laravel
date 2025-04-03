@@ -69,7 +69,7 @@ class PersonAttendedMongo extends Controller
             'table' => 'M_LPAS',
             'table_id' =>  $path,
             'file_ref' => 'UPLOADED',
-            'ID_D_CLIENTES' => $request->ID_D_CLIENTES
+            'id_user_mireview' => $request->ID_D_CLIENTES
         ]);
         //crear job para ejecutar la funcion de process
         LpaJobMongoProcess::dispatch(); //->onConnection('database');
