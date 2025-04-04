@@ -107,7 +107,7 @@ return [
 
         'firebirdcopy' => [
             'driver'   => 'firebird',
-            'host'     => '192.168.1.151',
+            'host'     => '192.168.1.152',
             'port'     => '3050',
             //'database' => env('DB_FIREBIRD_DB_DATABASE', '/opt/lampp/firebird/db/ach.gdb'),
             //C:\opt\lampp\firebird\db\ach.gdb

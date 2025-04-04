@@ -611,21 +611,28 @@ Route::prefix('firebirdcopy')->group(function () {
 
   Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {
 
-    /*   try { */
-
+    
     DB::setDefaultConnection('firebirdcopy');
 
-    $resultados = collect(DB::select($request->sql));
+    $resultados = DB::select($request->sql);
 
-    DB::setDefaultConnection('firebird');
-    $resultados_danados = collect(DB::select($request->sql));
+    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+
+    /*   try { */
+
+    /* DB::setDefaultConnection('firebirdcopy');
+
+    $resultados = collect(DB::select($request->sql)); */
+
+    //DB::setDefaultConnection('firebird');
+    //$resultados_danados = collect(DB::select($request->sql));
 
     /* return response()->json([
       "resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados),
       "resultados_danados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados_danados),
     ]); */
 
-    $resultados->each(function ( $m_formulario, int $key) use ($resultados_danados){
+    /* $resultados->each(function ( $m_formulario, int $key) use ($resultados_danados){
         // ...
         $resultados_danados->each(function ( $m_formulario_danados, int $key_danado) use($m_formulario){
             // ...
@@ -638,9 +645,9 @@ Route::prefix('firebirdcopy')->group(function () {
     
         });
 
-    });
+    }); 
 
-    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);*/
     /* } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     } */
