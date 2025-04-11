@@ -248,3 +248,73 @@ T_M_MENU_PARTICULAR, Sequence: 1, Type: BEFORE UPDATE, Active
 T_M_MENU_XGRUPO, Sequence: 2, Type: BEFORE UPDATE, Active
 T_M_MENU_APLICA_TODOS_GRUP, Sequence: 3, Type: BEFORE UPDATE, Active
 T_M_MENU_NIVEL, Sequence: 2, Type: BEFORE INSERT OR UPDATE, Active
+
+M_MUNICIPIOS
+
+{
+    "resultados": [
+        {
+            "RDB$FIELD_NAME": "FECHA_REGISTRO                                                                               "
+        },
+        {
+            "RDB$FIELD_NAME": "FECHA                                                                                        "
+        },
+        {
+            "RDB$FIELD_NAME": "ID_EMPRESA                                                                                   "
+        },
+        {
+            "RDB$FIELD_NAME": "ID                                                                                           "
+        },
+        {
+            "RDB$FIELD_NAME": "NIVEL                                                                                        "
+        },
+        {
+            "RDB$FIELD_NAME": "CAMPO5                                                                                       "
+        },
+        {
+            "RDB$FIELD_NAME": "CAMPO4                                                                                       "
+        },
+        {
+            "RDB$FIELD_NAME": "CAMPO3                                                                                       "
+        },
+        {
+            "RDB$FIELD_NAME": "CAMPO2                                                                                       "
+        },
+        {
+            "RDB$FIELD_NAME": "CAMPO1                                                                                       "
+        },
+        {
+            "RDB$FIELD_NAME": "BARCODE                                                                                      "
+        },
+        {
+            "RDB$FIELD_NAME": "UNICO                                                                                        "
+        },
+        {
+            "RDB$FIELD_NAME": "ID_M_AREAS                                                                                   "
+        },
+        {
+            "RDB$FIELD_NAME": "ID_M_USUARIOS                                                                                "
+        },
+        {
+            "RDB$FIELD_NAME": "NOMBRES                                                                                      "
+        },
+        {
+            "RDB$FIELD_NAME": "ID_M_ESTADOS                                                                                 "
+        },
+        {
+            "RDB$FIELD_NAME": "ID_M_PAISES                                                                                  "
+        },
+        {
+            "RDB$FIELD_NAME": "ID_M_MUNICIPIOS                                                                              "
+        },
+        {
+            "RDB$FIELD_NAME": "CODIGO4                                                                                      "
+        },
+        {
+            "RDB$FIELD_NAME": "ACCION                                                                                       "
+        },
+        {
+            "RDB$FIELD_NAME": "ESTATUS                                                                                      "
+        }
+    ]
+}

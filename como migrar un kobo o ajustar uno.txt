@@ -1,0 +1,97 @@
+como migrar un kobo o ajustar uno
+
+para ajustarlo es mejor desde el kobo auidit desde el mire
+    para editar preguntas es por referencia esta debe ser igual a la de kobo y se conecta solo la respuesta con la pregunta p formulario
+
+Tiggers
+    el de estadisticas maneja el departamento y municipio en el kobo fromularios
+    el de codgio maneja el codigo de la alerta
+
+001128
+ID_M_FORMULARIOS
+
+
+uid
+    13535270
+        instanceID uuid:aa24b7ab-1fe2-48ac-baae-8c89870b832a
+        -> 001128
+_id kobo
+    13535267
+        instanceID uuid:c8c64119-61cd-4f7a-a0da-ade4ba08eaf9
+        -> 0011
+    13535247
+        instanceID uuid:3f7d5106-d59a-4fdf-9200-e6104d2d0dbe
+        -> 0011
+fuid
+    a2qmowz5ThpAqH4bTDieHA
+
+   
+
+
+
+    SELECT * FROM M_FORMULARIOS WHERE UID = 'a2qmowz5ThpAqH4bTDieHA' -- ID_M_FORMULARIOS = '001128' 
+    {
+            "ID_M_FORMULARIOS": "001128",
+            "ID_M_USUARIOS": null,
+            "ID_M_AREAS": null,
+            "FECHA": "2025-04-04 18:22:28",
+            "FECHA_REGISTRO": "2025-04-04 18:22:28",
+            "ACCION": "I",
+            "UNICO": null,
+            "BARCODE": null,
+            "ID": 128,
+            "ID_EMPRESA": null,
+            "CAMPO1": null,
+            "CAMPO2": null,
+            "CAMPO3": null,
+            "CAMPO4": null,
+            "CAMPO5": null,
+            "ESTATUS": "ACT",
+            "NOMBRES": "",
+            "VIA": null,
+            "TIPO": null,
+            "ID_M_CLIENTES": null,
+            "UID": "a2qmowz5ThpAqH4bTDieHA",
+            "URL_DATA": "https://kobo.humanitarianresponse.info/api/v2/assets/a2qmowz5ThpAqH4bTDieHA/data.json",
+            "URL_CAMPOS": "https://kobo.humanitarianresponse.info/api/v2/assets/a2qmowz5ThpAqH4bTDieHA.xml",
+            "COMENTARIOS": "",
+            "GRUPO": null
+        }
+        //UID = 'XXX', URL_DATA = 'XXX', URL_CAMPOS='XXX' 
+    SELECT * FROM M_FORMULARIOS WHERE  ID_M_FORMULARIOS = '0011' 
+    {
+            "ID_M_FORMULARIOS": "0011",
+            "ID_M_USUARIOS": "00167",
+            "ID_M_AREAS": "",
+            "FECHA": "2024-11-24 14:19:49",
+            "FECHA_REGISTRO": "2021-02-23 10:31:28",
+            "ACCION": "U",
+            "UNICO": "69910DEF1037B0C4335D64CFE9351389",
+            "BARCODE": null,
+            "ID": 1,
+            "ID_EMPRESA": null,
+            "CAMPO1": null,
+            "CAMPO2": null,
+            "CAMPO3": null,
+            "CAMPO4": null,
+            "CAMPO5": null,
+            "ESTATUS": "ACT",
+            "NOMBRES": "1. ALERTAS DE EMERGENCIAS MIRE+",
+            "VIA": null,
+            "TIPO": null,
+            "ID_M_CLIENTES": null,
+            "UID": "aERiZwVqPrcEbYzhFux5au",
+            "URL_DATA": "https://kobo.humanitarianresponse.info/api/v2/assets/aERiZwVqPrcEbYzhFux5au/data.json",
+            "URL_CAMPOS": "https://kobo.humanitarianresponse.info/api/v2/assets/aERiZwVqPrcEbYzhFux5au.xml",
+            "COMENTARIOS": "",
+            "GRUPO": "MASIVO"
+        }
+        //UID = 'a2qmowz5ThpAqH4bTDieHA', URL_DATA = 'https://kobo.humanitarianresponse.info/api/v2/assets/a2qmowz5ThpAqH4bTDieHA/data.json', URL_CAMPOS='https://kobo.humanitarianresponse.info/api/v2/assets/a2qmowz5ThpAqH4bTDieHA.xml'
+
+ACTUALECE ID_M_FORMULARIOS 0011  =  UID
+URL_DATA
+URL_CAMPOS
+
+falta este query
+
+ UPDATE M_FORMULARIOS SET UID = 'a2qmowz5ThpAqH4bTDieHA', URL_DATA = 'https://kobo.humanitarianresponse.info/api/v2/assets/a2qmowz5ThpAqH4bTDieHA/data.json', URL_CAMPOS='https://kobo.humanitarianresponse.info/api/v2/assets/a2qmowz5ThpAqH4bTDieHA.xml' WHERE ID_M_FORMULARIOS = '0011'  --

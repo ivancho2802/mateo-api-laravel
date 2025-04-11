@@ -103,8 +103,8 @@ class Meal extends Controller
             /*  ->Orwhere('COD_ACTIVIDAD', '!=', "H2")
             ->where('FECHA_ATENCION', '<=', "2024-12-31"); */
             ->whereHas('emergencia', function ($query) {
-                $query->where('SOCIO', '!=', 'MDM')
-                    ->orWhere('COD_ACTIVIDAD', '!=', "H2")
+                $query->where('SOCIO', '=', 'MDM')
+                    ->where('COD_ACTIVIDAD', '!=', "H2")
                     ->where('FECHA_ATENCION', '<=', "2024-12-31");
             });
 

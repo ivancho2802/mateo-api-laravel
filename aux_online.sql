@@ -1,6 +1,10 @@
 .
 --CREATE USER harold WITH PASSWORD 'y@Z819_=9ra?'
-
+SELECT count(*) FROM 
+"M_LPAS", "M_LPA_EMERGENCIAS" 
+where  
+"M_LPAS"."FK_LPA_EMERGENCIA" = "M_LPA_EMERGENCIAS"."ID"
+ORDER BY "FECHA_ATENCION" 
 SELECT *
 FROM 
 public.migrate_customs 
@@ -18,7 +22,7 @@ public.migrate_customs
 where 
 --table_id != '[]' AND
 "table" = 'M_LPAS'  AND 
-file_ref like '%UPLOADED%' --13748 + 123268 = 137016
+file_ref like '%UPLOADED%' -- 1079 + 142946 = 144025
 --and table_id not like '{%' 
 order by updated_at desc limit 7 ;--select count(*) from "M_LPAS"
 
