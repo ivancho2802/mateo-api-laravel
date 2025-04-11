@@ -98,7 +98,7 @@ class Meal extends Controller
         ini_set('max_execution_time', '' . $limit_minutes . '');
         ini_set('max_input_time', '' . $limit_minutes . '');
 
-        $mlpas_origin = MLpa::where("FECHA_ATENCION", ">=", "2025-01-01")
+        $mlpas_origin = MLpa::where("FECHA_ATENCION", ">=", "2023-01-01")
             ->nodeleted()
             /*  ->Orwhere('COD_ACTIVIDAD', '!=', "H2")
             ->where('FECHA_ATENCION', '<=', "2024-12-31"); */
@@ -107,10 +107,6 @@ class Meal extends Controller
                     ->orWhere('COD_ACTIVIDAD', '!=', "H2")
                     ->orWhere('FECHA_ATENCION', '>=', "2024-12-31");
             });
-
-            return [
-                "lpas" => $mlpas_origin->get()
-            ];
 
         $num_pages = round(count($mlpas_origin->get()) / 10); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
 
