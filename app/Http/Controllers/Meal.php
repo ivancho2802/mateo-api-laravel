@@ -108,6 +108,8 @@ class Meal extends Controller
                     ->orWhere('FECHA_ATENCION', '>=', "2024-12-31");
             });
 
+            dd(count($mlpas_origin->get()));
+
         $num_pages = round(count($mlpas_origin->get()) / 10); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
 
         $mlpas = $mlpas_origin->paginate($num_pages); //where("FECHA_ATENCION", ">=", "2023-01-01")limit(60000)->
