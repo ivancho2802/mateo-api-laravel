@@ -10,11 +10,12 @@
 <div id="grid_container_m_lpa" data-origen="auditoria_atendidas/m_lpa" class="grid_contenedor origen grid_activo container" data-grid="m_lpa" style="height: auto; min-height: 530px; z-index: 2; display: block;">
     <div id="grid_tabla" class="grid_cuadro_activo" style="overflow: hidden; width: 915px;">
 
-        <h4>Es posible que la migracion sea demasiado grande por lo que la informacion sera procesada periodicamente</h4>
-        <h4>Archivos enviados: {{$record_excel}}</h4>
-        <h4>Registros guardados: {{$record_saved}}</h4>
+        <h4>Los datos han sido cargados exitosamente</h4>
+        <h4>Este proceso se realiza periodicamente por lo que los cambios no son aplicados en el preciso momento que se cargan este proceso puede tomar 2 dias habiles ya que son monitoreados</h4>
+        <!-- Archivos enviados:  --><h4>{{$record_excel}}</h4>
+        <!-- Registros guardados: --><h4> {{$record_saved}}</h4>
 
-        <table id="m_lpa_encabezado" class="table table-responsive table-bordered">
+        <table id="m_lpa_encabezado" class="table table-responsive table-bordered d-none" style="display: none">
 
             <thead class="text-center  bg-info">
                 <tr>
