@@ -995,14 +995,24 @@ class PersonAttended extends Controller
             ->nodeleted()
             ->get());
 
+        $personasatenciones2020 = 163294;
+        $atenciones2020 = 423541;
+        $emergencias2020 = 131;
+
+        $departamentos2020 = 42;
+        $municipios2020 = 99;
+        //actividades
+        $comunidades_rt2020 = 13;
+
         return [
-            "atenciones" => $atenciones,
-            "beneficiarios_unicos" => $personas,
-            "emergencias" => $emergencias,
-            "departamentos" => $departamentos,
-            "municipios" => $municipios,
+            "atenciones" => $atenciones + $atenciones2020,
+            "beneficiarios_unicos" => $personas + $personasatenciones2020,
+            "emergencias" => $emergencias + $emergencias2020,
+            "departamentos" => $departamentos + $departamentos2020,
+            "municipios" => $municipios + $municipios2020,
+            "comunidades_rt" => $comunidades_rt + $comunidades_rt2020,
+
             "actividades" => $actividades,
-            "comunidades_rt" => $comunidades_rt,
         ];
     }
 
