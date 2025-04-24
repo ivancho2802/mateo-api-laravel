@@ -40,6 +40,26 @@ use Jenssegers\Mongodb\MongodbServiceProvider;
 |
 */
 
+
+Route::get('/querytest', function (Request $request) {
+
+  /*   try { */
+
+  return response()->json([
+    ["name" =>  "asd", "code" =>  "asd1"],
+    ["name" =>  "asd", "code" =>  "asd2"],
+    ["name" =>  "asd", "code" =>  "asd2"],
+    ["name" =>  "asd", "code" =>  "asd2"],
+    ["name" =>  "asd", "code" =>  "asd2"],
+    ["name" =>  "asd", "code" =>  "asd2"],
+    ["name" =>  "asd", "code" =>  "asd2"],
+    ["name" =>  "asd", "code" =>  "asd2"],
+  ]);
+  /* } catch (\Throwable $exception) {
+    return response()->json(['Error' => $exception->getMessage()]);
+  } */
+});
+
 Route::prefix('finanzas')->group(function () {
   //SERVICIO PARA CONSULTAR PARAMETROS DEL POWER BI ADN y1 y2
   Route::get('/adn/fase2', [App\Http\Controllers\Finanzas::class, 'all']);
