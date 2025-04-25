@@ -235,7 +235,7 @@ class Kobo extends Controller
 
         $coleccionModificada = $dataSubdmissions->map(function ($item) {
             $matrizCollect = collect($item);
-            $data = $matrizCollect->except(['_attachments', '_geolocation', '_tags', '_notes', '_validation_status']);
+            $data = $matrizCollect->except(['meta\instanceID', 'meta\/instanceID', 'formhub\uuid', 'formhub\/uuid', '_attachments', '_geolocation', '_tags', '_notes', '_validation_status']);
             return $data;
         });
 
