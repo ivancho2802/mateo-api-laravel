@@ -244,14 +244,14 @@ class Kobo extends Controller
             $item = "";
             return $item;
         });
-        dd($surveyFormated);
 
         $dataSubdmissions = collect($response);
 
-        $coleccionModificada = $dataSubdmissions->map(function ($item) {
+        $coleccionModificada = $dataSubdmissions->map(function ($item) use ($surveyFormated) {
             $matrizCollect = collect($item);
-            $data = $matrizCollect->except(['institucion_coord_albergue', 'meta/instanceID', 'meta/rootUuid', 'formhub/uuid', 'meta/deprecatedID', '_attachments', '_geolocation', '_tags', '_notes', '_validation_status']);
-            return $data;
+            $data = $matrizCollect->except(['meta/instanceID', 'meta/rootUuid', 'formhub/uuid', 'meta/deprecatedID', '_attachments', '_geolocation', '_tags', '_notes', '_validation_status']);
+            $resultado = array_merge($surveyFormated, $data);
+            return $resultado;
         });
 
         /* $matrizMinas = $matrizMinas->map(function ($matriz) {
