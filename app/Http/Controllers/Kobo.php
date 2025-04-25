@@ -238,7 +238,7 @@ class Kobo extends Controller
             ->get("https://" . $dominio . "/api/v2/assets/". $uui .".json")
             ->json();
 
-        $survey = collect($responseSurveis->report_styles->kuid_names)->keys();
+        $survey = collect($responseSurveis['report_styles']['kuid_names'])->keys();
 
         
         dd($survey);
