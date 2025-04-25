@@ -234,7 +234,8 @@ class Kobo extends Controller
         $dataSubdmissions = collect($response);
 
         $coleccionModificada = $dataSubdmissions->map(function ($item) {
-            return Arr::except($item, ['_attachments', '_geolocation', '_tags', '_notes', '_validation_status']);
+            $data = $item->except(['_attachments', '_geolocation', '_tags', '_notes', '_validation_status']);
+            return $data;
         });
 
         $arregloModificado = $coleccionModificada->toArray();
