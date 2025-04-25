@@ -970,6 +970,26 @@ class PersonAttended extends Controller
                 ->get()
         );
 
+        /* Amazonas
+        Antioquia
+        Arauca
+        Bogotá
+        Bolívar
+        Caquetá
+        Cauca
+        Chocó
+        Córdoba
+        Cundinamarca
+        Guaviare
+        Huila
+        La Guajira
+        Meta
+        Nariño
+        Putumayo
+        Valle del Cauca
+        Vaupés
+        Vichada */
+
         $municipios = count(
             DB::table('M_LPA_EMERGENCIAS')
                 ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
@@ -977,6 +997,93 @@ class PersonAttended extends Controller
                 ->groupBy('MUNICIPIO')
                 ->get()
         );
+
+        /* Alto Baudó
+        Arauca
+        Arauquita
+        Arenal
+        Argelia
+        Bagadó
+        Bahía Solano
+        Bajo Baudó
+        Barbacoas
+        Bogotá
+        Bojayá
+        Buenaventura
+        Buenos Aires
+        Buenos Aires
+        Cáceres
+        Cali
+        Cartagena del Chairá
+        Carurú
+        Caucasia
+        Dabeiba
+        Dibulla
+        El Charco
+        Granada
+        Guapi
+        Íquira
+        Istmina
+        Ituango
+        Juradó
+        La Chorrera
+        La Plata
+        Leticia
+        Litoral del San Juan
+        Lloró
+        López de Micay
+        Los Andes
+        Magüí Payán
+        Maicao
+        Medio Baudó
+        Medio San Juan
+        Montelíbano
+        Montería
+        Morales
+        Mosquera
+        Murindó
+        Nátaga
+        Norosí
+        Nóvita
+        Nuquí
+        Olaya Herrera
+        Pasto
+        Policarpa
+        Popayán
+        Puerto Asís
+        Puerto Carreño
+        Puerto Concordia
+        Puerto Leguízamo
+        Puerto Milán
+        Puerto Rico
+        Quibdó
+        Ricaurte
+        Riohacha
+        Roberto Payán
+        Samaniego
+        San José de Uré
+        San José del Guaviare
+        San Pedro de Urabá
+        San Vicente del Caguán
+        Santa Bárbara
+        Santa Rosa del Sur
+        Segovia
+        Sipí
+        Soacha
+        Solano
+        Suárez
+        Tadó
+        Tame
+        Tarazá
+        Tierralta
+        Timbiquí
+        Toribío
+        Totoró
+        Tumaco
+        Turbo
+        Urrao
+        Valdivia
+        Vigía del Fuerte */
 
         $actividades = count(
             DB::table('activities')
@@ -999,17 +1106,18 @@ class PersonAttended extends Controller
         $atenciones2020 = 423541;
         $emergencias2020 = 131;
 
-        $departamentos2020 = 42;
-        $municipios2020 = 99;
+        $departamentos2020 = 19;
+        $municipios2020 = 86;
         //actividades
         $comunidades_rt2020 = 13;
 
         return [
             "atenciones" => $atenciones + $atenciones2020,
-            "beneficiarios_unicos" => $personas + $personasatenciones2020,
-            "emergencias" => $emergencias + $emergencias2020,
-            "departamentos" => $departamentos + $departamentos2020,
+            "departamentos" => $departamentos + $departamentos2020,//
             "municipios" => $municipios + $municipios2020,
+            "beneficiarios_unicos" => $personas + $personasatenciones2020,
+
+            "emergencias" => $emergencias + $emergencias2020,
             "comunidades_rt" => $comunidades_rt + $comunidades_rt2020,
 
             "actividades" => $actividades,

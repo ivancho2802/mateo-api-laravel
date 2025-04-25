@@ -234,10 +234,16 @@ class Kobo extends Controller
         $dataSubdmissions = collect($response);
 
         $coleccionModificada = $dataSubdmissions->map(function ($item) {
-            $item = collect($item);
-            $data = $item->except(['_attachments', '_geolocation', '_tags', '_notes', '_validation_status']);
+            $matrizCollect = collect($item);
+            $data = $matrizCollect->except(['_attachments', '_geolocation', '_tags', '_notes', '_validation_status']);
             return $data;
         });
+
+        /* $matrizMinas = $matrizMinas->map(function ($matriz) {
+            $matrizCollect = collect($matriz);
+            $filtered = $matrizCollect->except(['created_at', 'updated_at']);
+            return $filtered;
+        }); */
 
         $arregloModificado = $coleccionModificada->toArray();
 
