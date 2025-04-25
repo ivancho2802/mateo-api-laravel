@@ -10,6 +10,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\MKoboRespuestas;
 use Illuminate\Support\Facades\DB;
 use App\Traits\TraitDepartments;
+use Illuminate\Support\Arr;
 
 class Kobo extends Controller
 {
@@ -23,7 +24,7 @@ class Kobo extends Controller
         $dominioTitle =  $dominioTi == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominioTi == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' :  $dominioTi);
         $dominio = $dominioTi;
 
-        $jsonurl = "https://" .$dominio. "/assets/" . $uui . "/submissions/?format=json";
+        $jsonurl = "https://" . $dominio . "/assets/" . $uui . "/submissions/?format=json";
 
         /* $response = Http::accept('application/json')
                 ->withBasicAuth('ugi', 'ugiach')//ugi@co.acfspain.org | ugi
@@ -41,7 +42,7 @@ class Kobo extends Controller
         //obtener los labes
 
         //https://kc.acf-e.org/api/v1/forms?id_string=a4E3J9gkULZe5eRqQph8zh
-        $jsonurlform = "https://".$dominioTi."/api/v1/forms?id_string=" . $uui;
+        $jsonurlform = "https://" . $dominioTi . "/api/v1/forms?id_string=" . $uui;
 
         $dataForm = Http::withHeaders([
             'Authorization' => 'Token ' . $token . '',
@@ -53,7 +54,7 @@ class Kobo extends Controller
         $formid = collect($dataForm[0])->get('formid');
 
         //https://kc.acf-e.org/api/v1/forms/2433/form.json
-        $jsonurlDataLabels = "https://".$dominioTi."/api/v1/forms/" . $formid . "/form.json";
+        $jsonurlDataLabels = "https://" . $dominioTi . "/api/v1/forms/" . $formid . "/form.json";
 
         $dataDataLabelsResponse = Http::withHeaders([
             'Authorization' => 'Token ' . $token . '',
@@ -208,7 +209,7 @@ class Kobo extends Controller
             ] */;
     }
 
-    
+
     public function getKobo($uui, $token, $dominioTi)
     {
 
@@ -216,7 +217,7 @@ class Kobo extends Controller
         $dominioTitle =  $dominioTi == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominioTi == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' :  $dominioTi);
         $dominio = $dominioTi;
 
-        $jsonurl = "https://" .$dominio. "/assets/" . $uui . "/submissions/?format=json";
+        $jsonurl = "https://" . $dominio . "/assets/" . $uui . "/submissions/?format=json";
         //https://kobo2.actioncontrelafaim.org/assets/aryU2j5obPFCWfrRbcASGT/submissions/?format=json
 
         /* $response = Http::accept('application/json')
@@ -232,7 +233,13 @@ class Kobo extends Controller
 
         $dataSubdmissions = collect($response);
 
-        return $response;
+        $coleccionModificada = $dataSubdmissions->map(function ($item) {
+            return Arr::except($item, ['_attachments', '_geolocation', '_tags', '_notes', '_validation_status']);
+        });
+
+        $arregloModificado = $coleccionModificada->toArray();
+
+        return $arregloModificado;
     }
 
     public function exportByuui($id, $token)
