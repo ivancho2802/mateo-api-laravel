@@ -1113,12 +1113,12 @@ class PersonAttended extends Controller
 
         return [
             "atenciones" => $atenciones + $atenciones2020,
-            "departamentos" => $departamentos + $departamentos2020,//
-            "municipios" => $municipios + $municipios2020,
+            "departamentos" => $departamentos,// + $departamentos2020,//
+            "municipios" => $municipios,// + $municipios2020,
             "beneficiarios_unicos" => $personas + $personasatenciones2020,
 
             "emergencias" => $emergencias + $emergencias2020,
-            "comunidades_rt" => $comunidades_rt + $comunidades_rt2020,
+            "comunidades_rt" => $comunidades_rt,// + $comunidades_rt2020,
 
             "actividades" => $actividades,
         ];
