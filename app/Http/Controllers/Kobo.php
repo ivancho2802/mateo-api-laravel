@@ -231,6 +231,23 @@ class Kobo extends Controller
             ->get($jsonurl)
             ->json();
 
+        $responseSurveis = Http::withHeaders([
+            'Authorization' => 'Token ' . $token,
+            'Accept' => 'application/json'
+        ])
+            ->get("https://" . $dominio . "/api/v2/assets/". $uui .".json")
+            ->json();
+
+        $survey = collect($responseSurveis->report_styles->kuid_names)->keys();
+
+        
+        dd($survey);
+        $surveyFormated = $survey->map(function ($item) {
+            $item = "";
+            return $item;
+        });
+        dd($surveyFormated);
+
         $dataSubdmissions = collect($response);
 
         $coleccionModificada = $dataSubdmissions->map(function ($item) {
