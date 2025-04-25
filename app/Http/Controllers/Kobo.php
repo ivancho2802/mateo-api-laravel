@@ -250,7 +250,7 @@ class Kobo extends Controller
         $coleccionModificada = $dataSubdmissions->map(function ($item) use ($surveyFormated) {
             $matrizCollect = collect($item);
             $data = $matrizCollect->except(['meta/instanceID', 'meta/rootUuid', 'formhub/uuid', 'meta/deprecatedID', '_attachments', '_geolocation', '_tags', '_notes', '_validation_status']);
-            $resultado = array_merge($surveyFormated, $data);
+            $resultado = array_merge($data, $data);
             return $resultado;
         });
 
