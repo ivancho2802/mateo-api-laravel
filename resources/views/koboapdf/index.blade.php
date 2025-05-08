@@ -7,7 +7,7 @@
         event.preventDefault();
 
         console.log("HAGO UN SUBMIT", event);
-        var url = "https://mireview.api.ach.dyndns.info/api/matriz";
+        var url = "http://ach.dyndns.info:6280/api/matriz";
 
         var formparmas = new FormData();
         var token = document.getElementById('token').value

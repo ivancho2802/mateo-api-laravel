@@ -1,5 +1,3 @@
-W95OxPK2PRb0a9IR3yd3qz9dx0IKSwJoIN8gYjn9
-
 select "DEPARTMENT"  from "M_MQR"   group by "DEPARTMENT"
 select "SEXO"  from "M_MQR"   group by "SEXO"
 

@@ -962,128 +962,138 @@ class PersonAttended extends Controller
                 ->get()
         );
 
+        //DEPARTAMENTOS YA CONTADOS EN EL MIREVE PARA  2020 HASTA  2023
+        $departaments_2020 =
+            [
+                "Amazonas",
+                "Antioquia",
+                "Arauca",
+                "Bogotá",
+                "Bolívar",
+                "Caquetá",
+                "Cauca",
+                "Chocó",
+                "Córdoba",
+                "Cundinamarca",
+                "Guaviare",
+                "Huila",
+                "La Guajira",
+                "Meta",
+                "Nariño",
+                "Putumayo",
+                "Valle del Cauca",
+                "Vaupés",
+                "Vichada"
+            ];
+
         $departamentos = count(
             DB::table('M_LPA_EMERGENCIAS')
                 ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
                 ->select('DEPARTAMENTO')
+                ->whereNotIn("DEPARTAMENTO", $departaments_2020)
                 ->groupBy('DEPARTAMENTO')
                 ->get()
         );
 
-        /* Amazonas
-        Antioquia
-        Arauca
-        Bogotá
-        Bolívar
-        Caquetá
-        Cauca
-        Chocó
-        Córdoba
-        Cundinamarca
-        Guaviare
-        Huila
-        La Guajira
-        Meta
-        Nariño
-        Putumayo
-        Valle del Cauca
-        Vaupés
-        Vichada */
+        //DEPARTAMENTOS YA CONTADOS EN EL MIREVE PARA  2020 HASTA  2023
+        $municipios_2020 = [
+            "Alto Baudó",
+            "Arauca",
+            "Arauquita",
+            "Arenal",
+            "Argelia",
+            "Bagadó",
+            "Bahía Solano",
+            "Bajo Baudó",
+            "Barbacoas",
+            "Bogotá",
+            "Bojayá",
+            "Buenaventura",
+            "Buenos Aires",
+            "Buenos Aires",
+            "Cáceres",
+            "Cali",
+            "Cartagena del Chairá",
+            "Carurú",
+            "Caucasia",
+            "Dabeiba",
+            "Dibulla",
+            "El Charco",
+            "Granada",
+            "Guapi",
+            "Íquira",
+            "Istmina",
+            "Ituango",
+            "Juradó",
+            "La Chorrera",
+            "La Plata",
+            "Leticia",
+            "Litoral del San Juan",
+            "Lloró",
+            "López de Micay",
+            "Los Andes",
+            "Magüí Payán",
+            "Maicao",
+            "Medio Baudó",
+            "Medio San Juan",
+            "Montelíbano",
+            "Montería",
+            "Morales",
+            "Mosquera",
+            "Murindó",
+            "Nátaga",
+            "Norosí",
+            "Nóvita",
+            "Nuquí",
+            "Olaya Herrera",
+            "Pasto",
+            "Policarpa",
+            "Popayán",
+            "Puerto Asís",
+            "Puerto Carreño",
+            "Puerto Concordia",
+            "Puerto Leguízamo",
+            "Puerto Milán",
+            "Puerto Rico",
+            "Quibdó",
+            "Ricaurte",
+            "Riohacha",
+            "Roberto Payán",
+            "Samaniego",
+            "San José de Uré",
+            "San José del Guaviare",
+            "San Pedro de Urabá",
+            "San Vicente del Caguán",
+            "Santa Bárbara",
+            "Santa Rosa del Sur",
+            "Segovia",
+            "Sipí",
+            "Soacha",
+            "Solano",
+            "Suárez",
+            "Tadó",
+            "Tame",
+            "Tarazá",
+            "Tierralta",
+            "Timbiquí",
+            "Toribío",
+            "Totoró",
+            "Tumaco",
+            "Turbo",
+            "Urrao",
+            "Valdivia",
+            "Vigía del Fuerte"
+        ];
 
         $municipios = count(
             DB::table('M_LPA_EMERGENCIAS')
                 ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
                 ->select('MUNICIPIO')
+                ->whereNotIn("MUNICIPIO", $municipios_2020)
                 ->groupBy('MUNICIPIO')
                 ->get()
         );
 
-        /* Alto Baudó
-        Arauca
-        Arauquita
-        Arenal
-        Argelia
-        Bagadó
-        Bahía Solano
-        Bajo Baudó
-        Barbacoas
-        Bogotá
-        Bojayá
-        Buenaventura
-        Buenos Aires
-        Buenos Aires
-        Cáceres
-        Cali
-        Cartagena del Chairá
-        Carurú
-        Caucasia
-        Dabeiba
-        Dibulla
-        El Charco
-        Granada
-        Guapi
-        Íquira
-        Istmina
-        Ituango
-        Juradó
-        La Chorrera
-        La Plata
-        Leticia
-        Litoral del San Juan
-        Lloró
-        López de Micay
-        Los Andes
-        Magüí Payán
-        Maicao
-        Medio Baudó
-        Medio San Juan
-        Montelíbano
-        Montería
-        Morales
-        Mosquera
-        Murindó
-        Nátaga
-        Norosí
-        Nóvita
-        Nuquí
-        Olaya Herrera
-        Pasto
-        Policarpa
-        Popayán
-        Puerto Asís
-        Puerto Carreño
-        Puerto Concordia
-        Puerto Leguízamo
-        Puerto Milán
-        Puerto Rico
-        Quibdó
-        Ricaurte
-        Riohacha
-        Roberto Payán
-        Samaniego
-        San José de Uré
-        San José del Guaviare
-        San Pedro de Urabá
-        San Vicente del Caguán
-        Santa Bárbara
-        Santa Rosa del Sur
-        Segovia
-        Sipí
-        Soacha
-        Solano
-        Suárez
-        Tadó
-        Tame
-        Tarazá
-        Tierralta
-        Timbiquí
-        Toribío
-        Totoró
-        Tumaco
-        Turbo
-        Urrao
-        Valdivia
-        Vigía del Fuerte */
 
         $actividades = count(
             DB::table('activities')
@@ -1113,12 +1123,12 @@ class PersonAttended extends Controller
 
         return [
             "atenciones" => $atenciones + $atenciones2020,
-            "departamentos" => $departamentos,// + $departamentos2020,//
-            "municipios" => $municipios,// + $municipios2020,
+            "departamentos" => $departamentos, // + $departamentos2020,//
+            "municipios" => $municipios, // + $municipios2020,
             "beneficiarios_unicos" => $personas + $personasatenciones2020,
 
             "emergencias" => $emergencias + $emergencias2020,
-            "comunidades_rt" => $comunidades_rt,// + $comunidades_rt2020,
+            "comunidades_rt" => $comunidades_rt, // + $comunidades_rt2020,
 
             "actividades" => $actividades,
         ];
@@ -1144,7 +1154,7 @@ class PersonAttended extends Controller
         
         */
         $select = '*';
-        if(isset($request->select)){
+        if (isset($request->select)) {
             $select = explode(",", $request->select);
         }
 
