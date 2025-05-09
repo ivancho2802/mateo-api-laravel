@@ -95,3 +95,6 @@ URL_CAMPOS
 falta este query
 
  UPDATE M_FORMULARIOS SET UID = 'a2qmowz5ThpAqH4bTDieHA', URL_DATA = 'https://kobo.humanitarianresponse.info/api/v2/assets/a2qmowz5ThpAqH4bTDieHA/data.json', URL_CAMPOS='https://kobo.humanitarianresponse.info/api/v2/assets/a2qmowz5ThpAqH4bTDieHA.xml' WHERE ID_M_FORMULARIOS = '0011'  --
+
+//PARA REVERTIR AL ORIGIANL
+ UPDATE M_FORMULARIOS SET UID = 'aERiZwVqPrcEbYzhFux5au', URL_DATA = 'https://kobo.humanitarianresponse.info/api/v2/assets/aERiZwVqPrcEbYzhFux5au/data.json', URL_CAMPOS='https://kobo.humanitarianresponse.info/api/v2/assets/aERiZwVqPrcEbYzhFux5au.xml' WHERE ID_M_FORMULARIOS = '0011'  --
