@@ -1,4 +1,4 @@
-## para la conexion al servidor de mire \\192.168.1.150\opt\lampp\htdocs
+## para la conexion al servidor de mire \\192.168.100.150\opt\lampp\htdocs
 
 https://firebirdsql.org/refdocs/langrefupd25.html
 
@@ -34,7 +34,7 @@ linux
 /opt/firebird/bin/isql
 
 connect "/opt/lampp/firebird/db/ach.gdb" user 'SYSDBA' password 'masterkey';
-connect "192.168.1.150/3050:/opt/lampp/firebird/db/ach.gdb" user 'SYSDBA' password 'masterkey';
+connect "192.168.100.150/3050:/opt/lampp/firebird/db/ach.gdb" user 'SYSDBA' password 'masterkey';
 
 windows
 

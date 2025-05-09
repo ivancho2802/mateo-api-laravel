@@ -25,7 +25,7 @@ https://github.com/harrygulliford/laravel-firebird
 
 
 
-## para la conexion al servidor de mire \\192.168.1.150\opt\lampp\htdocs
+## para la conexion al servidor de mire \\192.168.100.150\opt\lampp\htdocs
 
 esta la ip publica 190.145.110.149
 
