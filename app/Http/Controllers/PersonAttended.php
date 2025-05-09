@@ -951,6 +951,8 @@ class PersonAttended extends Controller
 
     function dataLpaConsorcio(Request $request)
     {
+        //SELECT * FROM "M_LPA_EMERGENCIAS" where updated_at is not NULL ORDER BY updated_at DESC limit 1  
+        $date = MLpaEmergencia::whereNotNull('updated_at')->orderBy('updated_at', 'desc')->first()->updated_at;
 
         $personas = count(MLpaPersona::has('atenciones')->get());
 
@@ -1131,6 +1133,7 @@ class PersonAttended extends Controller
             "comunidades_rt" => $comunidades_rt, // + $comunidades_rt2020,
 
             "actividades" => $actividades,
+            "fecha_updated" => $date
         ];
     }
 
