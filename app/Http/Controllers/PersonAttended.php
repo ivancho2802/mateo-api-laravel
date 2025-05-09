@@ -25,6 +25,7 @@ use function PHPUnit\Framework\isEmpty;
 use App\Jobs\LpaJobProcess;
 use App\Jobs\LpaJobRefreshMigrations;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class PersonAttended extends Controller
 {
@@ -1133,7 +1134,7 @@ class PersonAttended extends Controller
             "comunidades_rt" => $comunidades_rt, // + $comunidades_rt2020,
 
             "actividades" => $actividades,
-            "fecha_updated" => $date
+            "fecha_updated" => Carbon::parse($date)->format('d/m/Y H:i:s')
         ];
     }
 
