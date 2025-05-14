@@ -91,6 +91,7 @@ class PersonComplainted extends Controller
                 'table' => 'M_MQR',
                 'table_id' =>  $path,
                 'file_ref' => 'UPLOADED',
+                'id_user_mireview' => $request->ID_D_CLIENTES
             ]);
 
             // Get the uploaded file

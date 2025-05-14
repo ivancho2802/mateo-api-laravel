@@ -20,9 +20,9 @@ SELECT *
 FROM 
 public.migrate_customs 
 where 
---table_id != '[]' AND
+--table_id != '[]' AND SELECT COUNT(*) FROM "M_LPAS"
 "table" = 'M_LPAS'  AND 
-file_ref like '%UPLOADED%' -- 1079 + 142946 = 144025
+file_ref like '%UPLOADED%' -- 16 + 144190 = 144206
 --and table_id not like '{%' 
 order by updated_at desc limit 7 ;--select count(*) from "M_LPAS"
 
