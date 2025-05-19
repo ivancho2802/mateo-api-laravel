@@ -76,6 +76,7 @@ class PersonAttended extends Controller
             'table' => 'M_LPAS',
             'table_id' =>  $path,
             'file_ref' => 'UPLOADED',
+            'id_user_mireview' => $request->ID_D_CLIENTES,
         ]);
 
         $mlpas = MLpa::orderBy('created_at', 'desc')

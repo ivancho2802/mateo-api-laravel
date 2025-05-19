@@ -95,10 +95,13 @@ select * FROM "M_LPA_EMERGENCIAS" WHERE "ID" = 1643
 select 
 	*
 FROM 
-	"M_LPAS", "M_LPA_EMERGENCIAS" 
+	"M_LPAS", "M_LPA_EMERGENCIAS" , "M_LPA_PERSONA"
 WHERE 
 	"M_LPAS"."FK_LPA_EMERGENCIA" = "M_LPA_EMERGENCIAS"."ID" AND 
 	"M_LPA_EMERGENCIAS"."ID" = "M_LPAS"."FK_LPA_EMERGENCIA" AND
+	"M_LPA_PERSONA"."ID" = "M_LPAS"."FK_LPA_PERSONAS" AND
+	
+	
 	"M_LPAS"."FASE_ATENCION" = 'Fase III-RecuperaciÃ³n temprana' AND
 	"M_LPA_EMERGENCIAS"."COD_EMERGENCIAS" LIKE '%PAPAYAL2%'
 	
@@ -308,8 +311,21 @@ select * from reports
 
 select * from "M_MQR" WHERE "DATE_IN" > '2024-03-01' LIMIT 10 
 
-select * from migrate_customs where "table"='M_MQR'  order by created_at desc limit 10
+select * from migrate_customs where "table"='M_MQR'  order by created_at desc -- limit 10
 
 -- mqr caminos
 
-select * from mqr_caminos
+select  * from mqr_caminos where fecha = '2025-03-13 00:00:00' --  group by fecha
+ 
+
+SELECT COUNT(*) 
+FROM 
+"M_LPAS" t1
+INNER JOIN "M_LPA_EMERGENCIAS" t2 
+ON t1."FK_LPA_EMERGENCIA" = t2."ID" 
+WHERE 
+t1."FECHA_ATENCION" > '2023-04-01' AND
+t1."DONANTE" = 'ECHO' AND 
+t1."COD_ACTIVIDAD" = 'W4'
+ 
+
