@@ -141,7 +141,7 @@ class PersonComplainted extends Controller
 
             if (isset($migrate_custom->table_id) ) {
                 $id_mqrs = explode(", ", $migrate_custom->table_id);
-                if (is_numeric(($id_mqrs[0])) && count($migrate_custom->table_id) > 0) {
+                if (is_numeric(($id_mqrs[0]))  ) {
 
                     $query_mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
 
