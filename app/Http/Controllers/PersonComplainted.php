@@ -116,7 +116,7 @@ class PersonComplainted extends Controller
             //
             $import = new MqrCaminoMireImportClass();
 
-            $import->onlySheets('Camino MIRE+');
+            $import->onlySheets('2. CAMINO MIRE+');
 
             Excel::import($import, $file);
 
