@@ -3,8 +3,7 @@ poner en algun lado que sea mas intuitivo el acceos a si eres parte del mire vie
 
 probar si enviando este rgistro se crea un correo
 
-INSERT INTO D_CORREO(DESTINATARIO,IDX,TABLA,COMANDO,TIPO,ESTATUS,ASUNTO,REMITENTE) values ('leonjesicak@gmail.com','00151780','M_GUIAS','SCRIPT:enviar_factura','OUT','PEN','FACTURA GENERADA. GLOBAL-51780','GLOBALCARGO@NOTIFICACIONES24.COM') Array
-
+INSERT INTO D_CORREO(DESTINATARIO,IDX,TABLA,COMANDO,TIPO,ESTATUS,ASUNTO,REMITENTE, ORIGEN, FECHA, FECHA_REGISTRO, FECHA_ENVIO, FECHA2) values  ('iodiaz@co.acfspain.org','00112','D_FALLAS',NULL,'OUT','CONFIRMADO','NOTIFICACION TICKET RESUELTO','ach@nohungerforum.org', '0015', '2025-05-13 13:00:00', '2025-05-13 13:00:00', '2025-05-13 13:00:00', '2025-05-13 13:00:00')
 
 
 * poner a funcnar el correo
