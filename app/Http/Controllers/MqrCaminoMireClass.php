@@ -40,6 +40,10 @@ class MqrCaminoMireClass implements ToCollection
 
             $date_in = Date::excelToDateTimeObject($row[0]);
 
+            if (!isset($date_in)) {
+                continue;
+            }
+
             $DATE_IN = $date_in; //date('d-m-Y', strtotime($date_birday));
             
             $mrq = MqrCaminos::create([
