@@ -169,7 +169,7 @@ class Meal extends Controller
             $mlpas->load(['emergencia', 'actividad']);
             return [
                 "lpas" => $mlpas,
-                "total" => $total
+                "total" => $total,
             ];
         } else {
             $mlpas = MLpa::limit(20000)->where("FECHA_ATENCION", ">=", "2023-01-01")->nodeleted()->get(); //where("FECHA_ATENCION", ">=", "2024-01-01")limit(60000)->
@@ -948,10 +948,15 @@ class Meal extends Controller
                 $anali->month = isset($anali->month) ?  $anali->month . '-01' : $anali->month;
                 return $anali;
             });
-
+            
+            $last_cod_rr = MMqr::where('CONSECUTIVOS_CASES', 'like', '%NRC-RR-%')->orderBy('CONSECUTIVOS_CASES')->first()->CONSECUTIVOS_CASES;
+            $last_cod_rt = MMqr::where('CONSECUTIVOS_CASES', 'like', '%NRC-RT-%')->orderBy('CONSECUTIVOS_CASES')->first()->CONSECUTIVOS_CASES;
+            
             $mmqrs = [
                 "mqr" => $list_mqrs,
-                "analisis" => $analisis
+                "analisis" => $analisis,
+                "last_cod_rr" => $last_cod_rr,
+                "last_cod_rt" => $last_cod_rt,
             ];
         }
 
