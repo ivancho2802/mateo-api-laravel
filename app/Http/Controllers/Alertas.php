@@ -551,6 +551,8 @@ class Alertas extends Controller
         $resultados2 = collect($resultados2);
 
         $newmail = "";
+        $newmail.= "resultados" . count($resultados) . $resultados;  
+        $newmail.= "resultados2" . count($resultados2) . $resultados2;  
 
         $resultados->each( function ($item) use ($resultados2, $newmail){
             $resultados2->each( function ($item2) use ($item, $newmail){
