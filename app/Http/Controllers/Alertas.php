@@ -559,6 +559,7 @@ class Alertas extends Controller
         $newmail .= "resultados2" . count($resultados2);
 
         $resultados->each(function ($item) use ($resultados2, $newmail) {
+            dd($item);
             $resultados2->each(function ($item2) use ($item, $newmail) {
                 $newmail .= $item->CORREO1 !== $item2->CORREO1 . " - ";
                 $newmail .= empty($item->CORREO1) . " - ";
