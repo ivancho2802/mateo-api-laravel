@@ -89,7 +89,7 @@ class Alertas extends Controller
                     "ASSET_UID" => $json_response[0]->_xform_id_string,
                     "UID" => $json_response[0]->_uuid,
                     "URL_DATA" => $url,
-                    "URL_CAMPOS" =>  $url,
+                    "URL_CAMPOS" => $url,
                     "ESTATUS" => $json_response[0]->_status,
                     "FECHA" => $json_response[0]->_submission_time,
                     "FECHA_REGISTRO" => $json_response[0]->start,
@@ -116,7 +116,7 @@ class Alertas extends Controller
 
             for ($i = 0; $i < count($json_response); $i++) {
                 //ojo esto actualiza o crea una
-                $object = (object)helper::formatObject($json_response[$i], "");
+                $object = (object) helper::formatObject($json_response[$i], "");
 
                 //crear preguntas
 
@@ -235,7 +235,7 @@ class Alertas extends Controller
 
         //code...
         /* } catch (\Exception $th) {
-            
+
             return response()->json(['status' => false, 'message' => $th], 503);
         } */
     }
@@ -270,7 +270,7 @@ class Alertas extends Controller
                     "ASSET_UID" => $json_response->_xform_id_string,
                     "UID" => $json_response->_uuid,
                     "URL_DATA" => $url,
-                    "URL_CAMPOS" =>  $url,
+                    "URL_CAMPOS" => $url,
                     "ESTATUS" => $json_response->_status,
                     "FECHA" => $json_response->_submission_time,
                     "FECHA_REGISTRO" => $json_response->start,
@@ -294,7 +294,7 @@ class Alertas extends Controller
             $creation_failed = [];
 
             //ojo esto actualiza o crea una
-            $object = (object)helper::formatObject($json_response, "");
+            $object = (object) helper::formatObject($json_response, "");
 
             //crear preguntas
 
@@ -390,8 +390,8 @@ class Alertas extends Controller
             return response()->json(['status' => false, 'message' => $th, 'data' => $request->all()], 503);
         }
     }
-    
-    
+
+
     /**
      *  select 
      *      "_ID" 
@@ -401,7 +401,8 @@ class Alertas extends Controller
 
      */
 
-    function all(Request $request){
+    function all(Request $request)
+    {
 
         $formulario_alertas = MFormulario::where(['ACCION' => "ALERTA"])->paginate(10);
 
@@ -411,18 +412,19 @@ class Alertas extends Controller
 
     }
 
-    function allFirebird(Request $request){
+    function allFirebird(Request $request)
+    {
 
         ini_set('memory_limit', '2044M');
         set_time_limit(3000000);//0
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
-        DB::setDefaultConnection('firebird'); 
+        DB::setDefaultConnection('firebird');
 
         //$resultados = DB::select("select CODIGO, ESTAT, cast(cast(DPTO as blob sub_type text character set ISO8859_1) as varchar(2000)) DEPARTAMENTO, cast(cast(MUNICIP as blob sub_type text character set ISO8859_1) as varchar(2000)) MUNICIP, cast(cast(ESTADO_EMERGENCIA as blob sub_type text character set ISO8859_1) as varchar(2000))ESTADO_EMERGENCIA, cast(cast(TIPO_EMERGENCIA as blob sub_type text character set ISO8859_1) as varchar(2000)) TIPO_EMERGENCIA, cast(cast(fecha_evento as blob sub_type text character set ISO8859_1) as varchar(2000)) fecha_evento, cast(cast(FECHA_ALERTA as blob sub_type text character set ISO8859_1) as varchar(2000)) FECHA_ALERTA from ( select CODIGO, ESTAT, ESTADO_EMERGENCIA,TIPO_EMERGENCIA,M_KOBO_RESPUESTAS.XVALOR fecha_evento,IDFORM, FECHA_RECEPCION,MUNICIP,FECHA_ALERTA,DPTO from ( SELECT CODIGO, ESTAT, M_KOBO_RESPUESTAS.XVALOR FECHA_ALERTA, ESTADO_EMERGENCIA,TIPO_EMERGENCIA, IDFORM, FECHA_RECEPCION,MUNICIP,DPTO FROM( SELECT CODIGO, ESTAT, M_KOBO_RESPUESTAS.XVALOR ESTADO_EMERGENCIA,TIPO_EMERGENCIA, IDFORM, FECHA_RECEPCION,MUNICIP,DPTO FROM( SELECT M_KOBO_RESPUESTAS.XVALOR TIPO_EMERGENCIA, m_kobo_formularios.xCODIGO_ALERTA CODIGO, m_kobo_formularios.fecha FECHA_RECEPCION, M_KOBO_FORMULARIOS.MUNICIPIO MUNICIP, M_KOBO_FORMULARIOS.DEPARTAMENTO DPTO, M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS IDFORM, m_kobo_formularios.ESTATUS ESTAT FROM M_KOBO_RESPUESTAS INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' and m_kobo_formularios.id_m_formularios='0011') INNER JOIN M_KOBO_RESPUESTAS ON IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012173') INNER JOIN M_KOBO_RESPUESTAS ON IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001428') INNER JOIN M_KOBO_RESPUESTAS ON IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001477')        ");
         $resultados = DB::select(" select                     CODIGO,           ESTAT,           cast(cast(DPTO as blob sub_type text character set ISO8859_1) as varchar(2000)) DEPARTAMENTO,           cast(cast(MUNICIP as blob sub_type text character set ISO8859_1) as varchar(2000)) MUNICIP,                     cast(cast(ESTADO_EMERGENCIA as blob sub_type text character set ISO8859_1) as varchar(2000)) ESTADO_EMERGENCIA,           cast(cast(TIPO_EMERGENCIA as blob sub_type text character set ISO8859_1) as varchar(2000))      TIPO_EMERGENCIA,                cast(cast(fecha_evento as blob sub_type text character set ISO8859_1) as varchar(2000)) fecha_evento,           cast(cast(FECHA_ALERTA as blob sub_type text character set ISO8859_1) as varchar(2000))      FECHA_ALERTA,           SOCIO_LIDER ,               RESPUESTA_LOCAL,           ENLACE_FSA,          SECTOR_NECESIDAD from                         (                  select                         CODIGO,                           ESTAT,                           ESTADO_EMERGENCIA,                          TIPO_EMERGENCIA,                           fecha_evento,                         IDFORM,                           FECHA_RECEPCION,                         MUNICIP,                          FECHA_ALERTA,                          DPTO,                          SOCIO_LIDER,                          ENLACE_FSA,                          RESPUESTA_LOCAL,                          M_KOBO_RESPUESTAS.XVALOR SECTOR_NECESIDAD                              from                         (                                select                                 CODIGO,                 ESTAT,                 ESTADO_EMERGENCIA,                 TIPO_EMERGENCIA,                 fecha_evento,                 IDFORM,                 FECHA_RECEPCION,                 MUNICIP,                 FECHA_ALERTA,                 DPTO,                 SOCIO_LIDER,                 ENLACE_FSA,                 M_KOBO_RESPUESTAS.XVALOR RESPUESTA_LOCAL                from                                 (                           select                              CODIGO,                         ESTAT,                         ESTADO_EMERGENCIA,                         TIPO_EMERGENCIA,                         fecha_evento,                         IDFORM,                         FECHA_RECEPCION,                         MUNICIP,                         FECHA_ALERTA,                         DPTO,                         SOCIO_LIDER,                         M_KOBO_RESPUESTAS.XVALOR ENLACE_FSA                                    from                              (                               select                                                  CODIGO,                                 ESTAT,                                 ESTADO_EMERGENCIA,                                 TIPO_EMERGENCIA,                                 fecha_evento,                                 IDFORM,                                 FECHA_RECEPCION,                                 MUNICIP,                                 FECHA_ALERTA,                                 DPTO,                                 M_KOBO_RESPUESTAS.XVALOR SOCIO_LIDER                                 from                                                  (                                                               select                                                  CODIGO,                                         ESTAT,                                         ESTADO_EMERGENCIA,                                         TIPO_EMERGENCIA,                                         M_KOBO_RESPUESTAS.XVALOR fecha_evento,                                         IDFORM,                                         FECHA_RECEPCION,                                         MUNICIP,                                         FECHA_ALERTA,                                         DPTO                                                             from                                                  (                                                                  SELECT                                                           CODIGO,                                                 ESTAT,                                                 M_KOBO_RESPUESTAS.XVALOR FECHA_ALERTA,                                                 ESTADO_EMERGENCIA,                                                 TIPO_EMERGENCIA,                                                 IDFORM,                                                 FECHA_RECEPCION,                                                 MUNICIP,                                                 DPTO                                               FROM                                                                      (                                                                               SELECT                                                                   CODIGO,                                                                ESTAT,                                                                M_KOBO_RESPUESTAS.XVALOR ESTADO_EMERGENCIA,                                                               TIPO_EMERGENCIA,                                                         IDFORM,                                                         FECHA_RECEPCION,                                                         MUNICIP,                                                         DPTO                                                       FROM                                                               (                                                                SELECT                                                                                M_KOBO_RESPUESTAS.XVALOR TIPO_EMERGENCIA,                                                                 m_kobo_formularios.xCODIGO_ALERTA CODIGO,                                                                 m_kobo_formularios.fecha FECHA_RECEPCION,                                                                 M_KOBO_FORMULARIOS.MUNICIPIO MUNICIP,                                                                 M_KOBO_FORMULARIOS.DEPARTAMENTO DPTO,                                                                 M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS IDFORM,                                                                 m_kobo_formularios.ESTATUS ESTAT                                                                       FROM                                                                                M_KOBO_RESPUESTAS                                                                INNER JOIN                                                                                M_KOBO_FORMULARIOS   ON               M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS                                                                       WHERE                                                                                M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' and m_kobo_formularios.id_m_formularios='0011'                                                               )                                                             INNER JOIN                                                                       M_KOBO_RESPUESTAS  ON              IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                                                       WHERE                                                                       M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012173'                                                      )                                               INNER JOIN                                                               M_KOBO_RESPUESTAS  ON              IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                                               WHERE                                                               M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001428'                                             )                                                              INNER JOIN                                                  M_KOBO_RESPUESTAS                         ON         IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                                                              WHERE                                                  M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001477'                                             )                                     INNER JOIN                                                      M_KOBO_RESPUESTAS         ON                     IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                                      WHERE                                                      M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012170'                                        )                                        INNER JOIN                                  M_KOBO_RESPUESTAS                    ON         IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                                         WHERE                                  M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012172'                  )                    INNER JOIN                                     M_KOBO_RESPUESTAS        ON                    IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                     WHERE                                     M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001490'              )        INNER JOIN                         M_KOBO_RESPUESTAS    ON                IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS         WHERE                         M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001482'         )  ");
-            
+
         $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
 
         $resultados = collect($resultados);
@@ -461,10 +463,10 @@ class Alertas extends Controller
     SELECT 
     IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip,TIPO_EMERG, NUM_PERSONAS, NUM_FAMILIAS   , GRUPO_ETNICO        
     FROM(
-        
+
         SELECT codigo, TIPO_EMERG, NUM_PERSONAS, M_KOBO_RESPUESTAS.XVALOR GRUPO_ETNICO, IDFORM   , NUM_FAMILIAS             
         FROM ( 
-                
+
             SELECT codigo, TIPO_EMERG, NUM_PERSONAS, M_KOBO_RESPUESTAS.XVALOR NUM_FAMILIAS, IDFORM                
             FROM (                          
                 SELECT TIPO_EMERG,codigo, M_KOBO_RESPUESTAS.XVALOR NUM_PERSONAS,IDFORM                          
@@ -488,12 +490,12 @@ class Alertas extends Controller
     INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM           
     INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS           
     WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012683'
-    
+
     UNION                
-    
+
     SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG,  M_KOBO_RESPUESTAS.XVALOR NUM_PERSONAS, NUM_FAMILIAS  , GRUPO_ETNICO         
     FROM(       
-                        
+
         SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG, NUM_FAMILIAS, M_KOBO_RESPUESTAS.XVALOR  GRUPO_ETNICO             
         FROM(           
             SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG,  M_KOBO_RESPUESTAS.XVALOR NUM_FAMILIAS                
@@ -516,19 +518,20 @@ class Alertas extends Controller
     WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001485'
      */
 
-    function allFirebirdNumFamiHogares(Request $request){
+    function allFirebirdNumFamiHogares(Request $request)
+    {
         ini_set('memory_limit', '2044M');
         set_time_limit(3000000);//0
         ini_set('max_execution_time', '60000');
         ini_set('max_input_time', '60000');
 
-        DB::setDefaultConnection('firebird'); 
+        DB::setDefaultConnection('firebird');
 
         $resultados = DB::select(" SELECT      IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip,TIPO_EMERG, NUM_PERSONAS, NUM_FAMILIAS   , GRUPO_ETNICO             FROM(                  SELECT codigo, TIPO_EMERG, NUM_PERSONAS, M_KOBO_RESPUESTAS.XVALOR GRUPO_ETNICO, IDFORM   , NUM_FAMILIAS                      FROM (                               SELECT codigo, TIPO_EMERG, NUM_PERSONAS, M_KOBO_RESPUESTAS.XVALOR NUM_FAMILIAS, IDFORM                             FROM (                                           SELECT TIPO_EMERG,codigo, M_KOBO_RESPUESTAS.XVALOR NUM_PERSONAS,IDFORM                                           from (                                                         SELECT M_KOBO_RESPUESTAS.XVALOR TIPO_EMERG,m_kobo_formularios.xCODIGO_ALERTA codigo, M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS IDFORM                                                         FROM                          M_KOBO_RESPUESTAS                                                          INNER JOIN                          M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS                                                         WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' AND M_KOBO_FORMULARIOS.ESTATUS<>'ANULADO'                                                )                                           INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                                           WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012683'                             )                             INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                             WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012682'                    )                        INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                         WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001682'                )                INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012683'          UNION                          SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG,  M_KOBO_RESPUESTAS.XVALOR NUM_PERSONAS, NUM_FAMILIAS  , GRUPO_ETNICO              FROM(                                         SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG, NUM_FAMILIAS, M_KOBO_RESPUESTAS.XVALOR  GRUPO_ETNICO                      FROM(                        SELECT IDFORM, codigo, M_KOBO_FORMULARIOS.DEPARTAMENTO dpto, M_KOBO_FORMULARIOS.MUNICIPIO municip, TIPO_EMERG,  M_KOBO_RESPUESTAS.XVALOR NUM_FAMILIAS                             FROM(                                                                         SELECT M_KOBO_RESPUESTAS.XVALOR TIPO_EMERG,m_kobo_formularios.xCODIGO_ALERTA codigo, M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS IDFORM                                                                        FROM M_KOBO_RESPUESTAS                                                                         INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS                                                                        WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' AND M_KOBO_FORMULARIOS.ESTATUS<>'ANULADO'                                 )                             INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                             INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                             WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001484'           )                         INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                         INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                         WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001682'     )                INNER JOIN M_KOBO_RESPUESTAS on M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=IDFORM                INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS                WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001485' ");
-        
+
         $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
 
-        $resultados = collect($resultados); 
+        $resultados = collect($resultados);
 
         return response()->json($resultados);
 
@@ -536,14 +539,15 @@ class Alertas extends Controller
 
     }
 
-    function contactscopy(Request $request) {
-        
-        DB::setDefaultConnection('firebird'); 
+    function contactscopy(Request $request)
+    {
+
+        DB::setDefaultConnection('firebird');
 
         //$resultados = DB::select("select CODIGO, ESTAT, cast(cast(DPTO as blob sub_type text character set ISO8859_1) as varchar(2000)) DEPARTAMENTO, cast(cast(MUNICIP as blob sub_type text character set ISO8859_1) as varchar(2000)) MUNICIP, cast(cast(ESTADO_EMERGENCIA as blob sub_type text character set ISO8859_1) as varchar(2000))ESTADO_EMERGENCIA, cast(cast(TIPO_EMERGENCIA as blob sub_type text character set ISO8859_1) as varchar(2000)) TIPO_EMERGENCIA, cast(cast(fecha_evento as blob sub_type text character set ISO8859_1) as varchar(2000)) fecha_evento, cast(cast(FECHA_ALERTA as blob sub_type text character set ISO8859_1) as varchar(2000)) FECHA_ALERTA from ( select CODIGO, ESTAT, ESTADO_EMERGENCIA,TIPO_EMERGENCIA,M_KOBO_RESPUESTAS.XVALOR fecha_evento,IDFORM, FECHA_RECEPCION,MUNICIP,FECHA_ALERTA,DPTO from ( SELECT CODIGO, ESTAT, M_KOBO_RESPUESTAS.XVALOR FECHA_ALERTA, ESTADO_EMERGENCIA,TIPO_EMERGENCIA, IDFORM, FECHA_RECEPCION,MUNICIP,DPTO FROM( SELECT CODIGO, ESTAT, M_KOBO_RESPUESTAS.XVALOR ESTADO_EMERGENCIA,TIPO_EMERGENCIA, IDFORM, FECHA_RECEPCION,MUNICIP,DPTO FROM( SELECT M_KOBO_RESPUESTAS.XVALOR TIPO_EMERGENCIA, m_kobo_formularios.xCODIGO_ALERTA CODIGO, m_kobo_formularios.fecha FECHA_RECEPCION, M_KOBO_FORMULARIOS.MUNICIPIO MUNICIP, M_KOBO_FORMULARIOS.DEPARTAMENTO DPTO, M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS IDFORM, m_kobo_formularios.ESTATUS ESTAT FROM M_KOBO_RESPUESTAS INNER JOIN M_KOBO_FORMULARIOS ON M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS=M_KOBO_FORMULARIOS.ID_M_KOBO_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001475' and m_kobo_formularios.id_m_formularios='0011') INNER JOIN M_KOBO_RESPUESTAS ON IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='0012173') INNER JOIN M_KOBO_RESPUESTAS ON IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001428') INNER JOIN M_KOBO_RESPUESTAS ON IDFORM=M_KOBO_RESPUESTAS.ID_M_KOBO_FORMULARIOS WHERE M_KOBO_RESPUESTAS.ID_P_FORMULARIOS='001477')        ");
         $resultados = DB::select("SELECT * FROM D_CONTACTOS WHERE IDX = '0011' ");
         $resultados2 = DB::select("SELECT * FROM D_CONTACTOS WHERE IDX = '0012' ");
-            
+
         $resultados = helper::convert_from_latin1_to_utf8_recursively($resultados);
         $resultados2 = helper::convert_from_latin1_to_utf8_recursively($resultados2);
 
@@ -551,18 +555,20 @@ class Alertas extends Controller
         $resultados2 = collect($resultados2);
 
         $newmail = "";
-        $newmail.= "resultados" . count($resultados) . $resultados;  
-        $newmail.= "resultados2" . count($resultados2) . $resultados2;  
+        $newmail .= "resultados" . count($resultados);
+        $newmail .= "resultados2" . count($resultados2);
 
-        $resultados->each( function ($item) use ($resultados2, $newmail){
-            $resultados2->each( function ($item2) use ($item, $newmail){
-                $newmail.= $item->CORREO1 !== $item2->CORREO1 . " - ";
-                $newmail.= empty($item->CORREO1) . " - ";
-                $newmail.= empty($item2->CORREO1) . " - ";
-                if($item->CORREO1 !== $item2->CORREO1 && empty($item->CORREO1) && empty($item2->CORREO1)){
-                    DB::select("INSERT INTO D_CONTACTOS (TIPO, NOMBRES, TELEFONO, CORREO1, TABLA, IDX)  VALUES ('". $item->TIPO. "', '". $item->NOMBRES. "', '". $item->TELEFONO. "', '". $item->CORREO1. "', 'M_FORMULARIOS', '0012');");
+        $resultados->each(function ($item) use ($resultados2, $newmail) {
+            $resultados2->each(function ($item2) use ($item, $newmail) {
+                $newmail .= $item->CORREO1 !== $item2->CORREO1 . " - ";
+                $newmail .= empty($item->CORREO1) . " - ";
+                $newmail .= empty($item2->CORREO1) . " - ";
+                if ($item->CORREO1 !== $item2->CORREO1 && empty($item->CORREO1) && empty($item2->CORREO1)) {
+                    DB::select("INSERT INTO D_CONTACTOS (TIPO, NOMBRES, TELEFONO, CORREO1, TABLA, IDX)  VALUES ('" . $item->TIPO . "', '" . $item->NOMBRES . "', '" . $item->TELEFONO . "', '" . $item->CORREO1 . "', 'M_FORMULARIOS', '0012');");
                 }
+                return $newmail;
             });
+            return $newmail;
         });
 
         return response()->json([
