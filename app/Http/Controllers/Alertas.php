@@ -558,7 +558,7 @@ class Alertas extends Controller
         $newmail .= "resultados" . count($resultados);
         $newmail .= "resultados2" . count($resultados2);
         //eliminar repetidos
-        $correos = $resultados->pluck('CORREO1')
+        /* $correos = $resultados->pluck('CORREO1')
             ->filter()
             ->values()
             ->toArray();
@@ -578,7 +578,7 @@ class Alertas extends Controller
         return response()->json([
             "0011" => $resultados,
             "0012" => $resultados2,
-        ]);
+        ]); */
 
         $resultados->each(function ($item) use ($resultados2, $newmail) {
             $correosValid = collect();
