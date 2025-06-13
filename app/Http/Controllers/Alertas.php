@@ -570,14 +570,11 @@ class Alertas extends Controller
             return "'" . $escapedEmail . "'";
         }, $correos);
 
-        /* if (count($correos) > 0) {
-            DB::select("DELETE FROM D_CONTACTOS WHERE IDX = '0012' AND CORREO1 IN  (" . $quotedEmails . ");");
-        } */
+        DB::select("DELETE FROM D_CONTACTOS WHERE IDX = '0012' AND CORREO1 IN  (" . $quotedEmails . ");");
 
         return response()->json([
             "0011" => $resultados,
             "0012" => $resultados2,
-            "RESPONSE" =>DB::select("DELETE FROM D_CONTACTOS WHERE IDX = '0012' AND CORREO1 IN  (" . $quotedEmails . ");")
         ]);
 
         $resultados->each(function ($item) use ($resultados2, $newmail) {
