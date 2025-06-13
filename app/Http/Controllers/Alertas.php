@@ -557,15 +557,15 @@ class Alertas extends Controller
         $newmail = "";
         $newmail .= "resultados" . count($resultados);
         $newmail .= "resultados2" . count($resultados2);
+        $correos = collect();
 
-        $resultados->each(function ($item) use ($resultados2, $newmail) {
-            $resultados2->each(function ($item2) use ($item, $newmail) {
-                if ($item->CORREO1 !== $item2->CORREO1 && !empty($item->CORREO1) && !empty($item2->CORREO1)) {
+        $resultados->each(function ($item) use ($resultados2, $newmail, $correos) {
+            $resultados2->each(function ($item2) use ($item, $newmail, $correos) {
+                if ($item->CORREO1 !== $item2->CORREO1 && !empty($item->CORREO1) && !empty($item2->CORREO1) && $correos->contains ($item->CORREO1)) {
+                    $correos->push($item->CORREO1);
                     DB::select("INSERT INTO D_CONTACTOS (TIPO, NOMBRES, TELEFONO, CORREO1, TABLA, IDX)  VALUES ('" . $item->TIPO . "', '" . $item->NOMBRES . "', '" . $item->TELEFONO . "', '" . $item->CORREO1 . "', 'M_FORMULARIOS', '0012');");
                 }
-                return $newmail;
             });
-            return $newmail;
         });
 
         return response()->json([
