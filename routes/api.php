@@ -146,6 +146,8 @@ Route::prefix('meal')->group(function () {
 
   Route::middleware(['auth:sanctum'])->get('/alerta', [App\Http\Controllers\Alertas::class, 'all']); //receptor
 
+  Route::middleware(['auth:sanctum'])->post('/alertacontactscopy', [App\Http\Controllers\Alertas::class, 'contactscopy']); //receptor
+
   //ERN
 
   Route::middleware(['auth:sanctum'])->post('/ern/update', [App\Http\Controllers\Erns::class, 'stored']);

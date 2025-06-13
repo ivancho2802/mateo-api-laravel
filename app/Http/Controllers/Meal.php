@@ -948,17 +948,18 @@ class Meal extends Controller
                 $anali->month = isset($anali->month) ?  $anali->month . '-01' : $anali->month;
                 return $anali;
             });
-            
-            $last_cod_rr = MMqr::where('CONSECUTIVOS_CASES', 'like', '%NRC-RR-%')->orderBy('CONSECUTIVOS_CASES')->first()->CONSECUTIVOS_CASES;
-            $last_cod_rt = MMqr::where('CONSECUTIVOS_CASES', 'like', '%NRC-RT-%')->orderBy('CONSECUTIVOS_CASES')->first()->CONSECUTIVOS_CASES;
-            
+
             $mmqrs = [
                 "mqr" => $list_mqrs,
                 "analisis" => $analisis,
-                "last_cod_rr" => $last_cod_rr,
-                "last_cod_rt" => $last_cod_rt,
             ];
         }
+            
+        $last_cod_rr = MMqr::where('CONSECUTIVOS_CASES', 'like', '%NRC-RR-%')->orderBy('CONSECUTIVOS_CASES')->first()->CONSECUTIVOS_CASES;
+        $last_cod_rt = MMqr::where('CONSECUTIVOS_CASES', 'like', '%NRC-RT-%')->orderBy('CONSECUTIVOS_CASES')->first()->CONSECUTIVOS_CASES;
+        
+        $mmqrs["last_cod_rr"] = $last_cod_rr;
+        $mmqrs["last_cod_rt"] = $last_cod_rt;
 
         return $mmqrs;
     }
