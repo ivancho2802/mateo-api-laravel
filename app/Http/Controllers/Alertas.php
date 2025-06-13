@@ -560,7 +560,7 @@ class Alertas extends Controller
 
         $resultados->each(function ($item) use ($resultados2, $newmail) {
             $resultados2->each(function ($item2) use ($item, $newmail) {
-                dd($item, $item2);
+                dd($item->CORREO1, $item2->CORREO1);
                 $newmail .= $item["CORREO1"] !== $item2["CORREO1"] . " - ";
                 $newmail .= empty($item["CORREO1"]) . " - ";
                 $newmail .= empty($item2["CORREO1"]) . " - ";
