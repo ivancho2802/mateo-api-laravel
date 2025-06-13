@@ -570,7 +570,10 @@ class Alertas extends Controller
             return "'" . $escapedEmail . "'";
         }, $correos);
 
-        DB::select("DELETE FROM D_CONTACTOS WHERE IDX = '0012' AND CORREO1 IN  (" . $quotedEmails . ");");
+        // Unir los correos escapados con comas
+        $emailList = implode(', ', $quotedEmails);
+
+        DB::select("DELETE FROM D_CONTACTOS WHERE IDX = '0012' AND CORREO1 IN  (" . $emailList . ");");
 
         return response()->json([
             "0011" => $resultados,
