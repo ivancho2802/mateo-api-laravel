@@ -557,12 +557,34 @@ class Alertas extends Controller
         $newmail = "";
         $newmail .= "resultados" . count($resultados);
         $newmail .= "resultados2" . count($resultados2);
-        $correos = collect();
+        //eliminar repetidos
+        $correos = $resultados->pluck('CORREO1')
+            ->filter()
+            ->values()
+            ->toArray();
 
-        $resultados->each(function ($item) use ($resultados2, $newmail, $correos) {
-            $resultados2->each(function ($item2) use ($item, $newmail, $correos) {
-                if ($item->CORREO1 !== $item2->CORREO1 && !empty($item->CORREO1) && !empty($item2->CORREO1) && $correos->contains ($item->CORREO1)) {
-                    $correos->push($item->CORREO1);
+        $quotedEmails = array_map(function ($email) {
+            // Escapar comillas simples dentro del correo si existen (aunque es raro en correos)
+            // Para Firebird, la forma de escapar una comilla simple es duplicarla (ej. 'O''Malley')
+            $escapedEmail = str_replace("'", "''", $email);
+            return "'" . $escapedEmail . "'";
+        }, $correos);
+
+        /* if (count($correos) > 0) {
+            DB::select("DELETE FROM D_CONTACTOS WHERE IDX = '0012' AND CORREO1 IN  (" . $quotedEmails . ");");
+        } */
+
+        return response()->json([
+            "0011" => $resultados,
+            "0012" => $resultados2,
+            "RESPONSE" =>DB::select("DELETE FROM D_CONTACTOS WHERE IDX = '0012' AND CORREO1 IN  (" . $quotedEmails . ");")
+        ]);
+
+        $resultados->each(function ($item) use ($resultados2, $newmail) {
+            $correosValid = collect();
+            $resultados2->each(function ($item2) use ($item, $newmail, $correosValid) {
+                if ($item->CORREO1 !== $item2->CORREO1 && !empty($item->CORREO1) && !empty($item2->CORREO1) && $correosValid->contains($item->CORREO1)) {
+                    $correosValid->push($item->CORREO1);
                     DB::select("INSERT INTO D_CONTACTOS (TIPO, NOMBRES, TELEFONO, CORREO1, TABLA, IDX)  VALUES ('" . $item->TIPO . "', '" . $item->NOMBRES . "', '" . $item->TELEFONO . "', '" . $item->CORREO1 . "', 'M_FORMULARIOS', '0012');");
                 }
             });
