@@ -560,13 +560,12 @@ class Alertas extends Controller
 
         $resultados->each(function ($item) use ($resultados2, $newmail) {
             $resultados2->each(function ($item2) use ($item, $newmail) {
-                dd($item->CORREO1, $item2->CORREO1);
-                $newmail .= $item["CORREO1"] !== $item2["CORREO1"] . " - ";
-                $newmail .= empty($item["CORREO1"]) . " - ";
-                $newmail .= empty($item2["CORREO1"]) . " - ";
-                dd($item, $newmail);
-                if ($item["CORREO1"] !== $item2["CORREO1"] && empty($item["CORREO1"]) && empty($item2["CORREO1"])) {
-                    DB::select("INSERT INTO D_CONTACTOS (TIPO, NOMBRES, TELEFONO, CORREO1, TABLA, IDX)  VALUES ('" . $item["TIPO"] . "', '" . $item["NOMBRES"] . "', '" . $item["TELEFONO"] . "', '" . $item["CORREO1"] . "', 'M_FORMULARIOS', '0012');");
+                $newmail .= $item->CORREO1 !== $item2->CORREO1 . " - ";
+                $newmail .= empty($item->CORREO1) . " - ";
+                $newmail .= empty($item2->CORREO1) . " - ";
+                dd($newmail, $item->CORREO1 != $item2->CORREO1, empty($item->CORREO1));
+                if ($item->CORREO1 !== $item2->CORREO1 && empty($item->CORREO1) && empty($item2->CORREO1)) {
+                    DB::select("INSERT INTO D_CONTACTOS (TIPO, NOMBRES, TELEFONO, CORREO1, TABLA, IDX)  VALUES ('" . $item->TIPO . "', '" . $item->NOMBRES . "', '" . $item->TELEFONO . "', '" . $item->CORREO1 . "', 'M_FORMULARIOS', '0012');");
                 }
                 return $newmail;
             });
