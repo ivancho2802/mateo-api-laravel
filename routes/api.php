@@ -193,6 +193,8 @@ Route::prefix('meal')->group(function () {
 
   Route::middleware(['auth:sanctum'])->get('/mqr', [App\Http\Controllers\Meal::class, 'getMqr']);
 
+  Route::middleware(['auth:sanctum'])->get('/mqrMetadatos', [App\Http\Controllers\Meal::class, 'getMqrMetadatos']);
+
   Route::middleware(['auth:sanctum'])->get('/mqrspaces', [App\Http\Controllers\Meal::class, 'getMqrSpaces']);
 
   Route::middleware(['auth:sanctum'])->get('/mqrscaminos', [App\Http\Controllers\Meal::class, 'getMqrCaminos']);
