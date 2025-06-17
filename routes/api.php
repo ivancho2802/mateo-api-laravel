@@ -108,7 +108,11 @@ Route::post('codigo_emergencia', function (Request $request) {
     $lettermun = strtoupper(substr($request->municipio, 2));
     $respuesta .= $letterdep;
     $respuesta .= $lettermun;
-    $emergencia_number = MLpaEmergencia::where("COD_EMERGENCIAS", "like", $letterdep.$lettermun."%")->orderBy("created_at", "desc")->first()->COD_EMERGENCIAS;
+    $emergencia_number = MLpaEmergencia::query()
+      ->orderBy("created_at", "desc")
+      ->first()
+      ->where("COD_EMERGENCIAS", "like", $letterdep . $lettermun . "%")
+      ->COD_EMERGENCIAS;
     $numero_extraido = filter_var($emergencia_number, FILTER_SANITIZE_NUMBER_INT);
     $numero_extraido++;
     $respuesta .= $numero_extraido;
