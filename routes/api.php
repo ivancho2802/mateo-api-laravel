@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Departamentos;
+use App\Models\Municipios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\MFormulario;
@@ -218,10 +219,9 @@ Route::prefix('meal')->group(function () {
 
     $departamentos = Reports::all()->groupBy('departamento')->keys();
 
-    $departamentos.each(function ($departamento) use ($departamentos) {
+    $departamentos->each(function ($departamento) use ($departamentos) {
       return Departamentos::insert([
-        "name" => $departamento,
-
+        'name' => $departamento
       ]);
     });
 
@@ -231,6 +231,12 @@ Route::prefix('meal')->group(function () {
   Route::get('/rr/report/municipios', function (Request $request) {
 
     $municipios = Reports::all()->groupBy('municipio')->keys();
+
+    $municipios->each(function ($municipio) use ($municipios) {
+      return Municipios::insert([
+        'name' => $municipio,
+      ]);
+    });
 
     return response()->json($municipios);
   });
