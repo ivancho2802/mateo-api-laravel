@@ -9,7 +9,7 @@ class Departamentos extends Model
 {
     use HasFactory;
 
-    protected $table = 'departmentos';
+    protected $table = 'departamentos';
 
 
     /**
