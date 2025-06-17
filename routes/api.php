@@ -48,14 +48,14 @@ Route::get('/querytest', function (Request $request) {
   /*   try { */
 
   return response()->json([
-    ["name" =>  "asd", "code" =>  "asd1"],
-    ["name" =>  "asd", "code" =>  "asd2"],
-    ["name" =>  "asd", "code" =>  "asd2"],
-    ["name" =>  "asd", "code" =>  "asd2"],
-    ["name" =>  "asd", "code" =>  "asd2"],
-    ["name" =>  "asd", "code" =>  "asd2"],
-    ["name" =>  "asd", "code" =>  "asd2"],
-    ["name" =>  "asd", "code" =>  "asd2"],
+    ["name" => "asd", "code" => "asd1"],
+    ["name" => "asd", "code" => "asd2"],
+    ["name" => "asd", "code" => "asd2"],
+    ["name" => "asd", "code" => "asd2"],
+    ["name" => "asd", "code" => "asd2"],
+    ["name" => "asd", "code" => "asd2"],
+    ["name" => "asd", "code" => "asd2"],
+    ["name" => "asd", "code" => "asd2"],
   ]);
   /* } catch (\Throwable $exception) {
     return response()->json(['Error' => $exception->getMessage()]);
@@ -69,6 +69,33 @@ Route::prefix('finanzas')->group(function () {
   Route::get('/adn/loaextra', [App\Http\Controllers\Finanzas::class, 'getLoaExtra']);
   Route::get('/adn/indivhogares', [App\Http\Controllers\Finanzas::class, 'getCuaIndHog']);
 
+});
+
+Route::get('departamentos', function (Request $request) {
+  $departamento = Departamentos::all();
+  return response()->json($departamento);
+});
+
+Route::get('municipios', function (Request $request) {
+
+  $municipios = Municipios::all();
+
+  return response()->json($municipios);
+});
+
+Route::get('municipios/{departamento}', function (Request $request) {
+  $municipios = [];
+
+  if (isset($request->departamento)) {
+    $departamento_finded = Reports::where('departamento', $request->departamento);
+
+    $municipios = $departamento_finded->get()->groupBy('municipio')->keys();
+  } else {
+    $municipios = Municipios::all();
+
+  }
+
+  return response()->json($municipios);
 });
 
 Route::prefix('meal')->group(function () {
@@ -219,11 +246,11 @@ Route::prefix('meal')->group(function () {
 
     $departamentos = Reports::all()->groupBy('departamento')->keys();
 
-   /*  $departamentos->each(function ($departamento) use ($departamentos) {
-      return Departamentos::insert([
-        'name' => $departamento
-      ]);
-    }); */
+    /*  $departamentos->each(function ($departamento) use ($departamentos) {
+       return Departamentos::insert([
+         'name' => $departamento
+       ]);
+     }); */
 
     return response()->json($departamentos);
   });
@@ -243,12 +270,12 @@ Route::prefix('meal')->group(function () {
 
   Route::get('/rr/report/municipios/{departamento}', function (Request $request) {
 
-    if(isset($request->departamento)){
+    if (isset($request->departamento)) {
       $departamento_finded = Reports::where('departamento', $request->departamento);
       //dd($departamento_finded->get());
 
-      $municipios =  $departamento_finded->get()->groupBy('municipio')->keys();
-    }else{
+      $municipios = $departamento_finded->get()->groupBy('municipio')->keys();
+    } else {
       $municipios = Reports::all()->groupBy('municipio')->keys();
 
     }
@@ -271,7 +298,7 @@ Route::prefix('meal')->group(function () {
   //migracion activity info
   Route::post('/migration_kobo_activityinfo', [App\Http\Controllers\Meal::class, 'migracionKoboActivityinfo']);
 
-  
+
 });
 
 Route::prefix('firebird')->group(function () {
@@ -304,7 +331,7 @@ Route::prefix('firebird')->group(function () {
       "URL_DATA",
       "URL_CAMPOS",
       /* 
-          */
+       */
       "COMENTARIOS",
       "GRUPO",
       //relacionales
@@ -320,7 +347,7 @@ Route::prefix('firebird')->group(function () {
         /*
           ->where(['ID_M_FORMULARIOS'=> '0012'])
            ->foreach($form=>{
-  
+
           }) */
         ->get();
 
@@ -344,7 +371,7 @@ Route::prefix('firebird')->group(function () {
     /* $formulario = MKoboFormularios::with(
           ['localidad', 'usuario', 'area', 'master_f']
       );
-  
+
       //return utf8_encode($formulario->get());
       return response()->json(["formularios_kobo_master" => json_decode($formulario->get())]); */
   });
@@ -422,8 +449,8 @@ Route::prefix('firebird')->group(function () {
       DB::setDefaultConnection('firebird');
 
       $resultados = DB::select("SELECT * FROM V_D_CONTACTOS_2");
-  
-      return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+
+      return response()->json(["resultados" => helper::convert_from_latin1_to_utf8_recursively($resultados)]);
     } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     }
@@ -468,7 +495,7 @@ Route::prefix('firebird')->group(function () {
 
     $resultados = DB::select($request->sql);
 
-    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+    return response()->json(["resultados" => helper::convert_from_latin1_to_utf8_recursively($resultados)]);
     /* } catch (\Throwable $exception) {
       return response()->json(['Error' => $exception->getMessage()]);
     } */
@@ -505,7 +532,7 @@ Route::prefix('firebirdcopy')->group(function () {
       "URL_DATA",
       "URL_CAMPOS",
       /* 
-          */
+       */
       "COMENTARIOS",
       "GRUPO",
       //relacionales
@@ -521,7 +548,7 @@ Route::prefix('firebirdcopy')->group(function () {
         /*
           ->where(['ID_M_FORMULARIOS'=> '0012'])
            ->foreach($form=>{
-  
+
           }) */
         ->get();
 
@@ -545,7 +572,7 @@ Route::prefix('firebirdcopy')->group(function () {
     /* $formulario = MKoboFormularios::with(
           ['localidad', 'usuario', 'area', 'master_f']
       );
-  
+
       //return utf8_encode($formulario->get());
       return response()->json(["formularios_kobo_master" => json_decode($formulario->get())]); */
   });
@@ -649,12 +676,12 @@ Route::prefix('firebirdcopy')->group(function () {
 
   Route::middleware(['auth:sanctum'])->post('/query', function (Request $request) {
 
-    
+
     DB::setDefaultConnection('firebirdcopy');
 
     $resultados = DB::select($request->sql);
 
-    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+    return response()->json(["resultados" => helper::convert_from_latin1_to_utf8_recursively($resultados)]);
 
     /*   try { */
 
@@ -680,7 +707,7 @@ Route::prefix('firebirdcopy')->group(function () {
               DB::select("UPDATE M_FORMULARIOS SET UID='".$m_formulario->UID."', URL_DATA='".$m_formulario->URL_DATA."', URL_CAMPOS='".$m_formulario->URL_CAMPOS."' WHERE ID_M_FORMULARIOS = '".$m_formulario->ID_M_FORMULARIOS."' ");
 
             }
-    
+
         });
 
     }); 
@@ -714,14 +741,14 @@ Route::prefix('mongo')->group(function () {
 
     //
     $cliente = MongodbServiceProvider::class;
-    
+
     /* $queryRandom = DB::setDefaultConnection('mongodb')->collection($request->collection)//'movies'
     ->where($request->where, $request->wherevalue)//'imdb.rating' 9.3 
     ->get(); */
 
     return response()->json([
       //"res" => $queryRandom,
-      "resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)
+      "resultados" => helper::convert_from_latin1_to_utf8_recursively($resultados)
     ]);
     /* } catch (\Throwable $exception) {
         return response()->json(['Error' => $exception->getMessage()]);
@@ -731,7 +758,7 @@ Route::prefix('mongo')->group(function () {
   Route::post('/lpa/upload', [App\Http\Controllers\PersonAttendedMongo::class, 'stored']);
 
   Route::middleware(['auth:sanctum'])->post('/lpa/checked', [App\Http\Controllers\PersonAttendedMongo::class, 'checked']);
-  
+
   Route::middleware(['auth:sanctum'])->post('/lpa/process', [App\Http\Controllers\PersonAttendedMongo::class, 'process']);
 
   Route::middleware(['auth:sanctum'])->post('/lpa/refreshMigrations', [App\Http\Controllers\PersonAttendedMongo::class, 'refreshMigrations']);
@@ -764,7 +791,7 @@ Route::middleware((['auth:sanctum']))->prefix('pgsql')->group(function () {
     /*   try { */
     $resultados = DB::select($request->sql);
 
-    return response()->json(["resultados" =>  helper::convert_from_latin1_to_utf8_recursively($resultados)]);
+    return response()->json(["resultados" => helper::convert_from_latin1_to_utf8_recursively($resultados)]);
     /* } catch (\Throwable $exception) {
         return response()->json(['Error' => $exception->getMessage()]);
       } */
@@ -832,7 +859,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
     //imagenes del formulario
     /* $urlMedia = "https://kc.acf-e.org/api/v1/media/";
-        
+
         $dataMediaResponse = Http::withHeaders([
             'Authorization' => 'Token ' . $token . '',
             'Accept' => 'application/json'
@@ -846,7 +873,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       $formulario = collect($chield); //->forget('name');
 
       $claves = $formulario->keys();
-      $valores =  array_values($chield);
+      $valores = array_values($chield);
       //!id_object($valor) && 
 
       for ($i = 0; $i < count($claves); $i++) {
@@ -880,19 +907,20 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
     return view('pdf.formulario', ["data" => $dataEnketo->first()]);
 
-      /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
-        return $pdf->download('invoice.pdf'); */
+    /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
+      return $pdf->download('invoice.pdf'); */
 
-      /* [
-            "status" => $response->getStatusCode(),
-            "data" => $response->body(),
-            "json" => $response->json() ,
-            "object" => $response->object() ,
-            "status" => $response->status() ,
-            "successful" => $response->successful() ,
-            "clientError" => $response->clientError() ,
-            //"mkoboformulario" => $formulario->get()
-        ] */;
+    /* [
+          "status" => $response->getStatusCode(),
+          "data" => $response->body(),
+          "json" => $response->json() ,
+          "object" => $response->object() ,
+          "status" => $response->status() ,
+          "successful" => $response->successful() ,
+          "clientError" => $response->clientError() ,
+          //"mkoboformulario" => $formulario->get()
+      ] */
+    ;
   });
 
   Route::get('{id}/exportByid/{token}', [App\Http\Controllers\Kobo::class, 'exportByid']);
@@ -995,9 +1023,9 @@ return $request->user()->id === $server->user_id &&
 
 /* // Revoke all tokens...
 $user->tokens()->delete();
- 
+
 // Revoke the token that was used to authenticate the current request...
 $request->user()->currentAccessToken()->delete();
- 
+
 // Revoke a specific token...
 $user->tokens()->where('id', $tokenId)->delete(); */
