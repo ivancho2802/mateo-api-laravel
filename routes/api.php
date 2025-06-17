@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Departamentos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\MFormulario;
@@ -216,7 +217,14 @@ Route::prefix('meal')->group(function () {
   Route::get('/rr/report/departamentos', function (Request $request) {
 
     $departamentos = Reports::all()->groupBy('departamento')->keys();
-    
+
+    $departamentos.each(function ($departamento) use ($departamentos) {
+      return Departamentos::insert([
+        "name" => $departamento,
+
+      ]);
+    });
+
     return response()->json($departamentos);
   });
 
