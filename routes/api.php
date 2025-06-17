@@ -219,11 +219,11 @@ Route::prefix('meal')->group(function () {
 
     $departamentos = Reports::all()->groupBy('departamento')->keys();
 
-    $departamentos->each(function ($departamento) use ($departamentos) {
+   /*  $departamentos->each(function ($departamento) use ($departamentos) {
       return Departamentos::insert([
         'name' => $departamento
       ]);
-    });
+    }); */
 
     return response()->json($departamentos);
   });
@@ -232,11 +232,11 @@ Route::prefix('meal')->group(function () {
 
     $municipios = Reports::all()->groupBy('municipio')->keys();
 
-    $municipios->each(function ($municipio) use ($municipios) {
+    /* $municipios->each(function ($municipio) use ($municipios) {
       return Municipios::insert([
         'name' => $municipio,
       ]);
-    });
+    }); */
 
     return response()->json($municipios);
   });
