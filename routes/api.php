@@ -104,8 +104,8 @@ Route::post('codigo_emergencia', function (Request $request) {
   $respuesta = "";
 
   if (isset($request->departamento) && isset($request->municipio)) {
-    $letterdep = strtoupper(substr($request->departamento, 2));
-    $lettermun = strtoupper(substr($request->municipio, 2));
+    $letterdep = strtoupper(substr($request->departamento,0, 2));
+    $lettermun = strtoupper(substr($request->municipio, 0,2));
     $respuesta .= $letterdep;
     $respuesta .= $lettermun;
     $emergencia_number = optional(MLpaEmergencia::query()
