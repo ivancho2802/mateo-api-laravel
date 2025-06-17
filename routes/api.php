@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Emergencias;
 use App\Models\Departamentos;
+use App\Models\MLpaEmergencia;
 use App\Models\Municipios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -96,6 +98,23 @@ Route::get('municipios/{departamento}', function (Request $request) {
   }
 
   return response()->json($municipios);
+});
+
+Route::post('codigo_emergencia', function (Request $request) {
+  $respuesta = "";
+
+  if (isset($request->departamento) && isset($request->municipio)) {
+    $letterdep = strtoupper(substr($request->departamento, 2));
+    $lettermun = strtoupper(substr($request->municipio, 2));
+    $respuesta .= $letterdep;
+    $respuesta .= $lettermun;
+    $emergencia_number = MLpaEmergencia::where("COD_EMERGENCIAS", "like", $letterdep.$lettermun."%")->first()->orderBy("created_at", "desc")->COD_EMERGENCIAS;
+    $numero_extraido = filter_var($emergencia_number, FILTER_SANITIZE_NUMBER_INT);
+    $numero_extraido++;
+    $respuesta .= $numero_extraido;
+  }
+
+  return response()->json($respuesta);
 });
 
 Route::prefix('meal')->group(function () {
