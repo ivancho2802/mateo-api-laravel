@@ -1,0 +1,37 @@
+{
+    "resultados": [
+        {
+            "ID_M_KOBO_FORMULARIOS": "0014230",
+            "ID_M_USUARIOS": null,
+            "ID_M_AREAS": null,
+            "FECHA": "2024-03-21 11:50:40",
+            "FECHA_REGISTRO": "2024-03-21 11:49:37",
+            "ACCION": "I",
+            "UNICO": null,
+            "BARCODE": null,
+            "ID": 4230,
+            "ID_EMPRESA": "001",
+            "CAMPO1": null,
+            "CAMPO2": null,
+            "CAMPO3": null,
+            "CAMPO4": null,
+            "CAMPO5": null,
+            "ESTATUS": "PENDIENTE",
+            "ID_M_FORMULARIOS": "0012",
+            "FECHA_FORMULARIO": "2024-03-21 11:49:37",
+            "UID": "8785806",
+            "FUID": "aCZ9DfhLrtUETS2GvRDtRm",
+            "CORREO_TEST": null,
+            "FECHA_ESTADISTICA": null,
+            "ID_M_LOCALIDADES": null,
+            "DEPARTAMENTO": null,
+            "REGION": null,
+            "CORREO": "X",
+            "FUNICO": "aCZ9DfhLrtUETS2GvRDtRm8785806",
+            "MUNICIPIO": null,
+            "CODIGO_ALERTA": 0,
+            "XCODIGO_ALERTA": "LARI-985.1",
+            "PREFIJO_ALERTA": null
+        }
+    ]
+}

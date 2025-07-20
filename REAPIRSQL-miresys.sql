@@ -1,0 +1,9 @@
+--SELECT * FROM "M_MQR";
+--insert into "M_MQR" ("ORG_REPORT", "CONSECUTIVOS_CASES", "MONTH_REPORT", "DATE_IN", "CHANNEL_IN", "CATEGORY", "SUB_CATEGORY", "THEME", "ETNIA", "SEXO", "RANGE_EDAD", "DEPARTMENT", "MUNICICIO", "ADDRESS", "VALID", "RECIVE", "updated_at", "created_at") values ('as', 1, 'as', '1970-01-01 00:00:00', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', '2024-01-23 07:38:24', '2024-01-23 07:38:24')
+--SELECT * FROM "M_LPAS";
+--SELECT * FROM "M_USUARIOS";
+--insert into "M_USUARIOS" ("ID_M_USUARIO", "NOMBRES", "APELLIDOS", "LOGIN", "CLAVE") values (1, 'laura', 'laura', 'laura', '$2y$10$CD6Je1AkPanimTSOGEnj5u9DQP3cAK2ut0viG2aEaUIFngaCYwd/O')
+--DELETE FROM "M_FORMULARIOS";
+--DELETE FROM "M_KOBO_FORMULARIOS";
+--DELETE FROM "M_KOBO_RESPUESTAS";
+--SELECT * FROM "M_FORMULARIOS";

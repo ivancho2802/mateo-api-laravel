@@ -1,0 +1,8 @@
+SELECT RDB$TRIGGER_NAME AS trigger_name,        RDB$RELATION_NAME AS table_name,        RDB$TRIGGER_SOURCE AS trigger_body,        CASE RDB$TRIGGER_TYPE         WHEN 1 THEN 'BEFORE'         WHEN 2 THEN 'AFTER'         WHEN 3 THEN 'BEFORE'         WHEN 4 THEN 'AFTER'         WHEN 5 THEN 'BEFORE'         WHEN 6 THEN 'AFTER'        END AS trigger_type,        CASE RDB$TRIGGER_TYPE         WHEN 1 THEN 'INSERT'         WHEN 2 THEN 'INSERT'         WHEN 3 THEN 'UPDATE'         WHEN 4 THEN 'UPDATE'         WHEN 5 THEN 'DELETE'         WHEN 6 THEN 'DELETE'        END AS trigger_event,        CASE RDB$TRIGGER_INACTIVE         WHEN 1 THEN 0 ELSE 1        END AS trigger_enabled,        RDB$DESCRIPTION AS trigger_comment   FROM RDB$TRIGGERS ROWS 2000 TO 2800
+
+
+
+
+select RDB$TRIGGER_NAME, RDB$RELATION_NAME, RDB$TRIGGER_SOURCE from rdb$TRIGGERS where rdb$TRIGGER_NAME = 'T_KOBO_RESPUESTAS'
+
+

@@ -1,0 +1,1972 @@
+{
+    "resultados": [
+        {
+            "ROTULO": "",
+            "ID": 517
+        },
+        {
+            "ROTULO": "2. Descripción General Hallazgos mencionados por las diferentes fuentes de información",
+            "ID": 518
+        },
+        {
+            "ROTULO": "1. Población identificada",
+            "ID": 519
+        },
+        {
+            "ROTULO": "2. Censo",
+            "ID": 520
+        },
+        {
+            "ROTULO": "3. Etnia",
+            "ID": 521
+        },
+        {
+            "ROTULO": "4. Discapacidad",
+            "ID": 522
+        },
+        {
+            "ROTULO": "Protección",
+            "ID": 523
+        },
+        {
+            "ROTULO": "SHELTER",
+            "ID": 524
+        },
+        {
+            "ROTULO": "WASH",
+            "ID": 525
+        },
+        {
+            "ROTULO": "SAN",
+            "ID": 526
+        },
+        {
+            "ROTULO": "Salud",
+            "ID": 527
+        },
+        {
+            "ROTULO": "CASH",
+            "ID": 528
+        },
+        {
+            "ROTULO": "Protección",
+            "ID": 529
+        },
+        {
+            "ROTULO": "SHELTER",
+            "ID": 530
+        },
+        {
+            "ROTULO": "WASH",
+            "ID": 531
+        },
+        {
+            "ROTULO": "SAN",
+            "ID": 532
+        },
+        {
+            "ROTULO": "Salud",
+            "ID": 533
+        },
+        {
+            "ROTULO": "CASH",
+            "ID": 534
+        },
+        {
+            "ROTULO": "żCuántas personas participaron en la ERN?",
+            "ID": 535
+        },
+        {
+            "ROTULO": "żCuántas personas participaron en las siguientes formas de recolección de la información?",
+            "ID": 536
+        },
+        {
+            "ROTULO": "Persona 1 - (En esta sección por favor registre los datos de las personas que le brindaron la información para hacer esta ERN, es decir, de la fuente de información)",
+            "ID": 537
+        },
+        {
+            "ROTULO": "Persona 2",
+            "ID": 538
+        },
+        {
+            "ROTULO": "Persona 3",
+            "ID": 539
+        },
+        {
+            "ROTULO": "Persona 4",
+            "ID": 540
+        },
+        {
+            "ROTULO": "Persona 5",
+            "ID": 541
+        },
+        {
+            "ROTULO": "Persona 6",
+            "ID": 542
+        },
+        {
+            "ROTULO": "Persona 7",
+            "ID": 543
+        },
+        {
+            "ROTULO": "Persona 8",
+            "ID": 544
+        },
+        {
+            "ROTULO": "3. Fecha fin de la ERN",
+            "ID": 721
+        },
+        {
+            "ROTULO": "Personas extranjeras",
+            "ID": 704
+        },
+        {
+            "ROTULO": "1. żExisten ONG u otras entidades estan presenten en el sector y estan cubriendo alguna de las necesidades?",
+            "ID": 705
+        },
+        {
+            "ROTULO": "3. żExisten entidades que estan presenten territorio con quienes se podrian articular acciones de intervencion?",
+            "ID": 706
+        },
+        {
+            "ROTULO": "(Proteccion-ICLA) Descripcion puntual y concreta de la necesidad",
+            "ID": 707
+        },
+        {
+            "ROTULO": "(Proteccion-VBG) Descripcion puntual y concreta de la necesidad",
+            "ID": 708
+        },
+        {
+            "ROTULO": "(Proteccion-Personas en riesgo) Descripcion puntual y concreta de la necesidad",
+            "ID": 709
+        },
+        {
+            "ROTULO": "(Proteccion-Prevencion de Reclutamiento) Descripcion puntual y concreta de la necesidad)",
+            "ID": 710
+        },
+        {
+            "ROTULO": "(SHELTER-Albergue) Descripcion puntual y concreta de la necesidad",
+            "ID": 711
+        },
+        {
+            "ROTULO": "(WASH-Agua) Descripcion puntual y concreta de la necesidad",
+            "ID": 712
+        },
+        {
+            "ROTULO": "(WASH-Saneamiento) Descripcion puntual y concreta de la necesidad",
+            "ID": 713
+        },
+        {
+            "ROTULO": "(WASH-Higiente) Descripcion puntual y concreta de la necesidad",
+            "ID": 714
+        },
+        {
+            "ROTULO": "(WASH-IPC) Descripcion puntual y concreta de la necesidad",
+            "ID": 715
+        },
+        {
+            "ROTULO": "(SAN-SAN) Descripcion puntual y concreta de la necesidad",
+            "ID": 716
+        },
+        {
+            "ROTULO": "(Salud-Salud Fisica) Descripcion puntual y concreta de la necesidad",
+            "ID": 717
+        },
+        {
+            "ROTULO": "(Salud-Salud Mental y Psicologica) Descripcion puntual y concreta de la necesidad",
+            "ID": 718
+        },
+        {
+            "ROTULO": "(Salud-VBG) Descripcion puntual y concreta de la necesidad",
+            "ID": 719
+        },
+        {
+            "ROTULO": "EiE",
+            "ID": 720
+        },
+        {
+            "ROTULO": "1b. Riesgos que se perciben en la comunidad, que pueden afectar a la respuesta",
+            "ID": 722
+        },
+        {
+            "ROTULO": "Brechas de informacion",
+            "ID": 723
+        },
+        {
+            "ROTULO": "Si es afectacion multiple, seleccione:",
+            "ID": 696
+        },
+        {
+            "ROTULO": "4a. Evaluador",
+            "ID": 697
+        },
+        {
+            "ROTULO": "4b. Celular",
+            "ID": 698
+        },
+        {
+            "ROTULO": "Nombre de la organizacion",
+            "ID": 699
+        },
+        {
+            "ROTULO": "4c. Organizacion a la que pertenece",
+            "ID": 700
+        },
+        {
+            "ROTULO": "3. Logistica. Descripcion rapida de logistica requerida",
+            "ID": 701
+        },
+        {
+            "ROTULO": "4. Seguridad. Descripcion rapida de seguridad",
+            "ID": 702
+        },
+        {
+            "ROTULO": "1. Codigo",
+            "ID": 197
+        },
+        {
+            "ROTULO": "2. Fecha de inicio de ERN",
+            "ID": 198
+        },
+        {
+            "ROTULO": "7. Corregimiento/Vereda/Barrio",
+            "ID": 199
+        },
+        {
+            "ROTULO": "8. Comunidad",
+            "ID": 200
+        },
+        {
+            "ROTULO": "żcual? (tipo de emergencia)",
+            "ID": 201
+        },
+        {
+            "ROTULO": "żCual?",
+            "ID": 202
+        },
+        {
+            "ROTULO": "4. Departamento",
+            "ID": 203
+        },
+        {
+            "ROTULO": "AMAZONAS",
+            "ID": 204
+        },
+        {
+            "ROTULO": "ANTIOQUIA",
+            "ID": 205
+        },
+        {
+            "ROTULO": "ARAUCA",
+            "ID": 206
+        },
+        {
+            "ROTULO": "ATLANTICO",
+            "ID": 207
+        },
+        {
+            "ROTULO": "BOGOTA",
+            "ID": 208
+        },
+        {
+            "ROTULO": "BOLIVAR",
+            "ID": 209
+        },
+        {
+            "ROTULO": "BOYACA",
+            "ID": 210
+        },
+        {
+            "ROTULO": "CALDAS",
+            "ID": 211
+        },
+        {
+            "ROTULO": "CAQUETA",
+            "ID": 212
+        },
+        {
+            "ROTULO": "CASANARE",
+            "ID": 213
+        },
+        {
+            "ROTULO": "CAUCA",
+            "ID": 214
+        },
+        {
+            "ROTULO": "CESAR",
+            "ID": 215
+        },
+        {
+            "ROTULO": "CHOCO",
+            "ID": 216
+        },
+        {
+            "ROTULO": "CORDOBA",
+            "ID": 217
+        },
+        {
+            "ROTULO": "CUNDINAMARCA",
+            "ID": 218
+        },
+        {
+            "ROTULO": "GUAINIA",
+            "ID": 219
+        },
+        {
+            "ROTULO": "GUAVIARE",
+            "ID": 220
+        },
+        {
+            "ROTULO": "HUILA",
+            "ID": 221
+        },
+        {
+            "ROTULO": "LA GUAJIRA",
+            "ID": 222
+        },
+        {
+            "ROTULO": "MAGDALENA",
+            "ID": 223
+        },
+        {
+            "ROTULO": "META",
+            "ID": 224
+        },
+        {
+            "ROTULO": "N. DE SANTANDER",
+            "ID": 225
+        },
+        {
+            "ROTULO": "NARINO",
+            "ID": 226
+        },
+        {
+            "ROTULO": "PUTUMAYO",
+            "ID": 227
+        },
+        {
+            "ROTULO": "QUINDIO",
+            "ID": 228
+        },
+        {
+            "ROTULO": "RISARALDA",
+            "ID": 229
+        },
+        {
+            "ROTULO": "SAN ANDRES",
+            "ID": 230
+        },
+        {
+            "ROTULO": "SANTANDER",
+            "ID": 231
+        },
+        {
+            "ROTULO": "SUCRE",
+            "ID": 232
+        },
+        {
+            "ROTULO": "TOLIMA",
+            "ID": 233
+        },
+        {
+            "ROTULO": "VALLE DEL CAUCA",
+            "ID": 234
+        },
+        {
+            "ROTULO": "VAUPES",
+            "ID": 235
+        },
+        {
+            "ROTULO": "VICHADA",
+            "ID": 236
+        },
+        {
+            "ROTULO": "6. Urbano/Rural",
+            "ID": 237
+        },
+        {
+            "ROTULO": "9. żTipo de emergencia?",
+            "ID": 238
+        },
+        {
+            "ROTULO": "10. Origen de la informacion",
+            "ID": 239
+        },
+        {
+            "ROTULO": "Recuerde que quien recopila o consolida la informacion debe ser una sola persona, quien lidera la mision. En esta seccion puede referenciar la informacion de hasta 3 evaluadores que hicieron la ERN, pero solo 1 persona debe consolidar toda la informacion y diligenciarla en este formato de ERN",
+            "ID": 240
+        },
+        {
+            "ROTULO": "1a. Evaluador",
+            "ID": 241
+        },
+        {
+            "ROTULO": "1b. Celular",
+            "ID": 242
+        },
+        {
+            "ROTULO": "Nombre de la organizacion",
+            "ID": 243
+        },
+        {
+            "ROTULO": "2a. Evaluador",
+            "ID": 244
+        },
+        {
+            "ROTULO": "2b. Celular",
+            "ID": 245
+        },
+        {
+            "ROTULO": "Nombre de la organizacion",
+            "ID": 246
+        },
+        {
+            "ROTULO": "3a. Evaluador",
+            "ID": 247
+        },
+        {
+            "ROTULO": "3b. Celular",
+            "ID": 248
+        },
+        {
+            "ROTULO": "Nombre de la organizacion",
+            "ID": 249
+        },
+        {
+            "ROTULO": "1c. Organizacion a la que pertenece",
+            "ID": 250
+        },
+        {
+            "ROTULO": "2c. Organizacion a la que pertenece",
+            "ID": 251
+        },
+        {
+            "ROTULO": "3c. Organizacion a la que pertenece",
+            "ID": 252
+        },
+        {
+            "ROTULO": "1a. Fecha del evento",
+            "ID": 253
+        },
+        {
+            "ROTULO": "1b. Comunidades a atender",
+            "ID": 254
+        },
+        {
+            "ROTULO": "1c. Descripcion del evento",
+            "ID": 255
+        },
+        {
+            "ROTULO": "a. Social   - hallazgos",
+            "ID": 256
+        },
+        {
+            "ROTULO": "b. Enfoque diferencial - hallazgos",
+            "ID": 257
+        },
+        {
+            "ROTULO": "c. Economica  - hallazgos",
+            "ID": 258
+        },
+        {
+            "ROTULO": "d. Geografica - hallazgos",
+            "ID": 259
+        },
+        {
+            "ROTULO": "e. Servicios  - hallazgos",
+            "ID": 260
+        },
+        {
+            "ROTULO": "f. Ambiental - hallazgos",
+            "ID": 261
+        },
+        {
+            "ROTULO": "Otra problematica principal",
+            "ID": 262
+        },
+        {
+            "ROTULO": "żCual?",
+            "ID": 263
+        },
+        {
+            "ROTULO": "Tiempo (Terrestre)",
+            "ID": 264
+        },
+        {
+            "ROTULO": "Descripcion (Terrestre)",
+            "ID": 265
+        },
+        {
+            "ROTULO": "Tiempo (Fluvial)",
+            "ID": 266
+        },
+        {
+            "ROTULO": "Descripcion (Fluvial)",
+            "ID": 267
+        },
+        {
+            "ROTULO": "Tiempo (Aereo)",
+            "ID": 268
+        },
+        {
+            "ROTULO": "Descripcion (Aereo)",
+            "ID": 269
+        },
+        {
+            "ROTULO": "żCual?",
+            "ID": 270
+        },
+        {
+            "ROTULO": "Tiempo (Otro)",
+            "ID": 271
+        },
+        {
+            "ROTULO": "Descripcion (Otro)",
+            "ID": 272
+        },
+        {
+            "ROTULO": "Caracteristicas (Existen mecanismos disponibles para trasferencia)",
+            "ID": 273
+        },
+        {
+            "ROTULO": "Caracteristicas (Existe servicio de energia)",
+            "ID": 274
+        },
+        {
+            "ROTULO": "Caracteristicas (Existe servicio de comunicaciones)",
+            "ID": 275
+        },
+        {
+            "ROTULO": "Caracteristicas (Condiciones de alojamiento)",
+            "ID": 276
+        },
+        {
+            "ROTULO": "Caracteristicas (Condiciones de seguridad)",
+            "ID": 277
+        },
+        {
+            "ROTULO": "Caracteristicas (Otro)",
+            "ID": 278
+        },
+        {
+            "ROTULO": "3. Existen mecanismos disponibles para trasferencia (Buenas / Deficientes / No existe)",
+            "ID": 279
+        },
+        {
+            "ROTULO": "Existe servicio de energia (Buenas / Deficientes / No existe)",
+            "ID": 280
+        },
+        {
+            "ROTULO": "Existe servicio de comunicaciones (Buenas / Deficientes / No existe)",
+            "ID": 281
+        },
+        {
+            "ROTULO": "Condiciones de alojamiento (Buenas / Deficientes / No existe)",
+            "ID": 282
+        },
+        {
+            "ROTULO": "Condiciones de seguridad (Buenas / Deficientes / No existe)",
+            "ID": 283
+        },
+        {
+            "ROTULO": "Otro (Buenas / Deficientes / No existe)",
+            "ID": 284
+        },
+        {
+            "ROTULO": "1. Problematica Principal",
+            "ID": 285
+        },
+        {
+            "ROTULO": "1b. Caracterizacion de crisis por desplazamiento",
+            "ID": 286
+        },
+        {
+            "ROTULO": "1c. Caracterizacion Desastres Naturales",
+            "ID": 287
+        },
+        {
+            "ROTULO": "1d. Caracterizacion Homicidios",
+            "ID": 288
+        },
+        {
+            "ROTULO": "1g. Caracterizacion Presencia o enfrenta miembros de GAI",
+            "ID": 289
+        },
+        {
+            "ROTULO": "1i. Descripcion VBG",
+            "ID": 290
+        },
+        {
+            "ROTULO": "2. Forma de acceso al territorio",
+            "ID": 291
+        },
+        {
+            "ROTULO": "Cantidad de Familias",
+            "ID": 292
+        },
+        {
+            "ROTULO": "Cantidad de Personas",
+            "ID": 293
+        },
+        {
+            "ROTULO": "Numero de Comunidades Evaluadas",
+            "ID": 294
+        },
+        {
+            "ROTULO": "2. Fecha del Censo",
+            "ID": 295
+        },
+        {
+            "ROTULO": "2. Censo Actualizado",
+            "ID": 296
+        },
+        {
+            "ROTULO": "Numero de Afrocolombianos/Negros",
+            "ID": 297
+        },
+        {
+            "ROTULO": "Numero de Indigenas",
+            "ID": 298
+        },
+        {
+            "ROTULO": "Numero de Mestizos",
+            "ID": 299
+        },
+        {
+            "ROTULO": "Numero de Palenqueros de San Basilio",
+            "ID": 300
+        },
+        {
+            "ROTULO": "Numero de Raizales de San Andres y Providencia",
+            "ID": 301
+        },
+        {
+            "ROTULO": "Numero de ROM o gitano",
+            "ID": 302
+        },
+        {
+            "ROTULO": "Fisica",
+            "ID": 303
+        },
+        {
+            "ROTULO": "Intelectual",
+            "ID": 304
+        },
+        {
+            "ROTULO": "Multiple",
+            "ID": 305
+        },
+        {
+            "ROTULO": "Psiquica",
+            "ID": 306
+        },
+        {
+            "ROTULO": "Sensorial",
+            "ID": 307
+        },
+        {
+            "ROTULO": "No sabe / No reporta",
+            "ID": 308
+        },
+        {
+            "ROTULO": "2. żCuales?",
+            "ID": 309
+        },
+        {
+            "ROTULO": "4. żCuales?",
+            "ID": 310
+        },
+        {
+            "ROTULO": "1. żExisten ONG u otras entidades estan presenten en el sector y estan cubriendo alguna de las necesidades?",
+            "ID": 311
+        },
+        {
+            "ROTULO": "3. żExisten entidades que estan presenten territorio con quienes se podrian articular acciones de intervencion?",
+            "ID": 312
+        },
+        {
+            "ROTULO": "G. żEn que sectores se evidenciaron las necesidades?",
+            "ID": 313
+        },
+        {
+            "ROTULO": "(Proteccion-ICLA) Descripcion puntual y concreta de la necesidad",
+            "ID": 314
+        },
+        {
+            "ROTULO": "(Proteccion-Educacion en Emergencia) Descripcion puntual y concreta de la necesidad",
+            "ID": 315
+        },
+        {
+            "ROTULO": "(Proteccion-Nińez) Descripcion puntual y concreta de la necesidad",
+            "ID": 316
+        },
+        {
+            "ROTULO": "(Proteccion-ERM) Descripcion puntual y concreta de la necesidad",
+            "ID": 317
+        },
+        {
+            "ROTULO": "(Proteccion-VBG) Descripcion puntual y concreta de la necesidad",
+            "ID": 318
+        },
+        {
+            "ROTULO": "(Proteccion-ICLA) Nivel de prioridad para orientar la accion",
+            "ID": 319
+        },
+        {
+            "ROTULO": "(Proteccion-Educacion en Emergencia) Nivel de prioridad para orientar la accion",
+            "ID": 320
+        },
+        {
+            "ROTULO": "(Proteccion-Nińez) Nivel de prioridad para orientar la accion",
+            "ID": 321
+        },
+        {
+            "ROTULO": "(Proteccion-ERM) Nivel de prioridad para orientar la accion",
+            "ID": 322
+        },
+        {
+            "ROTULO": "(Proteccion-VBG) Nivel de prioridad para orientar la accion",
+            "ID": 323
+        },
+        {
+            "ROTULO": "(SHELTER-Albergue) Descripcion puntual y concreta de la necesidad",
+            "ID": 324
+        },
+        {
+            "ROTULO": "(SHELTER-Albergue) Nivel de prioridad para orientar la accion",
+            "ID": 325
+        },
+        {
+            "ROTULO": "(WASH-WASH) Descripcion puntual y concreta de la necesidad",
+            "ID": 326
+        },
+        {
+            "ROTULO": "(WASH-IPC) Descripcion puntual y concreta de la necesidad",
+            "ID": 327
+        },
+        {
+            "ROTULO": "(WASH-WASH) Nivel de prioridad para orientar la accion",
+            "ID": 328
+        },
+        {
+            "ROTULO": "(WASH-IPC) Nivel de prioridad para orientar la accion",
+            "ID": 329
+        },
+        {
+            "ROTULO": "(SAN-SAN) Descripcion puntual y concreta de la necesidad",
+            "ID": 330
+        },
+        {
+            "ROTULO": "(SAN-SAN) Nivel de prioridad para orientar la accion",
+            "ID": 331
+        },
+        {
+            "ROTULO": "(Salud-Salud) Descripcion puntual y concreta de la necesidad",
+            "ID": 332
+        },
+        {
+            "ROTULO": "(Salud-Salud) Descripcion puntual y concreta de la necesidad",
+            "ID": 333
+        },
+        {
+            "ROTULO": "(Salud-VBG) Descripcion puntual y concreta de la necesidad",
+            "ID": 334
+        },
+        {
+            "ROTULO": "(Salud-Salud) Nivel de prioridad para orientar la accion",
+            "ID": 335
+        },
+        {
+            "ROTULO": "(Salud-Salud) Nivel de prioridad para orientar la accion",
+            "ID": 336
+        },
+        {
+            "ROTULO": "(Salud-VBG) Nivel de prioridad para orientar la accion",
+            "ID": 337
+        },
+        {
+            "ROTULO": "(CASH-CASH) Descripcion puntual y concreta de la necesidad",
+            "ID": 338
+        },
+        {
+            "ROTULO": "(CASH-CASH) Nivel de prioridad para orientar la accion",
+            "ID": 339
+        },
+        {
+            "ROTULO": "H. żEn que sectores se presentan los lineamientos para el plan de accion?",
+            "ID": 340
+        },
+        {
+            "ROTULO": "1. (Proteccion) Intervencion de ICLA: Descripcion / Cantidad",
+            "ID": 341
+        },
+        {
+            "ROTULO": "2. (Proteccion) Apoyo directo con autoridades para garantizar servicios humanitarios: Descripcion / Cantidad",
+            "ID": 342
+        },
+        {
+            "ROTULO": "3. (Proteccion)Kits de recepcion de movilidad y/o capacitacion para NNJ. : Descripcion / Cantidad",
+            "ID": 343
+        },
+        {
+            "ROTULO": "4. (Proteccion) Maestros y agentes educativos con kits y/o capacitacion: Descripcion / Cantidad",
+            "ID": 344
+        },
+        {
+            "ROTULO": "5. (Proteccion) Actividades de proteccion a la nińez: Descripcion / Cantidad",
+            "ID": 345
+        },
+        {
+            "ROTULO": "6. (Proteccion) Beneficios en educacion en riesgo de minas ERM -Difusion de informacion sobre el riesgo de armas convencionales / artefactos explosivos improvisados: Descripcion / Cantidad",
+            "ID": 346
+        },
+        {
+            "ROTULO": "30. (Proteccion) Evaluacion de casos en riesgo de VG o sobrevivientes de VG: Descripcion / Cantidad",
+            "ID": 347
+        },
+        {
+            "ROTULO": "31. (Proteccion) Orientacion y en seguimiento a casos de riesgo o sobrevivientes de VG: Descripcion / Cantidad",
+            "ID": 348
+        },
+        {
+            "ROTULO": "7. (SHELTER) Refugio colectivo o individual: Descripcion / Cantidad",
+            "ID": 349
+        },
+        {
+            "ROTULO": "8. (SHELTER) Articulos que salvan vidas de refugio: Descripcion / Cantidad",
+            "ID": 350
+        },
+        {
+            "ROTULO": "9. (SHELTER) Apoyo en efectivo por alquiler: Descripcion / Cantidad",
+            "ID": 351
+        },
+        {
+            "ROTULO": "10. (SHELTER) Capacitacion de sensibilizacion sobre temas relacionados con Refugios & asentamientos: Descripcion / Cantidad",
+            "ID": 352
+        },
+        {
+            "ROTULO": "11. (WASH) Acceso al agua segura: Descripcion / Cantidad",
+            "ID": 353
+        },
+        {
+            "ROTULO": "12. (WASH) Acceso a las instalaciones de eliminacion de excretas: Descripcion / Cantidad",
+            "ID": 354
+        },
+        {
+            "ROTULO": "13. (WASH) Kits de higiene: Descripcion / Cantidad",
+            "ID": 355
+        },
+        {
+            "ROTULO": "14. (WASH) Actividades de promocion de Higiene: Descripcion / Cantidad",
+            "ID": 356
+        },
+        {
+            "ROTULO": "28. (WASH) WASHIPC en establecimientos Hospitalarios: Descripcion / Cantidad",
+            "ID": 357
+        },
+        {
+            "ROTULO": "29. (WASH) WASHIPC en establecimientos publicos: Descripcion / Cantidad",
+            "ID": 358
+        },
+        {
+            "ROTULO": "15-2a. (SAN) Distribucion de alimentos Cocina comunitaria: Descripcion / Cantidad",
+            "ID": 359
+        },
+        {
+            "ROTULO": "15-2b. (SAN) Distribucion de alimentos Composicion familiar: Descripcion / Cantidad",
+            "ID": 360
+        },
+        {
+            "ROTULO": "15-3. (SAN) Entrega de efectivo incondicional: Descripcion / Cantidad",
+            "ID": 361
+        },
+        {
+            "ROTULO": "16a. (Salud) Atencion primaria de salud: Descripcion / Cantidad",
+            "ID": 362
+        },
+        {
+            "ROTULO": "16b. (Salud) Entregas de medicamentos: Descripcion / Cantidad",
+            "ID": 363
+        },
+        {
+            "ROTULO": "17. (Salud) Atencion en salud mental y psicosocial: Descripcion / Cantidad",
+            "ID": 364
+        },
+        {
+            "ROTULO": "18. (Salud) Asistencia de Sobrevivientes VBG: Descripcion / Cantidad",
+            "ID": 365
+        },
+        {
+            "ROTULO": "19. (Salud) Evacuaciones medicas que reciben atencion efectiva en el hospital de referencia: Descripcion / Cantidad",
+            "ID": 366
+        },
+        {
+            "ROTULO": "25. (Salud) Apoyo con insumos y suministros para la emergencia de COVID19: Descripcion / Cantidad",
+            "ID": 367
+        },
+        {
+            "ROTULO": "26. (Salud) Capacitacion y asistencia tecnica para el uso de PPE y la implementacion de Triage: Descripcion / Cantidad",
+            "ID": 368
+        },
+        {
+            "ROTULO": "27. (Salud) Personal de salud que requiere desactivacion de la carga emocional: Descripcion / Cantidad",
+            "ID": 369
+        },
+        {
+            "ROTULO": "32. (CASH) Transferencias de efectivo multiproposito: Descripcion / Cantidad",
+            "ID": 370
+        },
+        {
+            "ROTULO": "żHay mas personas?",
+            "ID": 371
+        },
+        {
+            "ROTULO": "a. Numero de Personas de la Comunidad - proporcionando info",
+            "ID": 372
+        },
+        {
+            "ROTULO": "b. Numero de Lider JAC - proporcionando info",
+            "ID": 373
+        },
+        {
+            "ROTULO": "c. Numero de personas del Consejo Comunitario",
+            "ID": 374
+        },
+        {
+            "ROTULO": "d. Numero de personas de Asociaciones / Consejos Indigenas",
+            "ID": 375
+        },
+        {
+            "ROTULO": "e. Numero de Representantes de Ayuntamientos",
+            "ID": 376
+        },
+        {
+            "ROTULO": "f. Numero de Secretarios Municipales",
+            "ID": 377
+        },
+        {
+            "ROTULO": "g. Numero de Secretarios Departamentales",
+            "ID": 378
+        },
+        {
+            "ROTULO": "h. Otro",
+            "ID": 379
+        },
+        {
+            "ROTULO": "żCual?",
+            "ID": 380
+        },
+        {
+            "ROTULO": "0a. Forma Presencial - Individual",
+            "ID": 381
+        },
+        {
+            "ROTULO": "0a. Forma Presencial- Grupos Focal",
+            "ID": 382
+        },
+        {
+            "ROTULO": "0a. Forma Virtual - Individual",
+            "ID": 383
+        },
+        {
+            "ROTULO": "0a. Forma Virtual - Grupal",
+            "ID": 384
+        },
+        {
+            "ROTULO": "0a. Forma Telefonica",
+            "ID": 385
+        },
+        {
+            "ROTULO": "1a. Nombre - datos de las personas que le brindaron informac",
+            "ID": 386
+        },
+        {
+            "ROTULO": "1b. Telefono 1",
+            "ID": 387
+        },
+        {
+            "ROTULO": "1c. Telefono 2",
+            "ID": 388
+        },
+        {
+            "ROTULO": "1d. Celular",
+            "ID": 389
+        },
+        {
+            "ROTULO": "1e. Institucion/Organismo al que representa",
+            "ID": 390
+        },
+        {
+            "ROTULO": "2a. Nombre - datos de las personas que brindaron informac",
+            "ID": 391
+        },
+        {
+            "ROTULO": "2b. Telefono 1",
+            "ID": 392
+        },
+        {
+            "ROTULO": "2c. Telefono 2",
+            "ID": 393
+        },
+        {
+            "ROTULO": "2d. Celular",
+            "ID": 394
+        },
+        {
+            "ROTULO": "2e. Institucion/Organismo al que representa",
+            "ID": 395
+        },
+        {
+            "ROTULO": "3a. Nombre - datos de las personas que brindaron informac",
+            "ID": 396
+        },
+        {
+            "ROTULO": "3b. Telefono 1",
+            "ID": 397
+        },
+        {
+            "ROTULO": "3c. Telefono 2",
+            "ID": 398
+        },
+        {
+            "ROTULO": "3d. Celular",
+            "ID": 399
+        },
+        {
+            "ROTULO": "3e. Institucion/Organismo al que representa",
+            "ID": 400
+        },
+        {
+            "ROTULO": "4a. Nombre",
+            "ID": 401
+        },
+        {
+            "ROTULO": "4b. Telefono 1",
+            "ID": 402
+        },
+        {
+            "ROTULO": "4c. Telefono 2",
+            "ID": 403
+        },
+        {
+            "ROTULO": "4d. Celular",
+            "ID": 404
+        },
+        {
+            "ROTULO": "4e. Institucion/Organismo al que representa",
+            "ID": 405
+        },
+        {
+            "ROTULO": "5a. Nombre",
+            "ID": 406
+        },
+        {
+            "ROTULO": "5b. Telefono 1",
+            "ID": 407
+        },
+        {
+            "ROTULO": "5c. Telefono 2",
+            "ID": 408
+        },
+        {
+            "ROTULO": "5d. Celular",
+            "ID": 409
+        },
+        {
+            "ROTULO": "5e. Institucion/Organismo al que representa",
+            "ID": 410
+        },
+        {
+            "ROTULO": "6a. Nombre",
+            "ID": 411
+        },
+        {
+            "ROTULO": "6b. Telefono 1",
+            "ID": 412
+        },
+        {
+            "ROTULO": "6c. Telefono 2",
+            "ID": 413
+        },
+        {
+            "ROTULO": "6d. Celular",
+            "ID": 414
+        },
+        {
+            "ROTULO": "6e. Institucion/Organismo al que representa",
+            "ID": 415
+        },
+        {
+            "ROTULO": "7a. Nombre",
+            "ID": 416
+        },
+        {
+            "ROTULO": "7b. Telefono 1",
+            "ID": 417
+        },
+        {
+            "ROTULO": "7c. Telefono 2",
+            "ID": 418
+        },
+        {
+            "ROTULO": "7d. Celular",
+            "ID": 419
+        },
+        {
+            "ROTULO": "7e. Institucion/Organismo al que representa",
+            "ID": 420
+        },
+        {
+            "ROTULO": "8a. Nombre",
+            "ID": 421
+        },
+        {
+            "ROTULO": "8b. Telefono 1",
+            "ID": 422
+        },
+        {
+            "ROTULO": "8c. Telefono 2",
+            "ID": 423
+        },
+        {
+            "ROTULO": "8d. Celular",
+            "ID": 424
+        },
+        {
+            "ROTULO": "8e. Institucion/Organismo al que representa",
+            "ID": 425
+        },
+        {
+            "ROTULO": "Observaciones adicionales",
+            "ID": 426
+        },
+        {
+            "ROTULO": "Familias extranjeras",
+            "ID": 703
+        },
+        {
+            "ROTULO": "Hallazgos en Proteccion",
+            "ID": 3771
+        },
+        {
+            "ROTULO": "Recomendaciones en Proteccion",
+            "ID": 3772
+        },
+        {
+            "ROTULO": "Indicadores Clave en Proteccion",
+            "ID": 3773
+        },
+        {
+            "ROTULO": "Hallazgos en Alojamiento y Asentamiento (AyA) o SHELTER por sus siglas en ingles",
+            "ID": 3774
+        },
+        {
+            "ROTULO": "Recomendaciones en Alojamiento y Asentamiento (AyA) o SHELTER por sus siglas en ingles",
+            "ID": 3775
+        },
+        {
+            "ROTULO": "Indicadores Clave en Alojamiento y Asentamiento (AyA) o SHELTER por sus siglas en ingles",
+            "ID": 3776
+        },
+        {
+            "ROTULO": "Hallazgos en Agua, Saneamiento e Higiene (WASH) por sus siglas en ingles.",
+            "ID": 3777
+        },
+        {
+            "ROTULO": "Recomendaciones en Agua, Saneamiento e Higiene (WASH) por sus siglas en ingles.",
+            "ID": 3778
+        },
+        {
+            "ROTULO": "Indicadores Clave en Agua, Saneamiento e Higiene (WASH) por sus siglas en ingles.",
+            "ID": 3779
+        },
+        {
+            "ROTULO": "Hallazgos en Seguridad Alimentaria",
+            "ID": 3780
+        },
+        {
+            "ROTULO": "Recomendaciones en Seguridad Alimentaria",
+            "ID": 3781
+        },
+        {
+            "ROTULO": "Indicadores Clave en Seguridad Alimentaria",
+            "ID": 3782
+        },
+        {
+            "ROTULO": "Hallazgos en Salud VBG, Fisica, Mental y Psicologica.",
+            "ID": 3783
+        },
+        {
+            "ROTULO": "Recomendaciones en Salud VBG, Fisica, Mental y Psicologica.",
+            "ID": 3784
+        },
+        {
+            "ROTULO": "Indicadores Clave en Salud VBG, Fisica, Mental y Psicologica.",
+            "ID": 3785
+        },
+        {
+            "ROTULO": "Hallazgos en Educacion en Emergencias (EeE)",
+            "ID": 3786
+        },
+        {
+            "ROTULO": "Recomendaciones en Educacion en Emergencias (EeE)",
+            "ID": 3787
+        },
+        {
+            "ROTULO": "Indicadores Clave en Educacion en Emergencias (EeE)",
+            "ID": 3788
+        },
+        {
+            "ROTULO": "Transferencias Monetarias",
+            "ID": 3789
+        },
+        {
+            "ROTULO": "Hallazgos en Transferencias Monetarias (TM)",
+            "ID": 3790
+        },
+        {
+            "ROTULO": "Recomendaciones en Transferencias Monetarias ?",
+            "ID": 3791
+        },
+        {
+            "ROTULO": "Indicadores Clave en Transferencias Monetarias ?",
+            "ID": 3792
+        },
+        {
+            "ROTULO": "1. Codigo",
+            "ID": 3889
+        },
+        {
+            "ROTULO": "2. Fecha de inicio de la ERN",
+            "ID": 3890
+        },
+        {
+            "ROTULO": "3. Fecha fin de la ERN",
+            "ID": 3891
+        },
+        {
+            "ROTULO": "Nombre del Consejo Comunitario o Resguardo Indigena:",
+            "ID": 3892
+        },
+        {
+            "ROTULO": "7. Nombre del Corregimiento de las comunidades afectadas:",
+            "ID": 3893
+        },
+        {
+            "ROTULO": "8. Nombre de la(s) veredas y/o comunidades afectadas:",
+            "ID": 3894
+        },
+        {
+            "ROTULO": "De acuerdo con el DNP, el municipio es catalogado como:",
+            "ID": 3895
+        },
+        {
+            "ROTULO": "4. Departamento",
+            "ID": 3896
+        },
+        {
+            "ROTULO": "5. Municipio",
+            "ID": 3897
+        },
+        {
+            "ROTULO": "6. Las comunidades afectadas pertenecen a:",
+            "ID": 3898
+        },
+        {
+            "ROTULO": "9. Las comunidades afectadas residen *principalmente* en:",
+            "ID": 3899
+        },
+        {
+            "ROTULO": "żQue otro tipo de emergencia?",
+            "ID": 3900
+        },
+        {
+            "ROTULO": "En el marco del desplazamiento, żcual es la comunidad receptora?",
+            "ID": 3901
+        },
+        {
+            "ROTULO": "9. Seleccione el tipo de emergencia:",
+            "ID": 3902
+        },
+        {
+            "ROTULO": "żAlguna de esta comunidades ya habia sido desplazada en el ultimo ańo?",
+            "ID": 3903
+        },
+        {
+            "ROTULO": "żAlguna de estaa comunidades ya habia estado en confinamiento por conflicto armado en el ultimo ańo?",
+            "ID": 3904
+        },
+        {
+            "ROTULO": "żQue emergencias convergen en la afectacion multiple?",
+            "ID": 3905
+        },
+        {
+            "ROTULO": "Recuerde la recopilacion de informacionla hace una sola persona, normalmente el/la lider de mision. En esta seccion puede referenciar la informacion de hasta 3 evaluadores que hicieron la ERN en caso de requerir subsanar informacion.",
+            "ID": 3906
+        },
+        {
+            "ROTULO": "1a. Evaluador",
+            "ID": 3907
+        },
+        {
+            "ROTULO": "1b. Celular",
+            "ID": 3908
+        },
+        {
+            "ROTULO": "2a. Evaluador",
+            "ID": 3909
+        },
+        {
+            "ROTULO": "2b. Celular",
+            "ID": 3910
+        },
+        {
+            "ROTULO": "3a. Evaluador",
+            "ID": 3911
+        },
+        {
+            "ROTULO": "3b. Celular",
+            "ID": 3912
+        },
+        {
+            "ROTULO": "1c. Organizacion a la que pertenece",
+            "ID": 3913
+        },
+        {
+            "ROTULO": "2c. Organizacion a la que pertenece",
+            "ID": 3914
+        },
+        {
+            "ROTULO": "3c. Organizacion a la que pertenece",
+            "ID": 3915
+        },
+        {
+            "ROTULO": "1. Fecha del evento",
+            "ID": 3916
+        },
+        {
+            "ROTULO": "2. Descripcion del evento",
+            "ID": 3917
+        },
+        {
+            "ROTULO": "3. Numero de Comunidades afectadas",
+            "ID": 3918
+        },
+        {
+            "ROTULO": "4. Cantidad de familias afectadas",
+            "ID": 3919
+        },
+        {
+            "ROTULO": "5. Cantidad de personas afectadas",
+            "ID": 3920
+        },
+        {
+            "ROTULO": "6. Cantidad de Nińos, Nińas, Adolescentes afectados/as",
+            "ID": 3921
+        },
+        {
+            "ROTULO": "8. Fecha del Censo",
+            "ID": 3922
+        },
+        {
+            "ROTULO": "7. Se cuenta con censo de las personas afectadas:",
+            "ID": 3923
+        },
+        {
+            "ROTULO": "żLos datos del censo estan desagregados por genero, edad y pertenencia etnica?",
+            "ID": 3924
+        },
+        {
+            "ROTULO": "Por favor, seleccione si en el territorio se presentan estas situaciones:",
+            "ID": 3925
+        },
+        {
+            "ROTULO": "Otro, Cual:",
+            "ID": 3926
+        },
+        {
+            "ROTULO": "Por favor, proporcione detalles de las restricciones a la movilidad:",
+            "ID": 3927
+        },
+        {
+            "ROTULO": "Otro, Cual:",
+            "ID": 3928
+        },
+        {
+            "ROTULO": "Otro, Cual:",
+            "ID": 3929
+        },
+        {
+            "ROTULO": "1. En el territorio, żCuales de estas opciones describe mejor las dinamicas del conflicto?",
+            "ID": 3930
+        },
+        {
+            "ROTULO": "2. żEn el ultimo mes se han presentado combates, enfrentamientos y/o hostigamientos entre actores armados en las comunidades afectadas?",
+            "ID": 3931
+        },
+        {
+            "ROTULO": "3. żEn el ultimo mes se han presentado algunas de las siguientes estrategias de control territorial o hechos victimizantes?",
+            "ID": 3932
+        },
+        {
+            "ROTULO": "4. żCual es la disponibilidad de redes de comunicacion y operadores en el territorio?",
+            "ID": 3933
+        },
+        {
+            "ROTULO": "5. En el ultimo mes se identifican amenazas/riesgos de origen naturales:",
+            "ID": 3934
+        },
+        {
+            "ROTULO": "Detalles cualitativos sobre las formas de organizacion social en territorio:",
+            "ID": 3935
+        },
+        {
+            "ROTULO": "3. żQue actividades economicas o productivas desarrollan las comunidades? (agropecuarias, extraccion de recursos naturales, mineria, cultivos ilicitos, servicios, entre otros)",
+            "ID": 3936
+        },
+        {
+            "ROTULO": "Por favor describa los impactos identificados:",
+            "ID": 3937
+        },
+        {
+            "ROTULO": "Por favor describa los impactos identificados:",
+            "ID": 3938
+        },
+        {
+            "ROTULO": "Por favor describa los impactos identificados:",
+            "ID": 3939
+        },
+        {
+            "ROTULO": "Por favor describa los impactos identificados:",
+            "ID": 3940
+        },
+        {
+            "ROTULO": "żCual lengua nativa?",
+            "ID": 3941
+        },
+        {
+            "ROTULO": "4. żSe identificaron impactos diferenciados de la emergencia para mujeres?",
+            "ID": 3942
+        },
+        {
+            "ROTULO": "5. żSe identificaron impactos diferenciados de la emergencia para adolescentes, nińos y nińas?",
+            "ID": 3943
+        },
+        {
+            "ROTULO": "6. żSe identificaron impactos diferenciados de la emergencia para la poblacion LGBITQ+ ?",
+            "ID": 3944
+        },
+        {
+            "ROTULO": "7. żSe identificaron impactos diferenciados de la emergencia para la poblacionen condicion de discapacidad?",
+            "ID": 3945
+        },
+        {
+            "ROTULO": "żSe requirio traductor/a de lengua Nativa para el levantamiento de la informacion?",
+            "ID": 3946
+        },
+        {
+            "ROTULO": "1. żCuales son las *principales* formas de organizacion social de la comunidad que se identificaron en el marco de la emergencia?",
+            "ID": 3947
+        },
+        {
+            "ROTULO": "2. żComo se autoreconocen las personas de la comunidad afectada?",
+            "ID": 3948
+        },
+        {
+            "ROTULO": "Describa brevemente el trayecto y los medios de transporte para acceder a la(s) comunidades",
+            "ID": 3949
+        },
+        {
+            "ROTULO": "Si tiene alguna recomendacion de seguridad para los equipos, por favor escribala:",
+            "ID": 3950
+        },
+        {
+            "ROTULO": "żCuales?",
+            "ID": 3951
+        },
+        {
+            "ROTULO": "żCuales?",
+            "ID": 3952
+        },
+        {
+            "ROTULO": "3.żExiste alguna ONG brindando atencion en el marco de esta emergencia?",
+            "ID": 3953
+        },
+        {
+            "ROTULO": "4. żExisten instituciones publicas que esten brindando atencion en el marco de esta emergencia?",
+            "ID": 3954
+        },
+        {
+            "ROTULO": "1. Forma *principal* de acceso al territorio",
+            "ID": 3955
+        },
+        {
+            "ROTULO": "Por favor seńale la presencia de los siguientes indicadores (situaciones) en la emergencia sobre proteccion:",
+            "ID": 3956
+        },
+        {
+            "ROTULO": "Hallazgos cualitativos que puedan complementar los indicadores: _Por favor, no exceder las 5 lineas, esto nos ayuda a mantener una ficha concisa _",
+            "ID": 3957
+        },
+        {
+            "ROTULO": "żSe identifico alguna necesidad prioritaria en el sector de proteccion?",
+            "ID": 3958
+        },
+        {
+            "ROTULO": "Por favor, describa las estrategias comunitarias en proteccion:",
+            "ID": 3959
+        },
+        {
+            "ROTULO": "Existen hechos victimizantes que requieran una gestion de casos.",
+            "ID": 3960
+        },
+        {
+            "ROTULO": "Hay materializacion de amenazas individuales y colectivas (uso, utilizacion y vinculacion forzada, amenazas a lideres/as, VBG en el marco del conflicto, desapariciones, homicidios, secuestro, tortura)",
+            "ID": 3961
+        },
+        {
+            "ROTULO": "Hay alto nivel de afectacion psicosocial y estres severo.",
+            "ID": 3962
+        },
+        {
+            "ROTULO": "Hay poblacion con doble afectacion.",
+            "ID": 3963
+        },
+        {
+            "ROTULO": "Existe conocimiento sobre rutas de atencion de afectaciones en el marco del conflicto.",
+            "ID": 3964
+        },
+        {
+            "ROTULO": "Se han activado rutas de atencion /asistencia por el hecho victimizante.",
+            "ID": 3965
+        },
+        {
+            "ROTULO": "Existen personas con necesidades de acceso a servicios (Salud, Medios de vida)",
+            "ID": 3966
+        },
+        {
+            "ROTULO": "żLa comunidad ha implementado alguna estrategia de respuesta ante la emergencia en este sector?",
+            "ID": 3967
+        },
+        {
+            "ROTULO": "Por favor seńale la presencia de los siguientes indicadores sobre alojamiento:",
+            "ID": 3968
+        },
+        {
+            "ROTULO": "Hallazgos cualitativos que puedan complementar los indicadores: Por favor, no exceder las 5 lineas, esto nos ayuda a mantener una ficha concisa _",
+            "ID": 3969
+        },
+        {
+            "ROTULO": "żSe identifico alguna necesidad prioritaria en el sector de alojamiento?",
+            "ID": 3970
+        },
+        {
+            "ROTULO": "Por favor, describa las estrategias comunitarias en alojamiento:",
+            "ID": 3971
+        },
+        {
+            "ROTULO": "Hay poblacion que en el marco de la emergencia se encuentra en albergues.",
+            "ID": 3972
+        },
+        {
+            "ROTULO": "Hay poblacion que en el marco de la emergencia se encuentra en alojamientos temporales o espacios adoptados para pernoctar (Pasar la noche en determinado lugar, especialmente fuera del propio domicilio).",
+            "ID": 3973
+        },
+        {
+            "ROTULO": "Las familias afectadas cuentan con acceso a articulos esenciales (suficientes y apropiados) para el hogar.",
+            "ID": 3974
+        },
+        {
+            "ROTULO": "Las condiciones del espacio para el alojamiento de las personas afectadas son:",
+            "ID": 3975
+        },
+        {
+            "ROTULO": "żLa comunidad ha implementado alguna estrategia de respuesta ante la emergencia en este sector?",
+            "ID": 3976
+        },
+        {
+            "ROTULO": "Por favor seńale la presencia de los siguientes indicadores sobre agua, saneamiento e higiene:",
+            "ID": 3977
+        },
+        {
+            "ROTULO": "Hallazgos cualitativos que puedan complementar los indicadores: _Por favor, no exceder las 5 lineas, esto nos ayuda a mantener una ficha concisa _",
+            "ID": 3978
+        },
+        {
+            "ROTULO": "żSe identifico alguna necesidad prioritaria en el sector de WASH?",
+            "ID": 3979
+        },
+        {
+            "ROTULO": "Por favor, describa las estrategias comunitarias en agua, saneamiento e higiene:",
+            "ID": 3980
+        },
+        {
+            "ROTULO": "Los hogares tienen acceso a agua suficiente y segura para uso domestico durante la emergencia.",
+            "ID": 3981
+        },
+        {
+            "ROTULO": "Las personas cuentan con acceso a instalaciones de eliminacion de excretas limpias y funcionales en el marco de la emergencia.",
+            "ID": 3982
+        },
+        {
+            "ROTULO": "Las personas tienen acceso regular a jabon y articulos esenciales para satisfacer sus necesidades de higiene.",
+            "ID": 3983
+        },
+        {
+            "ROTULO": "Se han presentado en la comunidad enfermedades gastrointestinales asociadas al consumo de agua o su uso para la preparacion de alimentos.\n\nconsumo del agua",
+            "ID": 3984
+        },
+        {
+            "ROTULO": "Se realiza algun tipo de tratamiento de agua antes de consumirla.",
+            "ID": 3985
+        },
+        {
+            "ROTULO": "żLa comunidad ha implementado alguna estrategia de respuesta ante la emergencia en este sector?",
+            "ID": 3986
+        },
+        {
+            "ROTULO": "Por favor seńale la presencia de los siguientes indicadores sobre seguridad alimentaria:",
+            "ID": 3987
+        },
+        {
+            "ROTULO": "Hallazgos cualitativos que puedan complementar los indicadores: _Por favor, no exceder las 5 lineas, esto nos ayuda a mantener una ficha concisa _",
+            "ID": 3988
+        },
+        {
+            "ROTULO": "żSe identifico alguna necesidad prioritaria en el sector de SAN?",
+            "ID": 3989
+        },
+        {
+            "ROTULO": "Por favor, describa las estrategias comunitarias en seguridad alimentaria y medios de vida:",
+            "ID": 3990
+        },
+        {
+            "ROTULO": "Las familias tienen disponibilidad y acceso a alimentos suficientes en el marco de la emergencia.",
+            "ID": 3991
+        },
+        {
+            "ROTULO": "Las familias tienen acceso de forma segura a mercados en el marco de la emergencia.",
+            "ID": 3992
+        },
+        {
+            "ROTULO": "Las familias afectadas han implementado estrategias de afrontamiento de consumo reducido en los ultimos 7 dias.",
+            "ID": 3993
+        },
+        {
+            "ROTULO": "En el marco de la emergencia, las familias tienen acceso a una dieta diversificada de alimentos.",
+            "ID": 3994
+        },
+        {
+            "ROTULO": "En el marco de la emergencia, las familias tienen acceso y/o mantienen sus medios de vida.",
+            "ID": 3995
+        },
+        {
+            "ROTULO": "Hay grupos vulnerables relevantes con dificultad de acceso a los alimentos.",
+            "ID": 3996
+        },
+        {
+            "ROTULO": "żLa comunidad ha implementado alguna extrategia de respuesta ante la emergencia en este sector?",
+            "ID": 3997
+        },
+        {
+            "ROTULO": "Por favor seńale la presencia de los siguientes indicadores sobre salud Fisica :",
+            "ID": 3998
+        },
+        {
+            "ROTULO": "Resalte los hallazgos cualitativos que encontro en territorio que complementan los indicadores anteriores.",
+            "ID": 3999
+        },
+        {
+            "ROTULO": "żQuien esta prestando servicios de salud a la comunidad? (Hospital, Centro de salud, fundaciones, ONG)",
+            "ID": 4000
+        },
+        {
+            "ROTULO": "Por favor seńale la presencia de los siguientes indicadores sobre salud mental :",
+            "ID": 4001
+        },
+        {
+            "ROTULO": "Hallazgos cualitativos que puedan complementar los indicadores: _Por favor, no exceder las 5 lineas, esto nos ayuda a mantener una ficha concisa _",
+            "ID": 4002
+        },
+        {
+            "ROTULO": "żSe identifico alguna necesidad prioritaria en el sector de Salud?",
+            "ID": 4003
+        },
+        {
+            "ROTULO": "Por favor, describa las estrategias comunitarias en salud fisica y/o mental:",
+            "ID": 4004
+        },
+        {
+            "ROTULO": "Hay necesidad expresa de atencion en salud fisica",
+            "ID": 4005
+        },
+        {
+            "ROTULO": "Hay necesidad expresa de atencion en Salud Sexual y Reproductiva",
+            "ID": 4006
+        },
+        {
+            "ROTULO": "Hay situaciones en salud o complicaciones que comprometan la vida que se hayan generado en el marco de la emergencia",
+            "ID": 4007
+        },
+        {
+            "ROTULO": "Existen casos reportados y/o documentados de DNT (desnutricion) aguda severa en menores de 5 ańos desde el inicio de la emergencia",
+            "ID": 4008
+        },
+        {
+            "ROTULO": "Existen casos reportados y/o documentados de mortalidad y morbilidad materna extrema desde el inicio de la emergencia",
+            "ID": 4009
+        },
+        {
+            "ROTULO": "Existen casos reportados y/o documentados de mortalidad en menores de 5 ańos desde el inicio de la emergencia",
+            "ID": 4010
+        },
+        {
+            "ROTULO": "Existe aumento sobre linea basal de eventos en salud mental que potencialmente amenacen la vida.",
+            "ID": 4011
+        },
+        {
+            "ROTULO": "Hay sintomas de estres agudo que destaquen (criterios DSM-5, menores a 1 mes) duelos por perdidas recientes, exacerbacion de sintomatologia en antecedentes de trastorno u otras afectaciones",
+            "ID": 4012
+        },
+        {
+            "ROTULO": "Hay reportes y/o aumento de Violencia Basada en Genero desde el inicio de la emergencia",
+            "ID": 4013
+        },
+        {
+            "ROTULO": "żLa comunidad ha implementado alguna estrategia de respuesta ante la emergencia en este sector?",
+            "ID": 4014
+        },
+        {
+            "ROTULO": "Por favor seńale la presencia de los siguientes indicadores:",
+            "ID": 4015
+        },
+        {
+            "ROTULO": "Por favor mencione las escuelas afectadas y a que comunidad/vereda/municipio pertenecen.",
+            "ID": 4016
+        },
+        {
+            "ROTULO": "Hallazgos cualitativos que puedan complementar los indicadores: _Por favor, no exceder las 5 lineas, esto nos ayuda a mantener una ficha concisa _",
+            "ID": 4017
+        },
+        {
+            "ROTULO": "żSe identifico alguna necesidad prioritaria en el sector de Educacion?",
+            "ID": 4018
+        },
+        {
+            "ROTULO": "Por favor, describa las estrategias comunitarias en educacion?",
+            "ID": 4019
+        },
+        {
+            "ROTULO": "Acampamiento de actores armados en la escuela y/o camino a ella.",
+            "ID": 4020
+        },
+        {
+            "ROTULO": "Utilizacion de la escuela por parte de GANE ( uso de servicios, bodegaje)",
+            "ID": 4021
+        },
+        {
+            "ROTULO": "Fuego cruzado en torno o alrededores de la escuela",
+            "ID": 4022
+        },
+        {
+            "ROTULO": "Presencia de Artefactos explosivos en la escuela MAP, MSE, TE: alrededor y camino hacia ella.",
+            "ID": 4023
+        },
+        {
+            "ROTULO": "Riesgo de Uso/utilizacion y vinculacion de estudiantes en el conflicto.",
+            "ID": 4024
+        },
+        {
+            "ROTULO": "Amenazas/Afectacion a Docentes",
+            "ID": 4025
+        },
+        {
+            "ROTULO": "Suspension del servicio educativo de la Institucion o Sedes educativas afectada durante la emergencia",
+            "ID": 4026
+        },
+        {
+            "ROTULO": "Aumento de la Desercion o abandono escolar",
+            "ID": 4027
+        },
+        {
+            "ROTULO": "Violencias basada en genero, abuso y explotacion sexual de nińas, nińos o adolescentes.",
+            "ID": 4028
+        },
+        {
+            "ROTULO": "Afectacion psicosocial grave en miembros de la comunidad educativa.",
+            "ID": 4029
+        },
+        {
+            "ROTULO": "żLa comunidad ha implementado alguna estrategia de respuesta ante la emergencia en este sector?",
+            "ID": 4030
+        },
+        {
+            "ROTULO": "Por favor seńale la presencia de los siguientes indicadores en los mercados:",
+            "ID": 4031
+        },
+        {
+            "ROTULO": "żCual?",
+            "ID": 4032
+        },
+        {
+            "ROTULO": "żCuantos y cuales lugares ofrecen servicios financieros en el area cercana a la poblacion?",
+            "ID": 4033
+        },
+        {
+            "ROTULO": "żLa emergencia ha afectado la capacidad de suministro y autoabastecimiento en los mercados?",
+            "ID": 4034
+        },
+        {
+            "ROTULO": "żEn los ultimos 15 dias se ha notado una disminucion en la cantidad de poblacion que compran productos en este mercado?",
+            "ID": 4035
+        },
+        {
+            "ROTULO": "żLos mercados pueden proporcionar suficientes productos basicos a tiempo para satisfacer las necesidades de la poblacion?",
+            "ID": 4036
+        },
+        {
+            "ROTULO": "żLa emergencia ha generado la variacion de los precios de los productos basicos?",
+            "ID": 4037
+        },
+        {
+            "ROTULO": "żActualmente los negocios enfrentan dificultades para mantener su operacion (abastecimiento y venta) producto de la emergencia?",
+            "ID": 4038
+        },
+        {
+            "ROTULO": "żSe identifica alguna dificultad/barrera de los participantes para acceder a los mercados?",
+            "ID": 4039
+        },
+        {
+            "ROTULO": "żLos agentes/puntos de venta/sucursales de servicios financieros identificados anteriormente, cuentan con el servicio de entrega de dinero en efectivo?",
+            "ID": 4040
+        },
+        {
+            "ROTULO": "Desde el evento/emergencia, żse ha tenido alguna dificultad para hacer dispersion o recibir flujo de efectivo de los puntos anteriormente enunciados?",
+            "ID": 4041
+        },
+        {
+            "ROTULO": "żExiste capacidad de los PSF para atender una dispersion de efectivo sobre el doble de su demanda actual?",
+            "ID": 4042
+        },
+        {
+            "ROTULO": "Por favor especifique cuantas personas de la comunidad afectada, institucionalidad, o aliados estrategicos participaron en esta ERN:",
+            "ID": 4043
+        },
+        {
+            "ROTULO": "1. Numero total de personas que fueron consultadas para esta ERN:",
+            "ID": 4044
+        },
+        {
+            "ROTULO": "Numero de personas de la comunidad:",
+            "ID": 4045
+        },
+        {
+            "ROTULO": "Numero de liderazgos sociales:",
+            "ID": 4046
+        },
+        {
+            "ROTULO": "Representantes de consejos comunitarios:",
+            "ID": 4047
+        },
+        {
+            "ROTULO": "Representates de asociaciones u organizaciones sociales",
+            "ID": 4048
+        },
+        {
+            "ROTULO": "Funcionarios/as publicos municipales:",
+            "ID": 4049
+        },
+        {
+            "ROTULO": "Funcionarios/as publicos departamentales:",
+            "ID": 4050
+        },
+        {
+            "ROTULO": "Autoridades indigenas:",
+            "ID": 4051
+        },
+        {
+            "ROTULO": "Docentes y directivos docentes",
+            "ID": 4052
+        },
+        {
+            "ROTULO": "Otro:",
+            "ID": 4053
+        },
+        {
+            "ROTULO": "żCual?",
+            "ID": 4054
+        },
+        {
+            "ROTULO": "żEn esta ERN, partiparon directamente mujeres en la recoleccion de informacion?",
+            "ID": 4055
+        },
+        {
+            "ROTULO": "1a. Nombre",
+            "ID": 4056
+        },
+        {
+            "ROTULO": "1b. Telefono",
+            "ID": 4057
+        },
+        {
+            "ROTULO": "1d. Celular",
+            "ID": 4058
+        },
+        {
+            "ROTULO": "1e. Institucion/Organismo al que representa",
+            "ID": 4059
+        },
+        {
+            "ROTULO": "2a. Nombre",
+            "ID": 4060
+        },
+        {
+            "ROTULO": "2b. Telefono 1",
+            "ID": 4061
+        },
+        {
+            "ROTULO": "2c. Telefono 2",
+            "ID": 4062
+        },
+        {
+            "ROTULO": "2d. Celular",
+            "ID": 4063
+        },
+        {
+            "ROTULO": "2e. Institucion/Organismo al que representa",
+            "ID": 4064
+        },
+        {
+            "ROTULO": "3a. Nombre",
+            "ID": 4065
+        },
+        {
+            "ROTULO": "3b. Telefono 1",
+            "ID": 4066
+        },
+        {
+            "ROTULO": "3c. Telefono 2",
+            "ID": 4067
+        },
+        {
+            "ROTULO": "3d. Celular",
+            "ID": 4068
+        },
+        {
+            "ROTULO": "3e. Institucion/Organismo al que representa",
+            "ID": 4069
+        },
+        {
+            "ROTULO": "Con base en la informacion recolectada: żQue sectores se deberian priorizar en la respuesta a la emergencia?",
+            "ID": 4070
+        },
+        {
+            "ROTULO": "żCual?",
+            "ID": 4071
+        },
+        {
+            "ROTULO": "Las familias afectadas han implementado estrategias de afrontamiento que se relacionen con los medios de subsistencia en el marco de la emergencia",
+            "ID": 4072
+        }
+    ]
+}
