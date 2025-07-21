@@ -1,0 +1,11 @@
+git remote -v
+origin  https://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@github.com/ivancho2802/mateo-api-laravel.git (fetch)
+origin  https://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@github.com/ivancho2802/mateo-api-laravel.git (push)
+origin2 https://github.com/ivancho2802/mateo-api-laravel.git (fetch)
+origin2 https://github.com/ivancho2802/mateo-api-laravel.git (push)
+origin3 https://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@github.com/ivancho2802/mateo-api-laravel.git (fetch)
+origin3 https://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@github.com/ivancho2802/mateo-api-laravel.git (push)
+origin5 https://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@github.com/ivancho2802/mateo-api-laravel.git (fetch)
+origin5 https://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@github.com/ivancho2802/mateo-api-laravel.git (push)
+origin6 git@github.com:ivancho2802/mateo-api-laravel.git (fetch)
+origin6 git@github.com:ivancho2802/mateo-api-laravel.git (push)
