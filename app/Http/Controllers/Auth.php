@@ -75,7 +75,7 @@ class Auth extends Controller
      */
     public function login(LoginRequest $request)
     {
-        
+
         //DB::setDefaultConnection('odbc');
 
         /* dd($userMire = MUsuarios::orWhere([
@@ -84,42 +84,18 @@ class Auth extends Controller
             ['LOGIN', $request->email]
         ])->first()); */
 
-        DB::setDefaultConnection('firebird');
+        DB::setDefaultConnection('pgsql');
 
-        $user = null;
-        //este swra especial usare encript md5 y comparare
-        $userMire = MUsuarios::orWhere([
-            ['CORREO', $request->email],
-        ])->orWhere([
-            ['LOGIN', $request->email]
-        ])->first();
-
-        if (isset($userMire)) {
-
-            if (!$userMire || strtoupper(md5(strtoupper($request->password))) !== $userMire->CLAVE) {
-                throw ValidationException::withMessages([
-                    'email' => ['Las credenciales son incorrectas.', strtoupper(md5(strtoupper($request->password))) == $userMire->CLAVE],
-                ]);
-            }
-
-            $request['email'] = $userMire->CORREO;
-
-            $user = $userMire->migrate($request, $userMire);
-        } else {
-            DB::setDefaultConnection('pgsql');
-
-            //Search for the user where the customer is
-            $user = User::where('email', $request->email)->first();
-            if (!$user || !Hash::check($request->password, $user->password)) {
-                throw ValidationException::withMessages([
-                    'email' => ['Las credenciales son incorrectas.', strtoupper(md5(strtoupper($request->password))) == $userMire->CLAVE],
-                ]);
-            }
+        //Search for the user where the customer is
+        $user = User::where('email', $request->email)->first();
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['Las credenciales son incorrectas.', strtoupper(md5(strtoupper($request->password))) == $userMire->CLAVE],
+            ]);
         }
 
         $token = $user->createToken($request->device_name . $request->email . $request->password);
         $csrf_token = csrf_token();
-
 
         return response()->json([
             'status' => true,
