@@ -86,6 +86,7 @@ class Auth extends Controller
 
         DB::setDefaultConnection('pgsql');
 
+        dd($request, !Hash::check($request->password, $user->password));
         //Search for the user where the customer is
         $user = User::where('email', $request->email)->first();
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -94,7 +95,6 @@ class Auth extends Controller
             ]);
         }
 
-        dd($user);
 
         $token = $user->createToken($request->device_name . $request->email . $request->password);
         //$csrf_token = csrf_token();
