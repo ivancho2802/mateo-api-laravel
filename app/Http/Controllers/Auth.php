@@ -88,7 +88,7 @@ class Auth extends Controller
 
         //Search for the user where the customer is
         $user = User::where('email', $request->email)->first();
-        dd(!Hash::check($request->password, $user->password));
+
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['Las credenciales son incorrectas.', "clave"],//strtoupper(md5(strtoupper($request->password))) == $userMire->CLAVE
@@ -97,7 +97,7 @@ class Auth extends Controller
 
 
         $token = $user->createToken($request->device_name . $request->email . $request->password);
-        //$csrf_token = csrf_token();
+        $csrf_token = csrf_token();
 
         return response()->json([
             'status' => true,
