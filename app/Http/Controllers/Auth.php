@@ -94,6 +94,8 @@ class Auth extends Controller
             ]);
         }
 
+        dd($user);
+
         $token = $user->createToken($request->device_name . $request->email . $request->password);
         //$csrf_token = csrf_token();
 
