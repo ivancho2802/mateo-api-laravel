@@ -64,9 +64,73 @@ Route::get('/querytest', function (Request $request) {
   } */
 });
 
-Route::middleware(['auth:sanctum'])->post('/querytest', function (Request $request) {
+Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $request) {
 
   /*   try { */
+  DB::setDefaultConnection('pgsql');
+
+  /* 
+  {
+  "event_id": "01K0QYBAVMVCYNTGWENPGRSE2S",
+  "event_type": "form_response",
+  "form_response": {
+    "form_id": "QBioB0Tg",
+    "token": "01K0QYBAVMVCYNTGWENPGRSE2S",
+    "landed_at": "2025-07-22T02:10:38Z",
+    "submitted_at": "2025-07-22T02:10:38Z",
+    "definition": {
+      "id": "QBioB0Tg",
+      "title": "My new form",
+      "fields": [
+        {
+          "id": "jhQGIgwUcn8Y",
+          "ref": "2b47d8b5-983a-4bca-b0ea-d2bc26be62b0",
+          "type": "email",
+          "title": "pregunta 1",
+          "properties": {}
+        }
+      ],
+      "endings": [
+        {
+          "id": "DefaultTyScreen",
+          "ref": "default_tys",
+          "title": "Thanks for completing this typeform\nNow *create your own* — it's free, easy, & beautiful",
+          "type": "thankyou_screen",
+          "properties": {
+            "button_text": "Create a *typeform*",
+            "show_button": true,
+            "share_icons": false,
+            "button_mode": "default_redirect"
+          },
+          "attachment": {
+            "type": "image",
+            "href": "https://public-assets.typeform.com/public/admin/2dpnUBBkz2VN.gif"
+          }
+        }
+      ],
+      "settings": {
+        "partial_responses_to_all_integrations": true
+      }
+    },
+    "answers": [
+      {
+        "type": "email",
+        "email": "an_account@example.com",
+        "field": {
+          "id": "jhQGIgwUcn8Y",
+          "type": "email",
+          "ref": "2b47d8b5-983a-4bca-b0ea-d2bc26be62b0"
+        }
+      }
+    ],
+    "ending": {
+      "id": "DefaultTyScreen",
+      "ref": "default_tys"
+    }
+  }
+}
+*/
+
 
   return response()->json([
     ["name" => "asd", "code" => "asd1"],
