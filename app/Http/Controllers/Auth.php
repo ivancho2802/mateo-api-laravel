@@ -88,7 +88,7 @@ class Auth extends Controller
 
         //Search for the user where the customer is
         $user = User::where('email', $request->email)->first();
-        dd($request, !Hash::check($request->password, $user->password));
+        dd($request, !Hash::check($request->password, $user));
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['Las credenciales son incorrectas.', "clave"],//strtoupper(md5(strtoupper($request->password))) == $userMire->CLAVE
