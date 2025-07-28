@@ -432,11 +432,6 @@
       </div>
       @endif
 
-      <div class="flex justify-center pt-8 sm:justify-center sm:pt-0 bg-white ">
-        <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/TIRA_MIRE+_SOCIOS_DONANTES_COLOR.png" class="h-16 w-auto text-gray-700 sm:h-20" />
-
-      </div>
-
       <h4 class="text-gray-900 dark:text-white">
         Desarrollos para la consulta y edición de la información generada por el consorcio
         (bajo usuario y contraseña)</h4>
@@ -445,24 +440,22 @@
         <div class="grid grid-cols-1 md:grid-cols-2">
           <div class="p-6">
             <div class="flex items-center">
-              <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/MIREsys4.jpg" class="w-8 h-8 text-gray-500" />
-              <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://mireview.ach.dyndns.info/ach/herramientas/password/password.php?db=ach" class="underline text-gray-900 dark:text-white">
-                  MIRE + Web
+              <div class="ml-4 text-lg leading-7 font-semibold"><a href="#" class="underline text-gray-900 dark:text-white">
+                  CREER
                 </a></div>
             </div>
 
             <div class="ml-12">
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                Sistema para la gestión de la información del MIRE
+                Sistema para la gestión de la información del CREER
               </div>
             </div>
           </div>
 
           <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
             <div class="flex items-center">
-              <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/infoMIRE3.jpg" class="w-8 h-8 text-gray-500" />
-              <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://mireview.ach.dyndns.info/ach/movil_dashboard/www/index.html" class="underline text-gray-900 dark:text-white">
-                  Mire+ App
+              <div class="ml-4 text-lg leading-7 font-semibold"><a href="#" class="underline text-gray-900 dark:text-white">
+                  Creer
                 </a></div>
             </div>
 
@@ -526,7 +519,7 @@
                 [asset_uid] = hash del formulario o id del formulario de kobo
                 <br>
 
-                ademas de poner el token en la url debes poner el token de la api MIREYA para acceder a los datos
+                ademas de poner el token en la url debes poner el token de la api   para acceder a los datos
                 <br>
               </div>
             </div>
@@ -674,8 +667,6 @@
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                 Esta herramienta es para adn.
                 <br>
-
-                https://ugic.api.ach.dyndns.info/finanzas/adn
 
               </div>
             </div>
