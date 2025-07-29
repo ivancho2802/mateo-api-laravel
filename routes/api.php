@@ -107,7 +107,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
 
     //crear preguntas
 
-    $id_kobo_respuesta = $request->form_response["answers"][$i]->field->id;
+    $id_kobo_respuesta = $request->form_response["answers"][$i]["field"]["id"];
 
     $body_m_kobo_preguntas = [];
     $body_respuestas = [];
@@ -119,7 +119,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
       [
         "ID_M_KOBO_FORMULARIOS" => "nextId",
         "_ID" => $id_kobo_respuesta,
-        "CAMPO1" => optional($definition->firstWhere('id', $object->field->id))->title,
+        "CAMPO1" => optional($definition->firstWhere('id', $request->form_response["answers"][$i]["field"]["id"]))->title,
         "ID_M_FORMULARIOS" => $m_formulario_id,
         "ESTATUS" => 1,
         "ID_M_USUARIOS" => 1,
