@@ -102,6 +102,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
   $definition = collect($request->form_response["fields"]);
 
   for ($i = 0; $i < count($request->form_response["answers"]); $i++) {
+    dd($request->form_response["answers"][$i]);
     //ojo esto actualiza o crea una
     $object = (object) helper::formatObject($request->form_response["answers"][$i], "");
 
