@@ -73,10 +73,10 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
   dd("request", $request->form_response["form_id"]);
 
   $m_formulario = MFormulario::updateOrCreate(
-    ['ID_M_FORMULARIOS' => $request->form_id],
+    ['ID_M_FORMULARIOS' => $request->form_response["form_id"]],
     [
       'ACCION' => "CREER",
-      'ID_M_FORMULARIOS' => $request->form_id,
+      'ID_M_FORMULARIOS' => $request->form_response["form_id"],
       "ASSET_UID" => $request->token,
       "UID" => $request->token,
       "URL_DATA" => "url",
@@ -88,7 +88,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     ]
   );
 
-  $m_formulario = MFormulario::where(["ID_M_FORMULARIOS" => $request->form_id])->first();
+  $m_formulario = MFormulario::where(["ID_M_FORMULARIOS" => $request->form_response["form_id"]])->first();
 
   $m_formulario_id = $m_formulario->ID_M_FORMULARIOS;
 
