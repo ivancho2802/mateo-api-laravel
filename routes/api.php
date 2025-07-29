@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Emergencias;
 use App\Models\Departamentos;
+use App\Models\MKoboRespuestas;
 use App\Models\MLpaEmergencia;
 use App\Models\Municipios;
 use Illuminate\Http\Request;
@@ -65,19 +66,18 @@ Route::get('/querytest', function (Request $request) {
 });
 
 Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $request) {
- 
+
   DB::setDefaultConnection('pgsql');
 
-
-  dd("request", $request->form_response["answers"]);
+  //dd("request", $request->form_response["answers"]);
 
   $m_formulario = MFormulario::updateOrCreate(
-    ['ID_M_FORMULARIOS' => $request->ending->id],
+    ['ID_M_FORMULARIOS' => $request->form_id],
     [
       'ACCION' => "CREERSS",
-      'ID_M_FORMULARIOS' => $request->ending->id,
-      "ASSET_UID" => $request->ending->ref,
-      "UID" => $request->ending->ref,
+      'ID_M_FORMULARIOS' => $request->form_id,
+      "ASSET_UID" => $request->token,
+      "UID" => $request->token,
       "URL_DATA" => "url",
       "URL_CAMPOS" => "url",
       "ESTATUS" => true,
@@ -87,8 +87,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     ]
   );
 
-
-  $m_formulario = MFormulario::where(["ID_M_FORMULARIOS" => $request->ending->id])->first();
+  $m_formulario = MFormulario::where(["ID_M_FORMULARIOS" => $request->form_id])->first();
 
   $m_formulario_id = $m_formulario->ID_M_FORMULARIOS;
 
@@ -99,93 +98,58 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
 
   $creation_failed = [];
   $count = 0;
+  $definition = collect($request->form_response["fields"]);
 
-  for ($i = 0; $i < count($request->answers); $i++) {
+  for ($i = 0; $i < count($request->form_response["answers"]); $i++) {
     //ojo esto actualiza o crea una
-    $object = (object) helper::formatObject($request->answers[$i], "");
+    $object = (object) helper::formatObject($request->form_response["answers"][$i], "");
 
     //crear preguntas
 
-    $id_kobo_respuesta = $request->answers[$i]->_id;
-
-    //$object->preguntas 34
-    //dd(count($object->preguntas));
+    $id_kobo_respuesta = $request->form_response["answers"][$i]->field->id;
 
     $body_m_kobo_preguntas = [];
     $body_respuestas = [];
+    //respuesta
+    //$object->text;
 
-    for ($j = 0; $j < count($object->preguntas); $j++) {
-
-      $pregunta = $object->preguntas[$j];
-
-      array_push(
-        $body_m_kobo_preguntas,
-        [
-          "ID_M_KOBO_FORMULARIOS" => "nextId",
-          "_ID" => $id_kobo_respuesta,
-          "CAMPO1" => $pregunta,
-          "ID_M_FORMULARIOS" => $m_formulario_id,
-          "ESTATUS" => 1,
-          "ID_M_USUARIOS" => 1,
-        ]
-      );
-    }
-
-    //dd("body_m_kobo_preguntas", $body_m_kobo_preguntas);
-
-    $m_kobo_preguntas = MKoboFormularios::insert(
-      //The method's first argument consists of the values to insert or update
+    array_push(
       $body_m_kobo_preguntas,
-      // second argument lists the column(s) that uniquely identify records within the associated table.
-      //El segundo argumento enumera las columnas que identifican de forma única los registros dentro de la tabla asociada.
-      //['CAMPO1'], //, '_ID' error reaprar
-      //The method's third and final argument is an array of the columns that should be updated if a matching record already exists in the database.
-      //El tercer y último argumento del método es una matriz de columnas que deben actualizarse si ya existe un registro coincidente en la base de datos.
-      //['ID_M_FORMULARIOS', 'ESTATUS', 'ID_M_USUARIOS']
+      [
+        "ID_M_KOBO_FORMULARIOS" => "nextId",
+        "_ID" => $id_kobo_respuesta,
+        "CAMPO1" => optional($definition->firstWhere('id', $object->field->id))->title,
+        "ID_M_FORMULARIOS" => $m_formulario_id,
+        "ESTATUS" => 1,
+        "ID_M_USUARIOS" => 1,
+      ]
     );
 
-    if (!$m_kobo_preguntas) { //!== count($body_m_kobo_preguntas)
+    $m_kobo_preguntas = MKoboFormularios::updateOrCreate(
+      ['ID_M_FORMULARIOS' => $m_formulario_id],
+      $body_m_kobo_preguntas[0]
+    );
+
+    if (!$m_kobo_preguntas) {
       array_push(
         $creation_failed,
         ["preguntas" => $body_m_kobo_preguntas]
       );
     }
 
-
     //crear respuesta
     $preguntas_created = collect(MKoboFormularios::where(["_ID" => $id_kobo_respuesta])->get());
-    $ids_kobo_respuesta = [];
 
-    for ($k = 0; $k < count($object->respuestas); $k++) {
-
-      $count++;
-
-      $respuesta = $object->respuestas[$k];
-      $pregunta = $object->preguntas[$k];
-
-      $desired_object = $preguntas_created->filter(function ($item) use ($pregunta) {
-        return $item->CAMPO1 == $pregunta;
-      })->first();
-
-      if (optional($desired_object)->id) {
-        array_push($body_respuestas, [
-          "FECHA" => $request->answers[$i]->_submission_time,
-          "FECHA_REGISTRO" => $request->answers[$i]->start,
-          "_ID" => $id_kobo_respuesta,
-          "VALOR" => json_encode($respuesta),
-          "ID_M_KOBO_FORMULARIOS" => $desired_object->id,
-          "ID_M_FORMULARIOS" => $m_formulario_id,
-          "ID_M_USUARIOS" => 1
-        ]);
-        $ids_kobo_respuesta[] = $id_kobo_respuesta;
-      }
-    }
-
-    //dd($body_respuestas);
-
-    //crean respuestas
+    array_push($body_respuestas, [
+      "FECHA" => Carbon\Carbon::now(),
+      "FECHA_REGISTRO" => Carbon\Carbon::now(),
+      "_ID" => $id_kobo_respuesta,
+      "VALOR" => json_encode($object->text),
+      "ID_M_KOBO_FORMULARIOS" => $preguntas_created->id,
+      "ID_M_FORMULARIOS" => $m_formulario_id,
+      "ID_M_USUARIOS" => 1
+    ]);
     $m_respuestas = MKoboRespuestas::insert($body_respuestas);
-    //dd($body_respuestas);
 
     if (!$m_respuestas) {
       array_push(
@@ -195,8 +159,8 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     }
 
     migrateCustom::create([
-      'table' => 'M_KOBO_RESPUESTAS',
-      'table_id' => implode(", ", $ids_kobo_respuesta),
+      'table' => 'CREER',
+      'table_id' => implode(", ", $m_respuestas->ID),
       'file_ref' => '-',
     ]);
   }
@@ -209,7 +173,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     ], 503);
   }
 
-  return response()->json(['status' => true, 'data' => [count($request->answers), $count]], 200);
+  return response()->json(['status' => true, 'data' => [count($request->form_response["answers"]), $count]], 200);
   /* } else {
     // Manejar el error de la solicitud
     $msg = 'Error al realizar la solicitud GET: ' . error_get_last()['message'];
