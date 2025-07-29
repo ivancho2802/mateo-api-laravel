@@ -105,7 +105,8 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
 
   for ($i = 0; $i < count($request->form_response["answers"]); $i++) {
     //ojo esto actualiza o crea una
-    $object = (object) helper::formatObject($request->form_response["answers"][$i], "");
+    //$object = (object) helper::formatObject($request->form_response["answers"][$i], "");
+    $object = $request->form_response["answers"][$i];
 
     //crear preguntas
 
