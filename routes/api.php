@@ -166,6 +166,8 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
       );
     }
 
+    dd($m_respuestas);
+
     migrateCustom::create([
       'table' => 'CREER',
       'table_id' => implode(", ", $m_respuestas->ID),
