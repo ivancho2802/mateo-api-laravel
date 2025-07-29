@@ -117,7 +117,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     //respuesta
     //$object->text;
     $respuesta = $definition->where('id', $object["field"]["id"])->first()["title"];
-    dd("respuesta", $respuesta);
+    //dd("respuesta", $respuesta);
 
     array_push(
       $body_m_kobo_preguntas,
