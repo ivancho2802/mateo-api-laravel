@@ -145,7 +145,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     }
 
     //crear respuesta
-    $preguntas_created = collect(MKoboFormularios::where(["_ID" => $id_kobo_respuesta])->get());
+    $preguntas_created = MKoboFormularios::where(["_ID" => $id_kobo_respuesta])->first();
 
     array_push($body_respuestas, [
       "FECHA" => Carbon\Carbon::now(),
