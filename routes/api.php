@@ -99,7 +99,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
 
   $creation_failed = [];
   $count = 0;
-  $definition = collect($request->form_response["definition"]->fields);
+  $definition = collect($request->form_response["definition"]["fields"]);
 
   for ($i = 0; $i < count($request->form_response["answers"]); $i++) {
     //ojo esto actualiza o crea una
