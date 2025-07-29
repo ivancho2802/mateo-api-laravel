@@ -109,7 +109,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
 
     //crear preguntas
 
-    $id_kobo_respuesta = $object->field->id;
+    $id_kobo_respuesta = $object["field"]["id"];
 
     $body_m_kobo_preguntas = [];
     $body_respuestas = [];
