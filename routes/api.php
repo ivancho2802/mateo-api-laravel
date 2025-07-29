@@ -116,7 +116,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     $body_respuestas = [];
     //respuesta
     //$object->text;
-    $respuesta = optional($definition->where('id', $object["field"]["id"])->first()["title"]);
+    $respuesta = $definition->where('id', $object["field"]["id"])->first()["title"];
     dd("respuesta", $respuesta);
 
     array_push(
