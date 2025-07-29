@@ -70,7 +70,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
   DB::setDefaultConnection('pgsql');
 
   //dd("request", $request->form_response["answers"]);
-  dd("request", $request->form_response["form_id"]);
+  //dd("request", $request->form_response["form_id"]);
 
   $m_formulario = MFormulario::updateOrCreate(
     ['ID_M_FORMULARIOS' => $request->form_response["form_id"]],
