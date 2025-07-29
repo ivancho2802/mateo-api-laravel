@@ -101,7 +101,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
   $count = 0;
   $definition = collect($request->form_response["definition"]["fields"]);
 
-  dd($definition->where('id', $request->form_response["answers"][0]["field"]["id"])->first()["title"]);
+  //dd($definition->where('id', $request->form_response["answers"][0]["field"]["id"])->first()["title"]);
 
   for ($i = 0; $i < count($request->form_response["answers"]); $i++) {
     //ojo esto actualiza o crea una
@@ -121,7 +121,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
       [
         "ID_M_KOBO_FORMULARIOS" => "nextId",
         "_ID" => $id_kobo_respuesta,
-        "CAMPO1" => optional($definition->where('id', $object["field"]["id"])->first())["title"],
+        "CAMPO1" => optional($definition->where('id', $object["field"]["id"])->first()["title"]),
         "ID_M_FORMULARIOS" => $m_formulario_id,
         "ESTATUS" => 1,
         "ID_M_USUARIOS" => 1,
