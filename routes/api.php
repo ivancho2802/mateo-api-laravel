@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use SebastianBergmann\Diff\Chunk;
 use App\Http\Controllers\Jobs;
+use App\Models\migrateCustom;
 use App\Models\Reports;
 use App\Models\MLpaMongo;
 use Jenssegers\Mongodb\MongodbServiceProvider;
