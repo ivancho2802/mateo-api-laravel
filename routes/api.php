@@ -121,7 +121,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
       [
         "ID_M_KOBO_FORMULARIOS" => "nextId",
         "_ID" => $id_kobo_respuesta,
-        "CAMPO1" => optional($definition->firstWhere('id', $request->form_response["answers"][$i]["field"]["id"]))->title,
+        "CAMPO1" => optional($definition->where('id', $request->form_response["answers"][0]["field"]["id"])->first())["title"],
         "ID_M_FORMULARIOS" => $m_formulario_id,
         "ESTATUS" => 1,
         "ID_M_USUARIOS" => 1,
