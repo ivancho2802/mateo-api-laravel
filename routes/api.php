@@ -101,7 +101,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
   $count = 0;
   $definition = collect($request->form_response["definition"]["fields"]);
 
-  dd($definition->where('id', $request->form_response["answers"][0]["field"]["id"])->first())["title"];
+  dd($definition->where('id', $request->form_response["answers"][0]["field"]["id"])->first()["title"]);
 
   for ($i = 0; $i < count($request->form_response["answers"]); $i++) {
     //ojo esto actualiza o crea una
