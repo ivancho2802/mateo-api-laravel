@@ -116,15 +116,16 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     $body_respuestas = [];
     //respuesta
     //$object->text;
-    $respuesta = $definition->where('id', $object["field"]["id"])->first()["title"];
+    $pregunta = $definition->where('id', $object["field"]["id"])->first()["title"];
+    $respuesta = $definition->where('id', $object["field"]["id"])->first()["text"];
     //dd("respuesta", $respuesta);
 
     array_push(
       $body_m_kobo_preguntas,
       [
-        "ID_M_KOBO_FORMULARIOS" => "nextId",
+        "ID_M_KOBO_FORMULARIOS" => "$id_kobo_respuesta",
         "_ID" => $id_kobo_respuesta,
-        "CAMPO1" => $respuesta,
+        "CAMPO1" => $pregunta,
         "ID_M_FORMULARIOS" => $m_formulario_id,
         "ESTATUS" => 1,
         "ID_M_USUARIOS" => 1,
@@ -150,7 +151,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
       "FECHA" => Carbon\Carbon::now(),
       "FECHA_REGISTRO" => Carbon\Carbon::now(),
       "_ID" => $id_kobo_respuesta,
-      "VALOR" => json_encode($object->text),
+      "VALOR" => $respuesta,
       "ID_M_KOBO_FORMULARIOS" => $preguntas_created->id,
       "ID_M_FORMULARIOS" => $m_formulario_id,
       "ID_M_USUARIOS" => 1
