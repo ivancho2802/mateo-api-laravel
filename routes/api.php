@@ -130,6 +130,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
         "ID_M_FORMULARIOS" => $m_formulario_id,
         "ESTATUS" => 1,
         "ID_M_USUARIOS" => 1,
+        "created_at" => Carbon\Carbon::now(),
       ]
     );
 
@@ -155,7 +156,8 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
       "VALOR" => $respuesta,
       "ID_M_KOBO_FORMULARIOS" => $preguntas_created->id,
       "ID_M_FORMULARIOS" => $m_formulario_id,
-      "ID_M_USUARIOS" => 1
+      "ID_M_USUARIOS" => 1,
+        "created_at" => Carbon\Carbon::now(),
     ]);
     $m_respuestas = MKoboRespuestas::insert($body_respuestas);
 
@@ -189,13 +191,17 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
   } */
 });
 
-Route::prefix('finanzas')->group(function () {
+Route::middleware(['auth:sanctum'])->get('/typeform', function (Request $request) {
   //SERVICIO PARA CONSULTAR PARAMETROS DEL POWER BI ADN y1 y2
-  Route::get('/adn/fase2', [App\Http\Controllers\Finanzas::class, 'all']);
-  Route::post('/adn/fase2', [App\Http\Controllers\Finanzas::class, 'set']);
-  Route::get('/adn/loaextra', [App\Http\Controllers\Finanzas::class, 'getLoaExtra']);
-  Route::get('/adn/indivhogares', [App\Http\Controllers\Finanzas::class, 'getCuaIndHog']);
+  $mformulario = MFormulario::get();
+  $mkoboformulario = MKoboFormularios::get();
+  $mkoborespuesta = MKoboRespuestas::get();
 
+  return response()->json([
+    "mformulario" => $mformulario,
+    "mkoboformulario" => $mkoboformulario,
+    "mkoborespuesta" => $mkoborespuesta,
+  ]);
 });
 
 Route::get('departamentos', function (Request $request) {
