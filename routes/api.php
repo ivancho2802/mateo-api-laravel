@@ -195,8 +195,7 @@ Route::get('/typeform', function (Request $request) {
   $mformulario = MFormulario::get();
   $mkoboformulario = MKoboFormularios::get();
   $mkoborespuesta = MKoboRespuestas::get();
-  $mkoboformulario->load(['respuestas']);
-
+  $mkoboformulario->with('respuestas');
   
   return response()->json(["mkoboformulario" => $mkoboformulario]);
 
