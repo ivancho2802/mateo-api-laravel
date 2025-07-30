@@ -7,6 +7,9 @@
 
   <title>Laravel</title>
 
+  
+  @extends('layouts.user_type.guest')
+
   @section('content')
 
   <!-- Fonts -->
