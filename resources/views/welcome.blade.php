@@ -7,9 +7,6 @@
 
   <title>Laravel</title>
 
-  
-  @extends('layouts.user_type.auth')
-
   @section('content')
 
   <!-- Fonts -->
