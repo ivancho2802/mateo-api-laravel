@@ -7,6 +7,11 @@
 
   <title>Laravel</title>
 
+  
+  @extends('layouts.user_type.auth')
+
+  @section('content')
+
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -403,8 +408,6 @@
 </head>
 
 <body class="antialiased">
-
-  @section('content')
 
 
   <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
