@@ -195,8 +195,12 @@ Route::get('/typeform', function (Request $request) {
   $mformulario = MFormulario::get();
   $mkoboformulario = MKoboFormularios::get();
   $mkoborespuesta = MKoboRespuestas::get();
+  $mkoboformulario->load(['respuestas']);
 
-  return view('welcome', ["name_key" => "", "data" => $data]);
+  
+  return response()->json(["mkoboformulario" => $mkoboformulario]);
+
+  return view('welcome', ["mkoboformulario" => $mkoboformulario]);
 });
 
 Route::get('departamentos', function (Request $request) {
