@@ -153,6 +153,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
       "FECHA" => Carbon\Carbon::now(),
       "FECHA_REGISTRO" => Carbon\Carbon::now(),
       "_ID" => $id_kobo_respuesta,
+      "REFERENCIA" => $pregunta,
       "VALOR" => $respuesta,
       "ID_M_KOBO_FORMULARIOS" => $preguntas_created->id,
       "ID_M_FORMULARIOS" => $m_formulario_id,
