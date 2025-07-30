@@ -315,9 +315,8 @@ Route::get('/typeform', function (Request $request) {
 
   ];
   
-  return response()->json(["mkoboformulario" => $mformulario, "preguntas" => $preguntas]);
-
-  return view('welcome', ["mkoboformulario" => $mkoboformulario]);
+  //return response()->json(["mkoboformulario" => $mformulario, "preguntas" => $preguntas]);
+  return view('welcome', ["mkoboformulario" => $mkoboformulario, "preguntas" => $preguntas]);
 });
 
 Route::get('departamentos', function (Request $request) {
