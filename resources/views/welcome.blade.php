@@ -463,16 +463,22 @@
             </div>
 
             <p>
-              <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Link with href
-              </a>
               <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Button with data-bs-target
+                1.1 Naturaleza de la transición
               </button>
             </p>
             <div class="collapse" id="collapseExample">
               <div class="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                <div class="progress-wrapper">
+                  <div class="progress-info">
+                    <div class="progress-percentage">
+                      <span class="text-sm font-weight-normal">60%</span>
+                    </div>
+                  </div>
+                  <div class="progress">
+                    <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                  </div>
+                </div>
               </div>
             </div>
 
