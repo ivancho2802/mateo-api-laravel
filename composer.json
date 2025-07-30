@@ -26,7 +26,8 @@
         "mongodb/laravel-mongodb": "3.8.6",
         "mongodb/mongodb": "^1.12",
         "rap2hpoutre/fast-excel": "^4.1",
-        "simplesoftwareio/simple-qrcode": "~4"
+        "simplesoftwareio/simple-qrcode": "~4",
+        "laravel/jetstream": "^5.3.7"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
