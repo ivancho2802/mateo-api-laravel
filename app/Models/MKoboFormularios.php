@@ -116,7 +116,6 @@ class MKoboFormularios extends Model
     }
 
     public function respuestas(): HasMany{
-        //return $this->hasMany(MKoboRespuestas::class, "_ID", "_ID");
         return $this->hasMany(MKoboRespuestas::class, "_ID", "_ID");
     }
 }
