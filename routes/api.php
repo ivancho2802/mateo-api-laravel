@@ -118,8 +118,8 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     //respuesta
     //$object->text;
     $pregunta = $definition->where('id', $object["field"]["id"])->first()["title"];
-    $respuesta = $object["text"];
-    dd("respuesta", $respuesta);
+    $respuesta = $object["text"] ?? "N/A";
+    //dd("respuesta", $respuesta);
 
     array_push(
       $body_m_kobo_preguntas,
