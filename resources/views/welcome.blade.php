@@ -482,25 +482,16 @@
               </div>
             </div>
 
-            <div class="card">
-              <div class="card-body p-3">
-                <div class="row">
-                  <div class="col-8">
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-capitalize font-weight-bold">
-                        1.1 Naturaleza de la transición
-                      </p>
-                      <h5 class="font-weight-bolder mb-0">
-                        $53,000
-                        <span class="text-success text-sm font-weight-bolder">+55%</span>
-                      </h5>
-                    </div>
+
+            <div class="card card-body">
+              <div class="progress-wrapper">
+                <div class="progress-info">
+                  <div class="progress-percentage">
+                    <span class="text-sm font-weight-normal">60%</span>
                   </div>
-                  <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                    </div>
-                  </div>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
                 </div>
               </div>
             </div>
