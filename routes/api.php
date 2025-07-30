@@ -157,7 +157,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
       "ID_M_KOBO_FORMULARIOS" => $preguntas_created->id,
       "ID_M_FORMULARIOS" => $m_formulario_id,
       "ID_M_USUARIOS" => 1,
-        "created_at" => Carbon\Carbon::now(),
+      "created_at" => Carbon\Carbon::now(),
     ]);
     $m_respuestas = MKoboRespuestas::insert($body_respuestas);
 
@@ -191,17 +191,12 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
   } */
 });
 
-Route::middleware(['auth:sanctum'])->get('/typeform', function (Request $request) {
-  //SERVICIO PARA CONSULTAR PARAMETROS DEL POWER BI ADN y1 y2
+Route::get('/typeform', function (Request $request) {
   $mformulario = MFormulario::get();
   $mkoboformulario = MKoboFormularios::get();
   $mkoborespuesta = MKoboRespuestas::get();
 
-  return response()->json([
-    "mformulario" => $mformulario,
-    "mkoboformulario" => $mkoboformulario,
-    "mkoborespuesta" => $mkoborespuesta,
-  ]);
+  return view('welcome', ["name_key" => "", "data" => $data]);
 });
 
 Route::get('departamentos', function (Request $request) {
@@ -225,7 +220,6 @@ Route::get('municipios/{departamento}', function (Request $request) {
     $municipios = $departamento_finded->get()->groupBy('municipio')->keys();
   } else {
     $municipios = Municipios::all();
-
   }
 
   return response()->json($municipios);
@@ -460,7 +454,6 @@ Route::prefix('meal')->group(function () {
       $municipios = $departamento_finded->get()->groupBy('municipio')->keys();
     } else {
       $municipios = Reports::all()->groupBy('municipio')->keys();
-
     }
 
     return response()->json($municipios);
@@ -480,8 +473,6 @@ Route::prefix('meal')->group(function () {
 
   //migracion activity info
   Route::post('/migration_kobo_activityinfo', [App\Http\Controllers\Meal::class, 'migracionKoboActivityinfo']);
-
-
 });
 
 Route::prefix('firebird')->group(function () {
@@ -964,7 +955,6 @@ Route::prefix('mongo')->group(function () {
   Route::middleware(['auth:sanctum'])->get('/lpa/donante', [App\Http\Controllers\PersonAttendedMongo::class, 'getDonante']);
 
   Route::middleware(['auth:sanctum'])->get('/emergencia', [App\Http\Controllers\EmergenciasMongo::class, 'getEmergenciaS']);
-
 });
 
 Route::middleware((['auth:sanctum']))->prefix('pgsql')->group(function () {
@@ -1090,10 +1080,10 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
     return view('pdf.formulario', ["data" => $dataEnketo->first()]);
 
-    /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
+      /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
       return $pdf->download('invoice.pdf'); */
 
-    /* [
+      /* [
           "status" => $response->getStatusCode(),
           "data" => $response->body(),
           "json" => $response->json() ,
@@ -1102,8 +1092,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
           "successful" => $response->successful() ,
           "clientError" => $response->clientError() ,
           //"mkoboformulario" => $formulario->get()
-      ] */
-    ;
+      ] */;
   });
 
   Route::get('{id}/exportByid/{token}', [App\Http\Controllers\Kobo::class, 'exportByid']);
