@@ -7,7 +7,7 @@
 
   <title>Laravel</title>
 
-  
+
   @extends('layouts.user_type.guest')
 
   @section('content')
@@ -424,20 +424,21 @@
       @endif
     </div>
     @endif -->
+    <img src="{{ asset('images/constant_companion.png') }}" alt="Descripción de la imagen">
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
 
       <div class="flex justify-center pt-8 sm:justify-center sm:pt-0 bg-white ">
         @if(Auth::user())
-      <p>Bienvenido(a) {{ Auth::user()->name }}</p>
-    @endif
+        <p>Bienvenido(a) {{ Auth::user()->name }}</p>
+        @endif
       </div>
 
       @if(session()->has('success'))
       <div class="flex justify-center pt-8 sm:justify-center sm:pt-0 bg-white ">
-      <p class="m-0 text-white">{{ session('success')}}</p>
+        <p class="m-0 text-white">{{ session('success')}}</p>
       </div>
-    @endif
+      @endif
 
       <h4 class="text-gray-900 dark:text-white">Creer</h4>
 
@@ -458,10 +459,10 @@
             </div>
           </div>
 
-          <div x-data="{ show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show"
-            class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
-            <p class="m-0 text-white">{{ session('success')}}</p>
-          </div>
+          <!-- <div x-data="{ show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show"
+              class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
+              <p class="m-0 text-white">{{ session('success')}}</p>
+            </div> -->
 
           <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
             <div class="flex items-center">
