@@ -368,7 +368,7 @@
       .dark\:bg-gray-900 {
         --bg-opacity: 1;
         background-color: #1a202c;
-        background-color: rgba(26, 32, 44, var(--bg-opacity))
+        background-color: rgba(256, 256, 256, var(--bg-opacity))
       }
 
       .dark\:border-gray-700 {
@@ -432,9 +432,7 @@
       </div>
       @endif
 
-      <h4 class="text-gray-900 dark:text-white">
-        Desarrollos para la consulta y edición de la información generada por el consorcio
-        (bajo usuario y contraseña)</h4>
+      <h4 class="text-gray-900 dark:text-white">Creer</h4>
 
       <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
         <div class="grid grid-cols-1 md:grid-cols-2">
