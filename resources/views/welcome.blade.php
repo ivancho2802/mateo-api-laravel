@@ -424,37 +424,64 @@
       @endif
     </div>
     @endif -->
-    <img src="{{ asset('images/constant_companion.png') }}" alt="Descripción de la imagen">
+
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
 
-      <div class="flex justify-center pt-8 sm:justify-center sm:pt-0 bg-white ">
+      <div class="flex justify-center  sm:justify-center sm:pt-0 bg-white ">
         @if(Auth::user())
         <p>Bienvenido(a) {{ Auth::user()->name }}</p>
         @endif
       </div>
 
       @if(session()->has('success'))
-      <div class="flex justify-center pt-8 sm:justify-center sm:pt-0 bg-white ">
+      <div class="flex justify-center  sm:justify-center sm:pt-0 bg-white ">
         <p class="m-0 text-white">{{ session('success')}}</p>
       </div>
       @endif
 
-      <h4 class="text-gray-900 dark:text-white">Creer</h4>
+      <h4 class="text-gray-900 dark:text-white">
+        <img src="{{ asset('images/constant_companion.png') }}" alt="Descripción de la imagen">
+      </h4>
 
-      <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+      <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
         <div class="grid grid-cols-1 md:grid-cols-2">
           <div class="p-6">
             <div class="flex items-center">
-              <div class="ml-4 text-lg leading-7 font-semibold"><a href="#"
+              <div class="ml-4 text-lg leading-7 font-semibold">
+                <a href="#"
                   class="underline text-gray-900 dark:text-white">
-                  CREER
-                </a></div>
+                  ¿Qué es?
+                </a>
+              </div>
             </div>
 
-            <div class="ml-12">
+            <div class="ml-2">
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                Sistema para la gestión de la información del CREER
+                Concepto
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">
+                        1.1 Naturaleza de la transición
+                      </p>
+                      <h5 class="font-weight-bolder mb-0">
+                        $53,000
+                        <span class="text-success text-sm font-weight-bolder">+55%</span>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -469,27 +496,7 @@
               <div class="ml-4 text-lg leading-7 font-semibold"><a href="#"
                   class="underline text-gray-900 dark:text-white">
                   Creer
-                </a></div>
-            </div>
-
-            <div class="card">
-              <div class="card-body p-3">
-                <div class="row">
-                  <div class="col-8">
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Libro de Compras</p>
-                      <h5 class="font-weight-bolder mb-0">
-                        $53,000
-                        <span class="text-success text-sm font-weight-bolder">+55%</span>
-                      </h5>
-                    </div>
-                  </div>
-                  <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                    </div>
-                  </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
