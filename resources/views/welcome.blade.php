@@ -462,12 +462,6 @@
               </div>
             </div>
 
-            <p>
-              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                1.1 Naturaleza de la transición
-              </button>
-            </p>
-
             <div class="relative border-b border-gray-200 py-6" x-init="isOpen=false" x-data="{
                     isOpen: false, 
                     set(value) {
@@ -477,8 +471,8 @@
 
               <h3 class="-my-3 flow-root">
                 <!-- Expand/collapse section button -->
-                <button @click="isOpen = !isOpen" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
-                  <span class="font-medium text-gray-900">Matriz con diccionario de datos</span>
+                <button class="btn btn-primary" type="button"  @click="isOpen = !isOpen" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
+                  <span class="font-medium text-gray-900">1.1 Naturaleza de la transición</span>
                   <span class="ml-6 flex items-center">
                     <!-- Expand icon, show/hide based on section open state. -->
                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -489,7 +483,7 @@
                       <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
                     </svg>
                   </span>
-                </button>
+                </button> 
               </h3>
 
               <div class="pt-6" id="filter-section-0" x-show="isOpen">
