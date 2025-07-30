@@ -60,7 +60,7 @@
 
     .bg-white {
       --bg-opacity: 1;
-      background-color: #fff;
+      background-color: #ccc;
       background-color: rgba(255, 255, 255, var(--bg-opacity))
     }
 
@@ -379,8 +379,8 @@
 
       .dark\:text-white {
         --text-opacity: 1;
-        color: #fff;
-        color: rgba(255, 255, 255, var(--text-opacity))
+        color: #ccc;
+        color: rgba(2, 2, 2, var(--text-opacity))
       }
 
       .dark\:text-gray-400 {
