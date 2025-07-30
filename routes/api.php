@@ -193,9 +193,8 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
 
 Route::get('/typeform', function (Request $request) {
   $mformulario = MFormulario::get();
-  $mkoboformulario = MKoboFormularios::get();
+  $mkoboformulario = MKoboFormularios::get()->load(['respuestas']);
   $mkoborespuesta = MKoboRespuestas::get();
-  $mkoboformulario->with('respuestas');
   
   return response()->json(["mkoboformulario" => $mkoboformulario]);
 
