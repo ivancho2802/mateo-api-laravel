@@ -119,12 +119,12 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     //$object->text;
     $pregunta = $definition->where('id', $object["field"]["id"])->first()["title"];
     $respuesta = $object["text"];
-    //dd("respuesta", $respuesta);
+    dd("respuesta", $respuesta);
 
     array_push(
       $body_m_kobo_preguntas,
       [
-        "ID_M_KOBO_FORMULARIOS" => "$id_kobo_respuesta",
+        "ID_M_KOBO_FORMULARIOS" => $id_kobo_respuesta,
         "_ID" => $id_kobo_respuesta,
         "CAMPO1" => $pregunta,
         "ID_M_FORMULARIOS" => $m_formulario_id,
