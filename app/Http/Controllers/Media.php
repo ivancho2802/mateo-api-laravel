@@ -443,7 +443,7 @@ class Media extends Controller
       return $pregunta_;
     });
 
-    //dd($preguntapuesta);
+    dd($preguntapuesta, $preguntas, $request->email);
 
     // Carga la vista Blade y pasa los datos
     $pdf = Pdf::loadView('user', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]);
