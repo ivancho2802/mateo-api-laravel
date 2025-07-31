@@ -258,7 +258,7 @@ class Media extends Controller
 
     $preguntapuesta = $preguntas->map(function ($pregunta) {
       $pregunta_ = collect($pregunta)->map(function ($pregunt) {
-        $preguntapuesta_ = $pregunt->map(function ($preg) {
+        $preguntapuesta_ = collect($pregunt)->map(function ($preg) {
           $frase = implode(">", $preg);
 
           /* if (!is_array($preg)) {
