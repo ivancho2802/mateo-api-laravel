@@ -596,27 +596,27 @@
                         position: absolute;
                         width: 630px;
                         ">
-                        <div class="col p-0 text-center" style="    display: ruby;">
+                        <div class="col text-center" style="    display: ruby;">
                           <div class="circle-creer bg-danger text-light circle-creer-2">
                             2
                           </div>
                         </div>
-                        <div class="col p-0 text-center" style="    display: ruby;">
+                        <div class="col text-center" style="    display: ruby;">
                           <div class="circle-creer bg-danger text-light circle-creer-2">
                             2
                           </div>
                         </div>
-                        <div class="col p-0 text-center" style="    display: ruby;">
+                        <div class="col text-center" style="    display: ruby;">
                           <div class="circle-creer bg-danger text-light circle-creer-6">
                             6
                           </div>
                         </div>
-                        <div class="col p-0 text-center" style="    display: ruby;">
+                        <div class="col text-center" style="    display: ruby;">
                           <div class="circle-creer bg-danger text-light circle-creer-2">
                             2
                           </div>
                         </div>
-                        <div class="col p-0 text-center" style="    display: ruby;">
+                        <div class="col text-center" style="    display: ruby;">
                           <div class="circle-creer bg-danger text-light circle-creer-2">
                             2
                           </div>
