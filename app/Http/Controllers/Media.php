@@ -269,7 +269,7 @@ class Media extends Controller
           $totalResponses = MKoboRespuestas::where("REFERENCIA", "like", "%Correo%")->distinct()->count('VALOR');
 
           if ($totalResponses > 0) {
-            dd($conteo, $totalResponses);
+            //dd($conteo, $totalResponses);
             $percentageOptionA = ($conteo / $totalResponses) * 100;
           }
 
