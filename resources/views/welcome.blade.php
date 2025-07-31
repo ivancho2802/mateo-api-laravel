@@ -671,6 +671,7 @@
 
 
             </div>
+            @endforeach
 
             <h3 class="text-danger">Resumen</h3>
 
@@ -792,10 +793,6 @@
               @endforeach
 
             </div>
-
-            @endforeach
-
-
 
           </div>
 
