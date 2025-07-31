@@ -532,17 +532,18 @@
                 <div class="card card-body">
 
                   <div class="row">
-                    <div class="col-4">
+                    <div class="col-2">
                       Ambiental
                     </div>
-                    <div class="col-4">
+                    <div class="col-8">
 
                       <div class="row" style="
                         background: #ccc;    
                         border-radius: 50px;     
                         vertical-align: middle;    
                         align-items: center;
-                        height:40px">
+                        height:40px;
+                        width: 630px;">
                         <div class="col">
                         </div>
                         <div class="col">
@@ -558,6 +559,7 @@
                       <div class="row" style="
                         top: 0;
                         position: absolute;
+                        width: 630px;
                         ">
                         <div class="col">
                           <div style="
@@ -585,6 +587,7 @@
                       <div class="row" style="
                         top: 0;
                         position: absolute;
+                        width: 630px;
                         ">
                         <div class="col">
 
@@ -609,7 +612,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-4 text-right">
+                    <div class="col-2 text-right">
                       Social
                     </div>
                   </div>
