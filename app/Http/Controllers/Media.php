@@ -258,7 +258,9 @@ class Media extends Controller
 
     $preguntapuesta = $preguntas->map(function ($pregunta) {
       $pregunta_ = collect($pregunta)->map(function ($pregunt) {
-        $preguntapuesta_ = collect($pregunt)->map(function ($preg) {
+        $limitinferior = "";
+        $limitsuperior = "";
+        $preguntapuesta_ = collect($pregunt)->map(function ($preg) use ($limitinferior, $limitsuperior ) {
           //dd($preg);
           // 0 es frase vieja
           //1 frase resumida
@@ -266,8 +268,6 @@ class Media extends Controller
           //3 frase limite superior
           $frase = explode(">", $preg);
           //dd($frase, $preg, $frase[1]);
-          $limitinferior = "";
-          $limitsuperior = "";
 
           if (count($frase) > 2) {
             $limitinferior = $frase[2];
@@ -293,7 +293,7 @@ class Media extends Controller
       return $pregunta_;
     });
 
-    dd($preguntapuesta);
+    //dd($preguntapuesta);
 
     return view('welcome', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas]);
   }
