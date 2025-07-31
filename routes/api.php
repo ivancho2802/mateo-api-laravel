@@ -125,7 +125,7 @@ Route::post('/typeform', function (Request $request) {
     if (!isset($object["text"]) && isset($object["choice"])) {
       $respuesta = $object["choice"]["label"];
     } elseif (!isset($object["text"]) && !isset($object["choice"])) {
-      dd($object);
+      $respuesta = json_encode($object);
     }
 
     //dd("respuesta", $respuesta);
