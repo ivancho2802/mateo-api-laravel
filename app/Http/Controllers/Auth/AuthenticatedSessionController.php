@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
         $mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)->exists();
 
         if (!$mkoborespuesta) {
-            return view('consulta')->withMessages([
+            return view('auth.consulta')->withMessages([
                 'email' => "No encontrado",
             ]);;
         }
