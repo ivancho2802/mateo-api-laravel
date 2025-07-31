@@ -34,7 +34,7 @@ Route::middleware('guest')->group(function () {
                 ->name('password.update');
 
     Route::get('consulta', [AuthenticatedSessionController::class, 'create'])
-                ->name('login');
+                ->name('consulta');
 });
 
 Route::middleware('auth')->group(function () {
