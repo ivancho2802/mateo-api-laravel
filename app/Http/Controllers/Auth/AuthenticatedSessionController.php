@@ -161,8 +161,10 @@ class AuthenticatedSessionController extends Controller
 
                     $resuetas_user =
                         //where("REFERENCIA", "like", "%Correo%")
-                        MKoboRespuestas::where("CAMPO1", $request->email)
-                        ->where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
+                        MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"));
+
+                    $resuetas_user = collect($resuetas_user)
+                        ->where("CAMPO1", $request->email)
                         ->exist();
 
                     $arraycount = [$frase[1], $resuetas_user, $frase[0]];
