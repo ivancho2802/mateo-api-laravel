@@ -283,7 +283,7 @@ class Media extends Controller
       return $pregunta_;
     });
 
-    dd($preguntapuesta);
+    //dd($preguntapuesta);
 
     return view('welcome', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas]);
   }
