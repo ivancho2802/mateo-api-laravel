@@ -168,7 +168,7 @@ class AuthenticatedSessionController extends Controller
                     $posicion = -1;
 
                     $resuetas_user = count(DB::table('M_KOBO_RESPUESTAS')
-                        ->whereRaw('"VALOR" COLLATE utf8mb4_unicode_ci like ?', ['%' . $preg_ . '%'])
+                        ->whereRaw("convert_from(convert_to('VALOR', 'LATIN1'), 'UTF8') like ?", [strtoupper('%' . $preg_ . '%')])
                         //MKoboRespuestas::where("VALOR", 'LIKE', '%'. $preg_. '%')
                         ->where("CAMPO1", $request->email)
                         ->get());
