@@ -471,7 +471,7 @@
 
               <h3 class=" flow-root">
                 <!-- Expand/collapse section button -->
-                <button class="btn btn-primary" type="button"  @click="isOpen = !isOpen" type="button" class="flex w-full text-start justify-between   text-sm text-light-400 hover:text-light-500" aria-controls="filter-section-0" aria-expanded="false">
+                <button class="btn btn-primary flex w-full text-start justify-between   text-sm text-light-400" type="button"  @click="isOpen = !isOpen" type="button" aria-controls="filter-section-0" aria-expanded="false">
                   <span class="font-medium text-light-900">1.1 Naturaleza de la transición</span>
                   <span class="ml-6 flex items-center">
                     <!-- Expand icon, show/hide based on section open state. -->
@@ -486,7 +486,7 @@
                 </button> 
               </h3>
 
-              <div class="pt-6" id="filter-section-0" x-show="isOpen">
+              <div class="" id="filter-section-0" x-show="isOpen">
                 <div class="card card-body">
                   <div class="progress-wrapper">
                     <div class="progress-info">
