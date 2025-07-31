@@ -38,6 +38,8 @@ Route::middleware('guest')->group(function () {
 
     Route::post('consulta', [AuthenticatedSessionController::class, 'store']);
 
+    Route::post('/typeformdownload', [App\Http\Controllers\Media::class, 'downloadPdf']);
+
 });
 
 Route::middleware('auth')->group(function () {

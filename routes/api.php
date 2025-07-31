@@ -212,6 +212,8 @@ Route::post('/typeform', function (Request $request) {
 
 Route::get('/typeform', [App\Http\Controllers\Media::class, 'mateoAnelicaHps']);
 
+Route::post('/typeformdownload', [App\Http\Controllers\Media::class, 'downloadPdf']);
+
 Route::get('departamentos', function (Request $request) {
   $departamento = Departamentos::all();
   return response()->json($departamento);

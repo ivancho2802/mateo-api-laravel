@@ -180,7 +180,7 @@ class AuthenticatedSessionController extends Controller
 
         //dd($preguntapuesta);
 
-        return view('user', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas]);
+        return view('user', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]);
     }
 
     /**
