@@ -267,8 +267,8 @@ class Media extends Controller
             $arraycount = [$frase[1], 0];
           } else { */
           $conteo = count(MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get());
-          //$totalResponses = MKoboRespuestas::where("REFERENCIA", "like", "%Correo%")->distinct()->count('VALOR');
-          $totalResponses = count(MKoboRespuestas::get());
+          $totalResponses = MKoboRespuestas::where("REFERENCIA", "like", "%Correo%")->distinct()->count('VALOR');
+          //$totalResponses = count(MKoboRespuestas::get());
 
           if ($totalResponses > 0) {
             //dd($conteo, $totalResponses);
