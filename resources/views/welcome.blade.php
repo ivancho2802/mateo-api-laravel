@@ -418,33 +418,33 @@
     }
 
     .circle-creer-1 {
-      width: 10px;
-      height: 10px;
-    }
-
-    .circle-creer-2 {
-      width: 20px;
-      height: 20px;
-    }
-
-    .circle-creer-3 {
       width: 30px;
       height: 30px;
     }
 
-    .circle-creer-4 {
+    .circle-creer-2 {
       width: 40px;
       height: 40px;
     }
 
-    .circle-creer-5 {
+    .circle-creer-3 {
       width: 50px;
       height: 50px;
     }
 
-    .circle-creer-6 {
+    .circle-creer-4 {
       width: 60px;
       height: 60px;
+    }
+
+    .circle-creer-5 {
+      width: 70px;
+      height: 70px;
+    }
+
+    .circle-creer-6 {
+      width: 80px;
+      height: 80px;
     }
   </style>
 </head>
