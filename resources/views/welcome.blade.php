@@ -555,7 +555,7 @@
 
                   <div class="row">
                     <div class="col-2">
-                      {{$pregunt[0][5]}}
+                      {{$pregunt[0][4]}}
                     </div>
                     <div class="col-8">
                       <!-- fondo gris -->
