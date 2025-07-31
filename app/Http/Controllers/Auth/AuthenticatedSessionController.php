@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
         $mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)->exists();
 
         if (!$mkoborespuesta) {
-            return view('auth.consulta')->withErrors(['email'=>'Email No encontrado']);//status
+            return view('auth.consulta')->withErrors(['email' => 'Email No encontrado']);//status
         }
 
         //dd($mkoborespuesta);
@@ -158,18 +158,24 @@ class AuthenticatedSessionController extends Controller
         //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
 
         $preguntapuesta = $preguntas->map(function ($pregunta) use ($request) {
-            $pregunta_ = collect($pregunta)->map(function ($pregunt)  use ($request) {
-                $preguntapuesta_ = collect($pregunt)->map(function ($preg)  use ($request) {
+            $pregunta_ = collect($pregunta)->map(function ($pregunt) use ($request) {
+
+                $preguntapuesta_ = collect($pregunt)->map(function ($preg, $index) use ($request, $pregunt) {
                     //dd($preg);
                     $frase = explode(">", $preg);
                     //dd($frase, $preg, $frase[1]);
+                    $posicion = -1;
 
                     $resuetas_user = count(MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
                         //$resuetas_user = collect($resuetas_user)
                         ->where("CAMPO1", $request->email)
                         ->get());
 
-                    $arraycount = [$frase[1], $resuetas_user, $frase[0]];
+                    if ($resuetas_user > 0) {
+                        $posicion = 1;
+                    }
+
+                    $arraycount = [$frase[1], $posicion, $frase[0]];
                     //frase & count
                     return $arraycount;
                 });
