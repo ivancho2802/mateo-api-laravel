@@ -407,7 +407,7 @@
 
     .circle-creer{
       border-radius: 50px;
-      border-color: #FF5C5C;
+      border-width: 2px;
     }
   </style>
 </head>
@@ -502,7 +502,7 @@
 
                       <div class="row" style="background: #ccc;    border-radius: 50px;">
                         <div class="col">
-                          <div class="circle-creer bg-danger">2</div>
+                          <div class="circle-creer bg-danger text-light">2</div>
                         </div>
                         <div class="col">
                           
