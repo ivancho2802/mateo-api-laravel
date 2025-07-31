@@ -489,7 +489,7 @@
 
       <div class="mt-2 bg-white light:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
 
-        @foreach ($preguntas as $key => $pregunta)
+        @foreach ($preguntapuesta as $key => $pregunta)
         <div class="grid grid-cols-1 md:grid-cols-1">
           <div class="p-6">
             <div class="flex items-center">
@@ -629,7 +629,7 @@
                       <div class="row pt-4" style="">
                         @foreach ($pregunt as $key3 => $preg)
                         <div class="{{$key3==2 ? 'col-3' : 'col-2'}}">
-                          {{$preg[0]}}
+                          {{$preg}}
                         </div>
                         @endforeach
                       </div>
