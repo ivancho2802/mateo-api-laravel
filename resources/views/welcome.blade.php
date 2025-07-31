@@ -649,21 +649,10 @@
               </i>
 
               <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="/matrizprensa" class="underline text-gray-900 dark:text-white">
-                  matriz de prensa
-                </a>
               </div>
             </div>
 
             <div class="ml-12">
-              <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y
-                contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
-                <br>
-
-                https://ugic.api.ach.dyndns.info/matrizprensa
-
-              </div>
             </div>
           </div>
 
@@ -681,22 +670,11 @@
                 </i>
 
                 <div class="ml-4 text-lg leading-7 font-semibold">
-                  <a href="/koboapdf" class="underline text-gray-900 dark:text-white">
-                    Formulario de descargas masivas de PDF
-                  </a>
                 </div>
               </div>
 
               <div class="ml-12">
                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                  Esta herramienta funciona para obtener realizar descargas masivas de los formulario de un kobo en
-                  especifico es decir todas las respuestas en un formato especifico se tiene una plantilla
-                  en base a un formulario basico es posible que no funcione con todos los formularios si esto ocurre
-                  debes realizar la solicitud
-                  <br>
-
-                  https://ugic.api.ach.dyndns.info/koboapdf
-
                 </div>
               </div>
             </div>
@@ -715,17 +693,11 @@
               </i>
 
               <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="/finanzas/adn" class="underline text-gray-900 dark:text-white">
-                  Parametros de finanzas adn fase 2
-                </a>
               </div>
             </div>
 
             <div class="ml-12">
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                Esta herramienta es para adn.
-                <br>
-
               </div>
             </div>
           </div>
