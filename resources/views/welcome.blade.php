@@ -410,6 +410,11 @@
       border-width: 4px;
       border-color: #fff;
       text-align: center;
+      vertical-align: middle;
+      align-items: center;
+      align-content: center;
+      align-items: center;
+      align-self: center;
     }
 
     .circle-creer-1 {
@@ -532,22 +537,53 @@
                     </div>
                     <div class="col-4">
 
-                      <div class="row" style="background: #ccc;    border-radius: 50px;">
+                      <div class="row" style="background: #ccc;    border-radius: 50px;     vertical-align: middle;    align-items: center;">
+                        <div class="col-12">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col">
+                          <div style="
+                            height: 100px;
+                            background: #DEDEDE;
+                            width: 2px;"></div>
+                        </div>
+                        <div class="col">
+
+                        </div>
+                        <div class="col">
+
+                        </div>
+                        <div class="col">
+
+                        </div>
+                        <div class="col">
+
+                        </div>
+                        <div class="col">
+
+                        </div>
+                      </div>
+
+                      <div class="row">
                         <div class="col">
 
                         </div>
                         <div class="col">
                           <div class="circle-creer bg-danger text-light circle-creer-2">
-                            <p>2</p>
+                            2
                           </div>
                         </div>
                         <div class="col">
                           <div class="circle-creer bg-danger text-light circle-creer-6">
-                            <p>6</p>
+                            6
                           </div>
                         </div>
                         <div class="col">
-                          2
+                          <div class="circle-creer bg-danger text-light circle-creer-2">
+                            2
+                          </div>
                         </div>
                         <div class="col">
 
