@@ -127,7 +127,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
         "ID_M_KOBO_FORMULARIOS" => $id_kobo_respuesta,
         "_ID" => $id_kobo_respuesta,
         "CAMPO1" => $pregunta,
-        "ID_M_FORMULARIOS" => $m_formulario_id,
+        "ID_M_FORMULARIOS" => $id_kobo_respuesta,
         "ESTATUS" => 1,
         "ID_M_USUARIOS" => 1,
         "created_at" => Carbon\Carbon::now(),
@@ -135,7 +135,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     );
 
     $m_kobo_preguntas = MKoboFormularios::updateOrCreate(
-      ['ID_M_FORMULARIOS' => $m_formulario_id],
+      ['ID_M_FORMULARIOS' => $id_kobo_respuesta],
       $body_m_kobo_preguntas[0]
     );
 
@@ -156,7 +156,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
       "REFERENCIA" => $pregunta,
       "VALOR" => $respuesta,
       "ID_M_KOBO_FORMULARIOS" => $preguntas_created->id,
-      "ID_M_FORMULARIOS" => $m_formulario_id,
+      "ID_M_FORMULARIOS" => $preguntas_created->id,
       "ID_M_USUARIOS" => 1,
       "created_at" => Carbon\Carbon::now(),
     ]);
