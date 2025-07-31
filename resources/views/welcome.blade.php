@@ -471,8 +471,8 @@
 
               <h3 class="-my-3 flow-root">
                 <!-- Expand/collapse section button -->
-                <button class="btn btn-primary" type="button"  @click="isOpen = !isOpen" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
-                  <span class="font-medium text-gray-900">1.1 Naturaleza de la transición</span>
+                <button class="btn btn-primary" type="button"  @click="isOpen = !isOpen" type="button" class="flex w-full text-start justify-between   text-sm text-light-400 hover:text-light-500" aria-controls="filter-section-0" aria-expanded="false">
+                  <span class="font-medium text-light-900">1.1 Naturaleza de la transición</span>
                   <span class="ml-6 flex items-center">
                     <!-- Expand icon, show/hide based on section open state. -->
                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
