@@ -257,7 +257,7 @@ class Media extends Controller
     //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
 
     $preguntapuesta = $preguntas->map(function ($pregunta) {
-      $pregunta_ = $pregunta->map(function ($pregunt) {
+      $pregunta_ = collect($pregunta)->map(function ($pregunt) {
         $preguntapuesta_ = $pregunt->map(function ($preg) {
           $frase = implode(">", $preg);
 
