@@ -136,11 +136,11 @@ class Media extends Controller
 
   function mateoAnelicaHps(Request $request)
   {
-    $mformulario = MFormulario::get()->load(['respuestas', 'preguntas']);
-    $mkoboformulario = MKoboFormularios::get();
+    //$mformulario = MFormulario::get()->load(['respuestas', 'preguntas']);
+    //$mkoboformulario = MKoboFormularios::get();
     $mkoborespuesta = MKoboRespuestas::get();
 
-    dd($mformulario);
+    dd($mkoborespuesta);
 
     $preguntas = collect([
       "1. ¿Qué es?: Definición" => [
@@ -250,6 +250,6 @@ class Media extends Controller
     ]);
 
     //return response()->json(["mkoboformulario" => $mformulario, "preguntas" => $preguntas]);
-    return view('welcome', ["mkoboformulario" => $mkoboformulario, "preguntas" => $preguntas]);
+    return view('welcome', ["mkoborespuesta" => $mkoborespuesta, "preguntas" => $preguntas]);
   }
 }
