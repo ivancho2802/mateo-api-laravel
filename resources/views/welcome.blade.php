@@ -485,6 +485,8 @@
       <h4 class="text-gray-900 dark:text-white">
         <img src="{{ asset('images/constant_companion.png') }}" alt="Descripción de la imagen">
       </h4>
+      
+      @foreach ($preguntas as $pregunta)
 
       <div class="mt-2 bg-white light:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
         <div class="grid grid-cols-1 md:grid-cols-1">
@@ -493,7 +495,7 @@
               <div class="ml-4 text-lg leading-7 font-semibold">
                 <a href="#"
                   class="underline text-gray-900 dark:text-white">
-                  ¿Qué es?
+                  {{$pregunta->key()}} 
                 </a>
               </div>
             </div>
@@ -515,16 +517,14 @@
                 <!-- Expand/collapse section button -->
                 <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400" type="button" @click="isOpen = !isOpen" type="button" aria-controls="filter-section-0" aria-expanded="false">
                   <span class="font-medium text-light-900">1.1 Naturaleza de la transición</span>
-                  <span class="ml-6 flex items-center">
-                    <!-- Expand icon, show/hide based on section open state. -->
+                  <!-- <span class="ml-6 flex items-center">
                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                     </svg>
-                    <!-- Collapse icon, show/hide based on section open state. -->
                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
                     </svg>
-                  </span>
+                  </span> -->
                 </button>
               </h3>
 
@@ -624,8 +624,7 @@
                       </div>
                       
                       <!-- textos de abajo -->
-                      <div class="row" style="
-                        ">
+                      <div class="row pt-4" style="">
                         <div class="col-2">
                           Predominantemente Ambiental
                         </div>
@@ -754,6 +753,8 @@
 
         </div>
       </div>
+
+      @endforeach
 
       <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
         Build v{{ Illuminate\Foundation\Application::VERSION }}

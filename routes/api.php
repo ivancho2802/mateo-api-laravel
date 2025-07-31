@@ -197,7 +197,7 @@ Route::get('/typeform', function (Request $request) {
   $mkoboformulario = MKoboFormularios::get();
   $mkoborespuesta = MKoboRespuestas::get();
 
-  $preguntas = [
+  $preguntas = collect([
     "1. ¿Qué es?: Definición" => [
       "1.1 Naturaleza de la tránsición	1.1.1 Frente a estas afirmaciones en cuál se siente más representado" => [
         "1.1.1.1 “Lo más importante en la transición es proteger los ecosistemas, incluso por encima de las necesidades humanas inmediatas”.A	a: Ambiental", // e: Social 
@@ -313,7 +313,7 @@ Route::get('/typeform', function (Request $request) {
       ]
     ],
 
-  ];
+  ]);
   
   //return response()->json(["mkoboformulario" => $mformulario, "preguntas" => $preguntas]);
   return view('welcome', ["mkoboformulario" => $mkoboformulario, "preguntas" => $preguntas]);
