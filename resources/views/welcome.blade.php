@@ -565,25 +565,25 @@
                         </div>
                         <div class="col">
                           <div style="
-                            height: 70px;
+                            height: 60px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
                         <div class="col">
                           <div style="
-                            height: 70px;
+                            height: 60px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
                         <div class="col">
                           <div style="
-                            height: 70px;
+                            height: 60px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
                         <div class="col">
                           <div style="
-                            height: 70px;
+                            height: 60px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
