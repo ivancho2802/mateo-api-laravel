@@ -153,9 +153,9 @@ class AuthenticatedSessionController extends Controller
 
         //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
 
-        $preguntapuesta = $preguntas->map(function ($pregunta) {
-            $pregunta_ = collect($pregunta)->map(function ($pregunt) {
-                $preguntapuesta_ = collect($pregunt)->map(function ($preg) {
+        $preguntapuesta = $preguntas->map(function ($pregunta) use ($request){
+            $pregunta_ = collect($pregunta)->map(function ($pregunt)  use ($request){
+                $preguntapuesta_ = collect($pregunt)->map(function ($preg)  use ($request){
                     //dd($preg);
                     $frase = explode(">", $preg);
                     //dd($frase, $preg, $frase[1]);
