@@ -444,7 +444,7 @@
         <img src="{{ asset('images/constant_companion.png') }}" alt="Descripción de la imagen">
       </h4>
 
-      <div class="mt-2 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+      <div class="mt-2 bg-white light:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
         <div class="grid grid-cols-1 md:grid-cols-1">
           <div class="p-6">
             <div class="flex items-center">
@@ -471,7 +471,7 @@
 
               <h3 class=" flow-root">
                 <!-- Expand/collapse section button -->
-                <button class="btn btn-primary flex w-full text-start justify-between   text-sm text-light-400" type="button"  @click="isOpen = !isOpen" type="button" aria-controls="filter-section-0" aria-expanded="false">
+                <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400" type="button"  @click="isOpen = !isOpen" type="button" aria-controls="filter-section-0" aria-expanded="false">
                   <span class="font-medium text-light-900">1.1 Naturaleza de la transición</span>
                   <span class="ml-6 flex items-center">
                     <!-- Expand icon, show/hide based on section open state. -->
@@ -495,7 +495,7 @@
                       </div>
                     </div>
                     <div class="progress">
-                      <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                      <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
                     </div>
                   </div>
                 </div>
