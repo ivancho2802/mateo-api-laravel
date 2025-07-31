@@ -275,7 +275,7 @@ class Media extends Controller
             $percentageOptionA = ($conteo / $totalResponses) * 10;
           }
 
-          $arraycount = [$frase[1], $percentageOptionA, $frase[0]];
+          $arraycount = [$frase[1], $percentageOptionA, $frase[0], $conteo];
           /* } */
           //frase & count
           return $arraycount;
