@@ -174,7 +174,7 @@ class AuthenticatedSessionController extends Controller
             return $pregunta_;
         });
 
-        dd($preguntapuesta);
+        //dd($preguntapuesta);
 
         return view('user', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas]);
     }
