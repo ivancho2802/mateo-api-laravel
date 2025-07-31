@@ -266,7 +266,13 @@ class Media extends Controller
             $arraycount = [$frase[1], 0];
           } else { */
             $conteo = count(MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get());
-            $arraycount = [$frase[1], $conteo];
+            $totalResponses = count(MKoboRespuestas::get());
+
+            if ($totalResponses > 0) {
+                $percentageOptionA = ($conteo / $totalResponses) * 100;
+            }
+            
+            $arraycount = [$frase[1], $percentageOptionA];
           /* } */
           //frase & count
           return $arraycount;
