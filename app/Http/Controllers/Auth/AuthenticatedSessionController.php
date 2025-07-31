@@ -160,9 +160,8 @@ class AuthenticatedSessionController extends Controller
                     $frase = explode(">", $preg);
                     //dd($frase, $preg, $frase[1]);
 
-                    $resuetas_user = MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get();
-
-                    $resuetas_user = collect($resuetas_user)
+                    $resuetas_user = MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
+                    //$resuetas_user = collect($resuetas_user)
                         ->where("CAMPO1", $request->email)
                         ->exist();
 
