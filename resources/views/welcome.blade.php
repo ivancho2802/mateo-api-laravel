@@ -511,21 +511,21 @@
           <div class="p-6">
             <div class="flex items-center">
               <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="#"
-                  class="underline text-gray-900 dark:text-white">
+                <h3 
+                  class=" text-danger  ">
                   {{$key}}
-                </a>
+                </h3>
               </div>
             </div>
 
-            <div class="ml-2">
+            <div class="ml-2 pb-2">
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                 Concepto
               </div>
             </div>
 
             @foreach ($pregunta as $key2 => $pregunt)
-            <div class="relative border-b border-gray-200 py-4" x-init="isOpen{{$loop->index}}=false" x-data="{
+            <div class="relative border-b border-gray-200" x-init="isOpen{{$loop->index}}=false" x-data="{
                     isOpen{{$loop->index}}: false, 
                     set(value) {
                       this.isOpen{{$loop->index}} = value;
