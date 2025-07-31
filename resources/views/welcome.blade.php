@@ -431,10 +431,12 @@
       width: 45px;
       height: 45px;
     }
+
     .circle-creer-4 {
       width: 50px;
       height: 50px;
     }
+
     .circle-creer-5 {
       width: 55px;
       height: 55px;
@@ -444,6 +446,7 @@
       width: 60px;
       height: 60px;
     }
+
     .circle-creer-7 {
       width: 65px;
       height: 65px;
@@ -511,7 +514,7 @@
           <div class="p-6">
             <div class="flex items-center">
               <div class="ml-4 text-lg leading-7 font-semibold">
-                <h3 
+                <h3
                   class=" text-danger  ">
                   {{$key}}
                 </h3>
@@ -616,13 +619,13 @@
                         width: 630px;
                         ">
                         @foreach ($pregunt as $key3 => $preg)
-                          @if (round($preg[1]) > 0 )
-                          <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                            <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
-                              {{round($preg[1])}}
-                            </div>
+                        @if (round($preg[1]) > 0 )
+                        <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
+                            {{round($preg[1])}}
                           </div>
-                          @endif
+                        </div>
+                        @endif
 
                         @endforeach
 
@@ -666,6 +669,121 @@
                 </div>
               </div>
 
+
+            </div>
+            @endforeach
+
+            @foreach ($pregunta as $key2 => $pregunt)
+            <div class="card card-body">
+              <!-- LINEA RESUMEN -->
+              <div class="row">
+                <div class="col-2">
+                  Ambiental
+                </div>
+                <div class="col-8">
+                  <!-- fondo gris -->
+                  <div class="row" style="
+                        background: #ccc;    
+                        border-radius: 50px;     
+                        vertical-align: middle;    
+                        align-items: center;
+                        height:30px;
+                        width: 630px;">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                    </div>
+                  </div>
+                  <!-- lineas separadoras -->
+                  <div class="row" style="
+                        top: 0;
+                        position: absolute;
+                        width: 630px;
+                        ">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                      <div style="
+                            height: 60px;
+                            background: #DEDEDE;
+                            width: 2px;"></div>
+                    </div>
+                    <div class="col">
+                      <div style="
+                            height: 60px;
+                            background: #DEDEDE;
+                            width: 2px;"></div>
+                    </div>
+                    <div class="col">
+                      <div style="
+                            height: 60px;
+                            background: #DEDEDE;
+                            width: 2px;"></div>
+                    </div>
+                    <div class="col">
+                      <div style="
+                            height: 60px;
+                            background: #DEDEDE;
+                            width: 2px;"></div>
+                    </div>
+                  </div>
+
+                  <!-- vaciado -->
+
+                  <div class="row align-items-center" style="
+                        top: -10px;
+                        position: absolute;
+                        width: 630px;
+                        ">
+                    @foreach ($pregunt as $key4 => $preg)
+                    <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                      <div class="circle-creer bg-danger text-light circle-creer-5 m-auto">
+                        {{$key4 == 0 ? 'A' : $key4 == 1 ? 'B' : $key4 == 2 ? 'C': $key4 == 3 ? 'D' : $key4 == 4 ? 'E' : ''}}
+                      </div>
+                    </div>
+                    @endforeach
+                  </div>
+
+                  <!-- textos de abajo -->
+                  <div class="row pt-4" style="">
+                    @foreach ($pregunt as $key3 => $preg)
+                    <div class="{{$key3==2 ? 'col-3' : 'col-2'}}">
+                      {{$preg[0]}}
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
+                <div class="col-2 text-right">
+                  Social
+                </div>
+              </div>
+              <!-- TABLA RESUMEN -->
+              <div class="row">
+                <div class="col-10">
+                  RESPUESTA
+                </div>
+                <div class="col-2">
+                  POSICIÓN
+                </div>
+              </div>
+
+              @foreach ($pregunt as $key5 => $preg)
+
+              <div class="row">
+                <div class="col-10">
+                  {{$preg[2]}}
+                </div>
+                <div class="col-2">
+                  {{$key5 == 0 ? 'A' : $key5 == 1 ? 'B' : $key5 == 2 ? 'C': $key5 == 3 ? 'D' : $key5 == 4 ? 'E' : ''}}
+                </div>
+              </div>
+              @endforeach
 
             </div>
             @endforeach
