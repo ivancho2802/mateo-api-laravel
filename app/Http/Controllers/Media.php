@@ -268,7 +268,9 @@ class Media extends Controller
             $conteo = count(MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get());
             $totalResponses = count(MKoboRespuestas::distinct()->count('VALOR')->where(["REFERENCIA", "like", "%Correo%"])->get());
 
+            
             if ($totalResponses > 0) {
+              dd($conteo , $totalResponses);
                 $percentageOptionA = ($conteo / $totalResponses) * 100;
             }
             
