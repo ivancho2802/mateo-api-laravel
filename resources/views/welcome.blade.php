@@ -555,7 +555,7 @@
 
                   <div class="row">
                     <div class="col-2">
-                      Ambiental
+                      {{$pregunt[0][2]}}
                     </div>
                     <div class="col-8">
                       <!-- fondo gris -->
@@ -661,7 +661,7 @@
                       </div>
                     </div>
                     <div class="col-2 text-right">
-                      Social
+                      {{$pregunt[0][3]}}
                     </div>
                   </div>
 
