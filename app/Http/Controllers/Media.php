@@ -140,6 +140,8 @@ class Media extends Controller
     $mkoboformulario = MKoboFormularios::get();
     $mkoborespuesta = MKoboRespuestas::get();
 
+    dd($mkoboformulario);
+
     $preguntas = collect([
       "1. ¿Qué es?: Definición" => [
         "1.1 Naturaleza de la tránsición" => [ //"1.1.1 Frente a estas afirmaciones en cuál se siente más representado",
