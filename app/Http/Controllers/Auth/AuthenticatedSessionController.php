@@ -8,6 +8,7 @@ use App\Models\MKoboRespuestas;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -159,9 +160,7 @@ class AuthenticatedSessionController extends Controller
                     $frase = explode(">", $preg);
                     //dd($frase, $preg, $frase[1]);
 
-                    $resuetas_user =
-                        //where("REFERENCIA", "like", "%Correo%")
-                        MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get();
+                    $resuetas_user = MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get();
 
                     $resuetas_user = collect($resuetas_user)
                         ->where("CAMPO1", $request->email)
