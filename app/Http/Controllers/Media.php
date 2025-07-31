@@ -140,7 +140,7 @@ class Media extends Controller
     $mkoboformulario = MKoboFormularios::get();
     $mkoborespuesta = MKoboRespuestas::get();
 
-    dd($mkoboformulario);
+    dd($mformulario);
 
     $preguntas = collect([
       "1. ¿Qué es?: Definición" => [
