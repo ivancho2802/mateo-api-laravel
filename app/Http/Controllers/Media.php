@@ -266,6 +266,8 @@ class Media extends Controller
           //3 frase limite superior
           $frase = explode(">", $preg);
           //dd($frase, $preg, $frase[1]);
+          $limitinferior = "";
+          $limitsuperior = "";
 
           if (count($frase) > 2) {
             $limitinferior = $frase[2];
