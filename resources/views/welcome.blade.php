@@ -671,11 +671,9 @@
 
 
             </div>
-            @endforeach
+
 
             <h3 class="text-danger">Resumen</h3>
-
-            @foreach ($pregunta as $key2 => $pregunt)
             <div class="card card-body">
               <!-- LINEA RESUMEN -->
               <div class="row">
@@ -766,7 +764,10 @@
                 </div>
               </div>
               <!-- TABLA RESUMEN -->
-              <div class="row">
+              <div class="row" style="
+                  border-width: 1px;
+                  border-color: #ccc;
+              ">
                 <div class="col-10">
                   RESPUESTA
                 </div>
@@ -777,7 +778,10 @@
 
               @foreach ($pregunt as $key5 => $preg)
 
-              <div class="row">
+              <div class="row" style="
+                  border-width: 1px;
+                  border-color: #ccc;
+              ">
                 <div class="col-10">
                   {{$preg[2]}}
                 </div>
@@ -788,8 +792,8 @@
               @endforeach
 
             </div>
-            @endforeach
 
+            @endforeach
 
           </div>
 
