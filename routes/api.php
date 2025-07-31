@@ -73,7 +73,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
   //dd("request", $request->form_response["answers"]);
   //dd("request", $request->form_response["form_id"]);
 
-  /* $m_formulario = MFormulario::updateOrCreate(
+  $m_formulario = MFormulario::updateOrCreate(
     ['ID_M_FORMULARIOS' => $request->form_response["form_id"]],
     [
       'ACCION' => "CREER",
@@ -95,11 +95,11 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
 
   if (!isset($m_formulario_id)) {
     return response()->json(['status' => false, 'message' => "error en la creacion del formulario maestro", "data" => $m_formulario], 503);
-  } */
+  }
   //llamo todas las preguntas de este formulario las desactivo
 
-  /* $creation_failed = [];
-  $count = 0; */
+  $creation_failed = [];
+  $count = 0;
   $definition = collect($request->form_response["definition"]["fields"]);
 
   //dd($definition->where('id', $request->form_response["answers"][0]["field"]["id"])->first()["title"]);
@@ -127,7 +127,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
         "ID_M_KOBO_FORMULARIOS" => $id_kobo_respuesta,
         "_ID" => $id_kobo_respuesta,
         "CAMPO1" => $pregunta,
-        "ID_M_FORMULARIOS" => $id_kobo_respuesta,
+        "ID_M_FORMULARIOS" => $m_formulario_id,
         "ESTATUS" => 1,
         "ID_M_USUARIOS" => 1,
         "created_at" => Carbon\Carbon::now(),
@@ -135,7 +135,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     );
 
     $m_kobo_preguntas = MKoboFormularios::updateOrCreate(
-      ['ID_M_FORMULARIOS' => $id_kobo_respuesta],
+      ['ID_M_FORMULARIOS' => $m_formulario_id],
       $body_m_kobo_preguntas[0]
     );
 
@@ -156,7 +156,7 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
       "REFERENCIA" => $pregunta,
       "VALOR" => $respuesta,
       "ID_M_KOBO_FORMULARIOS" => $preguntas_created->id,
-      "ID_M_FORMULARIOS" => $preguntas_created->id,
+      "ID_M_FORMULARIOS" => $m_formulario_id,
       "ID_M_USUARIOS" => 1,
       "created_at" => Carbon\Carbon::now(),
     ]);
