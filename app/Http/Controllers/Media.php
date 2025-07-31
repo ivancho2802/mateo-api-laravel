@@ -252,7 +252,7 @@ class Media extends Controller
 
     $longText = "3.5.1.5 La transición se fundamenta en las acciones para atender los cambios que se necesitan de forma urgente, independientemente si en el futuro se dé –o no- alguna acción reparadora frente a los impactos del pasado.>Enfoque urgencia climática dominante";
 
-    dd(count(MKoboRespuestas::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%\"', VALOR, '\"%')"))->get()));
+    dd(count(MKoboRespuestas::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get()));
 
     //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
 
