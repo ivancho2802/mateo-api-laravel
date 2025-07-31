@@ -105,6 +105,7 @@ Route::post('/typeform', function (Request $request) {
   $definition = collect($request->form_response["definition"]["fields"]);
 
   //dd($definition->where('id', $request->form_response["answers"][0]["field"]["id"])->first()["title"]);
+  $correo = "";
 
   for ($i = 0; $i < count($request->form_response["answers"]); $i++) {
     //ojo esto actualiza o crea una
@@ -122,14 +123,13 @@ Route::post('/typeform', function (Request $request) {
     $pregunta = $definition->where('id', $object["field"]["id"])->first()["title"];
     $respuesta = $object["text"] ?? "N/A";
 
-    $correo = "";
 
     $posicion = strpos($pregunta, "Correo");
 
-    if ($posicion !== false) { 
+    if ($posicion !== false) {
       $correo = $respuesta;
-    } 
-    
+    }
+
     if (!isset($object["text"]) && isset($object["choice"])) {
       $respuesta = $object["choice"]["label"];
     } elseif (!isset($object["text"]) && !isset($object["choice"])) {
@@ -1095,19 +1095,20 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
     return view('pdf.formulario', ["data" => $dataEnketo->first()]);
 
-      /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
-      return $pdf->download('invoice.pdf'); */
+    /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
+    return $pdf->download('invoice.pdf'); */
 
-      /* [
-          "status" => $response->getStatusCode(),
-          "data" => $response->body(),
-          "json" => $response->json() ,
-          "object" => $response->object() ,
-          "status" => $response->status() ,
-          "successful" => $response->successful() ,
-          "clientError" => $response->clientError() ,
-          //"mkoboformulario" => $formulario->get()
-      ] */;
+    /* [
+        "status" => $response->getStatusCode(),
+        "data" => $response->body(),
+        "json" => $response->json() ,
+        "object" => $response->object() ,
+        "status" => $response->status() ,
+        "successful" => $response->successful() ,
+        "clientError" => $response->clientError() ,
+        //"mkoboformulario" => $formulario->get()
+    ] */
+    ;
   });
 
   Route::get('{id}/exportByid/{token}', [App\Http\Controllers\Kobo::class, 'exportByid']);
