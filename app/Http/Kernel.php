@@ -64,4 +64,16 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+    public function handle(Request $request, Closure $next): Response
+    {
+        // Verifica si tu encabezado personalizado está presente
+        if ($request->hasHeader('Typeform-Signature')) {
+            $customToken = $request->header('Typeform-Signature');
+            // Establece el encabezado Authorization para que Laravel lo procese'Bearer ' . 
+            $request->headers->set('Authorization', $customToken);
+        }
+
+        return $next($request);
+    }
 }

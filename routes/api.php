@@ -118,7 +118,8 @@ Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $reques
     //respuesta
     //$object->text;
     $pregunta = $definition->where('id', $object["field"]["id"])->first()["title"];
-    $respuesta = $object["text"] ?? "N/A";
+    $respuesta = $object["text"] ?? $object["choice"]["label"];
+
     //dd("respuesta", $respuesta);
 
     array_push(
