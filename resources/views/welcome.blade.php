@@ -561,7 +561,7 @@
                         position: absolute;
                         width: 630px;
                         ">
-                        <div class="col" style="    display: ruby;">
+                        <div class="col">
                         </div>
                         <div class="col">
                           <div style="
@@ -569,25 +569,25 @@
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
-                        <div class="col" style="    display: ruby;">
+                        <div class="col">
                           <div style="
                             height: 70px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
-                        <div class="col" style="    display: ruby;">
+                        <div class="col">
                           <div style="
                             height: 70px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
-                        <div class="col" style="    display: ruby;">
+                        <div class="col">
                           <div style="
                             height: 70px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
-                        <div class="col" style="    display: ruby;">
+                        <div class="col">
                           <div style="
                             height: 70px;
                             background: #DEDEDE;
@@ -602,27 +602,27 @@
                         position: absolute;
                         width: 630px;
                         ">
-                        <div class="col">
+                        <div class="col" style="    display: ruby;">
                           <div class="circle-creer bg-danger text-light circle-creer-2">
                             2
                           </div>
                         </div>
-                        <div class="col">
+                        <div class="col" style="    display: ruby;">
                           <div class="circle-creer bg-danger text-light circle-creer-2">
                             2
                           </div>
                         </div>
-                        <div class="col">
+                        <div class="col" style="    display: ruby;">
                           <div class="circle-creer bg-danger text-light circle-creer-6">
                             6
                           </div>
                         </div>
-                        <div class="col">
+                        <div class="col" style="    display: ruby;">
                           <div class="circle-creer bg-danger text-light circle-creer-2">
                             2
                           </div>
                         </div>
-                        <div class="col">
+                        <div class="col" style="    display: ruby;">
                           <div class="circle-creer bg-danger text-light circle-creer-2">
                             2
                           </div>
