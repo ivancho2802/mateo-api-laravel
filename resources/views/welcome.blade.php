@@ -471,7 +471,7 @@
 
               <h3 class=" flow-root">
                 <!-- Expand/collapse section button -->
-                <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400" type="button"  @click="isOpen = !isOpen" type="button" aria-controls="filter-section-0" aria-expanded="false">
+                <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400" type="button" @click="isOpen = !isOpen" type="button" aria-controls="filter-section-0" aria-expanded="false">
                   <span class="font-medium text-light-900">1.1 Naturaleza de la transición</span>
                   <span class="ml-6 flex items-center">
                     <!-- Expand icon, show/hide based on section open state. -->
@@ -483,21 +483,40 @@
                       <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
                     </svg>
                   </span>
-                </button> 
+                </button>
               </h3>
 
               <div class="" id="filter-section-0" x-show="isOpen">
                 <div class="card card-body">
-                  <div class="progress-wrapper">
-                    <div class="progress-info">
-                      <div class="progress-percentage">
-                        <span class="text-sm font-weight-normal">60%</span>
-                      </div>
+
+                  <div class="row">
+                    <div class="col-4">
+                      Ambiental
                     </div>
-                    <div class="progress">
-                      <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                    <div class="col-4">
+
+                      <div>
+                        
+                      </div>
+
+                      <!-- <div class="progress-wrapper">
+                        <div class="progress-info">
+                          <div class="progress-percentage">
+                            <span class="text-sm font-weight-normal">60%</span>
+                          </div>
+                        </div>
+                        <div class="progress">
+                          <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                        </div>
+                      </div> -->
+
+                    </div>
+                    <div class="col-4">
+                      Social
                     </div>
                   </div>
+
+
                 </div>
               </div>
             </div>
