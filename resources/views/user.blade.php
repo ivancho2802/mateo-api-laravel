@@ -509,6 +509,8 @@
 
       <div class="mt-2 bg-white light:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
 
+        <a href="/consulta" class="text-primary">Volver</a>
+        
         @foreach ($preguntapuesta as $key => $pregunta)
         <div class="grid grid-cols-1 md:grid-cols-1">
           <div class="p-6">
