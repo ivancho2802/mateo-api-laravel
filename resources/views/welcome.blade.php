@@ -508,17 +508,17 @@
             </div>
 
             @foreach ($pregunta as $key2 => $pregunt)
-            <div class="relative border-b border-gray-200 py-4" x-init="isOpen{{$key2}}=false" x-data="{
-                    isOpen{{$key2}}: false, 
+            <div class="relative border-b border-gray-200 py-4" x-init="isOpen{{$loop->index}}=false" x-data="{
+                    isOpen{{$loop->index}}: false, 
                     set(value) {
-                      this.isOpen{{$key2}} = value;
+                      this.isOpen{{$loop->index}} = value;
                     }
                   }">
 
               <h3 class=" flow-root">
                 <!-- Expand/collapse section button -->
-                <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400" type="button" @click="isOpen{{$key2}} = !isOpen{{$key2}}" type="button" aria-controls="filter-section-0" aria-expanded="false">
-                  <span class="font-medium text-light-900">{{$key2}}</span>
+                <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400" type="button" @click="isOpen{{$loop->index}} = !isOpen{{$loop->index}}" type="button" aria-controls="filter-section-0" aria-expanded="false">
+                  <span class="font-medium text-light-900">{{$loop->index}}</span>
                   <!-- <span class="ml-6 flex items-center">
                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
@@ -530,7 +530,7 @@
                 </button>
               </h3>
 
-              <div class="" id="filter-section-0" x-show="isOpen{{$key2}}">
+              <div class="" id="filter-section-0" x-show="isOpen{{$loop->index}}">
                 <div class="card card-body">
 
                   <div class="row">
