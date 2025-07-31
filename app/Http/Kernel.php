@@ -65,7 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 
-    public function handle(Request $request, Closure $next): Response
+    /* public function handle(Request $request, Closure $next): Response
     {
         // Verifica si tu encabezado personalizado está presente
         if ($request->hasHeader('Typeform-Signature')) {
@@ -75,5 +75,5 @@ class Kernel extends HttpKernel
         }
 
         return $next($request);
-    }
+    } */
 }

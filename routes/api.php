@@ -66,7 +66,9 @@ Route::get('/querytest', function (Request $request) {
   } */
 });
 
-Route::middleware(['auth:sanctum'])->post('/typeform', function (Request $request) {
+//middleware(['auth:sanctum'])->
+
+Route::post('/typeform', function (Request $request) {
 
   DB::setDefaultConnection('pgsql');
 
