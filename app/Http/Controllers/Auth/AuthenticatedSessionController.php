@@ -175,7 +175,7 @@ class AuthenticatedSessionController extends Controller
                         $posicion = 1;
                     }
 
-                    $arraycount = [$frase[1], $posicion, $frase[0]];
+                    $arraycount = [$frase[1], $resuetas_user, $frase[0]];
                     //frase & count
                     return $arraycount;
                 });
