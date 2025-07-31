@@ -565,37 +565,39 @@
                         </div>
                         <div class="col">
                           <div style="
-                            height: 80px;
+                            height: 70px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
                         <div class="col">
                           <div style="
-                            height: 80px;
+                            height: 70px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
                         <div class="col">
                           <div style="
-                            height: 80px;
+                            height: 70px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
                         <div class="col">
                           <div style="
-                            height: 80px;
+                            height: 70px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
                         <div class="col">
                           <div style="
-                            height: 80px;
+                            height: 70px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
                       </div>
 
-                      <div class="row" style="
+                      <!-- vaciado -->
+
+                      <div class="row align-items-center" style="
                         top: 0;
                         position: absolute;
                         width: 630px;
