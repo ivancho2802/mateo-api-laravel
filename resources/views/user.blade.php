@@ -547,25 +547,25 @@
           </div>
 
           @foreach ($pregunta as $key2 => $pregunt)
-        <div class="relative border-b border-gray-200" x-init="isOpen{{$loop->index}}=false" x-data="{
+          <div class="relative border-b border-gray-200" x-init="isOpen{{$loop->index}}=false" x-data="{
           isOpen{{$loop->index}}: false, 
           set(value) {
-            this.isOpen{{$loop->index}} = value;
+          this.isOpen{{$loop->index}} = value;
           }
           }">
 
           <h3 class=" flow-root">
           <!-- Expand/collapse section button -->
           <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400"
-          type="button" @click="isOpen{{$loop->index}} = !isOpen{{$loop->index}}" type="button"
-          aria-controls="filter-section-0" aria-expanded="false">
-          <span class="font-medium text-light-900">{{$key2}}</span>
-          <!-- <span class="ml-6 flex items-center">
+            type="button" @click="isOpen{{$loop->index}} = !isOpen{{$loop->index}}" type="button"
+            aria-controls="filter-section-0" aria-expanded="false">
+            <span class="font-medium text-light-900">{{$key2}}</span>
+            <!-- <span class="ml-6 flex items-center">
           <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+          <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
           </svg>
           <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
+          <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
           </svg>
           </span> -->
           </button>
@@ -574,19 +574,19 @@
           <div class="" id="filter-section-0" x-show="isOpen{{$loop->index}}">
           <div class="card card-body">
 
-          <div class="row">
-          <div class="col-2">
+            <div class="row">
+            <div class="col-2">
             Ambiental
-          </div>
-          <div class="col-8">
+            </div>
+            <div class="col-8">
             <!-- fondo gris -->
             <div class="row" style="
-            background: #ccc;    
-            border-radius: 50px;     
-            vertical-align: middle;    
-            align-items: center;
-            height:30px;
-            width: 630px;">
+          background: #ccc;    
+          border-radius: 50px;     
+          vertical-align: middle;    
+          align-items: center;
+          height:30px;
+          width: 630px;">
             <div class="col">
             </div>
             <div class="col">
@@ -600,47 +600,47 @@
             </div>
             <!-- lineas separadoras -->
             <div class="row" style="
-            top: 0;
-            position: absolute;
-            width: 630px;
-            ">
+          top: 0;
+          position: absolute;
+          width: 630px;
+          ">
             <div class="col">
             </div>
             <div class="col">
-            <div style="
-            height: 60px;
-            background: #DEDEDE;
-            width: 2px;"></div>
+              <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
             </div>
             <div class="col">
-            <div style="
-            height: 60px;
-            background: #DEDEDE;
-            width: 2px;"></div>
+              <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
             </div>
             <div class="col">
-            <div style="
-            height: 60px;
-            background: #DEDEDE;
-            width: 2px;"></div>
+              <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
             </div>
             <div class="col">
-            <div style="
-            height: 60px;
-            background: #DEDEDE;
-            width: 2px;"></div>
+              <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
             </div>
             </div>
 
             <!-- vaciado -->
 
             <div class="row align-items-center" style="
-            top: -10px;
-            position: absolute;
-            width: 630px;
-            ">
+          top: -10px;
+          position: absolute;
+          width: 630px;
+          ">
             @foreach ($pregunt as $key3 => $preg)
-          @if (round($preg[1]) > 0)
+            @if (round($preg[1]) > 0)
           <div class="col text-center"
           style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
           <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
@@ -649,28 +649,28 @@
           </div>
           @endif
 
-        @endforeach
+          @endforeach
 
             <!-- <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-            <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
-            2
-            </div>
-            </div>
-            <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-            <div class="circle-creer bg-danger text-light circle-creer-6 m-auto">
-            6
-            </div>
-            </div>
-            <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-            <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
-            2
-            </div>
-            </div>
-            <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-            <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
-            2
-            </div>
-            </div> -->
+          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
+          2
+          </div>
+          </div>
+          <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+          <div class="circle-creer bg-danger text-light circle-creer-6 m-auto">
+          6
+          </div>
+          </div>
+          <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
+          2
+          </div>
+          </div>
+          <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
+          2
+          </div>
+          </div> -->
             </div>
 
             <!-- textos de abajo -->
@@ -679,20 +679,20 @@
           <div class="{{$key3 == 2 ? 'col-3' : 'col-2'}}">
           {{$preg[0]}}
           </div>
-        @endforeach
+          @endforeach
             </div>
-          </div>
-          <div class="col-2 text-right">
+            </div>
+            <div class="col-2 text-right">
             Social
-          </div>
-          </div>
+            </div>
+            </div>
 
 
           </div>
           </div>
 
 
-        </div>
+          </div>
         @endforeach
 
           <h3 class="text-danger">Resumen</h3>
@@ -706,12 +706,12 @@
             <div class="col-8">
               <!-- fondo gris -->
               <div class="row" style="
-                background: #ccc;    
-                border-radius: 50px;     
-                vertical-align: middle;    
-                align-items: center;
-                height:30px;
-                width: 630px;">
+            background: #ccc;    
+            border-radius: 50px;     
+            vertical-align: middle;    
+            align-items: center;
+            height:30px;
+            width: 630px;">
               <div class="col">
               </div>
               <div class="col">
@@ -725,45 +725,45 @@
               </div>
               <!-- lineas separadoras -->
               <div class="row" style="
-                top: 0;
-                position: absolute;
-                width: 630px;
-                ">
+            top: 0;
+            position: absolute;
+            width: 630px;
+            ">
               <div class="col">
               </div>
               <div class="col">
                 <div style="
-                  height: 60px;
-                  background: #DEDEDE;
-                  width: 2px;"></div>
+              height: 60px;
+              background: #DEDEDE;
+              width: 2px;"></div>
               </div>
               <div class="col">
                 <div style="
-                  height: 60px;
-                  background: #DEDEDE;
-                  width: 2px;"></div>
+              height: 60px;
+              background: #DEDEDE;
+              width: 2px;"></div>
               </div>
               <div class="col">
                 <div style="
-                  height: 60px;
-                  background: #DEDEDE;
-                  width: 2px;"></div>
+              height: 60px;
+              background: #DEDEDE;
+              width: 2px;"></div>
               </div>
               <div class="col">
                 <div style="
-                  height: 60px;
-                  background: #DEDEDE;
-                  width: 2px;"></div>
+              height: 60px;
+              background: #DEDEDE;
+              width: 2px;"></div>
               </div>
               </div>
 
               <!-- vaciado -->
 
               <div class="row align-items-center" style="
-                top: -10px;
-                position: absolute;
-                width: 630px;
-                ">
+            top: -10px;
+            position: absolute;
+            width: 630px;
+            ">
               @foreach ($pregunt as $key4 => $preg)
           <div class="col text-center"
             style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
@@ -789,9 +789,9 @@
             </div>
             <!-- TABLA RESUMEN -->
             <div class="row" style="
-              border-width: 1px;
-              border-color: #ccc;
-            ">
+            border-width: 1px;
+            border-color: #ccc;
+          ">
             <div class="col-10">
               RESPUESTA
             </div>
@@ -807,10 +807,10 @@
           border-color: #ccc;
           ">
           <div class="col-10">
-          {{$preg[2]}}
+            {{$preg[2]}}
           </div>
           <div class="col-2">
-          {{($loop->index == 0) ? 'A' : (($loop->index == 1) ? 'B' : (($loop->index == 2) ? 'C' : (($loop->index == 3) ? 'D' : (($loop->index == 4) ? 'E' : ''))))}}
+            {{($loop->index == 0) ? 'A' : (($loop->index == 1) ? 'B' : (($loop->index == 2) ? 'C' : (($loop->index == 3) ? 'D' : (($loop->index == 4) ? 'E' : ''))))}}
           </div>
           </div>
         @endforeach
@@ -820,8 +820,8 @@
           </div>
 
           <!-- <div x-data="{ show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show"
-            class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
-            <p class="m-0 text-white">{{ session('success')}}</p>
+          class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
+          <p class="m-0 text-white">{{ session('success')}}</p>
           </div> -->
 
 
