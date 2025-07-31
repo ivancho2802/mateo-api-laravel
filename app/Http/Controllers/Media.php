@@ -275,7 +275,7 @@ class Media extends Controller
             $limitsuperior = $frase[3];
           }
 
-          $conteo = count(MKoboRespuestas::where("VALOR", 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get());
+          $conteo = count(MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get());
           $totalResponses = MKoboRespuestas::where("REFERENCIA", "like", "%Correo%")->distinct()->count('VALOR');
           //$totalResponses = count(MKoboRespuestas::get());
           $percentageOptionA = 0;
