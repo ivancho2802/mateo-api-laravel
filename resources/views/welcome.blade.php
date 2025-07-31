@@ -405,9 +405,41 @@
       width: 6%;
     }
 
-    .circle-creer{
-      border-radius: 50px;
-      border-width: 2px;
+    .circle-creer {
+      border-radius: 50%;
+      border-width: 4px;
+      border-color: #fff;
+      text-align: center;
+    }
+
+    .circle-creer-1 {
+      width: 30px;
+      height: 30px;
+    }
+
+    .circle-creer-2 {
+      width: 40px;
+      height: 40px;
+    }
+
+    .circle-creer-3 {
+      width: 50px;
+      height: 50px;
+    }
+
+    .circle-creer-4 {
+      width: 60px;
+      height: 60px;
+    }
+
+    .circle-creer-5 {
+      width: 70px;
+      height: 70px;
+    }
+
+    .circle-creer-6 {
+      width: 80px;
+      height: 80px;
     }
   </style>
 </head>
@@ -502,19 +534,23 @@
 
                       <div class="row" style="background: #ccc;    border-radius: 50px;">
                         <div class="col">
-                          <div class="circle-creer bg-danger text-light">2</div>
+
                         </div>
                         <div class="col">
-                          
+                          <div class="circle-creer bg-danger text-light circle-creer-2">
+                            <p>2</p>
+                          </div>
                         </div>
                         <div class="col">
-                          6
+                          <div class="circle-creer bg-danger text-light circle-creer-6">
+                            <p>6</p>
+                          </div>
                         </div>
                         <div class="col">
                           2
                         </div>
                         <div class="col">
-                          
+
                         </div>
                       </div>
                     </div>
@@ -535,11 +571,11 @@
               class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
               <p class="m-0 text-white">{{ session('success')}}</p>
             </div> -->
- 
+
 
         </div>
 
- 
+
 
         <div class="grid grid-cols-1 md:grid-cols-2">
 
