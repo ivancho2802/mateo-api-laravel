@@ -160,10 +160,10 @@ class AuthenticatedSessionController extends Controller
                     $frase = explode(">", $preg);
                     //dd($frase, $preg, $frase[1]);
 
-                    $resuetas_user = MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
+                    $resuetas_user = count(MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
                     //$resuetas_user = collect($resuetas_user)
                         ->where("CAMPO1", $request->email)
-                        ->exist();
+                        ->get());
 
                     $arraycount = [$frase[1], $resuetas_user, $frase[0]];
                     //frase & count
