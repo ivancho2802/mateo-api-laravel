@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
     public function store(Request $request)
     {
         //dd($request->email);
-        $mkoborespuesta = MKoboRespuestas::where(["VALOR", $request->email])->get();
+        //$mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)->get();
 
         //dd($mkoborespuesta);
 
