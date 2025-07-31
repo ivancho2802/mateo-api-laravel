@@ -404,6 +404,11 @@
     .ach-icon {
       width: 6%;
     }
+
+    .circle-creer{
+      border-radius: 50px;
+      border-color: #FF5C5C;
+    }
   </style>
 </head>
 
@@ -495,23 +500,25 @@
                     </div>
                     <div class="col-4">
 
-                      <div>
-
+                      <div class="row" style="background: #ccc;    border-radius: 50px;">
+                        <div class="col">
+                          <div class="circle-creer bg-danger">2</div>
+                        </div>
+                        <div class="col">
+                          
+                        </div>
+                        <div class="col">
+                          6
+                        </div>
+                        <div class="col">
+                          2
+                        </div>
+                        <div class="col">
+                          
+                        </div>
                       </div>
-
-                      <!-- <div class="progress-wrapper">
-                        <div class="progress-info">
-                          <div class="progress-percentage">
-                            <span class="text-sm font-weight-normal">60%</span>
-                          </div>
-                        </div>
-                        <div class="progress">
-                          <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                        </div>
-                      </div> -->
-
                     </div>
-                    <div class="col-4">
+                    <div class="col-4 text-right">
                       Social
                     </div>
                   </div>
