@@ -513,11 +513,12 @@
                       this.isOpen = value;
                     }
                   }">
-
+              
+              @foreach ($pregunta as $key2 => $pregunt)
               <h3 class=" flow-root">
                 <!-- Expand/collapse section button -->
                 <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400" type="button" @click="isOpen = !isOpen" type="button" aria-controls="filter-section-0" aria-expanded="false">
-                  <span class="font-medium text-light-900">1.1 Naturaleza de la transición</span>
+                  <span class="font-medium text-light-900">{{$pregunt}}</span>
                   <!-- <span class="ml-6 flex items-center">
                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
@@ -651,6 +652,9 @@
 
                 </div>
               </div>
+
+              @endforeach
+
             </div>
 
 
