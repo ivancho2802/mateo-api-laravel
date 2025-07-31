@@ -462,14 +462,14 @@
               </div>
             </div>
 
-            <div class="relative border-b border-gray-200 py-6" x-init="isOpen=false" x-data="{
+            <div class="relative border-b border-gray-200 py-4" x-init="isOpen=false" x-data="{
                     isOpen: false, 
                     set(value) {
                       this.isOpen = value;
                     }
                   }">
 
-              <h3 class="-my-3 flow-root">
+              <h3 class=" flow-root">
                 <!-- Expand/collapse section button -->
                 <button class="btn btn-primary" type="button"  @click="isOpen = !isOpen" type="button" class="flex w-full text-start justify-between   text-sm text-light-400 hover:text-light-500" aria-controls="filter-section-0" aria-expanded="false">
                   <span class="font-medium text-light-900">1.1 Naturaleza de la transición</span>
