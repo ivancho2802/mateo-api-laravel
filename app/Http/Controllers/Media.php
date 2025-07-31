@@ -250,9 +250,9 @@ class Media extends Controller
       ],
     ]);
 
-    $longText = "3.5.1.5 La transición se fundamenta en las acciones para atender los cambios que se necesitan de forma urgente, independientemente si en el futuro se dé –o no- alguna acción reparadora frente a los impactos del pasado.>Enfoque urgencia climática dominante";
+    //$longText = "3.5.1.5 La transición se fundamenta en las acciones para atender los cambios que se necesitan de forma urgente, independientemente si en el futuro se dé –o no- alguna acción reparadora frente a los impactos del pasado.>Enfoque urgencia climática dominante";
 
-    dd(count(MKoboRespuestas::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get()));
+    //dd(count(MKoboRespuestas::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get()));
 
     //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
 
@@ -261,11 +261,12 @@ class Media extends Controller
         $preguntapuesta_ = $pregunt->map(function ($preg) {
           $frase = implode(">", $preg);
 
-          if (!is_array($preg)) {
+          /* if (!is_array($preg)) {
             $arraycount = [$frase[1], 0];
-          } else {
-            $arraycount = [$frase[1], $preg[1] + 1];
-          }
+          } else { */
+            $conteo = count(MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get());
+            $arraycount = [$frase[1], $conteo];
+          /* } */
           //frase & count
           return $arraycount;
         });
