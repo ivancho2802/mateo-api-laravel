@@ -530,7 +530,7 @@
                 </button>
               </h3>
 
-              <div class="" id="filter-section-0" x-show="isOpen{{$key2}}">
+              <div class="" id="filter-section-0" x-show="isOpen{{$loop->index}}">
                 <div class="card card-body">
 
                   <div class="row">
@@ -599,12 +599,13 @@
                         width: 630px;
                         ">
                         @foreach ($pregunt as $key3 => $preg)
-
-                        <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[0])}} m-auto">
-                            {{round($preg[0])}}
+                          @if ({{round($preg[0]) > 0 }})
+                          <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                            <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[0])}} m-auto">
+                              {{round($preg[0])}}
+                            </div>
                           </div>
-                        </div>
+                          @endif
 
                         @endforeach
 
