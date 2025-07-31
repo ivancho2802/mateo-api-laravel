@@ -159,20 +159,11 @@ class AuthenticatedSessionController extends Controller
                     $frase = explode(">", $preg);
                     //dd($frase, $preg, $frase[1]);
 
-                    $resuetas_user = 
-                    //count(
+                    $resuetas_user =
                         //where("REFERENCIA", "like", "%Correo%")
-                        MKoboRespuestas::where(["CAMPO1", $request->email])
+                        MKoboRespuestas::where("CAMPO1", $request->email)
                         ->where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
                         ->exist();
-                    //);
-                    //$resuetas_user = MKoboRespuestas::->get();
-                    //$totalResponses = count(MKoboRespuestas::get());
-                    $percentageOptionA = 0;
-                    if ($totalResponses > 0) {
-                        //dd($conteo, $totalResponses);
-                        $percentageOptionA = ($conteo / $totalResponses) * 10;
-                    }
 
                     $arraycount = [$frase[1], $resuetas_user, $frase[0]];
                     //frase & count
@@ -183,7 +174,7 @@ class AuthenticatedSessionController extends Controller
             return $pregunta_;
         });
 
-        //dd($preguntapuesta);
+        dd($preguntapuesta);
 
         return view('user', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas]);
     }
