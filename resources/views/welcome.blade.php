@@ -738,6 +738,31 @@
 
           </div>
 
+          <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+            <div class="flex items-center">
+              <i class="ach-icon">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                  <path
+                    d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z" />
+                </svg>
+              </i>
+
+              <div class="ml-4 text-lg leading-7 font-semibold">
+                <a href="/ / " class="underline text-gray-900 dark:text-white">
+
+                </a>
+              </div>
+            </div>
+
+            <div class="ml-12">
+              <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+
+                <br>
+
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
