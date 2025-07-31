@@ -18,9 +18,7 @@ use App\Http\Controllers\Ugic;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\Media::class, 'mateoAnelicaHps']);
 
 
 Route::get('/dashboard', function () {
