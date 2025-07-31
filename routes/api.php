@@ -121,9 +121,10 @@ Route::post('/typeform', function (Request $request) {
     //$object->text;
     $pregunta = $definition->where('id', $object["field"]["id"])->first()["title"];
     $respuesta = $object["text"] ?? "N/A";
+    
     if (!isset($object["text"]) && isset($object["choice"])) {
       $respuesta = $object["choice"]["label"];
-    } else {
+    } elseif (!isset($object["text"]) && !isset($object["choice"])) {
       dd($object);
     }
 
