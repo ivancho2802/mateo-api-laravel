@@ -596,28 +596,28 @@
                         position: absolute;
                         width: 630px;
                         ">
-                        <div class="col text-center" style="     display: inline-block;height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-2">
+                        <div class="col text-center" style="     height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
                             2
                           </div>
                         </div>
-                        <div class="col text-center" style="     display: inline-block;height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-2">
+                        <div class="col text-center" style="     height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
                             2
                           </div>
                         </div>
-                        <div class="col text-center" style="     display: inline-block;height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-6">
+                        <div class="col text-center" style="     height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                          <div class="circle-creer bg-danger text-light circle-creer-6 m-auto">
                             6
                           </div>
                         </div>
-                        <div class="col text-center" style="     display: inline-block;height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-2">
+                        <div class="col text-center" style="     height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
                             2
                           </div>
                         </div>
-                        <div class="col text-center" style="     display: inline-block;height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-2">
+                        <div class="col text-center" style="     height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
                             2
                           </div>
                         </div>
