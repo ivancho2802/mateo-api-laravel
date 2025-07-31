@@ -622,6 +622,29 @@
                           </div>
                         </div>
                       </div>
+                      
+                      <!-- textos de abajo -->
+                      <div class="row" style="
+                        top: 0;
+                        position: absolute;
+                        width: 630px;
+                        ">
+                        <div class="col">
+                          Predominantemente Ambiental
+                        </div>
+                        <div class="col">
+                          Ambiental con enfoque social
+                        </div>
+                        <div class="col">
+                          Enfoque socioambiental
+                        </div>
+                        <div class="col">
+                          Social con Enfoque ambiental
+                        </div>
+                        <div class="col">
+                          Predominante social
+                        </div>
+                      </div>
                     </div>
                     <div class="col-2 text-right">
                       Social
