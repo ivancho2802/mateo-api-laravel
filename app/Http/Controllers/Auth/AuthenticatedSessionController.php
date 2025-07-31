@@ -170,7 +170,7 @@ class AuthenticatedSessionController extends Controller
                     $resuetas_user = count(DB::table('M_KOBO_RESPUESTAS')
                         ->whereRaw("convert_from(convert_to('VALOR', 'LATIN1'), 'UTF8') like ?", ['%' . $preg_ . '%'])
                         //MKoboRespuestas::where("VALOR", 'LIKE', '%'. $preg_. '%')
-                        ->where("CAMPO1", $request->email)
+                        //->where("CAMPO1", $request->email)
                         ->get());
 
                     if ($resuetas_user > 0) {
