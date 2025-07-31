@@ -164,7 +164,7 @@ class AuthenticatedSessionController extends Controller
                     //dd($preg);
                     $frase = explode(">", $preg);
                     $preg_ = $preg.substr(4,-4);
-                    //dd($frase, $preg, $preg_, $request->email);
+                    dd($frase, $preg, $preg_, $request->email);
                     $posicion = -1;
 
                     $resuetas_user = count(MKoboRespuestas::where("VALOR", 'LIKE', '%'. $preg_. '%')
