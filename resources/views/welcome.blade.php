@@ -782,7 +782,7 @@
                   {{$preg[2]}}
                 </div>
                 <div class="col-2">
-                  {{$loop->index == 0 ? 'A' : $loop->index == 1 ? 'B' : $loop->index == 2 ? 'C': $loop->index == 3 ? 'D' : $loop->index == 4 ? 'E' : ''}}
+                  {{($loop->index == 0) ? 'A' : (($loop->index == 1) ? 'B' : (($loop->index == 2) ? 'C': (($loop->index == 3) ? 'D' : (($loop->index == 4) ? 'E' : ''))))}}
                 </div>
               </div>
               @endforeach
