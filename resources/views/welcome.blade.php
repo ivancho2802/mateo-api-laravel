@@ -673,6 +673,8 @@
             </div>
             @endforeach
 
+            <h3 class="text-danger">Resumen</h3>
+
             @foreach ($pregunta as $key2 => $pregunt)
             <div class="card card-body">
               <!-- LINEA RESUMEN -->
@@ -744,7 +746,7 @@
                     @foreach ($pregunt as $key4 => $preg)
                     <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
                       <div class="circle-creer bg-danger text-light circle-creer-5 m-auto">
-                        {{$key4 == 0 ? 'A' : $key4 == 1 ? 'B' : $key4 == 2 ? 'C': $key4 == 3 ? 'D' : $key4 == 4 ? 'E' : ''}}
+                        {{$loop->index == 0 ? 'A' : $loop->index == 1 ? 'B' : $loop->index == 2 ? 'C': $loop->index == 3 ? 'D' : $loop->index == 4 ? 'E' : ''}}
                       </div>
                     </div>
                     @endforeach
@@ -780,7 +782,7 @@
                   {{$preg[2]}}
                 </div>
                 <div class="col-2">
-                  {{$key5 == 0 ? 'A' : $key5 == 1 ? 'B' : $key5 == 2 ? 'C': $key5 == 3 ? 'D' : $key5 == 4 ? 'E' : ''}}
+                  {{$loop->index == 0 ? 'A' : $loop->index == 1 ? 'B' : $loop->index == 2 ? 'C': $loop->index == 3 ? 'D' : $loop->index == 4 ? 'E' : ''}}
                 </div>
               </div>
               @endforeach
