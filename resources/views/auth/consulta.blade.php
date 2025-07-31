@@ -17,6 +17,10 @@
                     <!-- Session Status -->
                     <x-auth-session-status class="mb-4" :status="session('status')" />
 
+                    @error('email')
+                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                    @enderror
+
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
