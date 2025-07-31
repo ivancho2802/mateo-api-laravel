@@ -485,17 +485,18 @@
       <h4 class="text-gray-900 dark:text-white">
         <img src="{{ asset('images/constant_companion.png') }}" alt="Descripción de la imagen">
       </h4>
-      
-      @foreach ($preguntas as  $key => $pregunta)
+
 
       <div class="mt-2 bg-white light:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+        
+        @foreach ($preguntas as $key => $pregunta)
         <div class="grid grid-cols-1 md:grid-cols-1">
           <div class="p-6">
             <div class="flex items-center">
               <div class="ml-4 text-lg leading-7 font-semibold">
                 <a href="#"
                   class="underline text-gray-900 dark:text-white">
-                  {{$key}} 
+                  {{$key}}
                 </a>
               </div>
             </div>
@@ -622,7 +623,7 @@
                           </div>
                         </div>
                       </div>
-                      
+
                       <!-- textos de abajo -->
                       <div class="row pt-4" style="">
                         <div class="col-2">
@@ -662,9 +663,10 @@
 
 
         </div>
+        @endforeach
 
 
-
+        <!-- esto no  -->
         <div class="grid grid-cols-1 md:grid-cols-2">
 
 
@@ -680,7 +682,7 @@
 
               <div class="ml-4 text-lg leading-7 font-semibold">
                 <a href="/ " class="underline text-gray-900 dark:text-white">
-                   
+
                 </a>
               </div>
             </div>
@@ -707,13 +709,13 @@
 
                 <div class="ml-4 text-lg leading-7 font-semibold">
                   <a href="/ " class="underline text-gray-900 dark:text-white">
-                   </a>
+                  </a>
                 </div>
               </div>
 
               <div class="ml-12">
                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                  orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                  orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
                   <br>
 
@@ -736,14 +738,14 @@
 
               <div class="ml-4 text-lg leading-7 font-semibold">
                 <a href="/ / " class="underline text-gray-900 dark:text-white">
-                   
+
                 </a>
               </div>
             </div>
 
             <div class="ml-12">
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                                 orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 
                 <br>
 
@@ -754,7 +756,6 @@
         </div>
       </div>
 
-      @endforeach
 
       <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
         Build v{{ Illuminate\Foundation\Application::VERSION }}
