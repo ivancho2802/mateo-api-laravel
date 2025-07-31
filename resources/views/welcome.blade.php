@@ -495,7 +495,7 @@
               <div class="ml-4 text-lg leading-7 font-semibold">
                 <a href="#"
                   class="underline text-gray-900 dark:text-white">
-                  {{$pregunta->key()}} 
+                  {{collect($pregunta)->key()}} 
                 </a>
               </div>
             </div>
