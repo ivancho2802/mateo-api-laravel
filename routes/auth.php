@@ -35,6 +35,9 @@ Route::middleware('guest')->group(function () {
 
     Route::get('consulta', [AuthenticatedSessionController::class, 'create'])
                 ->name('consulta');
+
+    Route::post('consulta', [AuthenticatedSessionController::class, 'store']);
+
 });
 
 Route::middleware('auth')->group(function () {
