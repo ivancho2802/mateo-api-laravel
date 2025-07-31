@@ -537,8 +537,21 @@
                     </div>
                     <div class="col-4">
 
-                      <div class="row" style="background: #ccc;    border-radius: 50px;     vertical-align: middle;    align-items: center;">
-                        <div class="col-12">
+                      <div class="row" style="
+                        background: #ccc;    
+                        border-radius: 50px;     
+                        vertical-align: middle;    
+                        align-items: center;
+                        height:40px">
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                        </div>
+                        <div class="col">
                         </div>
                       </div>
 
