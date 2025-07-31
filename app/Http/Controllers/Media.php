@@ -271,7 +271,7 @@ class Media extends Controller
 
           if ($totalResponses > 0) {
             //dd($conteo, $totalResponses);
-            $percentageOptionA = ($conteo / $totalResponses) * 100;
+            $percentageOptionA = ($conteo / $totalResponses) * 10;
           }
 
           $arraycount = [$frase[1], $percentageOptionA];

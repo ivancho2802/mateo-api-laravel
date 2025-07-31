@@ -417,49 +417,49 @@
       align-self: center;
     }
 
-    .circle-creer-10 {
+    .circle-creer-1 {
       width: 30px;
       height: 30px;
     }
 
-    .circle-creer-20 {
+    .circle-creer-2 {
       width: 40px;
       height: 40px;
     }
 
-    .circle-creer-30 {
+    .circle-creer-3 {
       width: 45px;
       height: 45px;
     }
-    .circle-creer-40 {
+    .circle-creer-4 {
       width: 50px;
       height: 50px;
     }
-    .circle-creer-50 {
+    .circle-creer-5 {
       width: 55px;
       height: 55px;
     }
 
-    .circle-creer-60 {
+    .circle-creer-6 {
       width: 60px;
       height: 60px;
     }
-    .circle-creer-70 {
+    .circle-creer-7 {
       width: 65px;
       height: 65px;
     }
 
-    .circle-creer-80 {
+    .circle-creer-8 {
       width: 70px;
       height: 70px;
     }
 
-    .circle-creer-90 {
+    .circle-creer-9 {
       width: 75px;
       height: 75px;
     }
 
-    .circle-creer-100 {
+    .circle-creer-10 {
       width: 80px;
       height: 80px;
     }
