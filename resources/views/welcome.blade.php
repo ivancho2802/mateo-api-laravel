@@ -555,10 +555,13 @@
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row" style="
+                        top: 0;
+                        position: absolute;
+                        ">
                         <div class="col">
                           <div style="
-                            height: 100px;
+                            height: 80px;
                             background: #DEDEDE;
                             width: 2px;"></div>
                         </div>
@@ -579,7 +582,10 @@
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row" style="
+                        top: 0;
+                        position: absolute;
+                        ">
                         <div class="col">
 
                         </div>
