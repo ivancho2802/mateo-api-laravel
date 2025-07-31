@@ -629,7 +629,7 @@
                       <div class="row pt-4" style="">
                         @foreach ($pregunt as $key3 => $preg)
                         <div class="{{$key3==2 ? 'col-3' : 'col-2'}}">
-                          {{$preg}}
+                          {{$preg[0]}}
                         </div>
                         @endforeach
                       </div>
