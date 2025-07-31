@@ -121,6 +121,14 @@ Route::post('/typeform', function (Request $request) {
     //$object->text;
     $pregunta = $definition->where('id', $object["field"]["id"])->first()["title"];
     $respuesta = $object["text"] ?? "N/A";
+
+    $correo = "";
+
+    $posicion = strpos($pregunta, "Correo");
+
+    if ($posicion !== false) { 
+      $correo = $respuesta;
+    } 
     
     if (!isset($object["text"]) && isset($object["choice"])) {
       $respuesta = $object["choice"]["label"];
@@ -168,6 +176,7 @@ Route::post('/typeform', function (Request $request) {
       "ID_M_FORMULARIOS" => $m_formulario_id,
       "ID_M_USUARIOS" => 1,
       "created_at" => Carbon\Carbon::now(),
+      "CAMPO1" => $correo
     ]);
     $m_respuestas = MKoboRespuestas::insert($body_respuestas);
 
