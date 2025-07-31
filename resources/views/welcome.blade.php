@@ -536,7 +536,7 @@
                       Ambiental
                     </div>
                     <div class="col-8">
-
+                      <!-- fondo gris -->
                       <div class="row" style="
                         background: #ccc;    
                         border-radius: 50px;     
@@ -555,12 +555,14 @@
                         <div class="col">
                         </div>
                       </div>
-
+                      <!-- lineas separadoras -->
                       <div class="row" style="
                         top: 0;
                         position: absolute;
                         width: 630px;
                         ">
+                        <div class="col">
+                        </div>
                         <div class="col">
                           <div style="
                             height: 80px;
@@ -568,19 +570,28 @@
                             width: 2px;"></div>
                         </div>
                         <div class="col">
-
+                          <div style="
+                            height: 80px;
+                            background: #DEDEDE;
+                            width: 2px;"></div>
                         </div>
                         <div class="col">
-
+                          <div style="
+                            height: 80px;
+                            background: #DEDEDE;
+                            width: 2px;"></div>
                         </div>
                         <div class="col">
-
+                          <div style="
+                            height: 80px;
+                            background: #DEDEDE;
+                            width: 2px;"></div>
                         </div>
                         <div class="col">
-
-                        </div>
-                        <div class="col">
-
+                          <div style="
+                            height: 80px;
+                            background: #DEDEDE;
+                            width: 2px;"></div>
                         </div>
                       </div>
 
