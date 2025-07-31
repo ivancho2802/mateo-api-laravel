@@ -672,8 +672,8 @@
 
             </div>
 
-
             <h3 class="text-danger">Resumen</h3>
+
             <div class="card card-body">
               <!-- LINEA RESUMEN -->
               <div class="row">
@@ -794,6 +794,8 @@
             </div>
 
             @endforeach
+
+
 
           </div>
 
