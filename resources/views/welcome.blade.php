@@ -621,7 +621,7 @@
                         @foreach ($pregunt as $key3 => $preg)
                         @if (round($preg[1]) > 0 )
                         <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
+                          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1]) > 10 ? 10 : round($preg[1])}} m-auto">
                             {{round($preg[3])}}
                           </div>
                         </div>
