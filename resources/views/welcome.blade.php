@@ -746,7 +746,7 @@
                     @foreach ($pregunt as $key4 => $preg)
                     <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
                       <div class="circle-creer bg-danger text-light circle-creer-5 m-auto">
-                        {{$loop->index == 0 ? 'A' : $loop->index == 1 ? 'B' : $loop->index == 2 ? 'C': $loop->index == 3 ? 'D' : $loop->index == 4 ? 'E' : ''}}
+                        {{($loop->index == 0) ? 'A' : (($loop->index == 1) ? 'B' : (($loop->index == 2) ? 'C': (($loop->index == 3) ? 'D' : (($loop->index == 4) ? 'E' : ''))))}}
                       </div>
                     </div>
                     @endforeach
