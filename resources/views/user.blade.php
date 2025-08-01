@@ -553,7 +553,7 @@
           <div class="card card-body">
 
             <div class="row">
-            <div class="col-2 text-bold text-sm">
+            <div class="col-2 text-bold text-sm" style="    font-size: .34rem!important;">
             {{$pregunt[0][4]}}
             </div>
             <div class="col-8 p-0 m-0">
@@ -614,7 +614,7 @@
             </div>
 
             <!-- textos de abajo -->
-            <div class="row pt-4 " style="font-size: .2rem!important">
+            <div class="row pt-4 "  style="    font-size: .34rem!important;">
             @foreach ($pregunt as $key3 => $preg)
           <div class="{{$key3 == 2 ? 'col text-center p-0' : 'col text-center p-0'}}">
           {{$preg[0]}}
@@ -622,7 +622,7 @@
           @endforeach
             </div>
             </div>
-            <div class="col-2 text-right text-bold text-sm">
+            <div class="col-2 text-right text-bold text-sm" style="    font-size: .34rem!important;">
             {{$pregunt[0][5]}}
             </div>
             </div>
