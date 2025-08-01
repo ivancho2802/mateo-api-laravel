@@ -627,7 +627,7 @@
 
                             <table class="row align-items-center" style="
                             top: -10px;
-                            position: absolute;
+                            /* position: absolute; */
                             width: 630px;
                             ">
                               <tr>
