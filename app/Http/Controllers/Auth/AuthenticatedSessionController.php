@@ -180,7 +180,9 @@ class AuthenticatedSessionController extends Controller
                     $respuestas = MKoboRespuestas::get();
 
                     $contine = $respuestas->contains(function ($value, int $key) use ($frase) {
-                        return strtolower(normalizar_cadena($value->VALOR)) === strtolower(normalizar_cadena($frase[0]));
+                        $cadena1 = strtolower(normalizar_cadena($value->VALOR));
+                        $cadena2 = strtolower(normalizar_cadena($frase[0]));
+                        return strpos($cadena1, $cadena2);
                     });
 
                     /* if (strtolower(normalizar_cadena($cadena1)) === strtolower(normalizar_cadena($cadena2))) {
