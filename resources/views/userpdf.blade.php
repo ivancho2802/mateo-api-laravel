@@ -573,10 +573,12 @@
                               <tr>
                                 @foreach ($pregunt as $key3 => $preg)
                                   <td class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                                    <div style="
+                                    <div style="{{
+                                      $loop->index !== 0 && '
                                       height: 60px;
                                       background: #DEDEDE;
-                                      width: 2px;">
+                                      width: 2px;'
+                                      }}">
                                         @if ($preg[1] == true)
                                           <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
                                             {{round($preg[1])}}
@@ -586,6 +588,7 @@
                                   </td>
                                 @endforeach
                               </tr>
+                              
                               <tr>
                                 <td>
 
