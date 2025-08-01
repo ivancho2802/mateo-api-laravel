@@ -182,6 +182,7 @@ class AuthenticatedSessionController extends Controller
                     $contine = $respuestas->contains(function ($value, int $key) use ($frase) {
                         $cadena1 = strtolower(normalizar_cadena($value->VALOR));
                         $cadena2 = strtolower(normalizar_cadena($frase[0]));
+                        dd($cadena1, $cadena2);
                         return strpos($cadena1, $cadena2);
                     });
 
