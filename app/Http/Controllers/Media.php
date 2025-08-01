@@ -311,7 +311,7 @@ class Media extends Controller
 
     $preguntas = collect([
       "¿Qué es?: Definición" => [
-        "Naturaleza de la tránsición" => [ //"1.1.1 Frente a estas afirmaciones en cuál se siente más representado",
+        "Naturaleza de la transición" => [ //"1.1.1 Frente a estas afirmaciones en cuál se siente más representado",
           "Lo más importante en la transición es proteger los ecosistemas, incluso por encima de las necesidades humanas inmediatas.>Predominante Ambiental>AMBIENTAL>SOCIAL", // e: Social 
           "Debemos cuidar el ambiente, pero sin olvidar a las personas que pueden verse afectadas por los cambios.>Ambiental con enfoque social", // B	10: Ambiental 50: Social 
           "La transición debe cuidar tanto la naturaleza como a las personas al mismo tiempo.>Enfoque socioambiental", // 	C	10: Ambiental50: Social 

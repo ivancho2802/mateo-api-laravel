@@ -579,7 +579,7 @@
                                       background: #DEDEDE;
                                       width: 2px;': '
                                       height: 60px;
-                                      background: #ffffff;
+                                      background: #333333;
                                       width: 2px;'
                                       }}">
                                         @if ($preg[1] == true)
