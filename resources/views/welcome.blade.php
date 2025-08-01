@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Laravel</title>
+  <title>Creer</title>
 
 
   @extends('layouts.user_type.guest')
@@ -473,34 +473,20 @@
 
 
   <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-    <!-- @if (Route::has('login'))
-    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-      @auth
-      <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-      @else
-      <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-
-      @if (Route::has('register'))
-      <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-      @endif
-      @endif
-    </div>
-    @endif -->
-
 
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
 
       <div class="flex justify-center  sm:justify-center sm:pt-0 bg-white ">
         @if(Auth::user())
-        <p>Bienvenido(a) {{ Auth::user()->name }}</p>
-        @endif
+      <p>Bienvenido(a) {{ Auth::user()->name }}</p>
+    @endif
       </div>
 
       @if(session()->has('success'))
       <div class="flex justify-center  sm:justify-center sm:pt-0 bg-white ">
-        <p class="m-0 text-white">{{ session('success')}}</p>
+      <p class="m-0 text-white">{{ session('success')}}</p>
       </div>
-      @endif
+    @endif
 
       <h4 class="text-gray-900 dark:text-white">
         <img src="{{ asset('images/constant_companion.png') }}" alt="Descripción de la imagen">
@@ -512,298 +498,268 @@
         @foreach ($preguntapuesta as $key => $pregunta)
         <div class="grid grid-cols-1 md:grid-cols-1">
           <div class="p-6">
-            <div class="flex items-center">
-              <div class="ml-4 text-lg leading-7 font-semibold">
-                <h3
-                  class=" text-danger  ">
-                  {{$key}}
-                </h3>
-              </div>
+          <div class="flex items-center">
+            <div class="ml-4 text-lg leading-7 font-semibold">
+            <h3 class=" text-danger  ">
+              {{$key}}
+            </h3>
+            </div>
+          </div>
+
+          <div class="ml-2 pb-2">
+            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+            Concepto
+            </div>
+          </div>
+
+          @foreach ($pregunta as $key2 => $pregunt)
+          <div class="relative border-b border-gray-200" x-init="isOpen{{$loop->index}}=false" x-data="{
+          isOpen{{$loop->index}}: false, 
+          set(value) {
+          this.isOpen{{$loop->index}} = value;
+          }
+          }">
+
+          <h3 class=" flow-root">
+          <!-- Expand/collapse section button -->
+          <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400"
+            type="button" @click="isOpen{{$loop->index}} = !isOpen{{$loop->index}}" type="button"
+            aria-controls="filter-section-0" aria-expanded="false">
+            <span class="font-medium text-light-900">{{$key2}}</span>
+          </button>
+          </h3>
+
+          <div class="" id="filter-section-0" x-show="isOpen{{$loop->index}}">
+          <div class="card card-body">
+
+            <div class="row">
+            <div class="col-2">
+            {{$pregunt[0][4]}}
+            </div>
+            <div class="col-8">
+            <!-- fondo gris -->
+            <div class="row" style="
+          background: #ccc;    
+          border-radius: 50px;     
+          vertical-align: middle;    
+          align-items: center;
+          height:30px;
+          width: 630px;">
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            </div>
+            <!-- lineas separadoras -->
+            <div class="row" style="
+          top: 0;
+          position: absolute;
+          width: 630px;
+          ">
+            <div class="col">
+            </div>
+            <div class="col">
+              <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
+            </div>
+            <div class="col">
+              <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
+            </div>
+            <div class="col">
+              <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
+            </div>
+            <div class="col">
+              <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
+            </div>
             </div>
 
-            <div class="ml-2 pb-2">
-              <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                Concepto
-              </div>
-            </div>
+            <!-- vaciado -->
 
-            @foreach ($pregunta as $key2 => $pregunt)
-            <div class="relative border-b border-gray-200" x-init="isOpen{{$loop->index}}=false" x-data="{
-                    isOpen{{$loop->index}}: false, 
-                    set(value) {
-                      this.isOpen{{$loop->index}} = value;
-                    }
-                  }">
+            <div class="row align-items-center" style="
+          top: -10px;
+          position: absolute;
+          width: 630px;
+          ">
+            @foreach ($pregunt as $key3 => $preg)
+            @if (round($preg[1]) > 0)
+          <div class="col text-center"
+          style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+          <div
+          class="circle-creer bg-danger text-light circle-creer-{{round($preg[1]) > 10 ? 10 : round($preg[1])}} m-auto">
+          {{round($preg[3])}}
+          </div>
+          </div>
+          @endif
 
-              <h3 class=" flow-root">
-                <!-- Expand/collapse section button -->
-                <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400" type="button" @click="isOpen{{$loop->index}} = !isOpen{{$loop->index}}" type="button" aria-controls="filter-section-0" aria-expanded="false">
-                  <span class="font-medium text-light-900">{{$key2}}</span>
-                  <!-- <span class="ml-6 flex items-center">
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                    </svg>
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
-                    </svg>
-                  </span> -->
-                </button>
-              </h3>
-
-              <div class="" id="filter-section-0" x-show="isOpen{{$loop->index}}">
-                <div class="card card-body">
-
-                  <div class="row">
-                    <div class="col-2">
-                      {{$pregunt[0][4]}}
-                    </div>
-                    <div class="col-8">
-                      <!-- fondo gris -->
-                      <div class="row" style="
-                        background: #ccc;    
-                        border-radius: 50px;     
-                        vertical-align: middle;    
-                        align-items: center;
-                        height:30px;
-                        width: 630px;">
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                        </div>
-                      </div>
-                      <!-- lineas separadoras -->
-                      <div class="row" style="
-                        top: 0;
-                        position: absolute;
-                        width: 630px;
-                        ">
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                          <div style="
-                            height: 60px;
-                            background: #DEDEDE;
-                            width: 2px;"></div>
-                        </div>
-                        <div class="col">
-                          <div style="
-                            height: 60px;
-                            background: #DEDEDE;
-                            width: 2px;"></div>
-                        </div>
-                        <div class="col">
-                          <div style="
-                            height: 60px;
-                            background: #DEDEDE;
-                            width: 2px;"></div>
-                        </div>
-                        <div class="col">
-                          <div style="
-                            height: 60px;
-                            background: #DEDEDE;
-                            width: 2px;"></div>
-                        </div>
-                      </div>
-
-                      <!-- vaciado -->
-
-                      <div class="row align-items-center" style="
-                        top: -10px;
-                        position: absolute;
-                        width: 630px;
-                        ">
-                        @foreach ($pregunt as $key3 => $preg)
-                        @if (round($preg[1]) > 0 )
-                        <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1]) > 10 ? 10 : round($preg[1])}} m-auto">
-                            {{round($preg[3])}}
-                          </div>
-                        </div>
-                        @endif
-
-                        @endforeach
-
-                        <!-- <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
-                            2
-                          </div>
-                        </div>
-                        <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-6 m-auto">
-                            6
-                          </div>
-                        </div>
-                        <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
-                            2
-                          </div>
-                        </div>
-                        <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
-                            2
-                          </div>
-                        </div> -->
-                      </div>
-
-                      <!-- textos de abajo -->
-                      <div class="row pt-4" style="">
-                        @foreach ($pregunt as $key3 => $preg)
-                        <div class="{{$key3==2 ? 'col-3' : 'col-2'}}">
-                          {{$preg[0]}}
-                        </div>
-                        @endforeach
-                      </div>
-                    </div>
-                    <div class="col-2 text-right">
-                      {{$pregunt[0][5]}}
-                    </div>
-                  </div>
-
-
-                </div>
-              </div>
-
+          @endforeach
 
             </div>
-            @endforeach
 
-            <h3 class="text-danger">Resumen</h3>
-
-            <div class="card card-body">
-              <!-- LINEA RESUMEN -->
-              <div class="row">
-                <div class="col-2">
-                  Ambiental
-                </div>
-                <div class="col-8">
-                  <!-- fondo gris -->
-                  <div class="row" style="
-                        background: #ccc;    
-                        border-radius: 50px;     
-                        vertical-align: middle;    
-                        align-items: center;
-                        height:30px;
-                        width: 630px;">
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                    </div>
-                  </div>
-                  <!-- lineas separadoras -->
-                  <div class="row" style="
-                        top: 0;
-                        position: absolute;
-                        width: 630px;
-                        ">
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                      <div style="
-                            height: 60px;
-                            background: #DEDEDE;
-                            width: 2px;"></div>
-                    </div>
-                    <div class="col">
-                      <div style="
-                            height: 60px;
-                            background: #DEDEDE;
-                            width: 2px;"></div>
-                    </div>
-                    <div class="col">
-                      <div style="
-                            height: 60px;
-                            background: #DEDEDE;
-                            width: 2px;"></div>
-                    </div>
-                    <div class="col">
-                      <div style="
-                            height: 60px;
-                            background: #DEDEDE;
-                            width: 2px;"></div>
-                    </div>
-                  </div>
-
-                  <!-- vaciado -->
-
-                  <div class="row align-items-center" style="
-                        top: -10px;
-                        position: absolute;
-                        width: 630px;
-                        ">
-                    @foreach ($pregunt as $key4 => $preg)
-                    <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                      <div class="circle-creer bg-danger text-light circle-creer-5 m-auto">
-                        {{($loop->index == 0) ? 'A' : (($loop->index == 1) ? 'B' : (($loop->index == 2) ? 'C': (($loop->index == 3) ? 'D' : (($loop->index == 4) ? 'E' : ''))))}}
-                      </div>
-                    </div>
-                    @endforeach
-                  </div>
-
-                  <!-- textos de abajo -->
-                  <div class="row pt-4" style="">
-                    @foreach ($pregunt as $key3 => $preg)
-                    <div class="{{$key3==2 ? 'col-3' : 'col-2'}}">
-                      {{$preg[0]}}
-                    </div>
-                    @endforeach
-                  </div>
-                </div>
-                <div class="col-2 text-right">
-                  Social
-                </div>
-              </div>
-              <!-- TABLA RESUMEN -->
-              <div class="row" style="
-                  border-width: 1px;
-                  border-color: #ccc;
-              ">
-                <div class="col-10">
-                  RESPUESTA
-                </div>
-                <div class="col-2">
-                  POSICIÓN
-                </div>
-              </div>
-
-              @foreach ($pregunt as $key5 => $preg)
-
-              <div class="row" style="
-                  border-width: 1px;
-                  border-color: #ccc;
-              ">
-                <div class="col-10">
-                  {{$preg[2]}}
-                </div>
-                <div class="col-2">
-                  {{($loop->index == 0) ? 'A' : (($loop->index == 1) ? 'B' : (($loop->index == 2) ? 'C': (($loop->index == 3) ? 'D' : (($loop->index == 4) ? 'E' : ''))))}}
-                </div>
-              </div>
-              @endforeach
-
+            <!-- textos de abajo -->
+            <div class="row pt-4" style="">
+            @foreach ($pregunt as $key3 => $preg)
+          <div class="{{$key3 == 2 ? 'col-3' : 'col-2'}}">
+          {{$preg[0]}}
+          </div>
+          @endforeach
             </div>
+            </div>
+            <div class="col-2 text-right">
+            {{$pregunt[0][5]}}
+            </div>
+            </div>
+
+
+          </div>
+          </div>
+
+
+          </div>
+        @endforeach
+
+          <!-- LINEA RESUMEN -->
+          <!-- <h3 class="text-danger">Resumen</h3>
+
+          <div class="card card-body">
+          <div class="row">
+          <div class="col-2">
+            Ambiental
+          </div>
+          <div class="col-8">
+            <div class="row fondo gris" style="
+          background: #ccc;    
+          border-radius: 50px;     
+          vertical-align: middle;    
+          align-items: center;
+          height:30px;
+          width: 630px;">
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+            </div>
+            </div>
+            <div class="row lineas separadoras" style="
+          top: 0;
+          position: absolute;
+          width: 630px;
+          ">
+            <div class="col">
+            </div>
+            <div class="col">
+            <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
+            </div>
+            <div class="col">
+            <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
+            </div>
+            <div class="col">
+            <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
+            </div>
+            <div class="col">
+            <div style="
+          height: 60px;
+          background: #DEDEDE;
+          width: 2px;"></div>
+            </div>
+            </div>
+
+            <div class="row align-items-center vaciado" style="
+          top: -10px;
+          position: absolute;
+          width: 630px;
+          ">
+            @foreach ($pregunt as $key4 => $preg)
+          <div class="col text-center"
+          style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+          <div class="circle-creer bg-danger text-light circle-creer-5 m-auto">
+          {{($loop->index == 0) ? 'A' : (($loop->index == 1) ? 'B' : (($loop->index == 2) ? 'C' : (($loop->index == 3) ? 'D' : (($loop->index == 4) ? 'E' : ''))))}}
+          </div>
+          </div>
+          @endforeach
+            </div>
+
+            <div class="row pt-4 textos de abajo" style="">
+            @foreach ($pregunt as $key3 => $preg)
+          <div class="{{$key3 == 2 ? 'col-3' : 'col-2'}}">
+          {{$preg[0]}}
+          </div>
+          @endforeach
+            </div>
+          </div>
+          <div class="col-2 text-right">
+            Social
+          </div>
+          </div>
+          <div class="row TABLA RESUMEN" style="
+          border-width: 1px;
+          border-color: #ccc;
+          ">
+          <div class="col-10">
+            RESPUESTA
+          </div>
+          <div class="col-2">
+            POSICIÓN
+          </div>
+          </div>
+
+          @foreach ($pregunt as $key5 => $preg)
+
+          <div class="row" style="
+          border-width: 1px;
+          border-color: #ccc;
+          ">
+          <div class="col-10">
+          {{$preg[2]}}
+          </div>
+          <div class="col-2">
+          {{($loop->index == 0) ? 'A' : (($loop->index == 1) ? 'B' : (($loop->index == 2) ? 'C' : (($loop->index == 3) ? 'D' : (($loop->index == 4) ? 'E' : ''))))}}
+          </div>
+          </div>
+        @endforeach
+
+          </div> -->
 
           </div>
 
           <!-- <div x-data="{ show: true}" x-init="setTimeout(() => show = false, 4000)" x-show="show"
-              class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
-              <p class="m-0 text-white">{{ session('success')}}</p>
-            </div> -->
+          class="position-fixed bg-success rounded top-3 text-sm py-2 px-4">
+          <p class="m-0 text-white">{{ session('success')}}</p>
+          </div> -->
 
 
         </div>
-        @endforeach
+    @endforeach
 
 
         <!-- esto no  -->
@@ -883,7 +839,12 @@
 
             <div class="ml-12">
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.
 
                 <br>
 
