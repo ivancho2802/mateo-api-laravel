@@ -157,6 +157,12 @@ class AuthenticatedSessionController extends Controller
 
         //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
 
+        function normalizar_cadena($cadena)
+        {
+            // Normaliza la cadena y convierte los caracteres especiales a ASCII
+            return transliterator_transliterate('Any-Latin; Latin-ASCII;', $cadena);
+        }
+
         $preguntapuesta = $preguntas->map(function ($pregunta) use ($request) {
             $pregunta_ = collect($pregunta)->map(function ($pregunt) use ($request) {
 
@@ -167,17 +173,29 @@ class AuthenticatedSessionController extends Controller
                     //dd($frase, $preg, $preg_, $request->email);
                     $posicion = -1;
 
-                    $resuetas_user = count(DB::table('M_KOBO_RESPUESTAS')
-                        ->whereRaw("convert_from(convert_to('VALOR', 'LATIN1'), 'UTF8') like ?", ['%' . $preg_ . '%'])
+                    //MKoboRespuestas::where("VALOR", 'LIKE', '%'. $preg_. '%')
+                    //->where("CAMPO1", $request->email)
+                    //VALOR', 'LATIN1'), 'UTF8') like ?", ['%' . $preg_ . '%'])
+                    //->where("CAMPO1", $request->email)
+                    $respuestas = MKoboRespuestas::get();
+
+                    $contine = $respuestas->contains(function ($value, int $key) use ($frase) {
+                        return strtolower(normalizar_cadena($value->VALOR)) === strtolower(normalizar_cadena($frase[0]));
+                    });
+
+                    /* if (strtolower(normalizar_cadena($cadena1)) === strtolower(normalizar_cadena($cadena2))) {
+                        echo "Las cadenas son iguales.";
+                    } else {
+                        echo "Las cadenas no coinciden.";
+                    } */
+
+                    /* $resuetas_user = count(MKoboRespuestas::where("VALOR", 'LIKE', '%' . $preg_ . '%')//DB::table('M_KOBO_RESPUESTAS')
+                        //->whereRaw("convert_from(convert_to('VALOR', 'LATIN1'), 'UTF8') like ?", ['%' . $preg_ . '%'])
                         //MKoboRespuestas::where("VALOR", 'LIKE', '%'. $preg_. '%')
                         //->where("CAMPO1", $request->email)
-                        ->get());
+                        ->get()); */
 
-                    if ($resuetas_user > 0) {
-                        $posicion = 1;
-                    }
-
-                    $arraycount = [$frase[1], $resuetas_user, $frase[0]];
+                    $arraycount = [$frase[1], $contine, $frase[0]];
                     //frase & count
                     return $arraycount;
                 });
