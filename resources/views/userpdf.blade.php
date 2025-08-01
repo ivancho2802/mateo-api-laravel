@@ -577,7 +577,10 @@
                                       ($loop->index > 0) ? '
                                       height: 60px;
                                       background: #DEDEDE;
-                                      width: 2px;': ''
+                                      width: 2px;': '
+                                      height: 60px;
+                                      background: #ffffff;
+                                      width: 2px;'
                                       }}">
                                         @if ($preg[1] == true)
                                           <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
@@ -630,7 +633,7 @@
 
                             <!-- vaciado -->
 
-                            <table class="row align-items-center" style="
+                            <!-- <table class="row align-items-center" style="
                             top: -10px;
                             /* position: absolute; */
                             width: 630px;
@@ -646,7 +649,7 @@
                                   </td>
                                 @endforeach
                               </tr>
-                            </table>
+                            </table> -->
 
                             <!-- textos de abajo -->
                             <table class="row pt-4 text-sm" style="">
