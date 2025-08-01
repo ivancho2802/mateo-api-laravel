@@ -595,7 +595,7 @@
 
             <!-- vaciado -->
 
-            <div class="row align-items-center" style="
+            <div class="row align-items-center m-auto" style="
           top: -10px;
           position: absolute;
           width: 15rem;
