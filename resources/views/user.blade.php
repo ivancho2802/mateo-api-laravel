@@ -556,9 +556,9 @@
             <div class="col-2 text-bold text-sm">
             {{$pregunt[0][4]}}
             </div>
-            <div class="col-8">
+            <div class="col-8 p-0 m-0">
             <!-- fondo gris -->
-            <div class="row" style="
+          <div class="row" style="
           background: #ccc;    
           border-radius: 50px;     
           vertical-align: middle;    
@@ -566,47 +566,34 @@
           height:30px;
           width: 100%;">
             <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            </div>
-            <!-- lineas separadoras -->
-            <div class="row" style="
-          top: 0;
-          position: absolute;
-          width: 100%;
-          ">
-            <div class="col">
+              <div style="
+              height: 60px;
+              background: #DEDEDE;
+              width: 2px;"></div>
             </div>
             <div class="col">
               <div style="
-          height: 60px;
-          background: #DEDEDE;
-          width: 2px;"></div>
+              height: 60px;
+              background: #DEDEDE;
+              width: 2px;"></div>
             </div>
             <div class="col">
               <div style="
-          height: 60px;
-          background: #DEDEDE;
-          width: 2px;"></div>
+              height: 60px;
+              background: #DEDEDE;
+              width: 2px;"></div>
             </div>
             <div class="col">
               <div style="
-          height: 60px;
-          background: #DEDEDE;
-          width: 2px;"></div>
+              height: 60px;
+              background: #DEDEDE;
+              width: 2px;"></div>
             </div>
             <div class="col">
               <div style="
-          height: 60px;
-          background: #DEDEDE;
-          width: 2px;"></div>
+              height: 60px;
+              background: #DEDEDE;
+              width: 2px;"></div>
             </div>
             </div>
 
