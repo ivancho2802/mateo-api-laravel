@@ -169,7 +169,7 @@
     }
 
     .max-w-6xl {
-      max-width: 72rem
+      max-width: 100rem
     }
 
     .min-h-screen {
@@ -570,11 +570,40 @@
                               height:30px;
                               width: 630px;">
                               <tr>
-                                <td class="col"></td>
-                                <td class="col"></td>
-                                <td class="col"></td>
-                                <td class="col"></td>
-                                <td class="col"></td>
+                                <td>
+                                  <div class="col">
+                                    <div style="
+                                      height: 60px;
+                                      background: #DEDEDE;
+                                      width: 2px;"></div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="col">
+                                    <div style="
+                                      height: 60px;
+                                      background: #DEDEDE;
+                                      width: 2px;"></div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="col">
+                                    <div style=" height: 60px; 
+                                    background: #DEDEDE;
+                                    width: 2px;"></div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="col">
+                                    <div style="
+                                    height: 60px;
+                                    background: #DEDEDE;
+                                    width: 2px;"></div>
+                                  </div>
+                                </td>
+                                <td>
+
+                                </td>
                               </tr>
                             </table>
 
