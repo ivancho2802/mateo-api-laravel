@@ -567,8 +567,8 @@
           <div class="card card-body">
 
             <div class="row">
-            <div class="col-2">
-            Ambiental
+            <div class="col-2 text-bold">
+            {{$pregunt[0][4]}}
             </div>
             <div class="col-8">
             <!-- fondo gris -->
@@ -645,16 +645,16 @@
             </div>
 
             <!-- textos de abajo -->
-            <div class="row pt-4" style="">
+            <div class="row pt-4 text-sm" style="">
             @foreach ($pregunt as $key3 => $preg)
-          <div class="{{$key3 == 2 ? 'col-3' : 'col-2'}}">
+          <div class="{{$key3 == 2 ? 'col text-center' : 'col text-center'}}">
           {{$preg[0]}}
           </div>
           @endforeach
             </div>
             </div>
-            <div class="col-2 text-right">
-            Social
+            <div class="col-2 text-right text-bold">
+            {{$pregunt[0][5]}}
             </div>
             </div>
 
