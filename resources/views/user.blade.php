@@ -601,7 +601,7 @@
           width: 15rem;
           ">
             @foreach ($pregunt as $key3 => $preg)
-            <div class="col text-center"
+            <div class="col text-center p-0"
             style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
             @if ($preg[1] == true)
           <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
@@ -616,7 +616,7 @@
             <!-- textos de abajo -->
             <div class="row pt-4 " style="font-size: .2rem!important">
             @foreach ($pregunt as $key3 => $preg)
-          <div class="{{$key3 == 2 ? 'col text-center' : 'col text-center'}}">
+          <div class="{{$key3 == 2 ? 'col text-center p-0' : 'col text-center p-0'}}">
           {{$preg[0]}}
           </div>
           @endforeach
