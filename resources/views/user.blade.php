@@ -565,27 +565,27 @@
           align-items: center;
           height:30px;
           width: 100%;">
-            <div class="col">
+            <div class="col p-0">
             </div>
-            <div class="col">
+            <div class="col p-0">
               <div style="
               height: 30px;
               background: #DEDEDE;
               width: 2px;"></div>
             </div>
-            <div class="col">
+            <div class="col p-0">
               <div style="
               height: 30px;
               background: #DEDEDE;
               width: 2px;"></div>
             </div>
-            <div class="col">
+            <div class="col p-0">
               <div style="
               height: 30px;
               background: #DEDEDE;
               width: 2px;"></div>
             </div>
-            <div class="col">
+            <div class="col p-0">
               <div style="
               height: 30px;
               background: #DEDEDE;
@@ -598,7 +598,7 @@
             <div class="row align-items-center" style="
           top: -10px;
           position: absolute;
-          width: 100%;
+          width: 15rem;
           ">
             @foreach ($pregunt as $key3 => $preg)
             <div class="col text-center"
@@ -647,95 +647,9 @@
     @endforeach
 
 
-        <!-- esto no  -->
-        <div class="grid grid-cols-1 md:grid-cols-2">
-
-
-          <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-            <div class="flex items-center">
-              <i class="ach-icon">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                  <path
-                    d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z" />
-                </svg>
-              </i>
-
-              <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="/ " class="underline text-gray-900 dark:text-white">
-
-                </a>
-              </div>
-            </div>
-
-            <div class="ml-12">
-              <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm w-full">
-              </div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-1">
-
-
-            <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-              <div class="flex items-center">
-                <i class="ach-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                    <path
-                      d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z" />
-                  </svg>
-                </i>
-
-                <div class="ml-4 text-lg leading-7 font-semibold">
-                  <a href="/ " class="underline text-gray-900 dark:text-white">
-                  </a>
-                </div>
-              </div>
-
-              <div class="ml-12">
-                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm w-full">
-
-                  <br>
-
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-
-          <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-            <div class="flex items-center">
-              <i class="ach-icon">
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                  <path
-                    d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z" />
-                </svg>
-              </i>
-
-              <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="/ / " class="underline text-gray-900 dark:text-white">
-
-                </a>
-              </div>
-            </div>
-
-            <div class="ml-12">
-              <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm"><br>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <!-- esto no  --> 
       </div>
-
-
-      <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-        Build v{{ Illuminate\Foundation\Application::VERSION }}
-      </div>
+ 
     </div>
   </div>
   </div>
