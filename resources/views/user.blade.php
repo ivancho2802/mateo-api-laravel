@@ -567,7 +567,7 @@
           <div class="card card-body">
 
             <div class="row">
-            <div class="col-2 text-bold">
+            <div class="col-2 text-bold text-sm">
             {{$pregunt[0][4]}}
             </div>
             <div class="col-8">
@@ -645,7 +645,7 @@
             </div>
 
             <!-- textos de abajo -->
-            <div class="row pt-4 text-sm" style="">
+            <div class="row pt-4 " style=".7rem!important">
             @foreach ($pregunt as $key3 => $preg)
           <div class="{{$key3 == 2 ? 'col text-center' : 'col text-center'}}">
           {{$preg[0]}}
@@ -653,7 +653,7 @@
           @endforeach
             </div>
             </div>
-            <div class="col-2 text-right text-bold">
+            <div class="col-2 text-right text-bold text-sm">
             {{$pregunt[0][5]}}
             </div>
             </div>
@@ -754,15 +754,7 @@
             </div>
 
             <div class="ml-12">
-              <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                software like Aldus PageMaker including versions of Lorem Ipsum.
-
-                <br>
+              <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm"><br>
 
               </div>
             </div>

@@ -114,7 +114,7 @@ class AuthenticatedSessionController extends Controller
             ],
             "¿Cómo?: Proceso" => [
                 "Toma de decisiones" => [ //3.1.1 Frente a estas afirmaciones en cuál se siente más representado
-                    "Las decisiones sobre la transición deben ser tomadas por expertos y autoridades centrales, ya que requieren conocimientos técnicos y visión global.>Tecnocrática y centralizada>NIVEL CENTRAL/TÉCNICO >NIVEL LOCAL/PARTICIPATIVO",  //.	10	10: Nivel central y técnico 50: Nivel local y participativo
+                    "Las decisiones sobre la transición deben ser tomadas por expertos y autoridades centrales, ya que requieren conocimientos técnicos y visión global.>Tecnocrática y centralizada>NIVEL CENTRAL/TÉCNICO >NIVEL LOCAL/ PARTICIPATIVO",  //.	10	10: Nivel central y técnico 50: Nivel local y participativo
                     "El Estado debe liderar la transición, incorporando aportes de otros sectores a través de mecanismos consultivos, sin perder la dirección técnica del proceso.>Institucional con consulta acotada  ", //.	20	10: Nivel central y técnico 50: Nivel local y participativo
                     "Las decisiones deben ser producto del diálogo entre Estado, empresas, comunidades y sociedad civil, con mecanismos reales de corresponsabilidad.>Decisiones compartidas y multiactor", //.	30	10: Nivel central y técnico  50: Nivel local y participativo
                     "Las decisiones deben construirse desde los territorios y con participación activa de los actores locales, articulando saberes y prioridades diversas, con participación de la institucionalidad.>Participativa desde territorios ", //.	40	10: Nivel central y técnico  50: Nivel local y participativo
