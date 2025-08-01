@@ -488,7 +488,7 @@
     @endif -->
 
 
-    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto sm:px-6 lg:px-4">
 
       <div class="flex justify-center  sm:justify-center sm:pt-0 bg-white ">
         @if(Auth::user())
@@ -531,7 +531,7 @@
 
         @foreach ($preguntapuesta as $key => $pregunta)
         <div class="grid grid-cols-1 md:grid-cols-1">
-          <div class="px-6">
+          <div class="p-4">
           <div class="flex items-center">
             <div class="ml-4 text-lg leading-7 font-semibold">
             <h3 class=" text-danger  ">
