@@ -181,7 +181,8 @@ class AuthenticatedSessionController extends Controller
                     $contine = $respuestas->contains(function ($value, int $key) use ($preg) {
                         $cadena1 = strtolower(normalizar_cadena($value));
                         $cadena2 = strtolower(normalizar_cadena($preg));
-                        return strpos($cadena2, $cadena1);
+                        //return strpos($cadena2, $cadena1);
+                        return strpos($preg, $value);
                     });
 
                     /* if (strtolower(normalizar_cadena($cadena1)) === strtolower(normalizar_cadena($cadena2))) {
@@ -196,7 +197,7 @@ class AuthenticatedSessionController extends Controller
                         //->where("CAMPO1", $request->email)
                         ->get()); */
 
-                    $arraycount = [$frase[1], $contine, $frase[0], $respuestas->pluck('VALOR')];
+                    $arraycount = [$frase[1], $contine, $frase[0], $respuestas];
                     //frase & count
                     return $arraycount;
                 });
