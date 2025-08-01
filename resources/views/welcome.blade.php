@@ -611,9 +611,9 @@
           </div>
 
           <!-- textos de abajo -->
-          <div class="row pt-4" style="">
+          <div class="row pt-4 text-sm" style="">
             @foreach ($pregunt as $key3 => $preg)
-              <div class="{{$key3 == 0 || $key3 == 4 ? 'col-3 text-center' : 'col-2 text-center'}}">
+              <div class=" {{$key3 == 0 || $key3 == 4 ? 'col text-center' : 'col text-center'}}">
                 {{$preg[0]}}
               </div>
             @endforeach
