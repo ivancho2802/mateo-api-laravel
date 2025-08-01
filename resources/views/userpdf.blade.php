@@ -514,7 +514,7 @@
 
         @foreach ($preguntapuesta as $key => $pregunta)
         <div class="grid grid-cols-1 md:grid-cols-1">
-          <div class="p-4">
+          <div class="p-2">
           <div class="flex items-center">
             <div class="ml-4 text-lg leading-7 font-semibold">
             <h3 class=" text-danger  ">

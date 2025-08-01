@@ -531,7 +531,7 @@
 
         @foreach ($preguntapuesta as $key => $pregunta)
         <div class="grid grid-cols-1 md:grid-cols-1">
-          <div class="p-4">
+          <div class="p-2">
           <div class="flex items-center">
             <div class="ml-4 text-lg leading-7 font-semibold">
             <h3 class=" text-danger  ">
@@ -578,7 +578,7 @@
           vertical-align: middle;    
           align-items: center;
           height:30px;
-          width: 630px;">
+          width: 100%;">
             <div class="col">
             </div>
             <div class="col">
@@ -594,7 +594,7 @@
             <div class="row" style="
           top: 0;
           position: absolute;
-          width: 630px;
+          width: 100%;
           ">
             <div class="col">
             </div>
@@ -629,7 +629,7 @@
             <div class="row align-items-center" style="
           top: -10px;
           position: absolute;
-          width: 630px;
+          width: 100%;
           ">
             @foreach ($pregunt as $key3 => $preg)
             <div class="col text-center"
