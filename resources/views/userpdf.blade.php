@@ -613,9 +613,9 @@
 
                             <!-- textos de abajo -->
                             <table class="row pt-4 text-sm" style="    margin: 0rem;">
-                              <tr>
+                              <tr style="    width: 100%;">
                                 @foreach ($pregunt as $key3 => $preg)
-                                  <td class="{{$key3 == 2 ? 'col text-center p-2' : 'col text-center p-2'}}">
+                                  <td class="{{$key3 == 2 ? 'col text-center p-2' : 'col text-center p-2'}}" style="    width: 20%;">
                                     {{$preg[0]}}
                                   </td>
                                 @endforeach
