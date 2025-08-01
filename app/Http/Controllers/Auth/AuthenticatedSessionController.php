@@ -182,7 +182,7 @@ class AuthenticatedSessionController extends Controller
                         $cadena1 = strtolower(normalizar_cadena($value));
                         $cadena2 = strtolower(normalizar_cadena($preg));
                         //return strpos($cadena2, $cadena1);
-                        return strpos($preg, $value);
+                        return strpos($preg, $value) || $preg == $value || strpos($value, $preg);
                     });
 
                     /* if (strtolower(normalizar_cadena($cadena1)) === strtolower(normalizar_cadena($cadena2))) {
