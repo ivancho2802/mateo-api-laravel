@@ -562,14 +562,18 @@
                         <td>
                           <div class="col-8">
                             <!-- fondo gris -->
+                            <!-- lineas separadoras -->
                             <table class="table" style="
                               background: #ccc;    
                               border-radius: 50px;     
                               vertical-align: middle;    
                               align-items: center;
-                              height:30px;
-                              width: 630px;">
+                              height:30px;/* 
+                              width: 630px; */">
                               <tr>
+                                <td>
+
+                                </td>
                                 <td>
                                   <div class="col">
                                     <div style="
@@ -601,56 +605,9 @@
                                     width: 2px;"></div>
                                   </div>
                                 </td>
-                                <td>
-
-                                </td>
                               </tr>
                             </table>
 
-                            <!-- lineas separadoras -->
-                            <table class="table row" style="
-                            top: 0;
-                            /* position: absolute; */
-                            width: 630px;
-                            ">
-                              <tr>
-                                <td>
-                                  <div class="col">
-                                    <div style="
-                                      height: 60px;
-                                      background: #DEDEDE;
-                                      width: 2px;"></div>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="col">
-                                    <div style="
-                                      height: 60px;
-                                      background: #DEDEDE;
-                                      width: 2px;"></div>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="col">
-                                    <div style=" height: 60px; 
-                                    background: #DEDEDE;
-                                    width: 2px;"></div>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="col">
-                                    <div style="
-                                    height: 60px;
-                                    background: #DEDEDE;
-                                    width: 2px;"></div>
-                                  </div>
-                                </td>
-                                <td>
-
-                                </td>
-                              </tr>
-
-                            </table>
 
                             <!-- vaciado -->
 
