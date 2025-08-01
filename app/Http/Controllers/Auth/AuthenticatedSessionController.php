@@ -174,14 +174,11 @@ class AuthenticatedSessionController extends Controller
                     $posicion = -1;
 
                     //MKoboRespuestas::where("VALOR", 'LIKE', '%'. $preg_. '%')
-                    //->where("CAMPO1", $request->email)
                     //VALOR', 'LATIN1'), 'UTF8') like ?", ['%' . $preg_ . '%'])
-                    //->where("CAMPO1", $request->email)
-                    $respuestas = MKoboRespuestas::get();
+                    //
+                    $respuestas = MKoboRespuestas::where("CAMPO1", $request->email)->get();
 
                     $contine = $respuestas->contains(function ($value, int $key) use ($frase) {
-
-
                         $cadena1 = strtolower(normalizar_cadena($value->VALOR));
                         $cadena2 = strtolower(normalizar_cadena($frase[0]));
                         return strpos($cadena1, $cadena2);
@@ -199,7 +196,7 @@ class AuthenticatedSessionController extends Controller
                         //->where("CAMPO1", $request->email)
                         ->get()); */
 
-                    $arraycount = [$frase[1], $contine, $frase[0]];
+                    $arraycount = [$frase[1], $contine, $frase[0], $respuestas];
                     //frase & count
                     return $arraycount;
                 });
