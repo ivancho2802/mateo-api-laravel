@@ -554,17 +554,20 @@
                     <table class="table">
                       <tr>
                         <td>
-                          <div class="col-2 text-bold">
-                            {{$pregunt[0][4]}}
-                          </div>
-                        </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>
-                          <div class="col-2 text-right text-bold">
-                            {{$pregunt[0][5]}}
-                          </div>
+                          <table>
+                            <tr>
+                              <td>
+                                <div class="col-2 text-bold">
+                                  {{$pregunt[0][4]}}
+                                </div>
+                              </td>
+                              <td>
+                                <div class="col-2 text-right text-bold">
+                                  {{$pregunt[0][5]}}
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
                         </td>
 
                       </tr>
