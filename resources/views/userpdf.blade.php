@@ -591,7 +591,7 @@
                                   <td class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
                                     <div style="{{
                                       ($loop->index > 0) ? '
-                                      height: 60px;
+                                      height: 30px;
                                       background: #DEDEDE;
                                       width: 2px;': '
                                       background: #ccc;
@@ -607,64 +607,7 @@
                                 @endforeach
                               </tr>
                               
-                              <!-- <tr>
-                                <td>
-
-                                </td>
-                                <td>
-                                  <div class="col">
-                                    <div style="
-                                      height: 60px;
-                                      background: #DEDEDE;
-                                      width: 2px;"></div>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="col">
-                                    <div style="
-                                      height: 60px;
-                                      background: #DEDEDE;
-                                      width: 2px;"></div>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="col">
-                                    <div style=" height: 60px; 
-                                    background: #DEDEDE;
-                                    width: 2px;"></div>
-                                  </div>
-                                </td>
-                                <td>
-                                  <div class="col">
-                                    <div style="
-                                    height: 60px;
-                                    background: #DEDEDE;
-                                    width: 2px;"></div>
-                                  </div>
-                                </td>
-                              </tr> -->
                             </table>
-
-
-                            <!-- vaciado -->
-
-                            <!-- <table class="row align-items-center" style="
-                            top: -10px;
-                            /* position: absolute; */
-                            width: 630px;
-                            ">
-                              <tr>
-                                @foreach ($pregunt as $key3 => $preg)
-                                  <td class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                                    @if ($preg[1] == true)
-                                      <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
-                                        {{round($preg[1])}}
-                                      </div>
-                                    @endif
-                                  </td>
-                                @endforeach
-                              </tr>
-                            </table> -->
 
                             <!-- textos de abajo -->
                             <table class="row pt-4 text-sm" style="">
