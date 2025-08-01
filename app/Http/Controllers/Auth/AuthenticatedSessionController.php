@@ -158,10 +158,16 @@ class AuthenticatedSessionController extends Controller
         }
 
         $preguntapuesta = $preguntas->map(function ($pregunta) use ($request) {
-            $pregunta_ = collect($pregunta)->map(function ($pregunt) use ($request) {
+            $limitinferior = "";
+            $limitsuperior = "";
+            $pregunta_ = collect($pregunta)->map(function ($pregunt) use ($request, $limitinferior, $limitsuperior) {
 
-                $preguntapuesta_ = collect($pregunt)->map(function ($preg, $index) use ($request, $pregunt) {
+                $preguntapuesta_ = collect($pregunt)->map(function ($preg, $index) use ($request, $pregunt, $limitinferior, $limitsuperior) {
                     $frase = explode(">", $preg);
+                    if (count($frase) > 2) {
+                        $limitinferior = $frase[2];
+                        $limitsuperior = $frase[3];
+                    }
                     $preg_ = substr($frase[0], 4, -4);
 
                     $respuestas = MKoboRespuestas::where("CAMPO1", $request->email)->get()->pluck('VALOR');
@@ -176,7 +182,7 @@ class AuthenticatedSessionController extends Controller
                             strpos($value, $frase[0]);
                     });
 
-                    $arraycount = [$frase[1], $contine, $frase[0]];
+                    $arraycount = [$frase[1], $contine, $frase[0], 0, $limitinferior, $limitsuperior];
                     //frase & count
                     return $arraycount;
                 });
