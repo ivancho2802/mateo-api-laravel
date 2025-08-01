@@ -558,6 +558,19 @@
                             {{$pregunt[0][4]}}
                           </div>
                         </td>
+                        <td>
+
+                        </td>
+                        <td>
+                          <div class="col-2 text-right text-bold">
+                            {{$pregunt[0][5]}}
+                          </div>
+                        </td>
+
+                      </tr>
+
+                      
+                      <tr>
                         
                         <td>
                           <div class="col-8">
@@ -662,12 +675,6 @@
                               </tr>
                             </table>
 
-                          </div>
-                        </td>
-
-                        <td>
-                          <div class="col-2 text-right text-bold">
-                            {{$pregunt[0][5]}}
                           </div>
                         </td>
                       </tr>
