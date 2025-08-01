@@ -488,7 +488,7 @@
     @endif -->
 
 
-    <div class="max-w-6xl mx-auto sm:px-6 lg:px-4">
+    <div class="max-w-6xl mx-1 sm:px-6 lg:px-4">
 
       <div class="flex justify-center  sm:justify-center sm:pt-0 bg-white ">
         @if(Auth::user())
