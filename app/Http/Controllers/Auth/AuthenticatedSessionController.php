@@ -151,12 +151,6 @@ class AuthenticatedSessionController extends Controller
             ],
         ]);
 
-        //$longText = "3.5.1.5 La transición se fundamenta en las acciones para atender los cambios que se necesitan de forma urgente, independientemente si en el futuro se dé –o no- alguna acción reparadora frente a los impactos del pasado.>Enfoque urgencia climática dominante";
-
-        //dd(count(MKoboRespuestas::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get()));
-
-        //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
-
         function normalizar_cadena($cadena)
         {
             // Normaliza la cadena y convierte los caracteres especiales a ASCII
@@ -167,42 +161,22 @@ class AuthenticatedSessionController extends Controller
             $pregunta_ = collect($pregunta)->map(function ($pregunt) use ($request) {
 
                 $preguntapuesta_ = collect($pregunt)->map(function ($preg, $index) use ($request, $pregunt) {
-                    //dd($preg);
                     $frase = explode(">", $preg);
                     $preg_ = substr($frase[0], 4, -4);
-                    //dd($frase, $preg, $preg_, $request->email);
-                    $posicion = -1;
 
-                    //MKoboRespuestas::where("VALOR", 'LIKE', '%'. $preg_. '%')
-                    //VALOR', 'LATIN1'), 'UTF8') like ?", ['%' . $preg_ . '%'])
-                    //
                     $respuestas = MKoboRespuestas::where("CAMPO1", $request->email)->get()->pluck('VALOR');
-
-                    
 
                     $contine = $respuestas->contains(function ($value, int $key) use ($frase) {
                         $cadena1 = strtolower(normalizar_cadena($value));
                         $cadena2 = strtolower(normalizar_cadena($frase[0]));
-                        return 
-                            strpos($cadena2, $cadena1) || 
-                            strpos($frase[0], $value) || 
-                            $frase[0] == $value || 
+                        return
+                            strpos($cadena2, $cadena1) ||
+                            strpos($frase[0], $value) ||
+                            $frase[0] == $value ||
                             strpos($value, $frase[0]);
                     });
 
-                    /* if (strtolower(normalizar_cadena($cadena1)) === strtolower(normalizar_cadena($cadena2))) {
-                        echo "Las cadenas son iguales.";
-                    } else {
-                        echo "Las cadenas no coinciden.";
-                    } */
-
-                    /* $resuetas_user = count(MKoboRespuestas::where("VALOR", 'LIKE', '%' . $preg_ . '%')//DB::table('M_KOBO_RESPUESTAS')
-                        //->whereRaw("convert_from(convert_to('VALOR', 'LATIN1'), 'UTF8') like ?", ['%' . $preg_ . '%'])
-                        //MKoboRespuestas::where("VALOR", 'LIKE', '%'. $preg_. '%')
-                        //->where("CAMPO1", $request->email)
-                        ->get()); */
-
-                    $arraycount = [$frase[1], $contine, $frase[0], $respuestas];
+                    $arraycount = [$frase[1], $contine, $frase[0]];
                     //frase & count
                     return $arraycount;
                 });
@@ -211,7 +185,7 @@ class AuthenticatedSessionController extends Controller
             return $pregunta_;
         });
 
-        dd($preguntapuesta);
+        //dd($preguntapuesta);
 
         return view('user', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]);
     }
