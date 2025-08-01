@@ -581,7 +581,7 @@
                             <!-- lineas separadoras -->
                             <table class="table row" style="
                             top: 0;
-                            position: absolute;
+                            /* position: absolute; */
                             width: 630px;
                             ">
                               <tr>
