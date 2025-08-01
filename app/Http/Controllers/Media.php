@@ -454,9 +454,7 @@ class Media extends Controller
     //dd($preguntapuesta, $preguntas, $request->email);
 
     // Carga la vista Blade y pasa los datos
-    //s, ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]
-
-    $data = ['title' => 'Mi Primer PDF'];
+    $data = ['title' => 'Mi Primer PDF', "preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email];
     $pdf = Pdf::loadView('user', $data);
 
     // Puedes elegir entre:
