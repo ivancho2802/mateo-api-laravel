@@ -589,7 +589,7 @@
                                 @endforeach
                               </tr>
                               
-                              <tr>
+                              <!-- <tr>
                                 <td>
 
                                 </td>
@@ -624,7 +624,7 @@
                                     width: 2px;"></div>
                                   </div>
                                 </td>
-                              </tr>
+                              </tr> -->
                             </table>
 
 
