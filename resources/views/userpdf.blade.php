@@ -529,125 +529,151 @@
             </div>
           </div>
 
-          @foreach ($pregunta as $key2 => $pregunt)
-          <div class="relative border-b border-gray-200" x-init="isOpen{{$loop->index}}=false" x-data="{
-          isOpen{{$loop->index}}: false, 
-          set(value) {
-          this.isOpen{{$loop->index}} = value;
-          }
-          }">
+          <table class="table relative border-b border-gray-200">
+            @foreach ($pregunta as $key2 => $pregunt)
+              <tr>
+                <td>
+                  <div class="" > 
+                    <h3 class=" flow-root">
+                      <!-- Expand/collapse section button -->
+                      <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400"
+                        type="button" @click="isOpen{{$loop->index}} = !isOpen{{$loop->index}}" type="button"
+                        aria-controls="filter-section-0" aria-expanded="false">
+                        <span class="font-medium text-light-900">{{$key2}}</span>
+                      </button>
+                    </h3> 
+                  </div>
+                </td>
+              </tr>  
+              <tr>
+                <td>
 
-          <h3 class=" flow-root">
-          <!-- Expand/collapse section button -->
-          <button class="btn btn-danger flex w-full text-start justify-between   text-sm text-light-400"
-            type="button" @click="isOpen{{$loop->index}} = !isOpen{{$loop->index}}" type="button"
-            aria-controls="filter-section-0" aria-expanded="false">
-            <span class="font-medium text-light-900">{{$key2}}</span>
-          </button>
-          </h3>
+                  <div class="" id="filter-section-0"  >
+                    <div class="card card-body">
 
-          <div class="" id="filter-section-0" x-show="isOpen{{$loop->index}}">
-          <div class="card card-body">
+                    <table class="table">
+                      <tr>
+                        <td>
+                          <div class="col-2 text-bold">
+                            {{$pregunt[0][4]}}
+                          </div>
+                        </td>
+                        
+                        <td>
+                          <div class="col-8">
+                            <!-- fondo gris -->
+                            <table class="table" style="
+                              background: #ccc;    
+                              border-radius: 50px;     
+                              vertical-align: middle;    
+                              align-items: center;
+                              height:30px;
+                              width: 630px;">
+                              <tr>
+                                <td class="col"></td>
+                                <td class="col"></td>
+                                <td class="col"></td>
+                                <td class="col"></td>
+                                <td class="col"></td>
+                              </tr>
+                            </table>
 
-            <div class="row">
-            <div class="col-2 text-bold">
-            {{$pregunt[0][4]}}
-            </div>
-            <div class="col-8">
-            <!-- fondo gris -->
-            <div class="row" style="
-          background: #ccc;    
-          border-radius: 50px;     
-          vertical-align: middle;    
-          align-items: center;
-          height:30px;
-          width: 630px;">
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            </div>
-            <!-- lineas separadoras -->
-            <div class="row" style="
-          top: 0;
-          position: absolute;
-          width: 630px;
-          ">
-            <div class="col">
-            </div>
-            <div class="col">
-              <div style="
-          height: 60px;
-          background: #DEDEDE;
-          width: 2px;"></div>
-            </div>
-            <div class="col">
-              <div style="
-          height: 60px;
-          background: #DEDEDE;
-          width: 2px;"></div>
-            </div>
-            <div class="col">
-              <div style="
-          height: 60px;
-          background: #DEDEDE;
-          width: 2px;"></div>
-            </div>
-            <div class="col">
-              <div style="
-          height: 60px;
-          background: #DEDEDE;
-          width: 2px;"></div>
-            </div>
-            </div>
+                            <!-- lineas separadoras -->
+                            <table class="table row" style="
+                            top: 0;
+                            position: absolute;
+                            width: 630px;
+                            ">
+                              <tr>
+                                <td>
+                                  <div class="col">
+                                    <div style="
+                                      height: 60px;
+                                      background: #DEDEDE;
+                                      width: 2px;"></div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="col">
+                                    <div style="
+                                      height: 60px;
+                                      background: #DEDEDE;
+                                      width: 2px;"></div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="col">
+                                    <div style=" height: 60px; 
+                                    background: #DEDEDE;
+                                    width: 2px;"></div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="col">
+                                    <div style="
+                                    height: 60px;
+                                    background: #DEDEDE;
+                                    width: 2px;"></div>
+                                  </div>
+                                </td>
+                                <td>
 
-            <!-- vaciado -->
+                                </td>
+                              </tr>
 
-            <div class="row align-items-center" style="
-          top: -10px;
-          position: absolute;
-          width: 630px;
-          ">
-            @foreach ($pregunt as $key3 => $preg)
-            <div class="col text-center"
-            style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-            @if ($preg[1] == true)
-          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
-          {{round($preg[1])}}
-          </div>
-          @endif
-            </div>
-          @endforeach
+                            </table>
 
-            </div>
+                            <!-- vaciado -->
 
-            <!-- textos de abajo -->
-            <div class="row pt-4 text-sm" style="">
-            @foreach ($pregunt as $key3 => $preg)
-          <div class="{{$key3 == 2 ? 'col text-center' : 'col text-center'}}">
-          {{$preg[0]}}
-          </div>
-          @endforeach
-            </div>
-            </div>
-            <div class="col-2 text-right text-bold">
-            {{$pregunt[0][5]}}
-            </div>
-            </div>
+                            <table class="row align-items-center" style="
+                            top: -10px;
+                            position: absolute;
+                            width: 630px;
+                            ">
+                              <tr>
+                                @foreach ($pregunt as $key3 => $preg)
+                                  <td class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                                    @if ($preg[1] == true)
+                                      <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
+                                        {{round($preg[1])}}
+                                      </div>
+                                    @endif
+                                  </td>
+                                @endforeach
+                              </tr>
+                            </table>
+
+                            <!-- textos de abajo -->
+                            <table class="row pt-4 text-sm" style="">
+                              <tr>
+                                @foreach ($pregunt as $key3 => $preg)
+                                  <td class="{{$key3 == 2 ? 'col text-center' : 'col text-center'}}">
+                                    {{$preg[0]}}
+                                  </td>
+                                @endforeach
+                              </tr>
+                            </table>
+
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="col-2 text-right text-bold">
+                            {{$pregunt[0][5]}}
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+ 
 
 
-          </div>
-          </div>
+                    </div>
+                  </div>
 
-
-          </div>
-        @endforeach
+                </td>
+              </tr>
+            @endforeach
+          </table>
 
           </div>
 
