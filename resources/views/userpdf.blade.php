@@ -571,6 +571,22 @@
                               height:30px;/* 
                               width: 630px; */">
                               <tr>
+                                @foreach ($pregunt as $key3 => $preg)
+                                  <td class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                                    <div style="
+                                      height: 60px;
+                                      background: #DEDEDE;
+                                      width: 2px;">
+                                        @if ($preg[1] == true)
+                                          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
+                                            {{round($preg[1])}}
+                                          </div>
+                                        @endif
+                                    </div>
+                                  </td>
+                                @endforeach
+                              </tr>
+                              <tr>
                                 <td>
 
                                 </td>
