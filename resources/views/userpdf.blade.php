@@ -558,9 +558,9 @@
                             {{$pregunt[0][4]}}
                           </div>
                         </td>
-                        <td>
-
-                        </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
                         <td>
                           <div class="col-2 text-right text-bold">
                             {{$pregunt[0][5]}}
@@ -591,8 +591,7 @@
                                       height: 60px;
                                       background: #DEDEDE;
                                       width: 2px;': '
-                                      height: 60px;
-                                      background: #333333;
+                                      background: #ccc;
                                       width: 2px;'
                                       }}">
                                         @if ($preg[1] == true)
