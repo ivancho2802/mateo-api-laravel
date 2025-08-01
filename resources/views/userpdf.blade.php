@@ -498,7 +498,7 @@
           @csrf
 
           <!-- Email Address -->
-          <div class="d-none">
+          <div class="d-none" style="display: none;">
             <x-label for="email" :value="__('Email')" />
 
             <x-input id="email" class="block mt-1 w-full" type="hidden" name="email" value="{{$email}}" required
@@ -506,7 +506,7 @@
           </div>
 
           <div class="flex items-center justify-end mt-4">
-            <x-button class="ml-3">
+            <x-button class="ml-3" style="display: none;">
               Descargar resultados
             </x-button>
           </div>
@@ -554,7 +554,7 @@
                     <table class="table">
                       <tr>
                         <td>
-                          <table>
+                          <table style="    width: 100%;">
                             <tr>
                               <td>
                                 <div class="col-2 text-bold">
