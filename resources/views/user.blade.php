@@ -524,7 +524,7 @@
 
           <div class="flex items-center justify-end mt-4">
             <x-button class="ml-3">
-              Descargar resultados reultdos
+              Descargar resultados
             </x-button>
           </div>
         </form>
@@ -634,19 +634,20 @@
 
             <!-- vaciado -->
 
-          <div class="row align-items-center" style="
+            <div class="row align-items-center" style="
           top: -10px;
           position: absolute;
           width: 630px;
           ">
-          @foreach ($pregunt as $key3 => $preg)
+            @foreach ($pregunt as $key3 => $preg)
             @if ($preg[1] == true)
-              <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
-                  {{round($preg[1])}}
-                </div>
-              </div>
-            @endif
+          <div class="col text-center"
+          style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
+          {{round($preg[1])}}
+          </div>
+          </div>
+          @endif
           @endforeach
 
             <!-- <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
@@ -692,128 +693,6 @@
 
           </div>
         @endforeach
-
-          <h3 class="text-danger">Resumen</h3>
-
-          <div class="card card-body">
-            <!-- LINEA RESUMEN -->
-            <div class="row">
-            <div class="col-2">
-              Ambiental
-            </div>
-            <div class="col-8">
-              <!-- fondo gris -->
-              <div class="row" style="
-            background: #ccc;    
-            border-radius: 50px;     
-            vertical-align: middle;    
-            align-items: center;
-            height:30px;
-            width: 630px;">
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              </div>
-              <!-- lineas separadoras -->
-              <div class="row" style="
-            top: 0;
-            position: absolute;
-            width: 630px;
-            ">
-              <div class="col">
-              </div>
-              <div class="col">
-                <div style="
-              height: 60px;
-              background: #DEDEDE;
-              width: 2px;"></div>
-              </div>
-              <div class="col">
-                <div style="
-              height: 60px;
-              background: #DEDEDE;
-              width: 2px;"></div>
-              </div>
-              <div class="col">
-                <div style="
-              height: 60px;
-              background: #DEDEDE;
-              width: 2px;"></div>
-              </div>
-              <div class="col">
-                <div style="
-              height: 60px;
-              background: #DEDEDE;
-              width: 2px;"></div>
-              </div>
-              </div>
-
-              <!-- vaciado -->
-
-              <div class="row align-items-center" style="
-            top: -10px;
-            position: absolute;
-            width: 630px;
-            ">
-              @foreach ($pregunt as $key4 => $preg)
-          <div class="col text-center"
-            style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-            <div class="circle-creer bg-danger text-light circle-creer-5 m-auto">
-            {{($loop->index == 0) ? 'A' : (($loop->index == 1) ? 'B' : (($loop->index == 2) ? 'C' : (($loop->index == 3) ? 'D' : (($loop->index == 4) ? 'E' : ''))))}}
-            </div>
-          </div>
-          @endforeach
-              </div>
-
-              <!-- textos de abajo -->
-              <div class="row pt-4" style="">
-              @foreach ($pregunt as $key3 => $preg)
-          <div class="{{$key3 == 2 ? 'col-3' : 'col-2'}}">
-            {{$preg[0]}}
-          </div>
-          @endforeach
-              </div>
-            </div>
-            <div class="col-2 text-right">
-              Social
-            </div>
-            </div>
-            <!-- TABLA RESUMEN -->
-            <div class="row" style="
-            border-width: 1px;
-            border-color: #ccc;
-          ">
-            <div class="col-10">
-              RESPUESTA
-            </div>
-            <div class="col-2">
-              POSICIÓN
-            </div>
-            </div>
-
-            @foreach ($pregunt as $key5 => $preg)
-
-          <div class="row" style="
-          border-width: 1px;
-          border-color: #ccc;
-          ">
-          <div class="col-10">
-            {{$preg[2]}}
-          </div>
-          <div class="col-2">
-            {{($loop->index == 0) ? 'A' : (($loop->index == 1) ? 'B' : (($loop->index == 2) ? 'C' : (($loop->index == 3) ? 'D' : (($loop->index == 4) ? 'E' : ''))))}}
-          </div>
-          </div>
-        @endforeach
-
-          </div>
 
           </div>
 
