@@ -193,7 +193,7 @@ class AuthenticatedSessionController extends Controller
 
         //dd($preguntapuesta);
 
-        return view('user', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]);
+        return view('userpdf', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]);
     }
 
     /**

@@ -507,7 +507,7 @@
           <div class="d-none">
             <x-label for="email" :value="__('Email')" />
 
-            <x-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{$email}}" required
+            <x-input id="email" class="block mt-1 w-full" type="hidden" name="email" value="{{$email}}" required
               autofocus />
           </div>
 
