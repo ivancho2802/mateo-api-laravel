@@ -33,13 +33,6 @@ class AuthenticatedSessionController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-
-    function normalizar_cadena($cadena)
-    {
-        // Normaliza la cadena y convierte los caracteres especiales a ASCII
-        return transliterator_transliterate('Any-Latin; Latin-ASCII;', $cadena);
-    }
-    
     public function store(Request $request)
     {
         //dd($request->email);
@@ -182,6 +175,13 @@ class AuthenticatedSessionController extends Controller
                     $respuestas = MKoboRespuestas::get();
 
                     $contine = $respuestas->contains(function ($value, int $key) use ($frase) {
+
+                        function normalizar_cadena($cadena)
+                        {
+                            // Normaliza la cadena y convierte los caracteres especiales a ASCII
+                            return transliterator_transliterate('Any-Latin; Latin-ASCII;', $cadena);
+                        }
+
                         $cadena1 = strtolower(normalizar_cadena($value->VALOR));
                         $cadena2 = strtolower(normalizar_cadena($frase[0]));
                         dd($cadena1, $cadena2);
