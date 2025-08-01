@@ -176,10 +176,10 @@ class AuthenticatedSessionController extends Controller
                     //MKoboRespuestas::where("VALOR", 'LIKE', '%'. $preg_. '%')
                     //VALOR', 'LATIN1'), 'UTF8') like ?", ['%' . $preg_ . '%'])
                     //
-                    $respuestas = MKoboRespuestas::where("CAMPO1", $request->email)->get();
+                    $respuestas = MKoboRespuestas::where("CAMPO1", $request->email)->get()->pluck('VALOR');
 
                     $contine = $respuestas->contains(function ($value, int $key) use ($preg) {
-                        $cadena1 = strtolower(normalizar_cadena($value->VALOR));
+                        $cadena1 = strtolower(normalizar_cadena($value));
                         $cadena2 = strtolower(normalizar_cadena($preg));
                         return strpos($cadena2, $cadena1);
                     });
