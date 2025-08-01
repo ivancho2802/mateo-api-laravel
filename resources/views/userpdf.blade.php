@@ -574,7 +574,7 @@
                                 @foreach ($pregunt as $key3 => $preg)
                                   <td class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
                                     <div style="{{
-                                      $loop->index !== 0 && '
+                                      ($loop->index > 0) ?? '
                                       height: 60px;
                                       background: #DEDEDE;
                                       width: 2px;'
