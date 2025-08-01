@@ -460,6 +460,10 @@
       width: 80px;
       height: 80px;
     }
+
+    .p-2{
+      padding: .5rem;
+    }
   </style>
 
   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -491,8 +495,6 @@
 
 
       <div class="mt-2 bg-white light:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-
-        <a href="/consulta" class="text-primary">Volver</a>
 
         <form method="POST" action="{{ route('downloadPdf') }}">
           @csrf
@@ -613,7 +615,7 @@
                             <table class="row pt-4 text-sm" style="    margin: 0rem;">
                               <tr>
                                 @foreach ($pregunt as $key3 => $preg)
-                                  <td class="{{$key3 == 2 ? 'col text-center p-0' : 'col text-center p-0'}}">
+                                  <td class="{{$key3 == 2 ? 'col text-center p-2' : 'col text-center p-2'}}">
                                     {{$preg[0]}}
                                   </td>
                                 @endforeach
