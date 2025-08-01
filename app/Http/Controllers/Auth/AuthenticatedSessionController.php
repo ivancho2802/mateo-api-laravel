@@ -33,6 +33,13 @@ class AuthenticatedSessionController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
+
+    function normalizar_cadena($cadena)
+    {
+        // Normaliza la cadena y convierte los caracteres especiales a ASCII
+        return transliterator_transliterate('Any-Latin; Latin-ASCII;', $cadena);
+    }
+    
     public function store(Request $request)
     {
         //dd($request->email);
@@ -157,11 +164,6 @@ class AuthenticatedSessionController extends Controller
 
         //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
 
-        function normalizar_cadena($cadena)
-        {
-            // Normaliza la cadena y convierte los caracteres especiales a ASCII
-            return transliterator_transliterate('Any-Latin; Latin-ASCII;', $cadena);
-        }
 
         $preguntapuesta = $preguntas->map(function ($pregunta) use ($request) {
             $pregunta_ = collect($pregunta)->map(function ($pregunt) use ($request) {
