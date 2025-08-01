@@ -533,7 +533,7 @@
           <div class="card card-body">
 
             <div class="row">
-            <div class="col-2">
+            <div class="col-2 text-bold">
             {{$pregunt[0][4]}}
             </div>
             <div class="col-8">
@@ -619,7 +619,7 @@
             @endforeach
           </div>
         </div>
-        <div class="col-2 text-right">
+        <div class="col-2 text-right text-bold">
           {{$pregunt[0][5]}}
         </div>
       </div>
