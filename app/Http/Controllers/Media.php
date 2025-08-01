@@ -459,7 +459,14 @@ class Media extends Controller
 
     // Puedes elegir entre:
     // 1. Descargar el PDF directamente:
-    return $pdf->download('encuesta_creer.pdf');
+    //return $pdf->download('encuesta_creer.pdf');
+
+    $pdfContent = Pdf::loadView('vistas.mi-plantilla-pdf', $data)->output();
+
+    return Response::make($pdfContent, 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'attachment; filename="documento.pdf"',
+    ]);
 
     //return view('user', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]);
   }
