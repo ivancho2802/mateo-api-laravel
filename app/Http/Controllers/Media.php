@@ -455,13 +455,13 @@ class Media extends Controller
 
     // Carga la vista Blade y pasa los datos
     $data = ['title' => 'Mi Primer PDF', "preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email];
-    $pdf = Pdf::loadView('user', $data);
+    $pdf = Pdf::loadView('userpdf', $data);
 
     // Puedes elegir entre:
     // 1. Descargar el PDF directamente:
     //return $pdf->download('encuesta_creer.pdf');
 
-    $pdfContent = Pdf::loadView('user', $data)->output();
+    $pdfContent = Pdf::loadView('userpdf', $data)->output();
 
     return response()->make($pdfContent, 200, [
         'Content-Type' => 'application/pdf',
