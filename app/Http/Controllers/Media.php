@@ -454,7 +454,10 @@ class Media extends Controller
     //dd($preguntapuesta, $preguntas, $request->email);
 
     // Carga la vista Blade y pasa los datos
-    $pdf = Pdf::loadView('user', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]);
+    //s, ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]
+
+    $data = ['title' => 'Mi Primer PDF'];
+    $pdf = Pdf::loadView('user', $data);
 
     // Puedes elegir entre:
     // 1. Descargar el PDF directamente:
