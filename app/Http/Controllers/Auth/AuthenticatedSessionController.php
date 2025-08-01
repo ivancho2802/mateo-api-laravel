@@ -196,7 +196,7 @@ class AuthenticatedSessionController extends Controller
                         //->where("CAMPO1", $request->email)
                         ->get()); */
 
-                    $arraycount = [$frase[1], $contine, $frase[0], $respuestas];
+                    $arraycount = [$frase[1], $contine, $frase[0], $respuestas->pluck('VALOR')];
                     //frase & count
                     return $arraycount;
                 });
