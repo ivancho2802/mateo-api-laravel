@@ -598,7 +598,7 @@
                                       width: 2px;'
                                       }}">
                                         @if ($preg[1] == true)
-                                          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto">
+                                          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto" style="margin-left: 1rem;">
                                             {{round($preg[1])}}
                                           </div>
                                         @endif
