@@ -423,19 +423,26 @@ class Media extends Controller
     //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
 
     $preguntapuesta = $preguntas->map(function ($pregunta) use ($request) {
-      $pregunta_ = collect($pregunta)->map(function ($pregunt) use ($request) {
-        $preguntapuesta_ = collect($pregunt)->map(function ($preg) use ($request) {
+      $limitinferior = "";
+      $limitsuperior = "";
+      $pregunta_ = collect($pregunta)->map(function ($pregunt) use ($request, $limitinferior, $limitsuperior) {
+        $preguntapuesta_ = collect($pregunt)->map(function ($preg) use ($request, $limitinferior, $limitsuperior) {
           //dd($preg);
           $frase = explode(">", $preg);
+          if (count($frase) > 2) {
+            $limitinferior = $frase[2];
+            $limitsuperior = $frase[3];
+          }
           //dd($frase, $preg, $frase[1]);
           //$resuetas_user = collect($resuetas_user)
 
           $resuetas_user = count(
             MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
-            ->where("CAMPO1", $request->email)
-            ->get());
+              ->where("CAMPO1", $request->email)
+              ->get()
+          );
 
-          $arraycount = [$frase[1], $resuetas_user, $frase[0]];
+          $arraycount = [$frase[1], $resuetas_user, $frase[0],  0, $limitinferior, $limitsuperior];
           //frase & count
           return $arraycount;
         });
