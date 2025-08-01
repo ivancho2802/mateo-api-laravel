@@ -463,7 +463,7 @@ class Media extends Controller
 
     $pdfContent = Pdf::loadView('user', $data)->output();
 
-    return Response::make($pdfContent, 200, [
+    return response()->make($pdfContent, 200, [
         'Content-Type' => 'application/pdf',
         'Content-Disposition' => 'attachment; filename="documento.pdf"',
     ]);
