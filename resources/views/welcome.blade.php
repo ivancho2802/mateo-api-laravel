@@ -608,22 +608,21 @@
             </div>
             @endif
           @endforeach
-
-            </div>
-
-            <!-- textos de abajo -->
-            <div class="row pt-4" style="">
-            @foreach ($pregunt as $key3 => $preg)
-          <div class="{{$key3 == 2 ? 'col-3' : 'col-2'}}">
-          {{$preg[0]}}
           </div>
-          @endforeach
-            </div>
-            </div>
-            <div class="col-2 text-right">
-            {{$pregunt[0][5]}}
-            </div>
-            </div>
+
+          <!-- textos de abajo -->
+          <div class="row pt-4" style="">
+            @foreach ($pregunt as $key3 => $preg)
+              <div class="{{$key3 == 0 || $key3 == 4 ? 'col-3 text-center' : 'col-2 text-center'}}">
+                {{$preg[0]}}
+              </div>
+            @endforeach
+          </div>
+        </div>
+        <div class="col-2 text-right">
+          {{$pregunt[0][5]}}
+        </div>
+      </div>
 
 
           </div>
