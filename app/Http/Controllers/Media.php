@@ -452,7 +452,7 @@ class Media extends Controller
     });
 
     //dd($preguntapuesta, $preguntas, $request->email);
-    return view('userpdf', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]);
+    //return view('userpdf', ["preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email]);
 
     // Carga la vista Blade y pasa los datos
     $data = ['title' => 'Mi Primer PDF', "preguntapuesta" => $preguntapuesta, "preguntas" => $preguntas, "email" => $request->email];
