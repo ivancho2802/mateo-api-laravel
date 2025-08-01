@@ -612,7 +612,7 @@
                             </table>
 
                             <!-- textos de abajo -->
-                            <table class="row pt-4 text-sm" style="    margin: 0rem;">
+                            <table class="row pt-4 text-sm" style="    margin: 0rem;" style="    width: 100%;">
                               <tr style="    width: 100%;">
                                 @foreach ($pregunt as $key3 => $preg)
                                   <td class="{{$key3 == 2 ? 'col text-center p-2' : 'col text-center p-2'}}" style="    width: 20%;">
