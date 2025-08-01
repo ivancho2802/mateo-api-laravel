@@ -178,11 +178,16 @@ class AuthenticatedSessionController extends Controller
                     //
                     $respuestas = MKoboRespuestas::where("CAMPO1", $request->email)->get()->pluck('VALOR');
 
-                    $contine = $respuestas->contains(function ($value, int $key) use ($preg) {
+                    
+
+                    $contine = $respuestas->contains(function ($value, int $key) use ($frase) {
                         $cadena1 = strtolower(normalizar_cadena($value));
-                        $cadena2 = strtolower(normalizar_cadena($preg));
-                        //return strpos($cadena2, $cadena1);
-                        return strpos($preg, $value) || $preg == $value || strpos($value, $preg);
+                        $cadena2 = strtolower(normalizar_cadena($frase[0]));
+                        return 
+                            strpos($cadena2, $cadena1) || 
+                            strpos($frase[0], $value) || 
+                            $frase[0] == $value || 
+                            strpos($value, $frase[0]);
                     });
 
                     /* if (strtolower(normalizar_cadena($cadena1)) === strtolower(normalizar_cadena($cadena2))) {
