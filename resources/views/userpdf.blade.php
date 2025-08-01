@@ -588,7 +588,7 @@
                               width: 630px; */">
                               <tr>
                                 @foreach ($pregunt as $key3 => $preg)
-                                  <td class="col text-center p-0" style="     height: 60px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                                  <td class="col text-center p-0" style="     height: 30px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
                                     <div style="{{
                                       ($loop->index > 0) ? '
                                       height: 30px;
@@ -610,7 +610,7 @@
                             </table>
 
                             <!-- textos de abajo -->
-                            <table class="row pt-4 text-sm" style="">
+                            <table class="row pt-4 text-sm" style="    margin: 0rem;">
                               <tr>
                                 @foreach ($pregunt as $key3 => $preg)
                                   <td class="{{$key3 == 2 ? 'col text-center p-0' : 'col text-center p-0'}}">
