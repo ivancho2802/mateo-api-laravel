@@ -640,6 +640,7 @@
           width: 630px;
           ">
             @foreach ($pregunt as $key3 => $preg)
+            <p>{{ $preg[1] }}</p>
             @if ($preg[1] == true)
           <div class="col text-center"
           style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
@@ -650,26 +651,6 @@
           @endif
           @endforeach
 
-            <!-- <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
-          2
-          </div>
-          </div>
-          <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-          <div class="circle-creer bg-danger text-light circle-creer-6 m-auto">
-          6
-          </div>
-          </div>
-          <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
-          2
-          </div>
-          </div>
-          <div class="col text-center" style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-          <div class="circle-creer bg-danger text-light circle-creer-2 m-auto">
-          2
-          </div>
-          </div> -->
             </div>
 
             <!-- textos de abajo -->
