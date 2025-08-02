@@ -596,10 +596,10 @@
             <!-- vaciado -->
 
             <div class="row align-items-center m-auto" style="
-          top: -10px;
-          position: absolute;
-          width: 15rem;
-          ">
+              top: -55px;
+              position: relative;
+              width: 100%;
+            ">
             @foreach ($pregunt as $key3 => $preg)
             <div class="col text-center p-0"
             style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
