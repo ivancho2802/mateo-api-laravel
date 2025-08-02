@@ -470,11 +470,11 @@
     }
 
     .bg-danger {
-      background-color: #C9302C;
+      background-color: #C9302C !important;
     }
 
     .b-l{
-      border-left: #DEDEDE 1px solid;
+      border-left: #DEDEDE 2px solid;
     }
 
     .p-0{
@@ -611,11 +611,11 @@
                                       ($loop->index > 0) ? 'b-l': ''
                                       }}">
                                         @if ($preg[1] == true)
-                                          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto" style="margin-left: 1rem;">
+                                          <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto" style="margin: auto;">
                                             {{round($preg[1])}}
                                           </div>
                                         @else
-                                          <div class="   circle-creer-1 m-auto" style="margin-left: 1rem;"></div>
+                                          <div class="   circle-creer-1 m-auto" style="margin: auto;"></div>
                                         @endif
                                     </div>
                                   </td>
