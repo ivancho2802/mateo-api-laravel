@@ -464,6 +464,14 @@
     .p-2{
       padding: .5rem;
     }
+
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+      border: 0px;
+    }
+
+    .bg-danger {
+      background-color: #C9302C;
+    }
   </style>
 
   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -593,11 +601,11 @@
                                   <td class="col text-center p-0" style="     height: 30px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
                                     <div style="{{
                                       ($loop->index > 0) ? '
-                                      height: 30px;
-                                      background: #DEDEDE;
-                                      width: 2px;': '
-                                      background: #ccc;
-                                      width: 2px;'
+                                      border: 0px;
+                                      border-left: #DEDEDE 1px solid;
+                                      ': '
+                                      border: 0px;
+                                      border-left: #DEDEDE 1px solid;'
                                       }}">
                                         @if ($preg[1] == true)
                                           <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto" style="margin-left: 1rem;">
@@ -612,10 +620,10 @@
                             </table>
 
                             <!-- textos de abajo -->
-                            <table class="row pt-4 text-sm" style="    margin: 0rem;" style="    width: 100%;">
-                              <tr style="    width: 100%;">
+                            <table class="row pt-4 text-sm" style="    margin: 0rem; width: 100%;">
+                              <tr style="">
                                 @foreach ($pregunt as $key3 => $preg)
-                                  <td class="{{$key3 == 2 ? 'col text-center p-2' : 'col text-center p-2'}}" style="    width: 20%;">
+                                  <td class="{{$key3 == 2 ? 'col text-center p-2' : 'col text-center p-2'}}" style="">
                                     {{$preg[0]}}
                                   </td>
                                 @endforeach
