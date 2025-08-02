@@ -472,6 +472,10 @@
     .bg-danger {
       background-color: #C9302C;
     }
+
+    .b-l{
+      border-left: #DEDEDE 1px solid;
+    }
   </style>
 
   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
@@ -598,21 +602,23 @@
                               width: 630px; */">
                               <tr>
                                 @foreach ($pregunt as $key3 => $preg)
-                                  <td class="col text-center p-0" style="     height: 30px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
-                                    <div style="{{
+                                  <td class="col text-center p-0 {{
+                                      ($loop->index > 0) ? 'b-l': ''
+                                      }}" style="     height: 30px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
+                                    <!-- <div style="{{
                                       ($loop->index > 0) ? '
                                       border: 0px;
                                       border-left: #DEDEDE 1px solid;
                                       ': '
                                       border: 0px;
                                       border-left: #DEDEDE 1px solid;'
-                                      }}">
+                                      }}"> -->
                                         @if ($preg[1] == true)
                                           <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto" style="margin-left: 1rem;">
                                             {{round($preg[1])}}
                                           </div>
                                         @endif
-                                    </div>
+                                    <!-- </div> -->
                                   </td>
                                 @endforeach
                               </tr>
