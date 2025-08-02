@@ -556,7 +556,7 @@
             <div class="col-2 text-bold text-sm" style="    font-size: .34rem!important;">
             {{$pregunt[0][4]}}
             </div>
-            <div class="col-8 p-0 m-0">
+            <div class="col-8 p-0 m-0" style="    height: 110px;">
             <!-- fondo gris -->
           <div class="row m-auto" style="
           background: #ccc;    
@@ -595,11 +595,7 @@
 
             <!-- vaciado -->
 
-            <div class="row align-items-center m-auto" style="
-              top: -55px;
-              position: relative;
-              width: 100%;
-            ">
+            <div class="row align-items-center m-auto" style="top: -55px;  position: relative;width: 100%; ">
             @foreach ($pregunt as $key3 => $preg)
             <div class="col text-center p-0"
             style="     height: 80px;   align-items: center;    align-content: center; align-self: center;    text-align: center;">
@@ -614,7 +610,7 @@
             </div>
 
             <!-- textos de abajo -->
-            <div class="row pt-4 "  style="    font-size: .34rem!important;">
+            <div class="row pt-4 "  style="    font-size: .34rem!important;    position: relative;    top: -55px;">
             @foreach ($pregunt as $key3 => $preg)
           <div class="{{$key3 == 2 ? 'col text-center p-0' : 'col text-center p-0'}}">
           {{$preg[0]}}
