@@ -614,6 +614,8 @@
                                           <div class="circle-creer bg-danger text-light circle-creer-{{round($preg[1])}} m-auto" style="margin-left: 1rem;">
                                             {{round($preg[1])}}
                                           </div>
+                                        @else
+                                          <div class="   circle-creer-1 m-auto" style="margin-left: 1rem;"></div>
                                         @endif
                                     </div>
                                   </td>
