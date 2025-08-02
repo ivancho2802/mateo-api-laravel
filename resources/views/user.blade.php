@@ -610,7 +610,7 @@
             </div>
 
             <!-- textos de abajo -->
-            <div class="row pt-4 "  style="    font-size: .34rem!important;    position: relative;    top: -55px;">
+            <div class="row "  style="    font-size: .34rem!important;    position: relative;    top: -55px;">
             @foreach ($pregunt as $key3 => $preg)
           <div class="{{$key3 == 2 ? 'col text-center p-0' : 'col text-center p-0'}}">
           {{$preg[0]}}
