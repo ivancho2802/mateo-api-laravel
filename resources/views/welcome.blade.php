@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Creer</title>
-
+  <meta http-equiv="refresh" content="30">
 
   @extends('layouts.user_type.guest')
 

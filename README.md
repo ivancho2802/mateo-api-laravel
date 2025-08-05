@@ -565,11 +565,12 @@ en app.css
     * cambiar el limite de priorizacion el final el que dice atencion accion climatica por 
         - inicial mirada retrovizor
         - final mirada panoramica
-    ----------
-
-    * ajustar para que se actualice en tiempo el gneral un poco a la general
-    * quitar climatica de priorizacion
+    * escala no se centro poner tamaño fijo ya era pero que paso
     * quitar el texto de el final 
+    * quitar climatica de priorizacion
 
-[4:43 p.m., 4/8/2025] Ivan: escala no se centro poner tamaño fijo ya era pero que paso
-[4:43 p.m., 4/8/2025] Ivan: borrar hoy a las 10 pm los daros
+
+    ----------
+    * ajustar para que se actualice en tiempo el gneral un poco a la general
+
+    * borrar hoy a las 10 pm los daros
