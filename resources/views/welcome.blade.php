@@ -536,7 +536,7 @@
             <div class="col-2 text-bold" style="    font-size: 0.8em;">
             {{$pregunt[0][4]}}
             </div>
-            <div class="col-8">
+            <div class="col-8 p-0 m-0">
             <!-- fondo gris -->
             <div class="row" style="
           background: #ccc;    
