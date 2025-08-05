@@ -569,7 +569,7 @@ en app.css
 
     * ajustar para que se actualice en tiempo el gneral un poco a la general
     * quitar climatica de priorizacion
+    * quitar el texto de el final 
 
 [4:43 p.m., 4/8/2025] Ivan: escala no se centro poner tamaño fijo ya era pero que paso
 [4:43 p.m., 4/8/2025] Ivan: borrar hoy a las 10 pm los daros
-[4:50 p.m., 4/8/2025] Ivan: quitar el texto de el final 
