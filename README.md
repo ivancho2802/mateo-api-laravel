@@ -548,6 +548,28 @@ tailwindcss
 
 en app.css
 
-## para el uso de la paginacion de lpa 
+# tareas
+
+# do
     
-    resumen: conciste en la distribucion de paginas de lpa de registros donde estos 
+    ------- si da tiempo
+    * Ajustar la tabla de emergencias debe ser exacta a la de producción con los ID de emergencia
+    * revisar tema de pdf en el correo ... 
+
+# doin
+
+# does
+    * ajustar el nuevo en lace en todo lado
+    * bajar la fuente de los limites
+    * pasarle el excel que conectamos con las respuestas
+    * cambiar el limite de priorizacion el final el que dice atencion accion climatica por 
+        - inicial mirada retrovizor
+        - final mirada panoramica
+    ----------
+
+    * ajustar para que se actualice en tiempo el gneral un poco a la general
+    * quitar climatica de priorizacion
+
+[4:43 p.m., 4/8/2025] Ivan: escala no se centro poner tamaño fijo ya era pero que paso
+[4:43 p.m., 4/8/2025] Ivan: borrar hoy a las 10 pm los daros
+[4:50 p.m., 4/8/2025] Ivan: quitar el texto de el final 

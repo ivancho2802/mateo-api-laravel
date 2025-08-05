@@ -142,11 +142,11 @@ class AuthenticatedSessionController extends Controller
                     "No hay transición justa ni sostenible sin colaboración entre actores. Es totalmente posible si se parte del reconocimiento mutuo.>Alta confianza ", //.	50	10: Interdependencia 50: Soberania 
                 ],
                 "Priorización" => [ //3.5.1  Frente a estas afirmaciones en cuál se siente más representado
-                    "No puede existir una transición sin que, primero, no se implementen medidas de reparación integral por los impactos generados por las actividades económicas, especialmente las extractivas.>Enfoque de justicia reparativa previa>Atención impactos pasados>Atención acción climática ", //	10	10: Atención de impactos pasado 50: Atención sobre acción climática
+                    "No puede existir una transición sin que, primero, no se implementen medidas de reparación integral por los impactos generados por las actividades económicas, especialmente las extractivas.>Enfoque de justicia reparativa previa>Mirada retrovisor>Mirada Panorámica", //	10	10: Atención de impactos pasado 50: Atención sobre acción climática
                     "La transición debe privilegiar la reparación de los impactos aunque también considerando medidas de desarrollo acordes con las expectativas de los actores.>Enfoque de transición justa condicionada", //	20	10: Atención de impactos pasado 50: Atención sobre acción climática
                     "La transición debe equilibrar la urgencia de actuar sobre temáticas actuales con la atención a los efectos sociales y ambientales asociados a los impactos del pasado.>Enfoque de simultaneidad", //	30	10: Atención de impactos pasado 50: Atención sobre acción climática
                     "La transición debe priorizar acciones inmediatas, incorporando medidas de reparación gradual de impactos del pasado.>Enfoque de acción prioritaria con mitigación progresiva", //	40	10: Atención de impactos pasado 50: Atención sobre acción climática
-                    "La transición se fundamenta en las acciones para atender los cambios que se necesitan de forma urgente, independientemente si en el futuro se dé –o no- alguna acción reparadora frente a los impactos del pasado.>Enfoque urgencia climática dominante", //	50	10: Atención de impactos pasado 50: Atención sobre acción climática
+                    "La transición se fundamenta en las acciones para atender los cambios que se necesitan de forma urgente, independientemente si en el futuro se dé –o no- alguna acción reparadora frente a los impactos del pasado.>Enfoque urgencia dominante", //	50	10: Atención de impactos pasado 50: Atención sobre acción climática
                 ]
             ],
         ]);
