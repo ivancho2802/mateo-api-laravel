@@ -94,7 +94,6 @@
                             Formato url para importar en excel o en powe bi
                             <br>
 
-                            https://ugic.api.ach.dyndns.info/api/kobo/[asset_uid]/data/[token]
                             <br>
 
                             [token] = es el usado por kobo para obtrener datos
@@ -133,7 +132,6 @@
                             Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                             <br>
 
-                            https://ugic.api.ach.dyndns.info/api/matriz/minas
 
                         </div>
                     </div>
@@ -158,7 +156,6 @@
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Esta herramienta funciona para generar qr en base a links o texto o demas funciones que quieras usar
                             <br>
-                            https://ugic.api.ach.dyndns.info/qr?url=%22https://ugic.api.ach.dyndns.info/cut/XujVh%22
                             <br>
                             [url] = podria ser una url o un texto correo o demas
                             <br>
@@ -194,7 +191,6 @@
                             Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                             <br>
 
-                            https://ugic.api.ach.dyndns.info/matrizprensa
 
                         </div>
                     </div>
@@ -224,7 +220,6 @@
                                 en base a un formulario basico es posible que no funcione con todos los formularios si esto ocurre debes realizar la solicitud
                                 <br>
 
-                                https://ugic.api.ach.dyndns.info/koboapdf
 
                             </div>
                         </div>
@@ -252,8 +247,6 @@
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Esta herramienta es para adn.
                             <br>
-
-                            https://ugic.api.ach.dyndns.info/finanzas/adn
 
                         </div>
                     </div>
