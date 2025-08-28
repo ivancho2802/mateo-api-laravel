@@ -37,7 +37,7 @@ class AuthenticatedSessionController extends Controller
     {
         //dd($request->email);
         $mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)
-        ->where("VALOR", "!=", 'back1')
+        ->where("CAMPO2", "!=", 'back1')
         ->exists();
 
         if (!$mkoborespuesta) {
@@ -173,7 +173,7 @@ class AuthenticatedSessionController extends Controller
                     $preg_ = substr($frase[0], 4, -4);
 
                     $respuestas = MKoboRespuestas::where("CAMPO1", $request->email)
-                    ->where("VALOR", "!=", 'back1')
+                    ->where("CAMPO2", "!=", 'back1')
                     ->get()->pluck('VALOR');
 
                     $contine = $respuestas->contains(function ($value, int $key) use ($frase) {
