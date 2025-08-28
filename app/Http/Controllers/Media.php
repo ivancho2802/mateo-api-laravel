@@ -271,11 +271,11 @@ class Media extends Controller
 
           $conteo = count(
             MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
-            ->where(["VALOR", "!=", 'back1'])
+            ->where("VALOR", "!=", 'back1')
             ->get()
           );
           $totalResponses = MKoboRespuestas::where("REFERENCIA", "like", "%Correo%")
-          ->where(["VALOR", "!=", 'back1'])
+          ->where("VALOR", "!=", 'back1')
           ->distinct()
           ->count('VALOR');
           $percentageOptionA = 0;
@@ -302,7 +302,7 @@ class Media extends Controller
   {
     //dd($request->email);
     $mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)
-    ->where(["VALOR", "!=", 'back1'])
+    ->where("VALOR", "!=", 'back1')
     ->exists();
 
 
@@ -441,7 +441,7 @@ class Media extends Controller
 
           $resuetas_user = count(
             MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
-              ->where(["VALOR", "!=", 'back1'])
+              ->where("VALOR", "!=", 'back1')
               ->where("CAMPO1", $request->email)
               ->get()
           );
