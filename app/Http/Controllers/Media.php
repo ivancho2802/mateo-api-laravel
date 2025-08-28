@@ -138,12 +138,6 @@ class Media extends Controller
 
   function mateoAnelicaHps(Request $request)
   {
-    //$mformulario = MFormulario::get()->load(['respuestas', 'preguntas']);
-    //$mkoboformulario = MKoboFormularios::get();
-    $mkoborespuesta = MKoboRespuestas::get();
-
-    //dd($mkoborespuesta);
-
     $preguntas = collect([
       "¿Qué es?: Definición" => [
         "Naturaleza de la transición" => [ //"1.1.1 Frente a estas afirmaciones en cuál se siente más representado",
@@ -253,7 +247,7 @@ class Media extends Controller
 
     //$longText = "3.5.1.5 La transición se fundamenta en las acciones para atender los cambios que se necesitan de forma urgente, independientemente si en el futuro se dé –o no- alguna acción reparadora frente a los impactos del pasado.>Enfoque urgencia dominante";
 
-    //dd(count(MKoboRespuestas::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get()));
+    //dd(count(MKoboRespue stas::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get()));
 
     //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
 
@@ -275,9 +269,15 @@ class Media extends Controller
             $limitsuperior = $frase[3];
           }
 
-          $conteo = count(MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get());
-          $totalResponses = MKoboRespuestas::where("REFERENCIA", "like", "%Correo%")->distinct()->count('VALOR');
-          //$totalResponses = count(MKoboRespuestas::get());
+          $conteo = count(
+            MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
+            ->where(["VALOR", "!=", 'back1'])
+            ->get()
+          );
+          $totalResponses = MKoboRespuestas::where("REFERENCIA", "like", "%Correo%")
+          ->where(["VALOR", "!=", 'back1'])
+          ->distinct()
+          ->count('VALOR');
           $percentageOptionA = 0;
           if ($totalResponses > 0) {
             //dd($conteo, $totalResponses);
@@ -301,7 +301,10 @@ class Media extends Controller
   public function downloadPdf(Request $request)
   {
     //dd($request->email);
-    $mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)->exists();
+    $mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)
+    ->where(["VALOR", "!=", 'back1'])
+    ->exists();
+
 
     if (!$mkoborespuesta) {
       return view('auth.consulta')->withErrors(['email' => 'Email No encontrado']);//status
@@ -418,7 +421,7 @@ class Media extends Controller
 
     //$longText = "3.5.1.5 La transición se fundamenta en las acciones para atender los cambios que se necesitan de forma urgente, independientemente si en el futuro se dé –o no- alguna acción reparadora frente a los impactos del pasado.>Enfoque urgencia dominante";
 
-    //dd(count(MKoboRespuestas::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get()));
+    //dd(count(MKoboRespue stas::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))->get()));
 
     //Product::where(DB::raw("'$longText'"), 'LIKE', DB::raw("CONCAT('%', name, '%')"))->get();
 
@@ -438,6 +441,7 @@ class Media extends Controller
 
           $resuetas_user = count(
             MKoboRespuestas::where(DB::raw("'$preg'"), 'LIKE', DB::raw("CONCAT('%', \"VALOR\", '%')"))
+              ->where(["VALOR", "!=", 'back1'])
               ->where("CAMPO1", $request->email)
               ->get()
           );

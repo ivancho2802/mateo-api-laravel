@@ -36,7 +36,9 @@ class AuthenticatedSessionController extends Controller
     public function store(Request $request)
     {
         //dd($request->email);
-        $mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)->exists();
+        $mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)
+        ->where(["VALOR", "!=", 'back1'])
+        ->exists();
 
         if (!$mkoborespuesta) {
             return view('auth.consulta')->withErrors(['email' => 'Email No encontrado']);//status
@@ -170,7 +172,9 @@ class AuthenticatedSessionController extends Controller
                     }
                     $preg_ = substr($frase[0], 4, -4);
 
-                    $respuestas = MKoboRespuestas::where("CAMPO1", $request->email)->get()->pluck('VALOR');
+                    $respuestas = MKoboRespuestas::where("CAMPO1", $request->email)
+                    ->where(["VALOR", "!=", 'back1'])
+                    ->get()->pluck('VALOR');
 
                     $contine = $respuestas->contains(function ($value, int $key) use ($frase) {
                         $cadena1 = strtolower(normalizar_cadena($value));
