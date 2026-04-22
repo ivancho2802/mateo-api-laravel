@@ -16,6 +16,7 @@ class AlterMasterMKoboRespuestasTable extends Migration
         //
         Schema::table('"M_KOBO_RESPUESTAS"', function (Blueprint $table) {
             $table->text('VALOR')->nullable()->change();
+            $table->text('ROTULO')->nullable()->change();
         });
     }
 
