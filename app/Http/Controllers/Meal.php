@@ -1466,4 +1466,50 @@ class Meal extends Controller
         return response()->json(['status' => true, 'data' => $migrations], 200);
     }
 
+    
+    function getLpaOnlyPageTestAll(Request $request)
+    {
+
+        $limit_minutes = 8000;
+        ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
+        ini_set('memory_limit', '902044M');
+        set_time_limit($limit_minutes); //0
+        ini_set('max_execution_time', '' . $limit_minutes . '');
+        ini_set('max_input_time', '' . $limit_minutes . '');
+        $fecha_filter = (isset($request->fecha) && $request->fecha) ? $request->fecha : "2000-01-01";
+        $fecha_to = (isset($request->fecha_to) && $request->fecha_to) ? $request->fecha_to : "";
+
+        $mlpas_origin = DB::table("vw_lpas_bi")//SELECT * FROM 
+            //MLpaTest::where("FECHA_ATENCION", ">=", $fecha_filter)
+            //    ->nodeleted()
+            ->where("FECHA_ATENCION", ">=", $fecha_filter)
+            ->when($fecha_to ?? null, function ($query, $fecha_to) {
+                return $query->where('FECHA_ATENCION', '<=', $fecha_to);
+            });
+
+        $mlpas = $mlpas_origin->get();
+        return [
+            "lpas" => $mlpas
+        ];
+        /* return response()->stream(function () use ($mlpas_origin) {
+
+            $first = true;
+            echo '[ "lpas" => ';
+
+            $mlpas_origin->chunk(1000, function ($rows) use (&$first) {
+                foreach ($rows as $row) {
+                    if (!$first) {
+                        echo ',';
+                    }
+                    echo json_encode($row);
+                    $first = false;
+                }
+            });
+
+            echo ']';
+
+        }, 200, ['Content-Type' => 'application/json']); */
+    }
+
+
 }
