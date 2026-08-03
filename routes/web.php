@@ -18,8 +18,11 @@ use App\Http\Controllers\Ugic;
 |
 */
 
-Route::get('/', [App\Http\Controllers\Media::class, 'mateoAnelicaHps']);
-
+Route::get('/', function () {
+    return view('dashboard');
+});
+// aqui esta lo de mateo
+//Route::get('/', [App\Http\Controllers\Media::class, 'mateoAnelicaHps']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
