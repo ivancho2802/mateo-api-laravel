@@ -319,7 +319,7 @@
                         </i>
 
                         <div class="ml-4 text-lg leading-7 font-semibold">
-                            <a href="{{ route('finanzas.adn.index') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="{{ route('finanzas.adn') }}" class="underline text-gray-900 dark:text-white">
                                 Parametros de finanzas adn fase 2
                             </a>
                         </div>
@@ -330,7 +330,7 @@
                             Esta herramienta es para adn.
                             <br>
 
-                            {{ route('finanzas.adn.index') }}
+                            {{ route('finanzas.adn') }}
 
                         </div>
                     </div>
