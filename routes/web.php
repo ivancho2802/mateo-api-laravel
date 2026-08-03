@@ -17,6 +17,24 @@ use App\Http\Controllers\Ugic;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test-proxy', function () {
+
+    return response()->json([
+        'url' => url('/'),
+        'url_prueba' => url('/prueba'),
+        'scheme' => request()->getScheme(),
+        'host' => request()->getHost(),
+        'base_url' => request()->getBaseUrl(),
+        'path' => request()->path(),
+        'secure' => request()->isSecure(),
+
+        'forwarded_proto' => request()->header('X-Forwarded-Proto'),
+        'forwarded_host' => request()->header('X-Forwarded-Host'),
+        'forwarded_prefix' => request()->header('X-Forwarded-Prefix'),
+        'forwarded_for' => request()->header('X-Forwarded-For'),
+    ]);
+
+});
 
 Route::get('/', function () {
     return view('dashboard');
