@@ -37,7 +37,7 @@ Route::get('/test-proxy', function () {
 });
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('welcomeold');
 });
 // aqui esta lo de mateo
 //Route::get('/', [App\Http\Controllers\Media::class, 'mateoAnelicaHps']);
