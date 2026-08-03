@@ -27,13 +27,30 @@ class AuthenticatedSessionController extends Controller
         return view('auth.consulta');
     }
 
+    
     /**
      * Handle an incoming authentication request.
      *
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(LoginRequest $request)
+    {
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        return redirect()->intended(RouteServiceProvider::HOME);
+    }
+
+
+    /**
+     * Handle an incoming authentication request.
+     *
+     * @param  \App\Http\Requests\Auth\LoginRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store_(Request $request)
     {
         //dd($request->email);
         $mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)
