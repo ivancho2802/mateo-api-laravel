@@ -217,7 +217,7 @@
                             </i>
 
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="{{ route('koboapdf.index') }}" class="underline text-gray-900 dark:text-white">
+                                <a href="{{ route('koboapdf') }}" class="underline text-gray-900 dark:text-white">
                                     Formulario de descargas masivas de PDF
                                 </a>
                             </div>
@@ -229,7 +229,7 @@
                                 en base a un formulario basico es posible que no funcione con todos los formularios si esto ocurre debes realizar la solicitud
                                 <br>
 
-                                {{ route('koboapdf.index') }}
+                                {{ route('koboapdf') }}
 
                             </div>
                         </div>
