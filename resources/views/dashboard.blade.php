@@ -68,7 +68,7 @@
                         </i>
 
                         <div class="ml-4 text-lg leading-7 font-semibold">
-                            <a href="{{ route('urls') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="{{ route('urls.index') }}" class="underline text-gray-900 dark:text-white">
                                 Acortar link
                             </a>
                         </div>
@@ -127,7 +127,7 @@
                         </i>
 
                         <div class="ml-4 text-lg leading-7 font-semibold">
-                            <a href="{{ route('urls') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="{{ route('urls.index') }}" class="underline text-gray-900 dark:text-white">
                                 matriz minas
                             </a>
                         </div>
