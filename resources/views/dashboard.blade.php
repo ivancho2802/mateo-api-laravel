@@ -153,7 +153,7 @@
                         </i>
                         <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">
 
-                            <a href="{{ route('qr') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="{{ route('qr.index') }}" class="underline text-gray-900 dark:text-white">
                                 Servicio para crear qr con la marca de ach
                             </a>
                         </div>
@@ -188,7 +188,7 @@
                         </i>
 
                         <div class="ml-4 text-lg leading-7 font-semibold">
-                            <a href="{{ route('matrizprensa') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="{{ route('matrizprensa.index') }}" class="underline text-gray-900 dark:text-white">
                                 matriz de prensa
                             </a>
                         </div>
@@ -199,7 +199,7 @@
                             Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                             <br>
 
-                            {{ route('matrizprensa') }}
+                            {{ route('matrizprensa.index') }}
 
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                             </i>
 
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="{{ route('koboapdf') }}" class="underline text-gray-900 dark:text-white">
+                                <a href="{{ route('koboapdf.index') }}" class="underline text-gray-900 dark:text-white">
                                     Formulario de descargas masivas de PDF
                                 </a>
                             </div>
@@ -229,7 +229,7 @@
                                 en base a un formulario basico es posible que no funcione con todos los formularios si esto ocurre debes realizar la solicitud
                                 <br>
 
-                                {{ route('koboapdf') }}
+                                {{ route('koboapdf.index') }}
 
                             </div>
                         </div>
@@ -319,7 +319,7 @@
                         </i>
 
                         <div class="ml-4 text-lg leading-7 font-semibold">
-                            <a href="{{ route('finanzas.adn') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="{{ route('finanzas.adn.index') }}" class="underline text-gray-900 dark:text-white">
                                 Parametros de finanzas adn fase 2
                             </a>
                         </div>
@@ -330,7 +330,7 @@
                             Esta herramienta es para adn.
                             <br>
 
-                            {{ route('finanzas.adn') }}
+                            {{ route('finanzas.adn.index') }}
 
                         </div>
                     </div>
@@ -348,7 +348,7 @@
                             </i>
 
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="{{ route('koboactivityinfo') }}" class="underline text-gray-900 dark:text-white">
+                                <a href="{{ route('koboactivityinfo.index') }}" class="underline text-gray-900 dark:text-white">
                                     Formulario migracion a activity info
                                 </a>
                             </div>
@@ -359,7 +359,7 @@
                                 Esta herramienta funciona para tranferir formularios de kobo a activity info
                                 <br>
 
-                                {{ route('koboactivityinfo') }}
+                                {{ route('koboactivityinfo.index') }}
 
                             </div>
                         </div>
