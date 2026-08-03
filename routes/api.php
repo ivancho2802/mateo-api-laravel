@@ -512,4 +512,7 @@ Route::prefix('firebird')->group(function () {
       return response()->json(['Error' => $exception->getMessage()]);
     } */
   });
+
+  Route::middleware(['auth:sanctum'])->get('/lpasegOnlyPageTestAll', [App\Http\Controllers\Meal::class, 'getLpaOnlyPageTestAll']);
+
 });
