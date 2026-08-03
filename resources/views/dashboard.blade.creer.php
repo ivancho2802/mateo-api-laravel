@@ -27,25 +27,20 @@
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <div class="p-6">
                     <div class="flex items-center">
-                        <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/MIREsys4.jpg" class="w-8 h-8 text-gray-500" />
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://mireview.ach.dyndns.info/ach/herramientas/password/password.php?db=ach" class="underline text-gray-900 dark:text-white">
-                                MIRE + Web
+                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="#" class="underline text-gray-900 dark:text-white">
+                                CREER
                             </a></div>
                     </div>
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            Sistema para la gestión de la información del MIRE
+                            Sistema para la gestión de la información del CREER
                         </div>
                     </div>
                 </div>
 
                 <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                    <div class="flex items-center">
-                        <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/infoMIRE3.jpg" class="w-8 h-8 text-gray-500" />
-                        <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://mireview.ach.dyndns.info/ach/movil_dashboard/www/index.html" class="underline text-gray-900 dark:text-white">
-                                Mire+ App
-                            </a></div>
+                    <div class="flex items-center"> 
                     </div>
 
                     <div class="ml-12">
@@ -68,7 +63,7 @@
                         </i>
 
                         <div class="ml-4 text-lg leading-7 font-semibold">
-                            <a href="{{ route('urls') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="/urls" class="underline text-gray-900 dark:text-white">
                                 Acortar link
                             </a>
                         </div>
@@ -99,7 +94,6 @@
                             Formato url para importar en excel o en powe bi
                             <br>
 
-                            https://mireview.dyndns.org/apidev/api/kobo/[asset_uid]/data/[token]
                             <br>
 
                             [token] = es el usado por kobo para obtrener datos
@@ -108,7 +102,7 @@
                             [asset_uid] = hash del formulario o id del formulario de kobo
                             <br>
 
-                            ademas de poner el token en la url debes poner el token de la api MIREYA para acceder a los datos
+                            ademas de poner el token en la url debes poner el token de la api   para acceder a los datos
                             <br>
                         </div>
                     </div>
@@ -127,7 +121,7 @@
                         </i>
 
                         <div class="ml-4 text-lg leading-7 font-semibold">
-                            <a href="{{ route('urls') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="/urls" class="underline text-gray-900 dark:text-white">
                                 matriz minas
                             </a>
                         </div>
@@ -138,7 +132,6 @@
                             Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                             <br>
 
-                            https://mireview.dyndns.org/apidev/api/matriz/minas
 
                         </div>
                     </div>
@@ -153,7 +146,7 @@
                         </i>
                         <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">
 
-                            <a href="{{ route('qr') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="/qr" class="underline text-gray-900 dark:text-white">
                                 Servicio para crear qr con la marca de ach
                             </a>
                         </div>
@@ -163,7 +156,6 @@
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             Esta herramienta funciona para generar qr en base a links o texto o demas funciones que quieras usar
                             <br>
-                            https://mireview.dyndns.org/apidev/qr?url=%22https://mireview.dyndns.org/apidev/cut/XujVh%22
                             <br>
                             [url] = podria ser una url o un texto correo o demas
                             <br>
@@ -188,7 +180,7 @@
                         </i>
 
                         <div class="ml-4 text-lg leading-7 font-semibold">
-                            <a href="{{ route('matrizprensa') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="/matrizprensa" class="underline text-gray-900 dark:text-white">
                                 matriz de prensa
                             </a>
                         </div>
@@ -199,7 +191,6 @@
                             Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                             <br>
 
-                            {{ route('matrizprensa') }}
 
                         </div>
                     </div>
@@ -217,7 +208,7 @@
                             </i>
 
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="{{ route('koboapdf') }}" class="underline text-gray-900 dark:text-white">
+                                <a href="/koboapdf" class="underline text-gray-900 dark:text-white">
                                     Formulario de descargas masivas de PDF
                                 </a>
                             </div>
@@ -229,79 +220,6 @@
                                 en base a un formulario basico es posible que no funcione con todos los formularios si esto ocurre debes realizar la solicitud
                                 <br>
 
-                                {{ route('koboapdf') }}
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                
-                <div class="grid grid-cols-1 md:grid-cols-1">
-
-
-                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                        <div class="flex items-center">
-                            <i class="ach-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                    <path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z" />
-                                </svg>
-                            </i>
-
-                            <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="http://ach.dyndns.info:8501/" class="underline text-gray-900 dark:text-white">
-                                    Calculadora demográfica para población afectada
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="ml-12">
-                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                
-                                Estimación de hombres, mujeres y rangos de edad a partir de la distribución poblacional por municipio, año y área geográfica.
-                                171 con puerto 8501
-                                <br>
-
-                                http://ach.dyndns.info:8501/
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                
-                <div class="grid grid-cols-1 md:grid-cols-1">
-
-
-                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                        <div class="flex items-center">
-                            <i class="ach-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                    <path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z" />
-                                </svg>
-                            </i>
-
-                            <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="https://mireview.dyndns.org/ach/herramientas/main/mapa_seguridad_hidrica_colombia.html" class="underline text-gray-900 dark:text-white">
-                                    Mapas de seguridad hidrica
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="ml-12">
-                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                * Seguridad hidrica 
-                                * SAMV
-                                * Proteccion
-                                
-                                desde el mireview
-                                <br>
-
-                                https://mireview.dyndns.org/ach/herramientas/main/mapa_seguridad_hidrica_colombia.html
 
                             </div>
                         </div>
@@ -319,7 +237,7 @@
                         </i>
 
                         <div class="ml-4 text-lg leading-7 font-semibold">
-                            <a href="{{ route('finanzas.adn') }}" class="underline text-gray-900 dark:text-white">
+                            <a href="/finanzas/adn" class="underline text-gray-900 dark:text-white">
                                 Parametros de finanzas adn fase 2
                             </a>
                         </div>
@@ -330,42 +248,8 @@
                             Esta herramienta es para adn.
                             <br>
 
-                            {{ route('finanzas.adn') }}
-
                         </div>
                     </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-1">
-
-
-                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                        <div class="flex items-center">
-                            <i class="ach-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                    <path d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 144-208 0c-35.3 0-64 28.7-64 64l0 144-48 0c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM176 352l32 0c30.9 0 56 25.1 56 56s-25.1 56-56 56l-16 0 0 32c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-48 0-80c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24l-16 0 0 48 16 0zm96-80l32 0c26.5 0 48 21.5 48 48l0 64c0 26.5-21.5 48-48 48l-32 0c-8.8 0-16-7.2-16-16l0-128c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16l0-64c0-8.8-7.2-16-16-16l-16 0 0 96 16 0zm80-112c0-8.8 7.2-16 16-16l48 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 32 32 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-32 0 0 48c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-64 0-64z" />
-                                </svg>
-                            </i>
-
-                            <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="{{ route('koboactivityinfo') }}" class="underline text-gray-900 dark:text-white">
-                                    Formulario migracion a activity info
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="ml-12">
-                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Esta herramienta funciona para tranferir formularios de kobo a activity info
-                                <br>
-
-                                {{ route('koboactivityinfo') }}
-
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
 
             </div>
