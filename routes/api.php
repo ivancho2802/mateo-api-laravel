@@ -513,9 +513,9 @@ Route::prefix('firebird')->group(function () {
     } */
   });
 
-  //Route::middleware(['auth:sanctum'])->get('/lpasegOnlyPageTestAll', [App\Http\Controllers\Meal::class, 'getLpaOnlyPageTestAll']);
-  Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/lpasegOnlyPageTestAll', [App\Http\Controllers\Meal::class, 'getLpaOnlyPageTestAll']);
-  });
+});
 
+//Route::middleware(['auth:sanctum'])->get('/lpasegOnlyPageTestAll', [App\Http\Controllers\Meal::class, 'getLpaOnlyPageTestAll']);
+Route::middleware('auth:sanctum')->group(function () {
+  Route::get('/meal/lpasegOnlyPageTestAll', [App\Http\Controllers\Meal::class, 'getLpaOnlyPageTestAll']);
 });
