@@ -58,7 +58,8 @@ return [
 
     'url' => env('APP_URL', 'https://mireview.dyndns.org/apidev'),
 
-    'asset_url' => env('ASSET_URL', null),
+    'asset_url' => env('ASSET_URL', 'https://mireview.dyndns.org/apidev'),
+    'mix_url' => env('MIX_ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
