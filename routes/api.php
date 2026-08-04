@@ -446,9 +446,9 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       }
 
       //titulo del formulario
-      if (isset($dataTitleResponse)) {
-        $name_fomulary = collect($dataTitleResponse)['name'];
-        $formdata = json_decode(json_encode(collect($dataTitleResponse)), FALSE);
+      if (isset($jsonurlform)) {
+        $name_fomulary = collect($jsonurlform)['name'];
+        $formdata = json_decode(json_encode(collect($jsonurlform)), FALSE);
         $metaFiles = collect($formdata->files); //data_file
 
       }
