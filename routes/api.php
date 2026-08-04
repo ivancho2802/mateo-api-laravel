@@ -416,6 +416,9 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
           $clave = $claves[$i];
           $valor = $valores[$i];
 
+          $valorString = json_encode($valores[$i]);
+          dd($clave, $valor);
+
           if (!is_array($valor) && isset($clave)) {
 
             if (
