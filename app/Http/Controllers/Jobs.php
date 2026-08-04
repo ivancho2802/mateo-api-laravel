@@ -194,6 +194,7 @@ class Jobs extends Controller
     $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
 
       $filesExportedCollect = collect($filesExported);
+      dd($item, $filesExportedCollect);
 
       $filesExportedCollect = $filesExportedCollect->map(function ($fileExport) {
         $extract_id = explode('_', $fileExport);
