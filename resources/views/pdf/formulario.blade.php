@@ -250,13 +250,13 @@
             <span lang="default" class="option-label active"></span>
 
             <!--alguna foto-->
-            @forelse ($metaFilesForm as $metadata)
+            <!-- @forelse ($metaFilesForm as $metadata)
             @if(stripos($metadata->data_file, 'data:image')!==false)
             <img src="{{$metadata->data_file}}" alt="brand logo">
             @endif
             @empty
             no hay
-            @endforelse
+            @endforelse -->
 
           </label>
 
