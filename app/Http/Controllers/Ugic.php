@@ -158,14 +158,14 @@ class Ugic extends Controller
 
             if ($resultCreated === true) {
               //$download = public_path($zipFileName);
-              $download = "/public/" . ($zipFileName);
+              $download = "/apidev/public/" . ($zipFileName);
             } else {
               $download = "fallo al generar el archivos";
               //return response()->json(['status' => false, 'message' => $resultCreated], 503);
             }
           } else {
             //$download = public_path($zipFileName);
-            $download = "/public/" . ($zipFileName);
+            $download = "/apidev/public/" . ($zipFileName);
           }
         }
 
