@@ -407,7 +407,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
         $formulario = collect($chield); //->forget('name');
 
         $claves = $formulario->keys();
-        $valores = array_values($chield);
+        $valores = $formulario->values();
         //!id_object($valor) && 
 
         for ($i = 0; $i < count($claves); $i++) {
