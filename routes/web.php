@@ -55,14 +55,24 @@ Route::resource('matrizprensa', MatrizController::class)
 Route::get('/koboapdf', [Ugic::class, 'index'])
     ->middleware(['auth'])->name('koboapdf');
 
-Route::middleware(['auth'])->post('/job/deploy/exportkobo', [App\Http\Controllers\Jobs::class, 'exportByuui']);
+Route::middleware(['auth'])->post('/job/deploy/exportkobo', [App\Http\Controllers\Jobs::class, 'exportByuui'])
+->name('job/deploy/exportkobo');
+
+Route::middleware(['auth'])->post('/job/deploy/exportkobov2', [App\Http\Controllers\Jobs::class, 'exportByuuiV2'])
+->name('job/deploy/exportkobov2');
+
+Route::middleware(['auth'])->get('/koboapdfactualizar/{idjobdetail}', [App\Http\Controllers\Jobs::class, 'reexportByuuiV2'])
+->name('koboapdfactualizar');
+
 
 //este el search
-Route::middleware(['auth'])->post('/koboapdf', [App\Http\Controllers\Jobs::class, 'getProccessExportView']);
+Route::middleware(['auth'])->post('/koboapdf', [App\Http\Controllers\Jobs::class, 'getProccessExportView'])
+->name('koboapdf.search');
 
 Route::middleware(['auth'])->put('/koboapdf', [App\Http\Controllers\Jobs::class, 'addFilterProcessExportView']);
 
-Route::middleware(['auth'])->get('/koboapdfrepair', [\App\Http\Controllers\Jobs::class, 'repair']);
+Route::middleware(['auth'])->get('/koboapdfrepair', [\App\Http\Controllers\Jobs::class, 'repair'])
+->name('koboapdfrepair');
 
 // route for get shortener url
 Route::get('/cut/{shortener_url}', [UrlController::class, 'shortenLink'])->name('shortener-url');

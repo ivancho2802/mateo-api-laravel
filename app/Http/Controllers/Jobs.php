@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\generateMigrationActy;
+use App\Jobs\generateMigrationActyCreate;
+use App\Jobs\generateMigrationActySave;
 use Illuminate\Http\Request;
 
 use App\Jobs\generatePdf;
@@ -57,7 +60,7 @@ class Jobs extends Controller
 
     $limit_minutes = 900;
     ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
-    ini_set('memory_limit', '2044M');
+    ini_set('memory_limit', '12000M');
     set_time_limit($limit_minutes); //0
     ini_set('max_execution_time', '' . $limit_minutes . '');
     ini_set('max_input_time', '' . $limit_minutes . '');
@@ -93,7 +96,7 @@ class Jobs extends Controller
 
     $formid = $id;
 
-    $dominioTitle =  $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' :  $dominio);
+    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' : $dominio);
 
     //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
     if (isset($dominioTitle) && isset($formid) && isset($token) && isset($request->filtrar) && collect($request->filtrar)->search('filter') >= 0) {
@@ -159,7 +162,7 @@ class Jobs extends Controller
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
     $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
-    $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
+    $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid;//"https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
     $dataEnketoResponse = Http::withHeaders([
@@ -182,10 +185,9 @@ class Jobs extends Controller
     //dd($dataTitleResponse, $token, $jsonurlDataTitle, $formid);
     //titulo del formulario
     if (count($dataTitleResponse) > 0) {
-      $name_fomulary = collect($dataTitleResponse[0])['title'];
-      $formdata = json_decode(json_encode(collect($dataTitleResponse)->first()), FALSE);
-      $metaFiles =  collect($formdata->metadata); //data_file
-
+      $name_fomulary = collect($dataTitleResponse)['name'];
+      $formdata = json_decode(json_encode(collect($dataTitleResponse)), FALSE);
+      $metaFiles = collect($formdata->files); //data_file
     }
 
     //filtrando los formularios que ya han sido exportados con filesexported con los formularios consultados dataenketoresponse
@@ -222,7 +224,7 @@ class Jobs extends Controller
       $formulario = collect($chield); //->forget('name');
 
       $claves = collect($formulario->keys())->filter()->all();
-      $valores =  array_values($formulario->toArray());
+      $valores = array_values($formulario->toArray());
 
       //recorreindo las preguntas keys
       for ($i = 0; $i < count($claves); $i++) {
@@ -313,7 +315,7 @@ class Jobs extends Controller
         if (!collect($paramsForm)->get("_id")) {
           collect($paramsForm)->push('_id');
         }
-        
+
         $paramsForm = collect($paramsForm);
 
         $diff = $keysCurrent->diff($paramsForm);
@@ -356,8 +358,7 @@ class Jobs extends Controller
     //dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel);
 
     //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
-    $dataMetaWithImage = $metaFiles;
-    /* ($metaFiles->map(function ($chield) use ($token) {
+    $dataMetaWithImage = ($metaFiles->map(function ($chield) use ($token) {
 
       $metaF = ($chield); //->forget('name');
 
@@ -366,7 +367,7 @@ class Jobs extends Controller
       $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
 
       return $metaF;
-    })); */
+    }));
 
 
     //aqui creo los jobs que no han sido procesados
@@ -379,7 +380,7 @@ class Jobs extends Controller
       //$existQueue = JobsModel::where("payload", "like", "%" . $id_file . "%")->exists(); && !$existQueue
 
       if (!Storage::disk('local')->exists($filename)) {
-        if (isset($item)   && isset($filename)) {
+        if (isset($item) && isset($filename)) {
           //dd($item);
           generatePdf::dispatch($item, $filename, $dataMetaWithImage); //->onConnection('database');
           //generatePdf::dispatchAfterResponse();
@@ -464,7 +465,8 @@ class Jobs extends Controller
     $data = [$dataExport]; */
 
     //MQR devolver tabla con los resultados creados 
-    return redirect()->route('koboapdf', ["name_key" => ""])->with('success', 'Formulario solicitado con exito!');;
+    return redirect()->route('koboapdf', ["name_key" => ""])->with('success', 'Formulario solicitado con exito!');
+    ;
     //return view('koboapdf.index', ["name_key" => "", "data" => serialize($data)]);
     //}
 
@@ -472,7 +474,490 @@ class Jobs extends Controller
             ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
             ->header('Authorization', 'Token ' . $token); */
     /* } catch (\Throwable $th) {
-            
+
+
+            $filesExported = Storage::files("/htmlToPdf/". $name_key ."/");
+
+            return response()->json([
+                "error" => $th,
+                "exportaciones procesadas" => count($filesExported),
+            ]);
+        } */
+  }
+
+
+  public function exportByuuiV2(Request $request)
+  {
+    /* try { */
+
+    $limit_minutes = 900;
+    ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
+    ini_set('memory_limit', '12000M');
+    set_time_limit($limit_minutes); //0
+    ini_set('max_execution_time', '' . $limit_minutes . '');
+    ini_set('max_input_time', '' . $limit_minutes . '');
+
+    $dominio = "kf.acf-e.org";
+    $form = $request->all();
+
+    $token = $request->token;
+    $id = $request->id;
+
+    if (isset($request->dominio)) {
+      //parche para el dominio cuando este trae https
+      if (strpos($request->dominio, 'https') !== false) {
+        $dominio = str_replace('https://', '', $request->dominio);
+        $dominio = str_replace('/', '', $request->dominio);
+      } else if (strpos($request->dominio, 'http') !== false) {
+        $dominio = str_replace('http://', '', $request->dominio);
+        $dominio = str_replace('/', '', $request->dominio);
+      } else {
+        $dominio = $request->dominio;
+      }
+    }
+
+    $name_key = "cash_echo";
+
+    if (isset($request->name_key)) {
+      $name_key = $request->name_key;
+    }
+
+    $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+
+    $timestart = time();
+
+    $formid = $id;
+
+    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' : $dominio);
+
+    //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
+    if (isset($dominioTitle) && isset($formid) && isset($token) && isset($request->filtrar) && collect($request->filtrar)->search('filter') >= 0) {
+
+      $dataFormulario = [];
+
+      $jobDetails = JobDetails::firstOrCreate([
+        "dominio" => $dominio,
+        "name_key" => $name_key,
+        "uui" => $formid,
+        "token" => $token,
+      ]);
+
+      $jsonurlDataTitle = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+
+      $dataTitleResponse = Http::withHeaders([
+        'Authorization' => 'Token ' . $token . '',
+        'Accept' => 'application/json'
+      ])
+        ->get($jsonurlDataTitle)
+        ->json();
+
+      if (optional($dataTitleResponse)->detail == 'Not found.') {
+
+        //return redirect('/koboapdf')->with('error', 'Not found.');
+        return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => ($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
+      }
+
+      if (!is_array($dataTitleResponse)) {
+        return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => ($request->filtrar)])->with('error', 'Error!  ' . $dataTitleResponse['detail']);
+      }
+
+      if (!is_array($dataTitleResponse)) {
+
+        dd("Error no se encuentra el kobo", $dataTitleResponse, $jsonurlDataTitle);
+        return;
+      }
+
+      if (count($dataTitleResponse) > 0) {
+
+        $dataFormulario = collect(collect($dataTitleResponse)->first())->keys()->all();
+      }
+
+      array_push($form['filtrar'], 'filtered');
+
+      $dataFormulario = json_encode($dataFormulario);
+
+      JobDetails::where("uui", $jobDetails->uui)->update([
+        "otro" => $dataFormulario
+      ]);
+
+      return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => ($request->filtrar)])->with('success', 'Parametros del formulario cargados, falta un paso mas!');
+    }
+
+    if (!isset($request->dominio) || !isset($request->id) || !isset($request->token) || !isset($request->name_key)) {
+      return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => ($request->filtrar)])->with('error', 'Error! faltan parametros');
+    }
+
+    //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
+    JobDetails::updateOrCreate([
+      "dominio" => $dominio,
+      "name_key" => $name_key,
+      "uui" => $formid,
+      "token" => $token
+    ]);
+
+
+    //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
+    //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
+    //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
+    $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+    //$jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
+    $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v2/assets/" . $formid . ".json";
+    //'timeout' => 1200,  //1200 Seconds is 20 Minutes
+
+    $dataEnketoResponse = Http::withHeaders([
+      'Authorization' => 'Token ' . $token . '',
+      'Accept' => 'application/json'
+    ])
+      ->get($jsonurlDataEnketo)
+      ->json();
+
+    $dataTitleResponse = Http::withHeaders([
+      'Authorization' => 'Token ' . $token . '',
+      'Accept' => 'application/json'
+    ])
+      ->get($jsonurlDataTitle)
+      ->json();
+
+
+    $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
+    $metaFiles = [];
+
+    if (!is_array($dataTitleResponse)) {
+      dd("Error no se encuentra el formuilario", $dataTitleResponse, $token, $jsonurlDataTitle, $formid);
+      return;
+    }
+
+    //titulo del formulario
+    if (isset($dataTitleResponse)) {
+      $name_fomulary = collect($dataTitleResponse)['name'];
+      $formdata = json_decode(json_encode(collect($dataTitleResponse)), FALSE);
+      $metaFiles = collect($formdata->files); //data_file
+
+    }
+
+    //filtrando los formularios que ya han sido exportados con filesexported con los formularios consultados dataenketoresponse
+    $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
+
+      $filesExportedCollect = collect($filesExported);
+
+      $filesExportedCollect = $filesExportedCollect->map(function ($fileExport) {
+        $extract_id = explode('_', $fileExport);
+        $extract_id = str_replace(".pdf", "", $extract_id[1]);
+        return '' . $extract_id . '';
+      });
+
+      return ($filesExportedCollect->search($item['_id'])) === false;
+    });
+
+    $dataEnketo = collect($dataEnketoResponseFiltered); //->chunk(45)
+
+    //verifico si la descarga ya esta lsita
+    if (count($dataEnketoResponse) == count($filesExported)) {
+
+      $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
+
+      if ($resultCreated === true) {
+        return response()->download(public_path($name_key . ".zip"))->deleteFileAfterSend(true);
+      } else {
+        return response()->json(['status' => false, 'message' => $resultCreated], 503);
+      }
+    }
+
+    //contruyrndo las imagenes del formulario
+    //[0]
+    $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($token, $filesExported, $formid) {
+      $formulario = collect($chield); //->forget('name');
+
+      $claves = collect($formulario->keys())->filter()->all();
+      $valores = array_values($formulario->toArray());
+
+      //recorreindo las preguntas keys
+      for ($i = 0; $i < count($claves); $i++) {
+        # code...
+        $clave = ($claves[$i]);
+        $valor = $valores[$i];
+
+        if (!is_array($valor) && isset($clave)) {
+
+          if (
+            (stripos($valor, '.jpg') !== false && stripos($valor, '.jpg') == (strlen($valor) - strlen('.jpg'))) ||
+            (stripos($valor, '.png') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
+            (stripos($valor, '.jpeg') !== false && stripos($valor, '.jpeg') == (strlen($valor) - strlen('.jpeg'))) ||
+            (stripos($valor, '.svg') !== false && stripos($valor, '.svg') == (strlen($valor) - strlen('.svg')))
+          ) {
+
+
+            $verificationImage = migrateCustom::where([
+              'table' => $formid,
+              'file_ref' => $valor . $formulario['_id']
+            ]);
+
+            if ($verificationImage->exists()) {
+              $formulario[$clave] = $verificationImage->first()->table_id;
+              continue;
+            }
+
+            $chield_attachments = collect($chield['_attachments']);
+
+            $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
+              return isset($atached['download_url']) && (stripos($atached['filename'], $valor) !== false);
+            });
+
+
+            $urlImg = collect($urlImgFirst);
+            //if (isset($urlImg))
+            //  dd("urlImg", $urlImg, $urlImg->first(), "chield_attachments", $chield_attachments, "valor", $valor, "valores", $valores);//, $urlImg->first()['download_url']
+
+            if (count($urlImg) > 0) {
+
+              //convertir la imagen en su respuesta
+              $imageResponse = Helper::getImageWithHeaders($urlImg->first()['download_url'], $token, $urlImg->first()['mimetype']);
+              //dd("imageResponse", $imageResponse, $urlImg->first()['download_url'], $token, $urlImg->first());
+
+              $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
+
+
+
+              migrateCustom::create([
+                'table' => $formid,
+                'table_id' => $formulario[$clave] . $imageResponse,
+                'file_ref' => $valor . $formulario['_id']
+              ]);
+            }
+            /* elsedd("esto no deberia psasr"); */
+          }
+        }
+      }
+
+      return $formulario;
+    }));
+
+    $paramsForm = $request->paramForm;
+
+    //ajusto las preguntas para que salgan bonitas con los labesl y no con los nombres
+    //$formidnumber = collect($dataTitleResponse[0])->get('formid');
+
+    //https://kc.acf-e.org/api/v1/forms/2433/form.json
+    //$jsonurlDataLabels = "https://" . $dominioTitle . "/api/v1/forms/" . $formidnumber . "/form.json";
+
+    /* $dataDataLabelsResponse = Http::withHeaders([
+      'Authorization' => 'Token ' . $token . '',
+      'Accept' => 'application/json'
+    ])
+      ->get($jsonurlDataLabels)
+      ->json(); */
+
+    $dataLabels = collect($dataTitleResponse);
+
+    $children = $dataLabels['content']['survey'];
+    //dd($children);
+    //dd("dataEnketoWithImage", $dataEnketoWithImage);
+
+    //filtro segun lo especificado
+    //recorro los formularios con map y recorro las preguntas con map sino estan las sacco
+    $length_current_keys = count(collect(collect($dataEnketoWithImage)->first())->keys()) ?? count($paramsForm);
+
+    if (isset($paramsForm) && ($length_current_keys !== count($paramsForm))) {
+
+      $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
+        $formulario = collect($chield); //->forget('name');
+        $keysCurrent = $formulario->keys();
+
+        if (!collect($paramsForm)->get("_id")) {
+          collect($paramsForm)->push('_id');
+        }
+
+        $paramsForm = collect($paramsForm);
+
+        $diff = $keysCurrent->diff($paramsForm);
+
+        $deleteDiff = $diff->first();
+
+        $filtered = $formulario->except($deleteDiff);
+
+        //se ordena por las keys
+        $filtered = collect($filtered)->sortKeys();
+        return $filtered;
+      }));
+    }
+
+    $dataEnketoWithImage->filter()->all();
+
+    //dd("dataEnketoWithImage", $dataEnketoWithImage, "children", $children);
+
+    // 1. Convertir el arreglo de labels en un mapa eficiente
+    // Usaremos el '$xpath' como clave para que coincida con la colección de datos.
+    //PURGA DE DATOS
+    $dataEnketoWithImagePurga = $dataEnketoWithImage;
+
+    $mapaChildren = collect($children)->mapWithKeys(function ($item) {
+      // Aseguramos que la clave '$xpath' exista y que 'label' tenga al menos un valor.
+      $xpath = $item['$xpath'] ?? null;
+      $label = $item['label'][0] ?? null;
+
+      if ($xpath && $label) {
+        return [$xpath => $label];
+      }
+      // Ignorar ítems que no tienen la estructura necesaria para mapear.
+      return [];
+    })->toArray();
+
+    $coleccionDatosCorregida = $dataEnketoWithImagePurga->map(function ($item) use ($mapaChildren) {
+      $nuevoItem = [];
+
+      $datos = is_array($item) ? $item : $item->toArray();
+
+      // Iterar sobre las claves y valores del ítem de datos
+      foreach ($datos as $keyDato => $valorDato) {
+
+        // 3. Buscar la nueva clave (label) en nuestro mapa pre-construido
+        // Si la clave de dato existe en $mapaChildren, usa el label como nueva clave
+        $nuevaKey = $mapaChildren[$keyDato] ?? $keyDato;
+        /* if ($keyDato == 'informacion_demografica/codigo_emergencia' || $nuevaKey == 'informacion_demografica/codigo_emergencia') {
+
+          dd("nuevaKey", $nuevaKey, "mapaChildren", $mapaChildren, "keyDato", $keyDato);
+        } */
+
+        // 4. Asignar el valor al nuevo arreglo con la nueva clave
+        $nuevoItem[$nuevaKey] = $valorDato;
+      }
+
+      // Devolver el ítem con las keys ajustadas
+      return collect($nuevoItem);
+    });
+    //coleccionDatosCorregida vacio 
+    //dataEnketoWithImagePurga vacio 
+    //mapaChildren vacio 
+
+    //dd("coleccionDatosCorregida", $coleccionDatosCorregida, "dataEnketoWithImagePurga", $dataEnketoWithImagePurga, "mapaChildren", $mapaChildren);
+
+    //AQUI VALIDO PARA QUE SE ACTUALICEN LOS NOMBRES DE LOS FORUMUALRIOS
+    $dataEnketoWithImageLabel = collect($coleccionDatosCorregida);
+    //dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel, "children", $children);
+
+    $dataEnketoWithImage->all();
+
+    //dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel);
+
+    //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
+    $dataMetaWithImage = ($metaFiles->map(function ($chield) use ($token) {
+
+      $metaF = ($chield); //->forget('name');
+
+      $imageMetaResponse = Helper::getImageWithHeaders($metaF->url, $token);
+
+      $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
+
+      return $metaF;
+    }));
+
+    //dd("dataMetaWithImage", $dataMetaWithImage);
+
+    //aqui creo los jobs que no han sido procesados
+    $dataEnketoWithImageLabel->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse, $name_key, $name_fomulary, $dataMetaWithImage) {
+
+      $id_file = $item->get('_id');
+
+      $filename = '/htmlToPdf/' . $name_key . '/' . $name_fomulary . '_' . $id_file . '.pdf';
+
+      //$existQueue = JobsModel::where("payload", "like", "%" . $id_file . "%")->exists(); && !$existQueue
+
+      if (!Storage::disk('local')->exists($filename)) {
+        if (isset($item) && isset($filename)) {
+          //dd($item, $filename, $dataMetaWithImage);
+          generatePdf::dispatch($item, $filename, collect($dataMetaWithImage))->onQueue('high');
+          ;// //->onConnection('database');
+        }
+      }
+
+      $currentTimeExecuted = time() - $timestart;
+
+      $limit_minutes_ajust = $limit_minutes - 100;
+      //echo $currentTimeExecuted . " > " . $limit_minutes_ajust . ' = ' . (intval($currentTimeExecuted) > intval($limit_minutes_ajust)) . "\n";
+
+      if (intval($currentTimeExecuted) >= intval($limit_minutes_ajust)) {
+
+        $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+        echo "exportaciones totales" . count($dataEnketoResponse) . " \n";
+        echo "exportaciones procesadas" . count($filesExported) . " \n";
+        echo "exportaciones faltantes" . (count($dataEnketoResponse) - count($filesExported)) . " \n";
+
+        return response()->json([
+          "exportaciones totales" => count($dataEnketoResponse),
+          "exportaciones procesadas" => count($filesExported),
+          "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported),
+        ]);
+      }
+    });
+
+    /* return response()
+            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200);
+            dd("esta en 45 no se proceso por time out ver como estan los estilos con uno revisar des pues de _318932"); */
+
+    /* if (count($dataEnketoResponse) == count($filesExported)) {
+
+      $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
+
+      //$ramdom = Carbon\Carbon::now()->timestamp;
+      //dd(Carbon\Carbon::now()->timestamp, time());
+
+      if ($resultCreated === true) {
+        return response()->download(public_path($name_key . ".zip"))->deleteFileAfterSend(true);
+      } else {
+        return response()->json(['status' => false, 'message' => $resultCreated], 503);
+      }
+    } else { */
+    /* 
+    $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+
+    $jobsCreated = JobsModel::all();
+
+    $download = ""; */
+
+    //compruebo sy todo se completo para ofrecer la descarga zip
+    /* if (count($dataEnketoResponse) == count($filesExported)) {
+      $zipFileName = $name_key . ".zip";
+
+      if (!File::exists(public_path($zipFileName))) {
+
+        $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
+
+        if ($resultCreated === true) {
+          //$download = public_path($zipFileName);
+          $download = "/public/" . ($zipFileName);
+        } else {
+          $download = "fallo al generar el archivos";
+          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+        }
+      } else {
+        //$download = public_path($zipFileName);
+        $download = "/public/" . ($zipFileName);
+      }
+    } */
+
+    /* $dataExport = json_decode(collect([
+      "name_key" => ($name_key),
+      "exportaciones_totales" => count($dataEnketoResponse),
+      "exportaciones_procesadas" => count($filesExported),
+      "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
+      "exportaciones_fallidos" => 0,
+      "trabajos_en_proceso" => count($jobsCreated),
+      "download" => $download
+    ]));
+
+    $data = [$dataExport]; */
+
+    //MQR devolver tabla con los resultados creados 
+    return redirect()->route('koboapdf', ["name_key" => ""])->with('success', 'Formulario solicitado con exito!');
+    ;
+    //return view('koboapdf.index', ["name_key" => "", "data" => serialize($data)]);
+    //}
+
+    /* return response()
+            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
+            ->header('Authorization', 'Token ' . $token); */
+    /* } catch (\Throwable $th) {
+
 
             $filesExported = Storage::files("/htmlToPdf/". $name_key ."/");
 
@@ -497,7 +982,7 @@ class Jobs extends Controller
 
     $dominio = $jobdetails->dominio;
 
-    $dominioTitle =  $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' :  $dominio);
+    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' : $dominio);
     $formid = $jobdetails->uui;
     $token = $jobdetails->token;
     //
@@ -624,7 +1109,37 @@ class Jobs extends Controller
           "uui" => $formid,
           "token" => $token
       */
-    $jobdetails = JobDetails::where("name_key", "like", "%" . $name_key . "%")->first();
+
+
+    if ($request->name_key == "*") {
+      //verificar si hay fallidos
+      $namesJobs = JobDetails::where("token", "!=", "migracion_activityinfo")
+      ->pluck('name_key');
+
+      $dataExport = json_decode(collect([
+        "exportaciones_totales" => ' names: ' . json_encode($namesJobs),
+        "exportaciones_procesadas" => ' names: ' . json_encode($namesJobs),
+        "exportaciones_faltantes" => ' names: ' . json_encode($namesJobs),
+        "exportaciones_fallidos" => ' names: ' . json_encode($namesJobs),
+        "trabajos_en_proceso" => ' names: ' . json_encode($namesJobs),
+        "formid" => $request->name_key . ' names: ' . json_encode($namesJobs),
+        "download" => "download",
+        "name_key" => $request->name_key,
+
+      ]));
+
+
+      $data = [$dataExport];
+
+      //MQR devolver tabla con los resultados creados
+      $params["data"] = $data;
+      return view('koboapdf.index', $params);
+      //return view('koboapdf.index', ["form" => $form,  "data" => $data, "dataFormulario" => $dataFormulario]);
+    }
+
+    $jobdetails = JobDetails::where("token", "!=", "migracion_activityinfo")
+    ->where("name_key", "like", "%" . $name_key . "%")
+    ->first();
 
     if (!isset($jobdetails)) {
 
@@ -634,7 +1149,7 @@ class Jobs extends Controller
 
     $dominio = $jobdetails->dominio;
 
-    $dominioTitle =  $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' :  $dominio);
+    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' : $dominio);
     $formid = $jobdetails->uui;
     $token = $jobdetails->token;
     //
@@ -646,7 +1161,6 @@ class Jobs extends Controller
     //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
 
     $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
-    $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
     $dataEnketoResponse = Http::withHeaders([
@@ -657,8 +1171,13 @@ class Jobs extends Controller
       ->json();
 
     $jobsFailed = FailedJobsModel::where("payload", "like", "%" . $name_key . "%")->get();
+    //dd($dataEnketoResponse, $filesExported, $jsonurlDataEnketo);
+    $dataEnketoResponseCount = -1;
+    if (isset($dataEnketoResponse)) {
+      $dataEnketoResponseCount = count($dataEnketoResponse);
+    }
 
-    $faltantes = count($dataEnketoResponse) - count($filesExported);
+    $faltantes = $dataEnketoResponseCount - count($filesExported);
 
     //$exportaciones_nuevas
     //verificar sii hay faltantes de la migracion
@@ -671,7 +1190,7 @@ class Jobs extends Controller
 
       $download = "";
 
-      if (count($dataEnketoResponse) == count($filesExported)) {
+      if ($dataEnketoResponseCount == count($filesExported)) {
         $zipFileName = $name_key . ".zip";
 
         if (!File::exists(public_path($zipFileName))) {
@@ -697,7 +1216,7 @@ class Jobs extends Controller
 
       $dataExport = json_decode(collect([
         "name_key" => ($name_key),
-        "exportaciones_totales" => count($dataEnketoResponse),
+        "exportaciones_totales" => $dataEnketoResponseCount,
         "exportaciones_procesadas" => count($filesExported),
         "exportaciones_faltantes" => $faltantes,
         "exportaciones_fallidos" => count($jobsFailed),
@@ -748,7 +1267,7 @@ class Jobs extends Controller
 
     $download = "";
 
-    if (count($dataEnketoResponse) == count($filesExported)) {
+    if ($dataEnketoResponseCount == count($filesExported)) {
       $zipFileName = $name_key . ".zip";
 
       if (!File::exists(public_path($zipFileName))) {
@@ -773,9 +1292,9 @@ class Jobs extends Controller
 
     $dataExport = json_decode(collect([
       "name_key" => ($name_key),
-      "exportaciones_totales" => count($dataEnketoResponse),
+      "exportaciones_totales" => $dataEnketoResponseCount,
       "exportaciones_procesadas" => count($filesExported),
-      "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
+      "exportaciones_faltantes" => $dataEnketoResponseCount - count($filesExported),
       "exportaciones_fallidos" => count($jobsFailed),
       "trabajos_en_proceso" => count($jobsCreated),
       "exportaciones_nuevas" => $exportaciones_nuevas,
@@ -805,4 +1324,455 @@ class Jobs extends Controller
       return redirect('/koboapdf')->with(['error' => 'Error! al procezar los datos']);
     }
   }
+
+  public function reexportByuuiV2(Request $request)
+  {
+    /* try { */
+
+    $limit_minutes = 900;
+    ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
+    ini_set('memory_limit', '12000M');
+    set_time_limit($limit_minutes); //0
+    ini_set('max_execution_time', '' . $limit_minutes . '');
+    ini_set('max_input_time', '' . $limit_minutes . '');
+    $formid = $request->idjobdetail;
+
+    $jobDetails = JobDetails::where([
+      "name_key" => $formid,
+    ])->first();
+    $formid = $jobDetails->uui;
+
+    $dominio = $jobDetails->dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($jobDetails->dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' : $jobDetails->dominio);
+
+    $token = $jobDetails->token;
+    $id = $jobDetails->id;
+
+    if (isset($dominio)) {
+      //parche para el dominio cuando este trae https
+      if (strpos($dominio, 'https') !== false) {
+        $dominio = str_replace('https://', '', $dominio);
+        $dominio = str_replace('/', '', $dominio);
+      } else if (strpos($dominio, 'http') !== false) {
+        $dominio = str_replace('http://', '', $dominio);
+        $dominio = str_replace('/', '', $dominio);
+      }
+    }
+
+    $name_key = $jobDetails->name_key;
+
+    $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+
+    $timestart = time();
+
+    $formid = $jobDetails->uui;
+    $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+
+    $dataEnketoResponse = Http::withHeaders([
+      'Authorization' => 'Token ' . $token . '',
+      'Accept' => 'application/json'
+    ])
+      ->get($jsonurlDataEnketo)
+      ->json();
+
+
+    $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
+    $metaFiles = [];
+
+    if (!is_array($dataEnketoResponse)) {
+      dd("Error no se encuentra el formuilario", $formid);
+      return;
+    }
+
+
+    //$jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
+    $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
+    //'timeout' => 1200,  //1200 Seconds is 20 Minutes
+
+
+    $dataTitleResponse = Http::withHeaders([
+      'Authorization' => 'Token ' . $token . '',
+      'Accept' => 'application/json'
+    ])
+      ->get($jsonurlDataTitle)
+      ->json();
+
+    //titulo del formulario
+    if (isset($dataTitleResponse)) {
+      $name_fomulary = collect($dataTitleResponse)['name'];
+      $formdata = json_decode(json_encode(collect($dataTitleResponse)), FALSE);
+      $metaFiles = collect($formdata->files); //data_file
+
+    }
+
+    //filtrando los formularios que ya han sido exportados con filesexported con los formularios consultados dataenketoresponse
+    $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
+
+      $filesExportedCollect = collect($filesExported);
+
+      $filesExportedCollect = $filesExportedCollect->map(function ($fileExport) {
+        $extract_id = explode('_', $fileExport);
+        $extract_id = str_replace(".pdf", "", $extract_id[1]);
+        return '' . $extract_id . '';
+      });
+
+      return ($filesExportedCollect->search($item['_id'])) === false;
+    });
+
+    $dataEnketo = collect($dataEnketoResponseFiltered); //->chunk(45)
+
+    //verifico si la descarga ya esta lsita
+    if (count($dataEnketoResponse) == count($filesExported)) {
+
+      $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
+
+      if ($resultCreated === true) {
+        return response()->download(public_path($name_key . ".zip"))->deleteFileAfterSend(true);
+      } else {
+        return response()->json(['status' => false, 'message' => $resultCreated], 503);
+      }
+    }
+
+    //contruyrndo las imagenes del formulario
+    //[0]
+    $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($token, $filesExported, $formid) {
+      $formulario = collect($chield); //->forget('name');
+
+      $claves = collect($formulario->keys())->filter()->all();
+      $valores = array_values($formulario->toArray());
+
+      //recorreindo las preguntas keys
+      for ($i = 0; $i < count($claves); $i++) {
+        # code...
+        $clave = ($claves[$i]);
+        $valor = $valores[$i];
+
+        if (!is_array($valor) && isset($clave)) {
+
+          if (
+            (stripos($valor, '.jpg') !== false && stripos($valor, '.jpg') == (strlen($valor) - strlen('.jpg'))) ||
+            (stripos($valor, '.png') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
+            (stripos($valor, '.jpeg') !== false && stripos($valor, '.jpeg') == (strlen($valor) - strlen('.jpeg'))) ||
+            (stripos($valor, '.svg') !== false && stripos($valor, '.svg') == (strlen($valor) - strlen('.svg')))
+          ) {
+
+
+            $verificationImage = migrateCustom::where([
+              'table' => $formid,
+              'file_ref' => $valor . $formulario['_id']
+            ]);
+
+            if ($verificationImage->exists()) {
+              $formulario[$clave] = $verificationImage->first()->table_id;
+              continue;
+            }
+
+            $chield_attachments = collect($chield['_attachments']);
+
+            $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
+              return isset($atached['download_url']) && (stripos($atached['filename'], $valor) !== false);
+            });
+
+
+            $urlImg = collect($urlImgFirst);
+            //if (isset($urlImg))
+            //  dd("urlImg", $urlImg, $urlImg->first(), "chield_attachments", $chield_attachments, "valor", $valor, "valores", $valores);//, $urlImg->first()['download_url']
+
+            if (count($urlImg) > 0) {
+
+              //convertir la imagen en su respuesta
+              $imageResponse = Helper::getImageWithHeaders($urlImg->first()['download_url'], $token, $urlImg->first()['mimetype']);
+              //dd("imageResponse", $imageResponse, $urlImg->first()['download_url'], $token, $urlImg->first());
+
+              $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
+
+
+
+              migrateCustom::create([
+                'table' => $formid,
+                'table_id' => $formulario[$clave] . $imageResponse,
+                'file_ref' => $valor . $formulario['_id']
+              ]);
+            }
+            /* elsedd("esto no deberia psasr"); */
+          }
+        }
+      }
+
+      return $formulario;
+    }));
+
+    //ajusto las preguntas para que salgan bonitas con los labesl y no con los nombres
+    //$formidnumber = collect($dataTitleResponse[0])->get('formid');
+
+    //https://kc.acf-e.org/api/v1/forms/2433/form.json
+    //$jsonurlDataLabels = "https://" . $dominioTitle . "/api/v1/forms/" . $formidnumber . "/form.json";
+
+    /* $dataDataLabelsResponse = Http::withHeaders([
+      'Authorization' => 'Token ' . $token . '',
+      'Accept' => 'application/json'
+    ])
+      ->get($jsonurlDataLabels)
+      ->json(); */
+
+    $dataLabels = collect($dataTitleResponse);
+
+    $children = $dataLabels['content']['survey'];
+    //dd($children);
+    //dd("dataEnketoWithImage", $dataEnketoWithImage);
+
+    //filtro segun lo especificado
+    //recorro los formularios con map y recorro las preguntas con map sino estan las sacco
+    $length_current_keys = count(collect(collect($dataEnketoWithImage)->first())->keys()) ?? 0;
+
+    if (isset($paramsForm) && ($length_current_keys !== count($paramsForm))) {
+
+      $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($paramsForm) {
+        $formulario = collect($chield); //->forget('name');
+        $keysCurrent = $formulario->keys();
+
+        if (!collect($paramsForm)->get("_id")) {
+          collect($paramsForm)->push('_id');
+        }
+
+        $paramsForm = collect($paramsForm);
+
+        $diff = $keysCurrent->diff($paramsForm);
+
+        $deleteDiff = $diff->first();
+
+        $filtered = $formulario->except($deleteDiff);
+
+        //se ordena por las keys
+        $filtered = collect($filtered)->sortKeys();
+        return $filtered;
+      }));
+    }
+
+    $dataEnketoWithImage->filter()->all();
+
+    //dd("dataEnketoWithImage", $dataEnketoWithImage, "children", $children);
+
+    // 1. Convertir el arreglo de labels en un mapa eficiente
+    // Usaremos el '$xpath' como clave para que coincida con la colección de datos.
+    //PURGA DE DATOS
+    $dataEnketoWithImagePurga = $dataEnketoWithImage;
+
+    $mapaChildren = collect($children)->mapWithKeys(function ($item) {
+      // Aseguramos que la clave '$xpath' exista y que 'label' tenga al menos un valor.
+      $xpath = $item['$xpath'] ?? null;
+      $label = $item['label'][0] ?? null;
+
+      if ($xpath && $label) {
+        return [$xpath => $label];
+      }
+      // Ignorar ítems que no tienen la estructura necesaria para mapear.
+      return [];
+    })->toArray();
+
+    $coleccionDatosCorregida = $dataEnketoWithImagePurga->map(function ($item) use ($mapaChildren) {
+      $nuevoItem = [];
+
+      $datos = is_array($item) ? $item : $item->toArray();
+
+      // Iterar sobre las claves y valores del ítem de datos
+      foreach ($datos as $keyDato => $valorDato) {
+
+        // 3. Buscar la nueva clave (label) en nuestro mapa pre-construido
+        // Si la clave de dato existe en $mapaChildren, usa el label como nueva clave
+        $nuevaKey = $mapaChildren[$keyDato] ?? $keyDato;
+        /* if ($keyDato == 'informacion_demografica/codigo_emergencia' || $nuevaKey == 'informacion_demografica/codigo_emergencia') {
+
+          dd("nuevaKey", $nuevaKey, "mapaChildren", $mapaChildren, "keyDato", $keyDato);
+        } */
+
+        // 4. Asignar el valor al nuevo arreglo con la nueva clave
+        $nuevoItem[$nuevaKey] = $valorDato;
+      }
+
+      // Devolver el ítem con las keys ajustadas
+      return collect($nuevoItem);
+    });
+    //coleccionDatosCorregida vacio 
+    //dataEnketoWithImagePurga vacio 
+    //mapaChildren vacio 
+
+    //dd("coleccionDatosCorregida", $coleccionDatosCorregida, "dataEnketoWithImagePurga", $dataEnketoWithImagePurga, "mapaChildren", $mapaChildren);
+
+    //AQUI VALIDO PARA QUE SE ACTUALICEN LOS NOMBRES DE LOS FORUMUALRIOS
+    $dataEnketoWithImageLabel = collect($coleccionDatosCorregida);
+    //dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel, "children", $children);
+
+    $dataEnketoWithImage->all();
+
+    //dd("dataEnketoWithImageLabel", $dataEnketoWithImageLabel);
+
+    //se ajusta el meta del formulario para que se obtengas las imagenes del formulario son otras
+    $dataMetaWithImage = ($metaFiles->map(function ($chield) use ($token) {
+
+      $metaF = ($chield); //->forget('name');
+
+      $imageMetaResponse = Helper::getImageWithHeaders($metaF->url, $token);
+
+      $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
+
+      return $metaF;
+    }));
+
+    //dd("dataMetaWithImage", $dataMetaWithImage);
+
+    //aqui creo los jobs que no han sido procesados
+    $dataEnketoWithImageLabel->each(function (Collection $item) use ($timestart, $limit_minutes, $dataEnketoResponse, $name_key, $name_fomulary, $dataMetaWithImage) {
+
+      $id_file = $item->get('_id');
+
+      $filename = '/htmlToPdf/' . $name_key . '/' . $name_fomulary . '_' . $id_file . '.pdf';
+
+      //$existQueue = JobsModel::where("payload", "like", "%" . $id_file . "%")->exists(); && !$existQueue
+
+      if (!Storage::disk('local')->exists($filename)) {
+        if (isset($item) && isset($filename)) {
+          //dd($item, $filename, $dataMetaWithImage);
+          generatePdf::dispatch($item, $filename, collect($dataMetaWithImage))->onQueue('high');
+          ;// //->onConnection('database');
+        }
+      }
+
+      $currentTimeExecuted = time() - $timestart;
+
+      $limit_minutes_ajust = $limit_minutes - 100;
+      //echo $currentTimeExecuted . " > " . $limit_minutes_ajust . ' = ' . (intval($currentTimeExecuted) > intval($limit_minutes_ajust)) . "\n";
+
+      if (intval($currentTimeExecuted) >= intval($limit_minutes_ajust)) {
+
+        $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+        echo "exportaciones totales" . count($dataEnketoResponse) . " \n";
+        echo "exportaciones procesadas" . count($filesExported) . " \n";
+        echo "exportaciones faltantes" . (count($dataEnketoResponse) - count($filesExported)) . " \n";
+
+        return response()->json([
+          "exportaciones totales" => count($dataEnketoResponse),
+          "exportaciones procesadas" => count($filesExported),
+          "exportaciones faltantes" => count($dataEnketoResponse) - count($filesExported),
+        ]);
+      }
+    });
+
+    /* return response()
+            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200);
+            dd("esta en 45 no se proceso por time out ver como estan los estilos con uno revisar des pues de _318932"); */
+
+    /* if (count($dataEnketoResponse) == count($filesExported)) {
+
+      $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
+
+      //$ramdom = Carbon\Carbon::now()->timestamp;
+      //dd(Carbon\Carbon::now()->timestamp, time());
+
+      if ($resultCreated === true) {
+        return response()->download(public_path($name_key . ".zip"))->deleteFileAfterSend(true);
+      } else {
+        return response()->json(['status' => false, 'message' => $resultCreated], 503);
+      }
+    } else { */
+    /* 
+    $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+
+    $jobsCreated = JobsModel::all();
+
+    $download = ""; */
+
+    //compruebo sy todo se completo para ofrecer la descarga zip
+    /* if (count($dataEnketoResponse) == count($filesExported)) {
+      $zipFileName = $name_key . ".zip";
+
+      if (!File::exists(public_path($zipFileName))) {
+
+        $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
+
+        if ($resultCreated === true) {
+          //$download = public_path($zipFileName);
+          $download = "/public/" . ($zipFileName);
+        } else {
+          $download = "fallo al generar el archivos";
+          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+        }
+      } else {
+        //$download = public_path($zipFileName);
+        $download = "/public/" . ($zipFileName);
+      }
+    } */
+
+    /* $dataExport = json_decode(collect([
+      "name_key" => ($name_key),
+      "exportaciones_totales" => count($dataEnketoResponse),
+      "exportaciones_procesadas" => count($filesExported),
+      "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
+      "exportaciones_fallidos" => 0,
+      "trabajos_en_proceso" => count($jobsCreated),
+      "download" => $download
+    ]));
+
+    $data = [$dataExport]; */
+
+    //MQR devolver tabla con los resultados creados 
+    return redirect()->route('koboapdf', ["name_key" => ""])->with('success', 'Formulario solicitado con exito!');
+    ;
+    //return view('koboapdf.index', ["name_key" => "", "data" => serialize($data)]);
+    //}
+
+    /* return response()
+            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
+            ->header('Authorization', 'Token ' . $token); */
+    /* } catch (\Throwable $th) {
+
+
+            $filesExported = Storage::files("/htmlToPdf/". $name_key ."/");
+
+            return response()->json([
+                "error" => $th,
+                "exportaciones procesadas" => count($filesExported),
+            ]);
+        } */
+  }
+
+
+  //servicios de migracion de activity info 
+
+  public function migraciontoactivityinit(Request $request)
+  {
+    try {
+      //dd($request->headers->all(), auth());
+      $token = config('app.tokenapiaux');
+      //code...
+      $job = new GenerateMigrationActy($request->id, $token);
+      $id = dispatch($job);
+
+      return redirect()->route('koboactivityinfo', ["filtrar" => $request->id])->with('success', 'Formulario solicitado con exito!' . json_encode($id));
+
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+  }
+
+  public function migraciontoactivitySend(Request $request)
+  {
+    $token = config('app.tokenapiaux');
+
+    generateMigrationActyCreate::dispatch([$request->id, $token]);//->onQueue('high');
+
+    return redirect()->route('koboactivityinfo', ["name_key" => ""])->with('success', 'Formulario solicitado con exito!');
+
+  }
+
+  public function migraciontoactivitySave(Request $request)
+  {
+    $token = config('app.tokenapiaux');
+
+    generateMigrationActySave::dispatch([$request->id, $token]);//->onQueue('high');
+
+    return redirect()->route('koboactivityinfo', ["name_key" => ""])->with('success', 'Formulario solicitado con exito!');
+
+  }
+
+
 }

@@ -162,7 +162,7 @@
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                       <h1 class="h3 mb-3 fw-normal text-center">Formulario</h1>
 
-                      <form method="post" action="/job/deploy/exportkobo" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                      <form method="post" action="{{ route('job/deploy/exportkobo') }}"  enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                         @csrf
 
                         <label for="exampleFormControlTextarea1" class="form-label">Dominio Kobo: {{$form->dominio ?? 'no funciona'}} {{$form['dominio'] ?? 'otro no'}}</label>
@@ -277,7 +277,7 @@
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                       <h1 class="h3 mb-3 fw-normal text-center">Formulario</h1>
 
-                      <form method="post" action="/koboapdf" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                      <form method="post" action="{{ route('koboapdf.search') }}" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                         @csrf
 
                         <label for="exampleFormControlTextarea1" class="form-label">Buscador: </label>
@@ -329,7 +329,7 @@
                                 @if(optional($export)->exportaciones_totales !== 0 )
                                 {{$export->exportaciones_totales}}
                                 @else
-                                <form method="get" action="/koboapdf" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                                <form method="get" action="{{ route('koboapdf') }}" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                   @csrf
                                   <input type="hidden" placeholder="solicitud_insumos" id="formid" name="formid" value="{{$formid ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                   <x-primary-button class="mt-4">Ver</x-primary-button>
@@ -342,7 +342,7 @@
                                 @if(optional($export)->exportaciones_faltantes <= 0 )
                                 {{$export->exportaciones_faltantes}}
                                 @else
-                              <form method="get" action="/koboapdf" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                              <form method="get" action="{{ route('koboapdf') }}" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                 @csrf
                                 <input type="hidden" placeholder="solicitud_insumos" id="formid" name="formid" value="{{$formid ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                 <x-primary-button class="mt-4">Ver</x-primary-button>
@@ -352,7 +352,7 @@
                               <p class="text-sm font-semibold leading-6 text-indigo-600">
                                 Procesos. Fallidos: {{$export->exportaciones_fallidos}}
                                 @if($export->exportaciones_fallidos > 0)
-                              <form method="get" action="/koboapdfrepair" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                              <form method="get" action="{{ route('koboapdfrepair') }}" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                 @csrf
                                 <x-primary-button class="mt-4">Reparar</x-primary-button>
                               </form>
@@ -360,7 +360,7 @@
                               @endif
 
                               @if(optional($export)->exportaciones_nuevas )
-                              <form method="get" action="/koboapdfactualizar" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                              <form method="get" action="{{ route('koboapdfactualizar') }}" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                 @csrf
                                 <x-primary-button class="mt-4">Actualizar</x-primary-button>
                               </form>
@@ -393,7 +393,7 @@
 
 
 
-    <p class="mt-5 mb-3 text-muted">&copy; 2023–2024</p>
+    <p class="mt-5 mb-3 text-muted">&copy; 2023–2026</p>
 
     <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
 
