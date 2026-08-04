@@ -429,9 +429,11 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
                 return isset($atached['download_url']) && (stripos($atached['download_url'], $valor) !== false);
               });
 
-              $urlImg = collect($urlImgFirst);
+              $urlImg = collect($urlImgFirst)->first();
+              $imageMetaResponse = Helper::getImageWithHeaders($urlImg['download_url'], $token);
+              dd($imageMetaResponse);
 
-              $formulario->$clave = Helper::getImageWithHeaders($urlImg->first()['download_url'], $token);
+              $formulario->$clave = $imageMetaResponse ?? $urlImg['download_url'];
             }
           }
         }
