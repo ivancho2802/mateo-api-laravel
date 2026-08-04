@@ -410,15 +410,11 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
         $claves = $formulario->keys();
         $valores = $formulario->values();
         //!id_object($valor) && 
-        dd($claves, $valores, $formulario);
 
         for ($i = 0; $i < count($claves); $i++) {
           # code...
           $clave = $claves[$i];
           $valor = $valores[$i];
-
-          $valorString = json_encode($valores[$i]);
-          dd($clave, $valor);
 
           if (!is_array($valor) && isset($clave)) {
 
