@@ -214,6 +214,288 @@ Route::get('/typeform', [App\Http\Controllers\Media::class, 'mateoAnelicaHps']);
 
 Route::post('/typeformdownload', [App\Http\Controllers\Media::class, 'downloadPdf']);
 
+Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
+  Route::get('{uui}/export/{token}', function ($uui, $token) {
+
+    //dd($uui, $token);
+
+    //https://kc.acf-e.org/api/v1/forms?id_string=a4E3J9gkULZe5eRqQph8zh
+    $jsonurlform = "https://kobo2.actioncontrelafaim.org/api/v2/assets/" . $uui;
+
+    $dataForm = Http::withHeaders([
+      'Authorization' => 'Token ' . $token . '',
+      'Accept' => '*/*'
+    ])
+      ->get($jsonurlform)
+      ->json();
+
+    $formid = $uui;//collect($dataForm[0])->get('formid');
+    $name_key = $uui;
+
+    //submissions es lo mismo que data
+    //...{_id_formulario}
+    //https://kc.acf-e.org/api/v1/data/2486
+    $jsonurlData = "https://kobo2.actioncontrelafaim.org/api/v2/assets/" . $uui . "/data.json";
+
+    $dataSubmissionsResponse = Http::withHeaders([
+      'Authorization' => 'Token ' . $token . '',
+      'Accept' => 'application/json'
+    ])
+      ->get($jsonurlData)
+      ->json()
+      ['results'];
+
+    //filtrando los formularios que ya han sido exportados con filesexported con los formularios consultados dataenketoresponse
+    $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+    $dataEnketoResponseFiltered = collect($dataSubmissionsResponse)->filter(function ($item, $key) use ($filesExported) {
+
+      $filesExportedCollect = collect($filesExported);
+
+      $filesExportedCollect = $filesExportedCollect->map(function ($fileExport) {
+        $extract_id = explode('_', $fileExport);
+        $extract_id = str_replace(".pdf", "", $extract_id[1]);
+        return '' . $extract_id . '';
+      });
+
+      return ($filesExportedCollect->search($item['_id'])) === false;
+    });
+    $dataEnketo = collect($dataEnketoResponseFiltered); //->chunk(45)
+
+    $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($token, $filesExported, $formid) {
+      $formulario = collect($chield); //->forget('name');
+
+      $claves = collect($formulario->keys())->filter()->all();
+      $valores = array_values($formulario->toArray());
+
+      //recorreindo las preguntas keys
+      for ($i = 0; $i < count($claves); $i++) {
+        # code...
+        $clave = ($claves[$i]);
+        $valor = $valores[$i];
+
+        if (!is_array($valor) && isset($clave)) {
+
+          if (
+            (stripos($valor, '.jpg') !== false && stripos($valor, '.jpg') == (strlen($valor) - strlen('.jpg'))) ||
+            (stripos($valor, '.png') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
+            (stripos($valor, '.jpeg') !== false && stripos($valor, '.jpeg') == (strlen($valor) - strlen('.jpeg'))) ||
+            (stripos($valor, '.svg') !== false && stripos($valor, '.svg') == (strlen($valor) - strlen('.svg')))
+          ) {
+
+
+            $verificationImage = migrateCustom::where([
+              'table' => $formid,
+              'file_ref' => $valor . $formulario['_id']
+            ]);
+
+            if ($verificationImage->exists()) {
+              $formulario[$clave] = $verificationImage->first()->table_id;
+              continue;
+            }
+
+            $chield_attachments = collect($chield['_attachments']);
+
+            $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
+              return isset($atached['download_url']) && (stripos($atached['filename'], $valor) !== false);
+            });
+
+
+            $urlImg = collect($urlImgFirst);
+            //if (isset($urlImg))
+            //  dd("urlImg", $urlImg, $urlImg->first(), "chield_attachments", $chield_attachments, "valor", $valor, "valores", $valores);//, $urlImg->first()['download_url']
+
+            if (count($urlImg) > 0) {
+
+              //convertir la imagen en su respuesta
+              $imageResponse = Helper::getImageWithHeaders($urlImg->first()['download_url'], $token, $urlImg->first()['mimetype']);
+              //dd("imageResponse", $imageResponse, $urlImg->first()['download_url'], $token, $urlImg->first());
+
+              $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
+
+
+
+              migrateCustom::create([
+                'table' => $formid,
+                'table_id' => $formulario[$clave] . $imageResponse,
+                'file_ref' => $valor . $formulario['_id']
+              ]);
+            }
+            /* elsedd("esto no deberia psasr"); */
+          }
+        }
+      }
+
+      return $formulario;
+    }));
+    $dataEnketoWithImagePurga = $dataEnketoWithImage;
+    $dataLabels = collect($dataSubmissionsResponse);
+
+    $children = $dataLabels['content']['survey'];
+
+    
+    $mapaChildren = collect($children)->mapWithKeys(function ($item) {
+      // Aseguramos que la clave '$xpath' exista y que 'label' tenga al menos un valor.
+      $xpath = $item['$xpath'] ?? null;
+      $label = $item['label'][0] ?? null;
+
+      if ($xpath && $label) {
+        return [$xpath => $label];
+      }
+      // Ignorar ítems que no tienen la estructura necesaria para mapear.
+      return [];
+    })->toArray();
+    
+    $coleccionDatosCorregida = $dataEnketoWithImagePurga->map(function ($item) use ($mapaChildren) {
+      $nuevoItem = [];
+
+      $datos = is_array($item) ? $item : $item->toArray();
+
+      // Iterar sobre las claves y valores del ítem de datos
+      foreach ($datos as $keyDato => $valorDato) {
+
+        // 3. Buscar la nueva clave (label) en nuestro mapa pre-construido
+        // Si la clave de dato existe en $mapaChildren, usa el label como nueva clave
+        $nuevaKey = $mapaChildren[$keyDato] ?? $keyDato;
+        /* if ($keyDato == 'informacion_demografica/codigo_emergencia' || $nuevaKey == 'informacion_demografica/codigo_emergencia') {
+
+          dd("nuevaKey", $nuevaKey, "mapaChildren", $mapaChildren, "keyDato", $keyDato);
+        } */
+
+        // 4. Asignar el valor al nuevo arreglo con la nueva clave
+        $nuevoItem[$nuevaKey] = $valorDato;
+      }
+
+      // Devolver el ítem con las keys ajustadas
+      return collect($nuevoItem);
+    });
+
+    $dataEnketoWithImageLabel = collect($coleccionDatosCorregida);
+
+    //contruccion de json con los datos para generar links de keto temporar para generar html luego ajustar html luego generar pdf
+
+    /* $dataSubmissionsData->each(function (Collection $item) {
+            // ...
+        }); */
+
+
+    $dataEnketoResponse = $jsonurlform;
+
+    $dataEnketo = collect($dataEnketoResponse);
+
+    //$urlHtmlPdf = $dataEnketo->first();
+
+    //return ($urlHtmlPdf);
+    //onbtener url de lso iagens https://kc.acf-e.org/api/v1/media/2486
+
+    //imagenes del formulario
+    /* $urlMedia = "https://kc.acf-e.org/api/v1/media/";
+
+        $dataMediaResponse = Http::withHeaders([
+            'Authorization' => 'Token ' . $token . '',
+            'Accept' => 'application/json'
+        ])
+            ->get($urlMedia); */
+    //return $dataEnketo;,
+
+    //contruyrndo las imagenes del formulario
+
+    $dataEnketoWithImage = $dataEnketo->map(function ($chield) {
+      $formulario = collect($chield); //->forget('name');
+
+      $claves = $formulario->keys();
+      $valores = array_values($chield);
+      //!id_object($valor) && 
+
+      for ($i = 0; $i < count($claves); $i++) {
+        # code...
+        $clave = $claves[$i];
+        $valor = $valores[$i];
+
+        if (!is_array($valor) && isset($clave)) {
+
+          if (
+            (stripos($valor, '.jpg') !== false && stripos($valor, '.jpg') == (strlen($valor) - strlen('.jpg'))) ||
+            (stripos($valor, '.png') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
+            (stripos($valor, '.jpeg') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
+            (stripos($valor, '.svg') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png')))
+          ) {
+            $chield_attachments = collect($chield['_attachments']);
+
+            $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
+              return isset($atached['download_url']) && (stripos($atached['download_url'], $valor) !== false);
+            });
+
+            $urlImg = collect($urlImgFirst);
+
+            $formulario->$clave = $urlImg->first()['download_url'];
+          }
+        }
+      }
+
+      return $formulario;
+    });
+    $metaFiles = [];
+
+    if (!is_array($dataSubmissionsResponse)) {
+      dd("Error no se encuentra el formuilario", $dataSubmissionsResponse, $token, $dataForm, $formid);
+      return;
+    }
+
+    //titulo del formulario
+    if (isset($dataTitleResponse)) {
+      $name_fomulary = collect($dataTitleResponse)['name'];
+      $formdata = json_decode(json_encode(collect($dataTitleResponse)), FALSE);
+      $metaFiles = collect($formdata->files); //data_file
+
+    }
+
+    $dataMetaWithImage = ($metaFiles->map(function ($chield) use ($token) {
+
+      $metaF = ($chield); //->forget('name');
+
+      $imageMetaResponse = Helper::getImageWithHeaders($metaF->content, $token);
+
+      $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
+
+      return $metaF;
+    }));
+
+    $nameFormulary = '/htmlToPdf/testpdf/name_fomulary _id_file.pdf';
+    //$pdf = Pdf::loadView('pdf.formulario', ["data" => $this->paramsPdf, "filename" => $nameFormulary, "metaFilesForm" => $this->metaFilesForm]);
+    return view('pdf.formulario', ["data" => $dataEnketoWithImageLabel->first(),  "filename" => $nameFormulary, "metaFilesForm" => collect($dataMetaWithImage)]);
+
+    /* $pdf = Pdf::loadView('pdf.formulario', ["data" => $dataEnketo->first()]);
+      return $pdf->download('invoice.pdf'); */
+
+    /* [
+          "status" => $response->getStatusCode(),
+          "data" => $response->body(),
+          "json" => $response->json() ,
+          "object" => $response->object() ,
+          "status" => $response->status() ,
+          "successful" => $response->successful() ,
+          "clientError" => $response->clientError() ,
+          //"mkoboformulario" => $formulario->get()
+      ] */
+    ;
+  });
+
+  Route::get('{id}/exportByid/{token}', [App\Http\Controllers\Kobo::class, 'exportByid']);
+
+  Route::get('{id}/exportByuui/{token}', [App\Http\Controllers\Kobo::class, 'exportByuui']);
+  Route::get('{id}/exportByuuiv2/{token}', [App\Http\Controllers\Kobo::class, 'exportByuui']);
+
+  Route::get('{uui}/data/{token}', [App\Http\Controllers\Kobo::class, 'getKoboLabels']);
+
+  Route::get('{uui}/datawithid/{token}', [App\Http\Controllers\Kobo::class, 'getKoboWidthId']);
+
+  Route::post('seach', [App\Http\Controllers\Kobo::class, 'getKoboSaved']);
+
+  Route::put('{uui}/updatekobomireview/{token}', [App\Http\Controllers\Kobo::class, 'puKoboMireView']);
+
+  Route::get('{uui}/exportTemplate/{token}', [App\Http\Controllers\Kobo::class, 'exportTemplateByid']);
+});
+
 Route::get('departamentos', function (Request $request) {
   $departamento = Departamentos::all();
   return response()->json($departamento);
