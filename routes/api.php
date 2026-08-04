@@ -402,6 +402,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       //return $dataEnketo;,
 
       //contruyrndo las imagenes del formulario
+        dd($dataEnketo);
 
       $dataEnketoWithImage = $dataEnketo->map(function ($chield) {
         $formulario = collect($chield); //->forget('name');
