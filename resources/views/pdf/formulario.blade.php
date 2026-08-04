@@ -284,9 +284,51 @@
               <span lang="" class="question-label active">{{isset($data->keys()[$i]) ? is_string($data->keys()[$i]) ? $data->keys()[$i] : implode($data->keys()[$i]): 'N/A'}}:</span>
               <span class="required">*</span>
               <div class="question date">
-                @if((stripos(isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A', 'data:image') !== false))
+                @php
+                  $value = $data->values()[$i] ?? null;
+
+                  if (!is_string($value)) {
+                      $value = is_null($value) ? 'N/A' : json_encode($value);
+                  }
+
+                  $isFile = false;
+
+                  if (is_string($value)) {
+
+                      // Base64 tipo data:image/png;base64,...
+                      $isDataFile = stripos($value, 'data:') === 0;
+
+                      // Extensiones permitidas
+                      $extensions = [
+                          'png',
+                          'jpg',
+                          'jpeg',
+                          'gif',
+                          'webp',
+                          'svg',
+                          'pdf',
+                          'doc',
+                          'docx',
+                          'xls',
+                          'xlsx',
+                          'csv',
+                          'txt',
+                          'zip',
+                      ];
+
+                      $extension = strtolower(
+                          pathinfo(parse_url($value, PHP_URL_PATH) ?? $value, PATHINFO_EXTENSION)
+                      );
+
+                      $isExtensionFile = in_array($extension, $extensions);
+
+                      $isFile = $isDataFile || $isExtensionFile;
+                  }
+              @endphp
+
+                @if($isFile)
                 <div class="file-preview">
-                  IMAGEN
+                  IMAGEN 
                   <img src="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}" />
                 </div>
                 @elseif(is_string($data->values()[$i])) 
