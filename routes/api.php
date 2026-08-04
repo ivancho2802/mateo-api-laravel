@@ -454,6 +454,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       $dataMetaWithImage = ($metaFiles->map(function ($chield) use ($token) {
 
         $metaF = ($chield); //->forget('name');
+        dd($metaF, $metaF->content, $token);
 
         $imageMetaResponse = Helper::getImageWithHeaders($metaF->content, $token);
 
