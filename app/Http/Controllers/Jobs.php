@@ -322,11 +322,7 @@ class Jobs extends Controller
     //AQUI VALIDO PARA QUE SE ACTUALICEN LOS NOMBRES DE LOS FORUMUALRIOS
     $dataEnketoWithImageLabel = collect($dataEnketoWithImage->map(function ($item) use ($children) {
       $formulario = collect($item); //->forget('name'); 
-      //se ordena por las keys
       $mapped = collect($formulario)->sortKeys();
-
-      //se aplica los label correctos al registro actual
-        dd($mapped, $children);
 
       $mapped_customKey = collect($mapped->mapWithKeys(function ($questionansdware, $key) use ($children) {
         //Permiso_de_uso_de_da_y_de_uso_de_im_genes/autorizacion
