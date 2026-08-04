@@ -326,10 +326,11 @@ class Jobs extends Controller
       $mapped = collect($formulario)->sortKeys();
 
       //se aplica los label correctos al registro actual
+        dd($mapped, $children);
 
       $mapped_customKey = collect($mapped->mapWithKeys(function ($questionansdware, $key) use ($children) {
         //Permiso_de_uso_de_da_y_de_uso_de_im_genes/autorizacion
-        dd($children, $key);
+        dd($key, $questionansdware, $children);
         $customKey = helper::getValueLabels($children, $key);
 
         //dd($customKey, $questionansdware, $key);
