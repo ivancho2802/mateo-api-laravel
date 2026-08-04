@@ -118,7 +118,7 @@ class Jobs extends Controller
       ])
         ->get($jsonurlDataTitle)
         ->json()
-        ->results;
+      ['results'];
 
       if (optional($dataTitleResponse)->detail == 'Not found.') {
 
@@ -171,9 +171,8 @@ class Jobs extends Controller
       'Accept' => 'application/json'
     ])
       ->get($jsonurlDataEnketo)
-      ->json();
-
-      dd($dataEnketoResponse, $dataEnketoResponse['results']);
+      ->json()
+      ['results'];
 
     $dataTitleResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
@@ -553,7 +552,7 @@ class Jobs extends Controller
       ])
         ->get($jsonurlDataTitle)
         ->json()
-        ->results;
+      ['results'];
 
       if (optional($dataTitleResponse)->detail == 'Not found.') {
 
@@ -614,7 +613,7 @@ class Jobs extends Controller
     ])
       ->get($jsonurlDataEnketo)
       ->json()
-      ->results;
+      ['results'];
 
     $dataTitleResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
@@ -1041,7 +1040,7 @@ class Jobs extends Controller
     ])
       ->get($jsonurlDataEnketo)
       ->json()
-      ->results;
+      ['results'];
 
 
     return response()->json([
@@ -1175,7 +1174,7 @@ class Jobs extends Controller
     ])
       ->get($jsonurlDataEnketo)
       ->json()
-      ->results;
+      ['results'];
 
     $jobsFailed = FailedJobsModel::where("payload", "like", "%" . $name_key . "%")->get();
     //dd($dataEnketoResponse, $filesExported, $jsonurlDataEnketo);
@@ -1380,7 +1379,7 @@ class Jobs extends Controller
     ])
       ->get($jsonurlDataEnketo)
       ->json()
-      ->results;
+      ['results'];
 
 
     $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
