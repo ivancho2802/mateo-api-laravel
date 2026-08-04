@@ -98,6 +98,15 @@ Route::prefix('finanzas')->group(function () {
     Route::get('adn/json', [App\Http\Controllers\Finanzas::class, 'all']);
 });
 
+//JOB PARA CERAR INICIO DE MIGRACION A ACTIVITY INFO
+//consultas
+Route::get('/koboactivityinfo', [Ugic::class, 'koboactivityinfo'])
+    ->middleware(['auth'])
+    //->except('verify')
+    ->name('koboactivityinfo');
+
+Route::post('/koboactivityinfo', [Ugic::class, 'koboactivityinfo'])->middleware(['auth']);
+
 //links para externaliza
 
 Route::get('desnutricion-infantil-en-la-guajira', function () {

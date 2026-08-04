@@ -198,4 +198,100 @@ class Ugic extends Controller
       return response()->json(['Error' => $exception->getMessage()]);
     }
   }
+
+  
+  public function koboactivityinfo(Request $request)
+  {
+
+    try {
+      //dd($request->all(), $request->filtrar);
+      $data = collect();
+
+      //ajuste de parametros
+      $requestAll = $request->all();
+      /* if ($request->filtrar && isset($request->filtrar))
+        dd($requestAll, $request->filtrar); */
+
+      if (isset($request->filtrar)) {
+        $form = JobDetails::where('uui', $request->filtrar)
+          ->where("token", "migracion_activityinfo")
+          ->orderBy("created_at", "desc")
+          ->first();
+
+        if ($form) {
+          //dd("form", $form);
+
+          $params['form'] = [
+            "dominio" => $form->dominio,
+            "name_key" => $form->name_key,
+            "id" => $form->uui,
+            "token" => $form->token,
+            "filtrar" => isset($requestAll['filtrar']) ? ($requestAll['filtrar']) ?? [] : [],
+          ];
+
+          $params['dataFormulario'] = json_decode($form->otro);
+
+          $dataExport = json_decode(collect([
+            "name_key" => $form->name_key,
+            "dominio" => $form->dominio,
+            "id" => $form->uui,
+            "token" => $form->token,
+            "filtrar" => isset($requestAll['filtrar']) ? ($requestAll['filtrar']) ?? [] : [],
+            "formid" => $request->filtrar,
+
+            "exportaciones_totales" => ' origen: ' . $form->token,
+            "exportaciones_procesadas" => ' estado: ' . $form->dominio,
+            "exportaciones_faltantes" => ' names: ',
+            "exportaciones_fallidos" => ' names: ',
+            "trabajos_en_proceso" => ' names: ',
+            "download" => ""
+          ]));
+
+          $data = [$dataExport];
+
+          //MQR devolver tabla con los resultados creados
+          $params["data"] = $data;
+
+        }
+      }
+
+      //$params['data'] = isset($requestAll['data']) ? unserialize($requestAll['data']) ?? [] : [];
+      $params['filtrar'] = isset($requestAll['filtrar']) ? ($requestAll['filtrar']) ?? [] : [];
+
+      //dd($params, $request, $request->all(), $jobdetails);
+
+      if ($request->filtrar == "*") {
+        //verificar si hay fallidos
+        $namesJobs = JobDetails::where("token", "migracion_activityinfo")
+          ->pluck('name_key');
+
+        $dataExport = json_decode(collect([
+          "name_key" => "name_key",
+          "exportaciones_totales" => ' names: ' . json_encode($namesJobs),
+          "exportaciones_procesadas" => ' names: ' . json_encode($namesJobs),
+          "exportaciones_faltantes" => ' names: ' . json_encode($namesJobs),
+          "exportaciones_fallidos" => ' names: ' . json_encode($namesJobs),
+          "trabajos_en_proceso" => ' names: ' . json_encode($namesJobs),
+          "formid" => $request->filtrar . ' names: ' . json_encode($namesJobs),
+          "download" => ""
+        ]));
+
+
+        $data = [$dataExport];
+
+        //MQR devolver tabla con los resultados creados
+        $params["data"] = $data;
+        return view('koboactivityinfo.index', $params);
+        //return view('koboapdf.index', ["form" => $form,  "data" => $data, "dataFormulario" => $dataFormulario]);
+      }
+
+      return view('koboactivityinfo.index', $params);
+    } catch (\Throwable $exception) {
+
+      if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+        return redirect()->route('login')->with('error', 'Error!  ' . "Debes iniciar sesión de nuevo por favor!!!");
+      }
+      return response()->json(['Error' => $exception->getMessage()]);
+    }
+  }
 }
