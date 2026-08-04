@@ -447,7 +447,8 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
       //titulo del formulario
       if (isset($dataForm)) {
-        $metaFiles = $dataForm['files']; //data_file
+        $formdata = json_decode(json_encode(collect($dataForm)), FALSE);
+        $metaFiles = collect($formdata->files); //data_file
       }
 
       $dataMetaWithImage = ($metaFiles->map(function ($chield) use ($token) {
