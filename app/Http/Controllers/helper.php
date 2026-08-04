@@ -339,7 +339,7 @@ class helper extends Controller
 
             return $src;
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
             return $url;
         }
     }
