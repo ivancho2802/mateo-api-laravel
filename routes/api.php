@@ -416,7 +416,6 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
           $valor = $valores[$i];
 
           $valorString = json_encode($valores[$i]);
-          if (stripos($valorString, '.jpeg') !== false) 
           dd($clave, $valor);
 
           if (!is_array($valor) && isset($clave)) {
