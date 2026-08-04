@@ -173,14 +173,15 @@ class Jobs extends Controller
       ->get($jsonurlDataEnketo)
       ->json();
 
+      dd($dataEnketoResponse, $dataEnketoResponse
+      ->results);
+
     $dataTitleResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
       'Accept' => 'application/json'
     ])
       ->get($jsonurlDataTitle)
       ->json();
-
-      dd(collect($dataTitleResponse), $dataTitleResponse);
 
 
     $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
