@@ -266,6 +266,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
       $claves = collect($formulario->keys())->filter()->all();
       $valores = $formulario->toArray();
+      dd($valores);
 
       //recorreindo las preguntas keys
       for ($i = 0; $i < count($claves); $i++) {
