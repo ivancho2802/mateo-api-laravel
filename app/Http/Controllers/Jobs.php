@@ -180,7 +180,7 @@ class Jobs extends Controller
       ->get($jsonurlDataTitle)
       ->json();
 
-      dd(collect($dataTitleResponse)->results, $dataTitleResponse);
+      dd(collect($dataTitleResponse), $dataTitleResponse);
 
 
     $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
