@@ -178,8 +178,7 @@ class Jobs extends Controller
       'Accept' => 'application/json'
     ])
       ->get($jsonurlDataTitle)
-      ->json()
-      ['results'];
+      ->json();
 
       dd(collect($dataTitleResponse)->results, $dataTitleResponse);
 
