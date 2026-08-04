@@ -271,8 +271,8 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       //recorreindo las preguntas keys
       for ($i = 0; $i < count($claves); $i++) {
         # code...
-        $clave = ($claves[$i]);
-        $valor = $valores[$i];
+        $clave = $claves[$i] ?? null;
+        $valor = $valores[$i] ?? null;
 
         if (!is_array($valor) && isset($clave)) {
 
