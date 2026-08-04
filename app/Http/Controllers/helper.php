@@ -168,6 +168,87 @@ class helper extends Controller
         return $valueDetected;
     }
 
+    public static function getValueLabelsGpt($children, $key)
+    {
+        if (empty($children) || empty($key)) {
+            return null;
+        }
+
+        // Por si recibimos una Collection
+        if ($children instanceof \Illuminate\Support\Collection) {
+            $children = $children->toArray();
+        }
+
+        foreach ($children as $item) {
+
+            // Por si algún elemento también viene como Collection
+            if ($item instanceof \Illuminate\Support\Collection) {
+                $item = $item->toArray();
+            }
+
+            if (!is_array($item)) {
+                continue;
+            }
+
+            /*
+             * Buscar coincidencia exacta por $xpath
+             *
+             * Ojo: '$xpath' debe ir entre comillas porque
+             * realmente el nombre de la clave contiene $
+             */
+            if (
+                isset($item['$xpath']) &&
+                $item['$xpath'] === $key
+            ) {
+
+                $label = $item['label'] ?? null;
+
+                /*
+                 * Algunos labels vienen así:
+                 *
+                 * "label" => [
+                 *     "Fecha de reporte:"
+                 * ]
+                 */
+                if (is_array($label)) {
+                    return $label[0] ?? null;
+                }
+
+                /*
+                 * Por si label viene directamente:
+                 *
+                 * "label" => "Fecha de reporte:"
+                 */
+                if (is_string($label) || is_int($label)) {
+                    return $label;
+                }
+
+                return null;
+            }
+
+            /*
+             * Si el elemento tiene children,
+             * buscar recursivamente.
+             */
+            if (
+                isset($item['children']) &&
+                is_iterable($item['children'])
+            ) {
+
+                $result = self::getValueLabels(
+                    $item['children'],
+                    $key
+                );
+
+                if ($result !== null) {
+                    return $result;
+                }
+            }
+        }
+
+        return null;
+    }
+
 
     /**
      * el objetivo es sacar del elemento del json de kobo sus preguntas y respuestas con funcion keys y values

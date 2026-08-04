@@ -330,13 +330,7 @@ class Jobs extends Controller
 
       $mapped_customKey = collect($mapped->mapWithKeys(function ($questionansdware, $key) use ($children) {
         //Permiso_de_uso_de_da_y_de_uso_de_im_genes/autorizacion
-        dd($key, $questionansdware, $children);
-        $customKey = helper::getValueLabels($children, $key);
-
-        //dd($customKey, $questionansdware, $key);
-        if (!is_string($customKey) && !is_int($customKey)) {
-          $customKey = $key;
-        }
+        $customKey = helper::getValueLabelsGpt($children, $key);
 
         return [$customKey ?? $key => $questionansdware];
       }));
