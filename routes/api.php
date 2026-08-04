@@ -423,12 +423,11 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
           if (!is_array($valor) && isset($clave)) {
 
             if (
-              (stripos($valor, '.jpg') !== false && stripos($valor, '.jpg') == (strlen($valor) - strlen('.jpg'))) ||
-              (stripos($valor, '.png') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
-              (stripos($valor, '.jpeg') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
-              (stripos($valor, '.svg') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png')))
+              (stripos($valor, '.jpg') !== false) ||
+              (stripos($valor, '.png') !== false) ||
+              (stripos($valor, '.jpeg') !== false) ||
+              (stripos($valor, '.svg') !== false)
             ) {
-              
   
               $chield_attachments = collect($chield['_attachments']);
               dd($clave, $valor, $chield_attachments);
