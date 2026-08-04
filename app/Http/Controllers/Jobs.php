@@ -110,14 +110,15 @@ class Jobs extends Controller
         "token" => $token,
       ]);
 
-      $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
+      $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
 
       $dataTitleResponse = Http::withHeaders([
         'Authorization' => 'Token ' . $token . '',
         'Accept' => 'application/json'
       ])
         ->get($jsonurlDataTitle)
-        ->json();
+        ->json()
+        ->results;
 
       if (optional($dataTitleResponse)->detail == 'Not found.') {
 
@@ -161,7 +162,7 @@ class Jobs extends Controller
     //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
-    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . '.json';
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
     $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid;//"https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
@@ -177,7 +178,7 @@ class Jobs extends Controller
       'Accept' => 'application/json'
     ])
       ->get($jsonurlDataTitle)
-      ->json();
+      ->json()->results;
 
 
     $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
@@ -194,7 +195,6 @@ class Jobs extends Controller
     $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
 
       $filesExportedCollect = collect($filesExported);
-      dd($item, $filesExportedCollect);
 
       $filesExportedCollect = $filesExportedCollect->map(function ($fileExport) {
         $extract_id = explode('_', $fileExport);
@@ -543,14 +543,15 @@ class Jobs extends Controller
         "token" => $token,
       ]);
 
-      $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
+      $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
 
       $dataTitleResponse = Http::withHeaders([
         'Authorization' => 'Token ' . $token . '',
         'Accept' => 'application/json'
       ])
         ->get($jsonurlDataTitle)
-        ->json();
+        ->json()
+        ->results;
 
       if (optional($dataTitleResponse)->detail == 'Not found.') {
 
@@ -600,8 +601,7 @@ class Jobs extends Controller
     //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
-    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
-    
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
     //$jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
     $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v2/assets/" . $formid . ".json";
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
@@ -611,7 +611,8 @@ class Jobs extends Controller
       'Accept' => 'application/json'
     ])
       ->get($jsonurlDataEnketo)
-      ->json();
+      ->json()
+      ->results;
 
     $dataTitleResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
@@ -1028,8 +1029,7 @@ class Jobs extends Controller
 
     //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
 
-    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
-
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
     $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
@@ -1038,7 +1038,8 @@ class Jobs extends Controller
       'Accept' => 'application/json'
     ])
       ->get($jsonurlDataEnketo)
-      ->json();
+      ->json()
+      ->results;
 
 
     return response()->json([
@@ -1163,7 +1164,7 @@ class Jobs extends Controller
 
     //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
 
-    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
     $dataEnketoResponse = Http::withHeaders([
@@ -1171,7 +1172,8 @@ class Jobs extends Controller
       'Accept' => 'application/json'
     ])
       ->get($jsonurlDataEnketo)
-      ->json();
+      ->json()
+      ->results;
 
     $jobsFailed = FailedJobsModel::where("payload", "like", "%" . $name_key . "%")->get();
     //dd($dataEnketoResponse, $filesExported, $jsonurlDataEnketo);
@@ -1368,14 +1370,15 @@ class Jobs extends Controller
     $timestart = time();
 
     $formid = $jobDetails->uui;
-    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
 
     $dataEnketoResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
       'Accept' => 'application/json'
     ])
       ->get($jsonurlDataEnketo)
-      ->json();
+      ->json()
+      ->results;
 
 
     $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
