@@ -163,7 +163,7 @@ class Jobs extends Controller
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
     $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
-    $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid;//"https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
+    $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid;
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
     $dataEnketoResponse = Http::withHeaders([
@@ -287,22 +287,7 @@ class Jobs extends Controller
 
     $paramsForm = $request->paramForm;
 
-    //ajusto las preguntas para que salgan bonitas con los labesl y no con los nombres
-    $formidnumber = collect($dataTitleResponse[0])->get('formid');
-
-    //https://kc.acf-e.org/api/v1/forms/2433/form.json
-    $jsonurlDataLabels = "https://" . $dominioTitle . "/api/v1/forms/" . $formidnumber . "/form.json";
-
-    $dataDataLabelsResponse = Http::withHeaders([
-      'Authorization' => 'Token ' . $token . '',
-      'Accept' => 'application/json'
-    ])
-      ->get($jsonurlDataLabels)
-      ->json();
-
-    $dataLabels = collect($dataDataLabelsResponse);
-
-    $children = $dataLabels['children'];
+    $children = $dataTitleResponse['content']['survey'];
 
     //filtro segun lo especificado
     //recorro los formularios con map y recorro las preguntas con map sino estan las sacco
@@ -603,7 +588,6 @@ class Jobs extends Controller
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
     $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
-    //$jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
     $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v2/assets/" . $formid . ".json";
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
@@ -740,9 +724,6 @@ class Jobs extends Controller
 
     //ajusto las preguntas para que salgan bonitas con los labesl y no con los nombres
     //$formidnumber = collect($dataTitleResponse[0])->get('formid');
-
-    //https://kc.acf-e.org/api/v1/forms/2433/form.json
-    //$jsonurlDataLabels = "https://" . $dominioTitle . "/api/v1/forms/" . $formidnumber . "/form.json";
 
     /* $dataDataLabelsResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
@@ -1031,8 +1012,6 @@ class Jobs extends Controller
     //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
 
     $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
-    $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
-    //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
     $dataEnketoResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
@@ -1069,20 +1048,21 @@ class Jobs extends Controller
 
       $dataFormulario = [];
 
-      $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
+      $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v2/assets/" . $formid;
 
       $dataTitleResponse = Http::withHeaders([
         'Authorization' => 'Token ' . $token . '',
         'Accept' => 'application/json'
       ])
         ->get($jsonurlDataTitle)
-        ->json();
+        ->json()
+        ['content']['survey'];
 
 
       if (count($dataTitleResponse) > 0) {
 
         $dataFormulario = $dataTitleResponse->map(function ($form) {
-          return ($form->title);
+          return ($form->label[0] ?? $form->name) . " (" . $form->name . ")";
         });
 
         $dataFormulario = json_decode(json_encode(collect($dataFormulario)), FALSE);
@@ -1391,7 +1371,6 @@ class Jobs extends Controller
     }
 
 
-    //$jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
     $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
@@ -1510,9 +1489,6 @@ class Jobs extends Controller
 
     //ajusto las preguntas para que salgan bonitas con los labesl y no con los nombres
     //$formidnumber = collect($dataTitleResponse[0])->get('formid');
-
-    //https://kc.acf-e.org/api/v1/forms/2433/form.json
-    //$jsonurlDataLabels = "https://" . $dominioTitle . "/api/v1/forms/" . $formidnumber . "/form.json";
 
     /* $dataDataLabelsResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
