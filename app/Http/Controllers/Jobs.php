@@ -173,8 +173,7 @@ class Jobs extends Controller
       ->get($jsonurlDataEnketo)
       ->json();
 
-      dd($dataEnketoResponse, $dataEnketoResponse
-      ->results);
+      dd($dataEnketoResponse, $dataEnketoResponse['results']);
 
     $dataTitleResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
