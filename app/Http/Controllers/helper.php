@@ -20,10 +20,12 @@ class helper extends Controller
             return mb_convert_encoding($dat, 'UTF-8', 'ISO-8859-2');
         } elseif (is_array($dat)) {
             $ret = [];
-            foreach ($dat as $i => $d) $ret[$i] = self::convert_from_latin1_to_utf8_recursively($d);
+            foreach ($dat as $i => $d)
+                $ret[$i] = self::convert_from_latin1_to_utf8_recursively($d);
             return $ret;
         } elseif (is_object($dat)) {
-            foreach ($dat as $i => $d) $dat->$i = self::convert_from_latin1_to_utf8_recursively($d);
+            foreach ($dat as $i => $d)
+                $dat->$i = self::convert_from_latin1_to_utf8_recursively($d);
             return $dat;
         } else {
             return $dat;
@@ -46,10 +48,10 @@ class helper extends Controller
     public static function getValue($object, $preindex)
     {
 
-        $keys = array_keys((array)$object);
+        $keys = array_keys((array) $object);
 
 
-        $key   = key(array_filter($keys, function ($x) use ($preindex) {
+        $key = key(array_filter($keys, function ($x) use ($preindex) {
             return false !== stripos($x, $preindex);
         }));
 
@@ -82,9 +84,9 @@ class helper extends Controller
         ]
          */
 
-        dd("collection", $collection);
 
         $filtered = $collection->filter(function ($value) use ($level_keys, $key) {
+            dd("value", $value);
             $children_dynamic = $value["name"];
 
             if (count($level_keys) > 0) {
@@ -133,7 +135,7 @@ class helper extends Controller
                     continue;
                 }
 
-                $children_dynamic = $children_dynamic->filter(function ($value3) use ($key_search) { 
+                $children_dynamic = $children_dynamic->filter(function ($value3) use ($key_search) {
                     $valid = $value3["name"] == $key_search;
                     return $valid;
                 });
@@ -144,7 +146,7 @@ class helper extends Controller
 
                 $str_new_key = collect($children_dynamic)->first()['label'] ?? '';
 
-                $new_key .=  $str_new_key . '/';
+                $new_key .= $str_new_key . '/';
 
                 if (count($level_keys) - 1 !== $i) {
                     $children_dynamic = collect(collect($children_dynamic)->first()['children']);
@@ -159,7 +161,7 @@ class helper extends Controller
             return $new_key;
         });
 
-        
+
         $valueDetected = $mapped->first();
         //dd($valueDetected);
 
@@ -176,8 +178,8 @@ class helper extends Controller
     public static function formatObject($object, $preindex)
     {
 
-        $values = array_values((array)$object);
-        $keys = array_keys((array)$object);
+        $values = array_values((array) $object);
+        $keys = array_keys((array) $object);
 
         $respuestas = [];
         $preguntas = [];
@@ -207,7 +209,7 @@ class helper extends Controller
 
     public static function countValidValues($object)
     {
-        $array = array_values((array)$object);
+        $array = array_values((array) $object);
         //$values = array_values((array)$array);
         //$result = array_filter($array, fn ($value) => !is_null($value[0]));
         $result = (array_filter($array, function ($value) {
