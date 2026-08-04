@@ -445,6 +445,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
         return;
       }
 
+      dd($jsonurlform);
       //titulo del formulario
       if (isset($jsonurlform)) {
         $metaFiles = $jsonurlform['files']; //data_file
