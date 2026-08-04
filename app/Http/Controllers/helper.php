@@ -86,8 +86,8 @@ class helper extends Controller
 
 
         $filtered = $collection->filter(function ($value) use ($level_keys, $key) {
-            dd("value", $value);
-            $children_dynamic = $value["name"];
+            dd("value", $value["name"]  );
+            $children_dynamic = $value["name"] ?? '';
 
             if (count($level_keys) > 0) {
 
