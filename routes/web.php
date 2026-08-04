@@ -92,7 +92,8 @@ Route::prefix('kobo2')->group(function () {
 });
 
 Route::prefix('finanzas')->group(function () {
-    Route::get('adn', [App\Http\Controllers\Finanzas::class, 'index']);
+    Route::get('adn', [App\Http\Controllers\Finanzas::class, 'index'])
+    ->name('finanzas.adn');
     Route::post('adn', [App\Http\Controllers\Finanzas::class, 'set']);
     Route::get('adn/json', [App\Http\Controllers\Finanzas::class, 'all']);
 });
