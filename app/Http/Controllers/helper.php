@@ -130,7 +130,7 @@ class helper extends Controller
                     //dd(json_encode($value2["label"]),$key_search, $value2["label"]);
                     $new_key .= "";//$str_label . '/';
 
-                    $children_dynamic = collect($value2['children']);
+                    $children_dynamic = collect($value2['children'] ?? []);
 
                     continue;
                 }
