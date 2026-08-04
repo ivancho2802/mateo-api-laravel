@@ -103,7 +103,7 @@ class helper extends Controller
 
         $filtered = $filtered->all();
 
-        //dd($filtered->first());
+        dd($level_keys);
         // no ponga cero que si funciona con /
         if (count($level_keys) == 1) {
             //dd(collect($filtered)->first());
