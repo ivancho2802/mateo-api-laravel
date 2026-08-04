@@ -328,7 +328,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       return $formulario;
     }));
     $dataEnketoWithImagePurga = $dataEnketoWithImage;
-    $dataLabels = collect($dataSubmissionsResponse);
+    $dataLabels = collect($dataForm);
 
     $children = $dataLabels['content']['survey'];
 
