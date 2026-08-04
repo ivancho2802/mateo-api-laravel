@@ -172,7 +172,7 @@ class Jobs extends Controller
     ])
       ->get($jsonurlDataEnketo)
       ->json()
-      ['results'];
+    ['results'];
 
     $dataTitleResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
@@ -332,6 +332,9 @@ class Jobs extends Controller
         $customKey = helper::getValueLabels($children, $key);
 
         //dd($customKey, $questionansdware, $key);
+        if (!is_string($customKey) && !is_int($customKey)) {
+          $customKey = $key;
+        }
 
         return [$customKey ?? $key => $questionansdware];
       }));
@@ -597,7 +600,7 @@ class Jobs extends Controller
     ])
       ->get($jsonurlDataEnketo)
       ->json()
-      ['results'];
+    ['results'];
 
     $dataTitleResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
@@ -1019,7 +1022,7 @@ class Jobs extends Controller
     ])
       ->get($jsonurlDataEnketo)
       ->json()
-      ['results'];
+    ['results'];
 
 
     return response()->json([
@@ -1056,7 +1059,7 @@ class Jobs extends Controller
       ])
         ->get($jsonurlDataTitle)
         ->json()
-        ['content']['survey'];
+      ['content']['survey'];
 
 
       if (count($dataTitleResponse) > 0) {
@@ -1099,7 +1102,7 @@ class Jobs extends Controller
     if ($request->name_key == "*") {
       //verificar si hay fallidos
       $namesJobs = JobDetails::where("token", "!=", "migracion_activityinfo")
-      ->pluck('name_key');
+        ->pluck('name_key');
 
       $dataExport = json_decode(collect([
         "exportaciones_totales" => ' names: ' . json_encode($namesJobs),
@@ -1123,8 +1126,8 @@ class Jobs extends Controller
     }
 
     $jobdetails = JobDetails::where("token", "!=", "migracion_activityinfo")
-    ->where("name_key", "like", "%" . $name_key . "%")
-    ->first();
+      ->where("name_key", "like", "%" . $name_key . "%")
+      ->first();
 
     if (!isset($jobdetails)) {
 
@@ -1154,7 +1157,7 @@ class Jobs extends Controller
     ])
       ->get($jsonurlDataEnketo)
       ->json()
-      ['results'];
+    ['results'];
 
     $jobsFailed = FailedJobsModel::where("payload", "like", "%" . $name_key . "%")->get();
     //dd($dataEnketoResponse, $filesExported, $jsonurlDataEnketo);
@@ -1359,7 +1362,7 @@ class Jobs extends Controller
     ])
       ->get($jsonurlDataEnketo)
       ->json()
-      ['results'];
+    ['results'];
 
 
     $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
