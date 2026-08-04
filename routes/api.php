@@ -382,7 +382,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
           }); */
 
 
-      $dataEnketoResponse = $jsonurlform;
+      $dataEnketoResponse = $dataForm;
 
       $dataEnketo = collect($dataEnketoResponse);
 
@@ -445,10 +445,10 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
         return;
       }
 
-      dd($jsonurlform);
+      dd($dataForm);
       //titulo del formulario
-      if (isset($jsonurlform)) {
-        $metaFiles = $jsonurlform['files']; //data_file
+      if (isset($dataForm)) {
+        $metaFiles = $dataForm['files']; //data_file
       }
 
       dd($metaFiles);
