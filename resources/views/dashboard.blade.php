@@ -348,7 +348,7 @@
                             </i>
 
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="{{ route('koboactivityinfo.index') }}" class="underline text-gray-900 dark:text-white">
+                                <a href="{{ route('koboactivityinfo') }}" class="underline text-gray-900 dark:text-white">
                                     Formulario migracion a activity info
                                 </a>
                             </div>
@@ -359,7 +359,7 @@
                                 Esta herramienta funciona para tranferir formularios de kobo a activity info
                                 <br>
 
-                                {{ route('koboactivityinfo.index') }}
+                                {{ route('koboactivityinfo') }}
 
                             </div>
                         </div>
