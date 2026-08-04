@@ -192,6 +192,8 @@ class Jobs extends Controller
       $metaFiles = collect($formdata->files); //data_file
     }
 
+    dd($metaFiles);
+
     //filtrando los formularios que ya han sido exportados con filesexported con los formularios consultados dataenketoresponse
     $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
 
@@ -344,7 +346,7 @@ class Jobs extends Controller
 
       $metaF = ($chield); //->forget('name');
 
-      $imageMetaResponse = Helper::getImageWithHeaders($metaF->url, $token);
+      $imageMetaResponse = Helper::getImageWithHeaders($metaF->content, $token);
 
       $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
 
@@ -824,7 +826,7 @@ class Jobs extends Controller
 
       $metaF = ($chield); //->forget('name');
 
-      $imageMetaResponse = Helper::getImageWithHeaders($metaF->url, $token);
+      $imageMetaResponse = Helper::getImageWithHeaders($metaF->content, $token);
 
       $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
 
@@ -1589,7 +1591,7 @@ class Jobs extends Controller
 
       $metaF = ($chield); //->forget('name');
 
-      $imageMetaResponse = Helper::getImageWithHeaders($metaF->url, $token);
+      $imageMetaResponse = Helper::getImageWithHeaders($metaF->content, $token);
 
       $metaF->data_file = $imageMetaResponse ?? $metaF->data_file;
 
