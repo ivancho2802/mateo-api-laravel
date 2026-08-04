@@ -339,12 +339,12 @@ class helper extends Controller
 
             return $src;
         } catch (\Throwable $th) {
-            throw $th;
+            //throw $th;
             return $url;
         }
     }
 
-    public function detectMimeType($b64)
+    public static function detectMimeType($b64)
     {
 
         $signatures = [
