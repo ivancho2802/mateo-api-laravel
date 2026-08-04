@@ -110,7 +110,7 @@ class Jobs extends Controller
         "token" => $token,
       ]);
 
-      $jsonurlDataTitle = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+      $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
 
       $dataTitleResponse = Http::withHeaders([
         'Authorization' => 'Token ' . $token . '',
@@ -161,7 +161,7 @@ class Jobs extends Controller
     //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
-    $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . '.json';
     $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid;//"https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
@@ -542,7 +542,7 @@ class Jobs extends Controller
         "token" => $token,
       ]);
 
-      $jsonurlDataTitle = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+      $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
 
       $dataTitleResponse = Http::withHeaders([
         'Authorization' => 'Token ' . $token . '',
@@ -599,7 +599,8 @@ class Jobs extends Controller
     //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
-    $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
+    
     //$jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
     $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v2/assets/" . $formid . ".json";
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
@@ -1026,7 +1027,8 @@ class Jobs extends Controller
 
     //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
 
-    $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
+
     $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v1/forms?id_string=" . $formid;
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
@@ -1160,7 +1162,7 @@ class Jobs extends Controller
 
     //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
 
-    $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
 
     $dataEnketoResponse = Http::withHeaders([
@@ -1365,7 +1367,7 @@ class Jobs extends Controller
     $timestart = time();
 
     $formid = $jobDetails->uui;
-    $jsonurlDataEnketo = "https://" . $dominio . "/assets/" . $formid . "/submissions/?format=json";
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . ".json";
 
     $dataEnketoResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
