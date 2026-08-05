@@ -405,20 +405,14 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       //dd($dataEnketo);
 
       $dataEnketoWithImage = $dataEnketo->map(function ($chield) use ($token) {
-        $formulario = collect($chield); //->forget('name');
+        $formulario = collect($chield);
 
         $claves = $formulario->keys();
         $valores = $formulario->values();
-        //!id_object($valor) && 
 
         for ($i = 0; $i < count($claves); $i++) {
-          # code...
           $clave = $claves[$i];
           $valor = $valores[$i];
-
-          $valorString = json_encode($valores[$i]);
-         /*  if (strpos($valorString, '.jpeg'))
-            dd($clave, $valor); */
 
           if (!is_array($valor) && isset($clave)) {
 
@@ -430,7 +424,6 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
             ) {
   
               $chield_attachments = collect($chield['_attachments']);
-              //dd($clave, $valor, $chield_attachments);
 
               $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
                 return isset($atached['download_url']) && (
@@ -441,8 +434,13 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
               $urlImg = collect($urlImgFirst)->first();
               $imageMetaResponse = Helper::getImageWithHeaders($urlImg['download_url'], $token);
+              dd($token, $imageMetaResponse, $urlImg, $urlImgFirst);
 
-              $formulario->$clave = $imageMetaResponse ?? $urlImg['download_url'];
+              //$formulario->$clave = $imageMetaResponse ?? $urlImg['download_url'];
+              $formulario->put(
+                  $clave,
+                  $imageMetaResponse ?? $urlImg['download_url']
+              );
             }
           }
         }
