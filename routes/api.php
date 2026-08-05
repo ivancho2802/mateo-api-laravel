@@ -441,7 +441,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
               $urlImg = collect($urlImgFirst)->first();
               $imageMetaResponse = Helper::getImageWithHeaders($urlImg['download_url'], $token);
-              dd($imageMetaResponse);
+              dd($token, $imageMetaResponse, $urlImg, $urlImgFirst);
 
               $formulario->$clave = $imageMetaResponse ?? $urlImg['download_url'];
             }
