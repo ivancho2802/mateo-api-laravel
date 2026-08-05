@@ -44,44 +44,53 @@ class AuthenticatedSessionController extends Controller
     } */
     public function store(LoginRequest $request)
     {
-        dd([
-    'intended' => session('url.intended'),
-    'app_url' => config('app.url'),
-    'root' => $request->root(),
-    'base_url' => $request->getBaseUrl(),
-    'request_uri' => $request->getRequestUri(),
-]);
-
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        $intended = session('url.intended');
+        $intended = $request->session()->get('url.intended');
 
         if ($intended) {
 
-            $host = 'https://mireview.dyndns.org';
-            $base = 'https://mireview.dyndns.org/apidev';
+            $appUrl = rtrim(config('app.url'), '/');
+
+            $host = parse_url($appUrl, PHP_URL_SCHEME)
+                . '://'
+                . parse_url($appUrl, PHP_URL_HOST);
+
+            /*
+             * Ejemplo:
+             *
+             * appUrl:
+             * https://mireview.dyndns.org/apidev
+             *
+             * host:
+             * https://mireview.dyndns.org
+             */
 
             if (
                 str_starts_with($intended, $host . '/') &&
-                !str_starts_with($intended, $base . '/')
+                !str_starts_with($intended, $appUrl . '/')
             ) {
-                $path = substr($intended, strlen($host));
 
-                $intended = $base . $path;
+                $path = substr(
+                    $intended,
+                    strlen($host)
+                );
+
+                $intended = $appUrl . $path;
+
+                $request->session()->put(
+                    'url.intended',
+                    $intended
+                );
             }
-
-            session()->forget('url.intended');
-
-            return redirect()->to($intended);
         }
 
-        return redirect()->to(
-            config('app.url') . RouteServiceProvider::HOME
+        return redirect()->intended(
+            url('/dashboard')
         );
-    }
-
+    } 
 
     /**
      * Handle an incoming authentication request.
