@@ -957,91 +957,170 @@ class Jobs extends Controller
   public function getProccessExportView(Request $request)
   {
 
-    if (!isset($request->name_key)) {
-      return redirect('/koboapdf');
-    }
+    try {
 
-    $exportaciones_nuevas = false;
+      if (!isset($request->name_key)) {
+        return redirect('/koboapdf');
+      }
 
-
-    $name_key = $request->name_key;
-    /* 
-          "dominio" => $dominio,
-          "name_key" => $name_key,
-          "uui" => $formid,
-          "token" => $token
-      */
+      $exportaciones_nuevas = false;
 
 
-    if ($request->name_key == "*") {
-      //verificar si hay fallidos
-      $namesJobs = JobDetails::where("token", "!=", "migracion_activityinfo")
-        ->pluck('name_key');
-
-      $dataExport = json_decode(collect([
-        "exportaciones_totales" => ' names: ' . json_encode($namesJobs),
-        "exportaciones_procesadas" => ' names: ' . json_encode($namesJobs),
-        "exportaciones_faltantes" => ' names: ' . json_encode($namesJobs),
-        "exportaciones_fallidos" => ' names: ' . json_encode($namesJobs),
-        "trabajos_en_proceso" => ' names: ' . json_encode($namesJobs),
-        "formid" => $request->name_key . ' names: ' . json_encode($namesJobs),
-        "download" => "download",
-        "name_key" => $request->name_key,
-
-      ]));
+      $name_key = $request->name_key;
+      /* 
+            "dominio" => $dominio,
+            "name_key" => $name_key,
+            "uui" => $formid,
+            "token" => $token
+        */
 
 
-      $data = [$dataExport];
+      if ($request->name_key == "*") {
+        //verificar si hay fallidos
+        $namesJobs = JobDetails::where("token", "!=", "migracion_activityinfo")
+          ->pluck('name_key');
 
-      //MQR devolver tabla con los resultados creados
-      $params["data"] = $data;
-      return view('koboapdf.index', $params);
-      //return view('koboapdf.index', ["form" => $form,  "data" => $data, "dataFormulario" => $dataFormulario]);
-    }
+        $dataExport = json_decode(collect([
+          "exportaciones_totales" => ' names: ' . json_encode($namesJobs),
+          "exportaciones_procesadas" => ' names: ' . json_encode($namesJobs),
+          "exportaciones_faltantes" => ' names: ' . json_encode($namesJobs),
+          "exportaciones_fallidos" => ' names: ' . json_encode($namesJobs),
+          "trabajos_en_proceso" => ' names: ' . json_encode($namesJobs),
+          "formid" => $request->name_key . ' names: ' . json_encode($namesJobs),
+          "download" => "download",
+          "name_key" => $request->name_key,
 
-    $jobdetails = JobDetails::where("token", "!=", "migracion_activityinfo")
-      ->where("name_key", "like", "%" . $name_key . "%")
-      ->first();
-
-    if (!isset($jobdetails)) {
-
-      //MQR devolver tabla con los resultados creados 
-      return view('koboapdf.index', ["name_key" => "", "data" => []]);
-    }
-
-    $dominio = $jobdetails->dominio;
-
-    $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' : $dominio);
-    $formid = $jobdetails->uui;
-    $token = $jobdetails->token;
-    //
-    $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+        ]));
 
 
-    $jobsCreated = JobsModel::where("payload", "like", "%" . $name_key . "%")->get();
+        $data = [$dataExport];
 
-    //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
+        //MQR devolver tabla con los resultados creados
+        $params["data"] = $data;
+        return view('koboapdf.index', $params);
+        //return view('koboapdf.index', ["form" => $form,  "data" => $data, "dataFormulario" => $dataFormulario]);
+      }
 
-    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
-    $dataEnketoResponse = helper::getAllKoboData($jsonurlDataEnketo, $token);
+      $jobdetails = JobDetails::where("token", "!=", "migracion_activityinfo")
+        ->where("name_key", "like", "%" . $name_key . "%")
+        ->first();
 
-    $jobsFailed = FailedJobsModel::where("payload", "like", "%" . $name_key . "%")->get();
-    //dd($dataEnketoResponse, $filesExported, $jsonurlDataEnketo);
-    $dataEnketoResponseCount = -1;
-    if (isset($dataEnketoResponse)) {
-      $dataEnketoResponseCount = count($dataEnketoResponse);
-    }
+      if (!isset($jobdetails)) {
 
-    $faltantes = $dataEnketoResponseCount - count($filesExported);
+        //MQR devolver tabla con los resultados creados 
+        return view('koboapdf.index', ["name_key" => "", "data" => []]);
+      }
 
-    //$exportaciones_nuevas
-    //verificar sii hay faltantes de la migracion
-    //exportaciones_nuevas
-    if ($faltantes > 0 && count($jobsCreated) == 0) {
-      $exportaciones_nuevas = true;
-    }
+      $dominio = $jobdetails->dominio;
 
-    if (!($jobsCreated->first())) {
+      $dominioTitle = $dominio == 'kf.acf-e.org' ? 'kc.acf-e.org' : ($dominio == 'eu.kobotoolbox.org' ? 'kc-eu.kobotoolbox.org' : $dominio);
+      $formid = $jobdetails->uui;
+      $token = $jobdetails->token;
+      //
+      $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
+
+
+      $jobsCreated = JobsModel::where("payload", "like", "%" . $name_key . "%")->get();
+
+      //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
+
+      $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
+      $dataEnketoResponse = helper::getAllKoboData($jsonurlDataEnketo, $token);
+
+      $jobsFailed = FailedJobsModel::where("payload", "like", "%" . $name_key . "%")->get();
+      //dd($dataEnketoResponse, $filesExported, $jsonurlDataEnketo);
+      $dataEnketoResponseCount = -1;
+      if (isset($dataEnketoResponse)) {
+        $dataEnketoResponseCount = count($dataEnketoResponse);
+      }
+
+      $faltantes = $dataEnketoResponseCount - count($filesExported);
+
+      //$exportaciones_nuevas
+      //verificar sii hay faltantes de la migracion
+      //exportaciones_nuevas
+      if ($faltantes > 0 && count($jobsCreated) == 0) {
+        $exportaciones_nuevas = true;
+      }
+
+      if (!($jobsCreated->first())) {
+
+        $download = "";
+
+        if ($dataEnketoResponseCount == count($filesExported)) {
+          $zipFileName = $name_key . ".zip";
+
+          if (!File::exists(public_path($zipFileName))) {
+
+            $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
+
+            //$ramdom = Carbon\Carbon::now()->timestamp;
+            //dd(Carbon\Carbon::now()->timestamp, time());
+
+            if ($resultCreated === true) {
+              //$download = public_path($zipFileName);
+              $download = "/apidev/public/" . ($zipFileName);
+            } else {
+              $download = "fallo al generar el archivos";
+              //return response()->json(['status' => false, 'message' => $resultCreated], 503);
+            }
+          } else {
+            //$download = public_path($zipFileName);
+            $download = "/apidev/public/" . ($zipFileName);
+          }
+        }
+        //verificar si hay fallidos
+
+        $dataExport = json_decode(collect([
+          "name_key" => ($name_key),
+          "exportaciones_totales" => $dataEnketoResponseCount,
+          "exportaciones_procesadas" => count($filesExported),
+          "exportaciones_faltantes" => $faltantes,
+          "exportaciones_fallidos" => count($jobsFailed),
+          "trabajos_en_proceso" => count($jobsCreated),
+          "exportaciones_nuevas" => $exportaciones_nuevas,
+          "download" => $download
+        ]));
+
+        $data = [$dataExport];
+
+
+        //MQR devolver tabla con los resultados creados 
+        return view('koboapdf.index', ["name_key" => "name_key", "data" => $data]);
+      }
+
+      $jobsFirstPayload = json_decode($jobsCreated->first()->payload);
+
+      $command = $jobsFirstPayload->data->command;
+
+      //buscar el uui para el formulario y asi sacar cuantos formularios hay
+      $commandArray = collect(explode(";s:", $command));
+
+      $indexCommand = $commandArray->search(function ($com) {
+        return strpos($com, "_xform_id_string") >= 0;
+      });
+
+      $commandUuiStr = null;
+
+      if ($indexCommand !== -1) {
+        $commandUuiStr = $commandArray[$indexCommand + 1];
+      } else {
+        return response()->json([
+          "msg" => "algo salio mal lo sentimos"
+        ]);
+      }
+
+      $commandUuiStr = explode("\"", $commandUuiStr);
+
+      if (isset($commandUuiStr) && count($commandUuiStr) > 0) {
+        $commandUui = $commandUuiStr[1];
+      }
+
+      if (!isset($commandUui)) {
+        return response()->json([
+          "msg" => "algo salio mal lo sentimos commandUui"
+        ]);
+      }
 
       $download = "";
 
@@ -1067,13 +1146,12 @@ class Jobs extends Controller
           $download = "/apidev/public/" . ($zipFileName);
         }
       }
-      //verificar si hay fallidos
 
       $dataExport = json_decode(collect([
         "name_key" => ($name_key),
         "exportaciones_totales" => $dataEnketoResponseCount,
         "exportaciones_procesadas" => count($filesExported),
-        "exportaciones_faltantes" => $faltantes,
+        "exportaciones_faltantes" => $dataEnketoResponseCount - count($filesExported),
         "exportaciones_fallidos" => count($jobsFailed),
         "trabajos_en_proceso" => count($jobsCreated),
         "exportaciones_nuevas" => $exportaciones_nuevas,
@@ -1082,84 +1160,19 @@ class Jobs extends Controller
 
       $data = [$dataExport];
 
-
       //MQR devolver tabla con los resultados creados 
-      return view('koboapdf.index', ["name_key" => "name_key", "data" => $data]);
+      return view('koboapdf.index', ["name_key" => "", "data" => $data]);
+
+      //code...
+    } catch (\Throwable $th) {
+      //throw $th;
+      return redirect()
+        ->route('dashboard')
+        ->with(
+          'error',
+          'No fue posible completar la operación. El servidor tardó demasiado en responder.'
+        );
     }
-
-    $jobsFirstPayload = json_decode($jobsCreated->first()->payload);
-
-    $command = $jobsFirstPayload->data->command;
-
-    //buscar el uui para el formulario y asi sacar cuantos formularios hay
-    $commandArray = collect(explode(";s:", $command));
-
-    $indexCommand = $commandArray->search(function ($com) {
-      return strpos($com, "_xform_id_string") >= 0;
-    });
-
-    $commandUuiStr = null;
-
-    if ($indexCommand !== -1) {
-      $commandUuiStr = $commandArray[$indexCommand + 1];
-    } else {
-      return response()->json([
-        "msg" => "algo salio mal lo sentimos"
-      ]);
-    }
-
-    $commandUuiStr = explode("\"", $commandUuiStr);
-
-    if (isset($commandUuiStr) && count($commandUuiStr) > 0) {
-      $commandUui = $commandUuiStr[1];
-    }
-
-    if (!isset($commandUui)) {
-      return response()->json([
-        "msg" => "algo salio mal lo sentimos commandUui"
-      ]);
-    }
-
-    $download = "";
-
-    if ($dataEnketoResponseCount == count($filesExported)) {
-      $zipFileName = $name_key . ".zip";
-
-      if (!File::exists(public_path($zipFileName))) {
-
-        $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
-
-        //$ramdom = Carbon\Carbon::now()->timestamp;
-        //dd(Carbon\Carbon::now()->timestamp, time());
-
-        if ($resultCreated === true) {
-          //$download = public_path($zipFileName);
-          $download = "/apidev/public/" . ($zipFileName);
-        } else {
-          $download = "fallo al generar el archivos";
-          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
-        }
-      } else {
-        //$download = public_path($zipFileName);
-        $download = "/apidev/public/" . ($zipFileName);
-      }
-    }
-
-    $dataExport = json_decode(collect([
-      "name_key" => ($name_key),
-      "exportaciones_totales" => $dataEnketoResponseCount,
-      "exportaciones_procesadas" => count($filesExported),
-      "exportaciones_faltantes" => $dataEnketoResponseCount - count($filesExported),
-      "exportaciones_fallidos" => count($jobsFailed),
-      "trabajos_en_proceso" => count($jobsCreated),
-      "exportaciones_nuevas" => $exportaciones_nuevas,
-      "download" => $download
-    ]));
-
-    $data = [$dataExport];
-
-    //MQR devolver tabla con los resultados creados 
-    return view('koboapdf.index', ["name_key" => "", "data" => $data]);
   }
 
   public function repair()
