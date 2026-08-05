@@ -227,8 +227,8 @@ class Jobs extends Controller
     $dataEnketoWithImage = collect($dataEnketo->map(function ($chield) use ($token, $filesExported, $formid) {
       $formulario = collect($chield); //->forget('name');
 
-      $claves = collect($formulario->keys())->filter()->all();
-      $valores = collect($formulario->values())->filter()->all();
+      $claves = $formulario->keys();
+      $valores = $formulario->values();
 
       //recorreindo las preguntas keys
       for ($i = 0; $i < count($claves); $i++) {
@@ -259,8 +259,8 @@ class Jobs extends Controller
             $chield_attachments = collect($chield['_attachments']);
 
             $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
-              return isset($atached['download_url']) && 
-                (stripos($atached['download_url'], $valor) !== false) || 
+              return isset($atached['download_url']) &&
+                (stripos($atached['download_url'], $valor) !== false) ||
                 (stripos($atached['media_file_basename'], $valor) !== false);
             });
 
@@ -673,8 +673,8 @@ class Jobs extends Controller
           if (
             (stripos($valor, '.jpg') !== false) ||
             (stripos($valor, '.png') !== false) ||
-            (stripos($valor, '.jpeg') !== false ) ||
-            (stripos($valor, '.svg') !== false )
+            (stripos($valor, '.jpeg') !== false) ||
+            (stripos($valor, '.svg') !== false)
           ) {
 
 
