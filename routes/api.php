@@ -319,7 +319,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
                 //$formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
                 $formulario->put(
                   $clave,
-                  $imageResponse ?: $urlImg->first()['download_url']
+                  $imageResponse ?? $urlImg->first()['download_url']
                 );
 
                 migrateCustom::create([
