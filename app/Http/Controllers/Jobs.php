@@ -192,7 +192,7 @@ class Jobs extends Controller
       $metaFiles = collect($formdata->files); //data_file
     }
 
-    dd($metaFiles);
+    //dd($metaFiles);
 
     //filtrando los formularios que ya han sido exportados con filesexported con los formularios consultados dataenketoresponse
     $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
@@ -228,7 +228,7 @@ class Jobs extends Controller
       $formulario = collect($chield); //->forget('name');
 
       $claves = collect($formulario->keys())->filter()->all();
-      $valores = array_values($formulario->toArray());
+      $valores = collect($formulario->values())->filter()->all();
 
       //recorreindo las preguntas keys
       for ($i = 0; $i < count($claves); $i++) {
@@ -239,10 +239,10 @@ class Jobs extends Controller
         if (!is_array($valor) && isset($clave)) {
 
           if (
-            (stripos($valor, '.jpg') !== false && stripos($valor, '.jpg') == (strlen($valor) - strlen('.jpg'))) ||
-            (stripos($valor, '.png') !== false && stripos($valor, '.png') == (strlen($valor) - strlen('.png'))) ||
-            (stripos($valor, '.jpeg') !== false && stripos($valor, '.jpeg') == (strlen($valor) - strlen('.jpeg'))) ||
-            (stripos($valor, '.svg') !== false && stripos($valor, '.svg') == (strlen($valor) - strlen('.svg')))
+            (stripos($valor, '.jpg') !== false) ||
+            (stripos($valor, '.png') !== false) ||
+            (stripos($valor, '.jpeg') !== false) ||
+            (stripos($valor, '.svg') !== false)
           ) {
 
 
@@ -259,7 +259,9 @@ class Jobs extends Controller
             $chield_attachments = collect($chield['_attachments']);
 
             $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
-              return isset($atached['download_url']) && (stripos($atached['download_url'], $valor) !== false);
+              return isset($atached['download_url']) && 
+                (stripos($atached['download_url'], $valor) !== false) || 
+                (stripos($atached['media_file_basename'], $valor) !== false);
             });
 
 
@@ -271,7 +273,11 @@ class Jobs extends Controller
               //convertir la imagen en su respuesta
               $imageResponse = Helper::getImageWithHeaders($urlImg->first()['download_url'], $token);
 
-              $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
+              //$formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
+              $formulario->put(
+                $clave,
+                $imageResponse ?? $urlImg->first()['download_url']
+              );
 
               migrateCustom::create([
                 'table' => $formid,
@@ -685,7 +691,7 @@ class Jobs extends Controller
             $chield_attachments = collect($chield['_attachments']);
 
             $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
-              return isset($atached['download_url']) && (stripos($atached['filename'], $valor) !== false);
+              return isset($atached['download_url']) && (stripos($atached['media_file_basename'], $valor) !== false);
             });
 
 
@@ -1454,7 +1460,7 @@ class Jobs extends Controller
             $chield_attachments = collect($chield['_attachments']);
 
             $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
-              return isset($atached['download_url']) && (stripos($atached['filename'], $valor) !== false);
+              return isset($atached['download_url']) && (stripos($atached['media_file_basename'], $valor) !== false);
             });
 
 
