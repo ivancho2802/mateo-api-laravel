@@ -300,7 +300,9 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
               $chield_attachments = collect($chield['_attachments']);
 
               $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
-                return isset($atached['download_url']) && (stripos($atached['filename'], $valor) !== false);
+                return isset($atached['download_url']) && 
+                (stripos($atached['filename'], $valor) !== false) ||
+                (stripos($atached['media_file_basename'], $valor) !== false);
               });
 
 
@@ -312,11 +314,9 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
 
                 //convertir la imagen en su respuesta
                 $imageResponse = Helper::getImageWithHeaders($urlImg->first()['download_url'], $token, $urlImg->first()['mimetype']);
-                //dd("imageResponse", $imageResponse, $urlImg->first()['download_url'], $token, $urlImg->first());
+                dd("imageResponse", $imageResponse, $urlImg->first()['download_url'], $token, $urlImg->first());
 
                 $formulario[$clave] = $imageResponse ?? $urlImg->first()['download_url'];
-
-
 
                 migrateCustom::create([
                   'table' => $formid,
