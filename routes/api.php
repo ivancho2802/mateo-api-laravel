@@ -433,7 +433,10 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
               dd($clave, $valor, $chield_attachments);
 
               $urlImgFirst = $chield_attachments->filter(function ($atached) use ($valor) {
-                return isset($atached['download_url']) && (stripos($atached['download_url'], $valor) !== false);
+                return isset($atached['download_url']) && (
+                  (stripos($atached['download_url'], $valor) !== false) ||
+                  (stripos($atached['media_file_basename'], $valor) !== false)
+                );
               });
 
               $urlImg = collect($urlImgFirst)->first();
