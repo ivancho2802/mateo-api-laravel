@@ -230,7 +230,7 @@
           <div class="logo-wrapper">
             <!-- Logo init -->
             @forelse ($metaFilesForm as $metadata)
-            <img src="{{$metadata->data_file}}" alt="brand logo">
+            <img src="{{$metadata->data_file}}" alt="brand logo" width="200" height="200">
             @empty
             no hay
             @endforelse
@@ -329,7 +329,7 @@
                 @if($isFile)
                 <div class="file-preview">
                   IMAGEN 
-                  <img src="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}" />
+                  <img width="600" height="auto" src="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}" />
                 </div>
                 @elseif(is_string($data->values()[$i])) 
                 <input class="ignore widget autocomplete pdf-input" type="text" value="{{isset($data->values()[$i]) ? is_string($data->values()[$i]) ? $data->values()[$i] : json_encode($data->values()[$i]): 'N/A'}}">

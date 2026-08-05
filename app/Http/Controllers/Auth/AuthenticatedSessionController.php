@@ -27,20 +27,59 @@ class AuthenticatedSessionController extends Controller
         return view('auth.consulta');
     }
 
-    
+
     /**
      * Handle an incoming authentication request.
      *
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(LoginRequest $request)
+    /* public function store(LoginRequest $request)
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME);
+    } */
+    public function store(LoginRequest $request)
+    {
+        dd([
+    'intended' => session('url.intended'),
+    'app_url' => config('app.url'),
+    'root' => $request->root(),
+    'base_url' => $request->getBaseUrl(),
+    'request_uri' => $request->getRequestUri(),
+]);
+
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        $intended = session('url.intended');
+
+        if ($intended) {
+
+            $host = 'https://mireview.dyndns.org';
+            $base = 'https://mireview.dyndns.org/apidev';
+
+            if (
+                str_starts_with($intended, $host . '/') &&
+                !str_starts_with($intended, $base . '/')
+            ) {
+                $path = substr($intended, strlen($host));
+
+                $intended = $base . $path;
+            }
+
+            session()->forget('url.intended');
+
+            return redirect()->to($intended);
+        }
+
+        return redirect()->to(
+            config('app.url') . RouteServiceProvider::HOME
+        );
     }
 
 
@@ -54,8 +93,8 @@ class AuthenticatedSessionController extends Controller
     {
         //dd($request->email);
         $mkoborespuesta = MKoboRespuestas::where("VALOR", $request->email)
-        //->where("CAMPO2", "!=", 'back1')
-        ->exists();
+            //->where("CAMPO2", "!=", 'back1')
+            ->exists();
 
         if (!$mkoborespuesta) {
             return view('auth.consulta')->withErrors(['email' => 'Email No encontrado']);//status
@@ -190,8 +229,8 @@ class AuthenticatedSessionController extends Controller
                     $preg_ = substr($frase[0], 4, -4);
 
                     $respuestas = MKoboRespuestas::where("CAMPO1", $request->email)
-                    //->where("CAMPO2", "!=", 'back1')
-                    ->get()->pluck('VALOR');
+                        //->where("CAMPO2", "!=", 'back1')
+                        ->get()->pluck('VALOR');
 
                     $contine = $respuestas->contains(function ($value, int $key) use ($frase) {
                         $cadena1 = strtolower(normalizar_cadena($value));
