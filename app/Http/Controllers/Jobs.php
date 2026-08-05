@@ -111,14 +111,7 @@ class Jobs extends Controller
       ]);
 
       $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
-
-      $dataTitleResponse = Http::withHeaders([
-        'Authorization' => 'Token ' . $token . '',
-        'Accept' => 'application/json'
-      ])
-        ->get($jsonurlDataTitle)
-        ->json()
-      ['results'];
+      $dataTitleResponse = helper::getAllKoboData($jsonurlDataTitle, $token);
 
       if (optional($dataTitleResponse)->detail == 'Not found.') {
 
@@ -162,18 +155,11 @@ class Jobs extends Controller
     //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
-    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
-    $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid;
     //'timeout' => 1200,  //1200 Seconds is 20 Minutes
+    $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
+    $dataEnketoResponse = helper::getAllKoboData($jsonurlDataEnketo, $token);
 
-    $dataEnketoResponse = Http::withHeaders([
-      'Authorization' => 'Token ' . $token . '',
-      'Accept' => 'application/json'
-    ])
-      ->get($jsonurlDataEnketo)
-      ->json()
-    ['results'];
-
+    $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid;
     $dataTitleResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
       'Accept' => 'application/json'
@@ -533,14 +519,7 @@ class Jobs extends Controller
       ]);
 
       $jsonurlDataTitle = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
-
-      $dataTitleResponse = Http::withHeaders([
-        'Authorization' => 'Token ' . $token . '',
-        'Accept' => 'application/json'
-      ])
-        ->get($jsonurlDataTitle)
-        ->json()
-      ['results'];
+      $dataTitleResponse = helper::getAllKoboData($jsonurlDataTitle, $token);
 
       if (optional($dataTitleResponse)->detail == 'Not found.') {
 
@@ -586,22 +565,13 @@ class Jobs extends Controller
       "token" => $token
     ]);
 
-
     //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid;
     $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
+    $dataEnketoResponse = helper::getAllKoboData($jsonurlDataEnketo, $token);
+
     $jsonurlDataTitle = "https://" . $dominioTitle . "/api/v2/assets/" . $formid . ".json";
-    //'timeout' => 1200,  //1200 Seconds is 20 Minutes
-
-    $dataEnketoResponse = Http::withHeaders([
-      'Authorization' => 'Token ' . $token . '',
-      'Accept' => 'application/json'
-    ])
-      ->get($jsonurlDataEnketo)
-      ->json()
-    ['results'];
-
     $dataTitleResponse = Http::withHeaders([
       'Authorization' => 'Token ' . $token . '',
       'Accept' => 'application/json'
@@ -696,7 +666,6 @@ class Jobs extends Controller
 
 
             $urlImg = collect($urlImgFirst);
-            //if (isset($urlImg))
             //  dd("urlImg", $urlImg, $urlImg->first(), "chield_attachments", $chield_attachments, "valor", $valor, "valores", $valores);//, $urlImg->first()['download_url']
 
             if (count($urlImg) > 0) {
@@ -726,16 +695,6 @@ class Jobs extends Controller
     }));
 
     $paramsForm = $request->paramForm;
-
-    //ajusto las preguntas para que salgan bonitas con los labesl y no con los nombres
-    //$formidnumber = collect($dataTitleResponse[0])->get('formid');
-
-    /* $dataDataLabelsResponse = Http::withHeaders([
-      'Authorization' => 'Token ' . $token . '',
-      'Accept' => 'application/json'
-    ])
-      ->get($jsonurlDataLabels)
-      ->json(); */
 
     $dataLabels = collect($dataTitleResponse);
 
@@ -815,10 +774,6 @@ class Jobs extends Controller
       // Devolver el ítem con las keys ajustadas
       return collect($nuevoItem);
     });
-    //coleccionDatosCorregida vacio 
-    //dataEnketoWithImagePurga vacio 
-    //mapaChildren vacio 
-
     //dd("coleccionDatosCorregida", $coleccionDatosCorregida, "dataEnketoWithImagePurga", $dataEnketoWithImagePurga, "mapaChildren", $mapaChildren);
 
     //AQUI VALIDO PARA QUE SE ACTUALICEN LOS NOMBRES DE LOS FORUMUALRIOS
@@ -880,82 +835,7 @@ class Jobs extends Controller
       }
     });
 
-    /* return response()
-            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200);
-            dd("esta en 45 no se proceso por time out ver como estan los estilos con uno revisar des pues de _318932"); */
-
-    /* if (count($dataEnketoResponse) == count($filesExported)) {
-
-      $resultCreated = helper::makeZipWithFiles($name_key . ".zip", $filesExported);
-
-      //$ramdom = Carbon\Carbon::now()->timestamp;
-      //dd(Carbon\Carbon::now()->timestamp, time());
-
-      if ($resultCreated === true) {
-        return response()->download(public_path($name_key . ".zip"))->deleteFileAfterSend(true);
-      } else {
-        return response()->json(['status' => false, 'message' => $resultCreated], 503);
-      }
-    } else { */
-    /* 
-    $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
-
-    $jobsCreated = JobsModel::all();
-
-    $download = ""; */
-
-    //compruebo sy todo se completo para ofrecer la descarga zip
-    /* if (count($dataEnketoResponse) == count($filesExported)) {
-      $zipFileName = $name_key . ".zip";
-
-      if (!File::exists(public_path($zipFileName))) {
-
-        $resultCreated = helper::makeZipWithFiles($zipFileName, $filesExported);
-
-        if ($resultCreated === true) {
-          //$download = public_path($zipFileName);
-          $download = "/apidev/public/" . ($zipFileName);
-        } else {
-          $download = "fallo al generar el archivos";
-          //return response()->json(['status' => false, 'message' => $resultCreated], 503);
-        }
-      } else {
-        //$download = public_path($zipFileName);
-        $download = "/apidev/public/" . ($zipFileName);
-      }
-    } */
-
-    /* $dataExport = json_decode(collect([
-      "name_key" => ($name_key),
-      "exportaciones_totales" => count($dataEnketoResponse),
-      "exportaciones_procesadas" => count($filesExported),
-      "exportaciones_faltantes" => count($dataEnketoResponse) - count($filesExported),
-      "exportaciones_fallidos" => 0,
-      "trabajos_en_proceso" => count($jobsCreated),
-      "download" => $download
-    ]));
-
-    $data = [$dataExport]; */
-
-    //MQR devolver tabla con los resultados creados 
     return redirect()->route('koboapdf', ["name_key" => ""])->with('success', 'Formulario solicitado con exito!');
-    ;
-    //return view('koboapdf.index', ["name_key" => "", "data" => serialize($data)]);
-    //}
-
-    /* return response()
-            ->view('pdf.formulario', ["data" => $dataEnketoWithImage->first()], 200)
-            ->header('Authorization', 'Token ' . $token); */
-    /* } catch (\Throwable $th) {
-
-
-            $filesExported = Storage::files("/htmlToPdf/". $name_key ."/");
-
-            return response()->json([
-                "error" => $th,
-                "exportaciones procesadas" => count($filesExported),
-            ]);
-        } */
   }
 
   public function getProccessExport(Request $request)
@@ -1017,15 +897,7 @@ class Jobs extends Controller
     //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
 
     $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
-
-    $dataEnketoResponse = Http::withHeaders([
-      'Authorization' => 'Token ' . $token . '',
-      'Accept' => 'application/json'
-    ])
-      ->get($jsonurlDataEnketo)
-      ->json()
-    ['results'];
-
+    $dataEnketoResponse = helper::getAllKoboData($jsonurlDataEnketo, $token);
 
     return response()->json([
       "exportaciones totales" => count($dataEnketoResponse),
@@ -1151,15 +1023,7 @@ class Jobs extends Controller
     //dd("commandUui", $commandUui, ($jobsFirstPayload->data->command));
 
     $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
-    //'timeout' => 1200,  //1200 Seconds is 20 Minutes
-
-    $dataEnketoResponse = Http::withHeaders([
-      'Authorization' => 'Token ' . $token . '',
-      'Accept' => 'application/json'
-    ])
-      ->get($jsonurlDataEnketo)
-      ->json()
-    ['results'];
+    $dataEnketoResponse = helper::getAllKoboData($jsonurlDataEnketo, $token);
 
     $jobsFailed = FailedJobsModel::where("payload", "like", "%" . $name_key . "%")->get();
     //dd($dataEnketoResponse, $filesExported, $jsonurlDataEnketo);
@@ -1357,15 +1221,7 @@ class Jobs extends Controller
 
     $formid = $jobDetails->uui;
     $jsonurlDataEnketo = "https://" . $dominio . "/api/v2/assets/" . $formid . "/data.json";
-
-    $dataEnketoResponse = Http::withHeaders([
-      'Authorization' => 'Token ' . $token . '',
-      'Accept' => 'application/json'
-    ])
-      ->get($jsonurlDataEnketo)
-      ->json()
-    ['results'];
-
+    $dataEnketoResponse = helper::getAllKoboData($jsonurlDataEnketo, $token);
 
     $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
     $metaFiles = [];

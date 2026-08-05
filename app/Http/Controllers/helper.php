@@ -394,4 +394,35 @@ class helper extends Controller
             return "Failed to create the zip file.";
         }
     }
+
+    public static function getAllKoboData($url, $token)
+    {
+        $allData = collect();
+
+        $nextUrl = $url . '?limit=1000';
+
+        while ($nextUrl) {
+
+            $response = Http::withHeaders([
+                'Authorization' => 'Token ' . $token,
+                'Accept' => 'application/json',
+            ])->get($nextUrl);
+
+            if (!$response->successful()) {
+                throw new \Exception(
+                    'Error Kobo API: ' . $response->status()
+                );
+            }
+
+            $data = $response->json();
+
+            $results = $data['results'] ?? [];
+
+            $allData = $allData->concat($results);
+
+            $nextUrl = $data['next'] ?? null;
+        }
+
+        return $allData;
+    }
 }

@@ -239,14 +239,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       //...{_id_formulario}
       //https://kc.acf-e.org/api/v1/data/2486
       $jsonurlData = "https://kobo2.actioncontrelafaim.org/api/v2/assets/" . $uui . "/data.json";
-
-      $dataSubmissionsResponse = Http::withHeaders([
-        'Authorization' => 'Token ' . $token . '',
-        'Accept' => 'application/json'
-      ])
-        ->get($jsonurlData)
-        ->json()
-      ['results'];
+      $dataSubmissionsResponse = helper::getAllKoboData($jsonurlData, $token);
 
       //filtrando los formularios que ya han sido exportados con filesexported con los formularios consultados dataenketoresponse
       $filesExported = Storage::files("/htmlToPdf/" . $name_key . "/");
