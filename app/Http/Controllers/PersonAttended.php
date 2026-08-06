@@ -97,6 +97,7 @@ class PersonAttended extends Controller
         return view('list-lpas', $data);
     }
 
+
     public function process(?Request $request)
     {
 
@@ -124,9 +125,9 @@ class PersonAttended extends Controller
         if (count($collectDb) == 0) {
             dd("collectDb", $collectDb->chunk(1000)[0]);
         }
+        dd( count($collectDb ));
 
         $result = (new MlpasClass)->collection($collectDb, $migration->table_id);
-
 
         /* $import = new PaImportClass();
 
@@ -201,7 +202,6 @@ class PersonAttended extends Controller
 
         return $migration; //table_id */
     }
-
 
     function storeFixDiscapacitados(Request $request)
     {
@@ -477,96 +477,6 @@ class PersonAttended extends Controller
         //return Storage::download("migrationsLpa/h0R5RfbLVuBjetZLTRG9c5xHVABG054Qm0GPIG7S.xlsx", 'filename.xlsx', $headers);
 
         return Storage::download($migration->table_id, 'filename.xlsx', $headers);
-    }
-
-    public function process(?Request $request)
-    {
-
-        ini_set('memory_limit', '2044M');
-        set_time_limit(3000000); //0
-        ini_set('max_execution_time', '60000');
-        ini_set('max_input_time', '60000');
-
-        $migration = migrateCustom::where([
-            'table' => 'M_LPAS',
-            'file_ref' => 'UPLOADED',
-        ])->first();
-
-        $file = Storage::path($migration->table_id);
-
-        $sheets = (new FastExcel)->withSheetsNames()->importSheets($file);
-
-        $result = (new MlpasClass)->collection(collect($sheets['BD']));
-
-        //dd($result);
-
-        /* $import = new PaImportClass();
-
-        $import->onlySheets('BD');
-
-        // Process the Excel file
-        Excel::import($import, $file); */
-
-        $migration->file_ref = 'PROCECED';
-
-        $migration->save();
-
-        //get data excel
-        //$collection = (new MlpasClass)->toCollection($file);
-
-        //$collectExcel = $collection[2] ?? $collection[0];
-
-        $count_record_excel = 0; //helper::countValidValues($collectExcel)
-
-        $migrate_custom = migrateCustom::where([
-            'table' => "M_LPAS"
-        ])->get()->last();
-
-        $excel = file_get_contents($file);
-        $base64 = base64_encode($excel);
-
-        $migrate_custom->file = $base64;
-
-        $migrate_custom->save();
-
-        //$id_lpas = explode(", ", $migrate_custom->table_id);
-
-        //$query_mlpas = MLpa::whereIn('ID', $id_lpas);//;
-        $count_mlpas = 0; //count($query_mlpas->get());
-
-        $mlpas = MLpa::orderBy('created_at', 'desc')
-            ->paginate(10);
-
-        $mlpas->load('emergencia');
-
-        $data['mlpas'] = $mlpas;
-
-        $data['record_excel'] = $count_record_excel;
-
-        $data['record_saved'] = $count_mlpas;
-
-
-        $restanteTot = migrateCustom::where([
-            ['table', 'M_LPAS'],
-            ['table_id', '!=', '[]'],
-            ['file_ref', 'PENDING']
-        ])->get();
-
-        //se procesa el refresh
-        //se deben crear tantos jobs como migraciones haya pendientes
-
-        $TotrestanteTot = count($restanteTot);
-
-        for ($i = 0; $i < $TotrestanteTot * 2; $i++) {
-            # code...
-            LpaJobRefreshMigrations::dispatch(); //->onConnection('database');
-        }
-
-        //terminar devolver tabla
-        return view('list-lpas', $data);
-        //return response()->json(["message" => "operacion hecha con exito"]);
-
-        return $migration; //table_id
     }
 
     function refreshMigrations(Request $request)
