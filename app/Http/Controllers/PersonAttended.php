@@ -125,7 +125,13 @@ class PersonAttended extends Controller
         if (count($collectDb) == 0) {
             dd("collectDb", $collectDb->chunk(1000)[0]);
         }
-        dd( count($collectDb ));
+        //este hace refernbecia al datos solicitado para el resumen PUNTO 3
+        dd(
+            "TODATAL DE TREGUTROA",
+            count($collectDb),  
+            "BENEFICIARIOS NICOS",
+            count($collectDb->pluck("DOCUMENTO"))
+        );
 
         $result = (new MlpasClass)->collection($collectDb, $migration->table_id);
 
