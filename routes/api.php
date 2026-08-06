@@ -812,3 +812,7 @@ Route::prefix('firebird')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
   Route::get('/meal/lpasegOnlyPageTestAll', [App\Http\Controllers\Meal::class, 'getLpaOnlyPageTestAll']);
 });
+
+Route::prefix('meal')->group(function () {
+  Route::post('/lpa/upload', [App\Http\Controllers\PersonAttendedMongo::class, 'stored']);
+});

@@ -48,7 +48,7 @@ class PersonAttendedMongo extends Controller
             }
         }
 
-        ini_set('memory_limit', '2024M');
+        ini_set('memory_limit', '12000M');
         set_time_limit(3000000); //0
 
         //dd("file", $request->file('file'));
@@ -72,6 +72,7 @@ class PersonAttendedMongo extends Controller
             'id_user_mireview' => $request->ID_D_CLIENTES
         ]);
         //crear job para ejecutar la funcion de process
+        //cuando arreglo los regiustros repetidos quitar esta comment
         LpaJobMongoProcess::dispatch(); //->onConnection('database');
 
         //DB::setDefaultConnection('mongodb');
@@ -116,8 +117,11 @@ class PersonAttendedMongo extends Controller
         $file = Storage::path($migration->table_id);
 
         $sheets = (new FastExcel)->withSheetsNames()->importSheets($file);
+        $lpaCollect = collect($sheets['BD']);
 
-        $result = (new MlpasMongoClass)->collection(collect($sheets['BD']));
+        dd(count($lpaCollect));
+
+        $result = (new MlpasMongoClass)->collection($lpaCollect);
 
         //dd($result);
 

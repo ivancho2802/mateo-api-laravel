@@ -65,20 +65,18 @@ class LpaJobMongoProcess implements ShouldQueue
             Log::info('Datos obtenidos:' . json_decode($response));
             // Guardar los datos en la base de datos o procesarlos
         } */
-        $token = $request->bearerToken() ?? "Bearer 90|ntdy46DZlQkxiEUgvco2iDfARHSzUZYbsV4F9hUy";
+        
+        $token = 'Bearer ' . config('app.tokenapiaux');
 
         $response = Http::withHeaders([
             'Authorization' => $token, // Reemplaza con tu token real
             'Content-Type' => 'application/json', // Ejemplo de un encabezado adicional, puedes agregar los que necesites
-        ])->post('http://localhost/api/mongo/lpa/process', []);
+        ])->post('http://localhost/api/meal/lpa/process', []);
 
         echo "Response received!";
         echo substr($response->body(), 10);
         echo $response->successful();
-        //echo $response->json();
-        echo $token;
-        //Bearer 90|ntdy46DZlQkxiEUgvco2iDfARHSzUZYbsV4F9hUy
-        Log::info('$token' . $token);
+        //echo $response->json(); 
         Log::info('successfu' . $response->successful());
         //Log::info('Datos obtenidos:' . json_encode($response->body()));
 

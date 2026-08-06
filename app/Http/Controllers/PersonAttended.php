@@ -74,7 +74,7 @@ class PersonAttended extends Controller
 
         migrateCustom::create([
             'table' => 'M_LPAS',
-            'table_id' =>  $path,
+            'table_id' => $path,
             'file_ref' => 'UPLOADED',
             'id_user_mireview' => $request->ID_D_CLIENTES,
         ]);
@@ -84,7 +84,7 @@ class PersonAttended extends Controller
 
         $mlpas->load('emergencia');
 
-        $data['mlpas'] =  $mlpas;
+        $data['mlpas'] = $mlpas;
 
         $data['record_excel'] = 1;
 
@@ -95,6 +95,111 @@ class PersonAttended extends Controller
 
         //terminar devolver tabla
         return view('list-lpas', $data);
+    }
+
+    public function process(?Request $request)
+    {
+
+        ini_set('memory_limit', '12000M');
+        set_time_limit(3000000); //0
+        ini_set('max_execution_time', '60000');
+        ini_set('max_input_time', '60000');
+
+        $migration = migrateCustom::where([
+            'table' => 'M_LPAS',
+            'file_ref' => 'UPLOADED',
+        ])->first();
+
+        $file = Storage::path($migration->table_id);
+
+        $sheets = (new FastExcel)->withSheetsNames()->importSheets($file);
+
+        $collectDb = collect($sheets['BD'])
+            ->filter(function ($row) {
+                // Quitamos los valores nulos o vacíos y contamos si queda algo
+                return count(array_filter($row)) > 0;
+            });
+        ;
+
+        if (count($collectDb) == 0) {
+            dd("collectDb", $collectDb->chunk(1000)[0]);
+        }
+
+        $result = (new MlpasClass)->collection($collectDb, $migration->table_id);
+
+
+        /* $import = new PaImportClass();
+
+        $import->onlySheets('BD');
+
+        // Process the Excel file
+        Excel::import($import, $file); */
+
+        $migration->file_ref = 'PROCECED';
+
+        $migration->save();
+        //dd("migration", $migration);
+
+        $restanteTot = migrateCustom::where([
+            ['table', 'M_LPAS'],
+            ['table_id', '!=', '[]'],
+            ['file_ref', 'PENDING'],
+        ])->get();
+
+        //se procesa el refresh
+        //se deben crear tantos jobs como migraciones haya pendientes
+
+        $TotrestanteTot = count($restanteTot) ?? count(explode(",", $result));
+        //quitar esta linea cuando soliucione los repetidos comentarios
+        for ($i = 0; $i < $TotrestanteTot; $i++) {
+            # code...
+            LpaJobRefreshMigrations::dispatch(); //->onConnection('database');
+        }
+        return [
+            "migration" => $migration,
+            "result" => $result
+        ];
+        // de aqui hacia abajo algo de query falla 
+
+        //get data excel
+        //$collection = (new MlpasClass)->toCollection($file);
+
+        //$collectExcel = $collection[2] ?? $collection[0];
+
+        /* $count_record_excel = 0; //helper::countValidValues($collectExcel)
+
+        $migrate_custom = migrateCustom::where([
+          'table' => "M_LPAS"
+        ])->get()->last();
+
+        $excel = file_get_contents($file);
+        $base64 = base64_encode($excel);
+
+        $migrate_custom->file = $base64;
+
+        $migrate_custom->save();
+
+        //$id_lpas = explode(", ", $migrate_custom->table_id);
+
+        //$query_mlpas = MLpa::whereIn('ID', $id_lpas);//;
+        $count_mlpas = 0; //count($query_mlpas->get());
+
+        $mlpas = MLpa::orderBy('created_at', 'desc')
+          ->paginate(10);
+
+        $mlpas->load('emergencia');
+
+        $data['mlpas'] = $mlpas;
+
+        $data['record_excel'] = $count_record_excel;
+
+        $data['record_saved'] = $count_mlpas;
+
+        //terminar devolver tabla
+        return view('list-lpas', $data);
+        //return response()->json(["message" => "operacion hecha con exito"]);
+
+        return $migration; //table_id */
     }
 
 
@@ -123,7 +228,7 @@ class PersonAttended extends Controller
 
             migrateCustom::create([
                 'table' => 'M_LPAS_FIX',
-                'table_id' =>  $path,
+                'table_id' => $path,
                 'file_ref' => 'UPLOADED',
             ]);
 
@@ -184,7 +289,7 @@ class PersonAttended extends Controller
         /* $personas = MLpaPersona::get()->map(function ($persona) {
             return $persona->DOCUMENTO;
         });
-        
+
         $discapacitado = MLpaFix::whereIn('documento', $personas );
 
         dd(count($discapacitado->get()), $personas); */
@@ -246,7 +351,7 @@ class PersonAttended extends Controller
                     return strpos(strtoupper($item), strtoupper($documento_temp)) >= 0;
                 });
 
-                echo "discapacitado:" . $lpa['FK_LPA_PERSONA'] . '_' . json_encode($discapacitado) . '_' . $discapacitado  . 'tipo_lpa' .  $lpa['tipo_lpa'];
+                echo "discapacitado:" . $lpa['FK_LPA_PERSONA'] . '_' . json_encode($discapacitado) . '_' . $discapacitado . 'tipo_lpa' . $lpa['tipo_lpa'];
 
                 //->where('sexo', $lpa->persona->GENERO)
                 if ($discapacitado >= 0) {
@@ -338,7 +443,7 @@ class PersonAttended extends Controller
 
         $mlpas->load('emergencia');
 
-        $data['mlpas'] =  $mlpas;
+        $data['mlpas'] = $mlpas;
 
         $data['record_excel'] = 1;
 
@@ -495,7 +600,7 @@ class PersonAttended extends Controller
             return ['restante' => 0];
         }
 
-        if (isset(optional($migrationPendings)->table_id)  !== true) {
+        if (isset(optional($migrationPendings)->table_id) !== true) {
             return ['restante' => strlen(optional($migrationPendings)->table_id)];
         }
 
@@ -643,7 +748,7 @@ class PersonAttended extends Controller
                     'DISCAPACIDAD_CAMINAR' => !$mlpa_persona_DISCAPACIDAD_CAMINAR ? $row[24] : 'Si - No puede hacerlo',
                     'DISCAPACIDAD_RECORDAR' => !$mlpa_persona_DISCAPACIDAD_RECORDAR ? $row[25] : 'Si - No puede hacerlo',
                     'DISCAPACIDAD_CUIDADO_PROPIO' => !$mlpa_persona_DISCAPACIDAD_CUIDADO_PROPIO ? $row[26] : 'Si - No puede hacerlo',
-                    'DISCAPACIDAD_COMUNICAR' =>  !$mlpa_persona_DISCAPACIDAD_COMUNICAR ? $row[27] : 'Si - No puede hacerlo',
+                    'DISCAPACIDAD_COMUNICAR' => !$mlpa_persona_DISCAPACIDAD_COMUNICAR ? $row[27] : 'Si - No puede hacerlo',
                     'TELEFONO' => $row[28]
                 ]
             );
@@ -789,7 +894,7 @@ class PersonAttended extends Controller
                     ->exists();
 
                 //->where('sexo', $lpa->persona->GENERO)
-                if (($discapacitado) ==  true) {
+                if (($discapacitado) == true) {
                     $persona = collect($persona)->forget('discapacitado');
                     $persona['discapacitado'] = 1;
                 }
@@ -962,7 +1067,7 @@ class PersonAttended extends Controller
             DB::table('M_LPA_EMERGENCIAS')
                 ->join('M_LPAS', 'M_LPA_EMERGENCIAS.ID', '=', 'M_LPAS.FK_LPA_EMERGENCIA')
                 ->select('COD_EMERGENCIAS')
-                ->where('M_LPAS.FASE_ATENCION','!=', "Fase III-RecuperaciÃ³n temprana")
+                ->where('M_LPAS.FASE_ATENCION', '!=', "Fase III-RecuperaciÃ³n temprana")
                 ->groupBy('COD_EMERGENCIAS')
                 ->get()
         );
@@ -1153,11 +1258,11 @@ class PersonAttended extends Controller
         $personas = DB::table('M_LPA_PERSONAS')
         ->select($select)
         ->get(); 
-        
+
         return [
             "personas" => $personas
         ];
-        
+
         */
         $select = '*';
         if (isset($request->select)) {
@@ -1229,7 +1334,7 @@ class PersonAttended extends Controller
                 ])
                     ->exists();
 
-                if (($discapacitado) ==  true) {
+                if (($discapacitado) == true) {
                     $discapacitadoRes = 1;
                 }
             }
