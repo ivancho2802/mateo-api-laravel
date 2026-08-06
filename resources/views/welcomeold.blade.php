@@ -433,7 +433,7 @@
       @endif
 
       <div class="flex justify-center pt-8 sm:justify-center sm:pt-0 bg-white ">
-        <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/TIRA_MIRE+_SOCIOS_DONANTES_COLOR.png" class="h-16 w-auto text-gray-700 sm:h-20" />
+        <img src="https://mireview.dyndns.org/ach/imagenes/inicio/TIRA_MIRE+_SOCIOS_DONANTES_COLOR.png" class="h-16 w-auto text-gray-700 sm:h-20" />
 
       </div>
 
@@ -445,8 +445,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2">
           <div class="p-6">
             <div class="flex items-center">
-              <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/MIREsys4.jpg" class="w-8 h-8 text-gray-500" />
-              <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://mireview.ach.dyndns.info/ach/herramientas/password/password.php?db=ach" class="underline text-gray-900 dark:text-white">
+              <img src="https://mireview.dyndns.org/ach/imagenes/inicio/MIREsys4.jpg" class="w-8 h-8 text-gray-500" />
+              <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://mireview.dyndns.org/ach/herramientas/password/password.php?db=ach" class="underline text-gray-900 dark:text-white">
                   MIRE + Web
                 </a></div>
             </div>
@@ -460,8 +460,8 @@
 
           <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
             <div class="flex items-center">
-              <img src="https://mireview.ach.dyndns.info/ach/imagenes/inicio/infoMIRE3.jpg" class="w-8 h-8 text-gray-500" />
-              <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://mireview.ach.dyndns.info/ach/movil_dashboard/www/index.html" class="underline text-gray-900 dark:text-white">
+              <img src="https://mireview.dyndns.org/ach/imagenes/inicio/infoMIRE3.jpg" class="w-8 h-8 text-gray-500" />
+              <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://mireview.dyndns.org/ach/movil_dashboard/www/index.html" class="underline text-gray-900 dark:text-white">
                   Mire+ App
                 </a></div>
             </div>
@@ -517,7 +517,7 @@
                 Formato url para importar en excel o en powe bi
                 <br>
 
-                https://ugic.api.ach.dyndns.info/api/kobo/[asset_uid]/data/[token]
+                https://mireview.dyndns.org/apidev/api/kobo/[asset_uid]/data/[token]
                 <br>
 
                 [token] = es el usado por kobo para obtrener datos
@@ -556,7 +556,7 @@
                 Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                 <br>
 
-                https://ugic.api.ach.dyndns.info/api/matriz/minas
+                https://mireview.dyndns.org/apidev/api/matriz/minas
 
               </div>
             </div>
@@ -580,7 +580,7 @@
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                 Esta herramienta funciona para generar qr en base a links o texto o demas funciones que quieras usar
                 <br>
-                https://ugic.api.ach.dyndns.info/qr?url=%22https://ugic.api.ach.dyndns.info/cut/XujVh%22
+                https://mireview.dyndns.org/apidev/qr?url=%22https://mireview.dyndns.org/apidev/cut/XujVh%22
                 <br>
                 [url] = podria ser una url o un texto correo o demas
                 <br>
@@ -616,7 +616,7 @@
                 Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                 <br>
 
-                https://ugic.api.ach.dyndns.info/matrizprensa
+                https://mireview.dyndns.org/apidev/matrizprensa
 
               </div>
             </div>
@@ -646,7 +646,7 @@
                   en base a un formulario basico es posible que no funcione con todos los formularios si esto ocurre debes realizar la solicitud
                   <br>
 
-                  https://ugic.api.ach.dyndns.info/koboapdf
+                  https://mireview.dyndns.org/apidev/koboapdf
 
                 </div>
               </div>
@@ -675,7 +675,7 @@
                 Esta herramienta es para adn.
                 <br>
 
-                https://ugic.api.ach.dyndns.info/finanzas/adn
+                https://mireview.dyndns.org/apidev/finanzas/adn
 
               </div>
             </div>
