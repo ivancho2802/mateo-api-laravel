@@ -18,7 +18,7 @@ use Illuminate\Validation\ValidationException;
 class LpaJobMongoProcess implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $tries = 2;
+    public $tries = 1;
 
     /**
      * Create a new job instance.
@@ -37,10 +37,10 @@ class LpaJobMongoProcess implements ShouldQueue
      */
     public function handle()
     {
-        
+
         /* 
         $request = new Request([]);
-        
+
         $person_attended = new PersonAttendedMongo();
 
         $response = $person_attended->process($request);
@@ -48,7 +48,7 @@ class LpaJobMongoProcess implements ShouldQueue
         return $response; 
         */
 
-        
+
         $request = new Request([]);
 
         /* $person_attended = new PersonAttendedMongo();
@@ -65,13 +65,27 @@ class LpaJobMongoProcess implements ShouldQueue
             Log::info('Datos obtenidos:' . json_decode($response));
             // Guardar los datos en la base de datos o procesarlos
         } */
-        
+
         $token = 'Bearer ' . config('app.tokenapiaux');
 
         $response = Http::withHeaders([
             'Authorization' => $token, // Reemplaza con tu token real
             'Content-Type' => 'application/json', // Ejemplo de un encabezado adicional, puedes agregar los que necesites
         ])->post('http://localhost/api/meal/lpa/process', []);
+
+
+        /*
+         * Si HTTP devuelve 4xx o 5xx
+         */
+        if ($response->failed()) {
+
+            throw new \RuntimeException(
+                'Error procesando LPA. HTTP $response->failed()' .
+                $response->status() .
+                ': ' .
+                $response->body()
+            );
+        }
 
         echo "Response received!";
         echo substr($response->body(), 10);
@@ -81,7 +95,7 @@ class LpaJobMongoProcess implements ShouldQueue
         //Log::info('Datos obtenidos:' . json_encode($response->body()));
 
         // Verificar el estado de la respuesta
-        if (strpos($response->body(), 'Es posible que la migracion sea demasiado grande por lo que la informacion sera procesada periodicamente') !== false   ) {
+        if ($response->successful()) {
             // La solicitud fue exitosa
             $data = $response->json();
             // Procesa los datos como sea necesario
@@ -91,8 +105,18 @@ class LpaJobMongoProcess implements ShouldQueue
             // Puedes manejar el error aquí
             $error = $response->body();
 
-            throw ValidationException::withMessages(['your error message' . json_encode($error)]);
+            Log::error('Error procesando LPA', [
+                'status' => $response->status(),
+                'body' => $error,
+            ]);
+
+            throw new \RuntimeException(
+                'Error procesando LPA. HTTP ' .
+                $response->status() .
+                ': ' .
+                $error
+            );
         }
-        
+
     }
 }
