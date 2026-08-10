@@ -126,11 +126,60 @@ class PersonAttended extends Controller
             dd("collectDb", $collectDb->chunk(1000)[0]);
         }
         //este hace refernbecia al datos solicitado para el resumen PUNTO 3
+
+        $conteoRegistros = $collectDb
+            ->count();
+        $conteoBeneficiariosUnicos = $collectDb
+            ->pluck('DOCUMENTO')
+            ->unique()
+            ->count();
+        $conteoPorActividad = $collectDb
+            ->groupBy('COD_ACTIVIDAD')
+            ->map(function ($items) {
+                return $items->count();
+            });
+        $conteoBeneficiariosUnicosSexo = $collectDb
+            ->groupBy('GENERO')
+            ->map(function ($items) {
+                return $items->pluck('DOCUMENTO')->unique()->count();
+            });
+        $conteoPorUbicacionGeografica = $collectDb
+            ->groupBy(function ($item) {
+                return $item['DEPARTAMENTO'] . ' - ' . $item['MUNICIPIO'];
+            })
+            ->map(function ($items) {
+                return $items->count();
+            });
+        $conteoBeneficiariosUnicosPorDonante = $collectDb
+            ->groupBy('DONANTE')
+            ->map(function ($items) {
+                return $items->pluck('DOCUMENTO')->unique()->count();
+            });
+        $conteoPosibleDuplicidad = $collectDb
+            ->unique(function ($item) {
+                return
+                    $item['DOCUMENTO'] . '|' .
+                    $item['COD_ACTIVIDAD'] . '|' .
+                    $item['FECHA_ATENCION'] . '|' .
+                    $item['DONANTE'];
+            })
+            ->count();
+
         dd(
-            "TODATAL DE TREGUTROA",
-            count($collectDb),  
-            "BENEFICIARIOS NICOS",
-            count($collectDb->pluck("DOCUMENTO"))
+            "Total de beneficiarios atendidos",
+            $conteoRegistros,
+            "Beneficiarios unicos atendidos",
+            $conteoBeneficiariosUnicos,
+            "Registros por actividad",
+            $conteoPorActividad,
+            "Beneficiarios unicos por sexo",
+            $conteoBeneficiariosUnicosSexo,
+            "Registros por ubicación geográfica",
+            $conteoPorUbicacionGeografica,
+            "Beneficiarios unicos por donante",
+            $conteoBeneficiariosUnicosPorDonante,
+            "Posible duplicidad de beneficiarios",
+            $conteoPosibleDuplicidad
         );
 
         $result = (new MlpasClass)->collection($collectDb, $migration->table_id);
