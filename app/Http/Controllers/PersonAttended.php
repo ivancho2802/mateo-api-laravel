@@ -115,7 +115,6 @@ class PersonAttended extends Controller
 
         DB::setDefaultConnection('firebird');
         $sender = MUsuarios::where("ID_M_USUARIO", $migration->id_user_mireview)->first();
-        dd($sender, $migration->id_user_mireview);
         DB::setDefaultConnection('pgsql');
 
         $file = Storage::path($migration->table_id);
@@ -200,8 +199,33 @@ class PersonAttended extends Controller
             })
             ->count();
         //Socio, archivo, periodo, fecha, hora y usuario cargador
+        $fechas = $collectDb
+            ->map(function ($item) {
+
+                $date = $item['Fecha de atención'];
+
+                if (is_object($date)) {
+                    $fecha = collect($date)->get('date');
+
+                    return Carbon::parse($fecha);
+                }
+
+                return Carbon::createFromFormat(
+                    'd/m/Y',
+                    trim($date)
+                );
+            })
+            ->filter();
+        $fechaMenor = $fechas->min()->format('Y-m-d');
+        $fechaMayor = $fechas->max()->format('Y-m-d');
+
+        $socio = explode('@', $sender->CORREO)[1] ?? $sender->CORREO;
+
         $metadataSender = [
-            ""
+            "socio" => $socio,
+            "periodo" => $fechaMenor . ' - ' . $fechaMayor,
+            "date" => $sender->created_at,
+            "author" => $sender->NOMBRE . ' ' . $sender->APELLIDO . ' ' . $sender->CORREO,
         ];
 
 
