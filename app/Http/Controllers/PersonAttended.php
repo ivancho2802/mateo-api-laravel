@@ -128,7 +128,7 @@ class PersonAttended extends Controller
         //este hace refernbecia al datos solicitado para el resumen PUNTO 3
         $beneficiariosUnicos = $collectDb
             ->map(function ($item) {
-                return $item['N. Identificación'] ?? null;
+                return trim($item['N. Identificación']) ?? null;
             })
             ->filter()
             ->unique();
@@ -147,10 +147,11 @@ class PersonAttended extends Controller
             ->map(function ($items) {
                 return $items
                     ->map(function ($item) {
-                        return $item['N. Identificación'] ?? null;
+                        return trim($item['N. Identificación']) ?? null;
                     })
                     ->filter()
-                    ->unique();
+                    ->unique()
+                    ->count();
             });
         $conteoPorUbicacionGeografica = $collectDb
             ->groupBy(function ($item) {
@@ -164,7 +165,7 @@ class PersonAttended extends Controller
             ->map(function ($items) {
                 return $items
                     ->map(function ($item) {
-                        return $item['N. Identificación'] ?? null;
+                        return trim($item['N. Identificación']) ?? null;
                     })
                     ->filter()
                     ->unique()
