@@ -126,9 +126,14 @@ class PersonAttended extends Controller
             dd("collectDb", $collectDb->chunk(1000)[0]);
         }
         //este hace refernbecia al datos solicitado para el resumen PUNTO 3
-        $beneficiariosUnicos = $collectDb->pluck('N. Identificación');
+        $beneficiariosUnicos = $collectDb
+            ->map(function ($item) {
+                return $item['N. Identificación'] ?? null;
+            })
+            ->filter()
+            ->unique();
 
-        dd($beneficiariosUnicos, $collectDb->first());
+        dd($beneficiariosUnicos->count());
 
         $conteoRegistros = $collectDb
             ->count();
