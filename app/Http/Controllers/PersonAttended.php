@@ -130,38 +130,38 @@ class PersonAttended extends Controller
         $conteoRegistros = $collectDb
             ->count();
         $conteoBeneficiariosUnicos = $collectDb
-            ->pluck('DOCUMENTO')
+            ->pluck('N. Identificación')
             ->unique()
             ->count();
         $conteoPorActividad = $collectDb
-            ->groupBy('COD_ACTIVIDAD')
+            ->groupBy('Código de Actividad')
             ->map(function ($items) {
                 return $items->count();
             });
         $conteoBeneficiariosUnicosSexo = $collectDb
-            ->groupBy('GENERO')
+            ->groupBy('Sexo')
             ->map(function ($items) {
-                return $items->pluck('DOCUMENTO')->unique()->count();
+                return $items->pluck('N. Identificación')->unique()->count();
             });
         $conteoPorUbicacionGeografica = $collectDb
             ->groupBy(function ($item) {
-                return $item['DEPARTAMENTO'] . ' - ' . $item['MUNICIPIO'];
+                return $item['Departamento'] . ' - ' . $item['Municipio'];
             })
             ->map(function ($items) {
                 return $items->count();
             });
         $conteoBeneficiariosUnicosPorDonante = $collectDb
-            ->groupBy('DONANTE')
+            ->groupBy('Donante')
             ->map(function ($items) {
-                return $items->pluck('DOCUMENTO')->unique()->count();
+                return $items->pluck('N. Identificación')->unique()->count();
             });
         $conteoPosibleDuplicidad = $collectDb
             ->unique(function ($item) {
                 return
-                    $item['DOCUMENTO'] . '|' .
-                    $item['COD_ACTIVIDAD'] . '|' .
-                    $item['FECHA_ATENCION'] . '|' .
-                    $item['DONANTE'];
+                    $item['N. Identificación'] . '|' .
+                    $item['Código de Actividad'] . '|' .
+                    $item['Fecha de atención'] . '|' .
+                    $item['Donante'];
             })
             ->count();
 
