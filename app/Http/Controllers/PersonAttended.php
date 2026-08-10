@@ -220,8 +220,11 @@ class PersonAttended extends Controller
         $fechaMayor = $fechas->max()->format('Y-m-d');
 
         $socio = explode('@', $sender->CORREO)[1] ?? $sender->CORREO;
+        
+        $nombreArchivo = basename($migration->table_id);
 
         $metadataSender = [
+            "archivo" => $nombreArchivo,
             "socio" => $socio,
             "periodo" => $fechaMenor . ' - ' . $fechaMayor,
             "date" => $sender->created_at,
