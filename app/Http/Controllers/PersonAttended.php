@@ -114,7 +114,7 @@ class PersonAttended extends Controller
         ])->first();
 
         DB::setDefaultConnection('firebird');
-        $sender = MUsuarios::where("ID", $migration->id_user_mireview)->first();
+        $sender = MUsuarios::where("ID_M_USUARIO", $migration->id_user_mireview)->first();
         dd($sender, $migration->id_user_mireview);
         DB::setDefaultConnection('pgsql');
 
