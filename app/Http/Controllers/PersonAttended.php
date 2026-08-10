@@ -128,7 +128,7 @@ class PersonAttended extends Controller
         //este hace refernbecia al datos solicitado para el resumen PUNTO 3
         $beneficiariosUnicos = $collectDb->pluck('N. Identificación')->filter();
 
-        dd($beneficiariosUnicos, $collectDb);
+        dd($beneficiariosUnicos, $collectDb->keys());
 
         $conteoRegistros = $collectDb
             ->count();
