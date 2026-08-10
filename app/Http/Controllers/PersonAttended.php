@@ -131,7 +131,7 @@ class PersonAttended extends Controller
             ->count();
         $conteoBeneficiariosUnicos = $collectDb
             ->pluck('N. Identificación')
-            ->unique()
+            ->distinct()
             ->count();
         $conteoPorActividad = $collectDb
             ->groupBy('Código de Actividad')
@@ -180,17 +180,17 @@ class PersonAttended extends Controller
         dd(
             "Total de beneficiarios atendidos",
             $conteoRegistros,
-            "Beneficiarios unicos atendidos",
+            "Beneficiarios unicos atendidos",//quedo mal cuenta 1
             $conteoBeneficiariosUnicos,
             "Registros por actividad",
             $conteoPorActividad,
-            "Beneficiarios unicos por sexo",
+            "Beneficiarios unicos por sexo",// cuenta mal cuneta 1
             $conteoBeneficiariosUnicosSexo,
             "Registros por ubicación geográfica",
             $conteoPorUbicacionGeografica,
-            "Beneficiarios unicos por donante",
+            "Beneficiarios unicos por donante",//cuenta mal conto solo 1 
             $conteoBeneficiariosUnicosPorDonante,
-            "Posible duplicidad de beneficiarios",
+            "Posible duplicidad de beneficiarios",//cuenta mal conto todos como duplicados
             $conteoPosibleDuplicidad
         );
 
