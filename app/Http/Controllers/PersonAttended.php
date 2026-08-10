@@ -133,13 +133,9 @@ class PersonAttended extends Controller
             ->filter()
             ->unique();
 
-        dd($beneficiariosUnicos->count());
-
         $conteoRegistros = $collectDb
             ->count();
         $conteoBeneficiariosUnicos = $beneficiariosUnicos
-            ->filter()
-            ->unique()
             ->count();
         $conteoPorActividad = $collectDb
             ->groupBy('Código de Actividad')
@@ -149,7 +145,12 @@ class PersonAttended extends Controller
         $conteoBeneficiariosUnicosSexo = $collectDb
             ->groupBy('Sexo')
             ->map(function ($items) {
-                return $items->pluck('N. Identificación')->unique()->count();
+                return $items
+                    ->map(function ($item) {
+                        return $item['N. Identificación'] ?? null;
+                    })
+                    ->filter()
+                    ->unique();
             });
         $conteoPorUbicacionGeografica = $collectDb
             ->groupBy(function ($item) {
@@ -161,7 +162,13 @@ class PersonAttended extends Controller
         $conteoBeneficiariosUnicosPorDonante = $collectDb
             ->groupBy('Donante')
             ->map(function ($items) {
-                return $items->pluck('N. Identificación')->unique()->count();
+                return $items
+                    ->map(function ($item) {
+                        return $item['N. Identificación'] ?? null;
+                    })
+                    ->filter()
+                    ->unique()
+                    ->count();
             });
         $conteoPosibleDuplicidad = $collectDb
             ->unique(function ($item) {
