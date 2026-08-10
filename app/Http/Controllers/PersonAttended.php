@@ -26,6 +26,8 @@ use App\Jobs\LpaJobProcess;
 use App\Jobs\LpaJobRefreshMigrations;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use App\Models\MUsuarios;
+
 
 class PersonAttended extends Controller
 {
@@ -111,6 +113,11 @@ class PersonAttended extends Controller
             'file_ref' => 'UPLOADED',
         ])->first();
 
+        DB::setDefaultConnection('firebird');
+        $sender = MUsuarios::where("ID", $migration->id_user_mireview)->first();
+        DB::setDefaultConnection('pgsql');
+        dd($sender);
+
         $file = Storage::path($migration->table_id);
 
         $sheets = (new FastExcel)->withSheetsNames()->importSheets($file);
@@ -192,8 +199,15 @@ class PersonAttended extends Controller
                     $item['Donante'];
             })
             ->count();
+        //Socio, archivo, periodo, fecha, hora y usuario cargador
+        $metadataSender = [
+            ""
+        ];
+
 
         dd(
+            "Metadata de la persona que envio los datos",
+            $metadataSender,
             "Total de beneficiarios atendidos",
             $conteoRegistros,
             "Beneficiarios unicos atendidos",//quedo mal cuenta 1
