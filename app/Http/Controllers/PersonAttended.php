@@ -130,9 +130,10 @@ class PersonAttended extends Controller
         $conteoRegistros = $collectDb
             ->count();
         $conteoBeneficiariosUnicos = $collectDb
-            ->pluck('N. Identificación')
-            ->distinct()
-            ->count();
+    ->pluck('N. Identificación')
+    ->filter()
+    ->unique()
+    ->count();
         $conteoPorActividad = $collectDb
             ->groupBy('Código de Actividad')
             ->map(function ($items) {
