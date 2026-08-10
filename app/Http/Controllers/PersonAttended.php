@@ -157,10 +157,22 @@ class PersonAttended extends Controller
             });
         $conteoPosibleDuplicidad = $collectDb
             ->unique(function ($item) {
+                $date = $item['Fecha de atención'];
+
+                if (is_object($date)) {
+                    $fechabefore = collect($date)->get("date");
+                } else {
+                    $fechabefore = trim($date);
+                    $fechabefore = Carbon::createFromFormat('d/m/Y', $fechabefore);
+                    $fechabefore = $fechabefore->toDateTimeString();
+                }
+
+                $date = $fechabefore;
+
                 return
                     $item['N. Identificación'] . '|' .
                     $item['Código de Actividad'] . '|' .
-                    $item['Fecha de atención'] . '|' .
+                    $date . '|' .
                     $item['Donante'];
             })
             ->count();
