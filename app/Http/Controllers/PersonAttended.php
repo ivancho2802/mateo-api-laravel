@@ -113,10 +113,6 @@ class PersonAttended extends Controller
             'file_ref' => 'UPLOADED',
         ])->first();
 
-        DB::setDefaultConnection('firebird');
-        $sender = MUsuarios::where("ID_M_USUARIO", $migration->id_user_mireview)->first();
-        DB::setDefaultConnection('pgsql');
-
         $file = Storage::path($migration->table_id);
 
         $sheets = (new FastExcel)->withSheetsNames()->importSheets($file);
@@ -218,19 +214,63 @@ class PersonAttended extends Controller
             ->filter();
         $fechaMenor = $fechas->min()->format('Y-m-d');
         $fechaMayor = $fechas->max()->format('Y-m-d');
-
-        $socio = explode('@', $sender->CORREO)[1] ?? $sender->CORREO;
-        
         $nombreArchivo = basename($migration->table_id);
+
+        DB::setDefaultConnection('firebird');
+        $sender = MUsuarios::where("ID_M_USUARIO", $migration->id_user_mireview)->first();
+        $socio = explode('@', $sender->CORREO)[1] ?? $sender->CORREO;
 
         $metadataSender = [
             "archivo" => $nombreArchivo,
             "socio" => $socio,
             "periodo" => $fechaMenor . ' - ' . $fechaMayor,
-            "date" => $sender->created_at,
-            "author" => $sender->NOMBRE . ' ' . $sender->APELLIDO . ' ' . $sender->CORREO,
+            "date" => $migration->created_at,
+            "author" => $sender->NOMBRES . ' ' . $sender->APELLIDOS . ' ' . $sender->CORREO,
         ];
+        $idGrupo = Carbon::now()->format('YmdHis');
+        /**
+         * INSERT P_FORMULARIOS ROTULO VALOR ID_M_FORMULARIOS LA 0017 ID_M_USUARIOS 00152
+         */
+        DB::select("INSERT INTO P_FORMULARIOS (ROTULO, VALOR, VALOR_REFERENCIA, ID_M_FORMULARIOS, ID_M_USUARIOS)  VALUES ('archivo', '" . $metadataSender['archivo'] . "', '" . $idGrupo . "', '0017', '" . $migration->id_user_mireview . "');");
+        DB::select("INSERT INTO P_FORMULARIOS (ROTULO, VALOR, VALOR_REFERENCIA, ID_M_FORMULARIOS, ID_M_USUARIOS)  VALUES ('socio', '" . $metadataSender['socio'] . "', '" . $idGrupo . "', '0017', '" . $migration->id_user_mireview . "');");
+        DB::select("INSERT INTO P_FORMULARIOS (ROTULO, VALOR, VALOR_REFERENCIA, ID_M_FORMULARIOS, ID_M_USUARIOS)  VALUES ('periodo', '" . $metadataSender['periodo'] . "', '" . $idGrupo . "', '0017', '" . $migration->id_user_mireview . "');");
+        DB::select("INSERT INTO P_FORMULARIOS (ROTULO, VALOR, VALOR_REFERENCIA, ID_M_FORMULARIOS, ID_M_USUARIOS)  VALUES ('date', '" . $metadataSender['date'] . "', '" . $idGrupo . "', '0017', '" . $migration->id_user_mireview . "');");
+        DB::select("INSERT INTO P_FORMULARIOS (ROTULO, VALOR, VALOR_REFERENCIA, ID_M_FORMULARIOS, ID_M_USUARIOS)  VALUES ('author', '" . $metadataSender['author'] . "', '" . $idGrupo . "', '0017', '" . $migration->id_user_mireview . "');");
 
+        DB::statement("
+            INSERT INTO D_CORREO (
+                DESTINATARIO,
+                IDX,
+                TABLA,
+                COMANDO,
+                TIPO,
+                ESTATUS,
+                ASUNTO,
+                REMITENTE,
+                ORIGEN,
+                FECHA,
+                FECHA_REGISTRO,
+                FECHA_ENVIO,
+                FECHA2
+            )
+            VALUES (
+                '{$sender->CORREO}',
+                '{$idGrupo}',
+                'P_FORMULARIOS',
+                NULL,
+                'OUT',
+                'CONFIRMADO',
+                'Resúmen de datos enviados LPA',
+                'ach@nohungerforum.org',
+                '0017',
+                CURRENT_TIMESTAMP,
+                CURRENT_TIMESTAMP,
+                CURRENT_TIMESTAMP,
+                CURRENT_TIMESTAMP
+            );
+        ");
+
+        DB::setDefaultConnection('pgsql');
 
         dd(
             "Metadata de la persona que envio los datos",
@@ -250,6 +290,7 @@ class PersonAttended extends Controller
             "Posible duplicidad de beneficiarios",//cuenta mal conto todos como duplicados
             $conteoPosibleDuplicidad
         );
+
 
         $result = (new MlpasClass)->collection($collectDb, $migration->table_id);
 
