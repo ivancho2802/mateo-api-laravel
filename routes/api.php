@@ -815,6 +815,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::prefix('meal')->group(function () {
   Route::post('/lpa/upload', [App\Http\Controllers\PersonAttendedMongo::class, 'stored']);
+  Route::post('/lpa/upload/updatemany', [App\Http\Controllers\PersonAttended::class, 'updateMany']);
+
   Route::middleware(['auth:sanctum'])->post('/lpa/process', [App\Http\Controllers\PersonAttended::class, 'process']);
 });
 

@@ -1417,4 +1417,364 @@ class PersonAttended extends Controller
 
         return ["discapacitadoRes" => $discapacitadoRes];
     }
+    /**
+     * 
+     * es para cargar LPS y se actualice masivamente
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    function updateMany(Request $request)
+    {
+
+        try {
+
+            ini_set('memory_limit', '12000M');
+            set_time_limit(3000000); //0
+
+            //dd("file", $request->file('file'));
+            //echo csrf_token(); 
+            //return response()->json(["request" => $request]);
+
+            // Validate the uploaded file
+            $request->validate([
+                'file' => 'required|mimes:xlsx,xls',
+            ]);
+
+            // Get the uploaded file
+            $file = $request->file('file');
+
+            $sheets = (new FastExcel)->withSheetsNames()->importSheets($file);
+
+            $collectDb = collect($sheets['BD'])
+                ->filter(function ($row) {
+                    // Quitamos los valores nulos o vacíos y contamos si queda algo
+                    return count(array_filter($row)) > 0;
+                });
+            ;
+
+            dd("collectDb", $collectDb);
+
+            foreach ($collectDb as $row) {
+                $i = 0;
+                /* if (!$row[0] || $row[0] == '') {
+                    break;
+                    } */
+                //\DB::table('readings')->insert($chunk->toArray());
+                $row = collect(collect($row)->toArray())->flatten();
+                $row[0] = trim($row[0]);
+
+                //echo $row[0] .'-'. strlen($row[0]);
+                // esto es una validacion por si la fila que estas registrando esta vacia no eliminar
+                if (strlen($row[0]) < 2 || $row[0] == '') {
+                    $i++;
+                    continue;
+                }
+                //dd($row, $elementsForMigrationChunked, json_decode($idTable));
+
+                //dd("MLPA", $row[0]);
+
+                $mlpa_emergencia = MLpaEmergencia::firstOrCreate(
+                    [
+                        'COD_EMERGENCIAS' => $row[0],
+                        'TIPO_EVENTO' => $row[1],
+                        'SOCIO' => $row[2],
+                        'DEPARTAMENTO' => isset($row[3]) ? strtoupper($row[3]) : $row[3],
+                        'MUNICIPIO' => isset($row[4]) ? strtoupper($row[4]) : $row[4],
+                        'LUGAR_ATENCION' => $row[5]
+                    ]
+                );
+
+                if (
+                    !isset($mlpa_emergencia) ||
+                    (
+                        !optional($mlpa_emergencia)->ID
+                    ) ||
+                    (
+                        !isset(optional($mlpa_emergencia)->ID)
+                    )
+                ) {
+                    $mlpa_emergencia = MLpaEmergencia::where([
+                        'COD_EMERGENCIAS' => $mlpa_emergencia->COD_EMERGENCIAS,
+                        'TIPO_EVENTO' => $mlpa_emergencia->TIPO_EVENTO,
+                        'SOCIO' => $mlpa_emergencia->SOCIO,
+                        'DEPARTAMENTO' => $mlpa_emergencia->DEPARTAMENTO,
+                        'MUNICIPIO' => $mlpa_emergencia->MUNICIPIO,
+                        'LUGAR_ATENCION' => $mlpa_emergencia->LUGAR_ATENCION
+                    ])
+                        ->first();
+                }
+
+                //dd($mlpa_emergencia->ID);
+
+                $dateArray = collect($row[13])->toArray();
+
+                $date_birday = (isset($dateArray) && isset($dateArray["date"])) ? $dateArray["date"] : null; //Date::excelToDateTimeObject($row[14]);
+
+                $FECHA_NACIMIENTO = $date_birday; //date('d-m-Y', strtotime($date_birday));
+
+                $row[8] = isset($row[8]) ? $row[8] : "primernombre";
+                $row[10] = isset($row[10]) ? $row[10] : "primerapellido";
+
+                $documento_busqueda = strtoupper($row[6]);
+
+                // Usamos firstOr para manejar el caso de no encontrarlo
+                $mlpa_persona = MLpaPersona::where(['DOCUMENTO' => strtoupper($row[6])])
+                    //where('DOCUMENTO', 'like', '%' . $documento_busqueda . '%')
+                    //->orWhere('DOCUMENTO', $documento_busqueda)
+                    ->firstOr(function () use ($documento_busqueda, $row, $FECHA_NACIMIENTO) {
+
+                        // --- 1. Definir los datos completos para la creación ---
+                        $datos_creacion = [
+                            'DOCUMENTO' => $documento_busqueda,
+                            'TIPO_DOCUMENTO' => $row[7],
+                            'NOMBRE_PRIMERO' => $row[8],
+                            'NOMBRE_OTROS' => $row[9],
+                            'APELLIDO_PRIMERO' => $row[10],
+                            'APELLIDO_OTRO' => $row[11],
+                            'GENERO' => $row[12],
+                            //'IDENTIDAD_GENERO' => $row[13],
+                            'FECHA_NACIMIENTO' => $FECHA_NACIMIENTO,
+                            'NACIONALIDAD' => $row[14],
+                            'PERFIL_MIGRATORIO' => $row[15],//Perfil Migratorio
+                            'SITUACION' => $row[16],
+                            'ETNIA' => $row[17],
+                            'PERFIL' => $row[18],//Perfil del Participante
+                            'NIVEL_ESCOLARIDAD' => $row[19],
+                            'CARACTERISTICAS_MADRE' => $row[20],
+
+                            'DISCAPACITADO' => $row[21],
+
+                            /*
+                            'DISCAPACIDAD_VER' => $row[21], //!$mlpa_persona_DISCAPACIDAD_VER ? : 'Si - No puede hacerlo',
+                            'DISCAPACIDAD_OIR' => $row[22], //!$mlpa_persona_DISCAPACIDAD_OIR ? : 'Si - No puede hacerlo',
+                            'DISCAPACIDAD_CAMINAR' => $row[23], //!$mlpa_persona_DISCAPACIDAD_CAMINAR ? : 'Si - No puede hacerlo',
+                            'DISCAPACIDAD_RECORDAR' => $row[24], //!$mlpa_persona_DISCAPACIDAD_RECORDAR ? : 'Si - No puede hacerlo',
+                            'DISCAPACIDAD_CUIDADO_PROPIO' => $row[25], //!$mlpa_persona_DISCAPACIDAD_CUIDADO_PROPIO ? : 'Si - No puede hacerlo',
+                            'DISCAPACIDAD_COMUNICAR' => $row[26], //!$mlpa_persona_DISCAPACIDAD_COMUNICAR ? : 'Si - No puede hacerlo',
+                            */
+
+                            'TELEFONO' => $row[22]
+                        ];
+
+                        // --- 2. Crear el registro ---
+                        return MLpaPersona::create($datos_creacion);
+                    });
+
+
+                if (
+                    !isset($mlpa_persona) ||
+                    (
+                        !optional($mlpa_persona)->ID
+                    ) ||
+                    (
+                        !isset(optional($mlpa_persona)->ID)
+                    )
+                ) {
+                    $mlpa_persona = MLpaPersona::where([
+                        'DOCUMENTO' => $mlpa_persona->DOCUMENTO
+                    ])
+                        ->first();
+                }
+
+                if (
+                    !isset($mlpa_persona) ||
+                    !isset($mlpa_emergencia) ||
+                    (
+                        !optional($mlpa_persona)->ID ||
+                        !optional($mlpa_emergencia)->ID
+                    ) ||
+                    (
+                        !isset(optional($mlpa_persona)->ID) ||
+                        !isset(optional($mlpa_emergencia)->ID)
+                    )
+                ) {
+                    return ["mlpa_persona" => $mlpa_persona, "mlpa_emergencia" => $mlpa_emergencia];
+                }
+                //intento para recuperar nombres y
+                if (isset($row[8]) && isset($row[10])) {
+                    $mlpa_persona_ = MLpaPersona::where('ID', $mlpa_persona->ID)
+                        ->update([
+                            'NOMBRE_PRIMERO' => $row[8],
+                            'NOMBRE_OTROS' => $row[9],
+                            'APELLIDO_PRIMERO' => $row[10],
+                            'APELLIDO_OTRO' => $row[11],
+                            'TELEFONO' => $row[22]
+                        ]);
+
+                    //if (isset($mlpa_persona_)) {
+                    /* $mlpa_persona_ = $mlpa_persona_->update([
+                      'NOMBRE_PRIMERO' => $row[8],
+                      'NOMBRE_OTROS' => $row[9],
+                      'APELLIDO_PRIMERO' => $row[10],
+                      'APELLIDO_OTRO' => $row[11],
+                      'TELEFONO' => $row[22]
+                    ]); */
+
+                    /* $mlpa_persona_->NOMBRE_PRIMERO = $row[8];
+                    $mlpa_persona_->NOMBRE_OTROS = $row[9];
+                    $mlpa_persona_->APELLIDO_PRIMERO = $row[10];
+                    $mlpa_persona_->APELLIDO_OTRO = $row[11];
+                    $mlpa_persona_->TELEFONO = $row[22];
+                    $mlpa_persona_->save();
+                  } */
+                }
+
+                if (is_object($row[25])) {
+                    $fechabefore = collect($row[25])->get("date");
+                } else {
+                    $fechabefore = trim($row[25]);
+                    $fechabefore = Carbon::createFromFormat('d/m/Y', $fechabefore);
+                    $fechabefore = $fechabefore->toDateTimeString();
+                }
+
+                $FECHA_ATENCION = $fechabefore;
+
+                if (isset($row[24]) && is_string($row[24])) {
+                    $str = strtoupper($row[24]);
+                    if (strpos($str, "COVID") !== false) {
+                        $cod = "COVID19";
+                    } else {
+                        $cod = trim($row[24]);
+                    }
+                } else {
+                    // Si $row[24] no es una cadena válida, asigna un valor por defecto
+                    $cod = "DEFAULT_VALUE"; // Por ejemplo, un valor que indique que no se pudo procesar
+                }
+                //$cod = strpos(strtoupper($row[24]), "COVID") >= 0 ? "COVID19" : $row[24];
+                $cod = strtoupper($row[24]);
+
+                $body_lpas->push([
+
+                    "DONANTE" => $row[23],
+                    "FECHA_ATENCION" => $FECHA_ATENCION,
+                    "REPRESENTANTE" => $row[26],
+                    "DOC_REPRESENTANTE" => $row[27],
+                    "TIPO_TRANFERENCIA" => $row[28],
+                    "MODO_ENTREGA" => $row[29],
+                    "PROVEEDOR_FINANCIERO" => $row[30],
+                    "MONTO_MENSUAL" => $row[31],
+                    "FASE_ATENCION" => $row[32],
+
+                    "STATUS" => $row[37],
+                    "OBSERVATIONS" => $row[40],
+
+                    //laura reemplzar por el id desde el token 5 en lcal 1 online
+                    "ID_M_USUARIOS" => $ID_USER,
+
+                    "COD_ACTIVIDAD" => $cod,
+                    "FK_LPA_EMERGENCIA" => $mlpa_emergencia->ID,
+                    "FK_LPA_PERSONA" => $mlpa_persona->ID,
+                    "created_at" => Carbon::now(),
+                    "id_migration" => $id_migration //$row[46] ?? 
+
+                ]);
+
+                $i++;
+
+                //echo ("i proceced: " . $i);
+
+            }
+
+            //validacion para que no se cargue el mismo archivo en el mismo mes
+            //lo que hre es validar si ya hay una migracion en el mes que se enviaron los datos y guardar o actualizar 
+            //parece que debo pedir mes de la migracion
+            //dd("file", $request->file('file'));
+
+            //para el analisis recibir un string como analisis y que se edite en otro lado
+
+            // Validate the uploaded file
+            $requestOriginal->validate([
+                'file' => 'required|mimes:xlsx,xls',
+            ]);
+
+            //guardo el archiv
+
+            // Get the uploaded file
+            $file = $requestOriginal->file('file');
+            $path = $file->store('migrationsLpa');
+
+            migrateCustom::create([
+                'table' => 'M_MQR',
+                'table_id' => $path,
+                'file_ref' => 'UPLOADED',
+                'id_user_mireview' => $request->ID_D_CLIENTES
+            ]);
+
+            // Get the uploaded file
+            $file = $requestOriginal->file('file');
+
+            // Process the Excel file Consolidado
+            //Excel::import(new MqrImportClass, $file, 'Consolidado');
+
+            // Process MQR
+            $import = new MqrImportClass();
+
+            $import->onlySheets('1. REPORTE CUANTITATIVO');
+
+            Excel::import($import, $file);
+
+            // Process MQR spaces
+            /* $import = new MqrSpaceCollectiveImportClass();
+
+            $import->onlySheets('Espacios colectivos');
+
+            Excel::import($import, $file); */
+            //
+            $import = new MqrCaminoMireImportClass();
+
+            $import->onlySheets('2. CAMINO MIRE+');
+
+            Excel::import($import, $file);
+
+            // ver counts
+            $collection = (new MqrClass)->toCollection($file);
+
+            $count_record_excel = helper::countValidValues($collection[0]);
+
+            $migrate_custom = migrateCustom::where([
+                'table' => "M_MQR"
+            ])->get()->last();
+
+            $excel = file_get_contents($file);
+            $base64 = base64_encode($excel);
+
+            $migrate_custom->file = $base64;
+
+            $migrate_custom->save();
+
+            $mmqrs = MMqr::paginate(10);
+            $count_mmqrs = 0;
+
+            if (isset($migrate_custom->table_id)) {
+                $id_mqrs = explode(", ", $migrate_custom->table_id);
+                if (is_numeric(($id_mqrs[0]))) {
+
+                    $query_mmqrs = MMqr::whereIn('ID', $id_mqrs)->orderBy('created_at', 'desc');
+
+                    $mqrs = $query_mmqrs->get();
+
+
+                    if (isset($mqrs)) {
+                        $count_mmqrs = count($mqrs);
+                    }
+
+                    $mmqrs = $query_mmqrs->paginate(10);
+                }
+            }
+
+
+            $data['mmqrs'] = $mmqrs;
+
+
+            $data['record_excel'] = $count_record_excel - 1;
+            $data['record_saved'] = $count_mmqrs + 1;
+
+            //MQR devolver tabla con los resultados creados 
+            return view('list-mqrs', $data);
+            //return response()->json(["message" => "operacion hecha con exito"]);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }
