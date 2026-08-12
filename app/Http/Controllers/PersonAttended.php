@@ -1437,7 +1437,7 @@ class PersonAttended extends Controller
 
             // Validate the uploaded file
             $request->validate([
-                'file' => 'required|mimes:xlsx,xls',
+                'file' => 'required|mimes:xlsx,xls,csv',
             ]);
 
             // Get the uploaded file
