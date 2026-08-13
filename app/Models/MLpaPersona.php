@@ -25,6 +25,7 @@ class MLpaPersona extends Model
     ];
 
     public $incrementing = false;
+    protected $primaryKey = 'ID';
 
     /**
      * The attributes that are mass assignable.
