@@ -1436,9 +1436,9 @@ class PersonAttended extends Controller
             //return response()->json(["request" => $request]);
 
             // Validate the uploaded file
-            /* $request->validate([
+            $request->validate([
                 'file' => 'required|mimes:xlsx,xls',
-            ]); */
+            ]);
 
             // Get the uploaded file
             $file = $request->file('file');
@@ -1452,7 +1452,7 @@ class PersonAttended extends Controller
                 });
             ;
 
-            dd("collectDb", $collectDb);
+            //dd("collectDb", $collectDb);
 
             foreach ($collectDb as $row) {
                 $i = 0;
@@ -1471,7 +1471,7 @@ class PersonAttended extends Controller
                 }
                 //dd($row, $elementsForMigrationChunked, json_decode($idTable));
 
-                //dd("MLPA", $row[0]);
+                dd("MLPA -> id", $row[0]);
 
                 $mlpa_emergencia = MLpaEmergencia::firstOrCreate(
                     [
