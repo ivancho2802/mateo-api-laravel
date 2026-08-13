@@ -19,6 +19,7 @@ class MLpa extends Model
     public $timestamps = true;
 
     public $incrementing = false;
+    protected $primaryKey = 'ID';
     protected $appends = ['tipo_lpa'];
     /**
      * The attributes that are mass assignable.
