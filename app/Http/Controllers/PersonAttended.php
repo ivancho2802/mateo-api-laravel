@@ -1473,6 +1473,11 @@ class PersonAttended extends Controller
             $id_migration = $migrationUpdate->id;
 
             foreach ($collectDb as $row) {
+
+                if (!$row[0] || $row[0] == '') {
+                    break;
+                }
+
                 $i = 0;
                 $row = collect(collect($row)->toArray())->flatten();
                 $row[1] = trim($row[1]);
