@@ -1472,10 +1472,11 @@ class PersonAttended extends Controller
             $id_migration = $migrationUpdate->id;
 
             foreach ($collectDb as $row) {
+                dd("emergencias", $row);
 
-                /* if (!isset($row[0]) || trim((string) $row[0]) === '') {
+                if (!isset($row[0]) || trim((string) $row[0]) === '') {
                     continue;
-                } */
+                }
 
                 if (strlen($row[1]) < 2 || $row[1] == '') {
                     $i++;
