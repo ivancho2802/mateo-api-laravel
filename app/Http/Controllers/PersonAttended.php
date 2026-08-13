@@ -1500,7 +1500,7 @@ class PersonAttended extends Controller
                     ]
                 );
 
-                dd("emergencias", $mlpa_emergencia, $row);
+                //dd("emergencias", $mlpa_emergencia, $row);
 
                 $mlpa_emergencia = MLpaEmergencia::where([
                     'COD_EMERGENCIAS' => $row[1]
