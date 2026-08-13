@@ -1557,6 +1557,7 @@ class PersonAttended extends Controller
                         "updated_at" => Carbon::now(),
                     ]
                 );
+                dd("FECHA_NACIMIENTO", $FECHA_NACIMIENTO, $row[14]);
 
                 $mlpa_persona = MLpaPersona::where([
                     'DOCUMENTO' => $documento_busqueda
@@ -1596,7 +1597,7 @@ class PersonAttended extends Controller
                 }
 
                 $FECHA_ATENCION = $date;
-                dd($FECHA_ATENCION, $row[26]);
+                dd("FECHA_ATENCION", $FECHA_ATENCION, $row[26]);
 
                 if (isset($row[25]) && is_string($row[25])) {
                     $str = strtoupper($row[25]);
