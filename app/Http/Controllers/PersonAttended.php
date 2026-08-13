@@ -1477,15 +1477,8 @@ class PersonAttended extends Controller
                     continue;
                 }
 
-                $i = 0;
                 $row = collect(collect($row)->toArray())->flatten();
                 $row[1] = trim($row[1]);
-
-                // esto es una validacion por si la fila que estas registrando esta vacia no eliminar
-                if (strlen($row[1]) < 2 || $row[1] == '') {
-                    $i++;
-                    continue;
-                }
 
                 $mlpa_emergencia = MLpaEmergencia::updateOrCreate(
                     [
