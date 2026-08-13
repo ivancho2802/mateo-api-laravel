@@ -1562,15 +1562,34 @@ class PersonAttended extends Controller
                 ])
                     ->first();
 
-                if (is_object($row[26])) {
+                /* if (is_object($row[26])) {
                     $fechabefore = collect($row[26])->get("date");
                 } else {
                     $fechabefore = trim($row[26]);
-                    $fechabefore = Carbon::createFromFormat('d/m/Y', $fechabefore);
+                    $fechabefore = Carbon::createFromFormat('d/m/Y', trim($fechabefore));
                     $fechabefore = $fechabefore->toDateTimeString();
+                } */
+                $date = $row[26]; // ajusta el índice real
+                $FECHA_ATENCION = null;
+                
+                if (empty($date)) {
+                    $FECHA_NACIMIENTO = null;
+
+                } elseif ($date instanceof \DateTimeInterface) {
+
+                    $FECHA_NACIMIENTO = Carbon::instance($date)->format('Y-m-d');
+
+                } else {
+
+                    $date = trim((string) $date);
+
+                    $FECHA_NACIMIENTO = Carbon::createFromFormat(
+                        'd/m/Y',
+                        $date
+                    )->format('Y-m-d');
                 }
 
-                $FECHA_ATENCION = $fechabefore;
+                //$FECHA_ATENCION = $fechabefore;
 
                 if (isset($row[25]) && is_string($row[25])) {
                     $str = strtoupper($row[25]);
