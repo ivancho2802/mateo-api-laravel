@@ -1642,7 +1642,6 @@ class PersonAttended extends Controller
                         "id_migration" => $id_migration //$row[46] ?? 
                     ]
                 );
-                $i++;
             }
 
             return ['$id_migration' => $id_migration];
