@@ -1431,7 +1431,9 @@ class PersonAttended extends Controller
             ini_set('memory_limit', '12000M');
             set_time_limit(3000000);
 
+            dd($request->user());
             $ID_USER = $request->user()->ID;
+
 
             if (!$ID_USER) {
                 return ["error falta el id del usuario"];
