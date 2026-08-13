@@ -1455,16 +1455,22 @@ class PersonAttended extends Controller
             ;
 
             $body_lpas = collect();
-            $table_ids = $collectDb->pluck(0)->toArray();
+            $table_ids = $collectDb
+                ->map(function ($row) {
+                    $row = collect($row)->flatten();
 
-            dd("table_ids", $table_ids);
+                    return $row->get(0);
+                })
+                ->values();
 
             $migrationUpdate = migrateCustom::create([
                 'table' => 'M_LPAS',
-                'table_id' => '',
+                'table_id' => $table_ids->implode(", "),
                 'file_ref' => '-',
                 'id_user_mireview' => $ID_USER
             ]);
+
+            $id_migration = $migrationUpdate->id;
 
             foreach ($collectDb as $row) {
                 $i = 0;
@@ -1602,67 +1608,12 @@ class PersonAttended extends Controller
                         "FK_LPA_PERSONA" => $mlpa_persona->ID,
                         "created_at" => Carbon::now(),
                         "id_migration" => $id_migration //$row[46] ?? 
-
                     ]
                 );
-
                 $i++;
-
-                //echo ("i proceced: " . $i);
-
             }
 
-            //dd("elementsForMigration", count($elementsForMigration), "body_lpas", count($body_lpas));
-            //si es par dividir entre 2 sino entre 3 
-
-            $divisor = 3;
-            if (count($body_lpas) % 2 == 0) {
-                $divisor = 2;
-            }
-
-            $body_lpas = ($body_lpas)->chunk(($lotes / $divisor));
-            foreach ($body_lpas as $body) {
-                $bodyArray = $body->toArray();
-                MLpa::insert($bodyArray);
-            }
-
-            //eliminar los 350 primeros registros de $elementsForMigration
-            $elementsForMigration->shift($lotes);
-
-            $restante = json_encode(json_decode(json_encode($elementsForMigration), FALSE));
-
-            $migrationPendings->table_id = $restante;
-
-            $migrationPendings->save();
-
-            $queryLpa = MLpa::all(); //whereBetween('created_at', [$date_begin, Carbon::now()->addDays(1)->format("Y-m-d H:i:s")]);// 
-            $mlpas = $queryLpa; //->get();
-            $id_lpas = $queryLpa->pluck('ID')->all();
-
-            if (count($mlpas) > 0) {
-                migrateCustom::create([
-                    'table' => 'M_LPAS',
-                    'table_id' => implode(", ", $id_lpas),
-                    'file_ref' => '-',
-                ]);
-            } else {
-
-                /* throw ValidationException::withMessages([
-                    'msg' => ['No se guardaron los registros.'],
-                ]); */
-                return MLpa::get();
-            }
-
-            //array_push($id_emergenciasz, $mlpa_emergencia)
-            //dd($mlpas->pluck('ID'),$id_lpas);
-
-            $restanteTot = migrateCustom::where([
-                ['table', 'M_LPAS'],
-                ['table_id', '!=', '[]'],
-                ['file_ref', 'PENDING']
-            ])->get();
-
-            return ['restanteParte' => count($elementsForMigration), 'restanteTotal' => count($restanteTot)];
+            return [' $i' => $i, '$id_migration' => $id_migration];
         } catch (\Throwable $th) {
             throw $th;
         }
