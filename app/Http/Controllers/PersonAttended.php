@@ -1570,12 +1570,12 @@ class PersonAttended extends Controller
                     $fechabefore = $fechabefore->toDateTimeString();
                 } */
                
-                $fechabefore = collect($row[26])->toArray();
+                /* $fechabefore = collect($row[26])->toArray();
 
                 $FECHA_ATENCION = (isset($fechabefore) && isset($fechabefore["date"])) ? $fechabefore["date"] : null;
+                */
 
-                /* $date = $row[26]; // ajusta el índice real
-                $FECHA_ATENCION = null;
+                $date = $row[26]; // ajusta el índice real
 
                 if (empty($date)) {
                     $FECHA_NACIMIENTO = null;
@@ -1592,9 +1592,10 @@ class PersonAttended extends Controller
                         'd/m/Y',
                         $date
                     )->format('Y-m-d');
-                } */
+                }
 
-                //$FECHA_ATENCION = $fechabefore;
+                $FECHA_ATENCION = $date;
+                dd($FECHA_ATENCION);
 
                 if (isset($row[25]) && is_string($row[25])) {
                     $str = strtoupper($row[25]);
