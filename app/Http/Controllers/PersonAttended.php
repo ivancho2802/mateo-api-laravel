@@ -1474,8 +1474,8 @@ class PersonAttended extends Controller
 
             foreach ($collectDb as $row) {
 
-                if (!isset($row[0]) || ($row[0] === '' || $row[0] === null)) {
-                    break;
+                if (!isset($row[0]) || trim((string) $row[0]) === '') {
+                    continue;
                 }
 
                 $i = 0;
@@ -1569,7 +1569,7 @@ class PersonAttended extends Controller
                     $fechabefore = Carbon::createFromFormat('d/m/Y', trim($fechabefore));
                     $fechabefore = $fechabefore->toDateTimeString();
                 } */
-               
+
                 /* $fechabefore = collect($row[26])->toArray();
 
                 $FECHA_ATENCION = (isset($fechabefore) && isset($fechabefore["date"])) ? $fechabefore["date"] : null;
@@ -1643,7 +1643,7 @@ class PersonAttended extends Controller
                 $i++;
             }
 
-            return [ '$id_migration' => $id_migration];
+            return ['$id_migration' => $id_migration];
         } catch (\Throwable $th) {
             throw $th;
         }
