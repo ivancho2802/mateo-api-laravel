@@ -1437,13 +1437,6 @@ class PersonAttended extends Controller
             if (!$ID_USER) {
                 return "error";
             }
-            
-            $migrationUpdate = migrateCustom::create([
-                'table' => 'M_LPAS',
-                'table_id' => '',
-                'file_ref' => '-',
-                'id_user_mireview' => $ID_USER
-            ]);
 
             // Validate the uploaded file
             $request->validate([
@@ -1463,6 +1456,16 @@ class PersonAttended extends Controller
             ;
 
             $body_lpas = collect();
+            $table_ids = $collectDb->pluck(0)->toArray();
+
+            dd("table_ids", $table_ids);
+            
+            $migrationUpdate = migrateCustom::create([
+                'table' => 'M_LPAS',
+                'table_id' => '',
+                'file_ref' => '-',
+                'id_user_mireview' => $ID_USER
+            ]);
 
             foreach ($collectDb as $row) {
                 $i = 0;
