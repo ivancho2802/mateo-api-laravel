@@ -1440,7 +1440,7 @@ class PersonAttended extends Controller
 
             // Validate the uploaded file
             $request->validate([
-                'file' => 'required|mimes:xlsx,xls|max:10240', // Adjust the max size as needed
+                'file' => 'required|file|mimes:xlsx,xls|max:2097152',
             ]);
 
             // Get the uploaded file
