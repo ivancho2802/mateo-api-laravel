@@ -1569,9 +1569,14 @@ class PersonAttended extends Controller
                     $fechabefore = Carbon::createFromFormat('d/m/Y', trim($fechabefore));
                     $fechabefore = $fechabefore->toDateTimeString();
                 } */
-                $date = $row[26]; // ajusta el índice real
+               
+                $fechabefore = collect($row[26])->toArray();
+
+                $FECHA_ATENCION = (isset($fechabefore) && isset($fechabefore["date"])) ? $fechabefore["date"] : null;
+
+                /* $date = $row[26]; // ajusta el índice real
                 $FECHA_ATENCION = null;
-                
+
                 if (empty($date)) {
                     $FECHA_NACIMIENTO = null;
 
@@ -1587,7 +1592,7 @@ class PersonAttended extends Controller
                         'd/m/Y',
                         $date
                     )->format('Y-m-d');
-                }
+                } */
 
                 //$FECHA_ATENCION = $fechabefore;
 
