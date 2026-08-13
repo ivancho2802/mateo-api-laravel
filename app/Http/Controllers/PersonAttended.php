@@ -1479,11 +1479,9 @@ class PersonAttended extends Controller
                 }
 
                 if (strlen($row[1]) < 2 || $row[1] == '') {
-                    $i++;
                     continue;
                 }
 
-                $i = 0;
                 $row = collect(collect($row)->toArray())->flatten();
                 $row[1] = trim($row[1]);
 
