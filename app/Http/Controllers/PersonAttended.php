@@ -1454,7 +1454,6 @@ class PersonAttended extends Controller
                 });
             ;
 
-            $body_lpas = collect();
             $table_ids = $collectDb
                 ->map(function ($row) {
                     $row = collect($row)->flatten();
@@ -1502,6 +1501,8 @@ class PersonAttended extends Controller
                         "updated_at" => Carbon::now(),
                     ]
                 );
+
+                dd("emergencias", $mlpa_emergencia, $row);
 
                 $mlpa_emergencia = MLpaEmergencia::where([
                     'COD_EMERGENCIAS' => $row[1]
