@@ -1429,13 +1429,12 @@ class PersonAttended extends Controller
         try {
 
             ini_set('memory_limit', '12000M');
-            set_time_limit(3000000); //0
+            set_time_limit(3000000);
 
-
-            $ID_USER = Auth::user()->id ?? optional(Auth::user())->ID;
+            $ID_USER = $request->user()->id;
 
             if (!$ID_USER) {
-                return "error";
+                return ["error falta el id del usuario"];
             }
 
             // Validate the uploaded file
@@ -1459,7 +1458,7 @@ class PersonAttended extends Controller
             $table_ids = $collectDb->pluck(0)->toArray();
 
             dd("table_ids", $table_ids);
-            
+
             $migrationUpdate = migrateCustom::create([
                 'table' => 'M_LPAS',
                 'table_id' => '',
