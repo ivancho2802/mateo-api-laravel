@@ -1643,7 +1643,7 @@ class PersonAttended extends Controller
                 $i++;
             }
 
-            return [' $i' => $i, '$id_migration' => $id_migration];
+            return [ '$id_migration' => $id_migration];
         } catch (\Throwable $th) {
             throw $th;
         }
