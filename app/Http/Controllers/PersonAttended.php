@@ -1557,7 +1557,7 @@ class PersonAttended extends Controller
                         "updated_at" => Carbon::now(),
                     ]
                 );
-                dd("FECHA_NACIMIENTO", $FECHA_NACIMIENTO, $row[14]);
+                dd("FECHA_NACIMIENTO", $FECHA_NACIMIENTO, $row[14], $row);
 
                 $mlpa_persona = MLpaPersona::where([
                     'DOCUMENTO' => $documento_busqueda
