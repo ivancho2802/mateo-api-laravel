@@ -1498,7 +1498,8 @@ class PersonAttended extends Controller
                         'SOCIO' => $row[3],
                         'DEPARTAMENTO' => isset($row[4]) ? strtoupper($row[4]) : $row[4],
                         'MUNICIPIO' => isset($row[5]) ? strtoupper($row[5]) : $row[5],
-                        'LUGAR_ATENCION' => $row[6]
+                        'LUGAR_ATENCION' => $row[6],
+                        "updated_at" => Carbon::now(),
                     ]
                 );
 
@@ -1553,7 +1554,8 @@ class PersonAttended extends Controller
                         'DISCAPACIDAD_COMUNICAR' => $row[26], //!$mlpa_persona_DISCAPACIDAD_COMUNICAR ? : 'Si - No puede hacerlo',
                         */
 
-                        'TELEFONO' => $row[23]
+                        'TELEFONO' => $row[23],
+                        "updated_at" => Carbon::now(),
                     ]
                 );
 
@@ -1637,6 +1639,7 @@ class PersonAttended extends Controller
                         "FK_LPA_EMERGENCIA" => $mlpa_emergencia->ID,
                         "FK_LPA_PERSONA" => $mlpa_persona->ID,
                         "created_at" => Carbon::now(),
+                        "updated_at" => Carbon::now(),
                         "id_migration" => $id_migration //$row[46] ?? 
                     ]
                 );
