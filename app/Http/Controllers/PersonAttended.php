@@ -1474,7 +1474,7 @@ class PersonAttended extends Controller
 
             foreach ($collectDb as $row) {
 
-                if (isset($row[0]) && ($row[0] === '' || $row[0] === null)) {
+                if (!isset($row[0]) || ($row[0] === '' || $row[0] === null)) {
                     break;
                 }
 
