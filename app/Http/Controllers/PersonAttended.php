@@ -1595,7 +1595,7 @@ class PersonAttended extends Controller
                 }
 
                 $FECHA_ATENCION = $date;
-                dd($FECHA_ATENCION);
+                dd($FECHA_ATENCION, $row[26]);
 
                 if (isset($row[25]) && is_string($row[25])) {
                     $str = strtoupper($row[25]);
