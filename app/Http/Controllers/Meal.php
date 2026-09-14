@@ -1470,6 +1470,8 @@ class Meal extends Controller
     function getLpaOnlyPageTestAll(Request $request)
     {
 
+        DB::setDefaultConnection('pgsql-ugo-hp');
+
         $limit_minutes = 8000;
         ini_set('default_socket_timeout', $limit_minutes); // 900 Seconds = 15 Minutes
         ini_set('memory_limit', '902044M');
