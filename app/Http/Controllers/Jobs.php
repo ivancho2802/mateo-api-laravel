@@ -202,7 +202,7 @@ class Jobs extends Controller
       $dateFilter = true;
 
       if ($validDates) {
-        $itemDate = Carbon::parse($item['date']);
+        $itemDate = Carbon::parse($item['_submission_time']);
 
         $dateFilter = $itemDate->between(
           Carbon::parse($date_from)->startOfDay(),
