@@ -132,33 +132,28 @@
               <!-- Filters -->
               <div class="  lg:block">
 
-                <div class="relative border-b border-gray-200 py-6" x-init="isOpen=true" x-data="{
+                <!-- <div class="relative border-b border-gray-200 py-6" x-init="isOpen=true" x-data="{
                     isOpen: false, 
                     set(value) {
                       this.isOpen = value;
                     }
-                  }">
+                  }"> -->
 
-                  <h3 class="-my-3 flow-root">
-                    <!-- Expand/collapse section button -->
+                  <!-- <h3 class="-my-3 flow-root">
                     <button @click="isOpen = !isOpen" type="button" class="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-0" aria-expanded="false">
                       <span class="font-medium text-gray-900">Formulario de descargas masivas de kobo PDF</span>
                       <span class="ml-6 flex items-center">
-                        <!-- Expand icon, show/hide based on section open state. -->
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                           <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                         </svg>
-                        <!-- Collapse icon, show/hide based on section open state. -->
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                           <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd" />
                         </svg>
                       </span>
                     </button>
+                  </h3> -->
 
-
-                  </h3>
-
-                  <div class="pt-6" id="filter-section-0" x-show="isOpen">
+                  <!-- <div class="pt-6" id="filter-section-0" x-show="isOpen">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                       <h1 class="h3 mb-3 fw-normal text-center">Formulario</h1>
 
@@ -166,28 +161,24 @@
                         @csrf
 
                         <label for="exampleFormControlTextarea1" class="form-label">Dominio Kobo: {{$form->dominio ?? 'no funciona'}} {{$form['dominio'] ?? 'otro no'}}</label>
-                        <input type="text" placeholder="kf.acf-e.org" id="dominio" name="dominio" value="{{($form)['dominio'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                        <div>ejemplo de https://kf.acf-e.org/ seria: kf.acf-e.org y para https://collect.nrc.no/ seria collect.nrc.no</div>
-                        <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
+                        <input type="text" placeholder="kobo2.actioncontrelafaim.org" id="dominio" name="dominio" value="{{($form)['dominio'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <div>ejemplo de https://kobo2.actioncontrelafaim.org/ seria: kobo2.actioncontrelafaim.org y para https://collect.nrc.no/ seria collect.nrc.no</div>
 
                         <br>
 
                         <label for="exampleFormControlTextarea1" class="form-label">Nombre clave de la solicitud: </label>
                         <input type="text" placeholder="solicitud_insumos" id="name_key" name="name_key" value="{{($form)['name_key'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div>formato: solicitud_insumos no usar espacios y todo en minusculas</div>
-                        <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>
 
                         <label for="exampleFormControlTextarea1" class="form-label">uui del formulario: </label>
                         <input type="text" placeholder="a4E3J9gkULZe5eRqQph8zh" id="id" name="id" value="{{($form)['id'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                        <div> ejemplo seria el que esta despues de forms -> https://kf.acf-e.org/#/forms/a4E3J9gkULZe5eRqQph8zh/data/table de este seria aU9qeP6mihopvkYSu7HhKp</div>
-                        <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
+                        <div> ejemplo seria el que esta despues de forms -> https://kobo2.actioncontrelafaim.org/#/forms/a4E3J9gkULZe5eRqQph8zh/data/table de este seria aU9qeP6mihopvkYSu7HhKp</div>
                         <br>
 
                         <label for="exampleFormControlTextarea1" class="form-label">Token de acceso: </label>
                         <input type="text" placeholder="322f65e3677ee93aa3..." id="token" name="token" value="{{($form)['token'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                        <div>ejemplo: 322f65e3677ee93aa3... se obtiene visitando https://kf.acf-e.org/token/?format=json o el que corresponda a su dominio</div>
-                        <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
+                        <div>ejemplo: 322f65e3677ee93aa3... se obtiene visitando https://kobo2.actioncontrelafaim.org/token/?format=json o el que corresponda a su dominio</div>
                         <br>
 
                         @if(isset($dataFormulario))
@@ -233,19 +224,10 @@
 
                         <x-primary-button class="mt-4 ">Enviar Datos</x-primary-button>
                       </form>
-
-                      <!-- <form method="put" action="/koboapdf" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
-                        @csrf
-                        <label>
-                          <input id="filtrar" name="filtrar[]" value="filter" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                          <x-primary-button class="mt-4">Filtrar por campos del formulario</x-primary-button>
-                        </label>
-                      </form> -->
-
                     </div>
-                  </div>
+                  </div> -->
 
-                </div>
+                <!-- </div> -->
 
                 
 
@@ -283,8 +265,8 @@
                         @csrf
 
                         <label for="exampleFormControlTextarea1" class="form-label">Dominio Kobo: {{$form->dominio ?? 'no funciona'}} {{$form['dominio'] ?? 'otro no'}}</label>
-                        <input type="text" placeholder="kf.acf-e.org" id="dominio" name="dominio" value="{{($form)['dominio'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                        <div>ejemplo de https://kf.acf-e.org/ seria: kf.acf-e.org y para https://collect.nrc.no/ seria collect.nrc.no</div>
+                        <input type="text" placeholder="kobo2.actioncontrelafaim.org" id="dominio" name="dominio" value="{{($form)['dominio'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <div>ejemplo de https://kobo2.actioncontrelafaim.org/ seria: kobo2.actioncontrelafaim.org y para https://collect.nrc.no/ seria collect.nrc.no</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
 
                         <br>
@@ -297,15 +279,20 @@
 
                         <label for="exampleFormControlTextarea1" class="form-label">uui del formulario: </label>
                         <input type="text" placeholder="a4E3J9gkULZe5eRqQph8zh" id="id" name="id" value="{{($form)['id'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                        <div> ejemplo seria el que esta despues de forms -> https://kf.acf-e.org/#/forms/a4E3J9gkULZe5eRqQph8zh/data/table de este seria aU9qeP6mihopvkYSu7HhKp</div>
+                        <div> ejemplo seria el que esta despues de forms -> https://kobo2.actioncontrelafaim.org/#/forms/a4E3J9gkULZe5eRqQph8zh/data/table de este seria aU9qeP6mihopvkYSu7HhKp</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>
 
                         <label for="exampleFormControlTextarea1" class="form-label">Token de acceso: </label>
                         <input type="text" placeholder="322f65e3677ee93aa3..." id="token" name="token" value="{{($form)['token'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                        <div>ejemplo: 322f65e3677ee93aa3... se obtiene visitando https://kf.acf-e.org/token/?format=json o el que corresponda a su dominio</div>
+                        <div>ejemplo: 322f65e3677ee93aa3... se obtiene visitando https://kobo2.actioncontrelafaim.org/token/?format=json o el que corresponda a su dominio</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>
+                        
+                        <label for="exampleFormControlTextarea1" class="form-label">Rango de fechas: </label>
+                        <input type="date"  id="date_from" name="date_from" value="{{($form)['date_from'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <input type="date"  id="date_to" name="date_to" value="{{($form)['date_to'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" >
+
 
                         @if(isset($dataFormulario))
 
