@@ -21,6 +21,7 @@ use PhpOffice\PhpSpreadsheet\Calculation\TextData\Search;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Carbon;
 
 class Jobs extends Controller
 {
@@ -84,7 +85,7 @@ class Jobs extends Controller
       }
     }
 
-    $name_key = "cash_echo";
+    $name_key = "ExportacionSinNombre_" . time();
 
     if (isset($request->name_key)) {
       $name_key = $request->name_key;
@@ -191,7 +192,28 @@ class Jobs extends Controller
         return '' . $extract_id . '';
       });
 
-      return ($filesExportedCollect->search($item['_id'])) === false;
+      // Validar fechas recibidas
+      $validDates = !empty($date_from)
+        && !empty($date_to)
+        && Carbon::hasFormat($date_from, 'Y-m-d')
+        && Carbon::hasFormat($date_to, 'Y-m-d');
+
+      // Filtro por fecha solo si las fechas son válidas
+      $dateFilter = true;
+
+      if ($validDates) {
+        $itemDate = Carbon::parse($item['date']);
+
+        $dateFilter = $itemDate->between(
+          Carbon::parse($date_from)->startOfDay(),
+          Carbon::parse($date_to)->endOfDay()
+        );
+      }
+
+      // Mantiene tu filtro actual de archivos
+      $fileFilter = ($filesExportedCollect->search($item['_id'])) === false;
+
+      return $fileFilter && $dateFilter;
     });
 
     $dataEnketo = collect($dataEnketoResponseFiltered); //->chunk(45)
