@@ -182,7 +182,7 @@ class Jobs extends Controller
     //dd($metaFiles);
 
     //filtrando los formularios que ya han sido exportados con filesexported con los formularios consultados dataenketoresponse
-    $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported) {
+    $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported, $request) {
 
       $filesExportedCollect = collect($filesExported);
 
@@ -191,6 +191,12 @@ class Jobs extends Controller
         $extract_id = str_replace(".pdf", "", $extract_id[1]);
         return '' . $extract_id . '';
       });
+
+      
+      if (isset($request->date_from) && isset($request->date_to)) {
+        $date_from = $request->date_from;
+        $date_to = $request->date_to;
+      }
 
       // Validar fechas recibidas
       $validDates = !empty($date_from)

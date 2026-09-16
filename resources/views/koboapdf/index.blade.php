@@ -265,7 +265,7 @@
                         @csrf
 
                         <label for="exampleFormControlTextarea1" class="form-label">Dominio Kobo: {{$form->dominio ?? 'no funciona'}} {{$form['dominio'] ?? 'otro no'}}</label>
-                        <input type="text" placeholder="kobo2.actioncontrelafaim.org" id="dominio" name="dominio" value="{{($form)['dominio'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <input type="text" placeholder="kobo2.actioncontrelafaim.org" id="dominio" name="dominio" value="{{($form)['dominio'] ?? 'kobo2.actioncontrelafaim.org'}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div>ejemplo de https://kobo2.actioncontrelafaim.org/ seria: kobo2.actioncontrelafaim.org y para https://collect.nrc.no/ seria collect.nrc.no</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
 
