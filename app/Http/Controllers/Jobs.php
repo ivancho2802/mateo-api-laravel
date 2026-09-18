@@ -1061,6 +1061,7 @@ class Jobs extends Controller
       if (isset($dataEnketoResponse)) {
         $dataEnketoResponseCount = count($dataEnketoResponse);
       }
+      dd("dataEnketoResponseCount", $dataEnketoResponseCount);
 
       $faltantes = $dataEnketoResponseCount - count($filesExported);
 
