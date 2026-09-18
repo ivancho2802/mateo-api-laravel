@@ -464,10 +464,10 @@
                               @endif
 
                               @if(optional($export)->exportaciones_nuevas && optional($export)->name_key ?? optional($export)->formid)
-                              <form method="get" action="{{ route('koboapdfactualizar', ['id' => optional($export)->name_key ?? optional($export)->formid]) }}" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
+                              <!-- <form method="get" action="{{ route('koboapdfactualizar', ['id' => optional($export)->name_key ?? optional($export)->formid]) }}" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                 @csrf
                                 <x-primary-button class="mt-4">Actualizar</x-primary-button>
-                              </form>
+                              </form> -->
                               @endif
                               </p>
                               <p class="text-sm font-semibold leading-6 text-indigo-600">Export. proceso: {{$export->trabajos_en_proceso}}</p>
