@@ -46,13 +46,11 @@
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
+                            <!-- registrar usuarios -->
+                            <x-dropdown-link :href="route('register')" accesskey="">
+                                {{ __('Register Users') }}
+                            </x-dropdown-link>
                         </form>
-                    </x-slot>
-                    <!-- registrar usuarios -->
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('register')" accesskey="">
-                            {{ __('Register Users') }}
-                        </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
             </div>
