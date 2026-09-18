@@ -279,6 +279,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('dashboard');
+        return redirect()->away('https://mireview.dyndns.org/apidev/');
     }
 }

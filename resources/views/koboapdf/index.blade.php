@@ -463,7 +463,7 @@
 
                               @endif
 
-                              @if(optional($export)->exportaciones_nuevas )
+                              @if(optional($export)->exportaciones_nuevas && optional($export)->name_key ?? optional($export)->formid)
                               <form method="get" action="{{ route('koboapdfactualizar', ['id' => optional($export)->name_key ?? optional($export)->formid]) }}" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                                 @csrf
                                 <x-primary-button class="mt-4">Actualizar</x-primary-button>
