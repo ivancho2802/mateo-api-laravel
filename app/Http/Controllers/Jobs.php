@@ -1061,9 +1061,9 @@ class Jobs extends Controller
       if (isset($dataEnketoResponse)) {
         $dataEnketoResponseCount = count($dataEnketoResponse);
       }
-      dd("dataEnketoResponseCount", $dataEnketoResponseCount);
 
       $faltantes = $dataEnketoResponseCount - count($filesExported);
+      dd("filesExported", $filesExported, $faltantes);
 
       //$exportaciones_nuevas
       //verificar sii hay faltantes de la migracion
