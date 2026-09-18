@@ -144,14 +144,6 @@ class Jobs extends Controller
       return redirect()->route('koboapdf', ["data" => [], "uui" => ($formid), "filtrar" => ($request->filtrar)])->with('error', 'Error! faltan parametros');
     }
 
-    //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
-    JobDetails::updateOrCreate([
-      "dominio" => $dominio,
-      "name_key" => $name_key,
-      "uui" => $formid,
-      "token" => $token
-    ]);
-
 
     //https://kc.kobotoolbox.org/api/v1/data/28058/20/enketo?return_url=url
     //$jsonurlDataEnketo = "https://kc.acf-e.org/api/v1/data/" . $formid . "/" . $dataId . "/enketo?return_url=false";
@@ -192,7 +184,7 @@ class Jobs extends Controller
         return '' . $extract_id . '';
       });
 
-      
+      //aqui se implemnta el filtro de fechas
       if (isset($request->date_from) && isset($request->date_to)) {
         $date_from = $request->date_from;
         $date_to = $request->date_to;
@@ -221,8 +213,20 @@ class Jobs extends Controller
 
       return $fileFilter && $dateFilter;
     });
-
     $dataEnketo = collect($dataEnketoResponseFiltered); //->chunk(45)
+
+    $totalProcess = collect($dataEnketoResponse)->count() !== $dataEnketo->count();
+
+    //se gaurdan las variables creadas para esta exportacion para tener un registro de la configuracion y una mejor bisqeda
+    JobDetails::updateOrCreate([
+      "dominio" => $dominio,
+      "name_key" => $name_key,
+      "uui" => $formid,
+      "token" => $token,
+      //si el tamaño total es diferente al filtrado se debe tomar en cuenta otro para el clculo de la url
+      "otro" => $totalProcess ? $dataEnketo->count() : "0"
+    ]);
+
 
     //verifico si la descarga ya esta lsita
     if (count($dataEnketoResponse) == count($filesExported)) {
@@ -1063,7 +1067,7 @@ class Jobs extends Controller
       }
 
       $faltantes = $dataEnketoResponseCount - count($filesExported);
-      dd("filesExported", $filesExported, $faltantes);
+      //dd("jobsCreated", $jobsCreated);
 
       //$exportaciones_nuevas
       //verificar sii hay faltantes de la migracion
@@ -1075,8 +1079,9 @@ class Jobs extends Controller
       if (!($jobsCreated->first())) {
 
         $download = "";
+        $totalReal = $jobdetails->otro ? (int) $jobdetails->otro : $dataEnketoResponseCount;
 
-        if ($dataEnketoResponseCount == count($filesExported)) {
+        if ($totalReal == count($filesExported)) {
           $zipFileName = $name_key . ".zip";
 
           if (!File::exists(public_path($zipFileName))) {
@@ -1153,7 +1158,10 @@ class Jobs extends Controller
 
       $download = "";
 
-      if ($dataEnketoResponseCount == count($filesExported)) {
+      // por si se ha filtrado
+      $totalReal = $jobdetails->otro ? (int) $jobdetails->otro : $dataEnketoResponseCount;
+
+      if ($totalReal == count($filesExported)) {
         $zipFileName = $name_key . ".zip";
 
         if (!File::exists(public_path($zipFileName))) {
