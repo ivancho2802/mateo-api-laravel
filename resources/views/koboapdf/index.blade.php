@@ -295,7 +295,7 @@
                         <br>
 
                         <label for="codigo_proyecto" class="form-label">Codigo proyecto: </label>
-                        <input type="text" placeholder="Ej: PROY-001" id="codigo_proyecto" name="codigo_proyecto" value="{{($form)['codigo_proyecto'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <input type="text" placeholder="Ej: COF7AP" id="codigo_proyecto" name="codigo_proyecto" value="{{($form)['codigo_proyecto'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <br>
 
 
