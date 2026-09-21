@@ -112,7 +112,6 @@ Route::prefix('finanzas')->group(function () {
 //consultas
 Route::get('/koboactivityinfo', [Ugic::class, 'koboactivityinfo'])
     ->middleware(['auth'])
-    //->except('verify')
     ->name('koboactivityinfo');
 
 Route::post('/koboactivityinfo', [Ugic::class, 'koboactivityinfo'])->middleware(['auth']);
