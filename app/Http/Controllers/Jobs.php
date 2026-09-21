@@ -208,10 +208,24 @@ class Jobs extends Controller
         );
       }
 
+      $codigoFilter = true;
+
+      $codigo_proyecto = $request->codigo_proyecto ?? null;
+
+      if($codigo_proyecto){
+      
+        $codigo_proyecto = strtolower($codigo_proyecto);
+        $item_codigo_proyecto = strtolower($item['codigo_proyecto'] ?? '');
+
+        $codigoFilter = $item_codigo_proyecto === $codigo_proyecto;
+      } else {
+        $codigoFilter = true; // No se aplica filtro si no se proporciona un código de proyecto
+      }
+
       // Mantiene tu filtro actual de archivos
       $fileFilter = ($filesExportedCollect->search($item['_id'])) === false;
 
-      return $fileFilter && $dateFilter;
+      return $fileFilter && $dateFilter && $codigoFilter;
     });
     $dataEnketo = collect($dataEnketoResponseFiltered); //->chunk(45)
 

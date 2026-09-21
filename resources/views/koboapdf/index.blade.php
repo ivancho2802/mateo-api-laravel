@@ -292,6 +292,11 @@
                         <label for="exampleFormControlTextarea1" class="form-label">Rango de fechas: </label>
                         <input type="date"  id="date_from" name="date_from" value="{{($form)['date_from'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <input type="date"  id="date_to" name="date_to" value="{{($form)['date_to'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" >
+                        <br>
+
+                        <label for="codigo_proyecto" class="form-label">Codigo proyecto: </label>
+                        <input type="text" placeholder="Ej: PROY-001" id="codigo_proyecto" name="codigo_proyecto" value="{{($form)['codigo_proyecto'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        <br>
 
 
                         @if(isset($dataFormulario))
