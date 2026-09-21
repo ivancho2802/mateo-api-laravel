@@ -486,7 +486,7 @@
               </i>
 
               <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="/urls" class="underline text-gray-900 dark:text-white">
+                <a href="{{ route('urls') }}" class="underline text-gray-900 dark:text-white">
                   Acortar link
                 </a>
               </div>
@@ -545,7 +545,7 @@
               </i>
 
               <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="/urls" class="underline text-gray-900 dark:text-white">
+                <a href="{{ route('urls') }}" class="underline text-gray-900 dark:text-white">
                   matriz minas
                 </a>
               </div>
@@ -556,7 +556,7 @@
                 Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                 <br>
 
-                https://mireview.dyndns.org/apidev/api/matriz/minas
+                {{ route('matrizminas') }}
 
               </div>
             </div>
@@ -570,7 +570,7 @@
                 </svg>
               </i>
               <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">
-                <a href="/qr" class="underline text-gray-900 dark:text-white">
+                <a href="{{ route('qr') }}" class="underline text-gray-900 dark:text-white">
                   Servicio para crear qr con la marca de ach
                 </a>
               </div>
@@ -580,7 +580,11 @@
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                 Esta herramienta funciona para generar qr en base a links o texto o demas funciones que quieras usar
                 <br>
+                {{ route('qr') }}
+                ejemplo de uso
+                <br>
                 https://mireview.dyndns.org/apidev/qr?url=%22https://mireview.dyndns.org/apidev/cut/XujVh%22
+
                 <br>
                 [url] = podria ser una url o un texto correo o demas
                 <br>
@@ -605,7 +609,7 @@
               </i>
 
               <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="/matrizprensa" class="underline text-gray-900 dark:text-white">
+                <a href="{{ route('matrizprensa') }}" class="underline text-gray-900 dark:text-white">
                   matriz de prensa
                 </a>
               </div>
@@ -616,7 +620,7 @@
                 Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                 <br>
 
-                https://mireview.dyndns.org/apidev/matrizprensa
+                {{ route('matrizprensa') }}
 
               </div>
             </div>
@@ -634,7 +638,7 @@
                 </i>
 
                 <div class="ml-4 text-lg leading-7 font-semibold">
-                  <a href="/koboapdf" class="underline text-gray-900 dark:text-white">
+                  <a href="{{ route('koboapdf') }}" class="underline text-gray-900 dark:text-white">
                     Formulario de descargas masivas de PDF
                   </a>
                 </div>
@@ -646,7 +650,7 @@
                   en base a un formulario basico es posible que no funcione con todos los formularios si esto ocurre debes realizar la solicitud
                   <br>
 
-                  https://mireview.dyndns.org/apidev/koboapdf
+                  {{ route('koboapdf') }}
 
                 </div>
               </div>
@@ -664,7 +668,7 @@
               </i>
 
               <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="/finanzas/adn" class="underline text-gray-900 dark:text-white">
+                <a href="{{ route('finanzas.adn', [], false) }}" class="underline text-gray-900 dark:text-white">
                   Parametros de finanzas adn fase 2
                 </a>
               </div>
@@ -675,7 +679,7 @@
                 Esta herramienta es para adn.
                 <br>
 
-                https://mireview.dyndns.org/apidev/finanzas/adn
+                {{ route('finanzas.adn', [], false) }}
 
               </div>
             </div>
