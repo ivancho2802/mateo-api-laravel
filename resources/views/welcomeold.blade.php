@@ -486,7 +486,7 @@
               </i>
 
               <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="{{ route('urls') }}" class="underline text-gray-900 dark:text-white">
+                <a href="{{ route('urls.index') }}" class="underline text-gray-900 dark:text-white">
                   Acortar link
                 </a>
               </div>
@@ -610,7 +610,7 @@
               </i>
 
               <div class="ml-4 text-lg leading-7 font-semibold">
-                <a href="{{ route('matrizprensa') }}" class="underline text-gray-900 dark:text-white">
+                <a href="{{ route('matrizprensa.index') }}" class="underline text-gray-900 dark:text-white">
                   matriz de prensa
                 </a>
               </div>
@@ -621,7 +621,7 @@
                 Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                 <br>
 
-                {{ route('matrizprensa') }}
+                {{ route('matrizprensa.index') }}
 
               </div>
             </div>
