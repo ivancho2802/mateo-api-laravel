@@ -47,12 +47,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('urls', UrlController::class)
-    ->middleware(['auth'])
-    ->name('urls'); //, 'verified'
+    ->middleware(['auth']); //, 'verified'
 
 Route::resource('matrizprensa', MatrizController::class)
-    ->middleware(['auth'])
-    ->name('matrizprensa'); //, 'verified'
+    ->middleware(['auth']); //, 'verified'
 
 Route::get('/koboapdf', [Ugic::class, 'index'])
     ->middleware(['auth'])->name('koboapdf');
