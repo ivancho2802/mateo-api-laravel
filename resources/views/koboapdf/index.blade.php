@@ -264,7 +264,7 @@
                       <form method="post" action="{{ route('job/deploy/exportkobo') }}" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate>
                         @csrf
 
-                        <label for="exampleFormControlTextarea1" class="form-label">Dominio Kobo: {{$form->dominio ?? 'no funciona'}} {{$form['dominio'] ?? 'otro no'}}</label>
+                        <label for="exampleFormControlTextarea1" class="form-label">Dominio Kobo: </label>
                         <input type="text" placeholder="kobo2.actioncontrelafaim.org" id="dominio" name="dominio" value="{{($form)['dominio'] ?? 'kobo2.actioncontrelafaim.org'}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                         <div>ejemplo de https://kobo2.actioncontrelafaim.org/ seria: kobo2.actioncontrelafaim.org y para https://collect.nrc.no/ seria collect.nrc.no</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
@@ -279,7 +279,7 @@
 
                         <label for="exampleFormControlTextarea1" class="form-label">uui del formulario: </label>
                         <input type="text" placeholder="a4E3J9gkULZe5eRqQph8zh" id="id" name="id" value="{{($form)['id'] ?? ''}}" class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-                        <div> ejemplo seria el que esta despues de forms -> https://kobo2.actioncontrelafaim.org/#/forms/a4E3J9gkULZe5eRqQph8zh/data/table de este seria aU9qeP6mihopvkYSu7HhKp</div>
+                        <div> Ejemplo como extraer el "uui del formulario" -> https://kobo2.actioncontrelafaim.org/#/forms/a4E3J9gkULZe5eRqQph8zh/data/table de esta url seria el a4E3J9gkULZe5eRqQph8zh</div>
                         <!--<x-input-error :messages="$errors->store->get('title') ?? ''" class="mt-2" />-->
                         <br>
 

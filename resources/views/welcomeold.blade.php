@@ -553,6 +553,7 @@
 
             <div class="ml-12">
               <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                (EN DESARROLLO)
                 Esta herramienta funciona para obtener los datos de una matriz de prensa (esta consiste en extraer y contar palabras dentro de un conjunto de datos establecidos para tener datos medibless ).
                 <br>
 
