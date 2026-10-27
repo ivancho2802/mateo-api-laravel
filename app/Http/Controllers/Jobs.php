@@ -182,7 +182,7 @@ class Jobs extends Controller
       ]);
 
       JobDetails::where("uui", $jobDetails->uui)->update([
-        "otro" => $jobDetails->otro  ?? ''. json_encode($request)
+        "otro" => $jobDetails->otro  ?? '' . ' ; ' . json_encode($request)
       ]);
     }
 
