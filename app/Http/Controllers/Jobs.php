@@ -172,6 +172,19 @@ class Jobs extends Controller
     }
 
     //dd($metaFiles);
+    if (isset($request->date_from) && isset($request->date_to)) {
+      
+      $jobDetails = JobDetails::firstOrCreate([
+        "dominio" => $dominio,
+        "name_key" => $name_key,
+        "uui" => $formid,
+        "token" => $token,
+      ]);
+
+      JobDetails::where("uui", $jobDetails->uui)->update([
+        "otro" => $jobDetails->otro  ?? ''. json_encode($request)
+      ]);
+    }
 
     //filtrando los formularios que ya han sido exportados con filesexported con los formularios consultados dataenketoresponse
     $dataEnketoResponseFiltered = collect($dataEnketoResponse)->filter(function ($item, $key) use ($filesExported, $request) {
