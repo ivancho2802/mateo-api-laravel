@@ -1292,6 +1292,7 @@ class Jobs extends Controller
 
     if (!is_array($dataEnketoResponse)) {
       dd("Error no se encuentra el formuilario", $formid);
+      dd("Error no se encuentra el formuilario", $dataEnketoResponse);
       return;
     }
 
