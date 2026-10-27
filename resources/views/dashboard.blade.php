@@ -349,7 +349,7 @@
 
                             <div class="ml-4 text-lg leading-7 font-semibold">
                                 <a href="{{ route('koboactivityinfo') }}" class="underline text-gray-900 dark:text-white">
-                                    Formulario migracion a activity info
+                                    Formulario migracion a activity info - 171
                                 </a>
                             </div>
                         </div>

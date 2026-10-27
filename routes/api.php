@@ -447,7 +447,7 @@ Route::middleware(['auth:sanctum'])->prefix('kobo')->group(function () {
       $metaFiles = [];
 
       if (!is_array($dataSubmissionsResponse)) {
-        dd("Error no se encuentra el formuilario", $dataSubmissionsResponse, $token, $dataForm, $formid);
+        dd("{uui}/export/{token} - Error no se encuentra el formuilario", $dataSubmissionsResponse, $token, $dataForm, $formid);
         return;
       }
 
