@@ -1291,8 +1291,7 @@ class Jobs extends Controller
     $metaFiles = [];
 
     if (!is_array($dataEnketoResponse)) {
-      dd("reexportByuuiV2 Error no se encuentra el formuilario", $formid);
-      dd("reexportByuuiV2 Error no se encuentra el formuilario", $dataEnketoResponse);
+      dd("reexportByuuiV2 Error no se encuentra el formuilario", $formid, $dataEnketoResponse);
       return;
     }
 
