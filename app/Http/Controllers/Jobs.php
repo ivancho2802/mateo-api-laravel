@@ -1290,7 +1290,8 @@ class Jobs extends Controller
     $name_fomulary = "Hubo un problema al obtener el nomnre del formulario";
     $metaFiles = [];
 
-    if (!is_array($dataEnketoResponse)) {
+    if (!($dataEnketoResponse instanceof \Illuminate\Support\Collection) ||
+    $dataEnketoResponse->isEmpty()) {
       dd("reexportByuuiV2 Error no se encuentra el formuilario", $formid, $dataEnketoResponse);
       return;
     }
